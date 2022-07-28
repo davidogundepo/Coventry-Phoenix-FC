@@ -2,6 +2,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../api/club_arial_images_api.dart';
@@ -63,8 +64,8 @@ String extraCurricularActsStatement6 = "6. Awards and prices night.\n";
 String clubArialViewsSwipe = "Swipe left or right for more photos";
 String clubArialViews = "Some Arial views of $clubName";
 String clubAchievementsSwipe = "Swipe left or right for more photos";
-String clubAchievements = "Some of our achievements";
-String moreInfoAboutClub = "For more information about $clubName please trust and click me";
+String clubAchievements = "Some of our Past Achievements";
+String moreInfoAboutClub = "For more information about $clubName please trust and click me :)";
 String moreInfoAboutClubURL = "https://afcbinley.uk/";
 
 dynamic coachesPopulation;
@@ -891,93 +892,93 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, bottom: 10),
-                  child: Text(clubArialViews,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: cardTextColor,
-                    fontWeight: FontWeight.w500
-                  ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: boxDecorationColor.withAlpha(50),
-                        borderRadius: BorderRadius.circular(5)
-                    ),
-                    child: Material (
-                      color: materialColor,
-                      child: InkWell(
-                        splashColor: cardTextColor,
-                        onTap: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 5, bottom: 5),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Text(clubArialViewsSwipe,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: cardTextColor,
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 340,
-                  child: Swiper(
-                    autoplay: true,
-                    viewportFraction: 0.8,
-                    scale: 0.9,
-                    itemCount: clubArialNotifier.clubArialList.length,
-                    itemBuilder: (context, index) => Column(
-                      children: <Widget>[
-                        Container(
-                          height: 250,
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-                            image: DecorationImage(
-                              image: CachedNetworkImageProvider(
-                                  clubArialNotifier.clubArialList[index].image!
-                              ),
-                              fit: BoxFit.cover,
-                            )
-                          ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                            color: cardColor
-                          ),
-                          child: ListTile(
-                            title: Center(
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Text(
-                                  clubArialNotifier.clubArialList[index].toastName!,
-                                  style: TextStyle(
-                                    color: textColor,
-                                    fontWeight: FontWeight.w800,
-                                    fontSize: 17.0,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 20, bottom: 10),
+                //   child: Text(clubArialViews,
+                //   style: TextStyle(
+                //     fontSize: 15,
+                //     color: cardTextColor,
+                //     fontWeight: FontWeight.w500
+                //   ),
+                //   ),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //         color: boxDecorationColor.withAlpha(50),
+                //         borderRadius: BorderRadius.circular(5)
+                //     ),
+                //     child: Material (
+                //       color: materialColor,
+                //       child: InkWell(
+                //         splashColor: cardTextColor,
+                //         onTap: () {},
+                //         child: Padding(
+                //           padding: const EdgeInsets.only(top: 5, bottom: 5),
+                //           child: SingleChildScrollView(
+                //             scrollDirection: Axis.vertical,
+                //             child: Text(clubArialViewsSwipe,
+                //               textAlign: TextAlign.center,
+                //               style: TextStyle(
+                //                   color: cardTextColor,
+                //                   fontSize: 15,
+                //                   fontWeight: FontWeight.bold
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 340,
+                //   child: Swiper(
+                //     autoplay: true,
+                //     viewportFraction: 0.8,
+                //     scale: 0.9,
+                //     itemCount: clubArialNotifier.clubArialList.length,
+                //     itemBuilder: (context, index) => Column(
+                //       children: <Widget>[
+                //         Container(
+                //           height: 250,
+                //           decoration: BoxDecoration(
+                //             borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                //             image: DecorationImage(
+                //               image: CachedNetworkImageProvider(
+                //                   clubArialNotifier.clubArialList[index].image!
+                //               ),
+                //               fit: BoxFit.cover,
+                //             )
+                //           ),
+                //         ),
+                //         Container(
+                //           decoration: BoxDecoration(
+                //             borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                //             color: cardColor
+                //           ),
+                //           child: ListTile(
+                //             title: Center(
+                //               child: SingleChildScrollView(
+                //                 scrollDirection: Axis.horizontal,
+                //                 child: Text(
+                //                   clubArialNotifier.clubArialList[index].toastName!,
+                //                   style: TextStyle(
+                //                     color: textColor,
+                //                     fontWeight: FontWeight.w800,
+                //                     fontSize: 17.0,
+                //                   ),
+                //                   textAlign: TextAlign.center,
+                //                 ),
+                //               ),
+                //             ),
+                //           ),
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20, bottom: 10),
                   child: Text(clubAchievements,
@@ -1008,7 +1009,7 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: cardTextColor,
-                                  fontSize: 19,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.bold
                               ),
                             ),
@@ -1018,60 +1019,93 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 340,
-                  child: Swiper(
-                    autoplay: true,
-                    viewportFraction: 0.8,
-                    scale: 0.9,
-                    itemCount: achievementsNotifier.achievementsList.length,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: <Widget>[
-                          Container(
-                            height: 250,
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-                              image: DecorationImage(
-//                            colorFilter: ColorFilter.linearToSrgbGamma(),
-                                image: CachedNetworkImageProvider(
-                                    achievementsNotifier.achievementsList[index].image!
-                                ),
-                                fit: BoxFit.cover,
-                              )
-                            ),
+
+                if (achievementsNotifier.achievementsList.isEmpty) ...[
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.85,
+                            child: Lottie.asset(
+                              'assets/json/searching.json',
+                              // width: MediaQuery.of(context).size.width * 0.80,
+                              height: 150,
+                              fit: BoxFit.contain,
+                            )
+                        ),
+
+                        Text(
+                          "No Past Achievements Found",
+                          style: TextStyle(
+                            color: cardTextColor,
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                              color: cardColor
-                            ),
-                            child: ListTile(
-                              title: Center(
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Text(
-                                    achievementsNotifier.achievementsList[index].toastName!,
-                                    style: TextStyle(
-                                      color: textColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17.0,
+
+
+                        )
+                      ],
+                    ),
+                  )
+                ]
+                else ...[
+                  SizedBox(
+                    height: 340,
+                    child: Swiper(
+                      autoplay: true,
+                      viewportFraction: 0.8,
+                      scale: 0.9,
+                      itemCount: achievementsNotifier.achievementsList.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: <Widget>[
+                            Container(
+                              height: 250,
+                              decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                                  image: DecorationImage(
+//                            colorFilter: ColorFilter.linearToSrgbGamma(),
+                                    image: CachedNetworkImageProvider(
+                                        achievementsNotifier.achievementsList[index].image!
                                     ),
-                                    textAlign: TextAlign.center,
+                                    fit: BoxFit.cover,
+                                  )
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                                  color: cardColor
+                              ),
+                              child: ListTile(
+                                title: Center(
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Text(
+                                      achievementsNotifier.achievementsList[index].toastName!,
+                                      style: TextStyle(
+                                        color: textColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17.0,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          )
-                        ],
-                      );
-                    },
-                    itemWidth: 350,
+                            )
+                          ],
+                        );
+                      },
+                      itemWidth: 350,
                       layout: SwiperLayout.STACK,
-//                pagination: SwiperPagination(),
+//                    pagination: SwiperPagination(),
+                    ),
                   ),
+                ],
 
-                ),
+
+
                 Padding(
                   padding: const EdgeInsets.only(left: 20, bottom: 30, top: 20),
                   child: RichText(

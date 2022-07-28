@@ -95,6 +95,9 @@ class AboutAppDetails extends StatefulWidget {
 class _AboutAppDetailsState extends State<AboutAppDetails> {
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
