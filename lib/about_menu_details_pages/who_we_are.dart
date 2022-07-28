@@ -2,17 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-String elite = "Elite";
+String elite = "CPFC";
 String graduateSetTheme = "ELITE Set 2022";
-String graduateSetThemeTitle = "We Are ELITE";
+String graduateSetThemeTitle = "We Are CPFC";
 String whoWeAre = "Who We Are";
 
 
-String whoVerse = "The Question\nThey ask us\nWho are we?\nThe world has set its standards\nBut we use a different curriculum\nWe don't fit anywhere";
-String weVerse = "Whose name do we carry?\nWhose voice do we hear?\nWhose footsteps do we follow\nThat marks us as chosen\nAnd names us as blessed";
-String areVerse = "We are sent with a higher calling\nTo live eternally\nAnd lead others to the light\nWe may be few\nBut we are a formidable army\n";
-String eliteVerse = "This is where we fit into\nOur world not of this world\nWe are chosen\nWe are Christians\nWe are ELITE";
-String poet = 'Ayoade Iyanuoluwa';
+String whoVerse = "The Question\nThey ask us\nWho are we?\nThe world has set its standards\nBut we use a different curriculum\nWe don't fit just anywhere";
+String weVerse = "Whose badge do we wear?\nWhose voice do we hear?\nWhose game-plan do we follow\nThat marks us as chosen\nAnd names us as elite";
+String areVerse = "We play with a higher calling\nTo put in our best\nAnd lead and follow each-other\nWe may be few\nBut we are a formidable army\nA group of powerful and talented lads\n";
+String eliteVerse = "This is where we fit into\nWe are chosen\nWe are ELITE\nWe are CPFC";
+String poet = 'AYOADE Iyanuoluwa';
 String setVerse = "The word 'elite' is a noun drawn from the Latin word 'eligere' which means to pick out or select. Elite is used to refer to a small group of powerful people that controls an unequal amount of wealth, privilege, political power or skill in a society.\nAn elite is also defined by education (preferably Ivy League and it's coastal counterparts), profession (executive positions in government, media, law, foundations, the arts and academia), celebrity (name recognition from television, Hollywood, network news, finance, etc.) and ideology such as those prominent in the progressive movement.\nThe Elites holds a superior position among the ordinary people and exercise greater privilege, they are looked up to in the society as source of solution to any form of challenge.\nThis defines the personality of every  player of 2022 that has undergone training and tutorship on the core values rightly spelt out as; Spirituality, Integrity, Possibility Mentality, Capacity Building, Responsibility and Diligence.\nWe are a people with an extra ordinary ability to showcase to our generation in all ramifications of life. We have been reformed, transformed and informed of our dignity an prestige to the black race.\nThe players for 2022 are modelled after the order of our saviour Jesus Christ as reflected in 1 Peter 2:9, 'But you are a chosen race, a royal priesthood, an holy nation, a peculiar people; that ye should show forth the praises of him who hath called you out of darkness into his marvellous light...'. We are equipped to engage in who we are as Kings and Queens by reason of the DNA we possess from our heavenly Father the Kings of kings.\nWe are by authority and training, persons separated to be in the high class of our society here on earth.";
 String core = 'Our core mission is:';
 String coreOne = '1. To be a solution providers by adding value and creativity to changing the mirage of our society today.';

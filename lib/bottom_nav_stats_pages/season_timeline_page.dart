@@ -511,7 +511,7 @@ class _SeasonTimelineState extends State<SeasonTimeline> {
 
   @override
   void didChangeDependencies() {
-    precacheImage(const AssetImage('images/baller.png'), context);
+    precacheImage(const AssetImage('assets/images/baller.png'), context);
     super.didChangeDependencies();
   }
 }

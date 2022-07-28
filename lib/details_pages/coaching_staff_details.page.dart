@@ -36,17 +36,18 @@ String messageButton = "Send me a Message";
 String whatsAppButton = "Send me a WhatsApp Message";
 String emailButton = "Send me an Email";
 String facebookButton = "My Facebook";
+String linkedInButton = "My LinkedIn";
 String twitterButton = "My Twitter";
 String instagramButton = "My Instagram";
 
 String autobiographyTitle = "My Autobiography\n";
-String staffPositionTitle = "Staff Position\n";
+String staffPositionTitle = "CPFC Coaching Position\n";
 String bestMomentTitle = "My best moment so far in $clubName\n";
 String worstMomentTitle = "My worst moment so far in $clubName\n";
 String countryTitle = "My Nationality\n";
-String whyLoveFootballTitle = "What Made you love Football\n";
-String peleOrMaradonaTitle = "Pele or Maradona\n";
-String yearOfInceptionTitle = "Inception with $clubName\n";
+String whyLoveFootballCoachingTitle = "What made me move into Football Coaching\n";
+String sportingIconTitle = "Who is my favourite sporting icon\n";
+String yearOfInceptionTitle = "Year of Inception with $clubName\n";
 String regionOfOriginTitle = "My Region of Origin\n";
 String hobbiesTitle = "My Hobbies\n";
 String philosophyTitle = "My Philosophy about Life\n";
@@ -56,6 +57,14 @@ String facebookProfileSharedPreferencesContentOne= "Apparently, you'd need to se
 String facebookProfileSharedPreferencesContentTwo = ", on Facebook.com";
 String facebookProfileSharedPreferencesButton = "Go to Facebook";
 String facebookProfileSharedPreferencesButtonTwo = "Lol, No";
+
+String linkedInProfileSharedPreferencesTitle = "Manual Website Search";
+String linkedInProfileSharedPreferencesContentOne= "Apparently, you'd need to search manually for ";
+String linkedInProfileSharedPreferencesContentTwo = ", on LinkedIn.com";
+String linkedInProfileSharedPreferencesButton = "Go to LinkedIn";
+String linkedInProfileSharedPreferencesButtonTwo = "Lol, No";
+
+
 
 
 Color backgroundColor = const Color.fromRGBO(46, 76, 109, 1);
@@ -99,8 +108,8 @@ dynamic _staffPosition;
 dynamic _bestMoment;
 dynamic _worstMoment;
 dynamic _country;
-dynamic _whyLoveFootball;
-dynamic _peleOrMaradona;
+dynamic _whyLoveFootballCoaching;
+dynamic _sportingIcon;
 dynamic _yearOfInception;
 dynamic _hobbies;
 dynamic _philosophy;
@@ -111,6 +120,7 @@ dynamic _instagram;
 dynamic _name;
 dynamic _phone;
 dynamic _twitter;
+dynamic _linkedIn;
 
 class CoachesDetailsPage extends StatefulWidget {
 
@@ -411,8 +421,8 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
     _bestMoment = coachesNotifier.currentCoaches.bestMoment;
     _worstMoment = coachesNotifier.currentCoaches.worstMoment;
     _country = coachesNotifier.currentCoaches.nationality;
-    _whyLoveFootball = coachesNotifier.currentCoaches.whyLoveFootball;
-    _peleOrMaradona = coachesNotifier.currentCoaches.peleOrMaradona;
+    _whyLoveFootballCoaching = coachesNotifier.currentCoaches.whyLoveCoachingOrFCManagement;
+    _sportingIcon = coachesNotifier.currentCoaches.favSportingIcon;
     _yearOfInception = coachesNotifier.currentCoaches.yearOfInception;
     _hobbies = coachesNotifier.currentCoaches.hobbies;
     _philosophy = coachesNotifier.currentCoaches.philosophy;
@@ -423,6 +433,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
     _name = coachesNotifier.currentCoaches.name;
     _phone = coachesNotifier.currentCoaches.phone;
     _twitter = coachesNotifier.currentCoaches.twitter;
+    _linkedIn = coachesNotifier.currentCoaches.linkedIn;
 
 
     userBIO = <int, Widget>{
@@ -885,6 +896,68 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
             }
           }()),
 
+          (() {
+            if (_linkedIn
+                .toString()
+                .isNotEmpty) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: InkWell(
+                  splashColor: splashColorTwo,
+                  child: RaisedButton.icon(
+                    shape: BeveledRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    elevation: 2,
+                    color: buttonColor,
+                    icon: Icon(MdiIcons.linkedin, color: iconTextColor),
+                    label: Text(linkedInButton,
+                      style: GoogleFonts.abel(
+                          color: iconTextColor,
+                          fontSize: 18,
+                          decoration: TextDecoration.underline,
+                          decorationStyle: TextDecorationStyle.dashed,
+                          fontWeight: FontWeight.w300),
+                    ),
+                    onPressed: () {
+                      linkedInLink();
+                    },
+                  ),
+                ),
+              );
+            } else {
+              return Visibility(
+                visible: !_isVisible,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  // child: InkWell(
+                  //   splashColor: iconTextColor,
+                  //   child: RaisedButton.icon(
+                  //     shape: BeveledRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(10)
+                  //     ),
+                  //     elevation: 2,
+                  //     color: buttonColor,
+                  //     icon: Icon(MdiIcons.facebook, color: iconTextColor),
+                  //     label: Text('My Facebook',
+                  //       style: GoogleFonts.abel(
+                  //           color: iconTextColor,
+                  //           fontSize: 18,
+                  //           fontWeight: FontWeight.w300
+                  //       ),
+                  //     ),
+                  //     onPressed: () {
+                  //       launchURL(urlFacebook + _facebook);
+                  //     },
+                  //   ),
+                  // ),
+                ),
+              );
+            }
+          }()),
+
+
+
         ],
       ),
 
@@ -1317,7 +1390,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
           }()),
 
           (() {
-            if (_whyLoveFootball
+            if (_whyLoveFootballCoaching
                 .toString()
                 .isNotEmpty) {
               return Padding(
@@ -1338,14 +1411,14 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                           TextSpan(
                             children: <TextSpan>[
                               TextSpan(
-                                  text: whyLoveFootballTitle,
+                                  text: whyLoveFootballCoachingTitle,
                                   style: GoogleFonts.aBeeZee(
                                     color: textColor,
                                     fontSize: 19,
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _whyLoveFootball,
+                                  text: ' ' + _whyLoveFootballCoaching,
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -1401,7 +1474,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
             }
           }()),
  (() {
-            if (_peleOrMaradona
+            if (_sportingIcon
                 .toString()
                 .isNotEmpty) {
               return Padding(
@@ -1422,14 +1495,14 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                           TextSpan(
                             children: <TextSpan>[
                               TextSpan(
-                                  text: peleOrMaradonaTitle,
+                                  text: sportingIconTitle,
                                   style: GoogleFonts.aBeeZee(
                                     color: textColor,
                                     fontSize: 19,
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _peleOrMaradona,
+                                  text: ' ' + _sportingIcon,
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -1452,34 +1525,34 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                         borderRadius: BorderRadius.circular(10)),
                     child: Material(
                       color: materialBackgroundColor,
-                      child: InkWell(
-                        splashColor: splashColorThree,
-                        onTap: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              bottom: 15, top: 15, left: 25),
-                          child: Text.rich(
-                            TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: peleOrMaradonaTitle,
-                                    style: GoogleFonts.aBeeZee(
-                                      color: textColor,
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                TextSpan(
-                                    text: ' ' + _peleOrMaradona,
-                                    style: GoogleFonts.trykker(
-                                      color: textColor,
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.w300,
-                                    )),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      // child: InkWell(
+                      //   splashColor: splashColorThree,
+                      //   onTap: () {},
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.only(
+                      //         bottom: 15, top: 15, left: 25),
+                      //     child: Text.rich(
+                      //       TextSpan(
+                      //         children: <TextSpan>[
+                      //           TextSpan(
+                      //               text: peleOrMaradonaTitle,
+                      //               style: GoogleFonts.aBeeZee(
+                      //                 color: textColor,
+                      //                 fontSize: 19,
+                      //                 fontWeight: FontWeight.bold,
+                      //               )),
+                      //           TextSpan(
+                      //               text: ' ' + _peleOrMaradona,
+                      //               style: GoogleFonts.trykker(
+                      //                 color: textColor,
+                      //                 fontSize: 19,
+                      //                 fontWeight: FontWeight.w300,
+                      //               )),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                   ));
             }
@@ -1888,6 +1961,64 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
     );
 //    }
   }
+
+  linkedInLink() async {
+    showDialog(
+      context: context,
+      builder: (context) =>
+          AlertDialog(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+
+            ),
+            backgroundColor: backgroundColor,
+            title: Text(
+              linkedInProfileSharedPreferencesTitle,
+              style: TextStyle(
+                  color: cardBackgroundColor
+              ),
+            ),
+            content: Text(
+              linkedInProfileSharedPreferencesContentOne + _linkedIn +
+                  linkedInProfileSharedPreferencesContentTwo,
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                  color: cardBackgroundColor
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  launchURL(urlLinkedIn);
+                  Toast.show("Loading up LinkedIn.com",
+                      duration: Toast.lengthLong,
+                      gravity: Toast.bottom,
+                      webTexColor: cardBackgroundColor,
+                      backgroundColor: backgroundColor,
+                      backgroundRadius: 10
+                  );
+                },
+                child: Text(linkedInProfileSharedPreferencesButton,
+                  style: TextStyle(
+                      color: cardBackgroundColor
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(linkedInProfileSharedPreferencesButtonTwo,
+                  style: TextStyle(
+                      color: cardBackgroundColor
+                  ),
+                ),
+              ),
+
+            ],
+          ),
+    );
+//    }
+  }
+
 
   @override
   void dispose() {

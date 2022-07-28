@@ -17,8 +17,9 @@ class Coaches {
   String? name;
   String? phone;
   String? twitter;
-  String? whyLoveFootball;
-  String? peleOrMaradona;
+  String? linkedIn;
+  String? whyLoveCoachingOrFCManagement;
+  String? favSportingIcon;
 
   Coaches.fromMap(Map<String?, dynamic> data) {
     id = data['id'];
@@ -31,6 +32,7 @@ class Coaches {
     name = data['name'];
     phone = data['phone'];
     twitter = data['twitter'];
+    linkedIn = data['linkedIn'];
     yearOfInception = data['year_of_inception'];
     regionOfOrigin = data['region_of_origin'];
     nationality = data['nationality'];
@@ -39,8 +41,8 @@ class Coaches {
     worstMoment = data['worst_moment'];
     staffPosition = data['staff_position'];
     philosophy = data['philosophy'];
-    whyLoveFootball = data['why_you_love_football'];
-    peleOrMaradona = data['pele_or_maradona'];
+    whyLoveCoachingOrFCManagement = data['why_you_love_coaching_or_fc_management'];
+    favSportingIcon = data['fav_sporting_icon'];
   }
 
 }

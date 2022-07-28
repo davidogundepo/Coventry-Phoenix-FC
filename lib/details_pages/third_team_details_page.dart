@@ -48,19 +48,19 @@ String bestMomentTitle = "My best moment so far in $clubName\n";
 String worstMomentTitle = "My worst moment so far in $clubName\n";
 String dreamFCTitle = "My Dream Football Club\n";
 String positionPlayingTitle = "My Play Position\n";
-String dobTitle = "My Date of Birth\n";
+String dobTitle = "My Age\n";
 // String prefectPositionTitle = "Position held as a Prefect\n";
 String regionOfOriginTitle = "My Region of Origin\n";
 String countryTitle = "My Nationality\n";
 String otherPositionsOfPlayTitle = "Other Positions I Can Play\n";
-String favFootballLegendTitle = "My All Time Favourite Legend\n";
+String favFootballLegendTitle = "My All Time Favourite Football Legend\n";
 String yearOfInceptionTitle = "Inception with $clubName\n";
 String leftOrRightFootedTitle = "Left or Right Footed\n";
 String adidasOrNikeTitle = "Adidas or Nike\n";
 String ronaldoOrMessiTitle = "Ronaldo or Messi\n";
 String hobbiesTitle = "My Hobbies\n";
 String philosophyTitle = "My Philosophy about Life\n";
-String droplineTitle = "Dropline to My fellow $clubName footballers\n";
+String droplineTitle = "My Dropline to my fellow $clubName footballers\n";
 
 
 String facebookProfileSharedPreferencesTitle = "Manual Website Search";
