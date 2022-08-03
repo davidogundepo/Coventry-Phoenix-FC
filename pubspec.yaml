@@ -78,6 +78,8 @@ dependencies:
   confetti: ^0.7.0
   parallax_rain: ^1.1.0
   flutter_local_notifications: ^9.7.0
+  adaptive_theme: ^3.1.1
+  flutter_riverpod: ^1.0.4
 
 
 
@@ -85,10 +87,9 @@ flutter_app_name:
   name: "Coventry Phoenix FC"
 
 flutter_icons:
-  android: true
+  android: false
   ios: true
-  image_path: "assets/images/cpfc_logo.jpeg"
-
+  image_path: "assets/images/cpfc_logo_apple.jpeg"
 
 dev_dependencies:
   flutter_test:

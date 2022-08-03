@@ -6,7 +6,7 @@ public class SplashViewController: UIViewController {
     private var animationView: AnimationView?
     
     public override func viewDidAppear(_ animated: Bool) {
-        animationView = .init(name: "fb_pitch")
+        animationView = .init(name: "football_field")
         animationView!.frame = view.bounds
         animationView!.contentMode = .scaleAspectFit
         animationView!.loopMode = .playOnce

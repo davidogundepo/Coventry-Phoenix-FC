@@ -7,22 +7,22 @@ import 'package:provider/provider.dart';
 import '../details_pages/management_details_page.dart';
 import '../notifier/management_body_notifier.dart';
 
-Color backgroundColor = const Color.fromRGBO(21, 114, 161, 1);
-Color appBarBackgroundColor = const Color.fromRGBO(21, 114, 161, 1);
-Color appBarTextColor = Colors.white;
-Color appBarIconColor = Colors.white;
+Color backgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
+Color appBarBackgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
+Color appBarTextColor = const Color.fromRGBO(208, 104, 47, 1);
+Color appBarIconColor = const Color.fromRGBO(208, 104, 47, 1);
 Color modalColor = Colors.transparent;
-Color modalBackgroundColor = const Color.fromRGBO(21, 114, 161, 1);
+Color modalBackgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
 Color materialBackgroundColor = Colors.transparent;
-Color cardBackgroundColor = Colors.white;
-Color splashColor = const Color.fromRGBO(21, 114, 161, 1);
+Color cardBackgroundColor = const Color.fromRGBO(208, 104, 47, 1);
+Color splashColor = const Color.fromRGBO(238, 235, 235, 1.0);
 Color splashColorTwo = Colors.black87;
-Color iconColor = Colors.white;
-Color textColor = Colors.white;
+Color iconColor = const Color.fromRGBO(208, 104, 47, 1);
+Color textColor = const Color.fromRGBO(208, 104, 47, 1);
 Color textColorTwo = Colors.white70;
-Color dialogBackgroundColor = const Color.fromRGBO(21, 114, 161, 1);
+Color dialogBackgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
 Color borderColor = Colors.black;
-Color textHighlightColor = Colors.white;
+Color textHighlightColor = const Color.fromRGBO(208, 104, 47, 1);
 
 dynamic queryTech;
 
@@ -36,6 +36,8 @@ class MyManagementBodySearch extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     final ThemeData theme = ThemeData(
         primaryColor: appBarBackgroundColor,
+        primarySwatch: Colors.deepOrange,
+        appBarTheme: AppBarTheme(backgroundColor: cardBackgroundColor),
         primaryIconTheme: IconThemeData(color: appBarIconColor),
         textTheme: TextTheme(subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
         inputDecorationTheme: InputDecorationTheme(
@@ -86,7 +88,9 @@ class MyManagementBodySearch extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: const Icon(MdiIcons.chevronTripleLeft),
+      icon: const Icon(
+          MdiIcons.chevronTripleLeft,
+      ),
       onPressed: () {
         close(context, null);
       },

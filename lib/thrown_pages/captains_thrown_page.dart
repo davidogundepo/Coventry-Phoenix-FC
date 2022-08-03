@@ -35,21 +35,21 @@ String acronymMeanings = "Acronym Meanings";
 String aboutApp = "About App";
 
 
-Color backgroundColor = const Color.fromRGBO(166, 141, 173, 1);
-Color appBarTextColor = const Color.fromRGBO(99, 73, 107, 1.0);
-Color appBarBackgroundColor = const Color.fromRGBO(166, 141, 173, 1);
-Color appBarIconColor = const Color.fromRGBO(99, 73, 107, 1.0);
+Color backgroundColor = const Color.fromRGBO(56, 56, 60, 1);
+Color appBarTextColor = Colors.white70;
+Color appBarBackgroundColor = const Color.fromRGBO(56, 56, 60, 1);
+Color appBarIconColor = Colors.white70;
 Color modalColor = Colors.transparent;
-Color modalBackgroundColor = const Color.fromRGBO(166, 141, 173, 1);
+Color modalBackgroundColor = const Color.fromRGBO(56, 56, 60, 1);
 Color materialBackgroundColor = Colors.transparent;
-Color cardBackgroundColor = const Color.fromRGBO(99, 73, 107, 1.0);
-Color splashColor = const Color.fromRGBO(166, 141, 173, 1);
+Color cardBackgroundColor = Colors.white70;
+Color splashColor = const Color.fromRGBO(56, 56, 60, 1);
 Color splashColorTwo = Colors.black87;
 Color iconColor = Colors.white70;
-Color iconColorTwo = const Color.fromRGBO(99, 73, 107, 1.0);
+Color iconColorTwo = Colors.white70;
 Color textColor = Colors.white70;
-Color textColorTwo = const Color.fromRGBO(99, 73, 107, 1.0);
-Color dialogBackgroundColor = const Color.fromRGBO(166, 141, 173, 1);
+Color textColorTwo = Colors.white70;
+Color dialogBackgroundColor = const Color.fromRGBO(56, 56, 60, 1);
 Color borderColor = Colors.black;
 
 

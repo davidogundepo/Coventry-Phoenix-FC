@@ -7,20 +7,20 @@ import 'package:provider/provider.dart';
 import '../details_pages/third_team_details_page.dart';
 import '../notifier/third_team_class_notifier.dart';
 
-Color backgroundColor = const Color.fromRGBO(120, 130, 164, 1);
-Color appBarTextColor = const Color.fromRGBO(152, 160, 188, 1.0);
-Color appBarBackgroundColor = const Color.fromRGBO(120, 130, 164, 1);
-Color appBarIconColor = const Color.fromRGBO(152, 160, 188, 1.0);
+Color backgroundColor = const Color.fromRGBO(237, 242, 244, 1);
+Color appBarTextColor = const Color.fromRGBO(73, 80, 87, 1.0);
+Color appBarBackgroundColor = const Color.fromRGBO(237, 242, 244, 1);
+Color appBarIconColor = const Color.fromRGBO(73, 80, 87, 1.0);
 Color modalColor = Colors.transparent;
 Color materialBackgroundColor = Colors.transparent;
-Color cardBackgroundColor = const Color.fromRGBO(152, 160, 188, 1.0);
-Color splashColor = const Color.fromRGBO(120, 130, 164, 1);
-Color iconColor = const Color.fromRGBO(152, 160, 188, 1.0);
-Color textColor = const Color.fromRGBO(152, 160, 188, 1.0);
-Color textColorTwo = const Color.fromRGBO(152, 160, 188, 1.0);
-Color dialogBackgroundColor = const Color.fromRGBO(120, 130, 164, 1);
+Color cardBackgroundColor = const Color.fromRGBO(73, 80, 87, 1.0);
+Color splashColor = const Color.fromRGBO(237, 242, 244, 1);
+Color iconColor = Colors.white;
+Color textColor = Colors.white;
+Color textColorTwo = const Color.fromRGBO(73, 80, 87, 1.0);
+Color dialogBackgroundColor = const Color.fromRGBO(237, 242, 244, 1);
 Color borderColor = Colors.black;
-Color textHighlightColor = const Color.fromRGBO(152, 160, 188, 1.0);
+Color textHighlightColor = const Color.fromRGBO(73, 80, 87, 1.0);
 
 dynamic queryTech;
 
@@ -36,6 +36,8 @@ class MyThirdTeamClassSearch extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     final ThemeData theme = ThemeData(
         primaryColor: appBarBackgroundColor,
+        primarySwatch: Colors.deepOrange,
+        appBarTheme: AppBarTheme(backgroundColor: cardBackgroundColor),
         primaryIconTheme: IconThemeData(color: appBarIconColor),
         textTheme: TextTheme(subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
         inputDecorationTheme: InputDecorationTheme(
@@ -203,7 +205,7 @@ class MyThirdTeamClassSearch extends SearchDelegate {
                                                 children: [
                                                   TextSpan(
                                                       text: search[position].name.substring(queryTech.length),
-                                                      style: GoogleFonts.tenorSans(color: textHighlightColor))
+                                                      style: GoogleFonts.tenorSans(color: textColor))
                                                 ]),
                                           ),
                                           (() {
@@ -236,7 +238,7 @@ class MyThirdTeamClassSearch extends SearchDelegate {
                                       child: Text(
                                           search[position].positionPlaying,
                                           style: GoogleFonts.varela(
-                                              color: textColor,
+                                              color: textColorTwo,
                                               fontStyle: FontStyle.italic
                                           )
                                       ),

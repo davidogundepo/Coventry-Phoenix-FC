@@ -1,6 +1,7 @@
 
 import 'dart:async';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -42,6 +43,7 @@ Color? secondStudentChartColor = Colors.indigo[400];
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
+  final savedThemeMode = await AdaptiveTheme.getThemeMode();
   await Firebase.initializeApp();
   await PushNotificationService().setupInteractedMessage();
   FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
@@ -76,7 +78,6 @@ void main() async {
           ChangeNotifierProvider(
             create: (context) => SideBarNotifier(),
           ),
-
           ChangeNotifierProvider(
             create: (context) => MostAssistsPlayersStatsAndInfoNotifier(),
           ),
@@ -125,8 +126,9 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, this.savedThemeMode}) : super(key: key);
 
+  final AdaptiveThemeMode? savedThemeMode;
 
   @override
   State<StatefulWidget> createState() {
@@ -135,6 +137,24 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+
+
+  static Map<int, Color> color = {
+    50: const Color.fromRGBO(136, 14, 79, .1),
+    100: const Color.fromRGBO(136, 14, 79, .2),
+    200: const Color.fromRGBO(136, 14, 79, .3),
+    300: const Color.fromRGBO(136, 14, 79, .4),
+    400: const Color.fromRGBO(136, 14, 79, .5),
+    500: const Color.fromRGBO(136, 14, 79, .6),
+    600: const Color.fromRGBO(136, 14, 79, .7),
+    700: const Color.fromRGBO(136, 14, 79, .8),
+    800: const Color.fromRGBO(136, 14, 79, .9),
+    900: const Color.fromRGBO(136, 14, 79, 1),
+  };
+  MaterialColor primeColor = MaterialColor(0xFF337C36, color);
+  MaterialColor accentColor = MaterialColor(0xFF337C36, color);
+
+
 
   @override
   void initState() {
@@ -160,7 +180,7 @@ class MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.deepOrange,
       ),
       home: const SideBarLayout(),
       navigatorObservers: [

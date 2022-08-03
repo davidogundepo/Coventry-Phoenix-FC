@@ -7,22 +7,22 @@ import 'package:provider/provider.dart';
 import '../details_pages/coaching_staff_details.page.dart';
 import '../notifier/coaching_staff_notifier.dart';
 
-Color backgroundColor = const Color.fromRGBO(46, 76, 109, 1);
-Color appBarTextColor = Colors.white;
-Color appBarBackgroundColor = const Color.fromRGBO(46, 76, 109, 1);
-Color appBarIconColor = Colors.white;
+Color backgroundColor = const Color.fromRGBO(255, 145, 104, 1);
+Color appBarTextColor = const Color.fromRGBO(138, 55, 24, 1.0);
+Color appBarBackgroundColor = const Color.fromRGBO(255, 145, 104, 1);
+Color appBarIconColor = const Color.fromRGBO(138, 55, 24, 1.0);
 Color modalColor = Colors.transparent;
-Color modalBackgroundColor = const Color.fromRGBO(46, 76, 109, 1);
+Color modalBackgroundColor = const Color.fromRGBO(255, 145, 104, 1);
 Color materialBackgroundColor = Colors.transparent;
-Color cardBackgroundColor = Colors.white;
-Color splashColor = const Color.fromRGBO(46, 76, 109, 1);
+Color cardBackgroundColor = const Color.fromRGBO(138, 55, 24, 1.0);
+Color splashColor = const Color.fromRGBO(255, 145, 104, 1);
 Color splashColorTwo = Colors.black87;
-Color iconColor = Colors.white;
-Color textColor = Colors.white;
+Color iconColor = const Color.fromRGBO(255, 188, 163, 1);
+Color textColor = const Color.fromRGBO(255, 188, 163, 1);
 Color textColorTwo = Colors.white70;
-Color dialogBackgroundColor = const Color.fromRGBO(46, 76, 109, 1);
+Color dialogBackgroundColor = const Color.fromRGBO(255, 145, 104, 1);
 Color borderColor = Colors.black;
-Color textHighlightColor = Colors.white;
+Color textHighlightColor = const Color.fromRGBO(255, 188, 163, 1);
 
 dynamic queryTech;
 
@@ -36,6 +36,8 @@ class MyCoachesSearch extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     final ThemeData theme = ThemeData(
         primaryColor: appBarBackgroundColor,
+        primarySwatch: Colors.deepOrange,
+        appBarTheme: AppBarTheme(backgroundColor: modalBackgroundColor),
         primaryIconTheme: IconThemeData(color: appBarIconColor),
         textTheme: TextTheme(subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
         inputDecorationTheme: InputDecorationTheme(

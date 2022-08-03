@@ -20,7 +20,7 @@ class SplashView : SplashScreen {
         rootView.apply {
             layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 
-            setBackgroundColor(Color.parseColor("#0EA5A4"))
+            setBackgroundColor(Color.parseColor("#212529"))
             addView(LayoutInflater.from(context).inflate(R.layout.splash_view, nullParent, false))
 
         }

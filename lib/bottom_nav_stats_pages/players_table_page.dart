@@ -308,13 +308,21 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
           title: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
             stream: FirebaseFirestore.instance.collection('SliversPages').doc('non_slivers_pages').snapshots(),
             builder: (context, snapshot) {
-              return Text(
-              snapshot.data?.data()!['players_table'],
-                  style: TextStyle(
-                      color: appBarIconColor,
-                    fontSize: 17
-                  )
-              );
+              if (snapshot.hasData) {
+                return Text(
+                    snapshot.data?.data()!['players_table'],
+                    style: TextStyle(
+                        color: appBarIconColor,
+                        fontSize: 17
+                    )
+                );
+              }
+              else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
             }
           ),
           leading: IconButton(

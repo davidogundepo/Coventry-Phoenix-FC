@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/fb_pitch"
+        app:lottie_rawRes="@raw/football_field"
         app:lottie_speed="1.00" />
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_marginBottom="160dp"
         android:layout_height="wrap_content"
         android:text="@string/cpfc"
-        android:textColor="#0EA5A4"
+        android:textColor="#E15E28"
         android:textSize="35sp"
         android:gravity="center_horizontal|center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"

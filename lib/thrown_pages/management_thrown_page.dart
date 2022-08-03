@@ -36,20 +36,20 @@ String aboutApp = "About App";
 
 
 
-Color backgroundColor = const Color.fromRGBO(21, 114, 161, 1);
-  Color appBarBackgroundColor = const Color.fromRGBO(21, 114, 161, 1);
-Color appBarTextColor = Colors.white;
-Color appBarIconColor = Colors.white;
+Color backgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
+Color appBarBackgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
+Color appBarTextColor = const Color.fromRGBO(208, 104, 47, 1);
+Color appBarIconColor = const Color.fromRGBO(208, 104, 47, 1);
 Color modalColor = Colors.transparent;
-Color modalBackgroundColor = const Color.fromRGBO(21, 114, 161, 1);
+Color modalBackgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
 Color materialBackgroundColor = Colors.transparent;
-Color cardBackgroundColor = Colors.white;
-Color splashColor = const Color.fromRGBO(21, 114, 161, 1);
+Color cardBackgroundColor = const Color.fromRGBO(208, 104, 47, 1);
+Color splashColor = const Color.fromRGBO(238, 235, 235, 1.0);
 Color splashColorTwo = Colors.black87;
-Color iconColor = Colors.white;
-Color textColor = Colors.white;
+Color iconColor = const Color.fromRGBO(208, 104, 47, 1);
+Color textColor = const Color.fromRGBO(208, 104, 47, 1.0);
 Color textColorTwo = Colors.white70;
-Color dialogBackgroundColor = const Color.fromRGBO(21, 114, 161, 1);
+Color dialogBackgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
 Color borderColor = Colors.black;
 
 class MyManagementBodyPage extends StatefulWidget with NavigationStates{

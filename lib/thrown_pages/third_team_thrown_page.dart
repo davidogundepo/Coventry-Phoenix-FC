@@ -35,19 +35,19 @@ String aboutApp = "About App";
 
 
 
-Color backgroundColor = const Color.fromRGBO(120, 130, 164, 1);
-Color appBarTextColor = const Color.fromRGBO(152, 160, 188, 1.0);
-Color appBarBackgroundColor = const Color.fromRGBO(120, 130, 164, 1);
-Color appBarIconColor = const Color.fromRGBO(152, 160, 188, 1.0);
+Color backgroundColor = const Color.fromRGBO(237, 242, 244, 1);
+Color appBarTextColor = const Color.fromRGBO(73, 80, 87, 1.0);
+Color appBarBackgroundColor = const Color.fromRGBO(237, 242, 244, 1);
+Color appBarIconColor = const Color.fromRGBO(73, 80, 87, 1.0);
 Color modalColor = Colors.transparent;
 Color materialBackgroundColor = Colors.transparent;
-Color cardBackgroundColor = const Color.fromRGBO(152, 160, 188, 1.0);
-Color splashColor = const Color.fromRGBO(120, 130, 164, 1);
-Color iconColor = const Color.fromRGBO(152, 160, 188, 1.0);
-Color iconColorTwo = const Color.fromRGBO(58, 67, 103, 1.0);
-Color textColor = const Color.fromRGBO(152, 160, 188, 1.0);
-Color textColorTwo = const Color.fromRGBO(58, 67, 103, 1.0);
-Color dialogBackgroundColor = const Color.fromRGBO(120, 130, 164, 1);
+Color cardBackgroundColor = const Color.fromRGBO(73, 80, 87, 1.0);
+Color splashColor = const Color.fromRGBO(237, 242, 244, 1);
+Color iconColor = Colors.white;
+Color iconColorTwo = const Color.fromRGBO(73, 80, 87, 1.0);
+Color textColor = Colors.white;
+Color textColorTwo = const Color.fromRGBO(73, 80, 87, 1.0);
+Color dialogBackgroundColor = const Color.fromRGBO(237, 242, 244, 1);
 Color borderColor = Colors.black;
 
 
@@ -356,7 +356,7 @@ class _MyThirdTeamClassPage extends State<MyThirdTeamClassPage> {
                       },
                     ),
                     IconButton(
-                      icon: Icon(MdiIcons.magnify, color: iconColor),
+                      icon: Icon(MdiIcons.magnify, color: appBarIconColor),
                       onPressed: (){
                         showSearch(
                           context: context,

@@ -34,22 +34,21 @@ String acronymMeanings = "Acronym Meanings";
 String aboutApp = "About App";
 
 
-Color backgroundColor = const Color.fromRGBO(143, 189, 211, 1);
-Color appBarTextColor = const Color.fromRGBO(85, 114, 128, 1.0);
-Color appBarBackgroundColor = const Color.fromRGBO(143, 189, 211, 1);
-Color appBarIconColor = const Color.fromRGBO(85, 114, 128, 1.0);
+Color backgroundColor = const Color.fromRGBO(186, 90, 49, 1.0);
+Color appBarTextColor = Colors.white;
+Color appBarBackgroundColor = const Color.fromRGBO(186, 90, 49, 1);
+Color appBarIconColor = Colors.white;
 Color modalColor = Colors.transparent;
-Color modalBackgroundColor = const Color.fromRGBO(143, 189, 211, 1);
+Color modalBackgroundColor = const Color.fromRGBO(186, 90, 49, 1);
 Color materialBackgroundColor = Colors.transparent;
-Color cardBackgroundColor = const Color.fromRGBO(85, 114, 128, 1.0);
-Color splashColor = const Color.fromRGBO(143, 189, 211, 1);
-Color splashColorTwo = Colors.black87;
-Color iconColor = const Color.fromRGBO(85, 114, 128, 1.0);
-Color iconColorTwo = Colors.white60;
-Color textColor = const Color.fromRGBO(85, 114, 128, 1.0);
-Color textColorTwo = const Color.fromRGBO(85, 114, 128, 1.0);
-Color textColorThree = Colors.white60;
-Color dialogBackgroundColor = const Color.fromRGBO(143, 189, 211, 1);
+Color splashColor = const Color.fromRGBO(186, 90, 49, 1);
+Color splashColorTwo = Colors.white;
+Color iconColor = Colors.white;
+Color iconColorTwo = Colors.white;
+Color textColor = Colors.white;
+Color textColorTwo = Colors.white;
+Color textColorThree = Colors.white70;
+Color dialogBackgroundColor = const Color.fromRGBO(186, 90, 49, 1);
 Color borderColor = Colors.black;
 Color paintColor = Colors.indigo;
 Color paintColorTwo = Colors.indigoAccent;
@@ -123,7 +122,7 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                                 Text(
                                     secondTeamClassNotifier.secondTeamClassList[index].name!,
                                     style: GoogleFonts.tenorSans(
-                                        color: textColorThree,
+                                        color: textColorTwo,
                                         fontSize: 17,
                                         fontWeight: FontWeight.w600
                                     )

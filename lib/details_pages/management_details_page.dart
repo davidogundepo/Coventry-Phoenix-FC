@@ -44,7 +44,7 @@ String staffPositionTitle = "Staff Position\n";
 String bestMomentTitle = "My best moment so far in $clubName\n";
 String worstMomentTitle = "My worst moment so far in $clubName\n";
 String countryTitle = "My Nationality\n";
-String whyLoveFootballCoachingTitle = "What made me move into Football Management\n";
+String whyLoveFootballManagingTitle = "What made me move into Football Management\n";
 String sportingIconTitle = "Who is my favourite sporting icon\n";
 String yearOfInceptionTitle = "Inception with $clubName\n";
 String regionOfOriginTitle = "My Region of Origin\n";
@@ -65,22 +65,26 @@ String linkedInProfileSharedPreferencesButtonTwo = "Lol, No";
 
 
 
-Color backgroundColor = const Color.fromRGBO(21, 114, 161, 1);
-Color appBarTextColor = Colors.white;
-Color appBarBackgroundColor = const Color.fromRGBO(21, 114, 161, 1);
-Color appBarIconColor = Colors.white;
+Color backgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
+Color appBarTextColor = const Color.fromRGBO(208, 104, 47, 1);
+Color appBarBackgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
+Color appBarIconColor = const Color.fromRGBO(208, 104, 47, 1);
 Color materialBackgroundColor = Colors.transparent;
-Color shapeDecorationColor = const Color.fromRGBO(21, 114, 161, 1);
-Color shapeDecorationColorTwo = const Color.fromRGBO(21, 114, 161, 1);
-Color shapeDecorationTextColor = const Color.fromRGBO(21, 114, 161, 1);
-Color shapeDecorationIconColor = const Color.fromRGBO(21, 114, 161, 1);
+Color shapeDecorationColor = const Color.fromRGBO(208, 104, 47, 1);
+Color shapeDecorationColorTwo = const Color.fromRGBO(208, 104, 47, 1);
+Color shapeDecorationTextColor = const Color.fromRGBO(208, 104, 47, 1);
+Color shapeDecorationIconColor = const Color.fromRGBO(208, 104, 47, 1);
 Color cardBackgroundColor = Colors.white;
-Color splashColor = const Color.fromRGBO(21, 114, 161, 1);
-Color splashColorTwo = Colors.white;
-Color splashColorThree = const Color.fromRGBO(21, 114, 161, 1);
-Color iconTextColor = Colors.white;
-Color buttonColor = const Color.fromRGBO(21, 114, 161, 1);
-Color textColor = const Color.fromRGBO(21, 114, 161, 1);
+Color cardBackgroundColorTwo = const Color.fromRGBO(208, 104, 47, 1);
+Color splashColor = const Color.fromRGBO(238, 235, 235, 1.0);
+Color splashColorTwo = const Color.fromRGBO(208, 104, 47, 1);
+Color splashColorThree = const Color.fromRGBO(238, 235, 235, 1.0);
+Color iconTextColor = const Color.fromRGBO(208, 104, 47, 1);
+Color buttonColor = Colors.white60;
+Color textColor = const Color.fromRGBO(208, 104, 47, 1);
+
+
+
 Color confettiColorOne = Colors.green;
 Color confettiColorTwo = Colors.blue;
 Color confettiColorThree = Colors.pink;
@@ -107,7 +111,7 @@ dynamic _staffPosition;
 dynamic _bestMoment;
 dynamic _worstMoment;
 dynamic _country;
-dynamic _whyLoveFootballCoaching;
+dynamic _whyLoveFootballManaging;
 dynamic _sportingIcon;
 dynamic _yearOfInception;
 dynamic _hobbies;
@@ -387,6 +391,7 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
                   ),
                 ),
               ),
+              const SizedBox(height: 40)
             ],
           ),
         ),
@@ -415,7 +420,7 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
     _bestMoment = managementBodyNotifier.currentManagementBody.bestMoment;
     _worstMoment = managementBodyNotifier.currentManagementBody.worstMoment;
     _country = managementBodyNotifier.currentManagementBody.nationality;
-    _whyLoveFootballCoaching = managementBodyNotifier.currentManagementBody.whyLoveCoachingOrFCManagement;
+    _whyLoveFootballManaging = managementBodyNotifier.currentManagementBody.whyLoveCoachingOrFCManagement;
     _sportingIcon = managementBodyNotifier.currentManagementBody.favSportingIcon;
     _yearOfInception = managementBodyNotifier.currentManagementBody.yearOfInception;
     _hobbies = managementBodyNotifier.currentManagementBody.hobbies;
@@ -939,7 +944,7 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
         children: <Widget>[
 
           (() {
-            if (_autoBio
+            if (_whyLoveFootballManaging
                 .toString()
                 .isNotEmpty) {
               return Padding(
@@ -960,14 +965,14 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
                           TextSpan(
                             children: <TextSpan>[
                               TextSpan(
-                                  text: autobiographyTitle,
+                                  text: whyLoveFootballManagingTitle,
                                   style: GoogleFonts.aBeeZee(
                                     color: textColor,
                                     fontSize: 19,
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _autoBio,
+                                  text: ' ' + _whyLoveFootballManaging,
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -990,34 +995,119 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
                         borderRadius: BorderRadius.circular(10)),
                     child: Material(
                       color: materialBackgroundColor,
-                      child: InkWell(
-                        splashColor: splashColorThree,
-                        onTap: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              bottom: 15, top: 15, left: 25),
-                          child: Text.rich(
-                            TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: autobiographyTitle,
-                                    style: GoogleFonts.aBeeZee(
-                                      color: textColor,
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                TextSpan(
-                                    text: ' ' + _autoBio,
-                                    style: GoogleFonts.trykker(
-                                      color: textColor,
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.w300,
-                                    )),
-                              ],
-                            ),
+                      // child: InkWell(
+                      //   splashColor: splashColorThree,
+                      //   onTap: () {},
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.only(
+                      //         bottom: 15, top: 15, left: 25),
+                      //     child: Text.rich(
+                      //       TextSpan(
+                      //         children: <TextSpan>[
+                      //           TextSpan(
+                      //               text: qualificationTitle,
+                      //               style: GoogleFonts.aBeeZee(
+                      //                 color: textColor,
+                      //                 fontSize: 19,
+                      //                 fontWeight: FontWeight.bold,
+                      //               )),
+                      //           TextSpan(
+                      //               text: ' ' + _qualification,
+                      //               style: GoogleFonts.trykker(
+                      //                 color: textColor,
+                      //                 fontSize: 19,
+                      //                 fontWeight: FontWeight.w300,
+                      //               )),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                    ),
+                  ));
+            }
+          }()),
+
+          (() {
+            if (_sportingIcon
+                .toString()
+                .isNotEmpty) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: shapeDecorationColorTwo.withAlpha(50),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Material(
+                    color: materialBackgroundColor,
+                    child: InkWell(
+                      splashColor: splashColorThree,
+                      onTap: () {},
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
+                        child: Text.rich(
+                          TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: sportingIconTitle,
+                                  style: GoogleFonts.aBeeZee(
+                                    color: textColor,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              TextSpan(
+                                  text: ' ' + _sportingIcon,
+                                  style: GoogleFonts.trykker(
+                                    color: textColor,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w300,
+                                  )),
+                            ],
                           ),
                         ),
                       ),
+                    ),
+                  ),
+                ),
+              );
+            } else {
+              return Visibility(
+                  visible: !_isVisible,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: shapeDecorationColorTwo.withAlpha(50),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Material(
+                      color: materialBackgroundColor,
+                      // child: InkWell(
+                      //   splashColor: splashColorThree,
+                      //   onTap: () {},
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.only(
+                      //         bottom: 15, top: 15, left: 25),
+                      //     child: Text.rich(
+                      //       TextSpan(
+                      //         children: <TextSpan>[
+                      //           TextSpan(
+                      //               text: peleOrMaradonaTitle,
+                      //               style: GoogleFonts.aBeeZee(
+                      //                 color: textColor,
+                      //                 fontSize: 19,
+                      //                 fontWeight: FontWeight.bold,
+                      //               )),
+                      //           TextSpan(
+                      //               text: ' ' + _peleOrMaradona,
+                      //               style: GoogleFonts.trykker(
+                      //                 color: textColor,
+                      //                 fontSize: 19,
+                      //                 fontWeight: FontWeight.w300,
+                      //               )),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                   ));
             }
@@ -1089,6 +1179,91 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
                                     )),
                                 TextSpan(
                                     text: ' '+_staffPosition,
+                                    style: GoogleFonts.trykker(
+                                      color: textColor,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w300,
+                                    )),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ));
+            }
+          }()),
+
+          (() {
+            if (_yearOfInception
+                .toString()
+                .isNotEmpty) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: shapeDecorationColorTwo.withAlpha(50),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Material(
+                    color: materialBackgroundColor,
+                    child: InkWell(
+                      splashColor: splashColorThree,
+                      onTap: () {},
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
+                        child: Text.rich(
+                          TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: yearOfInceptionTitle,
+                                  style: GoogleFonts.aBeeZee(
+                                    color: textColor,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              TextSpan(
+                                  text: ' ' + _yearOfInception,
+                                  style: GoogleFonts.trykker(
+                                    color: textColor,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w300,
+                                  )),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            } else {
+              return Visibility(
+                  visible: !_isVisible,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: shapeDecorationColorTwo.withAlpha(50),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Material(
+                      color: materialBackgroundColor,
+                      child: InkWell(
+                        splashColor: splashColorThree,
+                        onTap: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              bottom: 15, top: 15, left: 25),
+                          child: Text.rich(
+                            TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: yearOfInceptionTitle,
+                                    style: GoogleFonts.aBeeZee(
+                                      color: textColor,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                TextSpan(
+                                    text: ' ' + _yearOfInception,
                                     style: GoogleFonts.trykker(
                                       color: textColor,
                                       fontSize: 19,
@@ -1274,6 +1449,90 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
             }
           }()),
 
+          (() {
+            if (_autoBio
+                .toString()
+                .isNotEmpty) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: shapeDecorationColorTwo.withAlpha(50),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Material(
+                    color: materialBackgroundColor,
+                    child: InkWell(
+                      splashColor: splashColorThree,
+                      onTap: () {},
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
+                        child: Text.rich(
+                          TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: autobiographyTitle,
+                                  style: GoogleFonts.aBeeZee(
+                                    color: textColor,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              TextSpan(
+                                  text: ' ' + _autoBio,
+                                  style: GoogleFonts.trykker(
+                                    color: textColor,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w300,
+                                  )),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            } else {
+              return Visibility(
+                  visible: !_isVisible,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: shapeDecorationColorTwo.withAlpha(50),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Material(
+                      color: materialBackgroundColor,
+                      child: InkWell(
+                        splashColor: splashColorThree,
+                        onTap: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              bottom: 15, top: 15, left: 25),
+                          child: Text.rich(
+                            TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: autobiographyTitle,
+                                    style: GoogleFonts.aBeeZee(
+                                      color: textColor,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                TextSpan(
+                                    text: ' ' + _autoBio,
+                                    style: GoogleFonts.trykker(
+                                      color: textColor,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w300,
+                                    )),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ));
+            }
+          }()),
 
           (() {
             if (_country
@@ -1355,260 +1614,6 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
                       //     ),
                       //   ),
                       // ),
-                    ),
-                  ));
-            }
-          }()),
-
-          (() {
-            if (_whyLoveFootballCoaching
-                .toString()
-                .isNotEmpty) {
-              return Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: shapeDecorationColorTwo.withAlpha(50),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Material(
-                    color: materialBackgroundColor,
-                    child: InkWell(
-                      splashColor: splashColorThree,
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 15, top: 15, left: 25),
-                        child: Text.rich(
-                          TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: whyLoveFootballCoachingTitle,
-                                  style: GoogleFonts.aBeeZee(
-                                    color: textColor,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              TextSpan(
-                                  text: ' ' + _whyLoveFootballCoaching,
-                                  style: GoogleFonts.trykker(
-                                    color: textColor,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w300,
-                                  )),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            } else {
-              return Visibility(
-                  visible: !_isVisible,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: shapeDecorationColorTwo.withAlpha(50),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Material(
-                      color: materialBackgroundColor,
-                      // child: InkWell(
-                      //   splashColor: splashColorThree,
-                      //   onTap: () {},
-                      //   child: Padding(
-                      //     padding: const EdgeInsets.only(
-                      //         bottom: 15, top: 15, left: 25),
-                      //     child: Text.rich(
-                      //       TextSpan(
-                      //         children: <TextSpan>[
-                      //           TextSpan(
-                      //               text: qualificationTitle,
-                      //               style: GoogleFonts.aBeeZee(
-                      //                 color: textColor,
-                      //                 fontSize: 19,
-                      //                 fontWeight: FontWeight.bold,
-                      //               )),
-                      //           TextSpan(
-                      //               text: ' ' + _qualification,
-                      //               style: GoogleFonts.trykker(
-                      //                 color: textColor,
-                      //                 fontSize: 19,
-                      //                 fontWeight: FontWeight.w300,
-                      //               )),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                    ),
-                  ));
-            }
-          }()),
-          (() {
-            if (_sportingIcon
-                .toString()
-                .isNotEmpty) {
-              return Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: shapeDecorationColorTwo.withAlpha(50),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Material(
-                    color: materialBackgroundColor,
-                    child: InkWell(
-                      splashColor: splashColorThree,
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 15, top: 15, left: 25),
-                        child: Text.rich(
-                          TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: sportingIconTitle,
-                                  style: GoogleFonts.aBeeZee(
-                                    color: textColor,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              TextSpan(
-                                  text: ' ' + _sportingIcon,
-                                  style: GoogleFonts.trykker(
-                                    color: textColor,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w300,
-                                  )),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            } else {
-              return Visibility(
-                  visible: !_isVisible,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: shapeDecorationColorTwo.withAlpha(50),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Material(
-                      color: materialBackgroundColor,
-                      // child: InkWell(
-                      //   splashColor: splashColorThree,
-                      //   onTap: () {},
-                      //   child: Padding(
-                      //     padding: const EdgeInsets.only(
-                      //         bottom: 15, top: 15, left: 25),
-                      //     child: Text.rich(
-                      //       TextSpan(
-                      //         children: <TextSpan>[
-                      //           TextSpan(
-                      //               text: peleOrMaradonaTitle,
-                      //               style: GoogleFonts.aBeeZee(
-                      //                 color: textColor,
-                      //                 fontSize: 19,
-                      //                 fontWeight: FontWeight.bold,
-                      //               )),
-                      //           TextSpan(
-                      //               text: ' ' + _peleOrMaradona,
-                      //               style: GoogleFonts.trykker(
-                      //                 color: textColor,
-                      //                 fontSize: 19,
-                      //                 fontWeight: FontWeight.w300,
-                      //               )),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                    ),
-                  ));
-            }
-          }()),
-
-          (() {
-            if (_yearOfInception
-                .toString()
-                .isNotEmpty) {
-              return Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: shapeDecorationColorTwo.withAlpha(50),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Material(
-                    color: materialBackgroundColor,
-                    child: InkWell(
-                      splashColor: splashColorThree,
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 15, top: 15, left: 25),
-                        child: Text.rich(
-                          TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: yearOfInceptionTitle,
-                                  style: GoogleFonts.aBeeZee(
-                                    color: textColor,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              TextSpan(
-                                  text: ' ' + _yearOfInception,
-                                  style: GoogleFonts.trykker(
-                                    color: textColor,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w300,
-                                  )),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            } else {
-              return Visibility(
-                  visible: !_isVisible,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: shapeDecorationColorTwo.withAlpha(50),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Material(
-                      color: materialBackgroundColor,
-                      child: InkWell(
-                        splashColor: splashColorThree,
-                        onTap: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              bottom: 15, top: 15, left: 25),
-                          child: Text.rich(
-                            TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: yearOfInceptionTitle,
-                                    style: GoogleFonts.aBeeZee(
-                                      color: textColor,
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                TextSpan(
-                                    text: ' ' + _yearOfInception,
-                                    style: GoogleFonts.trykker(
-                                      color: textColor,
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.w300,
-                                    )),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
                     ),
                   ));
             }
@@ -1868,6 +1873,8 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
                   ));
             }
           }()),
+
+
         ],
       ),
     };
@@ -1889,14 +1896,14 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
         title: Text(
           facebookProfileSharedPreferencesTitle,
           style: TextStyle(
-              color: cardBackgroundColor
+              color: cardBackgroundColorTwo
           ),
         ),
         content: Text(
           facebookProfileSharedPreferencesContentOne + _facebook + facebookProfileSharedPreferencesContentTwo,
           textAlign: TextAlign.justify,
           style: TextStyle(
-              color: cardBackgroundColor
+              color: cardBackgroundColorTwo
           ),
         ),
         actions: <Widget>[
@@ -1907,14 +1914,14 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
                   duration:
                   Toast.lengthLong,
                   gravity:  Toast.bottom,
-                  webTexColor: cardBackgroundColor,
+                  webTexColor: cardBackgroundColorTwo,
                   backgroundColor: backgroundColor,
                   backgroundRadius: 10
               );
             },
             child: Text(facebookProfileSharedPreferencesButton,
               style: TextStyle(
-                  color: cardBackgroundColor
+                  color: cardBackgroundColorTwo
               ),
             ),
           ),
@@ -1922,7 +1929,7 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(facebookProfileSharedPreferencesButtonTwo,
               style: TextStyle(
-                  color: cardBackgroundColor
+                  color: cardBackgroundColorTwo
               ),
             ),
           ),
@@ -1946,7 +1953,7 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
             title: Text(
               linkedInProfileSharedPreferencesTitle,
               style: TextStyle(
-                  color: cardBackgroundColor
+                  color: cardBackgroundColorTwo
               ),
             ),
             content: Text(
@@ -1954,7 +1961,7 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
                   linkedInProfileSharedPreferencesContentTwo,
               textAlign: TextAlign.justify,
               style: TextStyle(
-                  color: cardBackgroundColor
+                  color: cardBackgroundColorTwo
               ),
             ),
             actions: <Widget>[
@@ -1971,7 +1978,7 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
                 },
                 child: Text(linkedInProfileSharedPreferencesButton,
                   style: TextStyle(
-                      color: cardBackgroundColor
+                      color: cardBackgroundColorTwo
                   ),
                 ),
               ),
@@ -1979,7 +1986,7 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage>{
                 onPressed: () => Navigator.of(context).pop(false),
                 child: Text(linkedInProfileSharedPreferencesButtonTwo,
                   style: TextStyle(
-                      color: cardBackgroundColor
+                      color: cardBackgroundColorTwo
                   ),
                 ),
               ),

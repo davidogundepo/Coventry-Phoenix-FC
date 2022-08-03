@@ -8,21 +8,21 @@ import 'package:provider/provider.dart';
 import '../details_pages/club_captains_details_page.dart';
 import '../notifier/club_captains_notifier.dart';
 
-Color backgroundColor = const Color.fromRGBO(166, 141, 173, 1);
-  Color appBarTextColor = Colors.white70;
-Color appBarBackgroundColor = const Color.fromRGBO(166, 141, 173, 1);
-Color appBarIconColor = Colors.white70;
+Color backgroundColor = const Color.fromRGBO(56, 56, 60, 1);
+Color appBarTextColor = const Color.fromRGBO(56, 56, 60, 1);
+Color appBarBackgroundColor = const Color.fromRGBO(56, 56, 60, 1);
+Color appBarIconColor = const Color.fromRGBO(56, 56, 60, 1);
 Color modalColor = Colors.transparent;
-Color modalBackgroundColor = const Color.fromRGBO(166, 141, 173, 1);
+Color modalBackgroundColor = const Color.fromRGBO(56, 56, 60, 1);
 Color materialBackgroundColor = Colors.transparent;
 Color cardBackgroundColor = Colors.white70;
-Color splashColor = const Color.fromRGBO(166, 141, 173, 1);
+Color splashColor = const Color.fromRGBO(56, 56, 60, 1);
 Color splashColorTwo = Colors.black87;
 Color iconColor = Colors.white70;
 Color iconColorTwo = Colors.white70;
 Color textColor = Colors.white70;
 Color textColorTwo = Colors.white70;
-Color dialogBackgroundColor = const Color.fromRGBO(166, 141, 173, 1);
+Color dialogBackgroundColor = const Color.fromRGBO(56, 56, 60, 1);
 Color borderColor = Colors.black;
 Color textHighlightColor = Colors.white70;
 //Color textHighlightColor = Colors.white70;
@@ -40,6 +40,8 @@ class MyCaptainsSearch extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     final ThemeData theme = ThemeData(
         primaryColor: appBarBackgroundColor,
+        primarySwatch: Colors.deepOrange,
+        appBarTheme: AppBarTheme(backgroundColor: cardBackgroundColor),
         primaryIconTheme: IconThemeData(color: appBarIconColor),
         textTheme: TextTheme(subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
         inputDecorationTheme: InputDecorationTheme(
@@ -60,9 +62,12 @@ class MyCaptainsSearch extends SearchDelegate {
         Visibility(
           visible: true,
           child: IconButton(
-            icon: const Visibility(
+            icon: Visibility(
                 visible: true,
-                child: Icon(MdiIcons.closeCircleOutline)),
+                child: Icon(
+                  MdiIcons.closeCircleOutline,
+                  color: appBarIconColor,
+                )),
             onPressed: () {
               query = '';
             },
@@ -75,9 +80,12 @@ class MyCaptainsSearch extends SearchDelegate {
         Visibility(
           visible: false,
           child: IconButton(
-            icon: const Visibility(
+            icon: Visibility(
                 visible: false,
-                child: Icon(MdiIcons.closeCircleOutline)),
+                child: Icon(
+                    MdiIcons.closeCircleOutline,
+                  color: appBarIconColor,
+                )),
             onPressed: () {
               query = '';
             },
@@ -90,7 +98,10 @@ class MyCaptainsSearch extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: const Icon(MdiIcons.chevronTripleLeft),
+      icon: Icon(
+        MdiIcons.chevronTripleLeft,
+        color: appBarIconColor,
+      ),
       onPressed: () {
         close(context, null);
       },

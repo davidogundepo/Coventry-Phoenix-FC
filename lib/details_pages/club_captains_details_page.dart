@@ -12,15 +12,18 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 String teamCaptainingTitle = "Team Captaining\n";
 
 
-Color backgroundColor = const Color.fromRGBO(166, 141, 173, 1);
-Color appBarBackgroundColor = const Color.fromRGBO(166, 141, 173, 1);
-Color appBarIconColor = const Color.fromRGBO(137, 99, 148, 1.0);
+Color backgroundColor = const Color.fromRGBO(56, 56, 60, 1);
+Color appBarBackgroundColor = const Color.fromRGBO(56, 56, 60, 1);
+Color appBarIconColor = Colors.white70;
 Color materialBackgroundColor = Colors.transparent;
-Color shapeDecorationColor = const Color.fromRGBO(137, 99, 148, 1.0);
-Color cardBackgroundColor = const Color.fromRGBO(137, 99, 148, 1.0);
-Color splashColor = Colors.white;
-Color textColor = Colors.white;
-Color iconColor = Colors.white;
+Color shapeDecorationColor = const Color.fromRGBO(23, 23, 26, 1.0);
+Color cardBackgroundColor = const Color.fromRGBO(23, 23, 26, 1.0);
+Color splashColor = Colors.white70;
+Color textColor = Colors.white70;
+Color iconColor = Colors.white70;
+
+
+
 Color confettiColorOne = Colors.green;
 Color confettiColorTwo = Colors.blue;
 Color confettiColorThree = Colors.pink;
@@ -293,6 +296,7 @@ class _CaptainsDetailsPage extends State<CaptainsDetailsPage>{
                   ),
                 ),
               ),
+              const SizedBox(height: 40)
             ],
           ),
         ),

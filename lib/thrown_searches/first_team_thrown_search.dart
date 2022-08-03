@@ -7,21 +7,21 @@ import 'package:provider/provider.dart';
 import '../details_pages/first_team_details_page.dart';
 import '../notifier/first_team_class_notifier.dart';
 
-Color backgroundColor = const Color.fromRGBO(26, 101, 109, 1.0);
-Color appBarTextColor = const Color.fromRGBO(102, 159, 165, 1.0);
-Color appBarBackgroundColor = const Color.fromRGBO(26, 101, 109, 1.0);
-Color appBarIconColor = const Color.fromRGBO(102, 159, 165, 1.0);
+Color backgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
+Color appBarTextColor = const Color.fromRGBO(255, 107, 53, 1.0);
+Color appBarBackgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
+Color appBarIconColor = const Color.fromRGBO(255, 107, 53, 1.0);
 Color modalColor = Colors.transparent;
-Color modalBackgroundColor =const Color.fromRGBO(26, 101, 109, 1.0);
+Color modalBackgroundColor =const Color.fromRGBO(33, 37, 41, 1.0);
 Color materialBackgroundColor = Colors.transparent;
-Color cardBackgroundColor = const Color.fromRGBO(102, 159, 165, 1.0);
-Color splashColor = const Color.fromRGBO(26, 101, 109, 1.0);
-Color iconColor = const Color.fromRGBO(102, 159, 165, 1.0);
-Color textColor = const Color.fromRGBO(102, 159, 165, 1.0);
+Color cardBackgroundColor = const Color.fromRGBO(255, 107, 53, 1.0);
+Color splashColor = const Color.fromRGBO(33, 37, 41, 1.0);
+Color iconColor = const Color.fromRGBO(255, 107, 53, 1.0);
+Color textColor = const Color.fromRGBO(255, 107, 53, 1.0);
 Color textColorTwo = Colors.white70;
-Color dialogBackgroundColor = const Color.fromRGBO(26, 101, 109, 1.0);
+Color dialogBackgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
 Color borderColor = Colors.black;
-Color textHighlightColor = const Color.fromRGBO(102, 159, 165, 1.0);
+Color textHighlightColor = const Color.fromRGBO(255, 107, 53, 1.0);
 
 dynamic queryTech;
 
@@ -37,6 +37,8 @@ class MyFirstTeamClassSearch extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     final ThemeData theme = ThemeData(
         primaryColor: appBarBackgroundColor,
+        primarySwatch: Colors.deepOrange,
+        appBarTheme: AppBarTheme(backgroundColor: cardBackgroundColor),
         primaryIconTheme: IconThemeData(color: appBarIconColor),
         textTheme: TextTheme(subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
         inputDecorationTheme: InputDecorationTheme(
@@ -237,7 +239,7 @@ class MyFirstTeamClassSearch extends SearchDelegate {
                                       child: Text(
                                           search[position].positionPlaying,
                                           style: GoogleFonts.varela(
-                                              color: textColor,
+                                              color: textColorTwo,
                                               fontStyle: FontStyle.italic
                                           )
                                       ),

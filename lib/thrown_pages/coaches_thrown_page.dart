@@ -36,20 +36,22 @@ String aboutApp = "About App";
 
 
 
-Color backgroundColor = const Color.fromRGBO(46, 76, 109, 1);
-Color appBarTextColor = Colors.white;
-Color appBarBackgroundColor = const Color.fromRGBO(46, 76, 109, 1);
-Color appBarIconColor = Colors.white;
+Color backgroundColor = const Color.fromRGBO(255, 145, 104, 1);
+Color appBarTextColor = const Color.fromRGBO(138, 55, 24, 1.0);
+Color appBarBackgroundColor = const Color.fromRGBO(255, 145, 104, 1);
+Color appBarIconColor = const Color.fromRGBO(138, 55, 24, 1.0);
 Color modalColor = Colors.transparent;
-Color modalBackgroundColor = const Color.fromRGBO(46, 76, 109, 1);
+Color modalBackgroundColor = const Color.fromRGBO(255, 145, 104, 1);
 Color materialBackgroundColor = Colors.transparent;
-Color cardBackgroundColor = Colors.white;
-Color splashColor = const Color.fromRGBO(46, 76, 109, 1);
+Color cardBackgroundColor = const Color.fromRGBO(255, 188, 163, 1);
+Color splashColor = const Color.fromRGBO(255, 145, 104, 1);
 Color splashColorTwo = Colors.black87;
-Color iconColor = Colors.white;
-Color textColor = Colors.white;
-Color textColorTwo = Colors.white70;
-Color dialogBackgroundColor = const Color.fromRGBO(46, 76, 109, 1);
+Color modalIconColor = const Color.fromRGBO(138, 55, 24, 1.0);
+Color modalTextColor = const Color.fromRGBO(138, 55, 24, 1.0);
+Color iconColor = const Color.fromRGBO(255, 188, 163, 1);
+Color textColor = const Color.fromRGBO(255, 188, 163, 1);
+Color textColorTwo = const Color.fromRGBO(248, 190, 168, 1.0);
+Color dialogBackgroundColor = const Color.fromRGBO(255, 145, 104, 1);
 Color borderColor = Colors.black;
 
 
@@ -248,7 +250,7 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                 SliverAppBar(
                   actions: <Widget>[
                     IconButton(
-                      icon: Icon(MdiIcons.formatFloatLeft, color: iconColor),
+                      icon: Icon(MdiIcons.formatFloatLeft, color: appBarIconColor),
                       onPressed: () {
                         showModalBottomSheet(
                             backgroundColor: modalColor,
@@ -269,11 +271,11 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                                       children: <Widget>[
                                         ListTile(
                                             leading: Icon(MdiIcons.tableMultiple,
-                                              color: iconColor,
+                                              color: modalIconColor,
                                             ),
                                             title: Text(tablesAndStats,
                                               style: GoogleFonts.zillaSlab(
-                                                  color: textColor
+                                                  color: modalTextColor
                                               ),
                                             ),
                                             onTap: () {
@@ -283,10 +285,10 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                                         ),
                                         ListTile(
                                             leading: Icon(MdiIcons.atom,
-                                            color: iconColor),
+                                            color: modalIconColor),
                                             title: Text(whoWeAre,
                                             style: GoogleFonts.zillaSlab(
-                                              color: textColor
+                                              color: modalTextColor
                                             ),),
                                             onTap: () {
                                               Navigator.of(context).pop(false);
@@ -295,10 +297,10 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                                         ),
                                         ListTile(
                                           leading: Icon(MdiIcons.accountGroup,
-                                            color: iconColor),
+                                            color: modalIconColor),
                                           title: Text(aboutSchool,
                                             style: GoogleFonts.zillaSlab(
-                                                color: textColor
+                                                color: modalTextColor
                                             ),),
                                           onTap: () {
                                               Navigator.of(context).pop(false);
@@ -307,10 +309,10 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                                         ),
                                         ListTile(
                                             leading: Icon(MdiIcons.sortAlphabeticalAscending,
-                                              color: iconColor),
+                                              color: modalIconColor),
                                             title: Text(acronymMeanings,
                                               style: GoogleFonts.zillaSlab(
-                                                  color: textColor
+                                                  color: modalTextColor
                                               ),),
                                             onTap: () {
                                               Navigator.of(context).pop(false);
@@ -319,10 +321,10 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                                         ),
                                         ListTile(
                                           leading: Icon(MdiIcons.opacity,
-                                            color: iconColor),
+                                            color: modalIconColor),
                                           title: Text(aboutApp,
                                             style: GoogleFonts.zillaSlab(
-                                                color: textColor
+                                                color: modalTextColor
                                             ),),
                                           onTap: () {
                                               Navigator.of(context).pop(false);
@@ -339,7 +341,7 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                       },
                     ),
                     IconButton(
-                      icon: Icon(MdiIcons.magnify, color: iconColor),
+                      icon: Icon(MdiIcons.magnify, color: appBarIconColor),
                       onPressed: (){
                         showSearch(
                           context: context,
@@ -359,7 +361,7 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                         heightFactor: 0.6,
                         child: Text(thrownName,
                             style: GoogleFonts.abel(
-                              color: textColor,
+                              color: appBarTextColor,
                               fontSize: 26.0,
                               fontWeight: FontWeight.bold
                             )

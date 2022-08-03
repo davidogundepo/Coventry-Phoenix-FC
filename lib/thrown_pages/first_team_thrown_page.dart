@@ -54,19 +54,19 @@ String appOverviewSharedPreferencesContentThree = "Welcome to our inventory, do 
 String appOverviewSharedPreferencesButton = "Awesome";
 
 
-Color backgroundColor = const Color.fromRGBO(26, 101, 109, 1.0);
-Color appBarTextColor = const Color.fromRGBO(102, 159, 165, 1.0);
-Color appBarBackgroundColor = const Color.fromRGBO(26, 101, 109, 1.0);
-Color appBarIconColor = const Color.fromRGBO(102, 159, 165, 1.0);
+Color backgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
+Color appBarTextColor = const Color.fromRGBO(255, 107, 53, 1.0);
+Color appBarBackgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
+Color appBarIconColor = const Color.fromRGBO(255, 107, 53, 1.0);
 Color modalColor = Colors.transparent;
-Color modalBackgroundColor = const Color.fromRGBO(26, 101, 109, 1.0);
+Color modalBackgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
 Color materialBackgroundColor = Colors.transparent;
-Color cardBackgroundColor = const Color.fromRGBO(102, 159, 165, 1.0);
-Color splashColor = const Color.fromRGBO(26, 101, 109, 1.0);
-Color iconColor = const Color.fromRGBO(102, 159, 165, 1.0);
-Color textColor = const Color.fromRGBO(102, 159, 165, 1.0);
+Color cardBackgroundColor = const Color.fromRGBO(255, 107, 53, 1.0);
+Color splashColor = const Color.fromRGBO(33, 37, 41, 1.0);
+Color iconColor = const Color.fromRGBO(255, 107, 53, 1.0);
+Color textColor = const Color.fromRGBO(255, 107, 53, 1.0);
 Color textColorTwo = Colors.white70;
-Color dialogBackgroundColor = const Color.fromRGBO(26, 101, 109, 1.0);
+Color dialogBackgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
 Color borderColor = Colors.black;
 
 

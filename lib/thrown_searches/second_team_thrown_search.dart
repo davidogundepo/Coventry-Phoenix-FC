@@ -7,22 +7,21 @@ import 'package:provider/provider.dart';
 import '../details_pages/second_team_details_page.dart';
 import '../notifier/second_team_class_notifier.dart';
 
-Color backgroundColor = const Color.fromRGBO(143, 189, 211, 1);
-Color appBarTextColor = Colors.white60;
-Color appBarBackgroundColor = const Color.fromRGBO(143, 189, 211, 1);
-Color appBarIconColor = Colors.white60;
+Color backgroundColor = const Color.fromRGBO(186, 90, 49, 1);
+Color appBarTextColor = const Color.fromRGBO(52, 58, 64, 1.0);
+Color appBarBackgroundColor = const Color.fromRGBO(186, 90, 49, 1);
+Color appBarIconColor = const Color.fromRGBO(52, 58, 64, 1.0);
 Color modalColor = Colors.transparent;
-Color modalBackgroundColor = const Color.fromRGBO(143, 189, 211, 1);
+Color modalBackgroundColor = const Color.fromRGBO(186, 90, 49, 1);
 Color materialBackgroundColor = Colors.transparent;
-Color cardBackgroundColor = Colors.white60;
-Color splashColor = const Color.fromRGBO(143, 189, 211, 1);
+Color cardBackgroundColor = const Color.fromRGBO(52, 58, 64, 1.0);
+Color splashColor = const Color.fromRGBO(186, 90, 49, 1);
 Color splashColorTwo = Colors.black87;
-Color iconColor = Colors.white60;
-Color textColor = Colors.white60;
-Color textColorTwo = Colors.white60;
-Color dialogBackgroundColor = const Color.fromRGBO(143, 189, 211, 1);
+Color iconColor = Colors.white;
+Color textColor = Colors.white;
+Color textColorTwo = Colors.white70;
 Color borderColor = Colors.black;
-Color textHighlightColor = Colors.white60;
+Color textHighlightColor = Colors.white;
 
 dynamic queryTech;
 
@@ -38,6 +37,8 @@ class MySecondTeamClassSearch extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     final ThemeData theme = ThemeData(
         primaryColor: appBarBackgroundColor,
+        primarySwatch: Colors.deepOrange,
+        appBarTheme: AppBarTheme(backgroundColor: cardBackgroundColor),
         primaryIconTheme: IconThemeData(color: appBarIconColor),
         textTheme: TextTheme(subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
         inputDecorationTheme: InputDecorationTheme(
@@ -238,7 +239,7 @@ class MySecondTeamClassSearch extends SearchDelegate {
                                       child: Text(
                                           search[position].positionPlaying,
                                           style: GoogleFonts.varela(
-                                              color: textColor,
+                                              color: textColorTwo,
                                               fontStyle: FontStyle.italic
                                           )
                                       ),

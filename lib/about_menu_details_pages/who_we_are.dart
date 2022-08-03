@@ -74,7 +74,10 @@ class _WhoWeAreState extends State<WhoWeAre> {
                 stream: FirebaseFirestore.instance.collection('SliversPages').doc('non_slivers_pages').snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return const CircularProgressIndicator();
+                    return const SizedBox(
+                      height: 300,
+                        child: CircularProgressIndicator()
+                    );
                   }
                   return Container(
                     height: 300,
