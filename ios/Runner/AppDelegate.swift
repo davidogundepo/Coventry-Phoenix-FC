@@ -16,9 +16,7 @@ import Firebase
       
       flutterEngine.run()
       FirebaseApp.configure()
-      
       Messaging.messaging().delegate = self
-      
       GeneratedPluginRegistrant.register(with: self.flutterEngine)
       
       if #available(iOS 10.0, *) {

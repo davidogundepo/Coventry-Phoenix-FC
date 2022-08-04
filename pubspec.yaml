@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   url_launcher: ^6.1.4
   material_design_icons_flutter: ^5.0.6996
-  webview_flutter: ^3.0.4
+#  webview_flutter: ^3.0.4
   shared_preferences: ^2.0.15
   flutter_bloc: ^7.0.0
   flutter_lints: ^2.0.1
@@ -80,16 +80,16 @@ dependencies:
   flutter_local_notifications: ^9.7.0
   adaptive_theme: ^3.1.1
   flutter_riverpod: ^1.0.4
-
-
+  flutter_automation: ^2.0.0
+  path_provider: ^2.0.11
 
 flutter_app_name:
   name: "Coventry Phoenix FC"
 
 flutter_icons:
-  android: false
+  android: true
   ios: true
-  image_path: "assets/images/cpfc_logo_apple.jpeg"
+  image_path: "assets/images/cpfc_logo_android_ios.jpeg"
 
 dev_dependencies:
   flutter_test:

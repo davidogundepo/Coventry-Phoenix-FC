@@ -22,7 +22,7 @@ import '../details_pages/first_team_details_page.dart';
 
 
 String clubName = "Coventry Phoenix FC";
-String postcode = "CV1 3WQ";
+// String postcode = "CV1 3WQ";
 String city = "Coventry";
 String stateName = "West Midlands";
 String countryName = "The UK";
@@ -35,7 +35,7 @@ String exitAppNo = "Oh No";
 String exitAppYes = "I Have To";
 
 String whoWeAre = "Who We Are";
-String aboutSchool = "About $clubName";
+String aboutClub = "About $clubName";
 String tablesAndStats = "Tables and Stats";
 String acronymMeanings = "Acronym Meanings";
 String aboutApp = "About App";
@@ -48,9 +48,9 @@ String networkSharedPreferencesButton = "Okies";
 
 String appOverviewSharedPreferencesKey = "overview_time";
 String appOverviewSharedPreferencesTitle = "APP OVERVIEW";
-String appOverviewSharedPreferencesContentOne = "This Yearbook App was developed for $clubName, a Secondary School in $postcode, $city, $stateName. $countryName.\n";
-String appOverviewSharedPreferencesContentTwo = "Our vision is to raise the total youth through comprehensive education.\n";
-String appOverviewSharedPreferencesContentThree = "Welcome to our inventory, do read through and know more!";
+String appOverviewSharedPreferencesContentOne = "This App was developed for $clubName, a Football Club in $city, $stateName. $countryName.\n";
+// String appOverviewSharedPreferencesContentTwo = "Our vision is to raise the total youth through comprehensive education.\n";
+String appOverviewSharedPreferencesContentThree = "Welcome to our app, do check through and know more!";
 String appOverviewSharedPreferencesButton = "Awesome";
 
 
@@ -258,7 +258,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
   Future navigateToAcronymsMeaningsPage(context) async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const AcronymsMeanings()));
   }
-  Future navigateToAboutSchoolDetailsPage(context) async {
+  Future navigateToAboutClubDetailsPage(context) async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutClubDetails()));
   }
   Future navigateToWhoWeArePage(context) async {
@@ -332,7 +332,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
           ),
         ),
         content: SizedBox(
-          height: 220,
+          // height: 220,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -343,12 +343,12 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                       color: textColor
                   ),
                 ),
-                Text(
-                  appOverviewSharedPreferencesContentTwo,
-                  style: TextStyle(
-                      color: textColor
-                  ),
-                ),
+                // Text(
+                //   appOverviewSharedPreferencesContentTwo,
+                //   style: TextStyle(
+                //       color: textColor
+                //   ),
+                // ),
                 Text(
                   appOverviewSharedPreferencesContentThree,
                   style: TextStyle(
@@ -458,13 +458,13 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                                         ),
                                         ListTile(
                                           leading: Icon(MdiIcons.accountGroup, color: iconColor),
-                                          title: Text(aboutSchool,
+                                          title: Text(aboutClub,
                                             style: GoogleFonts.zillaSlab(
                                               color: textColor,
                                             ),),
                                           onTap: () {
                                               Navigator.of(context).pop(false);
-                                              navigateToAboutSchoolDetailsPage(context);
+                                              navigateToAboutClubDetailsPage(context);
                                           },
                                         ),
                                         ListTile(

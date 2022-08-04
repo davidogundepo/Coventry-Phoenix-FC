@@ -43,7 +43,6 @@ Color? secondStudentChartColor = Colors.indigo[400];
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
-  final savedThemeMode = await AdaptiveTheme.getThemeMode();
   await Firebase.initializeApp();
   await PushNotificationService().setupInteractedMessage();
   FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);

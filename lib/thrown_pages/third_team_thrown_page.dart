@@ -28,7 +28,7 @@ String exitAppNo = "Oh No";
 String exitAppYes = "I Have To";
 
 String whoWeAre = "Who We Are";
-String aboutSchool = "About $clubName";
+String aboutClub = "About $clubName";
 String tablesAndStats = "Tables and Stats";
 String acronymMeanings = "Acronym Meanings";
 String aboutApp = "About App";
@@ -230,7 +230,7 @@ class _MyThirdTeamClassPage extends State<MyThirdTeamClassPage> {
   Future navigateToAcronymsMeaningsPage(context) async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const AcronymsMeanings()));
   }
-  Future navigateToAboutSchoolDetailsPage(context) async {
+  Future navigateToAboutClubDetailsPage(context) async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutClubDetails()));
   }
   Future navigateToWhoWeArePage(context) async {
@@ -315,13 +315,13 @@ class _MyThirdTeamClassPage extends State<MyThirdTeamClassPage> {
                                         ),
                                         ListTile(
                                           leading: Icon(MdiIcons.accountGroup, color: iconColorTwo),
-                                          title: Text(aboutSchool,
+                                          title: Text(aboutClub,
                                             style: GoogleFonts.zillaSlab(
                                                 color: textColorTwo
                                             ),),
                                           onTap: () {
                                               Navigator.of(context).pop(false);
-                                              navigateToAboutSchoolDetailsPage(context);
+                                              navigateToAboutClubDetailsPage(context);
                                           },
                                         ),
                                         ListTile(

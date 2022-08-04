@@ -3911,7 +3911,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
 
 
     _controllerTopCenter =
-        ConfettiController(duration: const Duration(seconds: 10));
+        ConfettiController(duration: const Duration(seconds: 3));
 
 
     super.initState();

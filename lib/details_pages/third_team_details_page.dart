@@ -1703,14 +1703,14 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         //       TextSpan(
                         //         children: <TextSpan>[
                         //           TextSpan(
-                        //               text: favSchoolActivityTitle,
+                        //               text: favClubActivityTitle,
                         //               style: GoogleFonts.aBeeZee(
                         //                 color: textColor,
                         //                 fontSize: 19,
                         //                 fontWeight: FontWeight.bold,
                         //               )),
                         //           TextSpan(
-                        //               text: ' ' + _favSchoolActivity,
+                        //               text: ' ' + _favClubActivity,
                         //               style: GoogleFonts.trykker(
                         //                 color: textColor,
                         //                 fontSize: 19,

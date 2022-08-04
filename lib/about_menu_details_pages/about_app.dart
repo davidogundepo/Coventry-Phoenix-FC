@@ -24,7 +24,7 @@ String mailFIRST = "mailto:";
 String mailSECOND = "?subject=Hello ";
 
 String aboutApp = "PLEASE READ CAREFULLY.\n\nThis AppBook Software was engineered and developed by 'Nouvelle Software Inc.'";
-String blemish = '"Do not be concerned about the blemishes and imperfections you may notice on the software, it is those blemishes that prove that the yearbook is authentic. :)"';
+String blemish = '"Do not be concerned about the blemishes and imperfections you may notice on the software, it is those blemishes that prove that the app is authentic. :)"';
 String copyrightTerms = "This software is subject to copyright of Nouvelle Software Inc.. Hence should not be developed or replicated without due permission by any company or individual.";
 String termsEtConditions = "The following are the terms and conditions attached to usage of this software;";
 String termsEtConditions2 = "$clubName and/or her subsidiaries are the owners or the licensee of the materials published on this software, and are at freewill by this permission to share with her stakeholders, parents, staff and players.";
