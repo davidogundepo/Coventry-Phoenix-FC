@@ -15,7 +15,7 @@ import '../bottom_nav_stats_pages/bottom_navigator.dart';
 import '../thrown_searches/coaches_thrown_search.dart';
 import '../api/coaching_staff_api.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
-import '../details_pages/coaching_staff_details.page.dart';
+import '../details_pages/coaching_staff_details_page.dart';
 import '../notifier/coaching_staff_notifier.dart';
 
 
