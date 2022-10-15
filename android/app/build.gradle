@@ -99,10 +99,10 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation 'com.google.firebase:firebase-auth:21.0.6'
-    implementation 'com.google.firebase:firebase-firestore:24.2.1'
+    implementation 'com.google.firebase:firebase-auth:21.0.8'
+    implementation 'com.google.firebase:firebase-firestore:24.3.1'
     implementation 'com.android.support:multidex:2.0.0'
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.12'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.13'
     implementation 'com.google.firebase:firebase-crashlytics-ndk'
     implementation "com.airbnb.android:lottie:3.5.0"
     implementation "com.android.support.constraint:constraint-layout:2.0.4"
