@@ -33,7 +33,6 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
     return FirebaseFirestore.instance.collection('PlayersTable').orderBy('goals_scored', descending: true).snapshots();
   }
 
-
   _buildDataGrid() {
     return
       StreamBuilder(
