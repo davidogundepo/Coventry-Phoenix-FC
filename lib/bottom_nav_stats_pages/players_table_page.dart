@@ -25,7 +25,7 @@ class PlayersTablePage extends StatefulWidget {
 class _PlayersTablePageState extends State<PlayersTablePage> {
 
 
-  List<PlayersTable> playersTableList = [];
+  final List<PlayersTable> playersTableList = [];
 
   late PlayersTableDataSource playersTableDataSource;
 
@@ -825,6 +825,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class ProfilePageState extends State<ProfilePage> {
+  // get playersTableList => PlayersTable;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -834,6 +836,7 @@ class ProfilePageState extends State<ProfilePage> {
       body: Card(
           margin: const EdgeInsets.all(30),
           child: Center(child: playersTableList[widget.playerIndex])),
+          // child: Center(child: Container()),
     );
   }
 }
