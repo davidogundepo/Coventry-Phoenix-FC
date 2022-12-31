@@ -114,8 +114,9 @@ class _CaptainsDetailsPage extends State<CaptainsDetailsPage>{
                             ? CrossFadeState.showSecond : CrossFadeState.showFirst;
                       }),
                       child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * .64,
                         child: Card(
+                          color: Colors.transparent,
                           elevation: 5,
                           margin: const EdgeInsets.all(10),
                           semanticContainer: true,
@@ -307,7 +308,7 @@ class _CaptainsDetailsPage extends State<CaptainsDetailsPage>{
 
   @override
   void initState() {
-    _confettiController = ConfettiController(duration: const Duration(seconds: 35));
+    _confettiController = ConfettiController(duration: const Duration(seconds: 7));
     _confettiController?.play();
 
     super.initState();

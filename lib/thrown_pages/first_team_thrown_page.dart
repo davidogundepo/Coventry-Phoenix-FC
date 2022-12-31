@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
 import '../bottom_nav_stats_pages/bottom_navigator.dart';
 import '../thrown_searches/first_team_thrown_search.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,10 +41,17 @@ String tablesAndStats = "Tables and Stats";
 String acronymMeanings = "Acronym Meanings";
 String aboutApp = "About App";
 
+
+String fabStats = "Stats";
+
+
 String networkSharedPreferencesKey = "first_time";
-String networkSharedPreferencesTitle = "Network";
-String networkSharedPreferencesContent = "The internet connection is required for the first time launch, please leave on for few seconds :)";
+String networkSharedPreferencesTitle = "Bienvenue! 😎";
+String networkSharedPreferencesContent = "Enjoy and Stay Awesome :)";
 String networkSharedPreferencesButton = "Okies";
+
+
+String welcomeOverviewSharedPreferencesKey = "toast_initial";
 
 
 String appOverviewSharedPreferencesKey = "overview_time";
@@ -63,6 +71,7 @@ Color modalBackgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
 Color materialBackgroundColor = Colors.transparent;
 Color cardBackgroundColor = const Color.fromRGBO(255, 107, 53, 1.0);
 Color splashColor = const Color.fromRGBO(33, 37, 41, 1.0);
+Color splashColorTwo = const Color.fromRGBO(215, 145, 119, 1.0);
 Color iconColor = const Color.fromRGBO(255, 107, 53, 1.0);
 Color textColor = const Color.fromRGBO(255, 107, 53, 1.0);
 Color textColorTwo = Colors.white70;
@@ -75,12 +84,8 @@ class MyFirstTeamClassPage extends StatefulWidget with NavigationStates{
 
   final String? title;
 
-
-
-
   @override
   State<MyFirstTeamClassPage> createState() => _MyFirstTeamClassPage();
-
 
 }
 
@@ -90,9 +95,12 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
 
   bool _isVisible = true;
 
+  bool isLoading = true;
+
   void showToast() {
     setState(() {
       _isVisible = !_isVisible;
+      // isLoading = !isLoading;
     });
   }
 
@@ -374,14 +382,44 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
     }
   }
 
+
+
+  // toastInitial() async {
+  //   SharedPreferences appInitialPrefs = await SharedPreferences.getInstance();
+  //   bool? appInitialChecked = appInitialPrefs.getBool('toast_initial');
+  //
+  //   if (appInitialChecked != null && !appInitialChecked) {
+  //     // Not first time
+  //   }
+  //   else {
+  //     // First time
+  //     appInitialPrefs.setBool(welcomeOverviewSharedPreferencesKey, false);
+  //     Toast.show("You are awesome, welcome. 😎",
+  //         duration: Toast.lengthLong,
+  //         gravity: Toast.bottom,
+  //         webTexColor: cardBackgroundColor,
+  //         backgroundColor: textColorTwo,
+  //         backgroundRadius: 10
+  //     );
+  //   }
+  // }
+
   @override
   void initState() {
     FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context, listen: false);
     getFirstTeamClass(firstTeamClassNotifier);
 
+    // ToastContext();
+
     startTime();
 
-    aboutAppWelcomeDialog();
+    setState(() {
+      isLoading = false;
+    });
+
+    // toastInitial();
+
+    // aboutAppWelcomeDialog();
 
     super.initState();
 
@@ -393,6 +431,8 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    ToastContext().init(context);
 
     FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
 
@@ -439,7 +479,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                                               ),
                                             ),
                                             onTap: () {
-                                              Navigator.of(context).pop(false);
+                                              // Navigator.of(context).pop(false);
                                               navigateTablesAndStatsDetails(context);
                                             }
                                         ),
@@ -536,7 +576,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: CachedNetworkImageProvider(
-                                    snapshot.data?.data()!['slivers_page_1'],
+                                    snapshot.data?.data()!['slivers_page_1'] ?? 0,
                                   ),
                                   fit: BoxFit.cover
                               )
@@ -558,11 +598,28 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                 child: ListView.builder(
                   itemBuilder: _buildProductItem,
                   itemCount: firstTeamClassNotifier.firstTeamClassList.length,
-
                 ),
               ),
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // Navigator.of(context).pop(true);
+            navigateTablesAndStatsDetails(context);
+          },
+          label: Text(
+              fabStats,
+            style: TextStyle(
+              color: iconColor
+            ),
+          ),
+          icon: Icon(
+            MdiIcons.alphaSBoxOutline,
+            color: iconColor
+          ),
+          splashColor: splashColorTwo,
+          backgroundColor: Colors.white,
         ),
       ),
     );

@@ -1,137 +1,34 @@
 {
   "project_info": {
-    "project_number": "722209247806",
-    "project_id": "uk-football-club-template",
-    "storage_bucket": "uk-football-club-template.appspot.com"
+    "project_number": "901585674848",
+    "project_id": "cov-phoenix-fc",
+    "storage_bucket": "cov-phoenix-fc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:722209247806:android:eadbfec7577c3a7e03376f",
-        "android_client_info": {
-          "package_name": "com.example.sfdatagrid_template"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "722209247806-4jg5ekg1ntcv69864dcdmbvtmhnv3nvr.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.sfdatagrid_template",
-            "certificate_hash": "35a7de7f844c9b3817d4f98afe7048aeb8437cef"
-          }
-        },
-        {
-          "client_id": "722209247806-5e59i74pcuaaj5tj2eakteho0b3gdnjf.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBSPvehu1MZvmgiAB8YnSVRgChi6RZgU24"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "722209247806-5e59i74pcuaaj5tj2eakteho0b3gdnjf.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "722209247806-enq8a3614vesb3tismn7edmovdelrd2l.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.icdatinnovations.coventryPhoenixFc"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:722209247806:android:0b27449d07f6e0f603376f",
-        "android_client_info": {
-          "package_name": "com.example.uk_club_template"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "722209247806-7fh2mta9dka0q7dha56jq6l2hhup7a5f.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.uk_club_template",
-            "certificate_hash": "35a7de7f844c9b3817d4f98afe7048aeb8437cef"
-          }
-        },
-        {
-          "client_id": "722209247806-5e59i74pcuaaj5tj2eakteho0b3gdnjf.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBSPvehu1MZvmgiAB8YnSVRgChi6RZgU24"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "722209247806-5e59i74pcuaaj5tj2eakteho0b3gdnjf.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "722209247806-enq8a3614vesb3tismn7edmovdelrd2l.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.icdatinnovations.coventryPhoenixFc"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:722209247806:android:32acafaf92d8fbfb03376f",
+        "mobilesdk_app_id": "1:901585674848:android:c08e77212960c6064c1905",
         "android_client_info": {
           "package_name": "com.icdatinnovations.coventry_phoenix_fc"
         }
       },
       "oauth_client": [
         {
-          "client_id": "722209247806-2u8b8abivvaj6e4our9a53lk4g5hlp6q.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.icdatinnovations.coventry_phoenix_fc",
-            "certificate_hash": "35a7de7f844c9b3817d4f98afe7048aeb8437cef"
-          }
-        },
-        {
-          "client_id": "722209247806-5e59i74pcuaaj5tj2eakteho0b3gdnjf.apps.googleusercontent.com",
+          "client_id": "901585674848-5673srlpn6veedn7j8opa4fjgqvimtj2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBSPvehu1MZvmgiAB8YnSVRgChi6RZgU24"
+          "current_key": "AIzaSyAGleKvSKz9bGpn6ljFMLll2JfYja1tRTc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "722209247806-5e59i74pcuaaj5tj2eakteho0b3gdnjf.apps.googleusercontent.com",
+              "client_id": "901585674848-5673srlpn6veedn7j8opa4fjgqvimtj2.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "722209247806-enq8a3614vesb3tismn7edmovdelrd2l.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.icdatinnovations.coventryPhoenixFc"
-              }
             }
           ]
         }

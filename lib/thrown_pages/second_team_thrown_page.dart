@@ -34,6 +34,9 @@ String acronymMeanings = "Acronym Meanings";
 String aboutApp = "About App";
 
 
+String fabStats = "Stats";
+
+
 Color backgroundColor = const Color.fromRGBO(186, 90, 49, 1.0);
 Color appBarTextColor = Colors.white;
 Color appBarBackgroundColor = const Color.fromRGBO(186, 90, 49, 1);
@@ -50,6 +53,7 @@ Color textColorTwo = Colors.white;
 Color textColorThree = Colors.white70;
 Color dialogBackgroundColor = const Color.fromRGBO(186, 90, 49, 1);
 Color borderColor = Colors.black;
+Color nabColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color paintColor = Colors.indigo;
 Color paintColorTwo = Colors.indigoAccent;
 
@@ -420,6 +424,24 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
               ),
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // Navigator.of(context).pop(true);
+            navigateTablesAndStatsDetails(context);
+          },
+          label: Text(
+            fabStats,
+            style: TextStyle(
+                color: nabColor
+            ),
+          ),
+          icon: Icon(
+              MdiIcons.alphaSBoxOutline,
+              color: nabColor
+          ),
+          splashColor: splashColorTwo,
+          backgroundColor: Colors.white,
         ),
       ),
     );

@@ -33,6 +33,7 @@ String tablesAndStats = "Tables and Stats";
 String acronymMeanings = "Acronym Meanings";
 String aboutApp = "About App";
 
+String fabStats = "Stats";
 
 
 Color backgroundColor = const Color.fromRGBO(237, 242, 244, 1);
@@ -43,6 +44,7 @@ Color modalColor = Colors.transparent;
 Color materialBackgroundColor = Colors.transparent;
 Color cardBackgroundColor = const Color.fromRGBO(73, 80, 87, 1.0);
 Color splashColor = const Color.fromRGBO(237, 242, 244, 1);
+Color splashColorTwo = const Color.fromRGBO(215, 145, 119, 1.0);
 Color iconColor = Colors.white;
 Color iconColorTwo = const Color.fromRGBO(73, 80, 87, 1.0);
 Color textColor = Colors.white;
@@ -419,6 +421,24 @@ class _MyThirdTeamClassPage extends State<MyThirdTeamClassPage> {
               ),
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // Navigator.of(context).pop(true);
+            navigateTablesAndStatsDetails(context);
+          },
+          label: Text(
+            fabStats,
+            style: TextStyle(
+                color: iconColor
+            ),
+          ),
+          icon: Icon(
+              MdiIcons.alphaSBoxOutline,
+              color: iconColor
+          ),
+          splashColor: splashColorTwo,
+          backgroundColor: Colors.white,
         ),
       ),
     );

@@ -240,8 +240,9 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                             ? CrossFadeState.showSecond : CrossFadeState.showFirst;
                       }),
                       child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * .64,
                         child: Card(
+                          color: Colors.transparent,
                           elevation: 5,
                           margin: const EdgeInsets.all(10),
                           semanticContainer: true,
@@ -447,7 +448,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
       DeviceOrientation.portraitDown,
     ]);
 
-    _confettiController = ConfettiController(duration: const Duration(seconds: 35));
+    _confettiController = ConfettiController(duration: const Duration(seconds: 77));
     _confettiController!.play();
 
     ThirdTeamClassNotifier thirdTeamClassNotifier = Provider.of<ThirdTeamClassNotifier>(context, listen: false);

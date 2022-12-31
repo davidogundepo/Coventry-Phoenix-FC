@@ -34,6 +34,7 @@ String tablesAndStats = "Tables and Stats";
 String acronymMeanings = "Acronym Meanings";
 String aboutApp = "About App";
 
+String fabStats = "Stats";
 
 
 Color backgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
@@ -51,6 +52,8 @@ Color textColor = const Color.fromRGBO(208, 104, 47, 1.0);
 Color textColorTwo = Colors.white70;
 Color dialogBackgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
 Color borderColor = Colors.black;
+Color nabColor = const Color.fromRGBO(24, 26, 36, 1.0);
+
 
 class MyManagementBodyPage extends StatefulWidget with NavigationStates{
   MyManagementBodyPage({Key? key, this.title}) : super(key: key);
@@ -399,6 +402,24 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
               ),
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // Navigator.of(context).pop(true);
+            navigateTablesAndStatsDetails(context);
+          },
+          label: Text(
+            fabStats,
+            style: TextStyle(
+                color: nabColor
+            ),
+          ),
+          icon: Icon(
+              MdiIcons.alphaSBoxOutline,
+              color: nabColor
+          ),
+          splashColor: splashColorTwo,
+          backgroundColor: Colors.white,
         ),
       ),
     );

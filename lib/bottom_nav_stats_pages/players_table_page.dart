@@ -110,6 +110,20 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                     child: SfDataGrid(
                       rowHeight: 50,
                       source: playersTableDataSource,
+                      onCellTap: (details) {
+                        if (details.column.columnName == 'image' ||
+                            details.column.columnName == 'player_name' &&
+                            details.rowColumnIndex.rowIndex > 0) {
+                          DataGridRow row = playersTableDataSource.effectiveRows
+                              .elementAt(details.rowColumnIndex.rowIndex - 1);
+                          int playerIndex = playersTableDataSource.dataGridRows.indexOf(row);
+                          Navigator.push(context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProfilePage(playerIndex)
+                              )
+                          );
+                        }
+                      },
                       frozenColumnsCount: 3,
                       frozenRowsCount: 0,
                       allowSorting: true,
@@ -697,7 +711,7 @@ class PlayersTableDataSource extends DataGridSource {
               return TextStyle(
                   color: goalsScoredTextColor,
                   fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic
+                  fontStyle: FontStyle.italic
               );
             }
             else if (e.columnName == 'nationality') {
@@ -710,26 +724,35 @@ class PlayersTableDataSource extends DataGridSource {
             }
           }
           return e.columnName == 'image'
-              ?
-          Container(
-            margin: const EdgeInsets.all(2),
-            alignment: Alignment.center,
-            // width: 25,
-            // height: 25,
-            decoration: BoxDecoration(
-                color: Colors.transparent,
-                shape: BoxShape.circle,
-                // borderRadius: const BorderRadius.all(Radius.circular(15)),
-                image: DecorationImage(
-                    alignment: const Alignment(-1, -1.1),
-                    image: CachedNetworkImageProvider(
-                        e.value,
-                    ),
-                    fit: BoxFit.cover
-                )
-            ),
-
-          )
+              ? Builder(builder: (context) {
+                return Container(
+                  margin: const EdgeInsets.all(2),
+                  alignment: Alignment.center,
+                  // width: 25,
+                  // height: 25,
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      shape: BoxShape.circle,
+                      // borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      image: DecorationImage(
+                          alignment: const Alignment(-1, -1.1),
+                          image: CachedNetworkImageProvider(
+                            e.value,
+                          ),
+                          fit: BoxFit.cover
+                      )),
+                  child: GestureDetector(
+                    onTap: () {
+                      int playerIndex = dataGridRows.indexOf(row);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfilePage(playerIndex)));
+              },
+                    child: e.value,
+                  ),
+                );
+              })
               :
           Container(
             alignment: (e.columnName == 'id' || e.columnName == 'playerName')
@@ -790,4 +813,28 @@ class PlayersTable{
       }
       );
 
+}
+
+
+class ProfilePage extends StatefulWidget {
+  const ProfilePage(this.playerIndex, {Key? key}) : super(key: key);
+
+  final int playerIndex;
+
+  @override
+  ProfilePageState createState() => ProfilePageState();
+}
+
+class ProfilePageState extends State<ProfilePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Flutter SfDataGrid'),
+      ),
+      body: Card(
+          margin: const EdgeInsets.all(30),
+          child: Center(child: playersTableList[widget.playerIndex])),
+    );
+  }
 }

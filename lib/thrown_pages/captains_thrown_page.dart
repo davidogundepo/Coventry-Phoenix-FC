@@ -35,6 +35,9 @@ String acronymMeanings = "Acronym Meanings";
 String aboutApp = "About App";
 
 
+String fabStats = "Stats";
+
+
 Color backgroundColor = const Color.fromRGBO(56, 56, 60, 1);
 Color appBarTextColor = Colors.white70;
 Color appBarBackgroundColor = const Color.fromRGBO(56, 56, 60, 1);
@@ -51,6 +54,7 @@ Color textColor = Colors.white70;
 Color textColorTwo = Colors.white70;
 Color dialogBackgroundColor = const Color.fromRGBO(56, 56, 60, 1);
 Color borderColor = Colors.black;
+Color nabColor = const Color.fromRGBO(56, 56, 60, 1);
 
 
 class MyCaptainsPage extends StatefulWidget with NavigationStates{
@@ -411,6 +415,24 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
               ),
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // Navigator.of(context).pop(true);
+            navigateTablesAndStatsDetails(context);
+          },
+          label: Text(
+            fabStats,
+            style: TextStyle(
+                color: nabColor
+            ),
+          ),
+          icon: Icon(
+              MdiIcons.alphaSBoxOutline,
+              color: nabColor
+          ),
+          splashColor: splashColorTwo,
+          backgroundColor: Colors.white,
         ),
       ),
     );
