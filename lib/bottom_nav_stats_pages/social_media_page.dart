@@ -14,7 +14,12 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
       appBar: AppBar(
 
       ),
-      body: Container(),
+      body: Column(
+        children: const [
+          Card(),
+          Card()
+        ],
+      ),
     );
   }
 }
