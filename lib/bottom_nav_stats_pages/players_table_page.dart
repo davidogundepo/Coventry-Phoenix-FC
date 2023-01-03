@@ -662,7 +662,7 @@ class PlayersTableDataSource extends DataGridSource {
   @override
   List<DataGridRow> get rows => dataGridRows;
 
-  /// Creates the playersTable data source class with required page.
+  /// Creates the playersTable data source class with required page..
 
   void _buildDataRow() {
     int itemCount = 1;
