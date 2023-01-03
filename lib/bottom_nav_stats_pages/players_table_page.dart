@@ -15,6 +15,8 @@ Color? appBarIconColor = const Color.fromRGBO(255, 141, 41, 1);
 Color? appBarBackgroundColor = const Color.fromRGBO(34, 40, 49, 1);
 
 
+final List<PlayersTable> playersTableList = [];
+
 class PlayersTablePage extends StatefulWidget {
   const PlayersTablePage({Key? key}) : super(key: key);
 
@@ -23,9 +25,6 @@ class PlayersTablePage extends StatefulWidget {
 }
 
 class _PlayersTablePageState extends State<PlayersTablePage> {
-
-
-  final List<PlayersTable> playersTableList = [];
 
   late PlayersTableDataSource playersTableDataSource;
 
@@ -835,7 +834,7 @@ class ProfilePageState extends State<ProfilePage> {
       ),
       body: Card(
           margin: const EdgeInsets.all(30),
-          child: Center(child: playersTableList[widget.playerIndex])),
+          child: Center(child: playersTableList![widget.playerIndex])),
           // child: Center(child: Container()),
     );
   }
