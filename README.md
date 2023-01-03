@@ -1,6 +1,6 @@
 # coventry_phoenix_fc
 
-A new Flutter project.
+Built for Coventry Phoenix FC 
 
 ## Getting Started
 
