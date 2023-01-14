@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:twitter_oembed_api/twitter_oembed_api.dart';
 import 'dart:developer';
-import 'package:flutter_html/flutter_html.dart';
+// import 'package:flutter_html/flutter_html.dart';
 
 
 dynamic embeddedTimeline;
@@ -60,8 +60,11 @@ class _HelloState extends State<Hello> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Html(
-          data: htmlData,
+        // child: Html(
+        //   data: htmlData,
+        // ),
+        child: Container(
+
         ),
       ),
     );

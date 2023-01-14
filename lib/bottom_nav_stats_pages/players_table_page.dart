@@ -832,10 +832,12 @@ class ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: const Text('Flutter SfDataGrid'),
       ),
-      body: Card(
-          margin: const EdgeInsets.all(30),
-          child: Center(child: playersTableList![widget.playerIndex])),
+      // body: Card(
+      //     margin: const EdgeInsets.all(30),
+      //     child: Center(child: playersTableList![widget.playerIndex])),
           // child: Center(child: Container()),
+
+      body: Container(),
     );
   }
 }
