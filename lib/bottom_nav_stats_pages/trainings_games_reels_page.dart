@@ -6,7 +6,6 @@ import '../notifier/trainings_games_reels_notifier.dart';
 import'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import '../main.dart';
 import 'package:line_icons/line_icons.dart';
 
 

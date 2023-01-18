@@ -1,10 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
+import '../details_pages/first_team_details_page.dart';
+import '../notifier/first_team_class_notifier.dart';
 
 
 Color? backgroundColor = const Color.fromRGBO(34, 40, 49, 1);
@@ -26,6 +30,7 @@ class PlayersTablePage extends StatefulWidget {
 
 class _PlayersTablePageState extends State<PlayersTablePage> {
 
+
   late PlayersTableDataSource playersTableDataSource;
 
   Stream<QuerySnapshot> getDataFromFirestore() {
@@ -37,6 +42,9 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
       StreamBuilder(
           stream: getDataFromFirestore(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
+
+
             if (snapshot.hasData) {
               if (playersTableList.isNotEmpty) {
                 realTimeUpdate(var data) {
@@ -115,11 +123,14 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                           DataGridRow row = playersTableDataSource.effectiveRows
                               .elementAt(details.rowColumnIndex.rowIndex - 1);
                           int playerIndex = playersTableDataSource.dataGridRows.indexOf(row);
-                          Navigator.push(context,
-                              MaterialPageRoute(
-                                  builder: (context) => ProfilePage(playerIndex)
-                              )
-                          );
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(
+                                  // builder: (context) =>
+                          firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
+                          navigateToSubPage(context);
+                                  // builder: (context) => ProfilePage(playerIndex)
+
+                          // );
                         }
                       },
                       frozenColumnsCount: 3,
@@ -723,6 +734,7 @@ class PlayersTableDataSource extends DataGridSource {
           }
           return e.columnName == 'image'
               ? Builder(builder: (context) {
+            FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
                 return Container(
                   margin: const EdgeInsets.all(2),
                   alignment: Alignment.center,
@@ -742,10 +754,12 @@ class PlayersTableDataSource extends DataGridSource {
                   child: GestureDetector(
                     onTap: () {
                       int playerIndex = dataGridRows.indexOf(row);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProfilePage(playerIndex)));
+                      firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
+                      navigateToSubPage(context);
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => ProfilePage(playerIndex)));
               },
                     child: e.value,
                   ),
@@ -840,4 +854,9 @@ class ProfilePageState extends State<ProfilePage> {
       body: Container(),
     );
   }
+}
+
+
+Future navigateToSubPage(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => const SubPage()));
 }

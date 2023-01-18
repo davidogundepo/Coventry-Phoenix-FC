@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../notifier/sidebar_notifier.dart';
-import 'package:shimmer/shimmer.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../sidebar/menu_item.dart';
 

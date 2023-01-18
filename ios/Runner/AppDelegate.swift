@@ -1,9 +1,10 @@
 import UIKit
 import Flutter
 import Firebase
+//import UserNotifications
 
 @UIApplicationMain
-@objc class AppDelegate: FlutterAppDelegate, MessagingDelegate {
+@objc class AppDelegate: FlutterAppDelegate, MessagingDelegate  {
     
     lazy var flutterEngine = FlutterEngine(name: "MyApp")
     
@@ -13,6 +14,11 @@ import Firebase
   ) -> Bool {
       
     UIApplication.shared.isStatusBarHidden = false
+      
+//     (BOOL)prefersStatusBarHidden {
+//
+//        return NO;
+//     }
       
       flutterEngine.run()
       FirebaseApp.configure()

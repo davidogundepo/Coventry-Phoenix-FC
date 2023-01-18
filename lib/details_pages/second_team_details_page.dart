@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:confetti/confetti.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -455,7 +454,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     const EdgeInsets.only(bottom: 8, top: 8, left: 14, right: 14),
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        primary: Colors.white,
+                                        backgroundColor: Colors.white,
                                         padding: const EdgeInsets.all(4),
                                       ),
                                       child: Text(
@@ -2193,11 +2192,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: InkWell(
                   splashColor: splashColorTwo,
-                  child: RaisedButton.icon(
-                    shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    elevation: 2,
-                    color: buttonColor,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                     icon: Icon(
                       MdiIcons.dialpad,
                       color: iconTextColor,
@@ -2226,11 +2227,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: InkWell(
                     splashColor: splashColorTwo,
-                    child: RaisedButton.icon(
+                    child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
                       shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      elevation: 2,
-                      color: buttonColor,
+                    ),
                       icon: Icon(
                         MdiIcons.dialpad,
                         color: iconTextColor,
@@ -2256,11 +2259,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: InkWell(
                   splashColor: splashColorTwo,
-                  child: RaisedButton.icon(
-                    shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    elevation: 2,
-                    color: buttonColor,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                     icon: Icon(
                       MdiIcons.message,
                       color: iconTextColor,
@@ -2289,11 +2294,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: InkWell(
                     splashColor: splashColorTwo,
-                    child: RaisedButton.icon(
+                    child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
                       shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      elevation: 2,
-                      color: buttonColor,
+                    ),
                       icon: Icon(
                         MdiIcons.message,
                         color: iconTextColor,
@@ -2319,11 +2326,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: InkWell(
                   splashColor: splashColorTwo,
-                  child: RaisedButton.icon(
-                    shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    elevation: 2,
-                    color: buttonColor,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                     icon: Icon(
                       MdiIcons.whatsapp,
                       color: iconTextColor,
@@ -2354,11 +2363,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: InkWell(
                     splashColor: splashColorTwo,
-                    child: RaisedButton.icon(
+                    child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
                       shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      elevation: 2,
-                      color: buttonColor,
+                    ),
                       icon: Icon(
                         MdiIcons.message,
                         color: iconTextColor,
@@ -2384,11 +2395,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: InkWell(
                   splashColor: splashColorTwo,
-                  child: RaisedButton.icon(
-                    shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    elevation: 2,
-                    color: buttonColor,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                     icon: Icon(
                       MdiIcons.gmail,
                       color: iconTextColor,
@@ -2411,11 +2424,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: InkWell(
                       splashColor: splashColorTwo,
-                      child: RaisedButton.icon(
-                        shape: BeveledRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 2,
-                        color: buttonColor,
+                      child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                         icon: Icon(
                           MdiIcons.gmail,
                           color: iconTextColor,
@@ -2440,12 +2455,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: InkWell(
                   splashColor: splashColorTwo,
-                  child: RaisedButton.icon(
-                    shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
                     ),
-                    elevation: 2,
-                    color: buttonColor,
                     icon: Icon(MdiIcons.twitter, color: iconTextColor),
                     label: Text(twitterButton,
                         style: GoogleFonts.abel(
@@ -2473,12 +2489,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: InkWell(
                     splashColor: splashColorTwo,
-                    child: RaisedButton.icon(
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)
-                      ),
+                    child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
                       elevation: 2,
-                      color: buttonColor,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                       icon: Icon(MdiIcons.twitter, color: iconTextColor),
                       label: Text(twitterButton,
                           style: GoogleFonts.abel(
@@ -2503,11 +2520,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: InkWell(
                   splashColor: splashColorTwo,
-                  child: RaisedButton.icon(
-                    shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    elevation: 2,
-                    color: buttonColor,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                     icon: Icon(
                       MdiIcons.instagram,
                       color: iconTextColor,
@@ -2536,11 +2555,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: InkWell(
                       splashColor: splashColorTwo,
-                      child: RaisedButton.icon(
-                        shape: BeveledRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 2,
-                        color: buttonColor,
+                      child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                         icon: Icon(
                           MdiIcons.instagram,
                           color: iconTextColor,
@@ -2565,11 +2586,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: InkWell(
                   splashColor: splashColorTwo,
-                  child: RaisedButton.icon(
-                    shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    elevation: 2,
-                    color: buttonColor,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                     icon: Icon(
                       MdiIcons.snapchat,
                       color: iconTextColor,
@@ -2598,11 +2621,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: InkWell(
                     splashColor: splashColorTwo,
-                    child: RaisedButton.icon(
+                    child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
                       shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      elevation: 2,
-                      color: buttonColor,
+                    ),
                       icon: Icon(
                         MdiIcons.snapchat,
                         color: iconTextColorTwo,
@@ -2628,11 +2653,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: InkWell(
                   splashColor: splashColorTwo,
-                  child: RaisedButton.icon(
-                    shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    elevation: 2,
-                    color: buttonColor,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                     icon: FaIcon(
                       FontAwesomeIcons.tiktok,
                       color: iconTextColor,
@@ -2661,11 +2688,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: InkWell(
                     splashColor: splashColorTwo,
-                    child: RaisedButton.icon(
+                    child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
                       shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      elevation: 2,
-                      color: buttonColor,
+                    ),
                       icon: FaIcon(
                         FontAwesomeIcons.tiktok,
                         color: iconTextColorTwo,
@@ -2691,11 +2720,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: InkWell(
                   splashColor: splashColorTwo,
-                  child: RaisedButton.icon(
-                    shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    elevation: 2,
-                    color: buttonColor,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                     icon: Icon(
                       MdiIcons.facebook,
                       color: iconTextColor,
@@ -2722,11 +2753,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: InkWell(
                       splashColor: splashColorTwo,
-                      child: RaisedButton.icon(
-                        shape: BeveledRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 2,
-                        color: buttonColor,
+                      child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                         icon: Icon(
                           MdiIcons.facebook,
                           color: iconTextColor,
@@ -2753,11 +2786,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: InkWell(
                   splashColor: splashColorTwo,
-                  child: RaisedButton.icon(
-                    shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    elevation: 2,
-                    color: buttonColor,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                     icon: Icon(
                       MdiIcons.linkedin,
                       color: iconTextColor,
@@ -2784,11 +2819,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: InkWell(
                       splashColor: splashColorTwo,
-                      child: RaisedButton.icon(
-                        shape: BeveledRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 2,
-                        color: buttonColor,
+                      child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      elevation: 2,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
                         icon: Icon(
                           MdiIcons.facebook,
                           color: iconTextColor,
