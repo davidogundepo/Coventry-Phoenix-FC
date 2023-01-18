@@ -1,14 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
-import '../details_pages/first_team_details_page.dart';
-import '../notifier/first_team_class_notifier.dart';
 
 
 Color? backgroundColor = const Color.fromRGBO(34, 40, 49, 1);
@@ -19,7 +15,7 @@ Color? appBarIconColor = const Color.fromRGBO(255, 141, 41, 1);
 Color? appBarBackgroundColor = const Color.fromRGBO(34, 40, 49, 1);
 
 
-final List<PlayersTable> playersTableList = [];
+// final List<PlayersTable> playersTableList = [];
 
 class PlayersTablePage extends StatefulWidget {
   const PlayersTablePage({Key? key}) : super(key: key);
@@ -30,6 +26,7 @@ class PlayersTablePage extends StatefulWidget {
 
 class _PlayersTablePageState extends State<PlayersTablePage> {
 
+  List<PlayersTable> playersTableList = [];
 
   late PlayersTableDataSource playersTableDataSource;
 
@@ -136,7 +133,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                       frozenColumnsCount: 3,
                       frozenRowsCount: 0,
                       allowSorting: true,
-                      allowTriStateSorting: false,
+                      allowTriStateSorting: true,
                       // allowMultiColumnSorting: true,
                       columnWidthMode: ColumnWidthMode.fill,
                       tableSummaryRows: [
@@ -183,7 +180,8 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
     return <GridColumn>[
       GridColumn(
           columnName: 'id',
-          width: 35,
+          width: 45,
+          allowSorting: true,
           label: Container(
               alignment: Alignment.center,
               // padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -308,7 +306,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
     playersTableDataSource = PlayersTableDataSource(playersTableList);
     playersTableDataSource.sortedColumns.add(
         const SortColumnDetails(name: 'goals_scored',
-            sortDirection: DataGridSortDirection.ascending
+            sortDirection: DataGridSortDirection.descending
     ));
     super.initState();
 
@@ -733,9 +731,12 @@ class PlayersTableDataSource extends DataGridSource {
             }
           }
           return e.columnName == 'image'
-              ? Builder(builder: (context) {
+              ?
+          // Builder(builder: (context) {
             // FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
-                return Container(
+            //     return
+
+                  Container(
                   margin: const EdgeInsets.all(2),
                   alignment: Alignment.center,
                   // width: 25,
@@ -764,8 +765,10 @@ class PlayersTableDataSource extends DataGridSource {
                   //   },
                   //   child: e.value,
                   // ),
-                );
-              })
+                )
+          // ;}
+
+        // )
               :
           Container(
             alignment: (e.columnName == 'id' || e.columnName == 'playerName')
