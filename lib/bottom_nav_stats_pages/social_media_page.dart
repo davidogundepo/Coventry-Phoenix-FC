@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:twitter_oembed_api/twitter_oembed_api.dart';
+// import 'package:twitter_oembed_api/twitter_oembed_api.dart';
 import 'dart:developer';
 // import 'package:flutter_html/flutter_html.dart';
 
@@ -9,9 +9,9 @@ dynamic embeddedTimeline;
 
 
 void main() async {
-  final twitterApi = TwitterOEmbedApi();
+  // final twitterApi = TwitterOEmbedApi();
 
-  try {
+  // try {
     /// You can get the embedded tweet by specifying the tweet ID.
     // final embeddedTweet = await twitterApi.publishEmbeddedTweet(
     //   screenName: 'Interior',
@@ -27,18 +27,18 @@ void main() async {
     /// or with list name.
 
 
-    embeddedTimeline = await twitterApi.publishEmbeddedTimeline(
-      screenName: 'DavidOOludepo',
-      // limit: 3,
-      theme: ContentTheme.dark,
-    );
-
-    log(embeddedTimeline.html);
-
-
-  } on TwitterOEmbedException catch (e) {
-    print(e);
-  }
+  //   embeddedTimeline = await twitterApi.publishEmbeddedTimeline(
+  //     screenName: 'DavidOOludepo',
+  //     // limit: 3,
+  //     theme: ContentTheme.dark,
+  //   );
+  //
+  //   log(embeddedTimeline.html);
+  //
+  //
+  // } on TwitterOEmbedException catch (e) {
+  //   print(e);
+  // }
 }
 
 class Hello extends StatefulWidget {

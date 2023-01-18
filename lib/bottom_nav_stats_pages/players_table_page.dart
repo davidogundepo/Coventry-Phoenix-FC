@@ -42,7 +42,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
       StreamBuilder(
           stream: getDataFromFirestore(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
+            // FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
 
 
             if (snapshot.hasData) {
@@ -107,7 +107,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                   color: cardBackgroundColorTwo,
                   child: SfDataGridTheme(
                     data: SfDataGridThemeData(
-                        sortIcon: const Icon(Icons.arrow_circle_up),
+                        // sortIcon: const Icon(Icons.arrow_circle_up),
                         sortIconColor: Colors.white,
                         headerColor: cardBackgroundColorTwo,
                         gridLineColor: backgroundColor,
@@ -116,27 +116,27 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                     child: SfDataGrid(
                       rowHeight: 50,
                       source: playersTableDataSource,
-                      onCellTap: (details) {
-                        if (details.column.columnName == 'image' ||
-                            details.column.columnName == 'player_name' &&
-                            details.rowColumnIndex.rowIndex > 0) {
-                          DataGridRow row = playersTableDataSource.effectiveRows
-                              .elementAt(details.rowColumnIndex.rowIndex - 1);
-                          int playerIndex = playersTableDataSource.dataGridRows.indexOf(row);
+                      // onCellTap: (details) {
+                        // if (details.column.columnName == 'image' ||
+                        //     details.column.columnName == 'player_name' &&
+                        //     details.rowColumnIndex.rowIndex > 0) {
+                        //   DataGridRow row = playersTableDataSource.effectiveRows
+                        //       .elementAt(details.rowColumnIndex.rowIndex - 1);
+                        //   int playerIndex = playersTableDataSource.dataGridRows.indexOf(row);
                           // Navigator.push(context,
                           //     MaterialPageRoute(
                                   // builder: (context) =>
-                          firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
-                          navigateToSubPage(context);
+                          // firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
+                          // navigateToSubPage(context);
                                   // builder: (context) => ProfilePage(playerIndex)
 
                           // );
-                        }
-                      },
+                        // }
+                      // },
                       frozenColumnsCount: 3,
                       frozenRowsCount: 0,
                       allowSorting: true,
-                      allowTriStateSorting: true,
+                      allowTriStateSorting: false,
                       // allowMultiColumnSorting: true,
                       columnWidthMode: ColumnWidthMode.fill,
                       tableSummaryRows: [
@@ -734,7 +734,7 @@ class PlayersTableDataSource extends DataGridSource {
           }
           return e.columnName == 'image'
               ? Builder(builder: (context) {
-            FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
+            // FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
                 return Container(
                   margin: const EdgeInsets.all(2),
                   alignment: Alignment.center,
@@ -751,18 +751,19 @@ class PlayersTableDataSource extends DataGridSource {
                           ),
                           fit: BoxFit.cover
                       )),
-                  child: GestureDetector(
-                    onTap: () {
-                      int playerIndex = dataGridRows.indexOf(row);
-                      firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
-                      navigateToSubPage(context);
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => ProfilePage(playerIndex)));
-              },
-                    child: e.value,
-                  ),
+                  // child: GestureDetector(
+                  //   onTap: () {
+                  //     // int playerIndex = dataGridRows.indexOf(row);
+                  //     // firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
+                  //     // navigateToSubPage(context);
+                  //     // Navigator.push(
+                  //     //     context,
+                  //     //     MaterialPageRoute(
+                  //     //         builder: (context) => ProfilePage(playerIndex)));
+                  //
+                  //   },
+                  //   child: e.value,
+                  // ),
                 );
               })
               :
@@ -828,35 +829,35 @@ class PlayersTable{
 }
 
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage(this.playerIndex, {Key? key}) : super(key: key);
+// class ProfilePage extends StatefulWidget {
+//   const ProfilePage(this.playerIndex, {Key? key}) : super(key: key);
+//
+//   final int playerIndex;
+//
+//   @override
+//   ProfilePageState createState() => ProfilePageState();
+// }
 
-  final int playerIndex;
-
-  @override
-  ProfilePageState createState() => ProfilePageState();
-}
-
-class ProfilePageState extends State<ProfilePage> {
-  // get playersTableList => PlayersTable;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter SfDataGrid'),
-      ),
-      // body: Card(
-      //     margin: const EdgeInsets.all(30),
-      //     child: Center(child: playersTableList![widget.playerIndex])),
-          // child: Center(child: Container()),
-
-      body: Container(),
-    );
-  }
-}
-
-
-Future navigateToSubPage(context) async {
-  Navigator.push(context, MaterialPageRoute(builder: (context) => const SubPage()));
-}
+// class ProfilePageState extends State<ProfilePage> {
+//   // get playersTableList => PlayersTable;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Flutter SfDataGrid'),
+//       ),
+//       // body: Card(
+//       //     margin: const EdgeInsets.all(30),
+//       //     child: Center(child: playersTableList![widget.playerIndex])),
+//           // child: Center(child: Container()),
+//
+//       body: Container(),
+//     );
+//   }
+// }
+//
+//
+// Future navigateToSubPage(context) async {
+//   Navigator.push(context, MaterialPageRoute(builder: (context) => const SubPage()));
+// }

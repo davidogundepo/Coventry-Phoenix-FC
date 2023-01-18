@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.2+2
 
 environment:
-  sdk: ">=2.17.6 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -34,44 +34,44 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
-  url_launcher: ^6.1.4
-  material_design_icons_flutter: ^5.0.6996
+  url_launcher: ^6.1.7
+  material_design_icons_flutter: ^6.0.7096
 #  webview_flutter: ^4.0.1
-  shared_preferences: ^2.0.15
+  shared_preferences: ^2.0.16
   flutter_bloc: ^7.0.0
   flutter_lints: ^2.0.1
-  firebase_core: ^1.19.1
-  cloud_firestore: ^3.2.1
-  firebase_messaging: ^11.4.4
-  firebase_auth: ^3.4.1
-  firebase_crashlytics: ^2.8.4
-  provider: ^6.0.3
-  http: ^0.13.4
-  syncfusion_flutter_core: ^20.2.36
-  syncfusion_flutter_datagrid: ^20.2.36
-  syncfusion_localizations: ^20.2.36
-  syncfusion_flutter_charts: ^20.2.36
-  syncfusion_flutter_gauges: ^20.2.36
+  firebase_core: ^2.4.1
+  cloud_firestore: ^4.3.1
+  firebase_messaging: ^14.2.1
+  firebase_auth: ^4.2.5
+  firebase_crashlytics: ^3.0.10
+  firebase_analytics: ^10.1.0
+  provider: ^6.0.5
+  http: ^0.13.5
+  syncfusion_flutter_core: ^20.4.44
+  syncfusion_flutter_datagrid: ^20.4.44
+  syncfusion_localizations: ^20.4.44
+  syncfusion_flutter_charts: ^20.4.44
+  syncfusion_flutter_gauges: ^20.4.44
   google_nav_bar: ^5.0.6
-  flutter_staggered_grid_view: ^0.4.0
+  flutter_staggered_grid_view: ^0.4.1
   transparent_image: ^2.0.0
-  cached_network_image: ^3.2.1
+  cached_network_image: ^3.2.3
   line_icons: ^2.0.1
   avatar_glow: ^2.0.2
-  flutter_swiper: ^1.1.6
+#  flutter_swiper: ^1.1.6
   pie_chart: ^5.3.2
   shimmer: ^2.0.0
-  firebase_analytics: ^9.1.12
-  flutter_launcher_icons: ^0.9.3
+  flutter_launcher_icons: ^0.11.0
   flutter_app_name: ^0.1.1
   toast: ^0.3.0
-  font_awesome_flutter: ^10.1.0
-  flutter_icons: ^1.1.0
+  font_awesome_flutter: ^10.3.0
+#  flutter_icons: ^1.1.0
   flutter_inset_box_shadow: ^1.0.8
   blurrycontainer: ^1.0.2
   flutter_neumorphic: ^3.2.0
   google_fonts: ^3.0.1
-  lottie: ^1.3.0
+  lottie: ^2.2.0
   animated_splash_screen: ^1.3.0
   flutter_swiper_null_safety: ^1.0.2
   clay_containers: ^0.3.2
@@ -79,10 +79,10 @@ dependencies:
   parallax_rain: ^1.1.0
   flutter_local_notifications: ^9.7.0
   adaptive_theme: ^3.1.1
-  flutter_riverpod: ^1.0.4
+  flutter_riverpod: ^2.1.3
   flutter_automation: ^2.0.0
   path_provider: ^2.0.11
-  twitter_oembed_api: ^0.1.0
+#  twitter_oembed_api: ^0.1.0
 #  flutter_html: ^2.2.1
 
 

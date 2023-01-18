@@ -13,8 +13,8 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		995DA4A93367EE43DA2115A6 /* Pods_CPFC_ImageNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C738AE24072B494BD0A3D5FC /* Pods_CPFC_ImageNotification.framework */; };
 		A96546DECF35810C200E89FB /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 920593169E83274846487E70 /* Pods_Runner.framework */; };
-		B6F6A788A5F3A28042F145DD /* Pods_CPFC_ImageNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF049BC1235C6D527510FE2B /* Pods_CPFC_ImageNotification.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CE18077A288E2801005C51B7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE180779288E2801005C51B7 /* SplashViewController.swift */; };
 		CE45927D28FCD93A00B8653F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE45927C28FCD93A00B8653F /* GoogleService-Info.plist */; };
 		CE71C2D22898BDE500ECEFF4 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CE71C2D12898BDE500ECEFF4 /* NotificationService.m */; };
@@ -57,17 +57,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0D0FDAB1BBC84B767F943CA1 /* Pods-CPFC ImageNotification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CPFC ImageNotification.debug.xcconfig"; path = "Target Support Files/Pods-CPFC ImageNotification/Pods-CPFC ImageNotification.debug.xcconfig"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		39A6B71A134807DDFC769026 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
-		53186F6FCC77B2C7F8EA3D5F /* Pods-CPFC ImageNotification.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CPFC ImageNotification.profile.xcconfig"; path = "Target Support Files/Pods-CPFC ImageNotification/Pods-CPFC ImageNotification.profile.xcconfig"; sourceTree = "<group>"; };
 		60D7A664F78FDA650E71287A /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		64899A8B89D9CCCD576397D3 /* Pods-CPFC ImageNotification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CPFC ImageNotification.debug.xcconfig"; path = "Target Support Files/Pods-CPFC ImageNotification/Pods-CPFC ImageNotification.debug.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
 		920593169E83274846487E70 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9432E43EBC49D07BB268F67D /* Pods-CPFC ImageNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CPFC ImageNotification.release.xcconfig"; path = "Target Support Files/Pods-CPFC ImageNotification/Pods-CPFC ImageNotification.release.xcconfig"; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,7 +76,8 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4DEE67C7826287477A48357 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
-		AF049BC1235C6D527510FE2B /* Pods_CPFC_ImageNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CPFC_ImageNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BABBE43A9F32245C1057ECE5 /* Pods-CPFC ImageNotification.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CPFC ImageNotification.profile.xcconfig"; path = "Target Support Files/Pods-CPFC ImageNotification/Pods-CPFC ImageNotification.profile.xcconfig"; sourceTree = "<group>"; };
+		C738AE24072B494BD0A3D5FC /* Pods_CPFC_ImageNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CPFC_ImageNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE180779288E2801005C51B7 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		CE45927C28FCD93A00B8653F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE71C2CE2898BDE500ECEFF4 /* CPFC ImageNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CPFC ImageNotification.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +86,6 @@
 		CE71C2D32898BDE500ECEFF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEBA6BBB289635A9009DFADB /* football_field.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = football_field.json; sourceTree = "<group>"; };
 		CEF560902892D0EF00B99C5F /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
-		CFE73945CAF01C2DFD985C70 /* Pods-CPFC ImageNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CPFC ImageNotification.release.xcconfig"; path = "Target Support Files/Pods-CPFC ImageNotification/Pods-CPFC ImageNotification.release.xcconfig"; sourceTree = "<group>"; };
 		D57243D0667933BFC432779B /* Pods-Runner-CPFC ImageNotification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner-CPFC ImageNotification.debug.xcconfig"; path = "Target Support Files/Pods-Runner-CPFC ImageNotification/Pods-Runner-CPFC ImageNotification.debug.xcconfig"; sourceTree = "<group>"; };
 		D9C715AE8FE832FE17E1F3FC /* Pods-Runner-CPFC ImageNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner-CPFC ImageNotification.release.xcconfig"; path = "Target Support Files/Pods-Runner-CPFC ImageNotification/Pods-Runner-CPFC ImageNotification.release.xcconfig"; sourceTree = "<group>"; };
 		F88544A017AE92945FC9C4F2 /* Pods-Runner-CPFC ImageNotification.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner-CPFC ImageNotification.profile.xcconfig"; path = "Target Support Files/Pods-Runner-CPFC ImageNotification/Pods-Runner-CPFC ImageNotification.profile.xcconfig"; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6F6A788A5F3A28042F145DD /* Pods_CPFC_ImageNotification.framework in Frameworks */,
+				995DA4A93367EE43DA2115A6 /* Pods_CPFC_ImageNotification.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				920593169E83274846487E70 /* Pods_Runner.framework */,
-				AF049BC1235C6D527510FE2B /* Pods_CPFC_ImageNotification.framework */,
+				C738AE24072B494BD0A3D5FC /* Pods_CPFC_ImageNotification.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -129,9 +129,9 @@
 				D57243D0667933BFC432779B /* Pods-Runner-CPFC ImageNotification.debug.xcconfig */,
 				D9C715AE8FE832FE17E1F3FC /* Pods-Runner-CPFC ImageNotification.release.xcconfig */,
 				F88544A017AE92945FC9C4F2 /* Pods-Runner-CPFC ImageNotification.profile.xcconfig */,
-				0D0FDAB1BBC84B767F943CA1 /* Pods-CPFC ImageNotification.debug.xcconfig */,
-				CFE73945CAF01C2DFD985C70 /* Pods-CPFC ImageNotification.release.xcconfig */,
-				53186F6FCC77B2C7F8EA3D5F /* Pods-CPFC ImageNotification.profile.xcconfig */,
+				64899A8B89D9CCCD576397D3 /* Pods-CPFC ImageNotification.debug.xcconfig */,
+				9432E43EBC49D07BB268F67D /* Pods-CPFC ImageNotification.release.xcconfig */,
+				BABBE43A9F32245C1057ECE5 /* Pods-CPFC ImageNotification.profile.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -228,7 +228,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE71C2DB2898BDE500ECEFF4 /* Build configuration list for PBXNativeTarget "CPFC ImageNotification" */;
 			buildPhases = (
-				02EA8FB4685B277EE6631E7C /* [CP] Check Pods Manifest.lock */,
+				039A56E27F5434A847F5CEF3 /* [CP] Check Pods Manifest.lock */,
 				CE71C2CA2898BDE500ECEFF4 /* Sources */,
 				CE71C2CB2898BDE500ECEFF4 /* Frameworks */,
 				CE71C2CC2898BDE500ECEFF4 /* Resources */,
@@ -303,7 +303,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		02EA8FB4685B277EE6631E7C /* [CP] Check Pods Manifest.lock */ = {
+		039A56E27F5434A847F5CEF3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -345,10 +345,12 @@
 		};
 		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}",
 			);
 			name = "Thin Binary";
 			outputPaths = (
@@ -486,7 +488,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
@@ -506,6 +508,7 @@
 				DEVELOPMENT_TEAM = W599AQU2G3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -567,7 +570,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -617,7 +620,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
@@ -639,6 +642,7 @@
 				DEVELOPMENT_TEAM = W599AQU2G3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -664,6 +668,7 @@
 				DEVELOPMENT_TEAM = W599AQU2G3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -679,7 +684,7 @@
 		};
 		CE71C2D82898BDE500ECEFF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D0FDAB1BBC84B767F943CA1 /* Pods-CPFC ImageNotification.debug.xcconfig */;
+			baseConfigurationReference = 64899A8B89D9CCCD576397D3 /* Pods-CPFC ImageNotification.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -713,7 +718,7 @@
 		};
 		CE71C2D92898BDE500ECEFF4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CFE73945CAF01C2DFD985C70 /* Pods-CPFC ImageNotification.release.xcconfig */;
+			baseConfigurationReference = 9432E43EBC49D07BB268F67D /* Pods-CPFC ImageNotification.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -746,7 +751,7 @@
 		};
 		CE71C2DA2898BDE500ECEFF4 /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53186F6FCC77B2C7F8EA3D5F /* Pods-CPFC ImageNotification.profile.xcconfig */;
+			baseConfigurationReference = BABBE43A9F32245C1057ECE5 /* Pods-CPFC ImageNotification.profile.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
