@@ -479,7 +479,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                                               ),
                                             ),
                                             onTap: () {
-                                              // Navigator.of(context).pop(false);
+                                              Navigator.of(context).pop(false);
                                               navigateTablesAndStatsDetails(context);
                                             }
                                         ),
