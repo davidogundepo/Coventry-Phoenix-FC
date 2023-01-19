@@ -1,4 +1,5 @@
 
+import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/social_media_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -64,7 +65,8 @@ class _BottomNavigatorState extends State<BottomNavigator> {
   final _pageOption = [
     const PlayersTablePage(),
     const PlayersStatsAndInfoPage(),
-    const SeasonTimeline(),
+    // const SeasonTimeline(),
+    const SocialMediaPage(),
     TrainingsAndGamesReelsPage(),
 
   ];
@@ -123,13 +125,22 @@ class _BottomNavigatorState extends State<BottomNavigator> {
                         text: 'Top Players',
                         rippleColor: Colors.blueGrey,
                       ),
+                      // const GButton(
+                      //   gap: 12,
+                      //   icon: Icons.leaderboard,
+                      //   textColor: Color.fromRGBO(247, 246, 242, 1),
+                      //   iconColor: Colors.white30,
+                      //   iconActiveColor: Color.fromRGBO(247, 246, 242, 1),
+                      //   text: 'Timeline',
+                      //   rippleColor: Colors.blueGrey,
+                      // ),
                       const GButton(
                         gap: 12,
-                        icon: Icons.leaderboard,
+                        icon: Icons.featured_play_list,
                         textColor: Color.fromRGBO(247, 246, 242, 1),
                         iconColor: Colors.white30,
                         iconActiveColor: Color.fromRGBO(247, 246, 242, 1),
-                        text: 'Timeline',
+                        text: 'Social Media',
                         rippleColor: Colors.blueGrey,
                       ),
                       GButton(
