@@ -3760,7 +3760,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                     child: SizedBox(
                                                                                       width: MediaQuery.of(context).size.width * 0.65,
                                                                                       child: Text(
-                                                                                        'Nouvelle Software Inc.',
+                                                                                        'Nouvellesoft Inc.',
                                                                                         style: GoogleFonts.gloriaHallelujah(
                                                                                           color: Colors.white70,
                                                                                           fontSize: 15,
