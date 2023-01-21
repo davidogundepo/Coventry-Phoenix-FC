@@ -804,36 +804,3 @@ class PlayersTable {
 Future navigateToSubPage(context) async {
   Navigator.push(context, MaterialPageRoute(builder: (context) => const SubPage()));
 }
-
-// class ProfilePage extends StatefulWidget {
-//   const ProfilePage(this.playerIndex, {Key? key}) : super(key: key);
-//
-//   final int playerIndex;
-//
-//   @override
-//   ProfilePageState createState() => ProfilePageState();
-// }
-
-// class ProfilePageState extends State<ProfilePage> {
-//   // get playersTableList => PlayersTable;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Flutter SfDataGrid'),
-//       ),
-//       // body: Card(
-//       //     margin: const EdgeInsets.all(30),
-//       //     child: Center(child: playersTableList![widget.playerIndex])),
-//           // child: Center(child: Container()),
-//
-//       body: Container(),
-//     );
-//   }
-// }
-//
-//
-// Future navigateToSubPage(context) async {
-//   Navigator.push(context, MaterialPageRoute(builder: (context) => const SubPage()));
-// }
