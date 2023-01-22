@@ -131,9 +131,6 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                       firstTeamClassNotifier.currentFirstTeamClass =
                       firstTeamClassNotifier
                           .firstTeamClassList[playerIndex];
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(
-                    // builder: (context) =>
                         navigateToSubPage(context);
                     // firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
                     // navigateToSubPage(context);
