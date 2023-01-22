@@ -131,12 +131,6 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                       firstTeamClassNotifier
                           .firstTeamClassList[playerIndex];
                         navigateToSubPage(context);
-                    // firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
-                    // navigateToSubPage(context);
-                    // builder: (context) => ProfilePage(playerIndex)
-
-                        // )
-                      // );
                     }
                     },
                     frozenColumnsCount: 3,
