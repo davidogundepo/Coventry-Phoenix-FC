@@ -43,7 +43,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
     return StreamBuilder(
         stream: getDataFromFirestore(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          // FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
+          FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
 
           if (snapshot.hasData) {
             if (playersTableList.isNotEmpty) {
@@ -121,23 +121,28 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                   child: SfDataGrid(
                     rowHeight: 50,
                     source: playersTableDataSource,
-                    // onCellTap: (details) {
-                    // if (details.column.columnName == 'image' ||
-                    //     details.column.columnName == 'player_name' &&
-                    //     details.rowColumnIndex.rowIndex > 0) {
-                    //   DataGridRow row = playersTableDataSource.effectiveRows
-                    //       .elementAt(details.rowColumnIndex.rowIndex - 1);
-                    //   int playerIndex = playersTableDataSource.dataGridRows.indexOf(row);
+                    onCellTap: (details) {
+                    if (//details.column.columnName == 'image' ||
+                        details.column.columnName == 'player_name' &&
+                        details.rowColumnIndex.rowIndex > 0) {
+                      DataGridRow row = playersTableDataSource.effectiveRows
+                          .elementAt(details.rowColumnIndex.rowIndex - 1);
+                      int playerIndex = playersTableDataSource.dataGridRows.indexOf(row);
+                      firstTeamClassNotifier.currentFirstTeamClass =
+                      firstTeamClassNotifier
+                          .firstTeamClassList[playerIndex];
                     // Navigator.push(context,
                     //     MaterialPageRoute(
                     // builder: (context) =>
+                        navigateToSubPage(context);
                     // firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
                     // navigateToSubPage(context);
                     // builder: (context) => ProfilePage(playerIndex)
 
-                    // );
-                    // }
-                    // },
+                        // )
+                      // );
+                    }
+                    },
                     frozenColumnsCount: 3,
                     frozenRowsCount: 0,
                     allowSorting: true,
