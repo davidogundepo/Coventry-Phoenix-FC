@@ -122,8 +122,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                     rowHeight: 50,
                     source: playersTableDataSource,
                     onCellTap: (details) {
-                    if (//details.column.columnName == 'image' ||
-                        details.column.columnName == 'player_name' &&
+                    if (details.column.columnName == 'player_name' &&
                         details.rowColumnIndex.rowIndex > 0) {
                       DataGridRow row = playersTableDataSource.effectiveRows
                           .elementAt(details.rowColumnIndex.rowIndex - 1);
