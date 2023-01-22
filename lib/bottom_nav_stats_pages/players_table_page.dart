@@ -733,7 +733,6 @@ class PlayersTableDataSource extends DataGridSource {
                             firstTeamClassNotifier.currentFirstTeamClass =
                                 firstTeamClassNotifier
                                     .firstTeamClassList[playerIndex];
-
                             // You can write the navigation code here when tapping the player name.
                             // Here we create a duplicate class for the players' page and navigate to that page.
                             navigateToSubPage(context);
