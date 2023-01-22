@@ -63,7 +63,7 @@ class PushNotificationService {
         AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
     var androidSettings = const AndroidInitializationSettings('@mipmap/ic_launcher');
-    var iOSSettings = const IOSInitializationSettings(
+    var iOSSettings = const DarwinInitializationSettings(
       requestSoundPermission: false,
       requestBadgePermission: false,
       requestAlertPermission: false,
@@ -71,7 +71,7 @@ class PushNotificationService {
     var initSetttings =
     InitializationSettings(android: androidSettings, iOS: iOSSettings);
     flutterLocalNotificationsPlugin.initialize(initSetttings,
-        onSelectNotification: (message) async {
+        onDidReceiveNotificationResponse: (message) async {
           // This function handles the click in the notification when the app is in foreground
           // Get.toNamed(NOTIFICATIOINS_ROUTE);
         });

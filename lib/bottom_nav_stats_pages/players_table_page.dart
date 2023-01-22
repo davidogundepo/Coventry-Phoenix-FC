@@ -18,7 +18,7 @@ Color? goalsScoredTextColor = const Color.fromRGBO(255, 141, 41, 1);
 Color? appBarIconColor = const Color.fromRGBO(255, 141, 41, 1);
 Color? appBarBackgroundColor = const Color.fromRGBO(34, 40, 49, 1);
 
-// final List<PlayersTable> playersTableList = [];
+final List<PlayersTable> playersTableList = [];
 
 class PlayersTablePage extends StatefulWidget {
   const PlayersTablePage({Key? key}) : super(key: key);
@@ -43,7 +43,8 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
     return StreamBuilder(
         stream: getDataFromFirestore(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
+          FirstTeamClassNotifier firstTeamClassNotifier =
+              Provider.of<FirstTeamClassNotifier>(context);
 
           if (snapshot.hasData) {
             if (playersTableList.isNotEmpty) {
@@ -122,16 +123,17 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                     rowHeight: 50,
                     source: playersTableDataSource,
                     onCellTap: (details) {
-                    if (details.column.columnName == 'player_name' &&
-                        details.rowColumnIndex.rowIndex > 0) {
-                      DataGridRow row = playersTableDataSource.effectiveRows
-                          .elementAt(details.rowColumnIndex.rowIndex - 1);
-                      int playerIndex = playersTableDataSource.dataGridRows.indexOf(row);
-                      firstTeamClassNotifier.currentFirstTeamClass =
-                      firstTeamClassNotifier
-                          .firstTeamClassList[playerIndex];
+                      if (details.column.columnName == 'player_name' &&
+                          details.rowColumnIndex.rowIndex > 0) {
+                        DataGridRow row = playersTableDataSource.effectiveRows
+                            .elementAt(details.rowColumnIndex.rowIndex - 1);
+                        int playerIndex =
+                            playersTableDataSource.dataGridRows.indexOf(row);
+                        firstTeamClassNotifier.currentFirstTeamClass =
+                            firstTeamClassNotifier
+                                .firstTeamClassList[playerIndex];
                         navigateToSubPage(context);
-                    }
+                      }
                     },
                     frozenColumnsCount: 3,
                     frozenRowsCount: 0,
@@ -672,7 +674,8 @@ class PlayersTableDataSource extends DataGridSource {
                   color: goalsScoredTextColor,
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic);
-            } if (e.columnName == 'player_name') {
+            }
+            if (e.columnName == 'player_name') {
               return const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -717,41 +720,19 @@ class PlayersTableDataSource extends DataGridSource {
                     ),
                   );
                 })
-              : e.columnName == 'player_name'
-                  ? Container(
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.all(8.0),
-                      child: Builder(builder: (context) {
-                        return GestureDetector(
-                          onTap: () {
-                            int playerIndex = dataGridRows.indexOf(row);
-                            firstTeamClassNotifier.currentFirstTeamClass =
-                                firstTeamClassNotifier
-                                    .firstTeamClassList[playerIndex];
-                            // You can write the navigation code here when tapping the player name.
-                            // Here we create a duplicate class for the players' page and navigate to that page.
-                            navigateToSubPage(context);
-                          },
-                          child: Text(
-                            e.value.toString(),
-                            style: getTextStyle(),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        );
-                      }),
-                    )
-                  : Container(
-                      alignment: e.columnName == 'id'
+              : Container(
+                  alignment:
+                      (e.columnName == 'id' || e.columnName == 'player_name')
                           ? Alignment.center
                           : Alignment.centerLeft,
-                      // alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        e.value.toString(),
-                        style: getTextStyle(),
-                        overflow: TextOverflow.fade,
-                      ),
-                    );
+                  // alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    e.value.toString(),
+                    style: getTextStyle(),
+                    overflow: TextOverflow.fade,
+                  ),
+                );
           // Container(
           //   alignment: Alignment.centerRight,
           //   padding: const EdgeInsets.all(8.0),
@@ -796,5 +777,6 @@ class PlayersTable {
 }
 
 Future navigateToSubPage(context) async {
-  Navigator.push(context, MaterialPageRoute(builder: (context) => const SubPage()));
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => const SubPage()));
 }
