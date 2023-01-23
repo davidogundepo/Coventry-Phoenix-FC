@@ -38,7 +38,7 @@ dependencies:
   material_design_icons_flutter: ^6.0.7096
 #  webview_flutter: ^4.0.1
   shared_preferences: ^2.0.17
-  flutter_bloc: ^8.1.1
+  flutter_bloc: ^7.0.0 #Gives error if >7.0.0
   flutter_lints: ^2.0.1
   firebase_core: ^2.4.1
   cloud_firestore: ^4.3.1
