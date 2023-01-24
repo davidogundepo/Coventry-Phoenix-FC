@@ -713,6 +713,7 @@ class PlayersTableDataSource extends DataGridSource {
                       margin: const EdgeInsets.all(2),
                       alignment: Alignment.center,
                       // width: 25,
+
                       // height: 25,
                       decoration: BoxDecoration(
                           color: Colors.transparent,
