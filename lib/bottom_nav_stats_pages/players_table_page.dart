@@ -657,7 +657,6 @@ class PlayersTableDataSource extends DataGridSource {
     // TODO: implement buildTableSummaryCellWidget
     return Container(
       padding: const EdgeInsets.all(15.0),
-      // child: Text(summaryValue),
       child: Text(summaryValue!,
           style: const TextStyle(
               fontWeight: FontWeight.bold, color: Colors.white70)),
