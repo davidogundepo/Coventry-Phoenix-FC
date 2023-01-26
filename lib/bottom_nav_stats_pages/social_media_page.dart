@@ -6,7 +6,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import '../main.dart';
 
 
-String twitterUsernameID = 'elonmusk';
+String twitterUsernameID = 'CovPhoenixFC';
 String facebookUsernameID = '627500899180951';
 String instagramUsernameID = 'CnZTWbAscDp';
 
