@@ -698,7 +698,6 @@ class PlayersTableDataSource extends DataGridSource {
                       Toast.show("Loading up Instagram.com",
                           duration: Toast.lengthLong,
                           gravity:  Toast.bottom,
-                          // backgroundColor: backgroundColor,
                           backgroundRadius: 10
                       );
                       dynamic playerIndex = dataGridRows.indexOf(row);
