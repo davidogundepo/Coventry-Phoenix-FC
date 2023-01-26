@@ -11,7 +11,6 @@ String facebookUsernameID = '627500899180951';
 String instagramUsernameID = 'CnZTWbAscDp';
 
 
-
 Color colorBack = const Color.fromRGBO(58, 56, 69, 1);
 
 

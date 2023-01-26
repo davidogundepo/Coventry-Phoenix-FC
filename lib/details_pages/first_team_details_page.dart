@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:confetti/confetti.dart';
+import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/players_table_page.dart';
+import 'package:coventry_phoenix_fc/model/first_team_class.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -153,6 +155,8 @@ class SubPage extends StatefulWidget {
 }
 
 class _SubPageState extends State<SubPage> {
+  // List<PlayersTable> ftc = [];
+
   ConfettiController? _confettiController;
 
   bool _isVisible = true;
@@ -174,6 +178,10 @@ class _SubPageState extends State<SubPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    // PlayersTable bb = ftc.firstWhere((element) => element.playerName ==
+    // widget.)
+
     firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context, listen: true);
 
     return ConfettiWidget(
