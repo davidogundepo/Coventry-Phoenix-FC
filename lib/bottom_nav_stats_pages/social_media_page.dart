@@ -60,7 +60,6 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back_ios, color: appBarIconColor),
                 onPressed: () {
-                  // Navigator.of(context).pop(false);
                   navigateMyApp(context);
                 },
               ),
