@@ -8,7 +8,7 @@ import '../main.dart';
 String twitterUsernameID = 'CovPhoenixFC';
 String facebookUsernameID = '627500899180951';
 String instagramUsernameID = 'CnZTWbAscDp';
-String ii = '';
+String jjj = '';
 
 Color colorBack = const Color.fromRGBO(58, 56, 69, 1);
 
@@ -34,7 +34,7 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
     //         .snapshots(),
     //     builder: (context, snapshot) {
     //       if (snapshot.hasData) {
-    //         return ii = snapshot.data!.data()!['twitter_handle'];
+    //         return jjj = snapshot.data!.data()!['twitter_handle'];
     //       } else {
     //         return const Text('');
     //       }
@@ -47,7 +47,7 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return ii = snapshot.data!.data()!['twitter_handle'];
+            return jjj = snapshot.data!.data()!['twitter_handle'];
           } else {
             const Text('');
           }
@@ -97,8 +97,8 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
                               </head>
                               <body style="pointer-events: none">
                               <a class="twitter-timeline" data-tweet-limit="3" data-chrome="nofooter"
-                              data-theme="light" href="https://twitter.com/${ii}?ref_src=twsrc%5Etfw">
-                              Latest Tweets by $ii yet to load up </a>
+                              data-theme="light" href="https://twitter.com/${jjj}?ref_src=twsrc%5Etfw">
+                              Latest Tweets by $jjj yet to load up </a>
                               <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                               <br>
                               <br>
