@@ -52,6 +52,7 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
             const Text('');
           }
 
+
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
