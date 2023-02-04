@@ -1,4 +1,3 @@
-
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
@@ -8,7 +7,8 @@ class ClubArialNotifier with ChangeNotifier {
   List<ClubArial> _clubArialList = [];
   late ClubArial _currentClubArial;
 
-  UnmodifiableListView<ClubArial> get clubArialList => UnmodifiableListView(_clubArialList);
+  UnmodifiableListView<ClubArial> get clubArialList =>
+      UnmodifiableListView(_clubArialList);
 
   ClubArial get currentClubArial => _currentClubArial;
 
@@ -21,5 +21,4 @@ class ClubArialNotifier with ChangeNotifier {
     _currentClubArial = clubArial;
     notifyListeners();
   }
-
 }
