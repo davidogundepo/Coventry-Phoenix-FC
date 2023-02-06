@@ -1,4 +1,3 @@
-
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
@@ -8,7 +7,8 @@ class SecondTeamClassNotifier with ChangeNotifier {
   List<SecondTeamClass> _secondTeamClassList = [];
   late SecondTeamClass _currentSecondTeamClass;
 
-  UnmodifiableListView<SecondTeamClass> get secondTeamClassList => UnmodifiableListView(_secondTeamClassList);
+  UnmodifiableListView<SecondTeamClass> get secondTeamClassList =>
+      UnmodifiableListView(_secondTeamClassList);
 
   SecondTeamClass get currentSecondTeamClass => _currentSecondTeamClass;
 
@@ -21,5 +21,4 @@ class SecondTeamClassNotifier with ChangeNotifier {
     _currentSecondTeamClass = secondTeamClass;
     notifyListeners();
   }
-
 }
