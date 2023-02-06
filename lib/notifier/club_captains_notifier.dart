@@ -1,4 +1,3 @@
-
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
@@ -8,7 +7,8 @@ class CaptainsNotifier with ChangeNotifier {
   List<Captains> _captainsList = [];
   late Captains _currentCaptains;
 
-  UnmodifiableListView<Captains> get captainsList => UnmodifiableListView(_captainsList);
+  UnmodifiableListView<Captains> get captainsList =>
+      UnmodifiableListView(_captainsList);
 
   Captains get currentCaptains => _currentCaptains;
 
@@ -21,5 +21,4 @@ class CaptainsNotifier with ChangeNotifier {
     _currentCaptains = captains;
     notifyListeners();
   }
-
 }
