@@ -126,14 +126,11 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                     onCellTap: (details) {
                       if (details.column.columnName == 'player_name' &&
                           details.rowColumnIndex.rowIndex > 0) {
-                        DataGridRow row = playersTableDataSource.effectiveRows
-                            .elementAt(details.rowColumnIndex.rowIndex - 1);
-                        // int playerIndex =
-                        //     playersTableDataSource.dataGridRows.indexOf(row);
-                        // firstTeamClassNotifier.currentFirstTeamClass =
-                        //     firstTeamClassNotifier
-                        //         .firstTeamClassList[playerIndex];
-                        // navigateToSubPage(context);
+                        DataGridRow row = playersTableDataSource.effectiveRows.elementAt(details.rowColumnIndex.rowIndex - 1);
+                        int playerIndex = playersTableDataSource.dataGridRows.indexOf(row);
+                        firstTeamClassNotifier.currentFirstTeamClass =
+                        firstTeamClassNotifier.firstTeamClassList[playerIndex];
+                        navigateToSubPage(context);
                       }
                     },
                     frozenColumnsCount: 3,
@@ -695,18 +692,20 @@ class PlayersTableDataSource extends DataGridSource {
                       Provider.of<FirstTeamClassNotifier>(context);
                   return GestureDetector(
                     onTap: () {
-                      // String vv = row.getCells().firstWhere((element) => element.columnName == 'player_name')
-                      // .value.toString();
-                      // Toast.show("Loading up Instagram.com",
-                      //     duration: Toast.lengthLong,
-                      //     gravity:  Toast.bottom,
-                      //     backgroundRadius: 10
-                      // );
-                      // dynamic playerIndex = dataGridRows.indexOf(row);
-                      // firstTeamClassNotifier.currentFirstTeamClass =
-                      //     firstTeamClassNotifier
-                      //         .firstTeamClassList[playerIndex];
-                      // navigateToSubPage(context);
+
+                      /// DG to PP
+                      String vv = row.getCells().firstWhere((element) => element.columnName == 'image')
+                      .value.toString();
+                      Toast.show("Loading up Instagram.com",
+                          duration: Toast.lengthLong,
+                          gravity:  Toast.bottom,
+                          backgroundRadius: 10
+                      );
+                      dynamic playerIndex = dataGridRows.indexOf(row);
+                      firstTeamClassNotifier.currentFirstTeamClass =
+                          firstTeamClassNotifier
+                              .firstTeamClassList[playerIndex];
+                      navigateToSubPage(context);
                     },
                     child: Container(
                       margin: const EdgeInsets.all(2),
