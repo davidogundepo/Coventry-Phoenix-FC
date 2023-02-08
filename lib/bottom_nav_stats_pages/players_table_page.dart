@@ -144,7 +144,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                                 (element) => element.columnName == 'player_name')
                             .value
                             .toString();
-                        Toast.show("Loading up Instagram.com",
+                        Toast.show("Loading up $playerName",
                             duration: Toast.lengthLong,
                             gravity: Toast.bottom,
                             backgroundRadius: 10);
@@ -718,13 +718,13 @@ class PlayersTableDataSource extends DataGridSource {
                   return GestureDetector(
                     onTap: () {
                       /// DG to PP
-                      String playername = row
+                      String playerName = row
                           .getCells()
                           .firstWhere(
                               (element) => element.columnName == 'player_name')
                           .value
                           .toString();
-                      Toast.show("Loading up Instagram.com",
+                      Toast.show("Loading up $playerName",
                           duration: Toast.lengthLong,
                           gravity: Toast.bottom,
                           backgroundRadius: 10);
