@@ -126,10 +126,35 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                     onCellTap: (details) {
                       if (details.column.columnName == 'player_name' &&
                           details.rowColumnIndex.rowIndex > 0) {
-                        DataGridRow row = playersTableDataSource.effectiveRows.elementAt(details.rowColumnIndex.rowIndex - 1);
-                        int playerIndex = playersTableDataSource.dataGridRows.indexOf(row);
+                        DataGridRow row = playersTableDataSource.effectiveRows
+                            .elementAt(details.rowColumnIndex.rowIndex - 1);
+                        // int playerIndex =
+                        //     playersTableDataSource.dataGridRows.indexOf(row);
+                        // firstTeamClassNotifier.currentFirstTeamClass =
+                        //     firstTeamClassNotifier
+                        //         .firstTeamClassList[playerIndex];
+                        // firstTeamClassNotifier.currentFirstTeamClass =
+                        //     firstTeamClassNotifier.firstTeamClassList
+                        //         .where((element) => element.name == 'player_name')
+                        //         .first;
+
+                        String playername = row
+                            .getCells()
+                            .firstWhere(
+                                (element) => element.columnName == 'player_name')
+                            .value
+                            .toString();
+                        Toast.show("Loading up Instagram.com",
+                            duration: Toast.lengthLong,
+                            gravity: Toast.bottom,
+                            backgroundRadius: 10);
+
+                        //fetch the record which has same player name
                         firstTeamClassNotifier.currentFirstTeamClass =
-                        firstTeamClassNotifier.firstTeamClassList[playerIndex];
+                            firstTeamClassNotifier.firstTeamClassList
+                                .where((element) => element.name == playername)
+                                .first;
+                        // navigateToSubPage(context);
                         navigateToSubPage(context);
                       }
                     },
@@ -692,19 +717,23 @@ class PlayersTableDataSource extends DataGridSource {
                       Provider.of<FirstTeamClassNotifier>(context);
                   return GestureDetector(
                     onTap: () {
-
                       /// DG to PP
-                      String vv = row.getCells().firstWhere((element) => element.columnName == 'image')
-                      .value.toString();
+                      String playername = row
+                          .getCells()
+                          .firstWhere(
+                              (element) => element.columnName == 'player_name')
+                          .value
+                          .toString();
                       Toast.show("Loading up Instagram.com",
                           duration: Toast.lengthLong,
-                          gravity:  Toast.bottom,
-                          backgroundRadius: 10
-                      );
-                      dynamic playerIndex = dataGridRows.indexOf(row);
+                          gravity: Toast.bottom,
+                          backgroundRadius: 10);
+                      // dynamic playerIndex = dataGridRows.indexOf(row);
+                      // firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
                       firstTeamClassNotifier.currentFirstTeamClass =
-                          firstTeamClassNotifier
-                              .firstTeamClassList[playerIndex];
+                          firstTeamClassNotifier.firstTeamClassList
+                              .where((element) => element.name == playername)
+                              .first;
                       navigateToSubPage(context);
                     },
                     child: Container(
