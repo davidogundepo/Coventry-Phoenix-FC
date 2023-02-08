@@ -732,7 +732,7 @@ class PlayersTableDataSource extends DataGridSource {
                       // firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
                       firstTeamClassNotifier.currentFirstTeamClass =
                           firstTeamClassNotifier.firstTeamClassList
-                              .where((element) => element.name == playername)
+                              .where((element) => element.name == playerName)
                               .first;
                       navigateToSubPage(context);
                     },
