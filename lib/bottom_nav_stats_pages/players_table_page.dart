@@ -138,7 +138,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                         //         .where((element) => element.name == 'player_name')
                         //         .first;
 
-                        String playername = row
+                        String playerName = row
                             .getCells()
                             .firstWhere(
                                 (element) => element.columnName == 'player_name')
@@ -152,7 +152,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                         //fetch the record which has same player name
                         firstTeamClassNotifier.currentFirstTeamClass =
                             firstTeamClassNotifier.firstTeamClassList
-                                .where((element) => element.name == playername)
+                                .where((element) => element.name == playerName)
                                 .first;
                         // navigateToSubPage(context);
                         navigateToSubPage(context);
