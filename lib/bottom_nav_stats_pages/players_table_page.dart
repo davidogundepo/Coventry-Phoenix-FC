@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:coventry_phoenix_fc/details_pages/second_team_details_page.dart';
+import 'package:coventry_phoenix_fc/notifier/second_team_class_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -713,8 +715,8 @@ class PlayersTableDataSource extends DataGridSource {
 
           return e.columnName == 'image'
               ? Builder(builder: (context) {
-                  FirstTeamClassNotifier firstTeamClassNotifier =
-                      Provider.of<FirstTeamClassNotifier>(context);
+                  FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
+                  SecondTeamClassNotifier secondTeamClassNotifier = Provider.of<SecondTeamClassNotifier>(context);
                   return GestureDetector(
                     onTap: () {
                       /// DG to PP
@@ -730,11 +732,21 @@ class PlayersTableDataSource extends DataGridSource {
                           backgroundRadius: 10);
                       // dynamic playerIndex = dataGridRows.indexOf(row);
                       // firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
-                      firstTeamClassNotifier.currentFirstTeamClass =
-                          firstTeamClassNotifier.firstTeamClassList
-                              .where((element) => element.name == playerName)
-                              .first;
-                      navigateToSubPage(context);
+                      if (firstTeamClassNotifier.currentFirstTeamClass == firstTeamClassNotifier.firstTeamClassList
+                          .where((element) => element.name == playerName)
+                          .first) {
+                        navigateToSubPage(context);
+                      }
+                      else if (secondTeamClassNotifier.currentSecondTeamClass == secondTeamClassNotifier.secondTeamClassList
+                      .where((element) => element.name == playerName)
+                      .first){
+                        navigateToSecondTeamClassDetailsPage(context);
+                      }
+                      // firstTeamClassNotifier.currentFirstTeamClass =
+                      //     firstTeamClassNotifier.firstTeamClassList
+                      //         .where((element) => element.name == playerName)
+                      //         .first;
+
                     },
                     child: Container(
                       margin: const EdgeInsets.all(2),
@@ -824,3 +836,9 @@ Future navigateToSubPage(context) async {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => const SubPage()));
 }
+
+Future navigateToSecondTeamClassDetailsPage(context) async {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => const SecondTeamClassDetailsPage()));
+}
+
