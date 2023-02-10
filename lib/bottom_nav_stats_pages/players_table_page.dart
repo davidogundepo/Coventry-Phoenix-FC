@@ -9,7 +9,7 @@ import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:toast/toast.dart';
-
+import 'package:collection/collection.dart';
 import '../details_pages/first_team_details_page.dart';
 import '../notifier/first_team_class_notifier.dart';
 
@@ -146,33 +146,17 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                                 element.columnName == 'player_name')
                             .value
                             .toString();
-                        // Toast.show("Loading up $playerName",
-                        //     duration: Toast.lengthLong,
-                        //     gravity: Toast.bottom,
-                        //     backgroundRadius: 10);
-
-                        if (firstTeamClassNotifier.currentFirstTeamClass ==
-                            firstTeamClassNotifier.firstTeamClassList
-                                .where((element) => element.name == playerName)
-                                .first) {
-                          navigateToSubPage(context);
-                          Toast.show("Loading up $playerName",
-                              duration: Toast.lengthLong,
-                              gravity: Toast.bottom,
-                              backgroundRadius: 10);
-                        } else if (secondTeamClassNotifier
-                                .currentSecondTeamClass ==
-                            secondTeamClassNotifier.secondTeamClassList
-                                .where((element) => element.name == playerName)
-                                .first) {
-                          navigateToSecondTeamClassDetailsPage(context);
-                        }
+                        Toast.show("Loading up $playerName",
+                            duration: Toast.lengthLong,
+                            gravity: Toast.bottom,
+                            backgroundRadius: 10);
 
                         //fetch the record which has same player name
                         firstTeamClassNotifier.currentFirstTeamClass =
                             firstTeamClassNotifier.firstTeamClassList
                                 .where((element) => element.name == playerName)
                                 .first;
+                        // navigateToSubPage(context);
                         navigateToSubPage(context);
                       }
                     },
@@ -744,29 +728,60 @@ class PlayersTableDataSource extends DataGridSource {
                               (element) => element.columnName == 'player_name')
                           .value
                           .toString();
+                      // Toast.show("Loading up $playerName",
+                      //     duration: Toast.lengthLong,
+                      //     gravity: Toast.bottom,
+                      //     backgroundRadius: 10);
 
+                      ///
                       // dynamic playerIndex = dataGridRows.indexOf(row);
                       // firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
-                      if (firstTeamClassNotifier.currentFirstTeamClass ==
-                          firstTeamClassNotifier.firstTeamClassList
-                              .where((element) => element.name == playerName)
-                              .first) {
+                      // if (firstTeamClassNotifier.currentFirstTeamClass == firstTeamClassNotifier.firstTeamClassList
+                      //     .where((element) => element.name == playerName)
+                      //     .first) {
+                      //   navigateToSubPage(context);
+                      // }
+                      // else if (){}
+                      // firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList.where((element) => element.name == playerName).first;
+
+                      // secondTeamClassNotifier.currentSecondTeamClass = secondTeamClassNotifier.secondTeamClassList.where((element) => element.name == playerName).first;
+                      // navigateToSecondTeamClassDetailsPage(context);
+
+                      var firstTeamPlayer = firstTeamClassNotifier
+                          .firstTeamClassList
+                          .firstWhereOrNull(
+                              (element) => element.name == playerName);
+
+                      var secondTeamPlayer = secondTeamClassNotifier
+                          .secondTeamClassList
+                          .firstWhereOrNull(
+                              (element) => element.name == playerName);
+
+                      if (firstTeamPlayer != null) {
+                        firstTeamClassNotifier.currentFirstTeamClass =
+                            firstTeamPlayer;
+
                         navigateToSubPage(context);
+
                         Toast.show("Loading up $playerName",
                             duration: Toast.lengthLong,
                             gravity: Toast.bottom,
                             backgroundRadius: 10);
-                      } else if (secondTeamClassNotifier
-                              .currentSecondTeamClass ==
-                          secondTeamClassNotifier.secondTeamClassList
-                              .where((element) => element.name == playerName)
-                              .first) {
+                      } else if (secondTeamPlayer != null) {
+                        secondTeamClassNotifier.currentSecondTeamClass ==
+                            secondTeamPlayer;
                         navigateToSecondTeamClassDetailsPage(context);
+
+                        Toast.show("Loading up $playerName",
+                            duration: Toast.lengthLong,
+                            gravity: Toast.bottom,
+                            backgroundRadius: 10);
+                      } else {
+                        Toast.show("Loading up Instagram.com",
+                            duration: Toast.lengthLong,
+                            gravity: Toast.bottom,
+                            backgroundRadius: 10);
                       }
-                      // firstTeamClassNotifier.currentFirstTeamClass =
-                      //     firstTeamClassNotifier.firstTeamClassList
-                      //         .where((element) => element.name == playerName)
-                      //         .first;
                     },
                     child: Container(
                       margin: const EdgeInsets.all(2),
