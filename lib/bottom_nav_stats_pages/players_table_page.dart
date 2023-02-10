@@ -768,7 +768,7 @@ class PlayersTableDataSource extends DataGridSource {
                             gravity: Toast.bottom,
                             backgroundRadius: 10);
                       } else if (secondTeamPlayer != null) {
-                        secondTeamClassNotifier.currentSecondTeamClass ==
+                        secondTeamClassNotifier.currentSecondTeamClass =
                             secondTeamPlayer;
                         navigateToSecondTeamClassDetailsPage(context);
 
