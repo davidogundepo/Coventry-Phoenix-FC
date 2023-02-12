@@ -27,7 +27,7 @@ class SideBarLayout extends StatelessWidget {
               ),
             ),
             const SideBar(),
-            const SecondTeamClassDetailsPage()
+            // const SecondTeamClassDetailsPage()
           ],
         ),
       ),

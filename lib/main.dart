@@ -10,6 +10,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'api/second_team_class_api.dart';
+import 'details_pages/second_team_details_page.dart';
 import 'sidebar/sidebar_layout.dart';
 import 'api/PushNotificationService.dart';
 import 'notifier/achievement_images_notifier.dart';
@@ -157,6 +159,7 @@ class MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    // getSecondTeamClass(secondTeamClassNotifier);
     super.initState();
     Firebase.initializeApp().whenComplete(() {
       if (kDebugMode) {
