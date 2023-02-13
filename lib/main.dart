@@ -164,7 +164,7 @@ class MyAppState extends State<MyApp> {
       if (kDebugMode) {
         print("completed");
       }
-      setState(() {});
+      setState(() {});5
     });
 
     SystemChrome.setPreferredOrientations([
