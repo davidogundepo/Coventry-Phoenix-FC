@@ -152,16 +152,38 @@ class _AnimCardState extends State<AnimCard> {
                     Text('1'),
                   ],
                 )),
-                Center(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.favorite,
-                        color: const Color(0xffFF6594).withOpacity(1.0),
-                        size: 70),
-                    const Text('data')
-                  ],
-                )),
+                SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(left: 30, bottom: 5),
+                        // color: Colors.blueGrey,
+                        height: 55,
+                        width: 53,
+                        decoration: const BoxDecoration(
+                            color: Colors.teal,
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(6))),
+                        child: Center(
+                          child: Icon(Icons.favorite,
+                              color: const Color(0xffFF6594).withOpacity(1.0),
+                              size: 30),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 15),
+                        child: const Center(
+                            child: Text(
+                              'Gxng FC',
+                              style: TextStyle(fontSize: 10),
+                            )),
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
