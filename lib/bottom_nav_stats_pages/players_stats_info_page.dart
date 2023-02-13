@@ -4809,7 +4809,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               MediaQuery.of(context).size.width * 0.65,
                                                                           child:
                                                                               Text(
-                                                                            'Nouvellesoft Inc.',
+                                                                            'Nouvellesoft.io Inc.',
                                                                             style:
                                                                                 GoogleFonts.gloriaHallelujah(
                                                                               color: Colors.white70,

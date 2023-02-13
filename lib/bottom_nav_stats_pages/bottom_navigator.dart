@@ -1,7 +1,9 @@
+import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/past_matches_page.dart';
 import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/social_media_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../api/cum_motm_players_stats_info_api.dart';
 import '../api/motm_players_stats_info_api.dart';
 import '../notifier/cum_motm_players_stats_info_notifier.dart';
@@ -60,11 +62,12 @@ class BottomNavigator extends StatefulWidget {
 
 class _BottomNavigatorState extends State<BottomNavigator> {
   bool toggle = false;
-  int selectedPage = 0;
+  int selectedPage = 2;
 
   final _pageOption = [
     const PlayersTablePage(),
     const PlayersStatsAndInfoPage(),
+    const PastMatchesPage(),
     // const SeasonTimeline(),
     const SocialMediaPage(),
     TrainingsAndGamesReelsPage(),
@@ -88,21 +91,21 @@ class _BottomNavigatorState extends State<BottomNavigator> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
                   child: GNav(
-                    tabBorderRadius: 10,
+                    tabBorderRadius: 5,
                     rippleColor: Colors.blueGrey,
                     hoverColor: Colors.white30,
-                    gap: 12,
+                    gap: 2,
                     activeColor: Colors.black,
                     iconSize: 24,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 12),
+                        horizontal: 20, vertical: 12),
                     duration: const Duration(microseconds: 400),
                     tabBackgroundColor: (cardBackgroundColor)!,
                     color: Colors.black,
                     haptic: true,
                     tabs: [
                       const GButton(
-                          gap: 12,
+                          gap: 2,
                           icon: Icons.query_stats,
                           textColor: Color.fromRGBO(247, 246, 242, 1),
                           iconColor: Colors.white30,
@@ -110,7 +113,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
                           rippleColor: Colors.blueGrey,
                           text: 'A.P.T.'),
                       const GButton(
-                        gap: 12,
+                        gap: 2,
                         icon: Icons.workspace_premium,
                         textColor: Color.fromRGBO(247, 246, 242, 1),
                         iconColor: Colors.white30,
@@ -118,8 +121,17 @@ class _BottomNavigatorState extends State<BottomNavigator> {
                         text: 'Top Players',
                         rippleColor: Colors.blueGrey,
                       ),
+                      const GButton(
+                        gap: 2,
+                        icon: MdiIcons.soccerField,
+                        textColor: Color.fromRGBO(247, 246, 242, 1),
+                        iconColor: Colors.white30,
+                        iconActiveColor: Color.fromRGBO(247, 246, 242, 1),
+                        text: 'Matches',
+                        rippleColor: Colors.blueGrey,
+                      ),
                       // const GButton(
-                      //   gap: 12,
+                      //   gap: 2,
                       //   icon: Icons.leaderboard,
                       //   textColor: Color.fromRGBO(247, 246, 242, 1),
                       //   iconColor: Colors.white30,
@@ -128,7 +140,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
                       //   rippleColor: Colors.blueGrey,
                       // ),
                       const GButton(
-                        gap: 12,
+                        gap: 2,
                         icon: Icons.featured_play_list,
                         textColor: Color.fromRGBO(247, 246, 242, 1),
                         iconColor: Colors.white30,
@@ -137,7 +149,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
                         rippleColor: Colors.blueGrey,
                       ),
                       GButton(
-                        gap: 12,
+                        gap: 2,
                         icon: Icons.view_carousel_outlined,
                         textColor: const Color.fromRGBO(255, 141, 41, 0.7),
                         iconColor: Colors.white30,
