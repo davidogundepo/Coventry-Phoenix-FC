@@ -159,7 +159,6 @@ class MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    // getSecondTeamClass(secondTeamClassNotifier);
     super.initState();
     Firebase.initializeApp().whenComplete(() {
       if (kDebugMode) {
