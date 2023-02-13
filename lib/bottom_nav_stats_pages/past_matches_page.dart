@@ -111,8 +111,8 @@ class _AnimCardState extends State<AnimCard> {
               children: [
                 SingleChildScrollView(
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    // mainAxisSize: MainAxisSize.min,
+                    // mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
@@ -130,12 +130,13 @@ class _AnimCardState extends State<AnimCard> {
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 15),
-                        child: const Center(
-                            child: Text(
+                        width: 140,
+                        margin: const EdgeInsets.only(left: 7),
+                        child: const Text(
                           'Coventry Phoenix Ist',
                           style: TextStyle(fontSize: 10),
-                        )),
+                          textAlign: TextAlign.start,
+                        ),
                       )
                     ],
                   ),
@@ -154,11 +155,11 @@ class _AnimCardState extends State<AnimCard> {
                 SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Container(
-                        margin: const EdgeInsets.only(left: 30, bottom: 5),
+                        margin: const EdgeInsets.only(right: 30, bottom: 5),
                         height: 55,
                         width: 53,
                         decoration: const BoxDecoration(
@@ -172,11 +173,13 @@ class _AnimCardState extends State<AnimCard> {
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 15),
+                        width: 140,
+                        margin: const EdgeInsets.only(right: 0),
                         child: const Center(
                             child: Text(
-                              'Gxng FC',
+                              'Gxng FgggggggggggggggC',
                               style: TextStyle(fontSize: 10),
+                              textAlign: TextAlign.end,
                             )),
                       )
                     ],
