@@ -117,7 +117,6 @@ class _AnimCardState extends State<AnimCard> {
                     children: [
                       Container(
                         margin: const EdgeInsets.only(left: 30, bottom: 5),
-                        // color: Colors.blueGrey,
                         height: 55,
                         width: 53,
                         decoration: const BoxDecoration(
