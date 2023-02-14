@@ -1,6 +1,10 @@
 import 'dart:math';
+import 'package:coventry_phoenix_fc/notifier/past_matches_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+
+import '../api/past_matches_api.dart';
 
 class PastMatchesPage extends StatefulWidget {
   const PastMatchesPage({super.key});
@@ -20,6 +24,10 @@ class _PastMatchesPageState extends State<PastMatchesPage>
 
   @override
   void initState() {
+    PastMatchesNotifier pastMatchesNotifier =
+        Provider.of<PastMatchesNotifier>(context, listen: false);
+    getPastMatches(pastMatchesNotifier);
+
     super.initState();
     _controller = AnimationController(
       duration: const Duration(seconds: 5),
@@ -37,6 +45,9 @@ class _PastMatchesPageState extends State<PastMatchesPage>
 
   @override
   Widget build(BuildContext context) {
+    PastMatchesNotifier pastMatchesNotifier =
+    Provider.of<PastMatchesNotifier>(context);
+
     return Scaffold(
       body: AnimatedBuilder(
         animation: _color,
@@ -46,11 +57,22 @@ class _PastMatchesPageState extends State<PastMatchesPage>
             height: MediaQuery.of(context).size.height,
             decoration:
                 BoxDecoration(color: _color.value, shape: BoxShape.rectangle),
-            child: const AnimCard(
-              Color(0xffFF6594),
-              '',
-              '',
-              '',
+            // child: const AnimCard(
+            //   Color(0xffFF6594),
+            //   '',
+            //   '',
+            //   '',
+            // ),
+            child: ListView.builder(
+                itemBuilder:  (BuildContext context, int index) {
+                  return const AnimCard(
+                    Color(0xffFF6594),
+                    '',
+                    '',
+                    '',
+                  );
+          },
+              itemCount: pastMatchesNotifier.pastMatchesList.length,
             ),
           );
         },
@@ -138,9 +160,8 @@ class _AnimCardState extends State<AnimCard> {
                         margin: const EdgeInsets.only(left: 7),
                         child: const Text(
                           'Coventry Phoenix Ist',
-                          style: TextStyle(fontSize: 12,
-                              fontWeight: FontWeight.w500
-                          ),
+                          style: TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.w500),
                           textAlign: TextAlign.start,
                         ),
                       )
@@ -148,46 +169,36 @@ class _AnimCardState extends State<AnimCard> {
                   ),
                 ),
                 Center(
-
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Text('13-02-2023 14:00',
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Text('13-02-2023 14:00',
+                        style: TextStyle(
+                          fontSize: 10,
+                        )),
+                    // const SizedBox(
+                    //   height:20
+                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        // Icon(Icons.favorite,
+                        //     color: const Color(0xffFF6594).withOpacity(1.0), size: 70),
+                        Text('3',
+                            style: TextStyle(
+                                fontSize: 30, fontWeight: FontWeight.w500)),
+                        Text('-',
+                            style: TextStyle(
+                                fontSize: 30, fontWeight: FontWeight.w500)),
+                        Text(
+                          '1',
                           style: TextStyle(
-                              fontSize: 10,
-
-                          )
-                        ),
-                        // const SizedBox(
-                        //   height:20
-                        // ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            // Icon(Icons.favorite,
-                            //     color: const Color(0xffFF6594).withOpacity(1.0), size: 70),
-                            Text('3',
-                              style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w500
-
-                              )),
-                            Text('-',
-                              style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w500
-                              )
-                            ),
-                            Text('1',
-                              style: TextStyle(
-                                  fontSize: 30,
-                                fontWeight: FontWeight.w500
-                              ),
-                            ),
-                          ],
+                              fontSize: 30, fontWeight: FontWeight.w500),
                         ),
                       ],
-                    )),
+                    ),
+                  ],
+                )),
                 SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -213,9 +224,7 @@ class _AnimCardState extends State<AnimCard> {
                         child: const Text(
                           '          Gxng FC',
                           style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500
-                          ),
+                              fontSize: 12, fontWeight: FontWeight.w500),
                           textAlign: TextAlign.center,
                         ),
                       )
@@ -231,7 +240,7 @@ class _AnimCardState extends State<AnimCard> {
   }
 }
 
-class CardItem extends StatelessWidget {
+class CardItem extends StatefulWidget {
   final Color color;
   final String num;
   final String numEng;
@@ -241,11 +250,93 @@ class CardItem extends StatelessWidget {
   const CardItem(this.color, this.num, this.numEng, this.content, this.onTap,
       {super.key});
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   double width = MediaQuery.of(context).size.width;
+  //   return GestureDetector(
+  //     onTap: onTap,
+  //     child: Container(
+  //       margin: const EdgeInsets.symmetric(horizontal: 15),
+  //       height: 90,
+  //       width: width,
+  //       decoration: BoxDecoration(
+  //         boxShadow: [
+  //           BoxShadow(
+  //               color: const Color(0xffFF6594).withOpacity(0.2),
+  //               blurRadius: 25),
+  //         ],
+  //         color: color.withOpacity(1.0),
+  //         borderRadius: const BorderRadius.only(
+  //           topLeft: Radius.circular(15),
+  //           topRight: Radius.circular(15),
+  //         ),
+  //       ),
+  //       child: Padding(
+  //         padding: const EdgeInsets.all(5.0),
+  //         child: Column(
+  //           crossAxisAlignment: CrossAxisAlignment.center,
+  //           children: [
+  //             const Text(
+  //               'Tap to view more',
+  //               style: TextStyle(
+  //                   color: Colors.white,
+  //                   fontSize: 12,
+  //                   fontWeight: FontWeight.w600),
+  //             ),
+  //             const SizedBox(
+  //               height: 8,
+  //             ),
+  //             Row(
+  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //               crossAxisAlignment: CrossAxisAlignment.center,
+  //               children: const [
+  //                 Flexible(
+  //                   child: Text(
+  //                     'Goals Scorers: Goal Scorers, Goal Scorers, Goal Scorers, Goal Scorers, Goal Scorers',
+  //                     style: TextStyle(
+  //                       color: Colors.white,
+  //                       fontSize: 10,
+  //                       fontWeight: FontWeight.w600,
+  //                     ),
+  //                     textAlign: TextAlign.start,
+  //                     overflow: TextOverflow.fade,
+  //                   ),
+  //                 ),
+  //                 SizedBox(
+  //                   width: 30,
+  //                 ),
+  //                 Flexible(
+  //                   child: Text(
+  //                     "Assists: Assists, Assists, Assists, Assists, Assists, Assists, Assists, Assists",
+  //                     style: TextStyle(
+  //                       color: Colors.white,
+  //                       fontSize: 10,
+  //                       fontWeight: FontWeight.w600,
+  //                     ),
+  //                     textAlign: TextAlign.end,
+  //                     overflow: TextOverflow.fade,
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  @override
+  _CardItemState createState() => _CardItemState();
+}
+
+class _CardItemState extends State<CardItem> {
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 15),
         height: 90,
@@ -256,7 +347,7 @@ class CardItem extends StatelessWidget {
                 color: const Color(0xffFF6594).withOpacity(0.2),
                 blurRadius: 25),
           ],
-          color: color.withOpacity(1.0),
+          color: widget.color.withOpacity(1.0),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15),
             topRight: Radius.circular(15),

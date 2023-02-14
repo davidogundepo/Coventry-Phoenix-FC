@@ -21,7 +21,6 @@ import '../notifier/first_team_class_notifier.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../details_pages/first_team_details_page.dart';
 
-
 String clubName = "Coventry Phoenix FC";
 // String postcode = "CV1 3WQ";
 String city = "Coventry";
@@ -41,26 +40,23 @@ String tablesAndStats = "Tables and Stats";
 String acronymMeanings = "Acronym Meanings";
 String aboutApp = "About App";
 
-
 String fabStats = "Stats";
-
 
 String networkSharedPreferencesKey = "first_time";
 String networkSharedPreferencesTitle = "Bienvenue! 😎";
 String networkSharedPreferencesContent = "Enjoy and Stay Awesome :)";
 String networkSharedPreferencesButton = "Okies";
 
-
 String welcomeOverviewSharedPreferencesKey = "toast_initial";
-
 
 String appOverviewSharedPreferencesKey = "overview_time";
 String appOverviewSharedPreferencesTitle = "APP OVERVIEW";
-String appOverviewSharedPreferencesContentOne = "This App was developed for $clubName, a Football Club in $city, $stateName. $countryName.\n";
+String appOverviewSharedPreferencesContentOne =
+    "This App was developed for $clubName, a Football Club in $city, $stateName. $countryName.\n";
 // String appOverviewSharedPreferencesContentTwo = "Our vision is to raise the total youth through comprehensive education.\n";
-String appOverviewSharedPreferencesContentThree = "Welcome to our app, do check through and know more!";
+String appOverviewSharedPreferencesContentThree =
+    "Welcome to our app, do check through and know more!";
 String appOverviewSharedPreferencesButton = "Awesome";
-
 
 Color backgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
 Color appBarTextColor = const Color.fromRGBO(255, 107, 53, 1.0);
@@ -78,19 +74,16 @@ Color textColorTwo = Colors.white70;
 Color dialogBackgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
 Color borderColor = Colors.black;
 
-
-class MyFirstTeamClassPage extends StatefulWidget with NavigationStates{
+class MyFirstTeamClassPage extends StatefulWidget with NavigationStates {
   MyFirstTeamClassPage({Key? key, this.title}) : super(key: key);
 
   final String? title;
 
   @override
   State<MyFirstTeamClassPage> createState() => _MyFirstTeamClassPage();
-
 }
 
 class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
-
   late String? documentId;
 
   bool _isVisible = true;
@@ -104,25 +97,25 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
     });
   }
 
-
   Widget _buildProductItem(BuildContext context, int index) {
-    FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
+    FirstTeamClassNotifier firstTeamClassNotifier =
+        Provider.of<FirstTeamClassNotifier>(context);
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),color: borderColor.withAlpha(50),
+          borderRadius: BorderRadius.circular(10),
+          color: borderColor.withAlpha(50),
         ),
-
         child: Material(
           color: materialBackgroundColor,
           child: InkWell(
             splashColor: splashColor,
             onTap: () {
-              firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[index];
+              firstTeamClassNotifier.currentFirstTeamClass =
+                  firstTeamClassNotifier.firstTeamClassList[index];
               navigateToSubPage(context);
             },
-
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -132,15 +125,15 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                     width: 100,
                     height: 100,
                     decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            bottomLeft: Radius.circular(10)),
                         image: DecorationImage(
                             alignment: const Alignment(0, -1),
                             image: CachedNetworkImageProvider(
-                                firstTeamClassNotifier.firstTeamClassList[index].image!
-                            ),
-                            fit: BoxFit.cover
-                        )
-                    ),
+                                firstTeamClassNotifier
+                                    .firstTeamClassList[index].image!),
+                            fit: BoxFit.cover)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60),
@@ -152,29 +145,29 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                           child: Row(
                             children: <Widget>[
                               Text(
-                                  firstTeamClassNotifier.firstTeamClassList[index].name!,
+                                  firstTeamClassNotifier
+                                      .firstTeamClassList[index].name!,
                                   style: GoogleFonts.tenorSans(
                                       color: textColor,
                                       fontSize: 17,
-                                      fontWeight: FontWeight.w600
-                                  )
-                              ),
+                                      fontWeight: FontWeight.w600)),
                               (() {
-                                if (firstTeamClassNotifier.firstTeamClassList[index].captain == "Yes") {
-                                  return
-                                    Row(
-                                      children: <Widget>[
-                                        const SizedBox(width: 10),
-                                        Icon (
-                                          MdiIcons.shieldCheck,
-                                          color: iconColor,
-                                        ),
-                                      ],
-                                    );
+                                if (firstTeamClassNotifier
+                                        .firstTeamClassList[index].captain ==
+                                    "Yes") {
+                                  return Row(
+                                    children: <Widget>[
+                                      const SizedBox(width: 10),
+                                      Icon(
+                                        MdiIcons.shieldCheck,
+                                        color: iconColor,
+                                      ),
+                                    ],
+                                  );
                                 } else {
                                   return Visibility(
                                     visible: !_isVisible,
-                                    child: Icon (
+                                    child: Icon(
                                       MdiIcons.shieldCheck,
                                       color: iconColor,
                                     ),
@@ -187,19 +180,17 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Text(
-                            // firstTeamClassNotifier.firstTeamClassList[index].twitter == firstTeamClassNotifier.firstTeamClassList[index].twitter ? '@'+firstTeamClassNotifier.firstTeamClassList[index].twitter : firstTeamClassNotifier.firstTeamClassList[index].twitter,
-                              firstTeamClassNotifier.firstTeamClassList[index].positionPlaying!,
+                              // firstTeamClassNotifier.firstTeamClassList[index].twitter == firstTeamClassNotifier.firstTeamClassList[index].twitter ? '@'+firstTeamClassNotifier.firstTeamClassList[index].twitter : firstTeamClassNotifier.firstTeamClassList[index].twitter,
+                              firstTeamClassNotifier
+                                  .firstTeamClassList[index].positionPlaying!,
                               // == firstTeamClassNotifier.firstTeamClassList[index].twitter ? '@'+firstTeamClassNotifier.firstTeamClassList[index].twitter : firstTeamClassNotifier.firstTeamClassList[index].twitter,
                               style: GoogleFonts.varela(
                                   color: textColorTwo,
-                                  fontStyle: FontStyle.italic
-                              )
-                          ),
+                                  fontStyle: FontStyle.italic)),
                         ),
                       ],
                     ),
                   )
-
                 ],
               ),
             ),
@@ -211,66 +202,70 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
 
   Future<bool> _onWillPop() async {
     return await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-
-        ),
-        backgroundColor: dialogBackgroundColor,
-        title: Text(exitAppTitle,
-          style: TextStyle(
-              color: textColor
-          ),
-        ),
-        content: Text(exitAppSubtitle,
-          style: TextStyle(
-              color: textColor
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(exitAppNo,
-              style: TextStyle(
-                  color: textColor
-              ),
+          context: context,
+          builder: (context) => AlertDialog(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
             ),
-          ),
-          TextButton(
-            onPressed: () => exit(0),
-            /*Navigator.of(context).pop(true)*/
-            child: Text(exitAppYes,
-              style: TextStyle(
-                  color: textColor
-              ),
+            backgroundColor: dialogBackgroundColor,
+            title: Text(
+              exitAppTitle,
+              style: TextStyle(color: textColor),
             ),
+            content: Text(
+              exitAppSubtitle,
+              style: TextStyle(color: textColor),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(
+                  exitAppNo,
+                  style: TextStyle(color: textColor),
+                ),
+              ),
+              TextButton(
+                onPressed: () => exit(0),
+                /*Navigator.of(context).pop(true)*/
+                child: Text(
+                  exitAppYes,
+                  style: TextStyle(color: textColor),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ) ??
+        ) ??
         false;
   }
 
   Future navigateToSubPage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const SubPage()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const SubPage()));
   }
 
   Future navigateTablesAndStatsDetails(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const BottomNavigator()));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const BottomNavigator()));
   }
 
   Future navigateToAboutAppDetailsPage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutAppDetails()));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const AboutAppDetails()));
   }
+
   Future navigateToAcronymsMeaningsPage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const AcronymsMeanings()));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const AcronymsMeanings()));
   }
+
   Future navigateToAboutClubDetailsPage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutClubDetails()));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const AboutClubDetails()));
   }
+
   Future navigateToWhoWeArePage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
   }
 
   startTime() async {
@@ -287,26 +282,22 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
         builder: (context) => AlertDialog(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(8)),
-
           ),
           backgroundColor: dialogBackgroundColor,
-          title: Text(networkSharedPreferencesTitle,
-            style: TextStyle(
-                color: textColor
-            ),
+          title: Text(
+            networkSharedPreferencesTitle,
+            style: TextStyle(color: textColor),
           ),
-          content: Text(networkSharedPreferencesContent,
-            style: TextStyle(
-                color: textColor
-            ),
+          content: Text(
+            networkSharedPreferencesContent,
+            style: TextStyle(color: textColor),
           ),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
-              child: Text(networkSharedPreferencesButton,
-                style: TextStyle(
-                    color: textColor
-                ),
+              child: Text(
+                networkSharedPreferencesButton,
+                style: TextStyle(color: textColor),
               ),
             )
           ],
@@ -321,68 +312,57 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
 
     if (appOverviewChecked != null && !appOverviewChecked) {
       // Not first time
-    }
-    else {
+    } else {
       // First time
-    appOverviewPrefs.setBool(appOverviewSharedPreferencesKey, false);
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-
-        ),
-        backgroundColor: dialogBackgroundColor,
-        title: Text(
-          appOverviewSharedPreferencesTitle,
-          style: TextStyle(
-              color: textColor
+      appOverviewPrefs.setBool(appOverviewSharedPreferencesKey, false);
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
-        ),
-        content: SizedBox(
-          // height: 220,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: <Widget>[
-                Text(
-                  appOverviewSharedPreferencesContentOne,
-                  style: TextStyle(
-                      color: textColor
-                  ),
-                ),
-                // Text(
-                //   appOverviewSharedPreferencesContentTwo,
-                //   style: TextStyle(
-                //       color: textColor
-                //   ),
-                // ),
-                Text(
-                  appOverviewSharedPreferencesContentThree,
-                  style: TextStyle(
-                      color: textColor
-                  ),
-                ),
-              ],
-            ),
+          backgroundColor: dialogBackgroundColor,
+          title: Text(
+            appOverviewSharedPreferencesTitle,
+            style: TextStyle(color: textColor),
           ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(appOverviewSharedPreferencesButton,
-              style: TextStyle(
-                  color: textColor
+          content: SizedBox(
+            // height: 220,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    appOverviewSharedPreferencesContentOne,
+                    style: TextStyle(color: textColor),
+                  ),
+                  // Text(
+                  //   appOverviewSharedPreferencesContentTwo,
+                  //   style: TextStyle(
+                  //       color: textColor
+                  //   ),
+                  // ),
+                  Text(
+                    appOverviewSharedPreferencesContentThree,
+                    style: TextStyle(color: textColor),
+                  ),
+                ],
               ),
             ),
-          )
-        ],
-      ),
-    );
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: Text(
+                appOverviewSharedPreferencesButton,
+                style: TextStyle(color: textColor),
+              ),
+            )
+          ],
+        ),
+      );
     }
   }
-
-
 
   // toastInitial() async {
   //   SharedPreferences appInitialPrefs = await SharedPreferences.getInstance();
@@ -406,20 +386,14 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
 
   @override
   void initState() {
-    FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context, listen: false);
+    FirstTeamClassNotifier firstTeamClassNotifier =
+        Provider.of<FirstTeamClassNotifier>(context, listen: false);
     getFirstTeamClass(firstTeamClassNotifier);
-
-    // ToastContext();
-
     startTime();
 
     setState(() {
       isLoading = false;
     });
-
-    // toastInitial();
-
-    // aboutAppWelcomeDialog();
 
     super.initState();
 
@@ -431,119 +405,144 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
 
   @override
   Widget build(BuildContext context) {
-
     ToastContext().init(context);
 
-    FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
+    FirstTeamClassNotifier firstTeamClassNotifier =
+        Provider.of<FirstTeamClassNotifier>(context);
 
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
         body: Container(
           color: backgroundColor,
-
           child: NestedScrollView(
-            headerSliverBuilder: (BuildContext context,
-                bool innerBoxIsScrolled) {
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
                 SliverAppBar(
                   actions: <Widget>[
                     IconButton(
-                      icon: Icon(MdiIcons.formatFloatLeft, color: iconColor
-                      ),
+                      icon: Icon(MdiIcons.formatFloatLeft, color: iconColor),
                       onPressed: () {
                         showModalBottomSheet(
                             backgroundColor: modalColor,
                             context: context,
                             builder: (context) => Container(
-                              // height: 250,
-                              decoration: BoxDecoration(
-                                color: modalBackgroundColor,
-                                borderRadius: const BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-                              ),
-                              child: Material(
-                                color: materialBackgroundColor,
-                                child: InkWell(
-                                  splashColor: splashColor,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 8.0, bottom: 35.0, right: 8.0, left: 8.0),
-                                    child: Wrap(
-                                      children: <Widget>[
-                                        ListTile(
-                                            leading: Icon(MdiIcons.tableMultiple,
-                                              color: iconColor,
-                                            ),
-                                            title: Text(tablesAndStats,
-                                              style: GoogleFonts.zillaSlab(
-                                                  color: textColor
+                                  // height: 250,
+                                  decoration: BoxDecoration(
+                                    color: modalBackgroundColor,
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(15),
+                                        topRight: Radius.circular(15)),
+                                  ),
+                                  child: Material(
+                                    color: materialBackgroundColor,
+                                    child: InkWell(
+                                      splashColor: splashColor,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0,
+                                            bottom: 35.0,
+                                            right: 8.0,
+                                            left: 8.0),
+                                        child: Wrap(
+                                          children: <Widget>[
+                                            ListTile(
+                                                leading: Icon(
+                                                  MdiIcons.tableMultiple,
+                                                  color: iconColor,
+                                                ),
+                                                title: Text(
+                                                  tablesAndStats,
+                                                  style: GoogleFonts.zillaSlab(
+                                                      color: textColor),
+                                                ),
+                                                onTap: () {
+                                                  Navigator.of(context)
+                                                      .pop(false);
+                                                  navigateTablesAndStatsDetails(
+                                                      context);
+                                                }),
+                                            ListTile(
+                                                leading: Icon(MdiIcons.atom,
+                                                    color: iconColor),
+                                                title: Text(
+                                                  whoWeAre,
+                                                  style: GoogleFonts.zillaSlab(
+                                                    color: textColor,
+                                                  ),
+                                                ),
+                                                onTap: () {
+                                                  Navigator.of(context)
+                                                      .pop(false);
+                                                  navigateToWhoWeArePage(
+                                                      context);
+                                                }),
+                                            ListTile(
+                                              leading: Icon(
+                                                  MdiIcons.accountGroup,
+                                                  color: iconColor),
+                                              title: Text(
+                                                aboutClub,
+                                                style: GoogleFonts.zillaSlab(
+                                                  color: textColor,
+                                                ),
                                               ),
+                                              onTap: () {
+                                                Navigator.of(context)
+                                                    .pop(false);
+                                                navigateToAboutClubDetailsPage(
+                                                    context);
+                                              },
                                             ),
-                                            onTap: () {
-                                              Navigator.of(context).pop(false);
-                                              navigateTablesAndStatsDetails(context);
-                                            }
+                                            ListTile(
+                                                leading: Icon(
+                                                    MdiIcons
+                                                        .sortAlphabeticalAscending,
+                                                    color: iconColor),
+                                                title: Text(
+                                                  acronymMeanings,
+                                                  style: GoogleFonts.zillaSlab(
+                                                    color: textColor,
+                                                  ),
+                                                ),
+                                                onTap: () {
+                                                  Navigator.of(context)
+                                                      .pop(false);
+                                                  navigateToAcronymsMeaningsPage(
+                                                      context);
+                                                }),
+                                            ListTile(
+                                              leading: Icon(MdiIcons.opacity,
+                                                  color: iconColor),
+                                              title: Text(
+                                                aboutApp,
+                                                style: GoogleFonts.zillaSlab(
+                                                  color: textColor,
+                                                ),
+                                              ),
+                                              onTap: () {
+                                                Navigator.of(context)
+                                                    .pop(false);
+                                                navigateToAboutAppDetailsPage(
+                                                    context);
+                                              },
+                                            ),
+                                          ],
                                         ),
-                                        ListTile(
-                                            leading: Icon(
-                                              MdiIcons.atom,
-                                              color: iconColor),
-                                            title: Text(whoWeAre,
-                                              style: GoogleFonts.zillaSlab(
-                                                color: textColor,
-                                              ),),
-                                            onTap: () {
-                                              Navigator.of(context).pop(false);
-                                              navigateToWhoWeArePage(context);
-                                            }
-                                        ),
-                                        ListTile(
-                                          leading: Icon(MdiIcons.accountGroup, color: iconColor),
-                                          title: Text(aboutClub,
-                                            style: GoogleFonts.zillaSlab(
-                                              color: textColor,
-                                            ),),
-                                          onTap: () {
-                                              Navigator.of(context).pop(false);
-                                              navigateToAboutClubDetailsPage(context);
-                                          },
-                                        ),
-                                        ListTile(
-                                            leading: Icon(MdiIcons.sortAlphabeticalAscending, color: iconColor),
-                                            title: Text(acronymMeanings,
-                                              style: GoogleFonts.zillaSlab(
-                                                color: textColor,
-                                              ),),
-                                            onTap: () {
-                                              Navigator.of(context).pop(false);
-                                              navigateToAcronymsMeaningsPage(context);
-                                            }
-                                        ),
-                                        ListTile(
-                                          leading: Icon(MdiIcons.opacity, color: iconColor),
-                                          title: Text(aboutApp,
-                                            style: GoogleFonts.zillaSlab(
-                                              color: textColor,
-                                            ),),
-                                          onTap: () {
-                                              Navigator.of(context).pop(false);
-                                              navigateToAboutAppDetailsPage(context);
-                                          },
-                                        ),
-
-                                      ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            ));
+                                ));
                       },
                     ),
                     IconButton(
                       icon: Icon(MdiIcons.magnify, color: iconColor),
-                      onPressed: (){
+                      onPressed: () {
                         showSearch(
                           context: context,
-                          delegate: MyFirstTeamClassSearch(all: firstTeamClassNotifier.firstTeamClassList),
+                          delegate: MyFirstTeamClassSearch(
+                              all: firstTeamClassNotifier.firstTeamClassList),
                         );
                       },
                       tooltip: "Search",
@@ -560,41 +559,41 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                         child: Text(thrownName,
                             textAlign: TextAlign.center,
                             style: GoogleFonts.abel(
-                              color: appBarTextColor,
-                              fontSize: 26.0,
-                              fontWeight: FontWeight.bold
-                            )
-                        ),
+                                color: appBarTextColor,
+                                fontSize: 26.0,
+                                fontWeight: FontWeight.bold)),
                       ),
-                    background: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                      stream: FirebaseFirestore.instance.collection('SliversPages').doc('slivers_pages').snapshots(),
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData) {
-                          return const CircularProgressIndicator();
-                        }
-                        return Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: CachedNetworkImageProvider(
-                                    snapshot.data?.data()!['slivers_page_1'] ?? 0,
-                                  ),
-                                  fit: BoxFit.cover
-                              )
-                          ),
-                        );
-                      },
-                    )
-                  ),
+                      background:
+                          StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        stream: FirebaseFirestore.instance
+                            .collection('SliversPages')
+                            .doc('slivers_pages')
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return const CircularProgressIndicator();
+                          }
+                          return Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: CachedNetworkImageProvider(
+                                      snapshot.data
+                                              ?.data()!['slivers_page_1'] ??
+                                          0,
+                                    ),
+                                    fit: BoxFit.cover)),
+                          );
+                        },
+                      )),
                 ),
               ];
             },
             body: Padding(
               padding: const EdgeInsets.only(left: 25, right: 10),
               child: Container(
-                margin: const EdgeInsets.only( bottom: 15),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10)
-                ),
+                margin: const EdgeInsets.only(bottom: 15),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
                 child: ListView.builder(
                   itemBuilder: _buildProductItem,
                   itemCount: firstTeamClassNotifier.firstTeamClassList.length,
@@ -609,20 +608,14 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
             navigateTablesAndStatsDetails(context);
           },
           label: Text(
-              fabStats,
-            style: TextStyle(
-              color: iconColor
-            ),
+            fabStats,
+            style: TextStyle(color: iconColor),
           ),
-          icon: Icon(
-            MdiIcons.alphaSBoxOutline,
-            color: iconColor
-          ),
+          icon: Icon(MdiIcons.alphaSBoxOutline, color: iconColor),
           splashColor: splashColorTwo,
           backgroundColor: Colors.white,
         ),
       ),
     );
   }
-
 }
