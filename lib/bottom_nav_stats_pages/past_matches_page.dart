@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:coventry_phoenix_fc/notifier/past_matches_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -87,7 +88,7 @@ class AnimCard extends StatefulWidget {
   final String numEng;
   final String content;
 
-  const AnimCard(this.color, this.num, this.numEng, this.content, {super.key, this.index});
+  const AnimCard(this.color, this.num, this.numEng, this.content, {super.key, required this.index});
 
   @override
   _AnimCardState createState() => _AnimCardState();
@@ -121,7 +122,8 @@ class _AnimCardState extends State<AnimCard> {
                     padding = padding == 10 ? 120.0 : 0.0;
                     bottomPadding = bottomPadding == 0 ? 120 : 0.0;
                   });
-                },
+                }, index: widget.index,
+                // }, index: widget.index,
               ),
             ),
             Align(
@@ -164,14 +166,14 @@ class _AnimCardState extends State<AnimCard> {
                             ),
                           ),
                           Container(
-                            width: 130,
+                            width: 140,
                             margin: const EdgeInsets.only(left: 7),
                             child: Text(
                               pastMatchesNotifier.pastMatchesList[widget.index].homeTeam!,
-                              style: const TextStyle(
+                              style: GoogleFonts.allertaStencil(
                                   color: Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500),
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w300),
                               textAlign: TextAlign.start,
                             ),
                           )
@@ -183,30 +185,31 @@ class _AnimCardState extends State<AnimCard> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(pastMatchesNotifier.pastMatchesList[widget.index].matchDate!,
-                            style: const TextStyle(
+                            style: GoogleFonts.electrolize(
                               fontSize: 10,
-                              color: Colors.white,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white54,
                             )),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text('3',
-                                style: TextStyle(
+                          children: [
+                            Text(pastMatchesNotifier.pastMatchesList[widget.index].homeTeamScore!,
+                                style: GoogleFonts.jura(
                                     fontSize: 30,
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w800,
                                   color: Colors.white,
                                 )),
                             Text('-',
-                                style: TextStyle(
+                                style: GoogleFonts.jura(
                                     fontSize: 30,
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w800,
                                   color: Colors.white,
                                 )),
                             Text(
-                              '1',
-                              style: TextStyle(
+                                pastMatchesNotifier.pastMatchesList[widget.index].awayTeamScore!,
+                              style: GoogleFonts.jura(
                                   fontSize: 30,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w800,
                                 color: Colors.white,
                               ),
                             ),
@@ -236,16 +239,16 @@ class _AnimCardState extends State<AnimCard> {
                             ),
                           ),
                           Container(
-                            width: 130,
+                            width: 140,
                             margin: const EdgeInsets.only(right: 15),
-                            child: const Text(
-                              '          Gxng FC',
-                              style: TextStyle(
-                                  fontSize: 12,
+                            child: Text(
+                              pastMatchesNotifier.pastMatchesList[widget.index].awayTeam!,
+                              style: GoogleFonts.allertaStencil(
+                                  fontSize: 11,
                                   fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
-                              textAlign: TextAlign.center,
+                              textAlign: TextAlign.end,
                             ),
                           )
                         ],
@@ -270,10 +273,11 @@ class CardItem extends StatefulWidget {
   final String num;
   final String numEng;
   final String content;
+  final int index;
   final onTap;
 
   const CardItem(this.color, this.num, this.numEng, this.content, this.onTap,
-      {super.key});
+      {super.key, required this.index});
 
   @override
   _CardItemState createState() => _CardItemState();
@@ -309,9 +313,9 @@ class _CardItemState extends State<CardItem> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 'Tap to view more',
-                style: TextStyle(
+                style: GoogleFonts.ptMono(
                     color: Colors.white,
                     fontSize: 12,
                     fontWeight: FontWeight.w600),
@@ -322,29 +326,29 @@ class _CardItemState extends State<CardItem> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   Flexible(
                     child: Text(
-                      'Goals Scorers: Goal Scorers, Goal Scorers, Goal Scorers, Goal Scorers, Goal Scorers',
-                      style: TextStyle(
+                      'Goal Scorer(s): ${pastMatchesNotifier.pastMatchesList[widget.index].goalsScorers!}',
+                      style: GoogleFonts.saira(
                         color: Colors.white,
                         fontSize: 10,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w400,
                       ),
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.fade,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 30,
                   ),
                   Flexible(
                     child: Text(
-                      "Assists: Assists, Assists, Assists, Assists, Assists, Assists, Assists, Assists",
-                      style: TextStyle(
+                      "Assists: ${pastMatchesNotifier.pastMatchesList[widget.index].goalsScorers!}",
+                      style: GoogleFonts.saira(
                         color: Colors.white,
                         fontSize: 10,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w400,
                       ),
                       textAlign: TextAlign.end,
                       overflow: TextOverflow.fade,

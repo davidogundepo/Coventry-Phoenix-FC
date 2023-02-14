@@ -11,7 +11,7 @@ class PastMatches {
   PastMatches.fromMap(Map<String?, dynamic> data) {
     id = data['id'];
     assistsBy = data['assists_by'];
-    goalsScorers = data['goals_scorers'];
+    goalsScorers = data['goalscorers'];
     homeTeam = data['home_team'];
     awayTeam = data['away_team'];
     awayTeamScore = data['at_score'];
