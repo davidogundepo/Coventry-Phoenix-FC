@@ -57,12 +57,6 @@ class _PastMatchesPageState extends State<PastMatchesPage>
             height: MediaQuery.of(context).size.height,
             decoration:
                 BoxDecoration(color: _color.value, shape: BoxShape.rectangle),
-            // child: const AnimCard(
-            //   Color(0xffFF6594),
-            //   '',
-            //   '',
-            //   '',
-            // ),
             child: ListView.builder(
                 itemBuilder:  (BuildContext context, int index) {
                   return const AnimCard(
