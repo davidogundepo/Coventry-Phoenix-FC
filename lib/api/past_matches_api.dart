@@ -1,20 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../model/first_team_class.dart';
-import '../notifier/first_team_class_notifier.dart';
+import '../model/past_matches.dart';
+import '../notifier/past_matches_notifier.dart';
 
-getFirstTeamClass(FirstTeamClassNotifier firstTeamClassNotifier) async {
+getPastMatches(PastMatchesNotifier pastMatchesNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
-      .collection('FirstTeamClassPlayers')
-      .orderBy('name')
+      .collection('PastMatches')
+      .orderBy('id')
       .get();
 
-  List<FirstTeamClass> firstTeamClassList = [];
+  List<PastMatches> pastMatchesList = [];
 
   for (var document in snapshot.docs) {
-    FirstTeamClass firstTeamClass =
-        FirstTeamClass.fromMap(document.data() as Map<String, dynamic>);
-    firstTeamClassList.add(firstTeamClass);
+    PastMatches pastMatches =
+        PastMatches.fromMap(document.data() as Map<String, dynamic>);
+    pastMatchesList.add(pastMatches);
   }
 
-  firstTeamClassNotifier.firstTeamClassList = firstTeamClassList;
+  pastMatchesNotifier.pastMatchesList = pastMatchesList;
 }
