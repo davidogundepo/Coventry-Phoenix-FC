@@ -190,8 +190,6 @@ class _AnimCardState extends State<AnimCard> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
-                            // Icon(Icons.favorite,
-                            //     color: const Color(0xffFF6594).withOpacity(1.0), size: 70),
                             Text('3',
                                 style: TextStyle(
                                     fontSize: 30,
