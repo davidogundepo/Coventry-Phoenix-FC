@@ -46,7 +46,7 @@ class _PastMatchesPageState extends State<PastMatchesPage>
   @override
   Widget build(BuildContext context) {
     PastMatchesNotifier pastMatchesNotifier =
-    Provider.of<PastMatchesNotifier>(context);
+        Provider.of<PastMatchesNotifier>(context);
 
     return Scaffold(
       body: AnimatedBuilder(
@@ -58,14 +58,14 @@ class _PastMatchesPageState extends State<PastMatchesPage>
             decoration:
                 BoxDecoration(color: _color.value, shape: BoxShape.rectangle),
             child: ListView.builder(
-                itemBuilder:  (BuildContext context, int index) {
-                  return const AnimCard(
-                    Color(0xffFF6594),
-                    '',
-                    '',
-                    '',
-                  );
-          },
+              itemBuilder: (BuildContext context, int index) {
+                return const AnimCard(
+                  Color(0xffFF6594),
+                  '',
+                  '',
+                  '',
+                );
+              },
               itemCount: pastMatchesNotifier.pastMatchesList.length,
             ),
           );
@@ -325,7 +325,6 @@ class CardItem extends StatefulWidget {
 }
 
 class _CardItemState extends State<CardItem> {
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
