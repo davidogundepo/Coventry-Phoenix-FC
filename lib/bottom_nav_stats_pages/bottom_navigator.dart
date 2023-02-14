@@ -47,7 +47,7 @@ late CumMOTMPlayersStatsAndInfoNotifier cumMOTMPlayersStatsAndInfoNotifier;
 
 Color? backgroundColor = const Color.fromRGBO(34, 40, 49, 1);
 Color? cardBackgroundColorTwo =
-    const Color.fromRGBO(34, 40, 49, 0.611764705882353);
+    const Color.fromRGBO(34, 40, 49, 0.6);
 Color? cardBackgroundColor = const Color.fromRGBO(57, 62, 70, 1);
 Color? goalsScoredTextColor = const Color.fromRGBO(255, 141, 41, 1);
 Color? appBarIconColor = const Color.fromRGBO(255, 141, 41, 1);

@@ -33,8 +33,8 @@ class _PastMatchesPageState extends State<PastMatchesPage>
       duration: const Duration(seconds: 5),
       vsync: this,
     )..repeat(reverse: true);
-    _color =
-        ColorTween(begin: Colors.blue, end: Colors.amber).animate(_controller);
+    _color = ColorTween(begin: Colors.black, end: Colors.white)
+        .animate(_controller);
   }
 
   @override
@@ -53,20 +53,23 @@ class _PastMatchesPageState extends State<PastMatchesPage>
         animation: _color,
         builder: (BuildContext _, Widget? __) {
           return Container(
+            padding: const EdgeInsets.only(bottom: 5),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             decoration:
                 BoxDecoration(color: _color.value, shape: BoxShape.rectangle),
-            child: ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return const AnimCard(
-                  Color(0xffFF6594),
-                  '',
-                  '',
-                  '',
-                );
-              },
-              itemCount: pastMatchesNotifier.pastMatchesList.length,
+            child: SafeArea(
+              child: ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return const AnimCard(
+                    Color.fromRGBO(98, 103, 112, 1.0),
+                    '',
+                    '',
+                    '',
+                  );
+                },
+                itemCount: pastMatchesNotifier.pastMatchesList.length,
+              ),
             ),
           );
         },
@@ -93,142 +96,172 @@ class _AnimCardState extends State<AnimCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
+    PastMatchesNotifier pastMatchesNotifier =
+    Provider.of<PastMatchesNotifier>(context);
+
+    return Column(
       children: [
-        AnimatedPadding(
-          padding: EdgeInsets.only(top: padding, bottom: bottomPadding),
-          duration: const Duration(milliseconds: 1000),
-          curve: Curves.fastLinearToSlowEaseIn,
-          child: CardItem(
-            widget.color,
-            widget.num,
-            widget.numEng,
-            widget.content,
-            () {
-              setState(() {
-                padding = padding == 10 ? 120.0 : 0.0;
-                bottomPadding = bottomPadding == 0 ? 120 : 0.0;
-              });
-            },
-          ),
-        ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Container(
-            margin: const EdgeInsets.only(right: 10, left: 10, top: 40),
-            height: 90,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 30)
-              ],
-              color: Colors.grey.shade200.withOpacity(1.0),
-              borderRadius:
-                  const BorderRadius.vertical(bottom: Radius.circular(15)),
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            AnimatedPadding(
+              padding: EdgeInsets.only(top: padding, bottom: bottomPadding),
+              duration: const Duration(milliseconds: 1000),
+              curve: Curves.fastLinearToSlowEaseIn,
+              child: CardItem(
+                widget.color,
+                widget.num,
+                widget.numEng,
+                widget.content,
+                () {
+                  setState(() {
+                    padding = padding == 10 ? 120.0 : 0.0;
+                    bottomPadding = bottomPadding == 0 ? 120 : 0.0;
+                  });
+                },
+              ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SingleChildScrollView(
-                  child: Column(
-                    // mainAxisSize: MainAxisSize.min,
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(left: 30, bottom: 5),
-                        height: 55,
-                        width: 53,
-                        decoration: const BoxDecoration(
-                            color: Colors.blueGrey,
-                            borderRadius: BorderRadius.all(Radius.circular(6))),
-                        child: Center(
-                          child: Icon(Icons.favorite,
-                              color: const Color(0xffFF6594).withOpacity(1.0),
-                              size: 40),
-                        ),
-                      ),
-                      Container(
-                        width: 130,
-                        margin: const EdgeInsets.only(left: 7),
-                        child: const Text(
-                          'Coventry Phoenix Ist',
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w500),
-                          textAlign: TextAlign.start,
-                        ),
-                      )
-                    ],
-                  ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                margin: const EdgeInsets.only(right: 10, left: 10, top: 40),
+                height: 90,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.2), blurRadius: 30)
+                  ],
+                  color: const Color.fromRGBO(57, 62, 70, 1),
+                  borderRadius:
+                      const BorderRadius.vertical(bottom: Radius.circular(15)),
                 ),
-                Center(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('13-02-2023 14:00',
-                        style: TextStyle(
-                          fontSize: 10,
-                        )),
-                    // const SizedBox(
-                    //   height:20
-                    // ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        // Icon(Icons.favorite,
-                        //     color: const Color(0xffFF6594).withOpacity(1.0), size: 70),
-                        Text('3',
+                    SingleChildScrollView(
+                      child: Column(
+                        // mainAxisSize: MainAxisSize.min,
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(left: 30, bottom: 5),
+                            height: 55,
+                            width: 53,
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6))),
+                            child: const Center(
+                              child: Icon(Icons.favorite,
+                                  color:
+                                  Colors.blueGrey,
+                                  size: 40),
+                            ),
+                          ),
+                          Container(
+                            width: 130,
+                            margin: const EdgeInsets.only(left: 7),
+                            child: const Text(
+                              p,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500),
+                              textAlign: TextAlign.start,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Center(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Text('13-02-2023 14:00',
                             style: TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.w500)),
-                        Text('-',
-                            style: TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.w500)),
-                        Text(
-                          '1',
-                          style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.w500),
+                              fontSize: 10,
+                              color: Colors.white,
+                            )),
+                        // const SizedBox(
+                        //   height:20
+                        // ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            // Icon(Icons.favorite,
+                            //     color: const Color(0xffFF6594).withOpacity(1.0), size: 70),
+                            Text('3',
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                )),
+                            Text('-',
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                )),
+                            Text(
+                              '1',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
+                    )),
+                    SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(right: 30, bottom: 5),
+                            height: 55,
+                            width: 53,
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(6))),
+                            child: const Center(
+                              child: Icon(Icons.favorite,
+                                  color:
+                                  Colors.blueGrey,
+                                  size: 40),
+                            ),
+                          ),
+                          Container(
+                            width: 130,
+                            margin: const EdgeInsets.only(right: 15),
+                            child: const Text(
+                              '          Gxng FC',
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ],
-                )),
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(right: 30, bottom: 5),
-                        height: 55,
-                        width: 53,
-                        decoration: const BoxDecoration(
-                            color: Colors.teal,
-                            borderRadius: BorderRadius.all(Radius.circular(6))),
-                        child: Center(
-                          child: Icon(Icons.favorite,
-                              color: const Color(0xffFF6594).withOpacity(1.0),
-                              size: 40),
-                        ),
-                      ),
-                      Container(
-                        width: 130,
-                        margin: const EdgeInsets.only(right: 15),
-                        child: const Text(
-                          '          Gxng FC',
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w500),
-                          textAlign: TextAlign.center,
-                        ),
-                      )
-                    ],
-                  ),
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
+        const SizedBox(
+          height: 20,
+        )
       ],
     );
   }
@@ -251,6 +284,9 @@ class CardItem extends StatefulWidget {
 class _CardItemState extends State<CardItem> {
   @override
   Widget build(BuildContext context) {
+    PastMatchesNotifier pastMatchesNotifier =
+    Provider.of<PastMatchesNotifier>(context);
+
     double width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: widget.onTap,
