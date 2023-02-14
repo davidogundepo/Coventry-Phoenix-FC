@@ -50,7 +50,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
               Provider.of<FirstTeamClassNotifier>(context);
 
           if (snapshot.hasData) {
-            if (playersTableList.isNotEmpty) {
+            if (playersTableList.isNotEmpty && !snapshot.data!.metadata.isFromCache) {
               realTimeUpdate(var data) {
                 return DataGridRow(cells: [
                   DataGridCell<String>(columnName: 'id', value: data.doc['id']),
@@ -94,7 +94,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                   playersTableDataSource.updateDataGridSource();
                 }
               }
-            } else {
+            } else if (playersTableList.isEmpty) {
               for (var data in snapshot.data!.docs) {
                 playersTableList.add(PlayersTable(
                     id: data['id'],
@@ -146,12 +146,12 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                                 element.columnName == 'player_name')
                             .value
                             .toString();
-                        Toast.show("Loading up $playerName",
-                            duration: Toast.lengthLong,
-                            gravity: Toast.bottom,
-                            backgroundRadius: 10);
+                        // Toast.show("Loading up $playerName",
+                        //     duration: Toast.lengthLong,
+                        //     gravity: Toast.bottom,
+                        //     backgroundRadius: 10);
 
-                        //fetch the record which has same player name
+                        ///fetch the record which has same player name
                         firstTeamClassNotifier.currentFirstTeamClass =
                             firstTeamClassNotifier.firstTeamClassList
                                 .where((element) => element.name == playerName)

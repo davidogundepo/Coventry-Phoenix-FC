@@ -5,7 +5,7 @@ import '../notifier/past_matches_notifier.dart';
 getPastMatches(PastMatchesNotifier pastMatchesNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
       .collection('PastMatches')
-      .orderBy('id')
+      .orderBy('id', descending: true)
       .get();
 
   List<PastMatches> pastMatchesList = [];

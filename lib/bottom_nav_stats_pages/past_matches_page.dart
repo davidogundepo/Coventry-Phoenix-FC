@@ -61,6 +61,11 @@ class _PastMatchesPageState extends State<PastMatchesPage>
             decoration:
                 BoxDecoration(color: _color.value, shape: BoxShape.rectangle),
             child: SafeArea(
+
+                // ((){
+                //
+                // }()),
+
               child: ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
                   return AnimCard(
