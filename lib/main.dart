@@ -12,6 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'api/second_team_class_api.dart';
 import 'details_pages/second_team_details_page.dart';
+import 'notifier/past_matches_notifier.dart';
 import 'sidebar/sidebar_layout.dart';
 import 'api/PushNotificationService.dart';
 import 'notifier/achievement_images_notifier.dart';
@@ -114,6 +115,9 @@ void main() async {
           ),
           ChangeNotifierProvider(
             create: (context) => FoundersReviewsCommentNotifier(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => PastMatchesNotifier(),
           ),
         ],
         child: const MyApp()
