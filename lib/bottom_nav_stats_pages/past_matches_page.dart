@@ -187,9 +187,6 @@ class _AnimCardState extends State<AnimCard> {
                               fontSize: 10,
                               color: Colors.white,
                             )),
-                        // const SizedBox(
-                        //   height:20
-                        // ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
