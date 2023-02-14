@@ -357,7 +357,7 @@ class _CardItemState extends State<CardItem> {
                   ),
                   Flexible(
                     child: Text(
-                      "Assists: ${pastMatchesNotifier.pastMatchesList[widget.index].goalsScorers!}",
+                      "Assists: ${pastMatchesNotifier.pastMatchesList[widget.index].assistsBy!}",
                       style: GoogleFonts.saira(
                         color: Colors.white,
                         fontSize: 10,
