@@ -158,12 +158,13 @@ class _AnimCardState extends State<AnimCard> {
                             decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(6))),
+                                BorderRadius.all(Radius.circular(8))),
                             child: Center(
                               child: Container(
-                                width: 45.0,
-                                height: 45.0,
+                                width: 42.0,
+                                height: 42.0,
                                 decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                                   // shape: BoxShape.circle,
                                     image: DecorationImage(
                                         image: CachedNetworkImageProvider(
@@ -237,12 +238,13 @@ class _AnimCardState extends State<AnimCard> {
                             decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(6))),
+                                BorderRadius.all(Radius.circular(8))),
                             child: Center(
                               child: Container(
-                                width: 45.0,
-                                height: 45.0,
+                                width: 42.0,
+                                height: 42.0,
                                 decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(Radius.circular(5)),
                                     // shape: BoxShape.circle,
                                     image: DecorationImage(
                                         image: CachedNetworkImageProvider(
@@ -338,7 +340,7 @@ class _CardItemState extends State<CardItem> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
                     child: Text(
