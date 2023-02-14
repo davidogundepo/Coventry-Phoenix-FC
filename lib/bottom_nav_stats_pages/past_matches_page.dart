@@ -159,11 +159,17 @@ class _AnimCardState extends State<AnimCard> {
                                 color: Colors.white,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(6))),
-                            child: const Center(
-                              child: Icon(Icons.favorite,
-                                  color:
-                                  Colors.blueGrey,
-                                  size: 40),
+                            child: Center(
+                              child: Container(
+                                width: 45.0,
+                                height: 45.0,
+                                decoration: BoxDecoration(
+                                  // shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        image: CachedNetworkImageProvider(
+                                            pastMatchesNotifier.pastMatchesList[widget.index].homeTeamIcon!),
+                                        fit: BoxFit.cover)),
+                              ),
                             ),
                           ),
                           Container(
@@ -237,7 +243,7 @@ class _AnimCardState extends State<AnimCard> {
                                 width: 45.0,
                                 height: 45.0,
                                 decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
+                                    // shape: BoxShape.circle,
                                     image: DecorationImage(
                                         image: CachedNetworkImageProvider(
                                             pastMatchesNotifier.pastMatchesList[widget.index].awayTeamIcon!),
