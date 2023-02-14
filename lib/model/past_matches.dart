@@ -6,6 +6,8 @@ class PastMatches {
   String? awayTeamScore;
   String? homeTeamScore;
   String? matchDate;
+  String? homeTeamIcon;
+  String? awayTeamIcon;
   String? id;
 
   PastMatches.fromMap(Map<String?, dynamic> data) {
@@ -17,6 +19,8 @@ class PastMatches {
     awayTeamScore = data['at_score'];
     homeTeamScore = data['ht_score'];
     matchDate = data['match_date'];
+    homeTeamIcon = data['home_team_icon'];
+    awayTeamIcon = data['away_team_icon'];
   }
 
 }

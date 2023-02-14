@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:coventry_phoenix_fc/notifier/past_matches_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -231,11 +232,17 @@ class _AnimCardState extends State<AnimCard> {
                                 color: Colors.white,
                                 borderRadius:
                                 BorderRadius.all(Radius.circular(6))),
-                            child: const Center(
-                              child: Icon(Icons.favorite,
-                                  color:
-                                  Colors.blueGrey,
-                                  size: 40),
+                            child: Center(
+                              child: Container(
+                                width: 45.0,
+                                height: 45.0,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        image: CachedNetworkImageProvider(
+                                            pastMatchesNotifier.pastMatchesList[widget.index].awayTeamIcon!),
+                                        fit: BoxFit.cover)),
+                              ),
                             ),
                           ),
                           Container(
