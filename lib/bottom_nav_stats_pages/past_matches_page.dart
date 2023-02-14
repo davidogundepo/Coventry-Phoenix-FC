@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class PastMatchesPage extends StatefulWidget {
   const PastMatchesPage({super.key});
@@ -7,6 +8,10 @@ class PastMatchesPage extends StatefulWidget {
   @override
   _PastMatchesPageState createState() => _PastMatchesPageState();
 }
+
+DateTime now = DateTime.now();
+// DateTime date = DateTime(now.day, now.month, now.year);
+var matchDate = DateFormat('EEEE').format(now);
 
 class _PastMatchesPageState extends State<PastMatchesPage>
     with TickerProviderStateMixin {
@@ -120,21 +125,22 @@ class _AnimCardState extends State<AnimCard> {
                         height: 55,
                         width: 53,
                         decoration: const BoxDecoration(
-                          color: Colors.blueGrey,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(6))),
+                            color: Colors.blueGrey,
+                            borderRadius: BorderRadius.all(Radius.circular(6))),
                         child: Center(
                           child: Icon(Icons.favorite,
                               color: const Color(0xffFF6594).withOpacity(1.0),
-                              size: 30),
+                              size: 40),
                         ),
                       ),
                       Container(
-                        width: 140,
+                        width: 130,
                         margin: const EdgeInsets.only(left: 7),
                         child: const Text(
                           'Coventry Phoenix Ist',
-                          style: TextStyle(fontSize: 10),
+                          style: TextStyle(fontSize: 12,
+                              fontWeight: FontWeight.w500
+                          ),
                           textAlign: TextAlign.start,
                         ),
                       )
@@ -142,16 +148,46 @@ class _AnimCardState extends State<AnimCard> {
                   ),
                 ),
                 Center(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    // Icon(Icons.favorite,
-                    //     color: const Color(0xffFF6594).withOpacity(1.0), size: 70),
-                    Text('3'),
-                    Text('-'),
-                    Text('1'),
-                  ],
-                )),
+
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Text('13-02-2023 14:00',
+                          style: TextStyle(
+                              fontSize: 10,
+
+                          )
+                        ),
+                        // const SizedBox(
+                        //   height:20
+                        // ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            // Icon(Icons.favorite,
+                            //     color: const Color(0xffFF6594).withOpacity(1.0), size: 70),
+                            Text('3',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w500
+
+                              )),
+                            Text('-',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w500
+                              )
+                            ),
+                            Text('1',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                fontWeight: FontWeight.w500
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )),
                 SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -164,23 +200,24 @@ class _AnimCardState extends State<AnimCard> {
                         width: 53,
                         decoration: const BoxDecoration(
                             color: Colors.teal,
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(6))),
+                            borderRadius: BorderRadius.all(Radius.circular(6))),
                         child: Center(
                           child: Icon(Icons.favorite,
                               color: const Color(0xffFF6594).withOpacity(1.0),
-                              size: 30),
+                              size: 40),
                         ),
                       ),
                       Container(
-                        width: 140,
-                        margin: const EdgeInsets.only(right: 0),
-                        child: const Center(
-                            child: Text(
-                              'Gxng FgggggggggggggggC',
-                              style: TextStyle(fontSize: 10),
-                              textAlign: TextAlign.end,
-                            )),
+                        width: 130,
+                        margin: const EdgeInsets.only(right: 15),
+                        child: const Text(
+                          '          Gxng FC',
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       )
                     ],
                   ),
