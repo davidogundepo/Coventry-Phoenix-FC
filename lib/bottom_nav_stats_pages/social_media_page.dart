@@ -8,11 +8,14 @@ import '../main.dart';
 String twitterUsernameID = 'CovPhoenixFC';
 String facebookUsernameID = '627500899180951';
 String instagramUsernameID = 'CnZTWbAscDp';
+
+
 String jjj = '';
 
 Color colorBack = const Color.fromRGBO(58, 56, 69, 1);
 
 class SocialMediaPage extends StatefulWidget {
+
   const SocialMediaPage({Key? key}) : super(key: key);
 
   @override
@@ -46,8 +49,9 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
             .doc('non_slivers_pages')
             .snapshots(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return jjj = snapshot.data!.data()!['twitter_handle'];
+          if (!snapshot.hasData) {
+            const Text('');
+            // return jjj = snapshot.data!.data()!['twitter_handle'];
           } else {
             const Text('');
           }
