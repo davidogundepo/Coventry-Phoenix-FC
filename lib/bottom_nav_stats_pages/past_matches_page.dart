@@ -61,11 +61,13 @@ class _PastMatchesPageState extends State<PastMatchesPage>
             child: SafeArea(
               child: ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
-                  return const AnimCard(
-                    Color.fromRGBO(98, 103, 112, 1.0),
+                  return AnimCard(
+                    const Color.fromRGBO(98, 103, 112, 1.0),
                     '',
                     '',
                     '',
+                    index: index,
+
                   );
                 },
                 itemCount: pastMatchesNotifier.pastMatchesList.length,
@@ -81,10 +83,11 @@ class _PastMatchesPageState extends State<PastMatchesPage>
 class AnimCard extends StatefulWidget {
   final Color color;
   final String num;
+  final int index;
   final String numEng;
   final String content;
 
-  const AnimCard(this.color, this.num, this.numEng, this.content, {super.key});
+  const AnimCard(this.color, this.num, this.numEng, this.content, {super.key, this.index});
 
   @override
   _AnimCardState createState() => _AnimCardState();
@@ -163,9 +166,9 @@ class _AnimCardState extends State<AnimCard> {
                           Container(
                             width: 130,
                             margin: const EdgeInsets.only(left: 7),
-                            child: const Text(
-                              p,
-                              style: TextStyle(
+                            child: Text(
+                              pastMatchesNotifier.pastMatchesList[widget.index].homeTeam!,
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500),
@@ -179,8 +182,8 @@ class _AnimCardState extends State<AnimCard> {
                         child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const Text('13-02-2023 14:00',
-                            style: TextStyle(
+                        Text(pastMatchesNotifier.pastMatchesList[widget.index].matchDate!,
+                            style: const TextStyle(
                               fontSize: 10,
                               color: Colors.white,
                             )),
