@@ -93,7 +93,6 @@ class AnimCard extends StatefulWidget {
   final int index;
   final String numEng;
   final String content;
-  // final String congtent;
 
   const AnimCard(this.color, this.num, this.numEng, this.content, {super.key, required this.index});
 

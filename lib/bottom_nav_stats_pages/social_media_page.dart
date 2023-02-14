@@ -10,7 +10,8 @@ String facebookUsernameID = '627500899180951';
 String instagramUsernameID = 'Cog4e0egTOu';
 
 
-String jjj = '';
+String clubAcronym = 'CPFC';
+String titleText = "CPFC's Tweet, Gram, Post";
 
 Color colorBack = const Color.fromRGBO(58, 56, 69, 1);
 
@@ -56,8 +57,7 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text(snapshot.data
-                  ?.data()!['twitter_handle'],
+              title: Text(titleText,
                   style: const TextStyle(color: Color(0xffB1BCE6))),
               leading: IconButton(
                 icon: Icon(Icons.arrow_back_ios, color: appBarIconColor),
@@ -100,7 +100,7 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
                               <body style="pointer-events: none">
                               <a class="twitter-timeline" data-tweet-limit="3" data-chrome="nofooter"
                               data-theme="light" href="https://twitter.com/${snapshot.data?.data()!['twitter_handle']}?ref_src=twsrc%5Etfw">
-                              Latest Tweets by $jjj yet to load up </a>
+                              Latest Tweets by $clubAcronym yet to load up </a>
                               <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                               <br>
                               <br>
