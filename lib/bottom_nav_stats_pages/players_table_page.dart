@@ -50,7 +50,8 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
               Provider.of<FirstTeamClassNotifier>(context);
 
           if (snapshot.hasData) {
-            if (playersTableList.isNotEmpty && !snapshot.data!.metadata.isFromCache) {
+            if (playersTableList.isNotEmpty &&
+                !snapshot.data!.metadata.isFromCache) {
               realTimeUpdate(var data) {
                 return DataGridRow(cells: [
                   DataGridCell<String>(columnName: 'id', value: data.doc['id']),
@@ -319,9 +320,9 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
   void initState() {
     // getDataFromFirestore();
     // if (playersTableList.isEmpty) {
-      playersTableDataSource = PlayersTableDataSource(playersTableList);
-      playersTableDataSource.sortedColumns.add(const SortColumnDetails(
-          name: 'goals_scored', sortDirection: DataGridSortDirection.descending));
+    playersTableDataSource = PlayersTableDataSource(playersTableList);
+    playersTableDataSource.sortedColumns.add(const SortColumnDetails(
+        name: 'goals_scored', sortDirection: DataGridSortDirection.descending));
     // }
     super.initState();
 
@@ -771,7 +772,6 @@ class PlayersTableDataSource extends DataGridSource {
                       margin: const EdgeInsets.all(2),
                       alignment: Alignment.center,
                       // width: 25,
-
                       // height: 25,
                       decoration: BoxDecoration(
                           color: Colors.transparent,
