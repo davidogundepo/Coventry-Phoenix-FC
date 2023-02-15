@@ -8,7 +8,7 @@ class PastMatches {
   String? matchDate;
   String? homeTeamIcon;
   String? awayTeamIcon;
-  String? id;
+  dynamic id;
 
   PastMatches.fromMap(Map<String?, dynamic> data) {
     id = data['id'];
