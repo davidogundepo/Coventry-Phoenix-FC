@@ -4,6 +4,9 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coventry_phoenix_fc/api/second_team_class_api.dart';
+import 'package:coventry_phoenix_fc/notifier/club_captains_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/coaching_staff_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/management_body_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/second_team_class_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,7 +20,10 @@ import '../about_menu_details_pages/about_app.dart';
 import '../about_menu_details_pages/about_club.dart';
 import '../about_menu_details_pages/acronyms_meanings.dart';
 import '../about_menu_details_pages/who_we_are.dart';
+import '../api/club_captains_api.dart';
+import '../api/coaching_staff_api.dart';
 import '../api/first_team_class_api.dart';
+import '../api/management_body_api.dart';
 import '../api/third_team_class_api.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../bottom_nav_stats_pages/bottom_navigator.dart';
@@ -402,6 +408,18 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
     ThirdTeamClassNotifier thirdTeamClassNotifier =
         Provider.of<ThirdTeamClassNotifier>(context, listen: false);
     getThirdTeamClass(thirdTeamClassNotifier);
+
+    CaptainsNotifier captainsNotifier =
+        Provider.of<CaptainsNotifier>(context, listen: false);
+    getCaptains(captainsNotifier);
+
+    CoachesNotifier coachesNotifier =
+        Provider.of<CoachesNotifier>(context, listen: false);
+    getCoaches(coachesNotifier);
+
+    ManagementBodyNotifier managementBodyNotifier =
+        Provider.of<ManagementBodyNotifier>(context, listen: false);
+    getManagementBody(managementBodyNotifier);
 
     startTime();
 
