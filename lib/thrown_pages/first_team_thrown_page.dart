@@ -4,10 +4,14 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coventry_phoenix_fc/api/second_team_class_api.dart';
+import 'package:coventry_phoenix_fc/notifier/achievement_images_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/club_arial_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/club_captains_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/coaching_staff_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/management_body_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/most_assists_players_stats_info_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/second_team_class_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/sidebar_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,16 +24,39 @@ import '../about_menu_details_pages/about_app.dart';
 import '../about_menu_details_pages/about_club.dart';
 import '../about_menu_details_pages/acronyms_meanings.dart';
 import '../about_menu_details_pages/who_we_are.dart';
+import '../api/achievement_images_api.dart';
+import '../api/club_arial_images_api.dart';
 import '../api/club_captains_api.dart';
 import '../api/coaching_staff_api.dart';
+import '../api/cum_motm_players_stats_info_api.dart';
 import '../api/first_team_class_api.dart';
+import '../api/founders_reviews_comment_api.dart';
 import '../api/management_body_api.dart';
+import '../api/most_assists_players_stats_info_api.dart';
+import '../api/most_fouled_rc_players_stats_info_api.dart';
+import '../api/most_fouled_yc_players_stats_info_api.dart';
+import '../api/motm_players_stats_info_api.dart';
+import '../api/player_of_the_month_stats_info_api.dart';
 import '../api/third_team_class_api.dart';
+import '../api/top_defensive_players_stats_info_api.dart';
+import '../api/top_gk_players_stats_info_api.dart';
+import '../api/top_goals_players_stats_info_api.dart';
+import '../api/trainings_games_reels_api.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../bottom_nav_stats_pages/bottom_navigator.dart';
 import '../details_pages/first_team_details_page.dart';
+import '../notifier/cum_motm_players_stats_info_notifier.dart';
 import '../notifier/first_team_class_notifier.dart';
+import '../notifier/founders_reviews_comment_notifier.dart';
+import '../notifier/most_fouled_rc_players_stats_info_notifier.dart';
+import '../notifier/most_fouled_yc_players_stats_info_notifier.dart';
+import '../notifier/motm_players_stats_info_notifier.dart';
+import '../notifier/player_of_the_month_stats_info_notifier.dart';
 import '../notifier/third_team_class_notifier.dart';
+import '../notifier/top_defensive_players_stats_info_notifier.dart';
+import '../notifier/top_gk_players_stats_info_notifier.dart';
+import '../notifier/top_goals_players_stats_info_notifier.dart';
+import '../notifier/trainings_games_reels_notifier.dart';
 import '../thrown_searches/first_team_thrown_search.dart';
 
 String clubName = "Coventry Phoenix FC";
@@ -420,6 +447,71 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
     ManagementBodyNotifier managementBodyNotifier =
         Provider.of<ManagementBodyNotifier>(context, listen: false);
     getManagementBody(managementBodyNotifier);
+
+    ClubArialNotifier clubArialNotifier =
+        Provider.of<ClubArialNotifier>(context, listen: false);
+    getClubArial(clubArialNotifier);
+
+    AchievementsNotifier achievementsNotifier =
+        Provider.of<AchievementsNotifier>(context, listen: false);
+    getAchievements(achievementsNotifier);
+
+    SideBarNotifier sideBarNotifier =
+        Provider.of<SideBarNotifier>(context, listen: false);
+
+    MostAssistsPlayersStatsAndInfoNotifier
+        mostAssistsPlayersStatsAndInfoNotifier =
+        Provider.of<MostAssistsPlayersStatsAndInfoNotifier>(context,
+            listen: false);
+    getMostAssistsPlayersStatsAndInfo(mostAssistsPlayersStatsAndInfoNotifier);
+
+    MostFouledYCPlayersStatsAndInfoNotifier
+        mostFouledYCPlayersStatsAndInfoNotifier =
+        Provider.of<MostFouledYCPlayersStatsAndInfoNotifier>(context,
+            listen: false);
+    getMostFouledYCPlayersStatsAndInfo(mostFouledYCPlayersStatsAndInfoNotifier);
+
+    MostFouledRCPlayersStatsAndInfoNotifier
+        mostFouledRCPlayersStatsAndInfoNotifier =
+        Provider.of<MostFouledRCPlayersStatsAndInfoNotifier>(context,
+            listen: false);
+    getMostFouledRCPlayersStatsAndInfo(mostFouledRCPlayersStatsAndInfoNotifier);
+
+    TopGoalsPlayersStatsAndInfoNotifier topGoalsPlayersStatsAndInfoNotifier =
+        Provider.of<TopGoalsPlayersStatsAndInfoNotifier>(context,
+            listen: false);
+    getTopGoalsPlayersStatsAndInfo(topGoalsPlayersStatsAndInfoNotifier);
+
+    TopGKPlayersStatsAndInfoNotifier topGKPlayersStatsAndInfoNotifier =
+        Provider.of<TopGKPlayersStatsAndInfoNotifier>(context, listen: false);
+    getTopGKPlayersStatsAndInfo(topGKPlayersStatsAndInfoNotifier);
+
+    TopDefensivePlayersStatsAndInfoNotifier
+        topDefensivePlayersStatsAndInfoNotifier =
+        Provider.of<TopDefensivePlayersStatsAndInfoNotifier>(context,
+            listen: false);
+    getTopDefensivePlayersStatsAndInfo(topDefensivePlayersStatsAndInfoNotifier);
+
+    MOTMPlayersStatsAndInfoNotifier mOTMPlayersStatsAndInfoNotifier =
+        Provider.of<MOTMPlayersStatsAndInfoNotifier>(context, listen: false);
+    getMOTMPlayersStatsAndInfo(mOTMPlayersStatsAndInfoNotifier);
+
+    CumMOTMPlayersStatsAndInfoNotifier cumMOTMPlayersStatsAndInfoNotifier =
+        Provider.of<CumMOTMPlayersStatsAndInfoNotifier>(context, listen: false);
+    getCumMOTMPlayersStatsAndInfo(cumMOTMPlayersStatsAndInfoNotifier);
+
+    TrainingsAndGamesReelsNotifier trainingsAndGamesReelsNotifier =
+        Provider.of<TrainingsAndGamesReelsNotifier>(context, listen: false);
+    getTrainingsAndGamesReels(trainingsAndGamesReelsNotifier);
+
+    PlayerOfTheMonthStatsAndInfoNotifier playerOfTheMonthStatsAndInfoNotifier =
+        Provider.of<PlayerOfTheMonthStatsAndInfoNotifier>(context,
+            listen: false);
+    getPlayerOfTheMonthStatsAndInfo(playerOfTheMonthStatsAndInfoNotifier);
+
+    FoundersReviewsCommentNotifier foundersReviewsCommentNotifier =
+        Provider.of<FoundersReviewsCommentNotifier>(context, listen: false);
+    getFoundersReviewsComment(foundersReviewsCommentNotifier);
 
     startTime();
 
