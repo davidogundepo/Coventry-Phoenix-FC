@@ -131,15 +131,6 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                           details.rowColumnIndex.rowIndex > 0) {
                         DataGridRow row = playersTableDataSource.effectiveRows
                             .elementAt(details.rowColumnIndex.rowIndex - 1);
-                        // int playerIndex =
-                        //     playersTableDataSource.dataGridRows.indexOf(row);
-                        // firstTeamClassNotifier.currentFirstTeamClass =
-                        //     firstTeamClassNotifier
-                        //         .firstTeamClassList[playerIndex];
-                        // firstTeamClassNotifier.currentFirstTeamClass =
-                        //     firstTeamClassNotifier.firstTeamClassList
-                        //         .where((element) => element.name == 'player_name')
-                        //         .first;
 
                         String playerName = row
                             .getCells()
@@ -147,6 +138,44 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                                 element.columnName == 'player_name')
                             .value
                             .toString();
+
+                        var firstTeamPlayer = firstTeamClassNotifier
+                            .firstTeamClassList
+                            .firstWhereOrNull(
+                                (element) => element.name == playerName);
+
+                        var secondTeamPlayer = secondTeamClassNotifier
+                            .secondTeamClassList
+                            .firstWhereOrNull(
+                                (element) => element.name == playerName);
+
+                        if (firstTeamPlayer != null) {
+                          firstTeamClassNotifier.currentFirstTeamClass =
+                              firstTeamPlayer;
+
+                          navigateToSubPage(context);
+
+                          Toast.show("Loading up $playerName",
+                              duration: Toast.lengthLong,
+                              gravity: Toast.bottom,
+                              backgroundRadius: 10);
+                        } else if (secondTeamPlayer != null) {
+                          secondTeamClassNotifier.currentSecondTeamClass =
+                              secondTeamPlayer;
+                          navigateToSecondTeamClassDetailsPage(context);
+
+                          Toast.show("Loading up $playerName",
+                              duration: Toast.lengthLong,
+                              gravity: Toast.bottom,
+                              backgroundRadius: 10);
+                        } else {
+                          Toast.show("Ummmm, we can't find $playerName",
+                              duration: Toast.lengthLong,
+                              gravity: Toast.bottom,
+                              backgroundRadius: 10);
+                        }
+
+
                         // Toast.show("Loading up $playerName",
                         //     duration: Toast.lengthLong,
                         //     gravity: Toast.bottom,
@@ -762,7 +791,7 @@ class PlayersTableDataSource extends DataGridSource {
                             gravity: Toast.bottom,
                             backgroundRadius: 10);
                       } else {
-                        Toast.show("Loading up Instagram.com",
+                        Toast.show("Ummmm, we can't find $playerName",
                             duration: Toast.lengthLong,
                             gravity: Toast.bottom,
                             backgroundRadius: 10);
