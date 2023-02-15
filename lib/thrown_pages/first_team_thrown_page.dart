@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coventry_phoenix_fc/api/second_team_class_api.dart';
+import 'package:coventry_phoenix_fc/notifier/second_team_class_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +12,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 import '../bottom_nav_stats_pages/bottom_navigator.dart';
+import '../notifier/third_team_class_notifier.dart';
 import '../thrown_searches/first_team_thrown_search.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../about_menu_details_pages/about_app.dart';
@@ -389,6 +392,13 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
     FirstTeamClassNotifier firstTeamClassNotifier =
         Provider.of<FirstTeamClassNotifier>(context, listen: false);
     getFirstTeamClass(firstTeamClassNotifier);
+
+    SecondTeamClassNotifier secondTeamClassNotifier =
+    Provider.of<SecondTeamClassNotifier>(context, listen: false);
+    getSecondTeamClass(secondTeamClassNotifier);
+
+    ThirdTeamClassNotifier thirdTeamClassNotifier = Provider.of<ThirdTeamClassNotifier>(context, listen: false);
+
     startTime();
 
     setState(() {

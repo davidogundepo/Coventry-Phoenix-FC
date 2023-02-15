@@ -318,9 +318,11 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
   @override
   void initState() {
     // getDataFromFirestore();
-    playersTableDataSource = PlayersTableDataSource(playersTableList);
-    playersTableDataSource.sortedColumns.add(const SortColumnDetails(
-        name: 'goals_scored', sortDirection: DataGridSortDirection.descending));
+    // if (playersTableList.isEmpty) {
+      playersTableDataSource = PlayersTableDataSource(playersTableList);
+      playersTableDataSource.sortedColumns.add(const SortColumnDetails(
+          name: 'goals_scored', sortDirection: DataGridSortDirection.descending));
+    // }
     super.initState();
 
     SystemChrome.setPreferredOrientations([

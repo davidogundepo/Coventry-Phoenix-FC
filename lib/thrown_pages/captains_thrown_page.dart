@@ -232,6 +232,7 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
 
     CaptainsNotifier captainsNotifier = Provider.of<CaptainsNotifier>(context, listen: false);
     getCaptains(captainsNotifier);
+
     super.initState();
   }
 
