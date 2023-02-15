@@ -730,24 +730,6 @@ class PlayersTableDataSource extends DataGridSource {
                               (element) => element.columnName == 'player_name')
                           .value
                           .toString();
-                      // Toast.show("Loading up $playerName",
-                      //     duration: Toast.lengthLong,
-                      //     gravity: Toast.bottom,
-                      //     backgroundRadius: 10);
-
-                      ///
-                      // dynamic playerIndex = dataGridRows.indexOf(row);
-                      // firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[playerIndex];
-                      // if (firstTeamClassNotifier.currentFirstTeamClass == firstTeamClassNotifier.firstTeamClassList
-                      //     .where((element) => element.name == playerName)
-                      //     .first) {
-                      //   navigateToSubPage(context);
-                      // }
-                      // else if (){}
-                      // firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList.where((element) => element.name == playerName).first;
-
-                      // secondTeamClassNotifier.currentSecondTeamClass = secondTeamClassNotifier.secondTeamClassList.where((element) => element.name == playerName).first;
-                      // navigateToSecondTeamClassDetailsPage(context);
 
                       var firstTeamPlayer = firstTeamClassNotifier
                           .firstTeamClassList
