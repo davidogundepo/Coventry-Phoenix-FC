@@ -1,7 +1,4 @@
-
-
 class FoundersReviewsComment {
-
   String? id;
   String? name;
   String? image;
@@ -15,5 +12,4 @@ class FoundersReviewsComment {
     date = data['date'];
     comment = data['comment'];
   }
-
 }

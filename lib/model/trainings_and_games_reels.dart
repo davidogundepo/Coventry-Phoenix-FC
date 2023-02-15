@@ -1,7 +1,4 @@
-
-
 class TrainingsAndGamesReels {
-
   String? id;
   String? image;
 
@@ -9,5 +6,4 @@ class TrainingsAndGamesReels {
     id = data['id'];
     image = data['image'];
   }
-
 }

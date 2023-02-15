@@ -4,31 +4,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
+
 import '../api/cum_motm_players_stats_info_api.dart';
-import '../api/motm_players_stats_info_api.dart';
-import '../notifier/cum_motm_players_stats_info_notifier.dart';
-import '../notifier/motm_players_stats_info_notifier.dart';
 import '../api/most_assists_players_stats_info_api.dart';
 import '../api/most_fouled_rc_players_stats_info_api.dart';
 import '../api/most_fouled_yc_players_stats_info_api.dart';
+import '../api/motm_players_stats_info_api.dart';
 import '../api/player_of_the_month_stats_info_api.dart';
 import '../api/top_defensive_players_stats_info_api.dart';
 import '../api/top_gk_players_stats_info_api.dart';
 import '../api/top_goals_players_stats_info_api.dart';
+import '../api/trainings_games_reels_api.dart';
+import '../notifier/cum_motm_players_stats_info_notifier.dart';
 import '../notifier/most_assists_players_stats_info_notifier.dart';
 import '../notifier/most_fouled_rc_players_stats_info_notifier.dart';
 import '../notifier/most_fouled_yc_players_stats_info_notifier.dart';
+import '../notifier/motm_players_stats_info_notifier.dart';
 import '../notifier/player_of_the_month_stats_info_notifier.dart';
 import '../notifier/top_defensive_players_stats_info_notifier.dart';
 import '../notifier/top_gk_players_stats_info_notifier.dart';
 import '../notifier/top_goals_players_stats_info_notifier.dart';
-import '../api/trainings_games_reels_api.dart';
 import '../notifier/trainings_games_reels_notifier.dart';
 import 'players_stats_info_page.dart';
 import 'players_table_page.dart';
-import 'season_timeline_page.dart';
 import 'trainings_games_reels_page.dart';
-import 'package:provider/provider.dart';
 
 late TrainingsAndGamesReelsNotifier trainingsAndGamesReelsNotifier;
 late PlayerOfTheMonthStatsAndInfoNotifier playerOfTheMonthStatsAndInfoNotifier;
@@ -46,8 +46,7 @@ late MOTMPlayersStatsAndInfoNotifier motmPlayersStatsAndInfoNotifier;
 late CumMOTMPlayersStatsAndInfoNotifier cumMOTMPlayersStatsAndInfoNotifier;
 
 Color? backgroundColor = const Color.fromRGBO(34, 40, 49, 1);
-Color? cardBackgroundColorTwo =
-    const Color.fromRGBO(34, 40, 49, 0.6);
+Color? cardBackgroundColorTwo = const Color.fromRGBO(34, 40, 49, 0.6);
 Color? cardBackgroundColor = const Color.fromRGBO(57, 62, 70, 1);
 Color? goalsScoredTextColor = const Color.fromRGBO(255, 141, 41, 1);
 Color? appBarIconColor = const Color.fromRGBO(255, 141, 41, 1);

@@ -1,15 +1,17 @@
 import 'dart:async';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:coventry_phoenix_fc/details_pages/second_team_details_page.dart';
 import 'package:coventry_phoenix_fc/notifier/second_team_class_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:toast/toast.dart';
-import 'package:collection/collection.dart';
+
 import '../details_pages/first_team_details_page.dart';
 import '../notifier/first_team_class_notifier.dart';
 

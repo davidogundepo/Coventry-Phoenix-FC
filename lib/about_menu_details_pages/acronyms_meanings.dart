@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 String clubName = "Coventry Phoenix FC";
 String acronymTitle = "Acronym Meanings";
-String acronym = "The following acronym(s) are used in the apps and their meanings are detailed.";
+String acronym =
+    "The following acronym(s) are used in the apps and their meanings are detailed.";
 String icdat = "ICDAT - I Can Do All Things\n\n";
 String cpfc = "CPFC - Coventry Phoenix FC\n\n";
 String apt = "A.P.T. - All Players Table\n\n";
@@ -32,8 +33,6 @@ String rw = "RW - Right Winger\n\n";
 String cf = "CF - Center Forward\n\n";
 String goalsConceded = "Goals Con. - Goals Conceded\n\n";
 String stars = "** - Flawed or Not Accurate Info\n\n";
-
-
 
 Color backgroundColor = const Color.fromRGBO(58, 31, 41, 1);
 Color appBarTextColor = Colors.white;
@@ -84,13 +83,14 @@ class _AcronymsMeaningsState extends State<AcronymsMeanings> {
                 elevation: 10,
                 margin: const EdgeInsets.all(20),
                 child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                  stream: FirebaseFirestore.instance.collection('SliversPages').doc('non_slivers_pages').snapshots(),
+                  stream: FirebaseFirestore.instance
+                      .collection('SliversPages')
+                      .doc('non_slivers_pages')
+                      .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       return const SizedBox(
-                          height: 300,
-                          child: CircularProgressIndicator()
-                      );
+                          height: 300, child: CircularProgressIndicator());
                     }
                     return Container(
                       height: 300,
@@ -99,13 +99,10 @@ class _AcronymsMeaningsState extends State<AcronymsMeanings> {
                               image: CachedNetworkImageProvider(
                                 snapshot.data?.data()!['acronyms_page'],
                               ),
-                              fit: BoxFit.cover
-                          )
-                      ),
+                              fit: BoxFit.cover)),
                     );
                   },
-                )
-            ),
+                )),
             Card(
               margin: const EdgeInsets.all(20),
               color: cardBackgroundColor,
@@ -127,8 +124,7 @@ class _AcronymsMeaningsState extends State<AcronymsMeanings> {
                             style: TextStyle(
                                 fontSize: 25,
                                 fontStyle: FontStyle.italic,
-                                color: headingCardTextColor
-                                    .withAlpha(220),
+                                color: headingCardTextColor.withAlpha(220),
                                 fontWeight: FontWeight.w700),
                           ),
                         ),
@@ -360,7 +356,6 @@ class _AcronymsMeaningsState extends State<AcronymsMeanings> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-
                             ],
                           ),
                         ),

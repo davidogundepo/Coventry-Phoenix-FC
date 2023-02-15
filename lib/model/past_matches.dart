@@ -22,5 +22,4 @@ class PastMatches {
     homeTeamIcon = data['home_team_icon'];
     awayTeamIcon = data['away_team_icon'];
   }
-
 }

@@ -1,5 +1,7 @@
 import 'dart:collection';
+
 import 'package:flutter/cupertino.dart';
+
 import '../model/past_matches.dart';
 
 class PastMatchesNotifier with ChangeNotifier {

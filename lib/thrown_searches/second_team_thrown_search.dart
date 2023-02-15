@@ -1,9 +1,9 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+
 import '../details_pages/second_team_details_page.dart';
 import '../notifier/second_team_class_notifier.dart';
 
@@ -26,7 +26,6 @@ Color textHighlightColor = Colors.white;
 dynamic queryTech;
 
 class MySecondTeamClassSearch extends SearchDelegate {
-
   final List? all;
 
   final bool _isVisible = true;
@@ -40,16 +39,21 @@ class MySecondTeamClassSearch extends SearchDelegate {
         primarySwatch: Colors.deepOrange,
         appBarTheme: AppBarTheme(backgroundColor: cardBackgroundColor),
         primaryIconTheme: IconThemeData(color: appBarIconColor),
-        textTheme: TextTheme(subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
+        textTheme: TextTheme(
+            subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: TextStyle(color: appBarTextColor.withAlpha(60)),
-        ), textSelectionTheme: TextSelectionThemeData(cursorColor: appBarTextColor)
-    );
+        ),
+        textSelectionTheme:
+            TextSelectionThemeData(cursorColor: appBarTextColor));
     return theme;
   }
 
   Future navigateToSecondTeamClassDetailsPage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const SecondTeamClassDetailsPage()));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const SecondTeamClassDetailsPage()));
   }
 
   @override
@@ -60,23 +64,20 @@ class MySecondTeamClassSearch extends SearchDelegate {
           visible: true,
           child: IconButton(
             icon: const Visibility(
-                visible: true,
-                child: Icon(MdiIcons.closeCircleOutline)),
+                visible: true, child: Icon(MdiIcons.closeCircleOutline)),
             onPressed: () {
               query = '';
             },
           ),
         )
       ];
-    }
-    else {
+    } else {
       return [
         Visibility(
           visible: false,
           child: IconButton(
             icon: const Visibility(
-                visible: false,
-                child: Icon(MdiIcons.closeCircleOutline)),
+                visible: false, child: Icon(MdiIcons.closeCircleOutline)),
             onPressed: () {
               query = '';
             },
@@ -105,7 +106,9 @@ class MySecondTeamClassSearch extends SearchDelegate {
       query2 = query1[0].toUpperCase() + query1.substring(1);
     }
 
-    var search = all?.where((secondTeamClass) => secondTeamClass.name.contains(query2)).toList();
+    var search = all
+        ?.where((secondTeamClass) => secondTeamClass.name.contains(query2))
+        .toList();
 
     return search == null
         ? _buildProgressIndicator()
@@ -114,7 +117,6 @@ class MySecondTeamClassSearch extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-
     String query1;
     queryTech = "";
     if (query.isNotEmpty) {
@@ -124,11 +126,11 @@ class MySecondTeamClassSearch extends SearchDelegate {
 
     List? search;
 
-    if(queryTech.isNotEmpty){
-      search =all?.where((secondTeamClass) => secondTeamClass.name.contains(queryTech)).toList();
-
-
-    }else{
+    if (queryTech.isNotEmpty) {
+      search = all
+          ?.where((secondTeamClass) => secondTeamClass.name.contains(queryTech))
+          .toList();
+    } else {
       search = all;
     }
 
@@ -148,8 +150,8 @@ class MySecondTeamClassSearch extends SearchDelegate {
               shrinkWrap: true,
               itemCount: search.length,
               itemBuilder: (BuildContext context, int position) {
-
-                SecondTeamClassNotifier secondTeamClassNotifier = Provider.of<SecondTeamClassNotifier>(context);
+                SecondTeamClassNotifier secondTeamClassNotifier =
+                    Provider.of<SecondTeamClassNotifier>(context);
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Container(
@@ -157,16 +159,15 @@ class MySecondTeamClassSearch extends SearchDelegate {
                       borderRadius: BorderRadius.circular(10),
                       color: borderColor.withAlpha(50),
                     ),
-
                     child: Material(
                       color: materialBackgroundColor,
                       child: InkWell(
                         splashColor: splashColor,
                         onTap: () {
-                          secondTeamClassNotifier.currentSecondTeamClass = search[position];
+                          secondTeamClassNotifier.currentSecondTeamClass =
+                              search[position];
                           navigateToSecondTeamClassDetailsPage(context);
                         },
-
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
@@ -176,15 +177,14 @@ class MySecondTeamClassSearch extends SearchDelegate {
                                 width: 100,
                                 height: 100,
                                 decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10)),
                                     image: DecorationImage(
                                         alignment: const Alignment(0, -1),
                                         image: CachedNetworkImageProvider(
-                                            search[position].image
-                                        ),
-                                        fit: BoxFit.cover
-                                    )
-                                ),
+                                            search[position].image),
+                                        fit: BoxFit.cover)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 60),
@@ -197,34 +197,42 @@ class MySecondTeamClassSearch extends SearchDelegate {
                                         children: <Widget>[
                                           RichText(
                                             text: TextSpan(
-                                                text: search[position].name.substring(0, queryTech.length),
+                                                text: search[position]
+                                                    .name
+                                                    .substring(
+                                                        0, queryTech.length),
                                                 style: GoogleFonts.tenorSans(
                                                     color: textColor,
                                                     fontSize: 13.5,
-                                                    fontWeight: FontWeight.w600
-                                                ),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                                 children: [
                                                   TextSpan(
-                                                      text: search[position].name.substring(queryTech.length),
-                                                      style: GoogleFonts.tenorSans(color: textHighlightColor))
+                                                      text: search[position]
+                                                          .name
+                                                          .substring(
+                                                              queryTech.length),
+                                                      style: GoogleFonts.tenorSans(
+                                                          color:
+                                                              textHighlightColor))
                                                 ]),
                                           ),
                                           (() {
-                                            if (search[position].captain == "Yes") {
-                                              return
-                                                Row(
-                                                  children: <Widget>[
-                                                    const SizedBox(width: 10),
-                                                    Icon (
-                                                      MdiIcons.shieldCheck,
-                                                      color: iconColor,
-                                                    ),
-                                                  ],
-                                                );
+                                            if (search[position].captain ==
+                                                "Yes") {
+                                              return Row(
+                                                children: <Widget>[
+                                                  const SizedBox(width: 10),
+                                                  Icon(
+                                                    MdiIcons.shieldCheck,
+                                                    color: iconColor,
+                                                  ),
+                                                ],
+                                              );
                                             } else {
                                               return Visibility(
                                                 visible: !_isVisible,
-                                                child: Icon (
+                                                child: Icon(
                                                   MdiIcons.shieldCheck,
                                                   color: iconColor,
                                                 ),
@@ -240,14 +248,11 @@ class MySecondTeamClassSearch extends SearchDelegate {
                                           search[position].positionPlaying,
                                           style: GoogleFonts.varela(
                                               color: textColorTwo,
-                                              fontStyle: FontStyle.italic
-                                          )
-                                      ),
+                                              fontStyle: FontStyle.italic)),
                                     ),
                                   ],
                                 ),
                               )
-
                             ],
                           ),
                         ),
@@ -255,8 +260,7 @@ class MySecondTeamClassSearch extends SearchDelegate {
                     ),
                   ),
                 );
-              }
-          ),
+              }),
         ),
       ),
     );
@@ -269,5 +273,4 @@ class MySecondTeamClassSearch extends SearchDelegate {
       ),
     );
   }
-
 }

@@ -1,11 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:provider/provider.dart';
+
 import '../api/trainings_games_reels_api.dart';
 import '../notifier/trainings_games_reels_notifier.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:provider/provider.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:line_icons/line_icons.dart';
 
 late TrainingsAndGamesReelsNotifier trainingsAndGamesReelsNotifier;
 
@@ -79,7 +80,7 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
                           color: const Color.fromRGBO(255, 141, 41, 0.7),
                           icon: InkWell(
                               highlightColor:
-                                  const Color.fromRGBO(255, 141, 41, 0.7),
+                              const Color.fromRGBO(255, 141, 41, 0.7),
                               borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(15)),
                               onTap: () {
@@ -157,7 +158,7 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
         color: Colors.transparent,
         borderRadius: const BorderRadius.all(Radius.circular(15)),
         border:
-            Border.all(color: const Color.fromRGBO(255, 141, 41, 1), width: 2),
+        Border.all(color: const Color.fromRGBO(255, 141, 41, 1), width: 2),
       ),
       child: Ink(
         decoration: BoxDecoration(

@@ -12,5 +12,4 @@ class Captains {
     teamCaptaining = data['team_captaining'];
     name = data['name'];
   }
-
 }

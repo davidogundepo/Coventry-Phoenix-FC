@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
+
 import '../model/captains.dart';
 
 class CaptainsNotifier with ChangeNotifier {

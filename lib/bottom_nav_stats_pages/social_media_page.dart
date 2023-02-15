@@ -1,14 +1,14 @@
+import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+
 import '../main.dart';
 
 String twitterUsernameID = 'CovPhoenixFC';
 String facebookUsernameID = '627500899180951';
 String instagramUsernameID = 'Cog4e0egTOu';
-
 
 String clubAcronym = 'CPFC';
 String titleText = "Tweets, Grams, Posts | CPFC";
@@ -16,7 +16,6 @@ String titleText = "Tweets, Grams, Posts | CPFC";
 Color colorBack = const Color.fromRGBO(58, 56, 69, 1);
 
 class SocialMediaPage extends StatefulWidget {
-
   const SocialMediaPage({Key? key}) : super(key: key);
 
   @override
@@ -58,10 +57,8 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
             appBar: AppBar(
               centerTitle: true,
               title: Text(titleText,
-                  style: const TextStyle(
-                      color: Color(0xffB1BCE6),
-                  fontSize: 17
-                  )),
+                  style:
+                      const TextStyle(color: Color(0xffB1BCE6), fontSize: 17)),
               leading: IconButton(
                 icon: Icon(Icons.arrow_back_ios, color: appBarIconColor),
                 onPressed: () {
@@ -92,7 +89,7 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
                     child: InAppWebView(
                       initialOptions: InAppWebViewGroupOptions(
                           crossPlatform:
-                              InAppWebViewOptions(transparentBackground: true)),
+                          InAppWebViewOptions(transparentBackground: true)),
                       initialData: InAppWebViewInitialData(data: '''
                               <!DOCTYPE html><html>
                               <head>

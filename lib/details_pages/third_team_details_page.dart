@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
-import '../notifier/third_team_class_notifier.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../notifier/third_team_class_notifier.dart';
 
 String clubName = "Coventry Phoenix FC";
 
@@ -62,20 +62,19 @@ String hobbiesTitle = "My Hobbies\n";
 String philosophyTitle = "My Philosophy about Life\n";
 String droplineTitle = "My Dropline to my fellow $clubName footballers\n";
 
-
 String facebookProfileSharedPreferencesTitle = "Manual Website Search";
-String facebookProfileSharedPreferencesContentOne= "Apparently, you'd need to search manually for ";
+String facebookProfileSharedPreferencesContentOne =
+    "Apparently, you'd need to search manually for ";
 String facebookProfileSharedPreferencesContentTwo = ", on Facebook.com";
 String facebookProfileSharedPreferencesButton = "Go to Facebook";
 String facebookProfileSharedPreferencesButtonTwo = "Lol, No";
 
 String linkedInProfileSharedPreferencesTitle = "Manual Website Search";
-String linkedInProfileSharedPreferencesContentOne= "Apparently, you'd need to search manually for ";
+String linkedInProfileSharedPreferencesContentOne =
+    "Apparently, you'd need to search manually for ";
 String linkedInProfileSharedPreferencesContentTwo = ", on LinkedIn.com";
 String linkedInProfileSharedPreferencesButton = "Go to LinkedIn";
 String linkedInProfileSharedPreferencesButtonTwo = "Lol, No";
-
-
 
 Color backgroundColor = const Color.fromRGBO(237, 242, 244, 1);
 Color appBarTextColor = const Color.fromRGBO(73, 80, 87, 1.0);
@@ -93,8 +92,6 @@ Color iconTextColorTwo = const Color.fromRGBO(237, 242, 244, 1);
 Color buttonColor = const Color.fromRGBO(237, 242, 244, 1);
 Color textColor = const Color.fromRGBO(237, 242, 244, 1);
 
-
-
 Color confettiColorOne = Colors.green;
 Color confettiColorTwo = Colors.blue;
 Color confettiColorThree = Colors.pink;
@@ -108,15 +105,11 @@ Color confettiColorTen = Colors.teal;
 Color confettiColorEleven = Colors.indigoAccent;
 Color confettiColorTwelve = Colors.cyan;
 
-
-
 late ThirdTeamClassNotifier thirdTeamClassNotifier;
 
 Map<int, Widget>? userBIO;
 
-
 var crossFadeView = CrossFadeState.showFirst;
-
 
 dynamic _autoBio;
 dynamic _bestMoment;
@@ -154,7 +147,8 @@ class ThirdTeamClassDetailsPage extends StatefulWidget {
   final String? title;
 
   @override
-  State<ThirdTeamClassDetailsPage> createState() => _ThirdTeamClassDetailsPage();
+  State<ThirdTeamClassDetailsPage> createState() =>
+      _ThirdTeamClassDetailsPage();
 }
 
 class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
@@ -179,8 +173,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    thirdTeamClassNotifier = Provider.of<ThirdTeamClassNotifier>(context, listen: true);
+    thirdTeamClassNotifier =
+        Provider.of<ThirdTeamClassNotifier>(context, listen: true);
 
     return ConfettiWidget(
       confettiController: _confettiController!,
@@ -207,7 +201,9 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
           title: Text(
             thirdTeamClassNotifier.currentThirdTeamClass.nickname!,
             style: GoogleFonts.sanchez(
-                color: appBarTextColor, fontSize: 25, fontWeight: FontWeight.w400),
+                color: appBarTextColor,
+                fontSize: 25,
+                fontWeight: FontWeight.w400),
           ),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
@@ -230,14 +226,17 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-
-              if (thirdTeamClassNotifier.currentThirdTeamClass.imageTwo.toString().isEmpty) ... [
+              if (thirdTeamClassNotifier.currentThirdTeamClass.imageTwo
+                  .toString()
+                  .isEmpty) ...[
                 Tooltip(
                     message: thirdTeamClassNotifier.currentThirdTeamClass.name,
                     child: GestureDetector(
                       onTap: () => setState(() {
-                        crossFadeView = crossFadeView == CrossFadeState.showFirst
-                            ? CrossFadeState.showSecond : CrossFadeState.showFirst;
+                        crossFadeView =
+                            crossFadeView == CrossFadeState.showFirst
+                                ? CrossFadeState.showSecond
+                                : CrossFadeState.showFirst;
                       }),
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height * .64,
@@ -251,37 +250,42 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: AnimatedCrossFade(
-                            crossFadeState: crossFadeView == CrossFadeState.showFirst
-                                ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                            crossFadeState:
+                                crossFadeView == CrossFadeState.showFirst
+                                    ? CrossFadeState.showSecond
+                                    : CrossFadeState.showFirst,
                             duration: const Duration(milliseconds: 1000),
                             firstChild: CachedNetworkImage(
-                              imageUrl: thirdTeamClassNotifier.currentThirdTeamClass.image!,
+                              imageUrl: thirdTeamClassNotifier
+                                  .currentThirdTeamClass.image!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                              const Icon(MdiIcons.alertRhombus),
+                                  const Icon(MdiIcons.alertRhombus),
                             ),
                             secondChild: CachedNetworkImage(
-                              imageUrl: thirdTeamClassNotifier.currentThirdTeamClass.image!,
+                              imageUrl: thirdTeamClassNotifier
+                                  .currentThirdTeamClass.image!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                              const Icon(MdiIcons.alertRhombus),
+                                  const Icon(MdiIcons.alertRhombus),
                             ),
                           ),
                         ),
                       ),
                     )),
-              ]
-              else ... [
+              ] else ...[
                 Tooltip(
                     message: thirdTeamClassNotifier.currentThirdTeamClass.name,
                     child: GestureDetector(
                       onTap: () => setState(() {
-                        crossFadeView = crossFadeView == CrossFadeState.showFirst
-                            ? CrossFadeState.showSecond : CrossFadeState.showFirst;
+                        crossFadeView =
+                            crossFadeView == CrossFadeState.showFirst
+                                ? CrossFadeState.showSecond
+                                : CrossFadeState.showFirst;
                       }),
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width,
@@ -294,31 +298,34 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: AnimatedCrossFade(
-                            crossFadeState: crossFadeView == CrossFadeState.showFirst
-                                ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                            crossFadeState:
+                                crossFadeView == CrossFadeState.showFirst
+                                    ? CrossFadeState.showSecond
+                                    : CrossFadeState.showFirst,
                             duration: const Duration(milliseconds: 1000),
                             firstChild: CachedNetworkImage(
-                              imageUrl: thirdTeamClassNotifier.currentThirdTeamClass.image!,
+                              imageUrl: thirdTeamClassNotifier
+                                  .currentThirdTeamClass.image!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                              const Icon(MdiIcons.alertRhombus),
+                                  const Icon(MdiIcons.alertRhombus),
                             ),
                             secondChild: CachedNetworkImage(
-                              imageUrl: thirdTeamClassNotifier.currentThirdTeamClass.imageTwo!,
+                              imageUrl: thirdTeamClassNotifier
+                                  .currentThirdTeamClass.imageTwo!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                              const Icon(MdiIcons.alertRhombus),
+                                  const Icon(MdiIcons.alertRhombus),
                             ),
                           ),
                         ),
                       ),
                     )),
               ],
-
               Material(
                 color: materialBackgroundColor,
                 child: InkWell(
@@ -328,8 +335,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                     elevation: 4,
                     shape: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color:
-                              shapeDecorationColor.withOpacity(0.70),
+                          color: shapeDecorationColor.withOpacity(0.70),
                           width: 4.0,
                           style: BorderStyle.solid),
                     ),
@@ -343,28 +349,30 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Text(
-                              thirdTeamClassNotifier.currentThirdTeamClass.name!.toUpperCase(),
+                              thirdTeamClassNotifier.currentThirdTeamClass.name!
+                                  .toUpperCase(),
                               style: GoogleFonts.blinker(
                                   color: shapeDecorationTextColor,
                                   fontSize: 30,
                                   fontWeight: FontWeight.w500),
                             ),
                             (() {
-                              if (thirdTeamClassNotifier.currentThirdTeamClass.captain == "Yes") {
-                                return
-                                  Row(
-                                    children: <Widget>[
-                                      const SizedBox(width: 10),
-                                      Icon (
-                                        MdiIcons.shieldCheck,
-                                        color: shapeDecorationTextColor,
-                                      ),
-                                    ],
-                                  );
+                              if (thirdTeamClassNotifier
+                                      .currentThirdTeamClass.captain ==
+                                  "Yes") {
+                                return Row(
+                                  children: <Widget>[
+                                    const SizedBox(width: 10),
+                                    Icon(
+                                      MdiIcons.shieldCheck,
+                                      color: shapeDecorationTextColor,
+                                    ),
+                                  ],
+                                );
                               } else {
                                 return Visibility(
                                   visible: !_isVisible,
-                                  child: Icon (
+                                  child: Icon(
                                     MdiIcons.shieldCheck,
                                     color: shapeDecorationTextColor,
                                   ),
@@ -398,8 +406,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         child: CupertinoSlidingSegmentedControl<int>(
                           padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
                           thumbColor: cardBackgroundColor,
-                          backgroundColor:
-                          shapeDecorationColor.withAlpha(50),
+                          backgroundColor: shapeDecorationColor.withAlpha(50),
                           children: {
                             0: Text(
                               reachDetails,
@@ -442,22 +449,24 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
 
   @override
   initState() {
-
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
 
-    _confettiController = ConfettiController(duration: const Duration(seconds: 77));
+    _confettiController =
+        ConfettiController(duration: const Duration(seconds: 77));
     _confettiController!.play();
 
-    ThirdTeamClassNotifier thirdTeamClassNotifier = Provider.of<ThirdTeamClassNotifier>(context, listen: false);
+    ThirdTeamClassNotifier thirdTeamClassNotifier =
+        Provider.of<ThirdTeamClassNotifier>(context, listen: false);
 
     _autoBio = thirdTeamClassNotifier.currentThirdTeamClass.autoBio;
     _bestMoment = thirdTeamClassNotifier.currentThirdTeamClass.bestMoment;
     _dob = thirdTeamClassNotifier.currentThirdTeamClass.dob;
     _dreamFC = thirdTeamClassNotifier.currentThirdTeamClass.dreamFC;
-    _positionPlaying = thirdTeamClassNotifier.currentThirdTeamClass.positionPlaying;
+    _positionPlaying =
+        thirdTeamClassNotifier.currentThirdTeamClass.positionPlaying;
     _email = thirdTeamClassNotifier.currentThirdTeamClass.email;
     _facebook = thirdTeamClassNotifier.currentThirdTeamClass.facebook;
     _linkedIn = thirdTeamClassNotifier.currentThirdTeamClass.linkedIn;
@@ -475,12 +484,17 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
     _twitter = thirdTeamClassNotifier.currentThirdTeamClass.twitter;
     _snapchat = thirdTeamClassNotifier.currentThirdTeamClass.snapchat;
     _tikTok = thirdTeamClassNotifier.currentThirdTeamClass.tikTok;
-    _otherPositionsOfPlay = thirdTeamClassNotifier.currentThirdTeamClass.otherPositionsOfPlay;
-    _favFootballLegend = thirdTeamClassNotifier.currentThirdTeamClass.favFootballLegend;
-    _yearOfInception = thirdTeamClassNotifier.currentThirdTeamClass.yearOfInception;
-    _leftOrRightFooted = thirdTeamClassNotifier.currentThirdTeamClass.leftOrRightFooted;
+    _otherPositionsOfPlay =
+        thirdTeamClassNotifier.currentThirdTeamClass.otherPositionsOfPlay;
+    _favFootballLegend =
+        thirdTeamClassNotifier.currentThirdTeamClass.favFootballLegend;
+    _yearOfInception =
+        thirdTeamClassNotifier.currentThirdTeamClass.yearOfInception;
+    _leftOrRightFooted =
+        thirdTeamClassNotifier.currentThirdTeamClass.leftOrRightFooted;
     _adidasOrNike = thirdTeamClassNotifier.currentThirdTeamClass.adidasOrNike;
-    _ronaldoOrMessi = thirdTeamClassNotifier.currentThirdTeamClass.ronaldoOrMessi;
+    _ronaldoOrMessi =
+        thirdTeamClassNotifier.currentThirdTeamClass.ronaldoOrMessi;
     _worstMoment = thirdTeamClassNotifier.currentThirdTeamClass.worstMoment;
 
     userBIO = <int, Widget>{
@@ -513,9 +527,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                     onPressed: () {
                       if (_phone.toString().startsWith('0')) {
                         var most = _phone.toString().substring(1);
-                        launchURL(callFIRST +most);
-                      }
-                      else {
+                        launchURL(callFIRST + most);
+                      } else {
                         launchURL(callFIRST + _phone);
                       }
                     },
@@ -530,12 +543,12 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(
                         MdiIcons.dialpad,
                         color: iconTextColor,
@@ -554,7 +567,6 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
               );
             }
           }()),
-
           (() {
             if (_phone.toString().isNotEmpty) {
               return Padding(
@@ -580,9 +592,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                     onPressed: () {
                       if (_phone.toString().startsWith('0')) {
                         var most = _phone.toString().substring(1);
-                        launchURL(smsFIRST +most);
-                      }
-                      else {
+                        launchURL(smsFIRST + most);
+                      } else {
                         launchURL(smsFIRST + _phone);
                       }
                     },
@@ -597,12 +608,12 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(
                         MdiIcons.message,
                         color: iconTextColor,
@@ -621,7 +632,6 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
               );
             }
           }()),
-
           (() {
             if (_phone.toString().isNotEmpty) {
               return Padding(
@@ -647,12 +657,23 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                     onPressed: () {
                       if (_phone.toString().startsWith('0')) {
                         var most = _phone.toString().substring(1);
-                        var firstName = _name.toString().substring(0, _name.toString().indexOf(" "));
-                        launchURL(whatsAppFIRST + most + whatsAppSECOND + firstName + whatsAppTHIRD);
-                      }
-                      else {
-                        var firstName = _name.toString().substring(0, _name.toString().indexOf(" "));
-                        launchURL(whatsAppFIRST + _phone + whatsAppSECOND + firstName + whatsAppTHIRD);
+                        var firstName = _name
+                            .toString()
+                            .substring(0, _name.toString().indexOf(" "));
+                        launchURL(whatsAppFIRST +
+                            most +
+                            whatsAppSECOND +
+                            firstName +
+                            whatsAppTHIRD);
+                      } else {
+                        var firstName = _name
+                            .toString()
+                            .substring(0, _name.toString().indexOf(" "));
+                        launchURL(whatsAppFIRST +
+                            _phone +
+                            whatsAppSECOND +
+                            firstName +
+                            whatsAppTHIRD);
                       }
                     },
                   ),
@@ -666,12 +687,12 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(
                         MdiIcons.message,
                         color: iconTextColor,
@@ -690,7 +711,6 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
               );
             }
           }()),
-
           (() {
             if (_email.toString().isNotEmpty) {
               return Padding(
@@ -727,12 +747,12 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                     child: InkWell(
                       splashColor: splashColorTwo,
                       child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          elevation: 2,
+                          shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                         icon: Icon(
                           MdiIcons.gmail,
                           color: iconTextColor,
@@ -750,7 +770,6 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                   ));
             }
           }()),
-
           (() {
             if (_twitter.toString().isNotEmpty) {
               return Padding(
@@ -769,15 +788,12 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         style: GoogleFonts.abel(
                             color: iconTextColor,
                             fontSize: 18,
-                            fontWeight: FontWeight.w300
-                        )
-                    ),
+                            fontWeight: FontWeight.w300)),
                     onPressed: () {
                       if (_twitter.toString().startsWith('@')) {
                         var most = _twitter.toString().substring(1);
                         launchURL(urlTwitter + most);
-                      }
-                      else {
+                      } else {
                         launchURL(urlTwitter + _twitter);
                       }
                     },
@@ -792,22 +808,20 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(MdiIcons.twitter, color: iconTextColor),
                       label: Text(twitterButton,
                           style: GoogleFonts.abel(
                               color: iconTextColor,
                               fontSize: 18,
-                              fontWeight: FontWeight.w300
-                          )
-                      ),
+                              fontWeight: FontWeight.w300)),
                       onPressed: () {
-                        launchURL(urlTwitter+_twitter);
+                        launchURL(urlTwitter + _twitter);
                       },
                     ),
                   ),
@@ -815,7 +829,6 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
               );
             }
           }()),
-
           (() {
             if (_instagram.toString().isNotEmpty) {
               return Padding(
@@ -842,8 +855,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       if (_instagram.toString().startsWith('@')) {
                         var most = _instagram.toString().substring(1);
                         launchURL(urlInstagram + most);
-                      }
-                      else {
+                      } else {
                         launchURL(urlInstagram + _instagram);
                       }
                     },
@@ -858,12 +870,12 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                     child: InkWell(
                       splashColor: splashColorTwo,
                       child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          elevation: 2,
+                          shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                         icon: Icon(
                           MdiIcons.instagram,
                           color: iconTextColor,
@@ -881,7 +893,6 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                   ));
             }
           }()),
-
           (() {
             if (_snapchat.toString().isNotEmpty) {
               return Padding(
@@ -908,8 +919,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       if (_snapchat.toString().startsWith('@')) {
                         var most = _instagram.toString().substring(1);
                         launchURL(urlSnapchat + most);
-                      }
-                      else {
+                      } else {
                         launchURL(urlSnapchat + _snapchat);
                       }
                     },
@@ -924,12 +934,12 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(
                         MdiIcons.snapchat,
                         color: iconTextColorTwo,
@@ -948,7 +958,6 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
               );
             }
           }()),
-
           (() {
             if (_tikTok.toString().isNotEmpty) {
               return Padding(
@@ -975,8 +984,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       if (_tikTok.toString().startsWith('@')) {
                         var most = _tikTok.toString().substring(1);
                         launchURL(urlTikTok + most);
-                      }
-                      else {
+                      } else {
                         launchURL(urlTikTok + _tikTok);
                       }
                     },
@@ -991,12 +999,12 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: FaIcon(
                         FontAwesomeIcons.tiktok,
                         color: iconTextColorTwo,
@@ -1015,7 +1023,6 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
               );
             }
           }()),
-
           (() {
             if (_facebook.toString().isNotEmpty) {
               return Padding(
@@ -1056,12 +1063,12 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                     child: InkWell(
                       splashColor: splashColorTwo,
                       child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          elevation: 2,
+                          shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                         icon: Icon(
                           MdiIcons.facebook,
                           color: iconTextColor,
@@ -1081,7 +1088,6 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                   ));
             }
           }()),
-
           (() {
             if (_linkedIn.toString().isNotEmpty) {
               return Padding(
@@ -1122,12 +1128,12 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                     child: InkWell(
                       splashColor: splashColorTwo,
                       child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          elevation: 2,
+                          shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                         icon: Icon(
                           MdiIcons.facebook,
                           color: iconTextColor,
@@ -1147,17 +1153,13 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                   ));
             }
           }()),
-
-
         ],
       ),
-
       1: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-
           (() {
             if (_positionPlaying.toString().isNotEmpty) {
               return Padding(
@@ -1172,8 +1174,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -1240,8 +1242,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -1259,8 +1260,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -1327,8 +1328,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -1346,8 +1346,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -1414,8 +1414,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -1433,8 +1432,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -1501,8 +1500,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -1520,8 +1518,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -1588,8 +1586,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -1607,8 +1604,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -1675,8 +1672,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -1694,8 +1690,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -1762,8 +1758,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -1781,8 +1776,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -1849,8 +1844,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -1868,8 +1862,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -1910,8 +1904,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                           splashColor: splashColorTwo,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -1936,8 +1930,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -1955,8 +1948,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -1997,8 +1990,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                           splashColor: splashColorTwo,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -2023,8 +2016,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -2042,8 +2034,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -2084,8 +2076,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                           splashColor: splashColorTwo,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -2110,8 +2102,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -2129,8 +2120,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -2171,8 +2162,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                           splashColor: splashColorTwo,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -2197,8 +2188,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -2216,8 +2206,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -2258,8 +2248,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                           splashColor: splashColorTwo,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -2284,8 +2274,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -2303,8 +2292,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -2345,8 +2334,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                           splashColor: splashColorTwo,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -2371,8 +2360,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -2390,8 +2378,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -2432,8 +2420,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                           splashColor: splashColorTwo,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -2458,8 +2446,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -2477,7 +2464,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -2516,7 +2504,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         splashColor: splashColorTwo,
                         onTap: () {},
                         child: Padding(
-                          padding: const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                          padding: const EdgeInsets.only(
+                              bottom: 15, top: 15, left: 25),
                           child: Text.rich(
                             TextSpan(
                               children: <TextSpan>[
@@ -2558,8 +2547,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -2600,8 +2589,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                           splashColor: splashColorTwo,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -2626,8 +2615,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -2645,8 +2633,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                       splashColor: splashColorTwo,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -2687,8 +2675,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                           splashColor: splashColorTwo,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -2713,8 +2701,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -2804,8 +2791,6 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
           //     );
           //   }
           // }()),
-
-
         ],
       ),
     };
@@ -2814,29 +2799,24 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
 
   int sharedValue = 0;
 
-
   facebookLink() async {
-
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
-
         ),
         backgroundColor: backgroundColor,
         title: Text(
           facebookProfileSharedPreferencesTitle,
-          style: TextStyle(
-              color: cardBackgroundColor
-          ),
+          style: TextStyle(color: cardBackgroundColor),
         ),
         content: Text(
-          facebookProfileSharedPreferencesContentOne + _facebook + facebookProfileSharedPreferencesContentTwo,
+          facebookProfileSharedPreferencesContentOne +
+              _facebook +
+              facebookProfileSharedPreferencesContentTwo,
           textAlign: TextAlign.justify,
-          style: TextStyle(
-              color: cardBackgroundColor
-          ),
+          style: TextStyle(color: cardBackgroundColor),
         ),
         actions: <Widget>[
           TextButton(
@@ -2844,27 +2824,23 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
               launchURL(urlFacebook);
               Toast.show("Loading up Facebook.com",
                   duration: Toast.lengthLong,
-                  gravity:  Toast.bottom,
+                  gravity: Toast.bottom,
                   webTexColor: cardBackgroundColor,
                   backgroundColor: backgroundColor,
-                  backgroundRadius: 10
-              );
+                  backgroundRadius: 10);
             },
-            child: Text(facebookProfileSharedPreferencesButton,
-              style: TextStyle(
-                  color: cardBackgroundColor
-              ),
+            child: Text(
+              facebookProfileSharedPreferencesButton,
+              style: TextStyle(color: cardBackgroundColor),
             ),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text(facebookProfileSharedPreferencesButtonTwo,
-              style: TextStyle(
-                  color: cardBackgroundColor
-              ),
+            child: Text(
+              facebookProfileSharedPreferencesButtonTwo,
+              style: TextStyle(color: cardBackgroundColor),
             ),
           ),
-
         ],
       ),
     );
@@ -2872,27 +2848,23 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
   }
 
   linkedInLink() async {
-
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
-
         ),
         backgroundColor: backgroundColor,
         title: Text(
           linkedInProfileSharedPreferencesTitle,
-          style: TextStyle(
-              color: cardBackgroundColor
-          ),
+          style: TextStyle(color: cardBackgroundColor),
         ),
         content: Text(
-          linkedInProfileSharedPreferencesContentOne + _linkedIn + linkedInProfileSharedPreferencesContentTwo,
+          linkedInProfileSharedPreferencesContentOne +
+              _linkedIn +
+              linkedInProfileSharedPreferencesContentTwo,
           textAlign: TextAlign.justify,
-          style: TextStyle(
-              color: cardBackgroundColor
-          ),
+          style: TextStyle(color: cardBackgroundColor),
         ),
         actions: <Widget>[
           TextButton(
@@ -2900,38 +2872,32 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
               launchURL(urlLinkedIn);
               Toast.show("Loading up LinkedIn.com",
                   duration: Toast.lengthLong,
-                  gravity:  Toast.bottom,
+                  gravity: Toast.bottom,
                   webTexColor: cardBackgroundColor,
                   backgroundColor: backgroundColor,
-                  backgroundRadius: 10
-              );
+                  backgroundRadius: 10);
             },
-            child: Text(linkedInProfileSharedPreferencesButton,
-              style: TextStyle(
-                  color: cardBackgroundColor
-              ),
+            child: Text(
+              linkedInProfileSharedPreferencesButton,
+              style: TextStyle(color: cardBackgroundColor),
             ),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text(linkedInProfileSharedPreferencesButtonTwo,
-              style: TextStyle(
-                  color: cardBackgroundColor
-              ),
+            child: Text(
+              linkedInProfileSharedPreferencesButtonTwo,
+              style: TextStyle(color: cardBackgroundColor),
             ),
           ),
-
         ],
       ),
     );
 //    }
   }
 
-
-@override
+  @override
   void dispose() {
     _confettiController!.dispose();
     super.dispose();
   }
-
 }

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 // ignore: slash_for_doc_comments
 /**
  * Documents added by Alaa, enjoy ^-^:
@@ -54,27 +55,29 @@ class PushNotificationService {
     await enableIOSNotifications();
     await registerNotificationListeners();
   }
+
   registerNotificationListeners() async {
     AndroidNotificationChannel channel = androidNotificationChannel();
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+        FlutterLocalNotificationsPlugin();
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
-    var androidSettings = const AndroidInitializationSettings('@mipmap/ic_launcher');
+    var androidSettings =
+        const AndroidInitializationSettings('@mipmap/ic_launcher');
     var iOSSettings = const DarwinInitializationSettings(
       requestSoundPermission: false,
       requestBadgePermission: false,
       requestAlertPermission: false,
     );
     var initSetttings =
-    InitializationSettings(android: androidSettings, iOS: iOSSettings);
+        InitializationSettings(android: androidSettings, iOS: iOSSettings);
     flutterLocalNotificationsPlugin.initialize(initSetttings,
         onDidReceiveNotificationResponse: (message) async {
-          // This function handles the click in the notification when the app is in foreground
-          // Get.toNamed(NOTIFICATIOINS_ROUTE);
-        });
+      // This function handles the click in the notification when the app is in foreground
+      // Get.toNamed(NOTIFICATIOINS_ROUTE);
+    });
 // onMessage is called when the app is in foreground and a notification is received
     FirebaseMessaging.onMessage.listen((RemoteMessage? message) {
       // Get.find<HomeController>().getNotificationsNumber();
@@ -101,6 +104,7 @@ class PushNotificationService {
       }
     });
   }
+
   enableIOSNotifications() async {
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
@@ -109,10 +113,11 @@ class PushNotificationService {
       sound: true,
     );
   }
+
   androidNotificationChannel() => const AndroidNotificationChannel(
-    'high_importance_channel', // id
-    'High Importance Notifications', // title
-    // 'This channel is used for important notifications.', // description
-    importance: Importance.max,
-  );
+        'high_importance_channel', // id
+        'High Importance Notifications', // title
+        // 'This channel is used for important notifications.', // description
+        importance: Importance.max,
+      );
 }

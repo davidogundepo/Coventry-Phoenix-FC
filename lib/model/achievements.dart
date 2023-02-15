@@ -1,4 +1,3 @@
-
 class Achievements {
   String? image;
   String? toastName;

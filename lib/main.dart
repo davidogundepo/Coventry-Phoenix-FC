@@ -1,129 +1,122 @@
-
 import 'dart:async';
 
 // import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'api/second_team_class_api.dart';
-import 'details_pages/second_team_details_page.dart';
-import 'notifier/past_matches_notifier.dart';
-import 'sidebar/sidebar_layout.dart';
+
 import 'api/PushNotificationService.dart';
 import 'notifier/achievement_images_notifier.dart';
 import 'notifier/club_arial_notifier.dart';
 import 'notifier/club_captains_notifier.dart';
+import 'notifier/coaches_reviews_comment_notifier.dart';
 import 'notifier/coaching_staff_notifier.dart';
+import 'notifier/cum_motm_players_stats_info_notifier.dart';
 import 'notifier/first_team_class_notifier.dart';
+import 'notifier/founders_reviews_comment_notifier.dart';
 import 'notifier/management_body_notifier.dart';
+import 'notifier/most_assists_players_stats_info_notifier.dart';
+import 'notifier/most_fouled_rc_players_stats_info_notifier.dart';
+import 'notifier/most_fouled_yc_players_stats_info_notifier.dart';
+import 'notifier/motm_players_stats_info_notifier.dart';
+import 'notifier/past_matches_notifier.dart';
+import 'notifier/player_of_the_month_stats_info_notifier.dart';
 import 'notifier/second_team_class_notifier.dart';
 import 'notifier/sidebar_notifier.dart';
 import 'notifier/third_team_class_notifier.dart';
-import 'notifier/coaches_reviews_comment_notifier.dart';
-import 'notifier/founders_reviews_comment_notifier.dart';
-import 'notifier/cum_motm_players_stats_info_notifier.dart';
-import 'notifier/motm_players_stats_info_notifier.dart';
 import 'notifier/top_defensive_players_stats_info_notifier.dart';
 import 'notifier/top_gk_players_stats_info_notifier.dart';
-import 'notifier/player_of_the_month_stats_info_notifier.dart';
-import 'notifier/most_assists_players_stats_info_notifier.dart';
-import 'notifier/most_fouled_yc_players_stats_info_notifier.dart';
-import 'notifier/most_fouled_rc_players_stats_info_notifier.dart';
 import 'notifier/top_goals_players_stats_info_notifier.dart';
 import 'notifier/trainings_games_reels_notifier.dart';
+import 'sidebar/sidebar_layout.dart';
 
 Color? backgroundColor = Colors.indigo[400];
 Color? appBarIconColor = Colors.indigo[200];
 Color? appBarBackgroundColor = Colors.indigo[400];
 Color? secondStudentChartColor = Colors.indigo[400];
 
-
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await PushNotificationService().setupInteractedMessage();
   FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   runZonedGuarded(() async {
-    runApp(MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) => FirstTeamClassNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => SecondTeamClassNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => ThirdTeamClassNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => CaptainsNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => CoachesNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => ManagementBodyNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => ClubArialNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => AchievementsNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => SideBarNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => MostAssistsPlayersStatsAndInfoNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => MostFouledYCPlayersStatsAndInfoNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => MostFouledRCPlayersStatsAndInfoNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => TopGoalsPlayersStatsAndInfoNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => TopGKPlayersStatsAndInfoNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => TopDefensivePlayersStatsAndInfoNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => MOTMPlayersStatsAndInfoNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => CumMOTMPlayersStatsAndInfoNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => TrainingsAndGamesReelsNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => PlayerOfTheMonthStatsAndInfoNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => CoachesReviewsCommentNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => FoundersReviewsCommentNotifier(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => PastMatchesNotifier(),
-          ),
-        ],
-        child: const MyApp()
-    ));
+    runApp(MultiProvider(providers: [
+      ChangeNotifierProvider(
+        create: (context) => FirstTeamClassNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => SecondTeamClassNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => ThirdTeamClassNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => CaptainsNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => CoachesNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => ManagementBodyNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => ClubArialNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => AchievementsNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => SideBarNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => MostAssistsPlayersStatsAndInfoNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => MostFouledYCPlayersStatsAndInfoNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => MostFouledRCPlayersStatsAndInfoNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => TopGoalsPlayersStatsAndInfoNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => TopGKPlayersStatsAndInfoNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => TopDefensivePlayersStatsAndInfoNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => MOTMPlayersStatsAndInfoNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => CumMOTMPlayersStatsAndInfoNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => TrainingsAndGamesReelsNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => PlayerOfTheMonthStatsAndInfoNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => CoachesReviewsCommentNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => FoundersReviewsCommentNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => PastMatchesNotifier(),
+      ),
+    ], child: const MyApp()));
     RemoteMessage? initialMessage =
-    await FirebaseMessaging.instance.getInitialMessage();
+        await FirebaseMessaging.instance.getInitialMessage();
     if (initialMessage != null) {
       // App received a notification when it was killed
     }
@@ -142,8 +135,6 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-
-
   static Map<int, Color> color = {
     50: const Color.fromRGBO(136, 14, 79, .1),
     100: const Color.fromRGBO(136, 14, 79, .2),
@@ -159,8 +150,6 @@ class MyAppState extends State<MyApp> {
   MaterialColor primeColor = MaterialColor(0xFF337C36, color);
   MaterialColor accentColor = MaterialColor(0xFF337C36, color);
 
-
-
   @override
   void initState() {
     super.initState();
@@ -175,7 +164,6 @@ class MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
   }
 
   @override
@@ -193,5 +181,4 @@ class MyAppState extends State<MyApp> {
       ],
     );
   }
-
 }

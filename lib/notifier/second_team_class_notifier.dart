@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
+
 import '../model/second_team_class.dart';
 
 class SecondTeamClassNotifier with ChangeNotifier {

@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
+
 import '../model/club_arial.dart';
 
 class ClubArialNotifier with ChangeNotifier {

@@ -1,16 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
-import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../api/club_arial_images_api.dart';
-import '../api/achievement_images_api.dart';
-import '../notifier/club_arial_notifier.dart';
-import '../notifier/achievement_images_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../api/achievement_images_api.dart';
+import '../api/club_arial_images_api.dart';
+import '../notifier/achievement_images_notifier.dart';
+import '../notifier/club_arial_notifier.dart';
 
 String clubName = "Coventry Phoenix FC";
 String aboutClub = "About $clubName";
@@ -459,8 +460,8 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                                           fontWeight: FontWeight.bold,
                                         )),
                                     TextSpan(
-                                        text:
-                                            staffBodyStatement, // + snapshot.data?.data()!['coaches_population'],
+                                        text: staffBodyStatement,
+                                        // + snapshot.data?.data()!['coaches_population'],
                                         style: TextStyle(
                                           color: cardTextColor,
                                           fontSize: 19,
@@ -1125,6 +1126,7 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
 class ClubPlayerPopulation {
   String x;
   double y;
+
   ClubPlayerPopulation(this.x, this.y);
 }
 
@@ -1141,6 +1143,7 @@ dynamic getPlayerPopulationData() {
 class ClubPopulation {
   String x;
   double y;
+
   ClubPopulation(this.x, this.y);
 }
 

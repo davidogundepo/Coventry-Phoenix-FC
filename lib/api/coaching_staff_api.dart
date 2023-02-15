@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../model/coaches.dart';
 import '../notifier/coaching_staff_notifier.dart';
 
-getCoaches(
-    CoachesNotifier coachesNotifier) async {
+getCoaches(CoachesNotifier coachesNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
       .collection('Coaches')
       .orderBy('id')
@@ -12,11 +12,9 @@ getCoaches(
   List<Coaches> coachesList = [];
 
   for (var document in snapshot.docs) {
-    Coaches coaches =
-        Coaches.fromMap(document.data() as Map<String, dynamic>);
+    Coaches coaches = Coaches.fromMap(document.data() as Map<String, dynamic>);
     coachesList.add(coaches);
   }
 
-  coachesNotifier.coachesList =
-      coachesList;
+  coachesNotifier.coachesList = coachesList;
 }

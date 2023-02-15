@@ -66,5 +66,4 @@ class SecondTeamClass {
     philosophy = data['philosophy'];
     worstMoment = data['worst_moment'];
   }
-
 }

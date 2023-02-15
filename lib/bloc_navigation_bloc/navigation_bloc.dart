@@ -1,11 +1,11 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../thrown_pages/management_thrown_page.dart';
+
+import '../thrown_pages/captains_thrown_page.dart';
 import '../thrown_pages/coaches_thrown_page.dart';
 import '../thrown_pages/first_team_thrown_page.dart';
+import '../thrown_pages/management_thrown_page.dart';
 import '../thrown_pages/second_team_thrown_page.dart';
 import '../thrown_pages/third_team_thrown_page.dart';
-import '../thrown_pages/captains_thrown_page.dart';
 
 enum NavigationEvents {
   myFirstTeamClassPageClickedEvent,
@@ -19,9 +19,7 @@ enum NavigationEvents {
 abstract class NavigationStates {}
 
 class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
-
   NavigationBloc() : super(MyFirstTeamClassPage());
-
 
   @override
   Stream<NavigationStates> mapEventToState(NavigationEvents event) async* {
@@ -46,6 +44,4 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         break;
     }
   }
-
-
 }

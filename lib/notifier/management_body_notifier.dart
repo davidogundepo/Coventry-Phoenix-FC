@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
+
 import '../model/management_body.dart';
 
 class ManagementBodyNotifier with ChangeNotifier {

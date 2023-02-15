@@ -41,8 +41,8 @@ class ManagementBody {
     worstMoment = data['worst_moment'];
     staffPosition = data['staff_position'];
     philosophy = data['philosophy'];
-    whyLoveCoachingOrFCManagement = data['why_you_love_coaching_or_fc_management'];
+    whyLoveCoachingOrFCManagement =
+        data['why_you_love_coaching_or_fc_management'];
     favSportingIcon = data['fav_sporting_icon'];
   }
-
 }

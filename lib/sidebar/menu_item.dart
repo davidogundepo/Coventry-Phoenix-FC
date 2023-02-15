@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 Color iconColor = Colors.white;
 Color textColor = Colors.white;
 
-
 class MenuItems extends StatelessWidget {
-
   final IconData? icon;
   final String? title;
   final void Function()? onTap;
 
-  const MenuItems({Key? key, this.icon, this.title, this.onTap}) : super(key: key);
+  const MenuItems({Key? key, this.icon, this.title, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +32,14 @@ class MenuItems extends StatelessWidget {
               Text(
                 title!,
                 style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 15,
-                  color: textColor
-                ),
+                    fontWeight: FontWeight.w300,
+                    fontSize: 15,
+                    color: textColor),
               ),
-
             ],
           ),
         ),
       ),
     );
   }
-
-
 }

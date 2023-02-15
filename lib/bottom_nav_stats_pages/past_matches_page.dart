@@ -1,10 +1,9 @@
-import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:coventry_phoenix_fc/notifier/past_matches_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../api/past_matches_api.dart';
 
@@ -35,8 +34,8 @@ class _PastMatchesPageState extends State<PastMatchesPage>
       duration: const Duration(seconds: 5),
       vsync: this,
     )..repeat(reverse: true);
-    _color = ColorTween(begin: Colors.black, end: Colors.white)
-        .animate(_controller);
+    _color =
+        ColorTween(begin: Colors.black, end: Colors.white).animate(_controller);
   }
 
   @override
@@ -61,10 +60,9 @@ class _PastMatchesPageState extends State<PastMatchesPage>
             decoration:
                 BoxDecoration(color: _color.value, shape: BoxShape.rectangle),
             child: SafeArea(
-
-                // ((){
-                //
-                // }()),
+              // ((){
+              //
+              // }()),
 
               child: ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
@@ -74,7 +72,6 @@ class _PastMatchesPageState extends State<PastMatchesPage>
                     '',
                     '',
                     index: index,
-
                   );
                 },
                 itemCount: pastMatchesNotifier.pastMatchesList.length,
@@ -94,7 +91,8 @@ class AnimCard extends StatefulWidget {
   final String numEng;
   final String content;
 
-  const AnimCard(this.color, this.num, this.numEng, this.content, {super.key, required this.index});
+  const AnimCard(this.color, this.num, this.numEng, this.content,
+      {super.key, required this.index});
 
   @override
   _AnimCardState createState() => _AnimCardState();
@@ -107,7 +105,7 @@ class _AnimCardState extends State<AnimCard> {
   @override
   Widget build(BuildContext context) {
     PastMatchesNotifier pastMatchesNotifier =
-    Provider.of<PastMatchesNotifier>(context);
+        Provider.of<PastMatchesNotifier>(context);
 
     return Column(
       children: [
@@ -128,7 +126,8 @@ class _AnimCardState extends State<AnimCard> {
                     padding = padding == 10 ? 120.0 : 0.0;
                     bottomPadding = bottomPadding == 0 ? 120 : 0.0;
                   });
-                }, index: widget.index,
+                },
+                index: widget.index,
                 // }, index: widget.index,
               ),
             ),
@@ -163,17 +162,20 @@ class _AnimCardState extends State<AnimCard> {
                             decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(8))),
+                                    BorderRadius.all(Radius.circular(8))),
                             child: Center(
                               child: Container(
                                 width: 42.0,
                                 height: 42.0,
                                 decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                                  // shape: BoxShape.circle,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5)),
+                                    // shape: BoxShape.circle,
                                     image: DecorationImage(
                                         image: CachedNetworkImageProvider(
-                                            pastMatchesNotifier.pastMatchesList[widget.index].homeTeamIcon!),
+                                            pastMatchesNotifier
+                                                .pastMatchesList[widget.index]
+                                                .homeTeamIcon!),
                                         fit: BoxFit.cover)),
                               ),
                             ),
@@ -182,7 +184,8 @@ class _AnimCardState extends State<AnimCard> {
                             width: 140,
                             margin: const EdgeInsets.only(left: 7),
                             child: Text(
-                              pastMatchesNotifier.pastMatchesList[widget.index].homeTeam!,
+                              pastMatchesNotifier
+                                  .pastMatchesList[widget.index].homeTeam!,
                               style: GoogleFonts.allertaStencil(
                                   color: Colors.white,
                                   fontSize: 11,
@@ -197,7 +200,9 @@ class _AnimCardState extends State<AnimCard> {
                         child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(pastMatchesNotifier.pastMatchesList[widget.index].matchDate!,
+                        Text(
+                            pastMatchesNotifier
+                                .pastMatchesList[widget.index].matchDate!,
                             style: GoogleFonts.electrolize(
                               fontSize: 10,
                               fontWeight: FontWeight.w300,
@@ -206,23 +211,27 @@ class _AnimCardState extends State<AnimCard> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(pastMatchesNotifier.pastMatchesList[widget.index].homeTeamScore!,
+                            Text(
+                                pastMatchesNotifier
+                                    .pastMatchesList[widget.index]
+                                    .homeTeamScore!,
                                 style: GoogleFonts.jura(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w800,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w800,
                                   color: Colors.white,
                                 )),
                             Text('-',
                                 style: GoogleFonts.jura(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w800,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w800,
                                   color: Colors.white,
                                 )),
                             Text(
-                                pastMatchesNotifier.pastMatchesList[widget.index].awayTeamScore!,
+                              pastMatchesNotifier
+                                  .pastMatchesList[widget.index].awayTeamScore!,
                               style: GoogleFonts.jura(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w800,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w800,
                                 color: Colors.white,
                               ),
                             ),
@@ -243,17 +252,20 @@ class _AnimCardState extends State<AnimCard> {
                             decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(8))),
+                                    BorderRadius.all(Radius.circular(8))),
                             child: Center(
                               child: Container(
                                 width: 42.0,
                                 height: 42.0,
                                 decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5)),
                                     // shape: BoxShape.circle,
                                     image: DecorationImage(
                                         image: CachedNetworkImageProvider(
-                                            pastMatchesNotifier.pastMatchesList[widget.index].awayTeamIcon!),
+                                            pastMatchesNotifier
+                                                .pastMatchesList[widget.index]
+                                                .awayTeamIcon!),
                                         fit: BoxFit.cover)),
                               ),
                             ),
@@ -262,10 +274,11 @@ class _AnimCardState extends State<AnimCard> {
                             width: 140,
                             margin: const EdgeInsets.only(right: 15),
                             child: Text(
-                              pastMatchesNotifier.pastMatchesList[widget.index].awayTeam!,
+                              pastMatchesNotifier
+                                  .pastMatchesList[widget.index].awayTeam!,
                               style: GoogleFonts.allertaStencil(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w500,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
                               textAlign: TextAlign.end,
@@ -307,7 +320,7 @@ class _CardItemState extends State<CardItem> {
   @override
   Widget build(BuildContext context) {
     PastMatchesNotifier pastMatchesNotifier =
-    Provider.of<PastMatchesNotifier>(context);
+        Provider.of<PastMatchesNotifier>(context);
 
     double width = MediaQuery.of(context).size.width;
     return GestureDetector(
@@ -344,10 +357,9 @@ class _CardItemState extends State<CardItem> {
                 height: 5,
               ),
               Container(
-                decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(5),
-                color: Colors.black.withAlpha(40)
-                ),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.black.withAlpha(40)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,

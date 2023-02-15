@@ -1,6 +1,4 @@
-
 class PlayersStatsAndInfo {
-
   String? id;
   String? playerName;
   dynamic goalsScored;
@@ -40,5 +38,4 @@ class PlayersStatsAndInfo {
     nationality = data['nationality'];
     image = data['image'];
   }
-
 }

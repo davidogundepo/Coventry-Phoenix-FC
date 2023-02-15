@@ -1,19 +1,20 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../notifier/sidebar_notifier.dart';
-import '../bloc_navigation_bloc/navigation_bloc.dart';
-import '../sidebar/menu_item.dart';
 
+import '../bloc_navigation_bloc/navigation_bloc.dart';
+import '../notifier/sidebar_notifier.dart';
+import '../sidebar/menu_item.dart';
 
 String clubName = "Coventry Phoenix FC";
 String subtitle = "We breed elite players here";
@@ -31,20 +32,19 @@ String exitAppSubtitle = "Do you really really want to?";
 String exitAppNo = "Oh No";
 String exitAppYes = "I Have To";
 
-
 Color gradientColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color gradientColorTwo = Colors.white;
-Color linearGradientColor =  const Color.fromRGBO(24, 26, 36, 1.0);
-Color linearGradientColorTwo =  const Color.fromRGBO(24, 26, 36, 1.0);
-Color boxShadowColor =  const Color.fromRGBO(24, 26, 36, 1.0);
+Color linearGradientColor = const Color.fromRGBO(24, 26, 36, 1.0);
+Color linearGradientColorTwo = const Color.fromRGBO(24, 26, 36, 1.0);
+Color boxShadowColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color dividerColor = Colors.white;
 Color materialBackgroundColor = Colors.transparent;
 Color shimmerBaseColor = Colors.white;
 Color shimmerHighlightColor = Colors.white;
-Color shapeDecorationTextColor =  const Color.fromRGBO(24, 26, 36, 1.0);
-Color containerBackgroundColor =  const Color.fromRGBO(24, 26, 36, 1.0);
+Color shapeDecorationTextColor = const Color.fromRGBO(24, 26, 36, 1.0);
+Color containerBackgroundColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color containerIconColor = Colors.white;
-Color dialogBackgroundColor =  const Color.fromRGBO(24, 26, 36, 1.0);
+Color dialogBackgroundColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color dialogTextColor = Colors.white;
 Color splashColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color splashColorTwo = Colors.white;
@@ -53,19 +53,15 @@ Color textColor = Colors.white;
 Color textColorTwo = const Color.fromRGBO(24, 26, 36, 1.0);
 Color textShadowColor = Colors.white;
 
-
-
 class SideBar extends StatefulWidget {
   const SideBar({Key? key}) : super(key: key);
 
-
   @override
   State<StatefulWidget> createState() => _SideBarState();
-
 }
 
-class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<SideBar> {
-
+class _SideBarState extends State<SideBar>
+    with SingleTickerProviderStateMixin<SideBar> {
   int _currentNAVSelected = 0;
 
   _onSelected(int index) {
@@ -79,12 +75,12 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
   final bool isSidebarOpened = false;
   final _animationDuration = const Duration(milliseconds: 500);
 
-
   Stream<DocumentSnapshot<Map<String, dynamic>>> getDataFromFirestore() {
-    return FirebaseFirestore.instance.collection('SliversPages').doc('non_slivers_pages').snapshots();
+    return FirebaseFirestore.instance
+        .collection('SliversPages')
+        .doc('non_slivers_pages')
+        .snapshots();
   }
-
-
 
   @override
   void initState() {
@@ -92,7 +88,8 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
 
     getDataFromFirestore();
 
-    _animationController = AnimationController(vsync: this, duration: _animationDuration);
+    _animationController =
+        AnimationController(vsync: this, duration: _animationDuration);
     isSidebarOpenedStreamController = PublishSubject<bool>();
     isSidebarOpenedStream = isSidebarOpenedStreamController.stream;
     isSidebarOpenedSink = isSidebarOpenedStreamController.sink;
@@ -101,7 +98,6 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
   }
 
   @override
@@ -201,15 +197,12 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                   child: Align(
                     alignment: const Alignment(0, -1.0),
                     child: Container(
-
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
                               begin: Alignment.topRight,
                               end: Alignment.bottomLeft,
-                              colors: [gradientColor, gradientColor]
-                          )
-                      ),
+                              colors: [gradientColor, gradientColor])),
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Column(
@@ -219,87 +212,98 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                             ),
                             Stack(
                               children: <Widget>[
-
                                 Opacity(
                                   opacity: 0.7,
-                                  child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                                  child: StreamBuilder<
+                                      DocumentSnapshot<Map<String, dynamic>>>(
                                     stream: getDataFromFirestore(),
                                     builder: (context, snapshot) {
-                                      if(snapshot.connectionState==ConnectionState.waiting){
-                                        return const Center(child: CircularProgressIndicator());
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return const Center(
+                                            child: CircularProgressIndicator());
                                       } else {
                                         return Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      height: MediaQuery.of(context).size.height * 0.4,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          alignment: const Alignment(0, -0.8),
-                                          image: CachedNetworkImageProvider(
-                                            snapshot.data?.data()!['sidebar_page'],
-                                          ),
-                                          fit: BoxFit.cover,
-                                        ),
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          colors: [linearGradientColor, linearGradientColorTwo.withAlpha(50)],
-                                          stops: const [0.3, 1],
-
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: boxShadowColor,
-                                            blurRadius: 12,
-                                            offset: const Offset(3, 12),
-                                          )
-                                        ],
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-
-
-                                      child: Material(
-                                        color: materialBackgroundColor,
-                                        child: InkWell(
-                                          splashColor: splashColor,
-                                          onTap: () {},
-                                          child: Align(
-                                            alignment: const Alignment(0, 0.9),
-                                            child: ListTile(
-                                              title: Text(
-                                                  clubName.toUpperCase(),
-                                                  style: GoogleFonts.gorditas(
-                                                      color: textColor,
-                                                      fontSize: 25,
-                                                      fontWeight: FontWeight.w800,
-                                                      shadows: <Shadow>[
-                                                        Shadow(
-                                                            blurRadius: 50,
-                                                            color: textShadowColor,
-                                                            offset: Offset.fromDirection(100, 12)
-                                                        )
-                                                      ]
-                                                ),
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.4,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              alignment:
+                                                  const Alignment(0, -0.8),
+                                              image: CachedNetworkImageProvider(
+                                                snapshot.data
+                                                    ?.data()!['sidebar_page'],
                                               ),
-                                              subtitle: Text(
-                                                subtitle,
-                                                style: GoogleFonts.varela(
-                                                  color: textColor,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 20,
+                                              fit: BoxFit.cover,
+                                            ),
+                                            gradient: LinearGradient(
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                              colors: [
+                                                linearGradientColor,
+                                                linearGradientColorTwo
+                                                    .withAlpha(50)
+                                              ],
+                                              stops: const [0.3, 1],
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: boxShadowColor,
+                                                blurRadius: 12,
+                                                offset: const Offset(3, 12),
+                                              )
+                                            ],
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Material(
+                                            color: materialBackgroundColor,
+                                            child: InkWell(
+                                              splashColor: splashColor,
+                                              onTap: () {},
+                                              child: Align(
+                                                alignment:
+                                                    const Alignment(0, 0.9),
+                                                child: ListTile(
+                                                  title: Text(
+                                                    clubName.toUpperCase(),
+                                                    style: GoogleFonts.gorditas(
+                                                        color: textColor,
+                                                        fontSize: 25,
+                                                        fontWeight:
+                                                            FontWeight.w800,
+                                                        shadows: <Shadow>[
+                                                          Shadow(
+                                                              blurRadius: 50,
+                                                              color:
+                                                                  textShadowColor,
+                                                              offset: Offset
+                                                                  .fromDirection(
+                                                                      100, 12))
+                                                        ]),
+                                                  ),
+                                                  subtitle: Text(
+                                                    subtitle,
+                                                    style: GoogleFonts.varela(
+                                                      color: textColor,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 20,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ),
-
-
-                                    );
+                                        );
                                       }
                                     },
                                   ),
                                 ),
-
                                 Padding(
                                   padding: const EdgeInsets.all(12.0),
                                   child: Align(
@@ -310,13 +314,10 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                                         width: 140.0,
                                         height: 140.0,
                                         decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                              'assets/images/cpfc_logo.jpeg'
-                                            )
-                                          )
-                                        ),
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/images/cpfc_logo.jpeg'))),
                                       ),
                                     ),
                                   ),
@@ -332,32 +333,39 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                               endIndent: 32,
                             ),
                             Material(
-                              color: _currentNAVSelected == 0 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
+                              color: _currentNAVSelected == 0
+                                  ? gradientColorTwo.withOpacity(0.3)
+                                  : materialBackgroundColor,
                               child: InkWell(
                                 splashColor: splashColorThree,
                                 onTap: () {
                                   _onSelected(0);
                                   onIconPressed();
-                                  BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.myFirstTeamClassPageClickedEvent);
+                                  BlocProvider.of<NavigationBloc>(context).add(
+                                      NavigationEvents
+                                          .myFirstTeamClassPageClickedEvent);
                                 },
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: MenuItems(
                                     icon: MdiIcons.soccer,
                                     title: returningPlayersTitle,
-
                                   ),
                                 ),
                               ),
                             ),
                             Material(
-                              color: _currentNAVSelected == 1 ? gradientColorTwo.withOpacity(0.3)   : materialBackgroundColor,
+                              color: _currentNAVSelected == 1
+                                  ? gradientColorTwo.withOpacity(0.3)
+                                  : materialBackgroundColor,
                               child: InkWell(
                                 splashColor: splashColorThree,
                                 onTap: () {
                                   _onSelected(1);
                                   onIconPressed();
-                                  BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.mySecondTeamClassPageClickedEvent);
+                                  BlocProvider.of<NavigationBloc>(context).add(
+                                      NavigationEvents
+                                          .mySecondTeamClassPageClickedEvent);
                                 },
                                 child: Align(
                                   alignment: Alignment.centerLeft,
@@ -387,13 +395,17 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                             //   ),
                             // ),
                             Material(
-                              color: _currentNAVSelected == 3 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
+                              color: _currentNAVSelected == 3
+                                  ? gradientColorTwo.withOpacity(0.3)
+                                  : materialBackgroundColor,
                               child: InkWell(
                                 splashColor: splashColorThree,
                                 onTap: () {
                                   _onSelected(3);
                                   onIconPressed();
-                                  BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.myCaptainsPageClickedEvent);
+                                  BlocProvider.of<NavigationBloc>(context).add(
+                                      NavigationEvents
+                                          .myCaptainsPageClickedEvent);
                                 },
                                 child: Align(
                                   alignment: Alignment.centerLeft,
@@ -405,13 +417,17 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                               ),
                             ),
                             Material(
-                              color: _currentNAVSelected == 4 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
+                              color: _currentNAVSelected == 4
+                                  ? gradientColorTwo.withOpacity(0.3)
+                                  : materialBackgroundColor,
                               child: InkWell(
                                 splashColor: splashColorThree,
                                 onTap: () {
                                   _onSelected(4);
                                   onIconPressed();
-                                  BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.myCoachesPageClickedEvent);
+                                  BlocProvider.of<NavigationBloc>(context).add(
+                                      NavigationEvents
+                                          .myCoachesPageClickedEvent);
                                 },
                                 child: Align(
                                   alignment: Alignment.centerLeft,
@@ -423,13 +439,17 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                               ),
                             ),
                             Material(
-                              color: _currentNAVSelected == 5 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
+                              color: _currentNAVSelected == 5
+                                  ? gradientColorTwo.withOpacity(0.3)
+                                  : materialBackgroundColor,
                               child: InkWell(
                                 splashColor: splashColorThree,
                                 onTap: () {
                                   _onSelected(5);
                                   onIconPressed();
-                                  BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.myManagementBodyPageClickedEvent);
+                                  BlocProvider.of<NavigationBloc>(context).add(
+                                      NavigationEvents
+                                          .myManagementBodyPageClickedEvent);
                                 },
                                 child: Align(
                                   alignment: Alignment.centerLeft,
@@ -448,7 +468,8 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                               endIndent: 32,
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 50, top: 10),
+                              padding:
+                                  const EdgeInsets.only(bottom: 50, top: 10),
                               child: Material(
                                 color: materialBackgroundColor,
                                 child: InkWell(
@@ -510,47 +531,41 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
 
   Future<bool>? _onWillPop() async {
     return await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-
-        ),
-        backgroundColor: dialogBackgroundColor,
-        title: Text(exitAppTitle,
-          style: TextStyle(
-              color: dialogTextColor
-          ),
-        ),
-        content: Text(exitAppSubtitle,
-          style: TextStyle(
-              color: dialogTextColor
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(exitAppNo,
-              style: TextStyle(
-                  color: dialogTextColor
-              ),
+          context: context,
+          builder: (context) => AlertDialog(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
             ),
-          ),
-          TextButton(
-            onPressed: () => exit(0),
-            /*Navigator.of(context).pop(true)*/
-            child: Text(exitAppYes,
-              style: TextStyle(
-                  color: dialogTextColor
-              ),
+            backgroundColor: dialogBackgroundColor,
+            title: Text(
+              exitAppTitle,
+              style: TextStyle(color: dialogTextColor),
             ),
+            content: Text(
+              exitAppSubtitle,
+              style: TextStyle(color: dialogTextColor),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(
+                  exitAppNo,
+                  style: TextStyle(color: dialogTextColor),
+                ),
+              ),
+              TextButton(
+                onPressed: () => exit(0),
+                /*Navigator.of(context).pop(true)*/
+                child: Text(
+                  exitAppYes,
+                  style: TextStyle(color: dialogTextColor),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ) ??
+        ) ??
         false;
   }
-
 }
 
 class CustomMenuClipper extends CustomClipper<Path> {
@@ -573,16 +588,11 @@ class CustomMenuClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) {
-
     return true;
   }
-
-
 }
 
-
 class CustomPILLCardShapePainter extends CustomPainter {
-
   final double radius;
   final Color startColor;
   final Color endColor;
@@ -595,14 +605,16 @@ class CustomPILLCardShapePainter extends CustomPainter {
 
     var david = Paint();
     david.shader = ui.Gradient.linear(
-        const Offset(0,0), Offset(size.width, size.height), [
-      HSLColor.fromColor(startColor).withLightness(0.8).toColor(),endColor
+        const Offset(0, 0), Offset(size.width, size.height), [
+      HSLColor.fromColor(startColor).withLightness(0.8).toColor(),
+      endColor
     ]);
 
     var jesus = Path()
       ..moveTo(0, size.height)
       ..lineTo(size.width - radius, size.height)
-      ..quadraticBezierTo(size.width, size.height, size.width, size.height - radius)
+      ..quadraticBezierTo(
+          size.width, size.height, size.width, size.height - radius)
       ..lineTo(size.width, radius)
       ..quadraticBezierTo(size.width, 0, size.width - radius, 0)
       ..lineTo(size.width - 1.5 * radius, 0)
@@ -610,14 +622,10 @@ class CustomPILLCardShapePainter extends CustomPainter {
       ..close();
 
     canvas.drawPath(jesus, david);
-
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-
     return true;
   }
-
-
 }

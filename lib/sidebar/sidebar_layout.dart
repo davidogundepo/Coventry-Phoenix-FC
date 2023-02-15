@@ -1,10 +1,9 @@
-import 'package:coventry_phoenix_fc/details_pages/second_team_details_page.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import '../notifier/sidebar_notifier.dart';
-import '../bloc_navigation_bloc/navigation_bloc.dart';
 
+import '../bloc_navigation_bloc/navigation_bloc.dart';
+import '../notifier/sidebar_notifier.dart';
 import 'sidebar.dart';
 
 class SideBarLayout extends StatelessWidget {
@@ -14,7 +13,7 @@ class SideBarLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     SideBarNotifier sideBarNotifier = Provider.of<SideBarNotifier>(context);
     return Scaffold(
-      body: BlocProvider <NavigationBloc>(
+      body: BlocProvider<NavigationBloc>(
         create: (context) => NavigationBloc(),
         child: Stack(
           children: <Widget>[
@@ -33,5 +32,4 @@ class SideBarLayout extends StatelessWidget {
       ),
     );
   }
-
 }

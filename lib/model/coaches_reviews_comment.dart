@@ -1,5 +1,4 @@
 class CoachesReviewsComment {
-
   String? id;
   String? name;
   String? image;
@@ -13,5 +12,4 @@ class CoachesReviewsComment {
     date = data['date'];
     comment = data['comment'];
   }
-
 }

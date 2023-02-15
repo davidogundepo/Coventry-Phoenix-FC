@@ -1,16 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:confetti/confetti.dart';
-import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/players_table_page.dart';
-import 'package:coventry_phoenix_fc/model/first_team_class.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
-import '../notifier/first_team_class_notifier.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import '../notifier/first_team_class_notifier.dart';
 
 String clubName = "Coventry Phoenix FC";
 
@@ -62,19 +61,19 @@ String hobbiesTitle = "My Hobbies\n";
 String philosophyTitle = "My Philosophy about Life\n";
 String droplineTitle = "My Dropline to my fellow $clubName footballers\n";
 
-
 String facebookProfileSharedPreferencesTitle = "Manual Website Search";
-String facebookProfileSharedPreferencesContentOne= "Apparently, you'd need to search manually for ";
+String facebookProfileSharedPreferencesContentOne =
+    "Apparently, you'd need to search manually for ";
 String facebookProfileSharedPreferencesContentTwo = ", on Facebook.com";
 String facebookProfileSharedPreferencesButton = "Go to Facebook";
 String facebookProfileSharedPreferencesButtonTwo = "Lol, No";
 
 String linkedInProfileSharedPreferencesTitle = "Manual Website Search";
-String linkedInProfileSharedPreferencesContentOne= "Apparently, you'd need to search manually for ";
+String linkedInProfileSharedPreferencesContentOne =
+    "Apparently, you'd need to search manually for ";
 String linkedInProfileSharedPreferencesContentTwo = ", on LinkedIn.com";
 String linkedInProfileSharedPreferencesButton = "Go to LinkedIn";
 String linkedInProfileSharedPreferencesButtonTwo = "Lol, No";
-
 
 Color backgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
 Color appBarTextColor = Colors.white;
@@ -107,13 +106,11 @@ Color confettiColorTen = Colors.teal;
 Color confettiColorEleven = Colors.indigoAccent;
 Color confettiColorTwelve = Colors.cyan;
 
-
 late FirstTeamClassNotifier firstTeamClassNotifier;
 
 Map<int, Widget>? userBIO;
 
 var crossFadeView = CrossFadeState.showFirst;
-
 
 dynamic _autoBio;
 dynamic _bestMoment;
@@ -178,11 +175,11 @@ class _SubPageState extends State<SubPage> {
 
   @override
   Widget build(BuildContext context) {
-
     // PlayersTable bb = ftc.firstWhere((element) => element.playerName ==
     // widget.)
 
-    firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context, listen: true);
+    firstTeamClassNotifier =
+        Provider.of<FirstTeamClassNotifier>(context, listen: true);
 
     return ConfettiWidget(
       confettiController: _confettiController!,
@@ -209,7 +206,9 @@ class _SubPageState extends State<SubPage> {
           title: Text(
             firstTeamClassNotifier.currentFirstTeamClass.nickname!,
             style: GoogleFonts.sanchez(
-                color: appBarTextColor, fontSize: 25, fontWeight: FontWeight.w400),
+                color: appBarTextColor,
+                fontSize: 25,
+                fontWeight: FontWeight.w400),
           ),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
@@ -232,14 +231,17 @@ class _SubPageState extends State<SubPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-
-              if (firstTeamClassNotifier.currentFirstTeamClass.imageTwo.toString().isEmpty) ... [
+              if (firstTeamClassNotifier.currentFirstTeamClass.imageTwo
+                  .toString()
+                  .isEmpty) ...[
                 Tooltip(
                     message: firstTeamClassNotifier.currentFirstTeamClass.name,
                     child: GestureDetector(
                       onTap: () => setState(() {
-                        crossFadeView = crossFadeView == CrossFadeState.showFirst
-                            ? CrossFadeState.showSecond : CrossFadeState.showFirst;
+                        crossFadeView =
+                            crossFadeView == CrossFadeState.showFirst
+                                ? CrossFadeState.showSecond
+                                : CrossFadeState.showFirst;
                       }),
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height * .64,
@@ -253,37 +255,42 @@ class _SubPageState extends State<SubPage> {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: AnimatedCrossFade(
-                            crossFadeState: crossFadeView == CrossFadeState.showFirst
-                                ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                            crossFadeState:
+                                crossFadeView == CrossFadeState.showFirst
+                                    ? CrossFadeState.showSecond
+                                    : CrossFadeState.showFirst,
                             duration: const Duration(milliseconds: 1000),
                             firstChild: CachedNetworkImage(
-                              imageUrl: firstTeamClassNotifier.currentFirstTeamClass.image!,
+                              imageUrl: firstTeamClassNotifier
+                                  .currentFirstTeamClass.image!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                              const Icon(MdiIcons.alertRhombus),
+                                  const Icon(MdiIcons.alertRhombus),
                             ),
                             secondChild: CachedNetworkImage(
-                              imageUrl: firstTeamClassNotifier.currentFirstTeamClass.image!,
+                              imageUrl: firstTeamClassNotifier
+                                  .currentFirstTeamClass.image!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                              const Icon(MdiIcons.alertRhombus),
+                                  const Icon(MdiIcons.alertRhombus),
                             ),
                           ),
                         ),
                       ),
                     )),
-              ]
-              else ...[
+              ] else ...[
                 Tooltip(
                     message: firstTeamClassNotifier.currentFirstTeamClass.name,
                     child: GestureDetector(
                       onTap: () => setState(() {
-                        crossFadeView = crossFadeView == CrossFadeState.showFirst
-                            ? CrossFadeState.showSecond : CrossFadeState.showFirst;
+                        crossFadeView =
+                            crossFadeView == CrossFadeState.showFirst
+                                ? CrossFadeState.showSecond
+                                : CrossFadeState.showFirst;
                       }),
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width,
@@ -296,31 +303,34 @@ class _SubPageState extends State<SubPage> {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: AnimatedCrossFade(
-                            crossFadeState: crossFadeView == CrossFadeState.showFirst
-                                ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                            crossFadeState:
+                                crossFadeView == CrossFadeState.showFirst
+                                    ? CrossFadeState.showSecond
+                                    : CrossFadeState.showFirst,
                             duration: const Duration(milliseconds: 1000),
                             firstChild: CachedNetworkImage(
-                              imageUrl: firstTeamClassNotifier.currentFirstTeamClass.image!,
+                              imageUrl: firstTeamClassNotifier
+                                  .currentFirstTeamClass.image!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                              const Icon(MdiIcons.alertRhombus),
+                                  const Icon(MdiIcons.alertRhombus),
                             ),
                             secondChild: CachedNetworkImage(
-                              imageUrl: firstTeamClassNotifier.currentFirstTeamClass.imageTwo!,
+                              imageUrl: firstTeamClassNotifier
+                                  .currentFirstTeamClass.imageTwo!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                              const Icon(MdiIcons.alertRhombus),
+                                  const Icon(MdiIcons.alertRhombus),
                             ),
                           ),
                         ),
                       ),
                     )),
               ],
-              
               Material(
                 color: materialBackgroundColor,
                 child: InkWell(
@@ -338,36 +348,36 @@ class _SubPageState extends State<SubPage> {
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: 16.0, top: 16.0, right: 16.0, bottom: 16.0),
-
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Text(
-                              firstTeamClassNotifier.currentFirstTeamClass.name!.toUpperCase(),
+                              firstTeamClassNotifier.currentFirstTeamClass.name!
+                                  .toUpperCase(),
                               style: GoogleFonts.blinker(
                                   color: shapeDecorationTextColor,
                                   fontSize: 30,
-                                  fontWeight: FontWeight.w500
-                              ),
+                                  fontWeight: FontWeight.w500),
                             ),
                             (() {
-                              if (firstTeamClassNotifier.currentFirstTeamClass.captain == "Yes") {
-                                return
-                                  Row(
-                                    children: <Widget>[
-                                      const SizedBox(width: 10),
-                                      Icon (
-                                        MdiIcons.shieldCheck,
-                                        color: shapeDecorationIconColor,
-                                      ),
-                                    ],
-                                  );
+                              if (firstTeamClassNotifier
+                                      .currentFirstTeamClass.captain ==
+                                  "Yes") {
+                                return Row(
+                                  children: <Widget>[
+                                    const SizedBox(width: 10),
+                                    Icon(
+                                      MdiIcons.shieldCheck,
+                                      color: shapeDecorationIconColor,
+                                    ),
+                                  ],
+                                );
                               } else {
                                 return Visibility(
                                   visible: !_isVisible,
-                                  child: Icon (
+                                  child: Icon(
                                     MdiIcons.shieldCheck,
                                     color: shapeDecorationIconColor,
                                   ),
@@ -431,26 +441,28 @@ class _SubPageState extends State<SubPage> {
                       //   ),
                       // ),
 
-                      Column (
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
-
                           Padding(
-                            padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+                            padding:
+                                const EdgeInsets.only(top: 20.0, bottom: 20),
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: shapeDecorationColorThree.withAlpha(50)),
-                                  // borderRadius: BorderRadius.circular(10)),
+                                  color:
+                                      shapeDecorationColorThree.withAlpha(50)),
+                              // borderRadius: BorderRadius.circular(10)),
                               child: Material(
                                 color: materialBackgroundColor.withAlpha(110),
                                 child: InkWell(
-                                  splashColor: shapeDecorationColorThree.withOpacity(0.1),
+                                  splashColor: shapeDecorationColorThree
+                                      .withOpacity(0.1),
                                   onTap: () {},
                                   child: Padding(
-                                    padding:
-                                    const EdgeInsets.only(bottom: 8, top: 8, left: 14, right: 14),
+                                    padding: const EdgeInsets.only(
+                                        bottom: 8, top: 8, left: 14, right: 14),
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.white,
@@ -458,7 +470,9 @@ class _SubPageState extends State<SubPage> {
                                       ),
                                       child: Text(
                                         // _name.replaceAll(" ", "'s'") + autoBioDetails,
-                                        _name.substring(0, _name.indexOf(' ')) + "'s" + autoBioDetails,
+                                        _name.substring(0, _name.indexOf(' ')) +
+                                            "'s" +
+                                            autoBioDetails,
                                         style: GoogleFonts.sacramento(
                                           color: textColor,
                                           fontSize: 25,
@@ -480,7 +494,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -488,8 +503,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -522,8 +537,10 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -556,8 +573,7 @@ class _SubPageState extends State<SubPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -567,7 +583,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -575,20 +592,22 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
                                               TextSpan(
-                                                  text: otherPositionsOfPlayTitle,
+                                                  text:
+                                                      otherPositionsOfPlayTitle,
                                                   style: GoogleFonts.aBeeZee(
                                                     color: textColor,
                                                     fontSize: 19,
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _otherPositionsOfPlay,
+                                                  text: ' ' +
+                                                      _otherPositionsOfPlay,
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -609,8 +628,10 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -643,8 +664,7 @@ class _SubPageState extends State<SubPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -654,7 +674,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -662,8 +683,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -675,7 +696,8 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _leftOrRightFooted,
+                                                  text:
+                                                      ' ' + _leftOrRightFooted,
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -696,8 +718,10 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -730,8 +754,7 @@ class _SubPageState extends State<SubPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -741,7 +764,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -749,8 +773,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -783,8 +807,10 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -817,8 +843,7 @@ class _SubPageState extends State<SubPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -828,7 +853,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -836,8 +862,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -870,8 +896,10 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -904,8 +932,7 @@ class _SubPageState extends State<SubPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -915,7 +942,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -923,8 +951,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -936,7 +964,8 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _favFootballLegend,
+                                                  text:
+                                                      ' ' + _favFootballLegend,
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -957,8 +986,10 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -991,8 +1022,7 @@ class _SubPageState extends State<SubPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1002,7 +1032,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1010,8 +1041,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1044,8 +1075,10 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -1078,8 +1111,7 @@ class _SubPageState extends State<SubPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1089,7 +1121,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1097,8 +1130,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1131,8 +1164,10 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -1165,8 +1200,7 @@ class _SubPageState extends State<SubPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1176,7 +1210,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1184,8 +1219,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1218,32 +1253,38 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: bestMomentTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _bestMoment,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1252,8 +1293,7 @@ class _SubPageState extends State<SubPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1263,7 +1303,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1271,8 +1312,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1305,32 +1346,38 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: worstMomentTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _worstMoment,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1339,8 +1386,7 @@ class _SubPageState extends State<SubPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1350,7 +1396,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1358,8 +1405,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1392,32 +1439,38 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: nicknameTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _nickname,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1426,8 +1479,7 @@ class _SubPageState extends State<SubPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1437,7 +1489,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1445,8 +1498,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1479,32 +1532,38 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: hobbiesTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _hobbies,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1513,8 +1572,7 @@ class _SubPageState extends State<SubPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1524,7 +1582,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1532,8 +1591,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1566,32 +1625,38 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: dobTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _dob,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1600,8 +1665,7 @@ class _SubPageState extends State<SubPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1611,7 +1675,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1619,8 +1684,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1653,32 +1718,38 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: countryTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _country,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1687,8 +1758,7 @@ class _SubPageState extends State<SubPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1698,7 +1768,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1706,8 +1777,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1740,32 +1811,38 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: regionOfOriginTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _regionFrom,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1774,8 +1851,7 @@ class _SubPageState extends State<SubPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1785,7 +1861,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1793,7 +1870,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding: const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1824,15 +1902,18 @@ class _SubPageState extends State<SubPage> {
                                   visible: !_isVisible,
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        color: shapeDecorationColorThree.withAlpha(50),
-                                        borderRadius: BorderRadius.circular(10)),
+                                        color: shapeDecorationColorThree
+                                            .withAlpha(50),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     child: Material(
                                       color: materialBackgroundColor,
                                       child: InkWell(
                                         splashColor: splashColorThree,
                                         onTap: () {},
                                         child: Padding(
-                                          padding: const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                          padding: const EdgeInsets.only(
+                                              bottom: 15, top: 15, left: 25),
                                           child: Text.rich(
                                             TextSpan(
                                               children: <TextSpan>[
@@ -1841,14 +1922,16 @@ class _SubPageState extends State<SubPage> {
                                                     style: GoogleFonts.aBeeZee(
                                                       color: textColor,
                                                       fontSize: 19,
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                     )),
                                                 TextSpan(
                                                     text: ' ' + _autoBio,
                                                     style: GoogleFonts.trykker(
                                                       color: textColor,
                                                       fontSize: 19,
-                                                      fontWeight: FontWeight.w300,
+                                                      fontWeight:
+                                                          FontWeight.w300,
                                                     )),
                                               ],
                                             ),
@@ -1866,7 +1949,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1874,8 +1958,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1908,32 +1992,38 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: philosophyTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _philosophy,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1942,8 +2032,7 @@ class _SubPageState extends State<SubPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1953,7 +2042,8 @@ class _SubPageState extends State<SubPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorThree.withAlpha(50),
+                                      color: shapeDecorationColorThree
+                                          .withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1961,8 +2051,8 @@ class _SubPageState extends State<SubPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1995,32 +2085,38 @@ class _SubPageState extends State<SubPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorThree.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorThree
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: droplineTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _myDropline,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -2029,8 +2125,7 @@ class _SubPageState extends State<SubPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -2120,7 +2215,6 @@ class _SubPageState extends State<SubPage> {
                           //     );
                           //   }
                           // }()),
-
                         ],
                       ),
                       // userBIO![sharedValue]!,
@@ -2138,22 +2232,24 @@ class _SubPageState extends State<SubPage> {
 
   @override
   initState() {
-
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
 
-    _confettiController = ConfettiController(duration: const Duration(seconds: 7));
+    _confettiController =
+        ConfettiController(duration: const Duration(seconds: 7));
     _confettiController!.play();
 
-    FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context, listen: false);
+    FirstTeamClassNotifier firstTeamClassNotifier =
+        Provider.of<FirstTeamClassNotifier>(context, listen: false);
 
     _autoBio = firstTeamClassNotifier.currentFirstTeamClass.autoBio;
     _bestMoment = firstTeamClassNotifier.currentFirstTeamClass.bestMoment;
     _dob = firstTeamClassNotifier.currentFirstTeamClass.dob;
     _dreamFC = firstTeamClassNotifier.currentFirstTeamClass.dreamFC;
-    _positionPlaying = firstTeamClassNotifier.currentFirstTeamClass.positionPlaying;
+    _positionPlaying =
+        firstTeamClassNotifier.currentFirstTeamClass.positionPlaying;
     _email = firstTeamClassNotifier.currentFirstTeamClass.email;
     _facebook = firstTeamClassNotifier.currentFirstTeamClass.facebook;
     _linkedIn = firstTeamClassNotifier.currentFirstTeamClass.linkedIn;
@@ -2171,16 +2267,20 @@ class _SubPageState extends State<SubPage> {
     _twitter = firstTeamClassNotifier.currentFirstTeamClass.twitter;
     _snapchat = firstTeamClassNotifier.currentFirstTeamClass.snapchat;
     _tikTok = firstTeamClassNotifier.currentFirstTeamClass.tikTok;
-    _otherPositionsOfPlay = firstTeamClassNotifier.currentFirstTeamClass.otherPositionsOfPlay;
-    _favFootballLegend = firstTeamClassNotifier.currentFirstTeamClass.favFootballLegend;
-    _yearOfInception = firstTeamClassNotifier.currentFirstTeamClass.yearOfInception;
-    _leftOrRightFooted = firstTeamClassNotifier.currentFirstTeamClass.leftOrRightFooted;
+    _otherPositionsOfPlay =
+        firstTeamClassNotifier.currentFirstTeamClass.otherPositionsOfPlay;
+    _favFootballLegend =
+        firstTeamClassNotifier.currentFirstTeamClass.favFootballLegend;
+    _yearOfInception =
+        firstTeamClassNotifier.currentFirstTeamClass.yearOfInception;
+    _leftOrRightFooted =
+        firstTeamClassNotifier.currentFirstTeamClass.leftOrRightFooted;
     _adidasOrNike = firstTeamClassNotifier.currentFirstTeamClass.adidasOrNike;
-    _ronaldoOrMessi = firstTeamClassNotifier.currentFirstTeamClass.ronaldoOrMessi;
+    _ronaldoOrMessi =
+        firstTeamClassNotifier.currentFirstTeamClass.ronaldoOrMessi;
     _worstMoment = firstTeamClassNotifier.currentFirstTeamClass.worstMoment;
 
     userBIO = <int, Widget>{
-
       /** 0: Useful for CPFC 1st Version and other FC Apps, DND */
       0: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2211,9 +2311,8 @@ class _SubPageState extends State<SubPage> {
                     onPressed: () {
                       if (_phone.toString().startsWith('0')) {
                         var most = _phone.toString().substring(1);
-                        launchURL(callFIRST +most);
-                      }
-                      else {
+                        launchURL(callFIRST + most);
+                      } else {
                         launchURL(callFIRST + _phone);
                       }
                     },
@@ -2228,12 +2327,12 @@ class _SubPageState extends State<SubPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(
                         MdiIcons.dialpad,
                         color: iconTextColor,
@@ -2252,7 +2351,6 @@ class _SubPageState extends State<SubPage> {
               );
             }
           }()),
-
           (() {
             if (_phone.toString().isNotEmpty) {
               return Padding(
@@ -2278,9 +2376,8 @@ class _SubPageState extends State<SubPage> {
                     onPressed: () {
                       if (_phone.toString().startsWith('0')) {
                         var most = _phone.toString().substring(1);
-                        launchURL(smsFIRST +most);
-                      }
-                      else {
+                        launchURL(smsFIRST + most);
+                      } else {
                         launchURL(smsFIRST + _phone);
                       }
                     },
@@ -2295,12 +2392,12 @@ class _SubPageState extends State<SubPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(
                         MdiIcons.message,
                         color: iconTextColor,
@@ -2319,7 +2416,6 @@ class _SubPageState extends State<SubPage> {
               );
             }
           }()),
-
           (() {
             if (_phone.toString().isNotEmpty) {
               return Padding(
@@ -2345,12 +2441,23 @@ class _SubPageState extends State<SubPage> {
                     onPressed: () {
                       if (_phone.toString().startsWith('0')) {
                         var most = _phone.toString().substring(1);
-                        var firstName = _name.toString().substring(0, _name.toString().indexOf(" "));
-                        launchURL(whatsAppFIRST + most + whatsAppSECOND + firstName + whatsAppTHIRD);
-                      }
-                      else {
-                        var firstName = _name.toString().substring(0, _name.toString().indexOf(" "));
-                        launchURL(whatsAppFIRST + _phone + whatsAppSECOND + firstName + whatsAppTHIRD);
+                        var firstName = _name
+                            .toString()
+                            .substring(0, _name.toString().indexOf(" "));
+                        launchURL(whatsAppFIRST +
+                            most +
+                            whatsAppSECOND +
+                            firstName +
+                            whatsAppTHIRD);
+                      } else {
+                        var firstName = _name
+                            .toString()
+                            .substring(0, _name.toString().indexOf(" "));
+                        launchURL(whatsAppFIRST +
+                            _phone +
+                            whatsAppSECOND +
+                            firstName +
+                            whatsAppTHIRD);
                       }
                     },
                   ),
@@ -2364,12 +2471,12 @@ class _SubPageState extends State<SubPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(
                         MdiIcons.message,
                         color: iconTextColor,
@@ -2388,7 +2495,6 @@ class _SubPageState extends State<SubPage> {
               );
             }
           }()),
-
           (() {
             if (_email.toString().isNotEmpty) {
               return Padding(
@@ -2425,12 +2531,12 @@ class _SubPageState extends State<SubPage> {
                     child: InkWell(
                       splashColor: splashColorTwo,
                       child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          elevation: 2,
+                          shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                         icon: Icon(
                           MdiIcons.gmail,
                           color: iconTextColor,
@@ -2448,7 +2554,6 @@ class _SubPageState extends State<SubPage> {
                   ));
             }
           }()),
-
           (() {
             if (_twitter.toString().isNotEmpty) {
               return Padding(
@@ -2467,15 +2572,12 @@ class _SubPageState extends State<SubPage> {
                         style: GoogleFonts.abel(
                             color: iconTextColor,
                             fontSize: 18,
-                            fontWeight: FontWeight.w300
-                        )
-                    ),
+                            fontWeight: FontWeight.w300)),
                     onPressed: () {
                       if (_twitter.toString().startsWith('@')) {
                         var most = _twitter.toString().substring(1);
                         launchURL(urlTwitter + most);
-                      }
-                      else {
+                      } else {
                         launchURL(urlTwitter + _twitter);
                       }
                     },
@@ -2490,22 +2592,20 @@ class _SubPageState extends State<SubPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(MdiIcons.twitter, color: iconTextColor),
                       label: Text(twitterButton,
                           style: GoogleFonts.abel(
                               color: iconTextColor,
                               fontSize: 18,
-                              fontWeight: FontWeight.w300
-                          )
-                      ),
+                              fontWeight: FontWeight.w300)),
                       onPressed: () {
-                        launchURL(urlTwitter+_twitter);
+                        launchURL(urlTwitter + _twitter);
                       },
                     ),
                   ),
@@ -2513,7 +2613,6 @@ class _SubPageState extends State<SubPage> {
               );
             }
           }()),
-
           (() {
             if (_instagram.toString().isNotEmpty) {
               return Padding(
@@ -2540,8 +2639,7 @@ class _SubPageState extends State<SubPage> {
                       if (_instagram.toString().startsWith('@')) {
                         var most = _instagram.toString().substring(1);
                         launchURL(urlInstagram + most);
-                      }
-                      else {
+                      } else {
                         launchURL(urlInstagram + _instagram);
                       }
                     },
@@ -2556,12 +2654,12 @@ class _SubPageState extends State<SubPage> {
                     child: InkWell(
                       splashColor: splashColorTwo,
                       child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          elevation: 2,
+                          shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                         icon: Icon(
                           MdiIcons.instagram,
                           color: iconTextColor,
@@ -2579,7 +2677,6 @@ class _SubPageState extends State<SubPage> {
                   ));
             }
           }()),
-
           (() {
             if (_snapchat.toString().isNotEmpty) {
               return Padding(
@@ -2606,8 +2703,7 @@ class _SubPageState extends State<SubPage> {
                       if (_snapchat.toString().startsWith('@')) {
                         var most = _instagram.toString().substring(1);
                         launchURL(urlSnapchat + most);
-                      }
-                      else {
+                      } else {
                         launchURL(urlSnapchat + _snapchat);
                       }
                     },
@@ -2622,12 +2718,12 @@ class _SubPageState extends State<SubPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(
                         MdiIcons.snapchat,
                         color: iconTextColorTwo,
@@ -2646,7 +2742,6 @@ class _SubPageState extends State<SubPage> {
               );
             }
           }()),
-
           (() {
             if (_tikTok.toString().isNotEmpty) {
               return Padding(
@@ -2673,8 +2768,7 @@ class _SubPageState extends State<SubPage> {
                       if (_tikTok.toString().startsWith('@')) {
                         var most = _tikTok.toString().substring(1);
                         launchURL(urlTikTok + most);
-                      }
-                      else {
+                      } else {
                         launchURL(urlTikTok + _tikTok);
                       }
                     },
@@ -2689,12 +2783,12 @@ class _SubPageState extends State<SubPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: FaIcon(
                         FontAwesomeIcons.tiktok,
                         color: iconTextColorTwo,
@@ -2713,7 +2807,6 @@ class _SubPageState extends State<SubPage> {
               );
             }
           }()),
-
           (() {
             if (_facebook.toString().isNotEmpty) {
               return Padding(
@@ -2754,12 +2847,12 @@ class _SubPageState extends State<SubPage> {
                     child: InkWell(
                       splashColor: splashColorTwo,
                       child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          elevation: 2,
+                          shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                         icon: Icon(
                           MdiIcons.facebook,
                           color: iconTextColor,
@@ -2779,7 +2872,6 @@ class _SubPageState extends State<SubPage> {
                   ));
             }
           }()),
-
           (() {
             if (_linkedIn.toString().isNotEmpty) {
               return Padding(
@@ -2820,12 +2912,12 @@ class _SubPageState extends State<SubPage> {
                     child: InkWell(
                       splashColor: splashColorTwo,
                       child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          elevation: 2,
+                          shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                         icon: Icon(
                           MdiIcons.facebook,
                           color: iconTextColor,
@@ -2845,17 +2937,13 @@ class _SubPageState extends State<SubPage> {
                   ));
             }
           }()),
-
-
         ],
       ),
-
       1: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-
           (() {
             if (_positionPlaying.toString().isNotEmpty) {
               return Padding(
@@ -2870,8 +2958,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -2938,8 +3026,7 @@ class _SubPageState extends State<SubPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -2957,8 +3044,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3025,8 +3112,7 @@ class _SubPageState extends State<SubPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3044,8 +3130,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3112,8 +3198,7 @@ class _SubPageState extends State<SubPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3131,8 +3216,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3199,8 +3284,7 @@ class _SubPageState extends State<SubPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3218,8 +3302,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3286,8 +3370,7 @@ class _SubPageState extends State<SubPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3305,8 +3388,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3373,8 +3456,7 @@ class _SubPageState extends State<SubPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3392,8 +3474,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3460,8 +3542,7 @@ class _SubPageState extends State<SubPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3479,8 +3560,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3547,8 +3628,7 @@ class _SubPageState extends State<SubPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3566,8 +3646,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3608,8 +3688,8 @@ class _SubPageState extends State<SubPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -3634,8 +3714,7 @@ class _SubPageState extends State<SubPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3653,8 +3732,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3695,8 +3774,8 @@ class _SubPageState extends State<SubPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -3721,8 +3800,7 @@ class _SubPageState extends State<SubPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3740,8 +3818,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3782,8 +3860,8 @@ class _SubPageState extends State<SubPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -3808,8 +3886,7 @@ class _SubPageState extends State<SubPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3827,8 +3904,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3869,8 +3946,8 @@ class _SubPageState extends State<SubPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -3895,8 +3972,7 @@ class _SubPageState extends State<SubPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3914,8 +3990,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3956,8 +4032,8 @@ class _SubPageState extends State<SubPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -3982,8 +4058,7 @@ class _SubPageState extends State<SubPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -4001,8 +4076,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -4043,8 +4118,8 @@ class _SubPageState extends State<SubPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -4069,8 +4144,7 @@ class _SubPageState extends State<SubPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -4088,8 +4162,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -4130,8 +4204,8 @@ class _SubPageState extends State<SubPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -4156,8 +4230,7 @@ class _SubPageState extends State<SubPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -4175,7 +4248,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -4214,7 +4288,8 @@ class _SubPageState extends State<SubPage> {
                         splashColor: splashColorThree,
                         onTap: () {},
                         child: Padding(
-                          padding: const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                          padding: const EdgeInsets.only(
+                              bottom: 15, top: 15, left: 25),
                           child: Text.rich(
                             TextSpan(
                               children: <TextSpan>[
@@ -4256,8 +4331,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -4298,8 +4373,8 @@ class _SubPageState extends State<SubPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -4324,8 +4399,7 @@ class _SubPageState extends State<SubPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -4343,8 +4417,8 @@ class _SubPageState extends State<SubPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -4385,8 +4459,8 @@ class _SubPageState extends State<SubPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -4411,8 +4485,7 @@ class _SubPageState extends State<SubPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -4502,7 +4575,6 @@ class _SubPageState extends State<SubPage> {
           //     );
           //   }
           // }()),
-
         ],
       ),
     };
@@ -4512,56 +4584,47 @@ class _SubPageState extends State<SubPage> {
   int sharedValue = 0;
 
   facebookLink() async {
-
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
-
         ),
         backgroundColor: backgroundColor,
         title: Text(
           facebookProfileSharedPreferencesTitle,
-          style: TextStyle(
-              color: cardBackgroundColor
-          ),
+          style: TextStyle(color: cardBackgroundColor),
         ),
         content: Text(
-          facebookProfileSharedPreferencesContentOne + _facebook + facebookProfileSharedPreferencesContentTwo,
+          facebookProfileSharedPreferencesContentOne +
+              _facebook +
+              facebookProfileSharedPreferencesContentTwo,
           textAlign: TextAlign.justify,
-          style: TextStyle(
-              color: cardBackgroundColor
-          ),
+          style: TextStyle(color: cardBackgroundColor),
         ),
         actions: <Widget>[
           TextButton(
             onPressed: () {
               launchURL(urlFacebook);
               Toast.show("Loading up Facebook.com",
-                  duration:
-                  Toast.lengthLong,
-                  gravity:  Toast.bottom,
+                  duration: Toast.lengthLong,
+                  gravity: Toast.bottom,
                   webTexColor: cardBackgroundColor,
                   backgroundColor: backgroundColor,
-                  backgroundRadius: 10
-              );
+                  backgroundRadius: 10);
             },
-            child: Text(facebookProfileSharedPreferencesButton,
-              style: TextStyle(
-                  color: cardBackgroundColor
-              ),
+            child: Text(
+              facebookProfileSharedPreferencesButton,
+              style: TextStyle(color: cardBackgroundColor),
             ),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text(facebookProfileSharedPreferencesButtonTwo,
-              style: TextStyle(
-                  color: cardBackgroundColor
-              ),
+            child: Text(
+              facebookProfileSharedPreferencesButtonTwo,
+              style: TextStyle(color: cardBackgroundColor),
             ),
           ),
-
         ],
       ),
     );
@@ -4569,67 +4632,56 @@ class _SubPageState extends State<SubPage> {
   }
 
   linkedInLink() async {
-
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
-
         ),
         backgroundColor: backgroundColor,
         title: Text(
           linkedInProfileSharedPreferencesTitle,
-          style: TextStyle(
-              color: cardBackgroundColor
-          ),
+          style: TextStyle(color: cardBackgroundColor),
         ),
         content: Text(
-          linkedInProfileSharedPreferencesContentOne + _linkedIn + linkedInProfileSharedPreferencesContentTwo,
+          linkedInProfileSharedPreferencesContentOne +
+              _linkedIn +
+              linkedInProfileSharedPreferencesContentTwo,
           textAlign: TextAlign.justify,
-          style: TextStyle(
-              color: cardBackgroundColor
-          ),
+          style: TextStyle(color: cardBackgroundColor),
         ),
         actions: <Widget>[
           TextButton(
             onPressed: () {
               launchURL(urlLinkedIn);
               Toast.show("Loading up LinkedIn.com",
-                  duration:
-                  Toast.lengthLong,
-                  gravity:  Toast.bottom,
+                  duration: Toast.lengthLong,
+                  gravity: Toast.bottom,
                   webTexColor: cardBackgroundColor,
                   backgroundColor: backgroundColor,
-                  backgroundRadius: 10
-              );
+                  backgroundRadius: 10);
             },
-            child: Text(linkedInProfileSharedPreferencesButton,
-              style: TextStyle(
-                  color: cardBackgroundColor
-              ),
+            child: Text(
+              linkedInProfileSharedPreferencesButton,
+              style: TextStyle(color: cardBackgroundColor),
             ),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text(linkedInProfileSharedPreferencesButtonTwo,
-              style: TextStyle(
-                  color: cardBackgroundColor
-              ),
+            child: Text(
+              linkedInProfileSharedPreferencesButtonTwo,
+              style: TextStyle(color: cardBackgroundColor),
             ),
           ),
-
         ],
       ),
     );
 //    }
   }
 
-
   @override
   void dispose() {
     _confettiController!.dispose();
     super.dispose();
   }
-
 }

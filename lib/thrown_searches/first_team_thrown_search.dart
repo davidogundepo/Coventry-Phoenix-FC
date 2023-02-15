@@ -1,9 +1,9 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+
 import '../details_pages/first_team_details_page.dart';
 import '../notifier/first_team_class_notifier.dart';
 
@@ -12,7 +12,7 @@ Color appBarTextColor = const Color.fromRGBO(255, 107, 53, 1.0);
 Color appBarBackgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
 Color appBarIconColor = const Color.fromRGBO(255, 107, 53, 1.0);
 Color modalColor = Colors.transparent;
-Color modalBackgroundColor =const Color.fromRGBO(33, 37, 41, 1.0);
+Color modalBackgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
 Color materialBackgroundColor = Colors.transparent;
 Color cardBackgroundColor = const Color.fromRGBO(255, 107, 53, 1.0);
 Color splashColor = const Color.fromRGBO(33, 37, 41, 1.0);
@@ -26,7 +26,6 @@ Color textHighlightColor = const Color.fromRGBO(255, 107, 53, 1.0);
 dynamic queryTech;
 
 class MyFirstTeamClassSearch extends SearchDelegate {
-
   final List? all;
 
   final bool _isVisible = true;
@@ -40,16 +39,19 @@ class MyFirstTeamClassSearch extends SearchDelegate {
         primarySwatch: Colors.deepOrange,
         appBarTheme: AppBarTheme(backgroundColor: cardBackgroundColor),
         primaryIconTheme: IconThemeData(color: appBarIconColor),
-        textTheme: TextTheme(subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
+        textTheme: TextTheme(
+            subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: TextStyle(color: appBarTextColor.withAlpha(60)),
-        ), textSelectionTheme: TextSelectionThemeData(cursorColor: appBarTextColor)
-    );
+        ),
+        textSelectionTheme:
+            TextSelectionThemeData(cursorColor: appBarTextColor));
     return theme;
   }
 
   Future navigateToFirstTeamClassDetailsPage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const SubPage()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const SubPage()));
   }
 
   @override
@@ -60,23 +62,20 @@ class MyFirstTeamClassSearch extends SearchDelegate {
           visible: true,
           child: IconButton(
             icon: const Visibility(
-                visible: true,
-                child: Icon(MdiIcons.closeCircleOutline)),
+                visible: true, child: Icon(MdiIcons.closeCircleOutline)),
             onPressed: () {
               query = '';
             },
           ),
         )
       ];
-    }
-    else {
+    } else {
       return [
         Visibility(
           visible: false,
           child: IconButton(
             icon: const Visibility(
-                visible: false,
-                child: Icon(MdiIcons.closeCircleOutline)),
+                visible: false, child: Icon(MdiIcons.closeCircleOutline)),
             onPressed: () {
               query = '';
             },
@@ -105,7 +104,9 @@ class MyFirstTeamClassSearch extends SearchDelegate {
       query2 = query1[0].toUpperCase() + query1.substring(1);
     }
 
-    var search = all?.where((firstTeamClass) => firstTeamClass.name.contains(query2)).toList();
+    var search = all
+        ?.where((firstTeamClass) => firstTeamClass.name.contains(query2))
+        .toList();
 
     return search == null
         ? _buildProgressIndicator()
@@ -114,7 +115,6 @@ class MyFirstTeamClassSearch extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-
     String query1;
     queryTech = "";
     if (query.isNotEmpty) {
@@ -124,11 +124,11 @@ class MyFirstTeamClassSearch extends SearchDelegate {
 
     List? search;
 
-    if(queryTech.isNotEmpty){
-      search =all?.where((firstTeamClass) => firstTeamClass.name.contains(queryTech)).toList();
-
-
-    }else{
+    if (queryTech.isNotEmpty) {
+      search = all
+          ?.where((firstTeamClass) => firstTeamClass.name.contains(queryTech))
+          .toList();
+    } else {
       search = all;
     }
 
@@ -148,8 +148,8 @@ class MyFirstTeamClassSearch extends SearchDelegate {
               shrinkWrap: true,
               itemCount: search.length,
               itemBuilder: (BuildContext context, int position) {
-
-                FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
+                FirstTeamClassNotifier firstTeamClassNotifier =
+                    Provider.of<FirstTeamClassNotifier>(context);
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Container(
@@ -157,16 +157,15 @@ class MyFirstTeamClassSearch extends SearchDelegate {
                       borderRadius: BorderRadius.circular(10),
                       color: borderColor.withAlpha(50),
                     ),
-
                     child: Material(
                       color: materialBackgroundColor,
                       child: InkWell(
                         splashColor: splashColor,
                         onTap: () {
-                          firstTeamClassNotifier.currentFirstTeamClass = search[position];
+                          firstTeamClassNotifier.currentFirstTeamClass =
+                              search[position];
                           navigateToFirstTeamClassDetailsPage(context);
                         },
-
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
@@ -176,15 +175,14 @@ class MyFirstTeamClassSearch extends SearchDelegate {
                                 width: 100,
                                 height: 100,
                                 decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10)),
                                     image: DecorationImage(
                                         alignment: const Alignment(0, -1),
                                         image: CachedNetworkImageProvider(
-                                            search[position].image
-                                        ),
-                                        fit: BoxFit.cover
-                                    )
-                                ),
+                                            search[position].image),
+                                        fit: BoxFit.cover)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 60),
@@ -197,34 +195,42 @@ class MyFirstTeamClassSearch extends SearchDelegate {
                                         children: <Widget>[
                                           RichText(
                                             text: TextSpan(
-                                                text: search[position].name.substring(0, queryTech.length),
+                                                text: search[position]
+                                                    .name
+                                                    .substring(
+                                                        0, queryTech.length),
                                                 style: GoogleFonts.tenorSans(
                                                     color: textColor,
                                                     fontSize: 13.5,
-                                                    fontWeight: FontWeight.w600
-                                                ),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                                 children: [
                                                   TextSpan(
-                                                      text: search[position].name.substring(queryTech.length),
-                                                      style: GoogleFonts.tenorSans(color: textHighlightColor))
+                                                      text: search[position]
+                                                          .name
+                                                          .substring(
+                                                              queryTech.length),
+                                                      style: GoogleFonts.tenorSans(
+                                                          color:
+                                                              textHighlightColor))
                                                 ]),
                                           ),
                                           (() {
-                                            if (search[position].captain == "Yes") {
-                                              return
-                                                Row(
-                                                  children: <Widget>[
-                                                    const SizedBox(width: 10),
-                                                    Icon (
-                                                      MdiIcons.shieldCheck,
-                                                      color: iconColor,
-                                                    ),
-                                                  ],
-                                                );
+                                            if (search[position].captain ==
+                                                "Yes") {
+                                              return Row(
+                                                children: <Widget>[
+                                                  const SizedBox(width: 10),
+                                                  Icon(
+                                                    MdiIcons.shieldCheck,
+                                                    color: iconColor,
+                                                  ),
+                                                ],
+                                              );
                                             } else {
                                               return Visibility(
                                                 visible: !_isVisible,
-                                                child: Icon (
+                                                child: Icon(
                                                   MdiIcons.shieldCheck,
                                                   color: iconColor,
                                                 ),
@@ -240,14 +246,11 @@ class MyFirstTeamClassSearch extends SearchDelegate {
                                           search[position].positionPlaying,
                                           style: GoogleFonts.varela(
                                               color: textColorTwo,
-                                              fontStyle: FontStyle.italic
-                                          )
-                                      ),
+                                              fontStyle: FontStyle.italic)),
                                     ),
                                   ],
                                 ),
                               )
-
                             ],
                           ),
                         ),
@@ -255,8 +258,7 @@ class MyFirstTeamClassSearch extends SearchDelegate {
                     ),
                   ),
                 );
-              }
-          ),
+              }),
         ),
       ),
     );
@@ -269,5 +271,4 @@ class MyFirstTeamClassSearch extends SearchDelegate {
       ),
     );
   }
-
 }

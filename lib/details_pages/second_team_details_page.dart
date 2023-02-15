@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
-import '../notifier/second_team_class_notifier.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import '../notifier/second_team_class_notifier.dart';
 
 String clubName = "Coventry Phoenix FC";
 
@@ -60,19 +61,19 @@ String hobbiesTitle = "My Hobbies\n";
 String philosophyTitle = "My Philosophy about Life\n";
 String droplineTitle = "My Dropline to my fellow $clubName footballers\n";
 
-
 String facebookProfileSharedPreferencesTitle = "Manual Website Search";
-String facebookProfileSharedPreferencesContentOne= "Apparently, you'd need to search manually for ";
+String facebookProfileSharedPreferencesContentOne =
+    "Apparently, you'd need to search manually for ";
 String facebookProfileSharedPreferencesContentTwo = ", on Facebook.com";
 String facebookProfileSharedPreferencesButton = "Go to Facebook";
 String facebookProfileSharedPreferencesButtonTwo = "Lol, No";
 
 String linkedInProfileSharedPreferencesTitle = "Manual Website Search";
-String linkedInProfileSharedPreferencesContentOne= "Apparently, you'd need to search manually for ";
+String linkedInProfileSharedPreferencesContentOne =
+    "Apparently, you'd need to search manually for ";
 String linkedInProfileSharedPreferencesContentTwo = ", on LinkedIn.com";
 String linkedInProfileSharedPreferencesButton = "Go to LinkedIn";
 String linkedInProfileSharedPreferencesButtonTwo = "Lol, No";
-
 
 Color backgroundColor = const Color.fromRGBO(186, 90, 49, 1);
 Color appBarTextColor = Colors.white;
@@ -92,8 +93,6 @@ Color iconTextColorTwo = const Color.fromRGBO(186, 90, 49, 1);
 Color buttonColor = const Color.fromRGBO(186, 90, 49, 1);
 Color textColor = const Color.fromRGBO(186, 90, 49, 1);
 
-
-
 Color confettiColorOne = Colors.green;
 Color confettiColorTwo = Colors.blue;
 Color confettiColorThree = Colors.pink;
@@ -107,13 +106,11 @@ Color confettiColorTen = Colors.teal;
 Color confettiColorEleven = Colors.indigoAccent;
 Color confettiColorTwelve = Colors.cyan;
 
-
 late SecondTeamClassNotifier secondTeamClassNotifier;
 
 Map<int, Widget>? userBIO;
 
 var crossFadeView = CrossFadeState.showFirst;
-
 
 dynamic _autoBio;
 dynamic _bestMoment;
@@ -151,7 +148,8 @@ class SecondTeamClassDetailsPage extends StatefulWidget {
   final String? title;
 
   @override
-  State<SecondTeamClassDetailsPage> createState() => _SecondTeamClassDetailsPage();
+  State<SecondTeamClassDetailsPage> createState() =>
+      _SecondTeamClassDetailsPage();
 }
 
 class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
@@ -176,7 +174,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    secondTeamClassNotifier = Provider.of<SecondTeamClassNotifier>(context, listen: true);
+    secondTeamClassNotifier =
+        Provider.of<SecondTeamClassNotifier>(context, listen: true);
 
     return ConfettiWidget(
       confettiController: _confettiController!,
@@ -203,7 +202,9 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
           title: Text(
             secondTeamClassNotifier.currentSecondTeamClass.nickname!,
             style: GoogleFonts.sanchez(
-                color: appBarTextColor, fontSize: 25, fontWeight: FontWeight.w400),
+                color: appBarTextColor,
+                fontSize: 25,
+                fontWeight: FontWeight.w400),
           ),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
@@ -226,14 +227,18 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-
-              if (secondTeamClassNotifier.currentSecondTeamClass.imageTwo.toString().isEmpty) ... [
+              if (secondTeamClassNotifier.currentSecondTeamClass.imageTwo
+                  .toString()
+                  .isEmpty) ...[
                 Tooltip(
-                    message: secondTeamClassNotifier.currentSecondTeamClass.name,
+                    message:
+                        secondTeamClassNotifier.currentSecondTeamClass.name,
                     child: GestureDetector(
                       onTap: () => setState(() {
-                        crossFadeView = crossFadeView == CrossFadeState.showFirst
-                            ? CrossFadeState.showSecond : CrossFadeState.showFirst;
+                        crossFadeView =
+                            crossFadeView == CrossFadeState.showFirst
+                                ? CrossFadeState.showSecond
+                                : CrossFadeState.showFirst;
                       }),
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height * .64,
@@ -247,38 +252,43 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: AnimatedCrossFade(
-                            crossFadeState: crossFadeView == CrossFadeState.showFirst
-                                ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                            crossFadeState:
+                                crossFadeView == CrossFadeState.showFirst
+                                    ? CrossFadeState.showSecond
+                                    : CrossFadeState.showFirst,
                             duration: const Duration(milliseconds: 1000),
                             firstChild: CachedNetworkImage(
-                              imageUrl: secondTeamClassNotifier.currentSecondTeamClass.image!,
+                              imageUrl: secondTeamClassNotifier
+                                  .currentSecondTeamClass.image!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                              const Icon(MdiIcons.alertRhombus),
+                                  const Icon(MdiIcons.alertRhombus),
                             ),
                             secondChild: CachedNetworkImage(
-                              imageUrl: secondTeamClassNotifier.currentSecondTeamClass.image!,
+                              imageUrl: secondTeamClassNotifier
+                                  .currentSecondTeamClass.image!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                              const Icon(MdiIcons.alertRhombus),
+                                  const Icon(MdiIcons.alertRhombus),
                             ),
                           ),
                         ),
                       ),
-                    )
-                ),
-              ]
-              else ... [
+                    )),
+              ] else ...[
                 Tooltip(
-                    message: secondTeamClassNotifier.currentSecondTeamClass.name,
+                    message:
+                        secondTeamClassNotifier.currentSecondTeamClass.name,
                     child: GestureDetector(
                       onTap: () => setState(() {
-                        crossFadeView = crossFadeView == CrossFadeState.showFirst
-                            ? CrossFadeState.showSecond : CrossFadeState.showFirst;
+                        crossFadeView =
+                            crossFadeView == CrossFadeState.showFirst
+                                ? CrossFadeState.showSecond
+                                : CrossFadeState.showFirst;
                       }),
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width,
@@ -291,32 +301,34 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: AnimatedCrossFade(
-                            crossFadeState: crossFadeView == CrossFadeState.showFirst
-                                ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                            crossFadeState:
+                                crossFadeView == CrossFadeState.showFirst
+                                    ? CrossFadeState.showSecond
+                                    : CrossFadeState.showFirst,
                             duration: const Duration(milliseconds: 1000),
                             firstChild: CachedNetworkImage(
-                              imageUrl: secondTeamClassNotifier.currentSecondTeamClass.image!,
+                              imageUrl: secondTeamClassNotifier
+                                  .currentSecondTeamClass.image!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                              const Icon(MdiIcons.alertRhombus),
+                                  const Icon(MdiIcons.alertRhombus),
                             ),
                             secondChild: CachedNetworkImage(
-                              imageUrl: secondTeamClassNotifier.currentSecondTeamClass.imageTwo!,
+                              imageUrl: secondTeamClassNotifier
+                                  .currentSecondTeamClass.imageTwo!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                              const Icon(MdiIcons.alertRhombus),
+                                  const Icon(MdiIcons.alertRhombus),
                             ),
                           ),
                         ),
                       ),
-                    )
-                ),
+                    )),
               ],
-
               Material(
                 color: materialBackgroundColor,
                 child: InkWell(
@@ -335,36 +347,37 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: 16.0, top: 16.0, right: 16.0, bottom: 16.0),
-
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Text(
-                              secondTeamClassNotifier.currentSecondTeamClass.name!.toUpperCase(),
+                              secondTeamClassNotifier
+                                  .currentSecondTeamClass.name!
+                                  .toUpperCase(),
                               style: GoogleFonts.blinker(
                                   color: shapeDecorationTextColor,
                                   fontSize: 30,
-                                  fontWeight: FontWeight.w500
-                              ),
+                                  fontWeight: FontWeight.w500),
                             ),
                             (() {
-                              if (secondTeamClassNotifier.currentSecondTeamClass.captain == "Yes") {
-                                return
-                                  Row(
-                                    children: <Widget>[
-                                      const SizedBox(width: 10),
-                                      Icon (
-                                        MdiIcons.shieldCheck,
-                                        color: shapeDecorationIconColor,
-                                      ),
-                                    ],
-                                  );
+                              if (secondTeamClassNotifier
+                                      .currentSecondTeamClass.captain ==
+                                  "Yes") {
+                                return Row(
+                                  children: <Widget>[
+                                    const SizedBox(width: 10),
+                                    Icon(
+                                      MdiIcons.shieldCheck,
+                                      color: shapeDecorationIconColor,
+                                    ),
+                                  ],
+                                );
                               } else {
                                 return Visibility(
                                   visible: !_isVisible,
-                                  child: Icon (
+                                  child: Icon(
                                     MdiIcons.shieldCheck,
                                     color: shapeDecorationIconColor,
                                   ),
@@ -436,22 +449,23 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
-
                           Padding(
-                            padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+                            padding:
+                                const EdgeInsets.only(top: 20.0, bottom: 20),
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: splashColorThree.withAlpha(50),
-                                  // borderRadius: BorderRadius.circular(10)
+                                color: splashColorThree.withAlpha(50),
+                                // borderRadius: BorderRadius.circular(10)
                               ),
                               child: Material(
                                 color: shapeDecorationColorTwo.withAlpha(160),
                                 child: InkWell(
-                                  splashColor: splashColorThree.withOpacity(0.1),
+                                  splashColor:
+                                      splashColorThree.withOpacity(0.1),
                                   onTap: () {},
                                   child: Padding(
-                                    padding:
-                                    const EdgeInsets.only(bottom: 8, top: 8, left: 14, right: 14),
+                                    padding: const EdgeInsets.only(
+                                        bottom: 8, top: 8, left: 14, right: 14),
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.white,
@@ -459,7 +473,9 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       ),
                                       child: Text(
                                         // _name.replaceAll(" ", "'s'") + autoBioDetails,
-                                        _name.substring(0, _name.indexOf(' ')) + "'s" + autoBioDetails,
+                                        _name.substring(0, _name.indexOf(' ')) +
+                                            "'s" +
+                                            autoBioDetails,
                                         style: GoogleFonts.sacramento(
                                           color: textColor,
                                           fontSize: 25,
@@ -481,7 +497,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -489,8 +506,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -523,8 +540,10 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -557,8 +576,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -568,7 +586,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -576,20 +595,22 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
                                               TextSpan(
-                                                  text: otherPositionsOfPlayTitle,
+                                                  text:
+                                                      otherPositionsOfPlayTitle,
                                                   style: GoogleFonts.aBeeZee(
                                                     color: textColor,
                                                     fontSize: 19,
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _otherPositionsOfPlay,
+                                                  text: ' ' +
+                                                      _otherPositionsOfPlay,
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -610,8 +631,10 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -644,8 +667,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -655,7 +677,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -663,8 +686,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -676,7 +699,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _leftOrRightFooted,
+                                                  text:
+                                                      ' ' + _leftOrRightFooted,
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -697,8 +721,10 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -731,8 +757,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -742,7 +767,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -750,8 +776,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -784,8 +810,10 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -818,8 +846,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -829,7 +856,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -837,8 +865,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -871,8 +899,10 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -905,8 +935,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -916,7 +945,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -924,8 +954,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -937,7 +967,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _favFootballLegend,
+                                                  text:
+                                                      ' ' + _favFootballLegend,
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -958,8 +989,10 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -992,8 +1025,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1003,7 +1035,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1011,8 +1044,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1045,8 +1078,10 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -1079,8 +1114,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1090,7 +1124,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1098,8 +1133,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1132,8 +1167,10 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         // child: InkWell(
@@ -1166,8 +1203,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         // ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1177,7 +1213,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1185,8 +1222,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1219,32 +1256,38 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: bestMomentTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _bestMoment,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1253,8 +1296,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1264,7 +1306,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1272,8 +1315,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1306,32 +1349,38 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: worstMomentTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _worstMoment,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1340,8 +1389,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1351,7 +1399,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1359,8 +1408,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1393,32 +1442,38 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: nicknameTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _nickname,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1427,8 +1482,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1438,7 +1492,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1446,8 +1501,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1480,32 +1535,38 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: hobbiesTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _hobbies,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1514,8 +1575,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1525,7 +1585,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1533,8 +1594,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1567,32 +1628,38 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: dobTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _dob,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1601,8 +1668,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1612,7 +1678,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1620,8 +1687,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1654,32 +1721,38 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: countryTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _country,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1688,8 +1761,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1699,7 +1771,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1707,8 +1780,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1741,32 +1814,38 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: regionOfOriginTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _regionFrom,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1775,8 +1854,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1786,7 +1864,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1794,7 +1873,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding: const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1825,15 +1905,18 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                   visible: !_isVisible,
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        color: shapeDecorationColorTwo.withAlpha(50),
-                                        borderRadius: BorderRadius.circular(10)),
+                                        color: shapeDecorationColorTwo
+                                            .withAlpha(50),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     child: Material(
                                       color: materialBackgroundColor,
                                       child: InkWell(
                                         splashColor: splashColorThree,
                                         onTap: () {},
                                         child: Padding(
-                                          padding: const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                          padding: const EdgeInsets.only(
+                                              bottom: 15, top: 15, left: 25),
                                           child: Text.rich(
                                             TextSpan(
                                               children: <TextSpan>[
@@ -1842,14 +1925,16 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                                     style: GoogleFonts.aBeeZee(
                                                       color: textColor,
                                                       fontSize: 19,
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                     )),
                                                 TextSpan(
                                                     text: ' ' + _autoBio,
                                                     style: GoogleFonts.trykker(
                                                       color: textColor,
                                                       fontSize: 19,
-                                                      fontWeight: FontWeight.w300,
+                                                      fontWeight:
+                                                          FontWeight.w300,
                                                     )),
                                               ],
                                             ),
@@ -1867,7 +1952,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1875,8 +1961,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1909,32 +1995,38 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: philosophyTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _philosophy,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -1943,8 +2035,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -1954,7 +2045,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: shapeDecorationColorTwo.withAlpha(50),
+                                      color:
+                                          shapeDecorationColorTwo.withAlpha(50),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Material(
                                     color: materialBackgroundColor,
@@ -1962,8 +2054,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                       splashColor: splashColorThree,
                                       onTap: () {},
                                       child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 15, top: 15, left: 25),
                                         child: Text.rich(
                                           TextSpan(
                                             children: <TextSpan>[
@@ -1996,32 +2088,38 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     padding: const EdgeInsets.only(top: 20.0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: shapeDecorationColorTwo.withAlpha(50),
-                                          borderRadius: BorderRadius.circular(10)),
+                                          color: shapeDecorationColorTwo
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Material(
                                         color: materialBackgroundColor,
                                         child: InkWell(
                                           splashColor: splashColorThree,
                                           onTap: () {},
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15, top: 15, left: 25),
                                             child: Text.rich(
                                               TextSpan(
                                                 children: <TextSpan>[
                                                   TextSpan(
                                                       text: droplineTitle,
-                                                      style: GoogleFonts.aBeeZee(
+                                                      style:
+                                                          GoogleFonts.aBeeZee(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       )),
                                                   TextSpan(
                                                       text: ' ' + _myDropline,
-                                                      style: GoogleFonts.trykker(
+                                                      style:
+                                                          GoogleFonts.trykker(
                                                         color: textColor,
                                                         fontSize: 19,
-                                                        fontWeight: FontWeight.w300,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                       )),
                                                 ],
                                               ),
@@ -2030,8 +2128,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                         ),
                                       ),
                                     ),
-                                  )
-                              );
+                                  ));
                             }
                           }()),
 
@@ -2121,11 +2218,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                           //     );
                           //   }
                           // }()),
-
-
                         ],
                       ),
-
                     ],
                   ),
                 ),
@@ -2140,22 +2234,24 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
 
   @override
   initState() {
-
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
 
-    _confettiController = ConfettiController(duration: const Duration(seconds: 777));
+    _confettiController =
+        ConfettiController(duration: const Duration(seconds: 777));
     _confettiController!.play();
 
-    SecondTeamClassNotifier secondTeamClassNotifier = Provider.of<SecondTeamClassNotifier>(context, listen: false);
+    SecondTeamClassNotifier secondTeamClassNotifier =
+        Provider.of<SecondTeamClassNotifier>(context, listen: false);
 
     _autoBio = secondTeamClassNotifier.currentSecondTeamClass.autoBio;
     _bestMoment = secondTeamClassNotifier.currentSecondTeamClass.bestMoment;
     _dob = secondTeamClassNotifier.currentSecondTeamClass.dob;
     _dreamFC = secondTeamClassNotifier.currentSecondTeamClass.dreamFC;
-    _positionPlaying = secondTeamClassNotifier.currentSecondTeamClass.positionPlaying;
+    _positionPlaying =
+        secondTeamClassNotifier.currentSecondTeamClass.positionPlaying;
     _email = secondTeamClassNotifier.currentSecondTeamClass.email;
     _facebook = secondTeamClassNotifier.currentSecondTeamClass.facebook;
     _linkedIn = secondTeamClassNotifier.currentSecondTeamClass.linkedIn;
@@ -2168,17 +2264,23 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
     _phone = secondTeamClassNotifier.currentSecondTeamClass.phone;
     _captain = secondTeamClassNotifier.currentSecondTeamClass.captain;
     // _prefectPosition = secondTeamClassNotifier.currentSecondTeamClass.positionEnforced;
-    _country = secondTeamClassNotifier.currentSecondTeamClass.constituentCountry;
+    _country =
+        secondTeamClassNotifier.currentSecondTeamClass.constituentCountry;
     _regionFrom = secondTeamClassNotifier.currentSecondTeamClass.regionFrom;
     _twitter = secondTeamClassNotifier.currentSecondTeamClass.twitter;
     _snapchat = secondTeamClassNotifier.currentSecondTeamClass.snapchat;
     _tikTok = secondTeamClassNotifier.currentSecondTeamClass.tikTok;
-    _otherPositionsOfPlay = secondTeamClassNotifier.currentSecondTeamClass.otherPositionsOfPlay;
-    _favFootballLegend = secondTeamClassNotifier.currentSecondTeamClass.favFootballLegend;
-    _yearOfInception = secondTeamClassNotifier.currentSecondTeamClass.yearOfInception;
-    _leftOrRightFooted = secondTeamClassNotifier.currentSecondTeamClass.leftOrRightFooted;
+    _otherPositionsOfPlay =
+        secondTeamClassNotifier.currentSecondTeamClass.otherPositionsOfPlay;
+    _favFootballLegend =
+        secondTeamClassNotifier.currentSecondTeamClass.favFootballLegend;
+    _yearOfInception =
+        secondTeamClassNotifier.currentSecondTeamClass.yearOfInception;
+    _leftOrRightFooted =
+        secondTeamClassNotifier.currentSecondTeamClass.leftOrRightFooted;
     _adidasOrNike = secondTeamClassNotifier.currentSecondTeamClass.adidasOrNike;
-    _ronaldoOrMessi = secondTeamClassNotifier.currentSecondTeamClass.ronaldoOrMessi;
+    _ronaldoOrMessi =
+        secondTeamClassNotifier.currentSecondTeamClass.ronaldoOrMessi;
     _worstMoment = secondTeamClassNotifier.currentSecondTeamClass.worstMoment;
 
     userBIO = <int, Widget>{
@@ -2211,9 +2313,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     onPressed: () {
                       if (_phone.toString().startsWith('0')) {
                         var most = _phone.toString().substring(1);
-                        launchURL(callFIRST +most);
-                      }
-                      else {
+                        launchURL(callFIRST + most);
+                      } else {
                         launchURL(callFIRST + _phone);
                       }
                     },
@@ -2228,12 +2329,12 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(
                         MdiIcons.dialpad,
                         color: iconTextColor,
@@ -2252,7 +2353,6 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
               );
             }
           }()),
-
           (() {
             if (_phone.toString().isNotEmpty) {
               return Padding(
@@ -2278,9 +2378,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     onPressed: () {
                       if (_phone.toString().startsWith('0')) {
                         var most = _phone.toString().substring(1);
-                        launchURL(smsFIRST +most);
-                      }
-                      else {
+                        launchURL(smsFIRST + most);
+                      } else {
                         launchURL(smsFIRST + _phone);
                       }
                     },
@@ -2295,12 +2394,12 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(
                         MdiIcons.message,
                         color: iconTextColor,
@@ -2319,7 +2418,6 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
               );
             }
           }()),
-
           (() {
             if (_phone.toString().isNotEmpty) {
               return Padding(
@@ -2345,12 +2443,23 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     onPressed: () {
                       if (_phone.toString().startsWith('0')) {
                         var most = _phone.toString().substring(1);
-                        var firstName = _name.toString().substring(0, _name.toString().indexOf(" "));
-                        launchURL(whatsAppFIRST + most + whatsAppSECOND + firstName + whatsAppTHIRD);
-                      }
-                      else {
-                        var firstName = _name.toString().substring(0, _name.toString().indexOf(" "));
-                        launchURL(whatsAppFIRST + _phone + whatsAppSECOND + firstName + whatsAppTHIRD);
+                        var firstName = _name
+                            .toString()
+                            .substring(0, _name.toString().indexOf(" "));
+                        launchURL(whatsAppFIRST +
+                            most +
+                            whatsAppSECOND +
+                            firstName +
+                            whatsAppTHIRD);
+                      } else {
+                        var firstName = _name
+                            .toString()
+                            .substring(0, _name.toString().indexOf(" "));
+                        launchURL(whatsAppFIRST +
+                            _phone +
+                            whatsAppSECOND +
+                            firstName +
+                            whatsAppTHIRD);
                       }
                     },
                   ),
@@ -2364,12 +2473,12 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(
                         MdiIcons.message,
                         color: iconTextColor,
@@ -2388,7 +2497,6 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
               );
             }
           }()),
-
           (() {
             if (_email.toString().isNotEmpty) {
               return Padding(
@@ -2425,12 +2533,12 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     child: InkWell(
                       splashColor: splashColorTwo,
                       child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          elevation: 2,
+                          shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                         icon: Icon(
                           MdiIcons.gmail,
                           color: iconTextColor,
@@ -2448,7 +2556,6 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   ));
             }
           }()),
-
           (() {
             if (_twitter.toString().isNotEmpty) {
               return Padding(
@@ -2467,15 +2574,12 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         style: GoogleFonts.abel(
                             color: iconTextColor,
                             fontSize: 18,
-                            fontWeight: FontWeight.w300
-                        )
-                    ),
+                            fontWeight: FontWeight.w300)),
                     onPressed: () {
                       if (_twitter.toString().startsWith('@')) {
                         var most = _twitter.toString().substring(1);
                         launchURL(urlTwitter + most);
-                      }
-                      else {
+                      } else {
                         launchURL(urlTwitter + _twitter);
                       }
                     },
@@ -2490,22 +2594,20 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(MdiIcons.twitter, color: iconTextColor),
                       label: Text(twitterButton,
                           style: GoogleFonts.abel(
                               color: iconTextColor,
                               fontSize: 18,
-                              fontWeight: FontWeight.w300
-                          )
-                      ),
+                              fontWeight: FontWeight.w300)),
                       onPressed: () {
-                        launchURL(urlTwitter+_twitter);
+                        launchURL(urlTwitter + _twitter);
                       },
                     ),
                   ),
@@ -2513,7 +2615,6 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
               );
             }
           }()),
-
           (() {
             if (_instagram.toString().isNotEmpty) {
               return Padding(
@@ -2540,8 +2641,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       if (_instagram.toString().startsWith('@')) {
                         var most = _instagram.toString().substring(1);
                         launchURL(urlInstagram + most);
-                      }
-                      else {
+                      } else {
                         launchURL(urlInstagram + _instagram);
                       }
                     },
@@ -2556,12 +2656,12 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     child: InkWell(
                       splashColor: splashColorTwo,
                       child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          elevation: 2,
+                          shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                         icon: Icon(
                           MdiIcons.instagram,
                           color: iconTextColor,
@@ -2579,7 +2679,6 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   ));
             }
           }()),
-
           (() {
             if (_snapchat.toString().isNotEmpty) {
               return Padding(
@@ -2606,8 +2705,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       if (_snapchat.toString().startsWith('@')) {
                         var most = _instagram.toString().substring(1);
                         launchURL(urlSnapchat + most);
-                      }
-                      else {
+                      } else {
                         launchURL(urlSnapchat + _snapchat);
                       }
                     },
@@ -2622,12 +2720,12 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: Icon(
                         MdiIcons.snapchat,
                         color: iconTextColorTwo,
@@ -2646,7 +2744,6 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
               );
             }
           }()),
-
           (() {
             if (_tikTok.toString().isNotEmpty) {
               return Padding(
@@ -2673,8 +2770,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       if (_tikTok.toString().startsWith('@')) {
                         var most = _tikTok.toString().substring(1);
                         launchURL(urlTikTok + most);
-                      }
-                      else {
+                      } else {
                         launchURL(urlTikTok + _tikTok);
                       }
                     },
@@ -2689,12 +2785,12 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   child: InkWell(
                     splashColor: splashColorTwo,
                     child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        elevation: 2,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       icon: FaIcon(
                         FontAwesomeIcons.tiktok,
                         color: iconTextColorTwo,
@@ -2713,7 +2809,6 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
               );
             }
           }()),
-
           (() {
             if (_facebook.toString().isNotEmpty) {
               return Padding(
@@ -2754,12 +2849,12 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     child: InkWell(
                       splashColor: splashColorTwo,
                       child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          elevation: 2,
+                          shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                         icon: Icon(
                           MdiIcons.facebook,
                           color: iconTextColor,
@@ -2779,7 +2874,6 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   ));
             }
           }()),
-
           (() {
             if (_linkedIn.toString().isNotEmpty) {
               return Padding(
@@ -2820,12 +2914,12 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     child: InkWell(
                       splashColor: splashColorTwo,
                       child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      elevation: 2,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          elevation: 2,
+                          shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                         icon: Icon(
                           MdiIcons.facebook,
                           color: iconTextColor,
@@ -2845,17 +2939,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                   ));
             }
           }()),
-
-
         ],
       ),
-
       1: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-
           (() {
             if (_positionPlaying.toString().isNotEmpty) {
               return Padding(
@@ -2870,8 +2960,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -2938,8 +3028,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -2957,8 +3046,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3025,8 +3114,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3044,8 +3132,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3112,8 +3200,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3131,8 +3218,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3199,8 +3286,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3218,8 +3304,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3286,8 +3372,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3305,8 +3390,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3373,8 +3458,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3392,8 +3476,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3460,8 +3544,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3479,8 +3562,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3547,8 +3630,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         // ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3566,8 +3648,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3608,8 +3690,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -3634,8 +3716,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3653,8 +3734,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3695,8 +3776,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -3721,8 +3802,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3740,8 +3820,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3782,8 +3862,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -3808,8 +3888,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3827,8 +3906,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3869,8 +3948,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -3895,8 +3974,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -3914,8 +3992,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -3956,8 +4034,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -3982,8 +4060,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -4001,8 +4078,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -4043,8 +4120,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -4069,8 +4146,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -4088,8 +4164,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -4130,8 +4206,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -4156,8 +4232,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -4175,7 +4250,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -4214,7 +4290,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         splashColor: splashColorThree,
                         onTap: () {},
                         child: Padding(
-                          padding: const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                          padding: const EdgeInsets.only(
+                              bottom: 15, top: 15, left: 25),
                           child: Text.rich(
                             TextSpan(
                               children: <TextSpan>[
@@ -4256,8 +4333,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -4298,8 +4375,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -4324,8 +4401,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -4343,8 +4419,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                       splashColor: splashColorThree,
                       onTap: () {},
                       child: Padding(
-                        padding:
-                        const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 15, top: 15, left: 25),
                         child: Text.rich(
                           TextSpan(
                             children: <TextSpan>[
@@ -4385,8 +4461,8 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                           splashColor: splashColorThree,
                           onTap: () {},
                           child: Padding(
-                            padding:
-                            const EdgeInsets.only(bottom: 15, top: 15, left: 25),
+                            padding: const EdgeInsets.only(
+                                bottom: 15, top: 15, left: 25),
                             child: Text.rich(
                               TextSpan(
                                 children: <TextSpan>[
@@ -4411,8 +4487,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                         ),
                       ),
                     ),
-                  )
-              );
+                  ));
             }
           }()),
 
@@ -4502,8 +4577,6 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
           //     );
           //   }
           // }()),
-
-
         ],
       ),
     };
@@ -4513,27 +4586,23 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
   int sharedValue = 0;
 
   facebookLink() async {
-
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
-
         ),
         backgroundColor: backgroundColor,
         title: Text(
           facebookProfileSharedPreferencesTitle,
-          style: TextStyle(
-              color: cardBackgroundColor
-          ),
+          style: TextStyle(color: cardBackgroundColor),
         ),
         content: Text(
-          facebookProfileSharedPreferencesContentOne + _facebook + facebookProfileSharedPreferencesContentTwo,
+          facebookProfileSharedPreferencesContentOne +
+              _facebook +
+              facebookProfileSharedPreferencesContentTwo,
           textAlign: TextAlign.justify,
-          style: TextStyle(
-              color: cardBackgroundColor
-          ),
+          style: TextStyle(color: cardBackgroundColor),
         ),
         actions: <Widget>[
           TextButton(
@@ -4541,27 +4610,23 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
               launchURL(urlFacebook);
               Toast.show("Loading up Facebook.com",
                   duration: Toast.lengthLong,
-                  gravity:  Toast.bottom,
+                  gravity: Toast.bottom,
                   webTexColor: cardBackgroundColor,
                   backgroundColor: backgroundColor,
-                  backgroundRadius: 10
-              );
+                  backgroundRadius: 10);
             },
-            child: Text(facebookProfileSharedPreferencesButton,
-              style: TextStyle(
-                  color: cardBackgroundColor
-              ),
+            child: Text(
+              facebookProfileSharedPreferencesButton,
+              style: TextStyle(color: cardBackgroundColor),
             ),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text(facebookProfileSharedPreferencesButtonTwo,
-              style: TextStyle(
-                  color: cardBackgroundColor
-              ),
+            child: Text(
+              facebookProfileSharedPreferencesButtonTwo,
+              style: TextStyle(color: cardBackgroundColor),
             ),
           ),
-
         ],
       ),
     );
@@ -4569,67 +4634,56 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
   }
 
   linkedInLink() async {
-
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
-
         ),
         backgroundColor: backgroundColor,
         title: Text(
           linkedInProfileSharedPreferencesTitle,
-          style: TextStyle(
-              color: cardBackgroundColor
-          ),
+          style: TextStyle(color: cardBackgroundColor),
         ),
         content: Text(
-          linkedInProfileSharedPreferencesContentOne + _linkedIn + linkedInProfileSharedPreferencesContentTwo,
+          linkedInProfileSharedPreferencesContentOne +
+              _linkedIn +
+              linkedInProfileSharedPreferencesContentTwo,
           textAlign: TextAlign.justify,
-          style: TextStyle(
-              color: cardBackgroundColor
-          ),
+          style: TextStyle(color: cardBackgroundColor),
         ),
         actions: <Widget>[
           TextButton(
             onPressed: () {
               launchURL(urlLinkedIn);
               Toast.show("Loading up LinkedIn.com",
-                  duration:
-                  Toast.lengthLong,
-                  gravity:  Toast.bottom,
+                  duration: Toast.lengthLong,
+                  gravity: Toast.bottom,
                   webTexColor: cardBackgroundColor,
                   backgroundColor: backgroundColor,
-                  backgroundRadius: 10
-              );
+                  backgroundRadius: 10);
             },
-            child: Text(linkedInProfileSharedPreferencesButton,
-              style: TextStyle(
-                  color: cardBackgroundColor
-              ),
+            child: Text(
+              linkedInProfileSharedPreferencesButton,
+              style: TextStyle(color: cardBackgroundColor),
             ),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text(linkedInProfileSharedPreferencesButtonTwo,
-              style: TextStyle(
-                  color: cardBackgroundColor
-              ),
+            child: Text(
+              linkedInProfileSharedPreferencesButtonTwo,
+              style: TextStyle(color: cardBackgroundColor),
             ),
           ),
-
         ],
       ),
     );
 //    }
   }
 
-
   @override
   void dispose() {
     _confettiController!.dispose();
     super.dispose();
   }
-
 }

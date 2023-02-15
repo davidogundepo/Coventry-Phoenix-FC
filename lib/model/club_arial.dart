@@ -1,4 +1,3 @@
-
 class ClubArial {
   String? image;
   String? toastName;

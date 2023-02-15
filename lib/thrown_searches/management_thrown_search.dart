@@ -1,9 +1,9 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+
 import '../details_pages/management_details_page.dart';
 import '../notifier/management_body_notifier.dart';
 
@@ -27,7 +27,6 @@ Color textHighlightColor = const Color.fromRGBO(208, 104, 47, 1);
 dynamic queryTech;
 
 class MyManagementBodySearch extends SearchDelegate {
-
   final List? all;
 
   MyManagementBodySearch({@required this.all});
@@ -39,16 +38,21 @@ class MyManagementBodySearch extends SearchDelegate {
         primarySwatch: Colors.deepOrange,
         appBarTheme: AppBarTheme(backgroundColor: cardBackgroundColor),
         primaryIconTheme: IconThemeData(color: appBarIconColor),
-        textTheme: TextTheme(subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
+        textTheme: TextTheme(
+            subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: TextStyle(color: appBarTextColor.withAlpha(60)),
-        ), textSelectionTheme: TextSelectionThemeData(cursorColor: appBarTextColor)
-    );
+        ),
+        textSelectionTheme:
+            TextSelectionThemeData(cursorColor: appBarTextColor));
     return theme;
   }
 
   Future navigateToManagementBodyDetailsPage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const ManagementBodyDetailsPage()));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const ManagementBodyDetailsPage()));
   }
 
   @override
@@ -59,23 +63,20 @@ class MyManagementBodySearch extends SearchDelegate {
           visible: true,
           child: IconButton(
             icon: const Visibility(
-                visible: true,
-                child: Icon(MdiIcons.closeCircleOutline)),
+                visible: true, child: Icon(MdiIcons.closeCircleOutline)),
             onPressed: () {
               query = '';
             },
           ),
         )
       ];
-    }
-    else {
+    } else {
       return [
         Visibility(
           visible: false,
           child: IconButton(
             icon: const Visibility(
-                visible: false,
-                child: Icon(MdiIcons.closeCircleOutline)),
+                visible: false, child: Icon(MdiIcons.closeCircleOutline)),
             onPressed: () {
               query = '';
             },
@@ -89,7 +90,7 @@ class MyManagementBodySearch extends SearchDelegate {
   Widget buildLeading(BuildContext context) {
     return IconButton(
       icon: const Icon(
-          MdiIcons.chevronTripleLeft,
+        MdiIcons.chevronTripleLeft,
       ),
       onPressed: () {
         close(context, null);
@@ -106,7 +107,9 @@ class MyManagementBodySearch extends SearchDelegate {
       query2 = query1[0].toUpperCase() + query1.substring(1);
     }
 
-    var search = all?.where((managementBody) => managementBody.name.contains(query2)).toList();
+    var search = all
+        ?.where((managementBody) => managementBody.name.contains(query2))
+        .toList();
 
     return search == null
         ? _buildProgressIndicator()
@@ -115,7 +118,6 @@ class MyManagementBodySearch extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-
     String query1;
     queryTech = "";
     if (query.isNotEmpty) {
@@ -125,11 +127,11 @@ class MyManagementBodySearch extends SearchDelegate {
 
     List? search;
 
-    if(queryTech.isNotEmpty){
-      search =all?.where((managementBody) => managementBody.name.contains(queryTech)).toList();
-
-
-    }else{
+    if (queryTech.isNotEmpty) {
+      search = all
+          ?.where((managementBody) => managementBody.name.contains(queryTech))
+          .toList();
+    } else {
       search = all;
     }
 
@@ -149,8 +151,8 @@ class MyManagementBodySearch extends SearchDelegate {
               shrinkWrap: true,
               itemCount: search.length,
               itemBuilder: (BuildContext context, int position) {
-
-                ManagementBodyNotifier managementBodyNotifier = Provider.of<ManagementBodyNotifier>(context);
+                ManagementBodyNotifier managementBodyNotifier =
+                    Provider.of<ManagementBodyNotifier>(context);
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Container(
@@ -158,16 +160,15 @@ class MyManagementBodySearch extends SearchDelegate {
                       borderRadius: BorderRadius.circular(10),
                       color: borderColor.withAlpha(50),
                     ),
-
                     child: Material(
                       color: materialBackgroundColor,
                       child: InkWell(
                         splashColor: splashColor,
                         onTap: () {
-                          managementBodyNotifier.currentManagementBody = search[position];
+                          managementBodyNotifier.currentManagementBody =
+                              search[position];
                           navigateToManagementBodyDetailsPage(context);
                         },
-
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
@@ -177,15 +178,14 @@ class MyManagementBodySearch extends SearchDelegate {
                                 width: 100,
                                 height: 100,
                                 decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10)),
                                     image: DecorationImage(
                                         alignment: const Alignment(0, -1),
                                         image: CachedNetworkImageProvider(
-                                            search[position].image
-                                        ),
-                                        fit: BoxFit.cover
-                                    )
-                                ),
+                                            search[position].image),
+                                        fit: BoxFit.cover)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 60),
@@ -198,20 +198,28 @@ class MyManagementBodySearch extends SearchDelegate {
                                         children: <Widget>[
                                           RichText(
                                             text: TextSpan(
-                                                text: search[position].name.substring(0, queryTech.length),
+                                                text: search[position]
+                                                    .name
+                                                    .substring(
+                                                        0, queryTech.length),
                                                 style: GoogleFonts.tenorSans(
                                                     color: textColor,
                                                     fontSize: 13.5,
-                                                    fontWeight: FontWeight.w600
-                                                ),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                                 children: [
                                                   TextSpan(
-                                                      text: search[position].name.substring(queryTech.length),
-                                                      style: GoogleFonts.tenorSans(color: textHighlightColor))
+                                                      text: search[position]
+                                                          .name
+                                                          .substring(
+                                                              queryTech.length),
+                                                      style: GoogleFonts.tenorSans(
+                                                          color:
+                                                              textHighlightColor))
                                                 ]),
                                           ),
                                           const SizedBox(width: 10),
-                                          Icon (
+                                          Icon(
                                             MdiIcons.shieldCheck,
                                             color: iconColor,
                                           ),
@@ -226,14 +234,11 @@ class MyManagementBodySearch extends SearchDelegate {
                                               color: textColor,
                                               fontSize: 16,
                                               fontWeight: FontWeight.w300,
-                                              fontStyle: FontStyle.italic
-                                          )
-                                      ),
+                                              fontStyle: FontStyle.italic)),
                                     ),
                                   ],
                                 ),
                               )
-
                             ],
                           ),
                         ),
@@ -241,8 +246,7 @@ class MyManagementBodySearch extends SearchDelegate {
                     ),
                   ),
                 );
-              }
-          ),
+              }),
         ),
       ),
     );
@@ -255,5 +259,4 @@ class MyManagementBodySearch extends SearchDelegate {
       ),
     );
   }
-
 }
