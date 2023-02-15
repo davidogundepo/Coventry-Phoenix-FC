@@ -25,6 +25,9 @@ Color? appBarBackgroundColor = const Color.fromRGBO(34, 40, 49, 1);
 
 // final List<PlayersTable> playersTableList = [];
 
+FirstTeamClassNotifier? firstTeamClassNotifier;
+SecondTeamClassNotifier? secondTeamClassNotifier;
+
 class PlayersTablePage extends StatefulWidget {
   const PlayersTablePage({Key? key}) : super(key: key);
 
@@ -45,10 +48,10 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
   }
 
   _buildDataGrid() {
-    FirstTeamClassNotifier firstTeamClassNotifier =
-        Provider.of<FirstTeamClassNotifier>(context);
-    SecondTeamClassNotifier secondTeamClassNotifier =
-        Provider.of<SecondTeamClassNotifier>(context);
+    firstTeamClassNotifier =
+        Provider.of<FirstTeamClassNotifier>(context, listen: false);
+    secondTeamClassNotifier =
+        Provider.of<SecondTeamClassNotifier>(context, listen: false);
     return StreamBuilder(
         stream: getDataFromFirestore(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -143,17 +146,17 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                             .toString();
 
                         var firstTeamPlayer = firstTeamClassNotifier
-                            .firstTeamClassList
+                            ?.firstTeamClassList
                             .firstWhereOrNull(
                                 (element) => element.name == playerName);
 
                         var secondTeamPlayer = secondTeamClassNotifier
-                            .secondTeamClassList
+                            ?.secondTeamClassList
                             .firstWhereOrNull(
                                 (element) => element.name == playerName);
 
                         if (firstTeamPlayer != null) {
-                          firstTeamClassNotifier.currentFirstTeamClass =
+                          firstTeamClassNotifier?.currentFirstTeamClass =
                               firstTeamPlayer;
                           navigateToSubPage(context);
 
@@ -162,7 +165,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                               gravity: Toast.bottom,
                               backgroundRadius: 10);
                         } else if (secondTeamPlayer != null) {
-                          secondTeamClassNotifier.currentSecondTeamClass =
+                          secondTeamClassNotifier?.currentSecondTeamClass =
                               secondTeamPlayer;
                           navigateToSecondTeamClassDetailsPage(context);
 
