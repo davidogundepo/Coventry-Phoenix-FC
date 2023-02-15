@@ -139,61 +139,41 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                                 element.columnName == 'player_name')
                             .value
                             .toString();
-                        // Toast.show("Loading up $playerName",
-                        //     duration: Toast.lengthLong,
-                        //     gravity: Toast.bottom,
-                        //     backgroundRadius: 10);
 
-                        ///fetch the record which has same player name
-                        firstTeamClassNotifier.currentFirstTeamClass =
-                            firstTeamClassNotifier.firstTeamClassList
-                                .where((element) => element.name == playerName)
-                                .first;
-                        // navigateToSubPage(context);
-                        navigateToSubPage(context);
+                        var firstTeamPlayer = firstTeamClassNotifier
+                            .firstTeamClassList
+                            .firstWhereOrNull(
+                                (element) => element.name == playerName);
 
-                        /// Good
-                        // String playerName = row
-                        //     .getCells()
-                        //     .firstWhere((element) =>
-                        //         element.columnName == 'player_name')
-                        //     .value
-                        //     .toString();
-                        //
-                        // var firstTeamPlayer = firstTeamClassNotifier
-                        //     .firstTeamClassList
-                        //     .firstWhereOrNull(
-                        //         (element) => element.name == playerName);
-                        //
-                        // var secondTeamPlayer = secondTeamClassNotifier
-                        //     .secondTeamClassList
-                        //     .firstWhereOrNull(
-                        //         (element) => element.name == playerName);
-                        //
-                        // if (firstTeamPlayer != null) {
-                        //   firstTeamClassNotifier.currentFirstTeamClass =
-                        //       firstTeamPlayer;
-                        //   navigateToSubPage(context);
-                        //
-                        //   Toast.show("Loading up $playerName bb",
-                        //       duration: Toast.lengthLong,
-                        //       gravity: Toast.bottom,
-                        //       backgroundRadius: 10);
-                        // } else if (secondTeamPlayer != null) {
-                        //   secondTeamClassNotifier.currentSecondTeamClass =
-                        //       secondTeamPlayer;
-                        //   navigateToSecondTeamClassDetailsPage(context);
-                        //
-                        //   Toast.show("Loading up $playerName mm",
-                        //       duration: Toast.lengthLong,
-                        //       gravity: Toast.bottom,
-                        //       backgroundRadius: 10);
-                        // } else {
-                        //   Toast.show("Ummmm, we can't find $playerName",
-                        //       duration: Toast.lengthLong,
-                        //       gravity: Toast.bottom,
-                        //       backgroundRadius: 10);
-                        // }
+                        var secondTeamPlayer = secondTeamClassNotifier
+                            .secondTeamClassList
+                            .firstWhereOrNull(
+                                (element) => element.name == playerName);
+
+                        if (firstTeamPlayer != null) {
+                          firstTeamClassNotifier.currentFirstTeamClass =
+                              firstTeamPlayer;
+                          navigateToSubPage(context);
+
+                          Toast.show("Loading up $playerName",
+                              duration: Toast.lengthLong,
+                              gravity: Toast.bottom,
+                              backgroundRadius: 10);
+                        } else if (secondTeamPlayer != null) {
+                          secondTeamClassNotifier.currentSecondTeamClass =
+                              secondTeamPlayer;
+                          navigateToSecondTeamClassDetailsPage(context);
+
+                          Toast.show("Loading up $playerName",
+                              duration: Toast.lengthLong,
+                              gravity: Toast.bottom,
+                              backgroundRadius: 10);
+                        } else {
+                          Toast.show("Ummmm, we can't find $playerName",
+                              duration: Toast.lengthLong,
+                              gravity: Toast.bottom,
+                              backgroundRadius: 10);
+                        }
                       }
                     },
                     frozenColumnsCount: 3,
