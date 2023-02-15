@@ -43,12 +43,13 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
   }
 
   _buildDataGrid() {
+    FirstTeamClassNotifier firstTeamClassNotifier =
+        Provider.of<FirstTeamClassNotifier>(context);
+    SecondTeamClassNotifier secondTeamClassNotifier =
+        Provider.of<SecondTeamClassNotifier>(context);
     return StreamBuilder(
         stream: getDataFromFirestore(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          FirstTeamClassNotifier firstTeamClassNotifier =
-              Provider.of<FirstTeamClassNotifier>(context);
-
           if (snapshot.hasData) {
             if (playersTableList.isNotEmpty &&
                 !snapshot.data!.metadata.isFromCache) {
@@ -138,44 +139,61 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                                 element.columnName == 'player_name')
                             .value
                             .toString();
+                        // Toast.show("Loading up $playerName",
+                        //     duration: Toast.lengthLong,
+                        //     gravity: Toast.bottom,
+                        //     backgroundRadius: 10);
 
-                        var firstTeamPlayer = firstTeamClassNotifier
-                            .firstTeamClassList
-                            .firstWhereOrNull(
-                                (element) => element.name == playerName);
+                        ///fetch the record which has same player name
+                        firstTeamClassNotifier.currentFirstTeamClass =
+                            firstTeamClassNotifier.firstTeamClassList
+                                .where((element) => element.name == playerName)
+                                .first;
+                        // navigateToSubPage(context);
+                        navigateToSubPage(context);
 
-                        var secondTeamPlayer = secondTeamClassNotifier
-                            .secondTeamClassList
-                            .firstWhereOrNull(
-                                (element) => element.name == playerName);
-
-                        if (firstTeamPlayer != null) {
-                          firstTeamClassNotifier.currentFirstTeamClass =
-                              firstTeamPlayer;
-
-                          navigateToSubPage(context);
-
-                          Toast.show("Loading up $playerName",
-                              duration: Toast.lengthLong,
-                              gravity: Toast.bottom,
-                              backgroundRadius: 10);
-                        }
-                        else if (secondTeamPlayer != null) {
-                          secondTeamClassNotifier.currentSecondTeamClass =
-                              secondTeamPlayer;
-                          navigateToSecondTeamClassDetailsPage(context);
-
-                          Toast.show("Loading up $playerName",
-                              duration: Toast.lengthLong,
-                              gravity: Toast.bottom,
-                              backgroundRadius: 10);
-                        }
-                        else {
-                          Toast.show("Ummmm, we can't find $playerName",
-                              duration: Toast.lengthLong,
-                              gravity: Toast.bottom,
-                              backgroundRadius: 10);
-                        }
+                        /// Good
+                        // String playerName = row
+                        //     .getCells()
+                        //     .firstWhere((element) =>
+                        //         element.columnName == 'player_name')
+                        //     .value
+                        //     .toString();
+                        //
+                        // var firstTeamPlayer = firstTeamClassNotifier
+                        //     .firstTeamClassList
+                        //     .firstWhereOrNull(
+                        //         (element) => element.name == playerName);
+                        //
+                        // var secondTeamPlayer = secondTeamClassNotifier
+                        //     .secondTeamClassList
+                        //     .firstWhereOrNull(
+                        //         (element) => element.name == playerName);
+                        //
+                        // if (firstTeamPlayer != null) {
+                        //   firstTeamClassNotifier.currentFirstTeamClass =
+                        //       firstTeamPlayer;
+                        //   navigateToSubPage(context);
+                        //
+                        //   Toast.show("Loading up $playerName bb",
+                        //       duration: Toast.lengthLong,
+                        //       gravity: Toast.bottom,
+                        //       backgroundRadius: 10);
+                        // } else if (secondTeamPlayer != null) {
+                        //   secondTeamClassNotifier.currentSecondTeamClass =
+                        //       secondTeamPlayer;
+                        //   navigateToSecondTeamClassDetailsPage(context);
+                        //
+                        //   Toast.show("Loading up $playerName mm",
+                        //       duration: Toast.lengthLong,
+                        //       gravity: Toast.bottom,
+                        //       backgroundRadius: 10);
+                        // } else {
+                        //   Toast.show("Ummmm, we can't find $playerName",
+                        //       duration: Toast.lengthLong,
+                        //       gravity: Toast.bottom,
+                        //       backgroundRadius: 10);
+                        // }
                       }
                     },
                     frozenColumnsCount: 3,
@@ -341,6 +359,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
     playersTableDataSource.sortedColumns.add(const SortColumnDetails(
         name: 'goals_scored', sortDirection: DataGridSortDirection.descending));
     // }
+
     super.initState();
 
     SystemChrome.setPreferredOrientations([
@@ -768,8 +787,7 @@ class PlayersTableDataSource extends DataGridSource {
                             duration: Toast.lengthLong,
                             gravity: Toast.bottom,
                             backgroundRadius: 10);
-                      }
-                      else if (secondTeamPlayer != null) {
+                      } else if (secondTeamPlayer != null) {
                         secondTeamClassNotifier.currentSecondTeamClass =
                             secondTeamPlayer;
                         navigateToSecondTeamClassDetailsPage(context);
@@ -778,8 +796,7 @@ class PlayersTableDataSource extends DataGridSource {
                             duration: Toast.lengthLong,
                             gravity: Toast.bottom,
                             backgroundRadius: 10);
-                      }
-                      else {
+                      } else {
                         Toast.show("Ummmm, we can't find $playerName",
                             duration: Toast.lengthLong,
                             gravity: Toast.bottom,
