@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
+import '../api/third_team_class_api.dart';
 import '../bottom_nav_stats_pages/bottom_navigator.dart';
 import '../notifier/third_team_class_notifier.dart';
 import '../thrown_searches/first_team_thrown_search.dart';
@@ -398,6 +399,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
     getSecondTeamClass(secondTeamClassNotifier);
 
     ThirdTeamClassNotifier thirdTeamClassNotifier = Provider.of<ThirdTeamClassNotifier>(context, listen: false);
+    getThirdTeamClass(thirdTeamClassNotifier);
 
     startTime();
 
