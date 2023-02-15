@@ -159,7 +159,8 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                               duration: Toast.lengthLong,
                               gravity: Toast.bottom,
                               backgroundRadius: 10);
-                        } else if (secondTeamPlayer != null) {
+                        }
+                        else if (secondTeamPlayer != null) {
                           secondTeamClassNotifier.currentSecondTeamClass =
                               secondTeamPlayer;
                           navigateToSecondTeamClassDetailsPage(context);
@@ -168,7 +169,8 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                               duration: Toast.lengthLong,
                               gravity: Toast.bottom,
                               backgroundRadius: 10);
-                        } else {
+                        }
+                        else {
                           Toast.show("Ummmm, we can't find $playerName",
                               duration: Toast.lengthLong,
                               gravity: Toast.bottom,
@@ -760,14 +762,14 @@ class PlayersTableDataSource extends DataGridSource {
                       if (firstTeamPlayer != null) {
                         firstTeamClassNotifier.currentFirstTeamClass =
                             firstTeamPlayer;
-
                         navigateToSubPage(context);
 
                         Toast.show("Loading up $playerName",
                             duration: Toast.lengthLong,
                             gravity: Toast.bottom,
                             backgroundRadius: 10);
-                      } else if (secondTeamPlayer != null) {
+                      }
+                      else if (secondTeamPlayer != null) {
                         secondTeamClassNotifier.currentSecondTeamClass =
                             secondTeamPlayer;
                         navigateToSecondTeamClassDetailsPage(context);
@@ -776,7 +778,8 @@ class PlayersTableDataSource extends DataGridSource {
                             duration: Toast.lengthLong,
                             gravity: Toast.bottom,
                             backgroundRadius: 10);
-                      } else {
+                      }
+                      else {
                         Toast.show("Ummmm, we can't find $playerName",
                             duration: Toast.lengthLong,
                             gravity: Toast.bottom,
@@ -823,16 +826,6 @@ class PlayersTableDataSource extends DataGridSource {
                         overflow: TextOverflow.fade,
                       ),
                     );
-          // Container(
-          //   alignment: Alignment.centerRight,
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: Text(
-          //     NumberFormat.currency(locale: 'en_US', symbol: r'$')
-          //         .format(row.getCells()[7].value)
-          //         .toString(),
-          //     overflow: TextOverflow.ellipsis,
-          //   ),
-          // ),
         }).toList());
   }
 
