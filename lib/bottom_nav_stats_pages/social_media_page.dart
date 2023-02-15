@@ -11,7 +11,7 @@ String instagramUsernameID = 'Cog4e0egTOu';
 
 
 String clubAcronym = 'CPFC';
-String titleText = "CPFC's Tweet, Gram, Post";
+String titleText = "Tweets, Grams, Posts | CPFC";
 
 Color colorBack = const Color.fromRGBO(58, 56, 69, 1);
 
@@ -58,7 +58,10 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
             appBar: AppBar(
               centerTitle: true,
               title: Text(titleText,
-                  style: const TextStyle(color: Color(0xffB1BCE6))),
+                  style: const TextStyle(
+                      color: Color(0xffB1BCE6),
+                  fontSize: 17
+                  )),
               leading: IconButton(
                 icon: Icon(Icons.arrow_back_ios, color: appBarIconColor),
                 onPressed: () {

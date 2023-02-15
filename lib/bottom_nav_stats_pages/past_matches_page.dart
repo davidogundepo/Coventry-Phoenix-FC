@@ -319,7 +319,7 @@ class _CardItemState extends State<CardItem> {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-                color: const Color(0xffFF6594).withOpacity(0.2),
+                color: const Color(0xff667b80).withOpacity(0.2),
                 blurRadius: 25),
           ],
           color: widget.color.withOpacity(1.0),
@@ -341,40 +341,52 @@ class _CardItemState extends State<CardItem> {
                     fontWeight: FontWeight.w600),
               ),
               const SizedBox(
-                height: 8,
+                height: 5,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(
-                    child: Text(
-                      'Goal Scorer(s): ${pastMatchesNotifier.pastMatchesList[widget.index].goalsScorers!}',
-                      style: GoogleFonts.saira(
-                        color: Colors.white,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w400,
+              Container(
+                decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(5),
+                color: Colors.black.withAlpha(40)
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Text(
+                          'Goal Scorer(s): ${pastMatchesNotifier.pastMatchesList[widget.index].goalsScorers!}',
+                          style: GoogleFonts.saira(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          textAlign: TextAlign.start,
+                          overflow: TextOverflow.fade,
+                        ),
                       ),
-                      textAlign: TextAlign.start,
-                      overflow: TextOverflow.fade,
                     ),
-                  ),
-                  const SizedBox(
-                    width: 30,
-                  ),
-                  Flexible(
-                    child: Text(
-                      "Assists: ${pastMatchesNotifier.pastMatchesList[widget.index].assistsBy!}",
-                      style: GoogleFonts.saira(
-                        color: Colors.white,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w400,
+                    const SizedBox(
+                      width: 30,
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Text(
+                          "Assists: ${pastMatchesNotifier.pastMatchesList[widget.index].assistsBy!}",
+                          style: GoogleFonts.saira(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          textAlign: TextAlign.end,
+                          overflow: TextOverflow.fade,
+                        ),
                       ),
-                      textAlign: TextAlign.end,
-                      overflow: TextOverflow.fade,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
