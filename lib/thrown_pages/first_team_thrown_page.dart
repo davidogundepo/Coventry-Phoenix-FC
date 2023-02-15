@@ -395,10 +395,11 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
     getFirstTeamClass(firstTeamClassNotifier);
 
     SecondTeamClassNotifier secondTeamClassNotifier =
-    Provider.of<SecondTeamClassNotifier>(context, listen: false);
+        Provider.of<SecondTeamClassNotifier>(context, listen: false);
     getSecondTeamClass(secondTeamClassNotifier);
 
-    ThirdTeamClassNotifier thirdTeamClassNotifier = Provider.of<ThirdTeamClassNotifier>(context, listen: false);
+    ThirdTeamClassNotifier thirdTeamClassNotifier =
+        Provider.of<ThirdTeamClassNotifier>(context, listen: false);
     getThirdTeamClass(thirdTeamClassNotifier);
 
     startTime();
