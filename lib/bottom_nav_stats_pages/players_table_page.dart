@@ -174,20 +174,6 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                               gravity: Toast.bottom,
                               backgroundRadius: 10);
                         }
-
-
-                        // Toast.show("Loading up $playerName",
-                        //     duration: Toast.lengthLong,
-                        //     gravity: Toast.bottom,
-                        //     backgroundRadius: 10);
-
-                        ///fetch the record which has same player name
-                        firstTeamClassNotifier.currentFirstTeamClass =
-                            firstTeamClassNotifier.firstTeamClassList
-                                .where((element) => element.name == playerName)
-                                .first;
-                        // navigateToSubPage(context);
-                        navigateToSubPage(context);
                       }
                     },
                     frozenColumnsCount: 3,
