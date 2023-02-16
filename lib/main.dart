@@ -126,8 +126,6 @@ void main() async {
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // final AdaptiveThemeMode? savedThemeMode;
-
   @override
   State<StatefulWidget> createState() {
     return MyAppState();
