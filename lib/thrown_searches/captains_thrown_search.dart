@@ -24,7 +24,6 @@ Color textColorTwo = Colors.white70;
 Color dialogBackgroundColor = const Color.fromRGBO(56, 56, 60, 1);
 Color borderColor = Colors.black;
 Color textHighlightColor = Colors.white70;
-//Color textHighlightColor = Colors.white70;
 
 dynamic queryTech;
 
