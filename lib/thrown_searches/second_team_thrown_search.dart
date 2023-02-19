@@ -40,7 +40,7 @@ class MySecondTeamClassSearch extends SearchDelegate {
         appBarTheme: AppBarTheme(backgroundColor: cardBackgroundColor),
         primaryIconTheme: IconThemeData(color: appBarIconColor),
         textTheme: TextTheme(
-            subtitle1: TextStyle(color: appBarTextColor, fontSize: 25)),
+            titleMedium: TextStyle(color: appBarTextColor, fontSize: 25)),
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: TextStyle(color: appBarTextColor.withAlpha(60)),
         ),
