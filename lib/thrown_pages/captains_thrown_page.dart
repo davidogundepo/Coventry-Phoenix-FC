@@ -173,7 +173,6 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
               ),
               TextButton(
                 onPressed: () => exit(0),
-                /*Navigator.of(context).pop(true)*/
                 child: Text(
                   exitAppYes,
                   style: TextStyle(color: textColorTwo),
