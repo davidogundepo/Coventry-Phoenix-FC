@@ -418,7 +418,6 @@ class _MyCoachesPage extends State<MyCoachesPage> {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            // Navigator.of(context).pop(true);
             navigateTablesAndStatsDetails(context);
           },
           label: Text(
