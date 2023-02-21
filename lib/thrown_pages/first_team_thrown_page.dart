@@ -131,7 +131,6 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
   void showToast() {
     setState(() {
       _isVisible = !_isVisible;
-      // isLoading = !isLoading;
     });
   }
 
