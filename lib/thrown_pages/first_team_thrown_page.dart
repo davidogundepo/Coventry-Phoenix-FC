@@ -218,7 +218,6 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Text(
-                              // firstTeamClassNotifier.firstTeamClassList[index].twitter == firstTeamClassNotifier.firstTeamClassList[index].twitter ? '@'+firstTeamClassNotifier.firstTeamClassList[index].twitter : firstTeamClassNotifier.firstTeamClassList[index].twitter,
                               firstTeamClassNotifier
                                   .firstTeamClassList[index].positionPlaying!,
                               // == firstTeamClassNotifier.firstTeamClassList[index].twitter ? '@'+firstTeamClassNotifier.firstTeamClassList[index].twitter : firstTeamClassNotifier.firstTeamClassList[index].twitter,
