@@ -220,7 +220,6 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                           child: Text(
                               firstTeamClassNotifier
                                   .firstTeamClassList[index].positionPlaying!,
-                              // == firstTeamClassNotifier.firstTeamClassList[index].twitter ? '@'+firstTeamClassNotifier.firstTeamClassList[index].twitter : firstTeamClassNotifier.firstTeamClassList[index].twitter,
                               style: GoogleFonts.varela(
                                   color: textColorTwo,
                                   fontStyle: FontStyle.italic)),
