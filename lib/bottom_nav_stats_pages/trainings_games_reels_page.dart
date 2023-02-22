@@ -89,7 +89,6 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
                               child: const Icon(LineIcons.chevronCircleLeft)),
                           iconSize: 30,
                           onPressed: () {
-                            // Navigator.of(context).pop(false);
                             navigateMyApp(context);
                           },
                         ),
