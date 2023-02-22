@@ -152,7 +152,6 @@ class SubPage extends StatefulWidget {
 }
 
 class _SubPageState extends State<SubPage> {
-  // List<PlayersTable> ftc = [];
 
   ConfettiController? _confettiController;
 
@@ -175,8 +174,6 @@ class _SubPageState extends State<SubPage> {
 
   @override
   Widget build(BuildContext context) {
-    // PlayersTable bb = ftc.firstWhere((element) => element.playerName ==
-    // widget.)
 
     firstTeamClassNotifier =
         Provider.of<FirstTeamClassNotifier>(context, listen: true);
