@@ -174,7 +174,6 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
               ),
               TextButton(
                 onPressed: () => exit(0),
-                /*Navigator.of(context).pop(true)*/
                 child: Text(
                   exitAppYes,
                   style: TextStyle(color: textColor),
