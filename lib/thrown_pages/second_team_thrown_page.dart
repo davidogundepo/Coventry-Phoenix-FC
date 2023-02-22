@@ -450,7 +450,6 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            // Navigator.of(context).pop(true);
             navigateTablesAndStatsDetails(context);
           },
           label: Text(
