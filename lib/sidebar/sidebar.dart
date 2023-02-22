@@ -182,8 +182,6 @@ class _SideBarState extends State<SideBar>
           duration: _animationDuration,
           top: 0,
           bottom: 0,
-//          left: isSidebarOpenedAsync.data ? 0 : -screeWidth,
-//          right: isSidebarOpenedAsync.data ? 0 : 200,
           left: isSidebarOpenedAsync.data! ? 0 : -screeWidthLeft,
           right: isSidebarOpenedAsync.data! ? 0 : screeWidthLeft - 55,
 
