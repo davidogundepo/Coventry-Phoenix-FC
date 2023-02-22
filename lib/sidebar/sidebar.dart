@@ -126,54 +126,6 @@ class _SideBarState extends State<SideBar>
   Widget build(BuildContext context) {
     var screeWidthLeft = MediaQuery.of(context).size.width;
 
-//    var dd = MediaQuery.of(context).size;
-//    double screeWidth = size.width > size.height ? size.height : size.width;
-//    double screeWidth = sqrt((dd.width * dd.width) + (dd.height * dd.height));
-
-//    var screeWidthLeftYou = MediaQuery.of(context).size.width;
-//    var wittyWidth;
-//
-//      if (screeWidth > 947) {
-//        var d = "freeform";
-//        wittyWidth = screeWidthLeftYou  - 200;
-//      }
-//      else if (screeWidth <= 947) {
-//        var d = "Ipad Pro";
-//        wittyWidth = screeWidthLeftYou + 200;
-//      }
-//      else if (screeWidth < 750) {
-//        var d = "medium tablet";
-//        wittyWidth = screeWidth =  650;
-//      }
-//      else if (screeWidth <= 550) {
-//        var d = "small tablet";
-//        wittyWidth = screeWidth = 650;
-//      }
-//      else if (screeWidth <= 715) {
-//        var d = "Ipad Air";
-//        wittyWidth = screeWidth = 615;
-//      }
-//      else if (screeWidth <= screeWidth + 20) {
-//        var d = "Large Phone";
-//        wittyWidth = screeWidth =  screeWidth + 50;
-//      }
-//      else if (screeWidth >= screeWidth - 50) {
-//        var d = "Iphone XS Max";
-//        wittyWidth = screeWidth = screeWidth - 50;
-//      }
-//      else if (screeWidth >= screeWidth - 90) {
-//        var d = "Iphone X";
-//        wittyWidth = screeWidth = screeWidth - 90;
-//      }
-//      else if (screeWidth >= screeWidth - 105) {
-//        var d = "Medium Phone";
-//        wittyWidth = screeWidth = screeWidth - 105;
-//      }
-//      else if (screeWidth >= screeWidth - 145) {
-//        var d = "Iphone 5 | Small Phone";
-//        wittyWidth = screeWidth = screeWidth - 145;
-//      }
-
     return StreamBuilder<bool>(
       initialData: false,
       stream: isSidebarOpenedStream,
