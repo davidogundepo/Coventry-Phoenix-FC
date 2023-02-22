@@ -555,7 +555,6 @@ class _SideBarState extends State<SideBar>
               ),
               TextButton(
                 onPressed: () => exit(0),
-                /*Navigator.of(context).pop(true)*/
                 child: Text(
                   exitAppYes,
                   style: TextStyle(color: dialogTextColor),
