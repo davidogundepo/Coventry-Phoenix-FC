@@ -277,7 +277,6 @@ class _MyThirdTeamClassPage extends State<MyThirdTeamClassPage> {
                             backgroundColor: modalColor,
                             context: context,
                             builder: (context) => Container(
-                                  // height: 250,
                                   decoration: BoxDecoration(
                                     color: appBarBackgroundColor,
                                     borderRadius: const BorderRadius.only(
