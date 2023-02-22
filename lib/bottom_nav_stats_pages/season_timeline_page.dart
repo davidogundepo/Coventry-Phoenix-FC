@@ -67,7 +67,6 @@ class _SeasonTimelineState extends State<SeasonTimeline> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios, color: appBarIconColor),
           onPressed: () {
-            // Navigator.of(context).pop(false);
             navigateMyApp(context);
           },
         ),
@@ -457,7 +456,6 @@ class _SeasonTimelineState extends State<SeasonTimeline> {
   }
 
   Future navigateMyApp(context) async {
-    // Navigator.push(context, MaterialPageRoute(builder: (context) => const MyApp()));
     Navigator.of(context).pop(false);
   }
 
