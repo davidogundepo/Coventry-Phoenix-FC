@@ -163,8 +163,8 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
   }
 
   Future launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await canLaunchUrl(url as Uri)) {
+      await launchUrl(url as Uri);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("The required App not installed")));
