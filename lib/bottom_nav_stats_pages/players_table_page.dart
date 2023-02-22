@@ -646,12 +646,10 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
   }
 
   Future navigateMyApp(context) async {
-    // Navigator.push(context, MaterialPageRoute(builder: (context) => const MyApp()));
     Navigator.of(context).pop(false);
   }
 
   Future<bool> _onWillPop() {
-    // Navigator.push(context, MaterialPageRoute(builder: (_) => const MyApp()));
     Navigator.of(context).pop(false);
     return Future.value(true);
   }
