@@ -84,7 +84,6 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
                               borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(15)),
                               onTap: () {
-                                // Navigator.of(context).pop(false);
                                 navigateMyApp(context);
                               },
                               child: const Icon(LineIcons.chevronCircleLeft)),
