@@ -164,7 +164,6 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                         color: const Color.fromRGBO(196, 174, 137, 1.0),
                         child: IconButton(
                             onPressed: () {
-                              // Navigator.of(context).pop(false);
                               navigateMyApp(context);
                             },
                             icon:
