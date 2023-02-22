@@ -34,7 +34,6 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const CircularProgressIndicator();
-            // return jjj = snapshot.data!.data()!['twitter_handle'];
           }
           return Scaffold(
             appBar: AppBar(
