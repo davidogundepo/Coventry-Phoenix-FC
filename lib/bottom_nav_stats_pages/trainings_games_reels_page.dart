@@ -146,7 +146,6 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
   }
 
   Future navigateMyApp(context) async {
-    // Navigator.push(context, MaterialPageRoute(builder: (context) => const MyApp()));
     Navigator.of(context).pop(false);
   }
 
