@@ -11,7 +11,6 @@ import 'package:coventry_phoenix_fc/notifier/coaching_staff_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/management_body_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/most_assists_players_stats_info_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/second_team_class_notifier.dart';
-import 'package:coventry_phoenix_fc/notifier/sidebar_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -313,7 +312,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
       prefs.setBool(networkSharedPreferencesKey, false);
       showDialog(
         context: context,
-        builder: (context) => AlertDialog(
+        builder: (BuildContext dialogContext) => AlertDialog(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
@@ -328,7 +327,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
           ),
           actions: <Widget>[
             TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
+              onPressed: () => Navigator.of(dialogContext).pop(false),
               child: Text(
                 networkSharedPreferencesButton,
                 style: TextStyle(color: textColor),
@@ -451,9 +450,6 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
     AchievementsNotifier achievementsNotifier =
         Provider.of<AchievementsNotifier>(context, listen: false);
     getAchievements(achievementsNotifier);
-
-    SideBarNotifier sideBarNotifier =
-        Provider.of<SideBarNotifier>(context, listen: false);
 
     MostAssistsPlayersStatsAndInfoNotifier
         mostAssistsPlayersStatsAndInfoNotifier =
