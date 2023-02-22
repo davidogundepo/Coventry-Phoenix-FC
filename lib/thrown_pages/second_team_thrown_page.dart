@@ -281,7 +281,6 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                             backgroundColor: modalColor,
                             context: context,
                             builder: (context) => Container(
-                                  // height: 250,
                                   decoration: BoxDecoration(
                                     color: modalBackgroundColor,
                                     borderRadius: const BorderRadius.only(
