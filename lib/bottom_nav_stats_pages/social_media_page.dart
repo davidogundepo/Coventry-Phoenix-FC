@@ -25,23 +25,6 @@ class SocialMediaPage extends StatefulWidget {
 class _SocialMediaPageState extends State<SocialMediaPage> {
   @override
   Widget build(BuildContext context) {
-    // dynamic myString;
-    // FirebaseFirestore.instance.collection("SliversPages").doc("non_slivers_pages").get().then((value) {
-    //   myString = value.data()!["twitter_handle"];
-    // });
-    //
-    // StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-    //     stream: FirebaseFirestore.instance
-    //         .collection('SliversPages')
-    //         .doc('non_slivers_pages')
-    //         .snapshots(),
-    //     builder: (context, snapshot) {
-    //       if (snapshot.hasData) {
-    //         return jjj = snapshot.data!.data()!['twitter_handle'];
-    //       } else {
-    //         return const Text('');
-    //       }
-    //     });
 
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         stream: FirebaseFirestore.instance
