@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="cpfc">Coventry Phoenix FC</string>
+    <string name="native_view_text">Rendered on a native Android view (id: %1$d)</string>
 </resources>
