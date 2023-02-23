@@ -605,7 +605,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   launchUrl(
-                                      "${mailFIRST}david.icdat@gmail.com$mailSECOND" as Uri);
+                                      "${mailFIRST}hello@nouvellesoft.io$mailSECOND" as Uri);
                                 }),
                         ],
                       ),

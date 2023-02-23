@@ -499,7 +499,7 @@ class BackGround extends CustomPainter {
     canvas.drawLine(const Offset(-600, 290),
         Offset(size.width + 60, size.width + 800), paint);
 
-//
+
 //  var color = Paint();
 //  color.color = Colors.green[800];
 //  color.style = PaintingStyle.fill;
@@ -515,6 +515,7 @@ class BackGround extends CustomPainter {
 //  create.lineTo(0, size.height);
 //
 //  canvas.drawPath(create, color);
+
   }
 
   @override

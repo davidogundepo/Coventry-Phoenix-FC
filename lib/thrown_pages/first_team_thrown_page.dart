@@ -111,6 +111,8 @@ Color textColorTwo = Colors.white70;
 Color dialogBackgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
 Color borderColor = Colors.black;
 
+
+
 class MyFirstTeamClassPage extends StatefulWidget with NavigationStates {
   MyFirstTeamClassPage({Key? key, this.title}) : super(key: key);
 
@@ -131,6 +133,222 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
     setState(() {
       _isVisible = !_isVisible;
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    ToastContext().init(context);
+
+    FirstTeamClassNotifier firstTeamClassNotifier =
+    Provider.of<FirstTeamClassNotifier>(context);
+
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        body: Container(
+          color: backgroundColor,
+          child: NestedScrollView(
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
+              return <Widget>[
+                SliverAppBar(
+                  actions: <Widget>[
+                    IconButton(
+                      icon: Icon(MdiIcons.formatFloatLeft, color: iconColor),
+                      onPressed: () {
+                        showModalBottomSheet(
+                            backgroundColor: modalColor,
+                            context: context,
+                            builder: (context) => Container(
+                              // height: 250,
+                              decoration: BoxDecoration(
+                                color: modalBackgroundColor,
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(15),
+                                    topRight: Radius.circular(15)),
+                              ),
+                              child: Material(
+                                color: materialBackgroundColor,
+                                child: InkWell(
+                                  splashColor: splashColor,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 8.0,
+                                        bottom: 35.0,
+                                        right: 8.0,
+                                        left: 8.0),
+                                    child: Wrap(
+                                      children: <Widget>[
+                                        ListTile(
+                                            leading: Icon(
+                                              MdiIcons.tableMultiple,
+                                              color: iconColor,
+                                            ),
+                                            title: Text(
+                                              tablesAndStats,
+                                              style: GoogleFonts.zillaSlab(
+                                                  color: textColor),
+                                            ),
+                                            onTap: () {
+                                              Navigator.of(context)
+                                                  .pop(false);
+                                              navigateTablesAndStatsDetails(
+                                                  context);
+                                            }),
+                                        ListTile(
+                                            leading: Icon(MdiIcons.atom,
+                                                color: iconColor),
+                                            title: Text(
+                                              whoWeAre,
+                                              style: GoogleFonts.zillaSlab(
+                                                color: textColor,
+                                              ),
+                                            ),
+                                            onTap: () {
+                                              Navigator.of(context)
+                                                  .pop(false);
+                                              navigateToWhoWeArePage(
+                                                  context);
+                                            }),
+                                        ListTile(
+                                          leading: Icon(
+                                              MdiIcons.accountGroup,
+                                              color: iconColor),
+                                          title: Text(
+                                            aboutClub,
+                                            style: GoogleFonts.zillaSlab(
+                                              color: textColor,
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            Navigator.of(context)
+                                                .pop(false);
+                                            navigateToAboutClubDetailsPage(
+                                                context);
+                                          },
+                                        ),
+                                        ListTile(
+                                            leading: Icon(
+                                                MdiIcons
+                                                    .sortAlphabeticalAscending,
+                                                color: iconColor),
+                                            title: Text(
+                                              acronymMeanings,
+                                              style: GoogleFonts.zillaSlab(
+                                                color: textColor,
+                                              ),
+                                            ),
+                                            onTap: () {
+                                              Navigator.of(context)
+                                                  .pop(false);
+                                              navigateToAcronymsMeaningsPage(
+                                                  context);
+                                            }),
+                                        ListTile(
+                                          leading: Icon(MdiIcons.opacity,
+                                              color: iconColor),
+                                          title: Text(
+                                            aboutApp,
+                                            style: GoogleFonts.zillaSlab(
+                                              color: textColor,
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            Navigator.of(context)
+                                                .pop(false);
+                                            navigateToAboutAppDetailsPage(
+                                                context);
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ));
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(MdiIcons.magnify, color: iconColor),
+                      onPressed: () {
+                        showSearch(
+                          context: context,
+                          delegate: MyFirstTeamClassSearch(
+                              all: firstTeamClassNotifier.firstTeamClassList),
+                        );
+                      },
+                      tooltip: "Search",
+                    ),
+                  ],
+                  backgroundColor: appBarBackgroundColor,
+                  expandedHeight: 200.0,
+                  floating: false,
+                  pinned: true,
+                  flexibleSpace: FlexibleSpaceBar(
+                      centerTitle: true,
+                      title: Center(
+                        heightFactor: 0.6,
+                        child: Text(thrownName,
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.abel(
+                                color: appBarTextColor,
+                                fontSize: 26.0,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                      background:
+                      StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        stream: FirebaseFirestore.instance
+                            .collection('SliversPages')
+                            .doc('slivers_pages')
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return const CircularProgressIndicator();
+                          }
+                          return Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: CachedNetworkImageProvider(
+                                      snapshot.data
+                                          ?.data()!['slivers_page_1'] ??
+                                          0,
+                                    ),
+                                    fit: BoxFit.cover)),
+                          );
+                        },
+                      )),
+                ),
+              ];
+            },
+            body: Padding(
+              padding: const EdgeInsets.only(left: 25, right: 10),
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 15),
+                decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                child: ListView.builder(
+                  itemBuilder: _buildProductItem,
+                  itemCount: firstTeamClassNotifier.firstTeamClassList.length,
+                ),
+              ),
+            ),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            navigateTablesAndStatsDetails(context);
+          },
+          label: Text(
+            fabStats,
+            style: TextStyle(color: iconColor),
+          ),
+          icon: Icon(MdiIcons.alphaSBoxOutline, color: iconColor),
+          splashColor: splashColorTwo,
+          backgroundColor: Colors.white,
+        ),
+      ),
+    );
+
   }
 
   Widget _buildProductItem(BuildContext context, int index) {
@@ -301,7 +519,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
         context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
   }
 
-  startTime() async {
+  void startTime(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? firstTime = prefs.getBool('first_time');
 
@@ -312,7 +530,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
       prefs.setBool(networkSharedPreferencesKey, false);
       showDialog(
         context: context,
-        builder: (BuildContext dialogContext) => AlertDialog(
+        builder: (context) => AlertDialog(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
@@ -327,7 +545,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
           ),
           actions: <Widget>[
             TextButton(
-              onPressed: () => Navigator.of(dialogContext).pop(false),
+              onPressed: () => Navigator.of(context).pop(false),
               child: Text(
                 networkSharedPreferencesButton,
                 style: TextStyle(color: textColor),
@@ -338,6 +556,9 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
       );
     }
   }
+
+
+
 
   aboutAppWelcomeDialog() async {
     SharedPreferences appOverviewPrefs = await SharedPreferences.getInstance();
@@ -505,7 +726,6 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
         Provider.of<FoundersReviewsCommentNotifier>(context, listen: false);
     getFoundersReviewsComment(foundersReviewsCommentNotifier);
 
-    startTime();
 
     setState(() {
       isLoading = false;
@@ -513,224 +733,12 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
 
     super.initState();
 
+    startTime(context);
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    ToastContext().init(context);
-
-    FirstTeamClassNotifier firstTeamClassNotifier =
-        Provider.of<FirstTeamClassNotifier>(context);
-
-    return WillPopScope(
-      onWillPop: _onWillPop,
-      child: Scaffold(
-        body: Container(
-          color: backgroundColor,
-          child: NestedScrollView(
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
-              return <Widget>[
-                SliverAppBar(
-                  actions: <Widget>[
-                    IconButton(
-                      icon: Icon(MdiIcons.formatFloatLeft, color: iconColor),
-                      onPressed: () {
-                        showModalBottomSheet(
-                            backgroundColor: modalColor,
-                            context: context,
-                            builder: (context) => Container(
-                                  // height: 250,
-                                  decoration: BoxDecoration(
-                                    color: modalBackgroundColor,
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(15),
-                                        topRight: Radius.circular(15)),
-                                  ),
-                                  child: Material(
-                                    color: materialBackgroundColor,
-                                    child: InkWell(
-                                      splashColor: splashColor,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 8.0,
-                                            bottom: 35.0,
-                                            right: 8.0,
-                                            left: 8.0),
-                                        child: Wrap(
-                                          children: <Widget>[
-                                            ListTile(
-                                                leading: Icon(
-                                                  MdiIcons.tableMultiple,
-                                                  color: iconColor,
-                                                ),
-                                                title: Text(
-                                                  tablesAndStats,
-                                                  style: GoogleFonts.zillaSlab(
-                                                      color: textColor),
-                                                ),
-                                                onTap: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
-                                                  navigateTablesAndStatsDetails(
-                                                      context);
-                                                }),
-                                            ListTile(
-                                                leading: Icon(MdiIcons.atom,
-                                                    color: iconColor),
-                                                title: Text(
-                                                  whoWeAre,
-                                                  style: GoogleFonts.zillaSlab(
-                                                    color: textColor,
-                                                  ),
-                                                ),
-                                                onTap: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
-                                                  navigateToWhoWeArePage(
-                                                      context);
-                                                }),
-                                            ListTile(
-                                              leading: Icon(
-                                                  MdiIcons.accountGroup,
-                                                  color: iconColor),
-                                              title: Text(
-                                                aboutClub,
-                                                style: GoogleFonts.zillaSlab(
-                                                  color: textColor,
-                                                ),
-                                              ),
-                                              onTap: () {
-                                                Navigator.of(context)
-                                                    .pop(false);
-                                                navigateToAboutClubDetailsPage(
-                                                    context);
-                                              },
-                                            ),
-                                            ListTile(
-                                                leading: Icon(
-                                                    MdiIcons
-                                                        .sortAlphabeticalAscending,
-                                                    color: iconColor),
-                                                title: Text(
-                                                  acronymMeanings,
-                                                  style: GoogleFonts.zillaSlab(
-                                                    color: textColor,
-                                                  ),
-                                                ),
-                                                onTap: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
-                                                  navigateToAcronymsMeaningsPage(
-                                                      context);
-                                                }),
-                                            ListTile(
-                                              leading: Icon(MdiIcons.opacity,
-                                                  color: iconColor),
-                                              title: Text(
-                                                aboutApp,
-                                                style: GoogleFonts.zillaSlab(
-                                                  color: textColor,
-                                                ),
-                                              ),
-                                              onTap: () {
-                                                Navigator.of(context)
-                                                    .pop(false);
-                                                navigateToAboutAppDetailsPage(
-                                                    context);
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ));
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(MdiIcons.magnify, color: iconColor),
-                      onPressed: () {
-                        showSearch(
-                          context: context,
-                          delegate: MyFirstTeamClassSearch(
-                              all: firstTeamClassNotifier.firstTeamClassList),
-                        );
-                      },
-                      tooltip: "Search",
-                    ),
-                  ],
-                  backgroundColor: appBarBackgroundColor,
-                  expandedHeight: 200.0,
-                  floating: false,
-                  pinned: true,
-                  flexibleSpace: FlexibleSpaceBar(
-                      centerTitle: true,
-                      title: Center(
-                        heightFactor: 0.6,
-                        child: Text(thrownName,
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.abel(
-                                color: appBarTextColor,
-                                fontSize: 26.0,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      background:
-                          StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        stream: FirebaseFirestore.instance
-                            .collection('SliversPages')
-                            .doc('slivers_pages')
-                            .snapshots(),
-                        builder: (context, snapshot) {
-                          if (!snapshot.hasData) {
-                            return const CircularProgressIndicator();
-                          }
-                          return Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: CachedNetworkImageProvider(
-                                      snapshot.data
-                                              ?.data()!['slivers_page_1'] ??
-                                          0,
-                                    ),
-                                    fit: BoxFit.cover)),
-                          );
-                        },
-                      )),
-                ),
-              ];
-            },
-            body: Padding(
-              padding: const EdgeInsets.only(left: 25, right: 10),
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 15),
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                child: ListView.builder(
-                  itemBuilder: _buildProductItem,
-                  itemCount: firstTeamClassNotifier.firstTeamClassList.length,
-                ),
-              ),
-            ),
-          ),
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            navigateTablesAndStatsDetails(context);
-          },
-          label: Text(
-            fabStats,
-            style: TextStyle(color: iconColor),
-          ),
-          icon: Icon(MdiIcons.alphaSBoxOutline, color: iconColor),
-          splashColor: splashColorTwo,
-          backgroundColor: Colors.white,
-        ),
-      ),
-    );
-  }
 }

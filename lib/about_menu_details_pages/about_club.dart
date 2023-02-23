@@ -157,8 +157,6 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
 
   @override
   Widget build(BuildContext context) {
-    ClubArialNotifier clubArialNotifier =
-        Provider.of<ClubArialNotifier>(context);
     AchievementsNotifier achievementsNotifier =
         Provider.of<AchievementsNotifier>(context);
 
@@ -1057,7 +1055,7 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                                         topLeft: Radius.circular(10),
                                         topRight: Radius.circular(10)),
                                     image: DecorationImage(
-//                            colorFilter: ColorFilter.linearToSrgbGamma(),
+                                      // colorFilter: const ColorFilter.linearToSrgbGamma(),
                                       image: CachedNetworkImageProvider(
                                           achievementsNotifier
                                               .achievementsList[index].image!),
@@ -1112,7 +1110,7 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                             ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                launch(moreInfoAboutClubURL);
+                                launchUrl(moreInfoAboutClubURL as Uri);
                               }),
                       )),
                 ],
