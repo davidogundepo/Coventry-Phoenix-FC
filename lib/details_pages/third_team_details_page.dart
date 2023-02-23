@@ -125,7 +125,7 @@ dynamic _name;
 dynamic _nickname;
 dynamic _philosophy;
 dynamic _phone;
-dynamic _captain;
+// dynamic _captain;
 dynamic _myDropline;
 // dynamic _prefectPosition;
 dynamic _country;
@@ -163,10 +163,11 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
   }
 
   Future launchURL(String url) async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (await canLaunchUrl(url as Uri)) {
       await launchUrl(url as Uri);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
+      scaffoldMessenger.showSnackBar(
           const SnackBar(content: Text("The required App not installed")));
     }
   }
@@ -477,7 +478,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
     _nickname = thirdTeamClassNotifier.currentThirdTeamClass.nickname;
     _philosophy = thirdTeamClassNotifier.currentThirdTeamClass.philosophy;
     _phone = thirdTeamClassNotifier.currentThirdTeamClass.phone;
-    _captain = thirdTeamClassNotifier.currentThirdTeamClass.captain;
+    // _captain = thirdTeamClassNotifier.currentThirdTeamClass.captain;
     // _prefectPosition = thirdTeamClassNotifier.currentThirdTeamClass.positionEnforced;
     _country = thirdTeamClassNotifier.currentThirdTeamClass.constituentCountry;
     _regionFrom = thirdTeamClassNotifier.currentThirdTeamClass.regionFrom;

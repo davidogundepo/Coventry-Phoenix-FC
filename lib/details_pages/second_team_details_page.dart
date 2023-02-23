@@ -126,7 +126,7 @@ dynamic _name;
 dynamic _nickname;
 dynamic _philosophy;
 dynamic _phone;
-dynamic _captain;
+// dynamic _captain;
 dynamic _myDropline;
 // dynamic _prefectPosition;
 dynamic _country;
@@ -520,7 +520,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _positionPlaying,
+                                                  text: ' + $_positionPlaying',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -610,8 +610,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' +
-                                                      _otherPositionsOfPlay,
+                                                  text: ' + $_otherPositionsOfPlay',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -701,7 +700,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                                   )),
                                               TextSpan(
                                                   text:
-                                                      ' ' + _leftOrRightFooted,
+                                                      ' + $_leftOrRightFooted',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -2263,7 +2262,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
     _nickname = secondTeamClassNotifier.currentSecondTeamClass.nickname;
     _philosophy = secondTeamClassNotifier.currentSecondTeamClass.philosophy;
     _phone = secondTeamClassNotifier.currentSecondTeamClass.phone;
-    _captain = secondTeamClassNotifier.currentSecondTeamClass.captain;
+    // _captain = secondTeamClassNotifier.currentSecondTeamClass.captain;
     // _prefectPosition = secondTeamClassNotifier.currentSecondTeamClass.positionEnforced;
     _country =
         secondTeamClassNotifier.currentSecondTeamClass.constituentCountry;
@@ -2974,7 +2973,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _positionPlaying,
+                                  text: ' + $_positionPlaying',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3060,7 +3059,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _otherPositionsOfPlay,
+                                  text: ' + $_otherPositionsOfPlay',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3146,7 +3145,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _leftOrRightFooted,
+                                  text: ' + $_leftOrRightFooted',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,

@@ -141,10 +141,11 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage> {
   }
 
   Future launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    if (await canLaunchUrl(url as Uri)) {
+      await launchUrl(url as Uri);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
+      scaffoldMessenger.showSnackBar(
           const SnackBar(content: Text("The required App not installed")));
     }
   }
@@ -426,8 +427,7 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' +
-                                                      _whyLoveFootballManaging,
+                                                  text: ' +$_whyLoveFootballManaging',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1958,7 +1958,7 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _whyLoveFootballManaging,
+                                  text: ' + $_whyLoveFootballManaging',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,

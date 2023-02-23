@@ -126,7 +126,7 @@ dynamic _name;
 dynamic _nickname;
 dynamic _philosophy;
 dynamic _phone;
-dynamic _captain;
+// dynamic _captain;
 dynamic _myDropline;
 // dynamic _prefectPosition;
 dynamic _country;
@@ -164,10 +164,11 @@ class _SubPageState extends State<SubPage> {
   }
 
   Future launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    if (await canLaunchUrl(url as Uri)) {
+      await launchUrl(url as Uri);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
+      scaffoldMessenger.showSnackBar(
           const SnackBar(content: Text("The required App not installed")));
     }
   }
@@ -513,7 +514,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _positionPlaying,
+                                                  text: ' + $_positionPlaying',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -603,8 +604,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' +
-                                                      _otherPositionsOfPlay,
+                                                  text: ' + $_otherPositionsOfPlay',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -694,7 +694,7 @@ class _SubPageState extends State<SubPage> {
                                                   )),
                                               TextSpan(
                                                   text:
-                                                      ' ' + _leftOrRightFooted,
+                                                      ' + $_leftOrRightFooted',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -2257,7 +2257,7 @@ class _SubPageState extends State<SubPage> {
     _nickname = firstTeamClassNotifier.currentFirstTeamClass.nickname;
     _philosophy = firstTeamClassNotifier.currentFirstTeamClass.philosophy;
     _phone = firstTeamClassNotifier.currentFirstTeamClass.phone;
-    _captain = firstTeamClassNotifier.currentFirstTeamClass.captain;
+    // _captain = firstTeamClassNotifier.currentFirstTeamClass.captain;
     // _prefectPosition = firstTeamClassNotifier.currentFirstTeamClass.positionEnforced;
     _country = firstTeamClassNotifier.currentFirstTeamClass.constituentCountry;
     _regionFrom = firstTeamClassNotifier.currentFirstTeamClass.regionFrom;
@@ -2968,7 +2968,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _positionPlaying,
+                                  text: ' + $_positionPlaying',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3054,7 +3054,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _otherPositionsOfPlay,
+                                  text: ' + $_otherPositionsOfPlay',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3140,7 +3140,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _leftOrRightFooted,
+                                  text: ' + $_leftOrRightFooted',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,

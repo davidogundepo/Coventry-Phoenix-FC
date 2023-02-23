@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:coventry_phoenix_fc/notifier/past_matches_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../api/past_matches_api.dart';
@@ -11,14 +10,10 @@ class PastMatchesPage extends StatefulWidget {
   const PastMatchesPage({super.key});
 
   @override
-  _PastMatchesPageState createState() => _PastMatchesPageState();
+  PastMatchesPageState createState() => PastMatchesPageState();
 }
 
-DateTime now = DateTime.now();
-// DateTime date = DateTime(now.day, now.month, now.year);
-var matchDate = DateFormat('EEEE').format(now);
-
-class _PastMatchesPageState extends State<PastMatchesPage>
+class PastMatchesPageState extends State<PastMatchesPage>
     with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Color?> _color;
@@ -95,10 +90,10 @@ class AnimCard extends StatefulWidget {
       {super.key, required this.index});
 
   @override
-  _AnimCardState createState() => _AnimCardState();
+  AnimCardState createState() => AnimCardState();
 }
 
-class _AnimCardState extends State<AnimCard> {
+class AnimCardState extends State<AnimCard> {
   var padding = 0.0;
   var bottomPadding = 0.0;
 
@@ -307,16 +302,16 @@ class CardItem extends StatefulWidget {
   final String numEng;
   final String content;
   final int index;
-  final onTap;
+  final dynamic onTap;
 
   const CardItem(this.color, this.num, this.numEng, this.content, this.onTap,
       {super.key, required this.index});
 
   @override
-  _CardItemState createState() => _CardItemState();
+  CardItemState createState() => CardItemState();
 }
 
-class _CardItemState extends State<CardItem> {
+class CardItemState extends State<CardItem> {
   @override
   Widget build(BuildContext context) {
     PastMatchesNotifier pastMatchesNotifier =
