@@ -783,7 +783,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _yearOfInception,
+                                                  text: ' +$_yearOfInception',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -872,7 +872,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _dreamFC,
+                                                  text: ' +$_dreamFC',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -962,7 +962,7 @@ class _SubPageState extends State<SubPage> {
                                                   )),
                                               TextSpan(
                                                   text:
-                                                      ' ' + _favFootballLegend,
+                                                      ' +$_favFootballLegend',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1051,7 +1051,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _adidasOrNike,
+                                                  text: ' +$_adidasOrNike',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1140,7 +1140,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _ronaldoOrMessi,
+                                                  text: ' +$_ronaldoOrMessi',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1229,7 +1229,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _bestMoment,
+                                                  text: ' +$_bestMoment',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1275,7 +1275,7 @@ class _SubPageState extends State<SubPage> {
                                                             FontWeight.bold,
                                                       )),
                                                   TextSpan(
-                                                      text: ' ' + _bestMoment,
+                                                      text: ' +$_bestMoment',
                                                       style:
                                                           GoogleFonts.trykker(
                                                         color: textColor,
@@ -1322,7 +1322,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _worstMoment,
+                                                  text: ' +$_worstMoment',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1368,7 +1368,7 @@ class _SubPageState extends State<SubPage> {
                                                             FontWeight.bold,
                                                       )),
                                                   TextSpan(
-                                                      text: ' ' + _worstMoment,
+                                                      text: ' +$_worstMoment',
                                                       style:
                                                           GoogleFonts.trykker(
                                                         color: textColor,
@@ -1415,7 +1415,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _nickname,
+                                                  text: ' +$_nickname',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1461,7 +1461,7 @@ class _SubPageState extends State<SubPage> {
                                                             FontWeight.bold,
                                                       )),
                                                   TextSpan(
-                                                      text: ' ' + _nickname,
+                                                      text: ' +$_nickname',
                                                       style:
                                                           GoogleFonts.trykker(
                                                         color: textColor,
@@ -1508,7 +1508,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _hobbies,
+                                                  text: ' +$_hobbies',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1554,7 +1554,7 @@ class _SubPageState extends State<SubPage> {
                                                             FontWeight.bold,
                                                       )),
                                                   TextSpan(
-                                                      text: ' ' + _hobbies,
+                                                      text: ' +$_hobbies',
                                                       style:
                                                           GoogleFonts.trykker(
                                                         color: textColor,
@@ -1601,7 +1601,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _dob,
+                                                  text: ' +$_dob',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1647,7 +1647,7 @@ class _SubPageState extends State<SubPage> {
                                                             FontWeight.bold,
                                                       )),
                                                   TextSpan(
-                                                      text: ' ' + _dob,
+                                                      text: ' +$_dob',
                                                       style:
                                                           GoogleFonts.trykker(
                                                         color: textColor,
@@ -1694,7 +1694,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _country,
+                                                  text: ' +$_country',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1740,7 +1740,7 @@ class _SubPageState extends State<SubPage> {
                                                             FontWeight.bold,
                                                       )),
                                                   TextSpan(
-                                                      text: ' ' + _country,
+                                                      text: ' +$_country',
                                                       style:
                                                           GoogleFonts.trykker(
                                                         color: textColor,
@@ -1787,7 +1787,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _regionFrom,
+                                                  text: ' +$_regionFrom',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1833,7 +1833,7 @@ class _SubPageState extends State<SubPage> {
                                                             FontWeight.bold,
                                                       )),
                                                   TextSpan(
-                                                      text: ' ' + _regionFrom,
+                                                      text: ' +$_regionFrom',
                                                       style:
                                                           GoogleFonts.trykker(
                                                         color: textColor,
@@ -1880,7 +1880,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _autoBio,
+                                                  text: ' +$_autoBio',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1923,7 +1923,7 @@ class _SubPageState extends State<SubPage> {
                                                           FontWeight.bold,
                                                     )),
                                                 TextSpan(
-                                                    text: ' ' + _autoBio,
+                                                    text: ' +$_autoBio',
                                                     style: GoogleFonts.trykker(
                                                       color: textColor,
                                                       fontSize: 19,
@@ -1968,7 +1968,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _philosophy,
+                                                  text: ' +$_philosophy',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -2014,7 +2014,7 @@ class _SubPageState extends State<SubPage> {
                                                             FontWeight.bold,
                                                       )),
                                                   TextSpan(
-                                                      text: ' ' + _philosophy,
+                                                      text: ' +$_philosophy',
                                                       style:
                                                           GoogleFonts.trykker(
                                                         color: textColor,
@@ -2061,7 +2061,7 @@ class _SubPageState extends State<SubPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' ' + _myDropline,
+                                                  text: ' +$_myDropline',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -2107,7 +2107,7 @@ class _SubPageState extends State<SubPage> {
                                                             FontWeight.bold,
                                                       )),
                                                   TextSpan(
-                                                      text: ' ' + _myDropline,
+                                                      text: ' +$_myDropline',
                                                       style:
                                                           GoogleFonts.trykker(
                                                         color: textColor,
@@ -3226,7 +3226,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _yearOfInception,
+                                  text: ' +$_yearOfInception',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3312,7 +3312,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _dreamFC,
+                                  text: ' +$_dreamFC',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3398,7 +3398,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _favFootballLegend,
+                                  text: ' +$_favFootballLegend',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3484,7 +3484,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _adidasOrNike,
+                                  text: ' +$_adidasOrNike',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3570,7 +3570,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _ronaldoOrMessi,
+                                  text: ' +$_ronaldoOrMessi',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3656,7 +3656,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _bestMoment,
+                                  text: ' +$_bestMoment',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3698,7 +3698,7 @@ class _SubPageState extends State<SubPage> {
                                         fontWeight: FontWeight.bold,
                                       )),
                                   TextSpan(
-                                      text: ' ' + _bestMoment,
+                                      text: ' +$_bestMoment',
                                       style: GoogleFonts.trykker(
                                         color: textColor,
                                         fontSize: 19,
@@ -3742,7 +3742,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _worstMoment,
+                                  text: ' +$_worstMoment',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3784,7 +3784,7 @@ class _SubPageState extends State<SubPage> {
                                         fontWeight: FontWeight.bold,
                                       )),
                                   TextSpan(
-                                      text: ' ' + _worstMoment,
+                                      text: ' +$_worstMoment',
                                       style: GoogleFonts.trykker(
                                         color: textColor,
                                         fontSize: 19,
@@ -3828,7 +3828,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _nickname,
+                                  text: ' +$_nickname',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3870,7 +3870,7 @@ class _SubPageState extends State<SubPage> {
                                         fontWeight: FontWeight.bold,
                                       )),
                                   TextSpan(
-                                      text: ' ' + _nickname,
+                                      text: ' +$_nickname',
                                       style: GoogleFonts.trykker(
                                         color: textColor,
                                         fontSize: 19,
@@ -3914,7 +3914,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _hobbies,
+                                  text: ' +$_hobbies',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -3956,7 +3956,7 @@ class _SubPageState extends State<SubPage> {
                                         fontWeight: FontWeight.bold,
                                       )),
                                   TextSpan(
-                                      text: ' ' + _hobbies,
+                                      text: ' +$_hobbies',
                                       style: GoogleFonts.trykker(
                                         color: textColor,
                                         fontSize: 19,
@@ -4000,7 +4000,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _dob,
+                                  text: ' +$_dob',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -4042,7 +4042,7 @@ class _SubPageState extends State<SubPage> {
                                         fontWeight: FontWeight.bold,
                                       )),
                                   TextSpan(
-                                      text: ' ' + _dob,
+                                      text: ' +$_dob',
                                       style: GoogleFonts.trykker(
                                         color: textColor,
                                         fontSize: 19,
@@ -4086,7 +4086,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _country,
+                                  text: ' +$_country',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -4128,7 +4128,7 @@ class _SubPageState extends State<SubPage> {
                                         fontWeight: FontWeight.bold,
                                       )),
                                   TextSpan(
-                                      text: ' ' + _country,
+                                      text: ' +$_country',
                                       style: GoogleFonts.trykker(
                                         color: textColor,
                                         fontSize: 19,
@@ -4172,7 +4172,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _regionFrom,
+                                  text: ' +$_regionFrom',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -4214,7 +4214,7 @@ class _SubPageState extends State<SubPage> {
                                         fontWeight: FontWeight.bold,
                                       )),
                                   TextSpan(
-                                      text: ' ' + _regionFrom,
+                                      text: ' +$_regionFrom',
                                       style: GoogleFonts.trykker(
                                         color: textColor,
                                         fontSize: 19,
@@ -4258,7 +4258,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _autoBio,
+                                  text: ' +$_autoBio',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -4298,7 +4298,7 @@ class _SubPageState extends State<SubPage> {
                                       fontWeight: FontWeight.bold,
                                     )),
                                 TextSpan(
-                                    text: ' ' + _autoBio,
+                                    text: ' +$_autoBio',
                                     style: GoogleFonts.trykker(
                                       color: textColor,
                                       fontSize: 19,
@@ -4341,7 +4341,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _philosophy,
+                                  text: ' +$_philosophy',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -4383,7 +4383,7 @@ class _SubPageState extends State<SubPage> {
                                         fontWeight: FontWeight.bold,
                                       )),
                                   TextSpan(
-                                      text: ' ' + _philosophy,
+                                      text: ' +$_philosophy',
                                       style: GoogleFonts.trykker(
                                         color: textColor,
                                         fontSize: 19,
@@ -4427,7 +4427,7 @@ class _SubPageState extends State<SubPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' ' + _myDropline,
+                                  text: ' +$_myDropline',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -4469,7 +4469,7 @@ class _SubPageState extends State<SubPage> {
                                         fontWeight: FontWeight.bold,
                                       )),
                                   TextSpan(
-                                      text: ' ' + _myDropline,
+                                      text: ' +$_myDropline',
                                       style: GoogleFonts.trykker(
                                         color: textColor,
                                         fontSize: 19,
