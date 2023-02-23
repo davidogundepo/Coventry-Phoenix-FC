@@ -368,7 +368,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  launch(googlePlayServicesPolicyWebsite);
+                                  launchUrl(googlePlayServicesPolicyWebsite as Uri);
                                 }),
                           TextSpan(
                               text: '$infoCollectionLink2\n\n',
@@ -380,7 +380,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  launch(googleAnalyticsFirebasePolicyWebsite);
+                                  launchUrl(googleAnalyticsFirebasePolicyWebsite as Uri);
                                 }),
                           TextSpan(
                               text: '$infoCollectionLink3\n\n',
@@ -392,7 +392,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  launch(firebaseCrashlyticsPolicyWebsite);
+                                  launchUrl(firebaseCrashlyticsPolicyWebsite as Uri);
                                 }),
                           TextSpan(
                               text: '$infoCollectionLink4\n\n',
@@ -404,7 +404,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  launch(facebookPolicyWebsite);
+                                  launchUrl(facebookPolicyWebsite as Uri);
                                 }),
                           TextSpan(
                               text: '$infoCollectionLink5\n\n',
@@ -416,7 +416,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  launch(twitterPolicyWebsite);
+                                  launchUrl(twitterPolicyWebsite as Uri);
                                 }),
                           TextSpan(
                               text: '$infoCollectionLink6\n\n',
@@ -428,7 +428,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  launch(instagramPolicyWebsite);
+                                  launchUrl(instagramPolicyWebsite as Uri);
                                 }),
                           TextSpan(
                               text: '$infoCollectionLink7\n\n',
@@ -440,7 +440,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  launch(linkedInPolicyWebsite);
+                                  launchUrl(linkedInPolicyWebsite as Uri);
                                 }),
                           TextSpan(
                               text: '$infoCollectionLink8\n\n\n',
@@ -452,7 +452,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  launch(gmailPolicyWebsite);
+                                  launchUrl(gmailPolicyWebsite as Uri);
                                 }),
                           TextSpan(
                             text: '$logData\n\n',
@@ -592,7 +592,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  launch(developerWebsite);
+                                  launchUrl(developerWebsite as Uri);
                                 }),
                           TextSpan(
                               text: '$contactUs1\n\n',
@@ -604,8 +604,8 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  launch(
-                                      "${mailFIRST}david.icdat@gmail.com$mailSECOND");
+                                  launchUrl(
+                                      "${mailFIRST}david.icdat@gmail.com$mailSECOND" as Uri);
                                 }),
                         ],
                       ),
