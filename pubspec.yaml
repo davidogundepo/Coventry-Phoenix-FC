@@ -36,7 +36,6 @@ dependencies:
   cupertino_icons: ^1.0.5
   url_launcher: ^6.1.8
   material_design_icons_flutter: ^6.0.7096
-#  webview_flutter: ^4.0.1
   shared_preferences: ^2.0.17
   flutter_bloc: ^7.0.0 #Gives error if >7.0.0
   flutter_lints: ^2.0.1
