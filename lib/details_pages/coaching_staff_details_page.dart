@@ -421,7 +421,8 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' +$_whyLoveFootballCoaching',
+                                                  text:
+                                                      ' $_whyLoveFootballCoaching',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -506,7 +507,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' + $_sportingIcon',
+                                                  text: ' $_sportingIcon',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -591,7 +592,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' + $_staffPosition',
+                                                  text: ' $_staffPosition',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -634,7 +635,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                           FontWeight.bold,
                                                     )),
                                                 TextSpan(
-                                                    text: ' + $_staffPosition',
+                                                    text: ' $_staffPosition',
                                                     style: GoogleFonts.trykker(
                                                       color: textColor,
                                                       fontSize: 19,
@@ -678,7 +679,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' +$_yearOfInception',
+                                                  text: ' $_yearOfInception',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -721,8 +722,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                           FontWeight.bold,
                                                     )),
                                                 TextSpan(
-                                                    text:
-                                                        ' +$_yearOfInception',
+                                                    text: ' $_yearOfInception',
                                                     style: GoogleFonts.trykker(
                                                       color: textColor,
                                                       fontSize: 19,
@@ -766,7 +766,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' +$_bestMoment',
+                                                  text: ' $_bestMoment',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -851,7 +851,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' +$_worstMoment',
+                                                  text: ' $_worstMoment',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -936,7 +936,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' +$_autoBio',
+                                                  text: ' $_autoBio',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -979,7 +979,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                           FontWeight.bold,
                                                     )),
                                                 TextSpan(
-                                                    text: ' +$_autoBio',
+                                                    text: ' $_autoBio',
                                                     style: GoogleFonts.trykker(
                                                       color: textColor,
                                                       fontSize: 19,
@@ -1023,7 +1023,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' +$_country',
+                                                  text: ' $_country',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1108,7 +1108,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' +$_regionFrom',
+                                                  text: ' $_regionFrom',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1151,7 +1151,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                           FontWeight.bold,
                                                     )),
                                                 TextSpan(
-                                                    text: ' + $_regionFrom',
+                                                    text: ' $_regionFrom',
                                                     style: GoogleFonts.trykker(
                                                       color: textColor,
                                                       fontSize: 19,
@@ -1195,7 +1195,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' +$_hobbies',
+                                                  text: ' $_hobbies',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1238,7 +1238,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                           FontWeight.bold,
                                                     )),
                                                 TextSpan(
-                                                    text: ' +$_hobbies',
+                                                    text: ' $_hobbies',
                                                     style: GoogleFonts.trykker(
                                                       color: textColor,
                                                       fontSize: 19,
@@ -1282,7 +1282,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                     fontWeight: FontWeight.bold,
                                                   )),
                                               TextSpan(
-                                                  text: ' +$_philosophy',
+                                                  text: ' $_philosophy',
                                                   style: GoogleFonts.trykker(
                                                     color: textColor,
                                                     fontSize: 19,
@@ -1325,7 +1325,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                                           FontWeight.bold,
                                                     )),
                                                 TextSpan(
-                                                    text: ' +$_philosophy',
+                                                    text: ' $_philosophy',
                                                     style: GoogleFonts.trykker(
                                                       color: textColor,
                                                       fontSize: 19,
@@ -1950,7 +1950,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' + $_whyLoveFootballCoaching',
+                                  text: ' $_whyLoveFootballCoaching',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -2032,7 +2032,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' + $_sportingIcon',
+                                  text: ' $_sportingIcon',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -2114,7 +2114,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' + $_staffPosition',
+                                  text: ' $_staffPosition',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -2154,7 +2154,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                       fontWeight: FontWeight.bold,
                                     )),
                                 TextSpan(
-                                    text: ' + $_staffPosition',
+                                    text: ' $_staffPosition',
                                     style: GoogleFonts.trykker(
                                       color: textColor,
                                       fontSize: 19,
@@ -2196,7 +2196,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' +$_yearOfInception',
+                                  text: ' $_yearOfInception',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -2236,7 +2236,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                       fontWeight: FontWeight.bold,
                                     )),
                                 TextSpan(
-                                    text: ' +$_yearOfInception',
+                                    text: ' $_yearOfInception',
                                     style: GoogleFonts.trykker(
                                       color: textColor,
                                       fontSize: 19,
@@ -2278,7 +2278,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' +$_bestMoment',
+                                  text: ' $_bestMoment',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -2360,7 +2360,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' +$_worstMoment',
+                                  text: ' $_worstMoment',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -2442,7 +2442,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' +$_autoBio',
+                                  text: ' $_autoBio',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -2482,7 +2482,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                       fontWeight: FontWeight.bold,
                                     )),
                                 TextSpan(
-                                    text: ' +$_autoBio',
+                                    text: ' $_autoBio',
                                     style: GoogleFonts.trykker(
                                       color: textColor,
                                       fontSize: 19,
@@ -2524,7 +2524,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' +$_country',
+                                  text: ' $_country',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -2606,7 +2606,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' +$_regionFrom',
+                                  text: ' $_regionFrom',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -2646,7 +2646,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                       fontWeight: FontWeight.bold,
                                     )),
                                 TextSpan(
-                                    text: ' + $_regionFrom',
+                                    text: ' $_regionFrom',
                                     style: GoogleFonts.trykker(
                                       color: textColor,
                                       fontSize: 19,
@@ -2688,7 +2688,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' +$_hobbies',
+                                  text: ' $_hobbies',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -2728,7 +2728,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                       fontWeight: FontWeight.bold,
                                     )),
                                 TextSpan(
-                                    text: ' +$_hobbies',
+                                    text: ' $_hobbies',
                                     style: GoogleFonts.trykker(
                                       color: textColor,
                                       fontSize: 19,
@@ -2770,7 +2770,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               TextSpan(
-                                  text: ' +$_philosophy',
+                                  text: ' $_philosophy',
                                   style: GoogleFonts.trykker(
                                     color: textColor,
                                     fontSize: 19,
@@ -2810,7 +2810,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                                       fontWeight: FontWeight.bold,
                                     )),
                                 TextSpan(
-                                    text: ' +$_philosophy',
+                                    text: ' $_philosophy',
                                     style: GoogleFonts.trykker(
                                       color: textColor,
                                       fontSize: 19,

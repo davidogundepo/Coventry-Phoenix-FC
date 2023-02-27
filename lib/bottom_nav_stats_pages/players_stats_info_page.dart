@@ -558,6 +558,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                   .topGoalsPlayersStatsAndInfoList[
                                                                       index]
                                                                   .playerName!,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .fade,
                                                               style:
                                                                   const TextStyle(
                                                                 color: Color
@@ -1027,6 +1030,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                   .mostAssistsPlayersStatsAndInfoList[
                                                                       index]
                                                                   .playerName!,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .fade,
                                                               style:
                                                                   const TextStyle(
                                                                 color: Color
@@ -2046,6 +2052,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                 height: 10),
                                                             Text(
                                                               '       ${topGKPlayersStatsAndInfoNotifier.topGKPlayersStatsAndInfoList[index].playerName!}',
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .fade,
                                                               style:
                                                                   const TextStyle(
                                                                 fontWeight:
@@ -2466,6 +2475,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                           ),
                                                           Text(
                                                             '   ${topDefensivePlayersStatsAndInfoNotifier.topDefensivePlayersStatsAndInfoList[index].playerName!}',
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .fade,
                                                             style:
                                                                 const TextStyle(
                                                               color: Color
@@ -2929,6 +2941,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                             ),
                                                             Text(
                                                               '   ${motmPlayersStatsAndInfoNotifier.mOTMPlayersStatsAndInfoList[index].playerName!}',
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .fade,
                                                               style:
                                                                   const TextStyle(
                                                                 color: Color
@@ -3345,19 +3360,20 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               ),
                                                             ),
                                                             Text(
-                                                                '   ${cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList[index].playerName!}',
-                                                                style:
-                                                                    const TextStyle(
-                                                                  color: Color
-                                                                      .fromRGBO(
-                                                                          150,
-                                                                          129,
-                                                                          129,
-                                                                          1.0),
-                                                                ),
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis),
+                                                              '   ${cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList[index].playerName!}',
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .fade,
+                                                              style:
+                                                                  const TextStyle(
+                                                                color: Color
+                                                                    .fromRGBO(
+                                                                        150,
+                                                                        129,
+                                                                        129,
+                                                                        1.0),
+                                                              ),
+                                                            ),
                                                           ],
                                                         ),
                                                         Column(
