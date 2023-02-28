@@ -53,24 +53,56 @@ late FoundersReviewsCommentNotifier foundersReviewsCommentNotifier;
 
 Color? backgroundColor = const Color.fromRGBO(21, 29, 59, 1);
 Color? clubNameColor = const Color.fromRGBO(205, 133, 133, 1);
-Color? appBarTextColor = Colors.white;
-Color? appBarBackgroundColor = const Color.fromRGBO(21, 29, 59, 2);
-Color? appBarIconColor = Colors.white;
-Color? modalColor = Colors.transparent;
-Color? modalBackgroundColor = const Color.fromRGBO(21, 29, 59, 1);
+Color? playerNameColor = const Color.fromRGBO(150, 129, 129, 1.0);
+Color? topPlayersColor = const Color.fromRGBO(140, 112, 84, 1.0);
+Color? topPlayersEmptyColor = const Color.fromRGBO(205, 133, 133, 1);
+Color? keyTextColor = const Color.fromRGBO(188, 105, 66, 1.0);
+Color? keyTextTwoColor = const Color.fromRGBO(217, 176, 95, 1.0);
+Color? keyTextThreeColor = const Color.fromRGBO(212, 45, 45, 1.0);
+Color? clayContainerColor = const Color.fromRGBO(237, 237, 237, 1);
+Color? verticalDividerOneColor = const Color.fromRGBO(205, 133, 133, 1);
+Color? verticalDividerTwoColor = const Color.fromRGBO(97, 143, 223, 1.0);
+Color? verticalDividerThreeColor = const Color.fromRGBO(130, 185, 208, 1.0);
+Color? verticalDividerFourColor = const Color.fromRGBO(191, 146, 69, 0.3);
+Color? verticalDividerFiveColor = const Color.fromRGBO(125, 179, 140, 1.0);
+Color? textColorOne = const Color.fromRGBO(205, 133, 133, 1);
+Color? textColorTwo = Colors.black54;
+Color? containerColor = Colors.white70;
+Color? swiperColor = const Color.fromRGBO(109, 101, 72, 1.0);
 Color? materialBackgroundColor = Colors.transparent;
 Color? cardBackgroundColor = Colors.white;
 Color? splashColor = const Color.fromRGBO(49, 63, 117, 1.0);
 Color? iconColor = Colors.white;
-Color? textColor = Colors.white;
-Color? textColorTwo = Colors.white70;
 Color? dialogBackgroundColor = const Color.fromRGBO(21, 29, 59, 1);
 Color? borderColor = Colors.black;
 
 String clubName = "Coventry Phoenix FC";
-String topGoalScorerTitle = "Top 10 Goal Scorers";
+String topGoalScorersTitle = "Top 10 Goal Scorers";
+String topGoalScorersEmptyTitle = "No Goals Scored Yet";
+String topAssistsPlayersTitle = "Top 10 Most Assists Players";
+String topAssistsPlayersEmptyTitle = "No Assists Provided Yet";
+String topYellowCardedPlayersTitle = "8 Most Yellow Carded Players";
+String topYellowCardedPlayersEmptyTitle = "No Yellow Card Given Yet";
+String topRedCardedPlayersTitle = "8 Most Red Carded Players";
+String topRedCardedPlayersEmptyTitle = "No Bad Boy or Coach 👀\n Booked Yet";
+String topGoalkeepersTitle = "Top Goal Keepers";
+String topGoalkeepersEmptyTitle = "No GoalKeepers' Clean Sheet Yet";
+String playerPositionTitle = "Position";
+String playerPreferredFootTitle = "Preferred Foot";
+String playerNameTitle = " Name";
+String playerGoalsScoredTitle = " Goals";
+String playerAssistsTitle = " Assists";
+String playerMatchesPlayedTitle = " Matches";
+String playerYellowCardedTitle = "Yellow Cards 🟨";
+String playerRedCardedTitle = "Red Cards 🟥";
+String playerGoalsConcededTitle = "Goals Con.";
+String playerCleanSheetTitle = "Clean Sheets";
 
-String lottieJsonTitle = "assets/json/goal_gif.json";
+String lottieJsonGoalTitle = "assets/json/goal_gif.json";
+String lottieJsonAssistsTitle = "assets/json/assists_gif.json";
+String lottieJsonYellowCardTitle = "assets/json/yellowcard_gif.json";
+String lottieJsonRedCardTitle = "assets/json/redcard_two_gif.json";
+String lottieJsonGoalKeeperTitle = "assets/json/top_goal_keeper_gif.json";
 
 late Map<int, Widget> playersTGPAndMAP;
 
@@ -217,10 +249,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         isTextPressed = false;
                                       }),
                                       child: Text(
-                                        topGoalScorerTitle,
+                                        topGoalScorersTitle,
                                         style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                140, 112, 84, 1.0),
+                                            color: topPlayersColor,
                                             shadows: [
                                               for (double i = 1;
                                                   i < (isTextPressed ? 1 : 2);
@@ -254,8 +285,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.80,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -280,18 +310,17 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Container(
                                                         // height: 70,
                                                         child: Lottie.asset(
-                                                          lottieJsonTitle,
+                                                      lottieJsonGoalTitle,
                                                       // width: MediaQuery.of(context).size.width * 0.80,
                                                       height: 200,
                                                       fit: BoxFit.contain,
                                                     )),
                                                     const SizedBox(height: 20),
-                                                    const Text(
-                                                      "No Goals Scored Yet",
+                                                    Text(
+                                                      topGoalScorersEmptyTitle,
                                                       style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            205, 133, 133, 1),
-                                                      ),
+                                                          color:
+                                                              topPlayersEmptyColor),
                                                     )
                                                   ],
                                                 ),
@@ -332,8 +361,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.90,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -399,12 +427,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     alignment:
                                                         Alignment.centerRight,
                                                     child: Container(
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              color: Colors
-                                                                  .white70),
+                                                      decoration: BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          color:
+                                                              containerColor),
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -414,14 +441,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               .toString(),
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style:
-                                                              const TextStyle(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    205,
-                                                                    133,
-                                                                    133,
-                                                                    1),
+                                                          style: TextStyle(
+                                                            color: textColorOne,
                                                           ),
                                                         ),
                                                       ),
@@ -440,18 +461,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                           MainAxisAlignment
                                                               .start,
                                                       children: [
-                                                        const SizedBox(
+                                                        SizedBox(
                                                           height: 50,
                                                           child:
                                                               VerticalDivider(
                                                             // width: 14,
                                                             thickness: 3,
                                                             color:
-                                                                Color.fromRGBO(
-                                                                    205,
-                                                                    133,
-                                                                    133,
-                                                                    1),
+                                                                verticalDividerOneColor,
                                                           ),
                                                         ),
                                                         Column(
@@ -462,11 +479,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               MainAxisAlignment
                                                                   .spaceBetween,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Position',
+                                                            Text(
+                                                              playerPositionTitle,
                                                               style: TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                             const SizedBox(
                                                                 height: 10),
@@ -484,17 +501,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     const SizedBox(height: 50),
                                                     Row(
                                                       children: [
-                                                        const SizedBox(
+                                                        SizedBox(
                                                           height: 50,
                                                           child:
                                                               VerticalDivider(
                                                             thickness: 3,
                                                             color:
-                                                                Color.fromRGBO(
-                                                                    97,
-                                                                    143,
-                                                                    223,
-                                                                    1.0),
+                                                                verticalDividerTwoColor,
                                                           ),
                                                         ),
                                                         Column(
@@ -502,11 +515,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Preferred Foot',
+                                                            Text(
+                                                              playerPreferredFootTitle,
                                                               style: TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                             const SizedBox(
                                                                 height: 10),
@@ -539,24 +552,20 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              '  Name',
-                                                              style: TextStyle(
+                                                            Text(
+                                                              playerNameTitle,
+                                                              style: const TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        130,
-                                                                        185,
-                                                                        208,
-                                                                        1.0),
+                                                                color:
+                                                                    verticalDividerThreeColor,
                                                               ),
                                                             ),
                                                             Text(
@@ -567,14 +576,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               overflow:
                                                                   TextOverflow
                                                                       .fade,
-                                                              style:
-                                                                  const TextStyle(
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        150,
-                                                                        129,
-                                                                        129,
-                                                                        1.0),
+                                                              style: TextStyle(
+                                                                color:
+                                                                    playerNameColor,
                                                               ),
                                                             ),
                                                           ],
@@ -584,43 +588,30 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              '  Goals',
+                                                            Text(
+                                                              playerGoalsScoredTitle,
                                                               style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        188,
-                                                                        105,
-                                                                        66,
-                                                                        1.0),
+                                                                color:
+                                                                    keyTextColor,
                                                               ),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        191,
-                                                                        146,
-                                                                        69,
-                                                                        0.3),
+                                                                color:
+                                                                    verticalDividerFourColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '      ${topGoalsPlayersStatsAndInfoNotifier.topGoalsPlayersStatsAndInfoList[index].goalsScored}',
-                                                              style:
-                                                                  const TextStyle(
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        188,
-                                                                        105,
-                                                                        66,
-                                                                        1.0),
+                                                              style: TextStyle(
+                                                                color:
+                                                                    keyTextColor,
                                                               ),
                                                               textAlign:
                                                                   TextAlign
@@ -633,31 +624,27 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              '  Matches',
-                                                              style: TextStyle(
+                                                            Text(
+                                                              playerMatchesPlayedTitle,
+                                                              style: const TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 15,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        125,
-                                                                        179,
-                                                                        140,
-                                                                        1.0),
+                                                                color:
+                                                                    verticalDividerFiveColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '   ${topGoalsPlayersStatsAndInfoNotifier.topGoalsPlayersStatsAndInfoList[index].matchesPlayed} played',
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                              style: TextStyle(
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                           ],
                                                         ),
@@ -695,10 +682,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         isTextPressed = false;
                                       }),
                                       child: Text(
-                                        'Top 10 Most Assists Players',
+                                        topAssistsPlayersTitle,
                                         style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                140, 112, 84, 1.0),
+                                            color: topPlayersColor,
                                             shadows: [
                                               for (double i = 1;
                                                   i < (isTextPressed ? 1 : 2);
@@ -732,8 +718,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.80,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -758,17 +743,17 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Container(
                                                         // height: 70,
                                                         child: Lottie.asset(
-                                                      'assets/json/assists_gif.json',
+                                                      lottieJsonAssistsTitle,
                                                       // width: MediaQuery.of(context).size.width * 0.80,
                                                       height: 200,
                                                       fit: BoxFit.contain,
                                                     )),
                                                     const SizedBox(height: 20),
-                                                    const Text(
-                                                      "No Assists Provided Yet",
+                                                    Text(
+                                                      topAssistsPlayersEmptyTitle,
                                                       style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            205, 133, 133, 1),
+                                                        color:
+                                                            topPlayersEmptyColor,
                                                       ),
                                                     )
                                                   ],
@@ -810,8 +795,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.90,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -877,12 +861,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     alignment:
                                                         Alignment.centerRight,
                                                     child: Container(
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              color: Colors
-                                                                  .white70),
+                                                      decoration: BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          color:
+                                                              containerColor),
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -892,15 +875,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               .toString(),
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style:
-                                                              const TextStyle(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    205,
-                                                                    133,
-                                                                    133,
-                                                                    1),
-                                                          ),
+                                                          style: TextStyle(
+                                                              color:
+                                                                  textColorOne),
                                                         ),
                                                       ),
                                                     ),
@@ -915,30 +892,23 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   children: <Widget>[
                                                     Row(
                                                       children: [
-                                                        const SizedBox(
+                                                        SizedBox(
                                                           height: 50,
-                                                          child:
-                                                              VerticalDivider(
-                                                            // width: 14,
-                                                            thickness: 3,
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    205,
-                                                                    133,
-                                                                    133,
-                                                                    1),
-                                                          ),
+                                                          child: VerticalDivider(
+                                                              // width: 14,
+                                                              thickness: 3,
+                                                              color: verticalDividerOneColor),
                                                         ),
                                                         Column(
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Position',
+                                                            Text(
+                                                              playerPositionTitle,
                                                               style: TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                             const SizedBox(
                                                                 height: 10),
@@ -956,29 +926,23 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     const SizedBox(height: 50),
                                                     Row(
                                                       children: [
-                                                        const SizedBox(
+                                                        SizedBox(
                                                           height: 50,
-                                                          child:
-                                                              VerticalDivider(
-                                                            thickness: 3,
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    97,
-                                                                    143,
-                                                                    223,
-                                                                    1.0),
-                                                          ),
+                                                          child: VerticalDivider(
+                                                              thickness: 3,
+                                                              color:
+                                                                  verticalDividerTwoColor),
                                                         ),
                                                         Column(
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Preferred Foot',
+                                                            Text(
+                                                              playerPreferredFootTitle,
                                                               style: TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                             const SizedBox(
                                                                 height: 10),
@@ -1011,25 +975,20 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              '  Name',
-                                                              style: TextStyle(
+                                                            Text(
+                                                              playerNameTitle,
+                                                              style: const TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 70,
                                                               child: Divider(
-                                                                indent: 5,
-                                                                thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        130,
-                                                                        185,
-                                                                        208,
-                                                                        1.0),
-                                                              ),
+                                                                  indent: 5,
+                                                                  thickness: 3,
+                                                                  color:
+                                                                      verticalDividerThreeColor),
                                                             ),
                                                             Text(
                                                               mostAssistsPlayersStatsAndInfoNotifier
@@ -1039,15 +998,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               overflow:
                                                                   TextOverflow
                                                                       .fade,
-                                                              style:
-                                                                  const TextStyle(
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        150,
-                                                                        129,
-                                                                        129,
-                                                                        1.0),
-                                                              ),
+                                                              style: TextStyle(
+                                                                  color:
+                                                                      textColorOne),
                                                             ),
                                                           ],
                                                         ),
@@ -1056,43 +1009,30 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              '  Assists',
+                                                            Text(
+                                                              playerAssistsTitle,
                                                               style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        188,
-                                                                        105,
-                                                                        66,
-                                                                        1.0),
+                                                                color:
+                                                                    keyTextColor,
                                                               ),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        191,
-                                                                        146,
-                                                                        69,
-                                                                        0.3),
+                                                                color:
+                                                                    verticalDividerFourColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '      ${mostAssistsPlayersStatsAndInfoNotifier.mostAssistsPlayersStatsAndInfoList[index].assists}',
-                                                              style:
-                                                                  const TextStyle(
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        188,
-                                                                        105,
-                                                                        66,
-                                                                        1.0),
+                                                              style: TextStyle(
+                                                                color:
+                                                                    keyTextColor,
                                                               ),
                                                               textAlign:
                                                                   TextAlign
@@ -1105,31 +1045,27 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              '  Matches',
-                                                              style: TextStyle(
+                                                            Text(
+                                                              playerMatchesPlayedTitle,
+                                                              style: const TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 15,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        125,
-                                                                        179,
-                                                                        140,
-                                                                        1.0),
+                                                                color:
+                                                                    verticalDividerFiveColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '   ${mostAssistsPlayersStatsAndInfoNotifier.mostAssistsPlayersStatsAndInfoList[index].matchesPlayed} played',
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                              style: TextStyle(
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                           ],
                                                         )
@@ -1168,10 +1104,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         isTextPressed = false;
                                       }),
                                       child: Text(
-                                        '8 Most Yellow Carded Players',
+                                        topYellowCardedPlayersTitle,
                                         style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                140, 112, 84, 1.0),
+                                            color: topPlayersColor,
                                             shadows: [
                                               for (double i = 1;
                                                   i < (isTextPressed ? 1 : 2);
@@ -1203,8 +1138,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.35,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 30,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -1228,17 +1162,16 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Container(
                                                         // height: 70,
                                                         child: Lottie.asset(
-                                                      'assets/json/yellowcard_gif.json',
+                                                      lottieJsonYellowCardTitle,
                                                       // width: MediaQuery.of(context).size.width * 0.80,
                                                       height: 150,
                                                       fit: BoxFit.contain,
                                                     )),
                                                     const SizedBox(height: 20),
-                                                    const Text(
-                                                      "No Yellow Card Given Yet",
+                                                    Text(
+                                                      topYellowCardedPlayersEmptyTitle,
                                                       style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            205, 133, 133, 1),
+                                                        color: clubNameColor,
                                                       ),
                                                     )
                                                   ],
@@ -1279,22 +1212,24 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   padding:
                                                       const EdgeInsets.all(8.0),
                                                   child: ClayContainer(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.35,
+                                                      width: MediaQuery.of(
+                                                                  context)
+                                                              .size
+                                                              .width *
+                                                          0.35,
                                                       emboss: true,
                                                       spread: 2,
-                                                      color: const Color.fromRGBO(
-                                                          237, 237, 237, 1),
+                                                      color: clayContainerColor,
                                                       depth: 30,
-                                                      curveType: CurveType
-                                                          .concave,
+                                                      curveType:
+                                                          CurveType.concave,
                                                       customBorderRadius:
-                                                          const BorderRadius.only(
-                                                              topRight: Radius
-                                                                  .circular(70),
+                                                          const BorderRadius
+                                                                  .only(
+                                                              topRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          70),
                                                               bottomLeft: Radius
                                                                   .circular(7),
                                                               topLeft: Radius
@@ -1319,18 +1254,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                           mainAxisSize:
                                                               MainAxisSize.min,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Yellow Cards 🟨',
+                                                            Text(
+                                                              playerYellowCardedTitle,
                                                               style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        217,
-                                                                        176,
-                                                                        95,
-                                                                        1.0),
+                                                                color:
+                                                                    keyTextTwoColor,
                                                               ),
                                                             ),
                                                             Text(mostFouledYCPlayersStatsAndInfoNotifier
@@ -1347,11 +1278,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                       left:
                                                                           40.0),
                                                               child: Container(
-                                                                decoration: const BoxDecoration(
+                                                                decoration: BoxDecoration(
                                                                     shape: BoxShape
                                                                         .circle,
-                                                                    color: Colors
-                                                                        .white70),
+                                                                    color:
+                                                                        containerColor),
                                                                 child: Padding(
                                                                   padding:
                                                                       const EdgeInsets
@@ -1379,16 +1310,12 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                     TextOverflow
                                                                         .ellipsis,
                                                                 style:
-                                                                    const TextStyle(
+                                                                TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
-                                                                  color: Color
-                                                                      .fromRGBO(
-                                                                          150,
-                                                                          129,
-                                                                          129,
-                                                                          1.0),
+                                                                  color:
+                                                                      playerNameColor,
                                                                 ),
                                                               ),
                                                             ),
@@ -1402,8 +1329,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 ClayContainer(
                                                   emboss: true,
                                                   spread: 2,
-                                                  color: const Color.fromRGBO(
-                                                      237, 237, 237, 1),
+                                                  color: clayContainerColor,
                                                   depth: 49,
                                                   // borderRadius: 75,
                                                   curveType: CurveType.concave,
@@ -1468,10 +1394,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         isTextPressed = false;
                                       }),
                                       child: Text(
-                                        '8 Most Red Carded Players',
+                                        topRedCardedPlayersTitle,
                                         style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                140, 112, 84, 1.0),
+                                            color: topPlayersColor,
                                             shadows: [
                                               for (double i = 1;
                                                   i < (isTextPressed ? 1 : 2);
@@ -1503,8 +1428,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.35,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 30,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -1528,17 +1452,17 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Container(
                                                         // height: 70,
                                                         child: Lottie.asset(
-                                                      'assets/json/redcard_two_gif.json',
+                                                      lottieJsonRedCardTitle,
                                                       // width: MediaQuery.of(context).size.width * 0.80,
                                                       height: 120,
                                                       fit: BoxFit.contain,
                                                     )),
                                                     const SizedBox(height: 20),
-                                                    const Text(
-                                                      "No Bad Boy or Coach 👀\n Booked Yet",
+                                                    Text(
+                                                      topRedCardedPlayersEmptyTitle,
                                                       style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            205, 133, 133, 1),
+                                                        color:
+                                                            topPlayersEmptyColor,
                                                       ),
                                                       textAlign:
                                                           TextAlign.center,
@@ -1581,22 +1505,24 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   padding:
                                                       const EdgeInsets.all(8.0),
                                                   child: ClayContainer(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.35,
+                                                      width: MediaQuery.of(
+                                                                  context)
+                                                              .size
+                                                              .width *
+                                                          0.35,
                                                       emboss: true,
                                                       spread: 2,
-                                                      color: const Color.fromRGBO(
-                                                          237, 237, 237, 1),
+                                                      color: clayContainerColor,
                                                       depth: 49,
-                                                      curveType: CurveType
-                                                          .concave,
+                                                      curveType:
+                                                          CurveType.concave,
                                                       customBorderRadius:
-                                                          const BorderRadius.only(
-                                                              topRight: Radius
-                                                                  .circular(70),
+                                                          const BorderRadius
+                                                                  .only(
+                                                              topRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          70),
                                                               bottomLeft: Radius
                                                                   .circular(7),
                                                               topLeft: Radius
@@ -1621,18 +1547,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                           mainAxisSize:
                                                               MainAxisSize.min,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Red Cards 🟥',
+                                                            Text(
+                                                              playerRedCardedTitle,
                                                               style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        212,
-                                                                        45,
-                                                                        45,
-                                                                        1.0),
+                                                                color:
+                                                                    keyTextThreeColor,
                                                               ),
                                                             ),
                                                             Text(mostFouledRCPlayersStatsAndInfoNotifier
@@ -1649,11 +1571,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                       left:
                                                                           40.0),
                                                               child: Container(
-                                                                decoration: const BoxDecoration(
+                                                                decoration: BoxDecoration(
                                                                     shape: BoxShape
                                                                         .circle,
-                                                                    color: Colors
-                                                                        .white70),
+                                                                    color:
+                                                                        containerColor),
                                                                 child: Padding(
                                                                   padding:
                                                                       const EdgeInsets
@@ -1681,16 +1603,12 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                     TextOverflow
                                                                         .ellipsis,
                                                                 style:
-                                                                    const TextStyle(
+                                                                TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
-                                                                  color: Color
-                                                                      .fromRGBO(
-                                                                          150,
-                                                                          129,
-                                                                          129,
-                                                                          1.0),
+                                                                  color:
+                                                                      playerNameColor,
                                                                 ),
                                                               ),
                                                             ),
@@ -1704,8 +1622,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 ClayContainer(
                                                   emboss: true,
                                                   spread: 2,
-                                                  color: const Color.fromRGBO(
-                                                      237, 237, 237, 1),
+                                                  color: clayContainerColor,
                                                   depth: 49,
                                                   // borderRadius: 75,
                                                   curveType: CurveType.concave,
@@ -1742,9 +1659,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                             const SizedBox(width: 20),
                                           ],
                                         ),
-                                        control: const SwiperControl(
-                                          color:
-                                              Color.fromRGBO(109, 101, 72, 1.0),
+                                        control: SwiperControl(
+                                          color: swiperColor,
                                         ),
                                         itemWidth: 250,
                                         layout: SwiperLayout.STACK,
@@ -1770,10 +1686,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         isTextPressed = false;
                                       }),
                                       child: Text(
-                                        'Top Goal Keepers',
+                                        topGoalkeepersTitle,
                                         style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                140, 112, 84, 1.0),
+                                            color: topPlayersColor,
                                             shadows: [
                                               for (double i = 1;
                                                   i < (isTextPressed ? 1 : 2);
@@ -1806,8 +1721,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.80,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -1832,17 +1746,17 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Container(
                                                         // height: 70,
                                                         child: Lottie.asset(
-                                                      'assets/json/top_goal_keeper_gif.json',
+                                                      lottieJsonGoalKeeperTitle,
                                                       // width: MediaQuery.of(context).size.width * 0.80,
                                                       height: 200,
                                                       fit: BoxFit.contain,
                                                     )),
                                                     const SizedBox(height: 20),
-                                                    const Text(
-                                                      "No GoalKeepers' Clean Sheet Yet",
+                                                    Text(
+                                                      topGoalkeepersEmptyTitle,
                                                       style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            205, 133, 133, 1),
+                                                        color:
+                                                            topPlayersEmptyColor,
                                                       ),
                                                     )
                                                   ],
@@ -1884,8 +1798,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.90,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -1951,12 +1864,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     alignment:
                                                         Alignment.centerRight,
                                                     child: Container(
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              color: Colors
-                                                                  .white70),
+                                                      decoration: BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          color:
+                                                              containerColor),
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -1966,14 +1878,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               .toString(),
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style:
-                                                              const TextStyle(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    205,
-                                                                    133,
-                                                                    133,
-                                                                    1),
+                                                          style: TextStyle(
+                                                            color: textColorOne,
                                                           ),
                                                         ),
                                                       ),
@@ -1989,18 +1895,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   children: <Widget>[
                                                     Row(
                                                       children: [
-                                                        const SizedBox(
+                                                        SizedBox(
                                                           height: 50,
                                                           child:
                                                               VerticalDivider(
                                                             // width: 14,
                                                             thickness: 3,
                                                             color:
-                                                                Color.fromRGBO(
-                                                                    205,
-                                                                    133,
-                                                                    133,
-                                                                    1),
+                                                                verticalDividerOneColor,
                                                           ),
                                                         ),
                                                         Column(
@@ -2008,11 +1910,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Position',
+                                                            Text(
+                                                              playerPositionTitle,
                                                               style: TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                             const SizedBox(
                                                                 height: 10),
@@ -2030,17 +1932,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     const SizedBox(height: 50),
                                                     Row(
                                                       children: [
-                                                        const SizedBox(
+                                                        SizedBox(
                                                           height: 50,
                                                           child:
                                                               VerticalDivider(
                                                             thickness: 3,
                                                             color:
-                                                                Color.fromRGBO(
-                                                                    97,
-                                                                    143,
-                                                                    223,
-                                                                    1.0),
+                                                                verticalDividerTwoColor,
                                                           ),
                                                         ),
                                                         Column(
@@ -2048,11 +1946,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Name',
+                                                            Text(
+                                                              playerNameTitle,
                                                               style: TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                             const SizedBox(
                                                                 height: 10),
@@ -2062,16 +1960,12 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                   TextOverflow
                                                                       .fade,
                                                               style:
-                                                                  const TextStyle(
+                                                              TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        150,
-                                                                        129,
-                                                                        129,
-                                                                        1.0),
+                                                                color:
+                                                                    playerNameColor,
                                                               ),
                                                             ),
                                                           ],
@@ -2096,31 +1990,27 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Goals Con.',
-                                                              style: TextStyle(
+                                                            Text(
+                                                              playerGoalsConcededTitle,
+                                                              style: const TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        130,
-                                                                        185,
-                                                                        208,
-                                                                        1.0),
+                                                                color:
+                                                                    verticalDividerThreeColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '      ${topGKPlayersStatsAndInfoNotifier.topGKPlayersStatsAndInfoList[index].goalsConcededGkDef.toString()}',
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                              style: TextStyle(
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                           ],
                                                         ),
@@ -2129,43 +2019,29 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Clean Sheets',
+                                                            Text(
+                                                              playerCleanSheetTitle,
                                                               style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        188,
-                                                                        105,
-                                                                        66,
-                                                                        1.0),
-                                                              ),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color:
+                                                                      keyTextColor),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        191,
-                                                                        146,
-                                                                        69,
-                                                                        0.3),
+                                                                color:
+                                                                    verticalDividerFourColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '      ${topGKPlayersStatsAndInfoNotifier.topGKPlayersStatsAndInfoList[index].cleanSheetGk}',
-                                                              style:
-                                                                  const TextStyle(
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        188,
-                                                                        105,
-                                                                        66,
-                                                                        1.0),
+                                                              style: TextStyle(
+                                                                color:
+                                                                    keyTextColor,
                                                               ),
                                                               textAlign:
                                                                   TextAlign
@@ -2178,31 +2054,27 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Matches',
-                                                              style: TextStyle(
+                                                            Text(
+                                                              playerMatchesPlayedTitle,
+                                                              style: const TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 60,
                                                               child: Divider(
                                                                 indent: 10,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        125,
-                                                                        179,
-                                                                        140,
-                                                                        1.0),
+                                                                color:
+                                                                    verticalDividerFiveColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '${topGKPlayersStatsAndInfoNotifier.topGKPlayersStatsAndInfoList[index].matchesPlayed} played',
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                              style: TextStyle(
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                           ],
                                                         )
