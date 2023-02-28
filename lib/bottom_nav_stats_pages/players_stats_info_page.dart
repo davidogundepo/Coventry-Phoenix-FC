@@ -70,6 +70,8 @@ Color? borderColor = Colors.black;
 String clubName = "Coventry Phoenix FC";
 String topGoalScorerTitle = "Top 10 Goal Scorers";
 
+String lottieJsonTitle = "assets/json/goal_gif.json";
+
 late Map<int, Widget> playersTGPAndMAP;
 
 class PlayersStatsAndInfoPage extends StatefulWidget {
@@ -278,7 +280,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Container(
                                                         // height: 70,
                                                         child: Lottie.asset(
-                                                      'assets/json/goal_gif.json',
+                                                          lottieJsonTitle,
                                                       // width: MediaQuery.of(context).size.width * 0.80,
                                                       height: 200,
                                                       fit: BoxFit.contain,
