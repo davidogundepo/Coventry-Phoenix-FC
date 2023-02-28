@@ -52,6 +52,7 @@ late CoachesReviewsCommentNotifier coachesReviewsCommentNotifier;
 late FoundersReviewsCommentNotifier foundersReviewsCommentNotifier;
 
 Color? backgroundColor = const Color.fromRGBO(21, 29, 59, 1);
+Color? clubNameColor = const Color.fromRGBO(205, 133, 133, 1);
 Color? appBarTextColor = Colors.white;
 Color? appBarBackgroundColor = const Color.fromRGBO(21, 29, 59, 2);
 Color? appBarIconColor = Colors.white;
@@ -65,6 +66,9 @@ Color? textColor = Colors.white;
 Color? textColorTwo = Colors.white70;
 Color? dialogBackgroundColor = const Color.fromRGBO(21, 29, 59, 1);
 Color? borderColor = Colors.black;
+
+String clubName = "Coventry Phoenix FC";
+String topGoalScorerTitle = "Top 10 Goal Scorers";
 
 late Map<int, Widget> playersTGPAndMAP;
 
@@ -173,10 +177,10 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                         width: 60,
                       ),
                       NeumorphicText(
-                        'Coventry Phoenix FC',
-                        style: const NeumorphicStyle(
+                        clubName,
+                        style: NeumorphicStyle(
                           depth: 4,
-                          color: Color.fromRGBO(205, 133, 133, 1),
+                          color: clubNameColor,
                         ),
                         textStyle: NeumorphicTextStyle(
                           fontSize: 20,
@@ -211,7 +215,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         isTextPressed = false;
                                       }),
                                       child: Text(
-                                        'Top 10 Goal Scorers',
+                                        topGoalScorerTitle,
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 140, 112, 84, 1.0),
