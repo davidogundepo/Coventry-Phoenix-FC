@@ -67,13 +67,20 @@ Color? verticalDividerFourColor = const Color.fromRGBO(191, 146, 69, 0.3);
 Color? verticalDividerFiveColor = const Color.fromRGBO(125, 179, 140, 1.0);
 Color? textColorOne = const Color.fromRGBO(205, 133, 133, 1);
 Color? textColorTwo = Colors.black54;
+Color? textColorThree = const Color.fromRGBO(65, 63, 63, 1.0);
+Color? textColorFour = const Color.fromRGBO(121, 117, 117, 1.0);
 Color? containerColor = Colors.white70;
+Color shadowColor = const Color.fromRGBO(109, 101, 72, 1.0);
 Color? swiperColor = const Color.fromRGBO(109, 101, 72, 1.0);
-Color? materialBackgroundColor = Colors.transparent;
-Color? cardBackgroundColor = Colors.white;
-Color? splashColor = const Color.fromRGBO(49, 63, 117, 1.0);
-Color? iconColor = Colors.white;
-Color? dialogBackgroundColor = const Color.fromRGBO(21, 29, 59, 1);
+Color? potmColorOne = Colors.deepOrange[300];
+Color potmColorTwo = Colors.deepOrange;
+Color? potmColorThree = Colors.deepOrange[500];
+Color? potmColorFour = Colors.deepOrange[200];
+Color potmColorFive = const Color.fromRGBO(112, 32, 3, 0.38);
+Color potmColorSix = const Color.fromRGBO(112, 32, 3, 0.38);
+Color? potmColorSeven = Colors.grey[200];
+Color? potmColorEight = Colors.deepOrangeAccent;
+Color? dialogColor = const Color.fromRGBO(184, 106, 65, 1.0);
 Color? borderColor = Colors.black;
 
 String clubName = "Coventry Phoenix FC";
@@ -87,22 +94,59 @@ String topRedCardedPlayersTitle = "8 Most Red Carded Players";
 String topRedCardedPlayersEmptyTitle = "No Bad Boy or Coach 👀\n Booked Yet";
 String topGoalkeepersTitle = "Top Goal Keepers";
 String topGoalkeepersEmptyTitle = "No GoalKeepers' Clean Sheet Yet";
+String topDefensivePlayersTitle = "Top 10 Defensive Players";
+// String topDefensivePlayersEmptyTitle = "No Bad Boy or Coach 👀\n Booked Yet";
+String weeklyMOTMPlayersTitle = "Weekly MOTM Players";
+String weeklyMOTMPlayersEmptyTitle = "No MOTM Players Yet";
+String cumAwardMOTMPlayersTitle = "Most Awarded MOTM Players";
+String cumAwardMOTMPlayersEmptyTitle = "No Most Awarded MOTM Players Yet";
+String cumMOTMCountPlayersTitle = "MOTM Count";
+String cumMOTMCountPlayersEmptyTitle = "No Most Awarded MOTM Players Yet";
+String coachesMonthlyCommentsTitle = "Coaches' Monthly Comments";
+String coachesMonthlyCommentsEmptyTitle = "No Comment From Any Coach Yet";
+String foundersMonthlyCommentsTitle = "Founders' Monthly Comments";
+String foundersMonthlyCommentsEmptyTitle =
+    "No Comment From Any CPFC Founder Yet";
+String potmTitle = "Player Of The Month";
+String potmTwoTitle = "PLAYER OF THE MONTH";
+String potmEmptyTitle = "No POTM Nominated Yet";
+
 String playerPositionTitle = "Position";
+String playerPositionTwoTitle = "Player Position";
 String playerPreferredFootTitle = "Preferred Foot";
 String playerNameTitle = " Name";
 String playerGoalsScoredTitle = " Goals";
+String playerGoalsScoredTwoTitle = "Goals Scored";
 String playerAssistsTitle = " Assists";
+String playerAssistsTwoTitle = " Assists Provided";
 String playerMatchesPlayedTitle = " Matches";
 String playerYellowCardedTitle = "Yellow Cards 🟨";
 String playerRedCardedTitle = "Red Cards 🟥";
 String playerGoalsConcededTitle = "Goals Con.";
+String playerGoalsConcededTwoTitle = "Goals Conceded";
 String playerCleanSheetTitle = "Clean Sheets";
+String coachTitle = "Coach ";
+String monthReviewTitle = "Month Review  ";
+String potmYayTitle = "YAY!";
+String matchesPlayedTitle = "Matches Played";
+String presentedByTitle = "Presented By";
+String nouvellesoftTitle = "Nouvellesoft.io Inc.";
 
 String lottieJsonGoalTitle = "assets/json/goal_gif.json";
 String lottieJsonAssistsTitle = "assets/json/assists_gif.json";
 String lottieJsonYellowCardTitle = "assets/json/yellowcard_gif.json";
 String lottieJsonRedCardTitle = "assets/json/redcard_two_gif.json";
 String lottieJsonGoalKeeperTitle = "assets/json/top_goal_keeper_gif.json";
+String lottieJsonMOTMTitle = "assets/json/motm_award.json";
+String lottieJsonCumAwardMOTMTitle = "assets/json/cum_motm_award.json";
+String lottieJsonCoachesCommentMOTMTitle =
+    "assets/json/coaches_comment_gif.json";
+String lottieJsonFoundersCommentMOTMTitle =
+    "assets/json/founders_comment_gif.json";
+String lottieJsonPOTMTitle = "assets/json/potm_award.json";
+
+String assetPOTMBackgroundTitle = "assets/images/back_field.png";
+String assetPOTMMVPTitle = "assets/images/MVP_Blooded_3.png";
 
 late Map<int, Widget> playersTGPAndMAP;
 
@@ -117,7 +161,6 @@ class PlayersStatsAndInfoPage extends StatefulWidget {
 class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
   late ConfettiController _controllerTopCenter;
 
-  Color shadowColor = const Color.fromRGBO(109, 101, 72, 1.0);
   bool isTextPressed = false;
 
   bool isPressed = false;
@@ -2112,7 +2155,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         isTextPressed = false;
                                       }),
                                       child: Text(
-                                        'Top 10 Defensive Players',
+                                        topDefensivePlayersTitle,
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 140, 112, 84, 1.0),
@@ -2151,8 +2194,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 0.90,
                                         emboss: true,
                                         spread: 2,
-                                        color: const Color.fromRGBO(
-                                            237, 237, 237, 1),
+                                        color: clayContainerColor,
                                         depth: 20,
                                         curveType: CurveType.concave,
                                         customBorderRadius:
@@ -2210,12 +2252,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   alignment:
                                                       Alignment.centerRight,
                                                   child: Container(
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                            color:
-                                                                Colors.white70),
+                                                    decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        color: containerColor),
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsets.all(
@@ -2224,9 +2263,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                         (index + 1).toString(),
                                                         textAlign:
                                                             TextAlign.center,
-                                                        style: const TextStyle(
-                                                          color: Color.fromRGBO(
-                                                              205, 133, 133, 1),
+                                                        style: TextStyle(
+                                                          color: textColorOne,
                                                         ),
                                                       ),
                                                     ),
@@ -2242,13 +2280,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 children: <Widget>[
                                                   Row(
                                                     children: [
-                                                      const SizedBox(
+                                                      SizedBox(
                                                         height: 50,
                                                         child: VerticalDivider(
                                                           // width: 14,
                                                           thickness: 3,
-                                                          color: Color.fromRGBO(
-                                                              205, 133, 133, 1),
+                                                          color:
+                                                              verticalDividerOneColor,
                                                         ),
                                                       ),
                                                       Column(
@@ -2256,11 +2294,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: <Widget>[
-                                                          const Text(
-                                                            'Position',
+                                                          Text(
+                                                            playerPositionTitle,
                                                             style: TextStyle(
-                                                                color: Colors
-                                                                    .black54),
+                                                                color:
+                                                                    textColorTwo),
                                                           ),
                                                           const SizedBox(
                                                               height: 10),
@@ -2278,15 +2316,12 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   const SizedBox(height: 50),
                                                   Row(
                                                     children: [
-                                                      const SizedBox(
+                                                      SizedBox(
                                                         height: 50,
                                                         child: VerticalDivider(
                                                           thickness: 3,
-                                                          color: Color.fromRGBO(
-                                                              97,
-                                                              143,
-                                                              223,
-                                                              1.0),
+                                                          color:
+                                                              verticalDividerTwoColor,
                                                         ),
                                                       ),
                                                       Column(
@@ -2294,11 +2329,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: <Widget>[
-                                                          const Text(
-                                                            'Preferred Foot',
+                                                          Text(
+                                                            playerPreferredFootTitle,
                                                             style: TextStyle(
-                                                                color: Colors
-                                                                    .black54),
+                                                                color:
+                                                                    textColorTwo),
                                                           ),
                                                           const SizedBox(
                                                               height: 10),
@@ -2331,24 +2366,20 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: <Widget>[
-                                                          const Text(
-                                                            'Name',
-                                                            style: TextStyle(
+                                                          Text(
+                                                            playerNameTitle,
+                                                            style: const TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold),
                                                           ),
-                                                          const SizedBox(
+                                                          SizedBox(
                                                             width: 70,
                                                             child: Divider(
                                                               indent: 5,
                                                               thickness: 3,
-                                                              color: Color
-                                                                  .fromRGBO(
-                                                                      130,
-                                                                      185,
-                                                                      208,
-                                                                      1.0),
+                                                              color:
+                                                                  verticalDividerThreeColor,
                                                             ),
                                                           ),
                                                           Text(
@@ -2356,14 +2387,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                             overflow:
                                                                 TextOverflow
                                                                     .fade,
-                                                            style:
-                                                                const TextStyle(
-                                                              color: Color
-                                                                  .fromRGBO(
-                                                                      150,
-                                                                      129,
-                                                                      129,
-                                                                      1.0),
+                                                            style: TextStyle(
+                                                              color:
+                                                                  playerNameColor,
                                                             ),
                                                           ),
                                                         ],
@@ -2373,43 +2399,30 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: <Widget>[
-                                                          const Text(
-                                                            'Goals Con.',
+                                                          Text(
+                                                            playerGoalsConcededTitle,
                                                             style: TextStyle(
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
-                                                              color: Color
-                                                                  .fromRGBO(
-                                                                      188,
-                                                                      105,
-                                                                      66,
-                                                                      1.0),
+                                                              color:
+                                                                  keyTextColor,
                                                             ),
                                                           ),
-                                                          const SizedBox(
+                                                          SizedBox(
                                                             width: 70,
                                                             child: Divider(
                                                               indent: 5,
                                                               thickness: 3,
-                                                              color: Color
-                                                                  .fromRGBO(
-                                                                      191,
-                                                                      146,
-                                                                      69,
-                                                                      0.3),
+                                                              color:
+                                                                  verticalDividerFourColor,
                                                             ),
                                                           ),
                                                           Text(
                                                             '      ${topDefensivePlayersStatsAndInfoNotifier.topDefensivePlayersStatsAndInfoList[index].goalsConcededGkDef}',
-                                                            style:
-                                                                const TextStyle(
-                                                              color: Color
-                                                                  .fromRGBO(
-                                                                      188,
-                                                                      105,
-                                                                      66,
-                                                                      1.0),
+                                                            style: TextStyle(
+                                                              color:
+                                                                  keyTextColor,
                                                             ),
                                                             textAlign:
                                                                 TextAlign.right,
@@ -2421,31 +2434,27 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: <Widget>[
-                                                          const Text(
-                                                            'Matches',
-                                                            style: TextStyle(
+                                                          Text(
+                                                            playerMatchesPlayedTitle,
+                                                            style: const TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold),
                                                           ),
-                                                          const SizedBox(
+                                                          SizedBox(
                                                             width: 60,
                                                             child: Divider(
                                                               indent: 10,
                                                               thickness: 3,
-                                                              color: Color
-                                                                  .fromRGBO(
-                                                                      125,
-                                                                      179,
-                                                                      140,
-                                                                      1.0),
+                                                              color:
+                                                                  verticalDividerFiveColor,
                                                             ),
                                                           ),
                                                           Text(
                                                             '${topDefensivePlayersStatsAndInfoNotifier.topDefensivePlayersStatsAndInfoList[index].matchesPlayed} played',
-                                                            style: const TextStyle(
-                                                                color: Colors
-                                                                    .black54),
+                                                            style: TextStyle(
+                                                                color:
+                                                                    textColorTwo),
                                                           ),
                                                         ],
                                                       )
@@ -2481,10 +2490,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         isTextPressed = false;
                                       }),
                                       child: Text(
-                                        'Weekly MOTM Players',
+                                        weeklyMOTMPlayersTitle,
                                         style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                140, 112, 84, 1.0),
+                                            color: topPlayersColor,
                                             shadows: [
                                               for (double i = 1;
                                                   i < (isTextPressed ? 1 : 2);
@@ -2517,8 +2525,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.80,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -2543,17 +2550,16 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Container(
                                                         // height: 70,
                                                         child: Lottie.asset(
-                                                      'assets/json/motm_award.json',
+                                                      lottieJsonMOTMTitle,
                                                       // width: MediaQuery.of(context).size.width * 0.80,
                                                       height: 200,
                                                       fit: BoxFit.contain,
                                                     )),
                                                     const SizedBox(height: 20),
-                                                    const Text(
-                                                      "No MOTM Players Yet",
+                                                    Text(
+                                                      weeklyMOTMPlayersEmptyTitle,
                                                       style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            205, 133, 133, 1),
+                                                        color: textColorOne,
                                                       ),
                                                     )
                                                   ],
@@ -2593,8 +2599,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.90,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -2660,12 +2665,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     alignment:
                                                         Alignment.centerRight,
                                                     child: Container(
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              color: Colors
-                                                                  .white70),
+                                                      decoration: BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          color:
+                                                              containerColor),
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -2675,14 +2679,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               .toString(),
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style:
-                                                              const TextStyle(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    205,
-                                                                    133,
-                                                                    133,
-                                                                    1),
+                                                          style: TextStyle(
+                                                            color: textColorOne,
                                                           ),
                                                         ),
                                                       ),
@@ -2698,18 +2696,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   children: <Widget>[
                                                     Row(
                                                       children: [
-                                                        const SizedBox(
+                                                        SizedBox(
                                                           height: 50,
                                                           child:
                                                               VerticalDivider(
                                                             // width: 14,
                                                             thickness: 3,
                                                             color:
-                                                                Color.fromRGBO(
-                                                                    205,
-                                                                    133,
-                                                                    133,
-                                                                    1),
+                                                                verticalDividerOneColor,
                                                           ),
                                                         ),
                                                         Column(
@@ -2720,11 +2714,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               MainAxisAlignment
                                                                   .spaceBetween,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Position',
+                                                            Text(
+                                                              playerPositionTitle,
                                                               style: TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                             const SizedBox(
                                                                 height: 10),
@@ -2742,17 +2736,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     const SizedBox(height: 50),
                                                     Row(
                                                       children: [
-                                                        const SizedBox(
+                                                        SizedBox(
                                                           height: 50,
                                                           child:
                                                               VerticalDivider(
                                                             thickness: 3,
                                                             color:
-                                                                Color.fromRGBO(
-                                                                    97,
-                                                                    143,
-                                                                    223,
-                                                                    1.0),
+                                                                verticalDividerTwoColor,
                                                           ),
                                                         ),
                                                         Column(
@@ -2760,11 +2750,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Preferred Foot',
+                                                            Text(
+                                                              playerPreferredFootTitle,
                                                               style: TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                             const SizedBox(
                                                                 height: 10),
@@ -2797,24 +2787,20 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Name',
-                                                              style: TextStyle(
+                                                            Text(
+                                                              playerNameTitle,
+                                                              style: const TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        130,
-                                                                        185,
-                                                                        208,
-                                                                        1.0),
+                                                                color:
+                                                                    verticalDividerThreeColor,
                                                               ),
                                                             ),
                                                             Text(
@@ -2822,14 +2808,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               overflow:
                                                                   TextOverflow
                                                                       .fade,
-                                                              style:
-                                                                  const TextStyle(
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        150,
-                                                                        129,
-                                                                        129,
-                                                                        1.0),
+                                                              style: TextStyle(
+                                                                color:
+                                                                    playerNameColor,
                                                               ),
                                                             ),
                                                           ],
@@ -2839,31 +2820,27 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Matches',
-                                                              style: TextStyle(
+                                                            Text(
+                                                              playerMatchesPlayedTitle,
+                                                              style: const TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 60,
                                                               child: Divider(
                                                                 indent: 10,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        125,
-                                                                        179,
-                                                                        140,
-                                                                        1.0),
+                                                                color:
+                                                                    verticalDividerFiveColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '${motmPlayersStatsAndInfoNotifier.mOTMPlayersStatsAndInfoList[index].matchesPlayed} played',
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                              style: TextStyle(
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                           ],
                                                         )
@@ -2901,10 +2878,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         isTextPressed = false;
                                       }),
                                       child: Text(
-                                        'Most Awarded MOTM Players',
+                                        cumAwardMOTMPlayersTitle,
                                         style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                140, 112, 84, 1.0),
+                                            color: topPlayersColor,
                                             shadows: [
                                               for (double i = 1;
                                                   i < (isTextPressed ? 1 : 2);
@@ -2938,8 +2914,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.80,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -2964,17 +2939,16 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Container(
                                                         // height: 70,
                                                         child: Lottie.asset(
-                                                      'assets/json/cum_motm_award.json',
+                                                      lottieJsonCumAwardMOTMTitle,
                                                       // width: MediaQuery.of(context).size.width * 0.80,
                                                       height: 200,
                                                       fit: BoxFit.contain,
                                                     )),
                                                     const SizedBox(height: 20),
-                                                    const Text(
-                                                      "No MOTM Players Yet",
+                                                    Text(
+                                                      cumAwardMOTMPlayersEmptyTitle,
                                                       style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            205, 133, 133, 1),
+                                                        color: textColorOne,
                                                       ),
                                                     )
                                                   ],
@@ -3016,8 +2990,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.90,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -3083,12 +3056,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     alignment:
                                                         Alignment.centerRight,
                                                     child: Container(
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              color: Colors
-                                                                  .white70),
+                                                      decoration: BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          color:
+                                                              containerColor),
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -3098,14 +3070,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               .toString(),
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style:
-                                                              const TextStyle(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    205,
-                                                                    133,
-                                                                    133,
-                                                                    1),
+                                                          style: TextStyle(
+                                                            color: textColorOne,
                                                           ),
                                                         ),
                                                       ),
@@ -3121,18 +3087,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   children: <Widget>[
                                                     Row(
                                                       children: [
-                                                        const SizedBox(
+                                                        SizedBox(
                                                           height: 50,
                                                           child:
                                                               VerticalDivider(
                                                             // width: 14,
                                                             thickness: 3,
                                                             color:
-                                                                Color.fromRGBO(
-                                                                    205,
-                                                                    133,
-                                                                    133,
-                                                                    1),
+                                                                verticalDividerOneColor,
                                                           ),
                                                         ),
                                                         Column(
@@ -3140,11 +3102,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Position',
+                                                            Text(
+                                                              playerPositionTitle,
                                                               style: TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                             const SizedBox(
                                                                 height: 10),
@@ -3162,17 +3124,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     const SizedBox(height: 50),
                                                     Row(
                                                       children: [
-                                                        const SizedBox(
+                                                        SizedBox(
                                                           height: 50,
                                                           child:
                                                               VerticalDivider(
                                                             thickness: 3,
                                                             color:
-                                                                Color.fromRGBO(
-                                                                    97,
-                                                                    143,
-                                                                    223,
-                                                                    1.0),
+                                                                verticalDividerTwoColor,
                                                           ),
                                                         ),
                                                         Column(
@@ -3180,11 +3138,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Preferred Foot',
+                                                            Text(
+                                                              playerPreferredFootTitle,
                                                               style: TextStyle(
-                                                                  color: Colors
-                                                                      .black54),
+                                                                  color:
+                                                                      textColorTwo),
                                                             ),
                                                             const SizedBox(
                                                                 height: 10),
@@ -3217,24 +3175,20 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'Name',
-                                                              style: TextStyle(
+                                                            Text(
+                                                              playerNameTitle,
+                                                              style: const TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        130,
-                                                                        185,
-                                                                        208,
-                                                                        1.0),
+                                                                color:
+                                                                    verticalDividerThreeColor,
                                                               ),
                                                             ),
                                                             Text(
@@ -3242,14 +3196,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               overflow:
                                                                   TextOverflow
                                                                       .fade,
-                                                              style:
-                                                                  const TextStyle(
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        150,
-                                                                        129,
-                                                                        129,
-                                                                        1.0),
+                                                              style: TextStyle(
+                                                                color:
+                                                                    playerNameColor,
                                                               ),
                                                             ),
                                                           ],
@@ -3259,43 +3208,31 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                              'MOTM Count',
+                                                            Text(
+                                                              cumMOTMCountPlayersTitle,
                                                               style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        188,
-                                                                        105,
-                                                                        66,
-                                                                        1.0),
+                                                                color:
+                                                                    keyTextColor,
                                                               ),
                                                             ),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        191,
-                                                                        146,
-                                                                        69,
-                                                                        0.3),
+                                                                color:
+                                                                    verticalDividerFourColor,
                                                               ),
                                                             ),
                                                             Text(
                                                                 '      ${cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList[index].cumMOTMCount}',
                                                                 style:
-                                                                    const TextStyle(
-                                                                  color: Color
-                                                                      .fromRGBO(
-                                                                          188,
-                                                                          105,
-                                                                          66,
-                                                                          1.0),
+                                                                    TextStyle(
+                                                                  color:
+                                                                      keyTextColor,
                                                                 ),
                                                                 textAlign:
                                                                     TextAlign
@@ -3310,33 +3247,29 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: <Widget>[
-                                                            const Text(
-                                                                'Matches',
-                                                                style: TextStyle(
+                                                            Text(
+                                                                playerMatchesPlayedTitle,
+                                                                style: const TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold),
                                                                 overflow:
                                                                     TextOverflow
                                                                         .ellipsis),
-                                                            const SizedBox(
+                                                            SizedBox(
                                                               width: 60,
                                                               child: Divider(
                                                                 indent: 10,
                                                                 thickness: 3,
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        125,
-                                                                        179,
-                                                                        140,
-                                                                        1.0),
+                                                                color:
+                                                                    verticalDividerFiveColor,
                                                               ),
                                                             ),
                                                             Text(
                                                                 '${cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList[index].matchesPlayed} played',
-                                                                style: const TextStyle(
-                                                                    color: Colors
-                                                                        .black54),
+                                                                style: TextStyle(
+                                                                    color:
+                                                                        textColorTwo),
                                                                 overflow:
                                                                     TextOverflow
                                                                         .ellipsis),
@@ -3376,10 +3309,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         isTextPressed = false;
                                       }),
                                       child: Text(
-                                        "Coaches' Monthly Comments",
+                                        coachesMonthlyCommentsTitle,
                                         style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                140, 112, 84, 1.0),
+                                            color: topPlayersColor,
                                             shadows: [
                                               for (double i = 1;
                                                   i < (isTextPressed ? 1 : 2);
@@ -3412,8 +3344,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.80,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -3438,17 +3369,16 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Container(
                                                         // height: 120,
                                                         child: Lottie.asset(
-                                                      'assets/json/coaches_comment_gif.json',
+                                                      lottieJsonCoachesCommentMOTMTitle,
                                                       // width: MediaQuery.of(context).size.width * 0.80,
                                                       height: 200,
                                                       fit: BoxFit.contain,
                                                     )),
                                                     const SizedBox(height: 20),
-                                                    const Text(
-                                                      "No Comment From Any Coach Yet",
+                                                    Text(
+                                                      coachesMonthlyCommentsEmptyTitle,
                                                       style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            205, 133, 133, 1),
+                                                        color: textColorOne,
                                                       ),
                                                     )
                                                   ],
@@ -3488,8 +3418,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.90,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -3543,12 +3472,10 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                         width: 15,
                                                       ),
                                                       Text(
-                                                        "Coach ${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].name!.replaceAll(" ", "\n")}",
+                                                        "$coachTitle+${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].name!.replaceAll(" ", "\n")}",
                                                         style: GoogleFonts
                                                             .kottaOne(
-                                                          color: const Color
-                                                                  .fromRGBO(188,
-                                                              105, 66, 1.0),
+                                                          color: keyTextColor,
                                                           fontSize: 25,
                                                           // fontWeight: FontWeight.bold,
                                                           // height: 0.81
@@ -3564,15 +3491,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   Column(
                                                     children: [
                                                       Text(
-                                                          "Month Review  [${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].date!}]",
+                                                          "$monthReviewTitle+[${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].date!}]",
                                                           style: GoogleFonts
                                                               .iceberg(
-                                                            color: const Color
-                                                                    .fromRGBO(
-                                                                65,
-                                                                63,
-                                                                63,
-                                                                1.0),
+                                                            color:
+                                                                textColorThree,
                                                             fontSize: 15,
                                                           ),
                                                           textAlign:
@@ -3581,12 +3504,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       Text(
                                                           '"${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].comment!}"',
                                                           style: GoogleFonts.iceberg(
-                                                              color: const Color
-                                                                      .fromRGBO(
-                                                                  121,
-                                                                  117,
-                                                                  117,
-                                                                  1.0),
+                                                              color:
+                                                                  textColorFour,
                                                               fontSize: 13,
                                                               fontStyle:
                                                                   FontStyle
@@ -3626,10 +3545,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         isTextPressed = false;
                                       }),
                                       child: Text(
-                                        "Founders' Monthly Comments",
+                                        foundersMonthlyCommentsTitle,
                                         style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                140, 112, 84, 1.0),
+                                            color: topPlayersColor,
                                             shadows: [
                                               for (double i = 1;
                                                   i < (isTextPressed ? 1 : 2);
@@ -3662,8 +3580,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.80,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -3688,17 +3605,16 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Container(
                                                         // height: 120,
                                                         child: Lottie.asset(
-                                                      'assets/json/founders_comment_gif.json',
+                                                      lottieJsonFoundersCommentMOTMTitle,
                                                       // width: MediaQuery.of(context).size.width * 0.80,
                                                       height: 200,
                                                       fit: BoxFit.contain,
                                                     )),
                                                     const SizedBox(height: 20),
-                                                    const Text(
-                                                      "No Comment From Any CPFC Founder Yet",
+                                                    Text(
+                                                      foundersMonthlyCommentsEmptyTitle,
                                                       style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            205, 133, 133, 1),
+                                                        color: textColorOne,
                                                       ),
                                                     )
                                                   ],
@@ -3738,8 +3654,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               0.90,
                                           emboss: true,
                                           spread: 2,
-                                          color: const Color.fromRGBO(
-                                              237, 237, 237, 1),
+                                          color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
                                           customBorderRadius:
@@ -3801,9 +3716,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                 " ", "\n"),
                                                         style: GoogleFonts
                                                             .kottaOne(
-                                                          color: const Color
-                                                                  .fromRGBO(188,
-                                                              105, 66, 1.0),
+                                                          color: keyTextColor,
                                                           fontSize: 25,
                                                           // fontWeight: FontWeight.bold,
                                                           // height: 0.81
@@ -3819,15 +3732,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   Column(
                                                     children: [
                                                       Text(
-                                                          "Month Review  [${foundersReviewsCommentNotifier.foundersReviewsCommentList[index].date!}]",
+                                                          "$monthReviewTitle+[${foundersReviewsCommentNotifier.foundersReviewsCommentList[index].date!}]",
                                                           style: GoogleFonts
                                                               .iceberg(
-                                                            color: const Color
-                                                                    .fromRGBO(
-                                                                65,
-                                                                63,
-                                                                63,
-                                                                1.0),
+                                                            color:
+                                                                textColorThree,
                                                             fontSize: 15,
                                                           ),
                                                           textAlign:
@@ -3836,12 +3745,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       Text(
                                                           '"${foundersReviewsCommentNotifier.foundersReviewsCommentList[index].comment!}"',
                                                           style: GoogleFonts.iceberg(
-                                                              color: const Color
-                                                                      .fromRGBO(
-                                                                  121,
-                                                                  117,
-                                                                  117,
-                                                                  1.0),
+                                                              color:
+                                                                  textColorFour,
                                                               fontSize: 13,
                                                               fontStyle:
                                                                   FontStyle
@@ -3882,10 +3787,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         isTextPressed = false;
                                       }),
                                       child: Text(
-                                        'Player Of The Month',
+                                        potmTitle,
                                         style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                140, 112, 84, 1.0),
+                                            color: topPlayersColor,
                                             shadows: [
                                               for (double i = 1;
                                                   i < (isTextPressed ? 1 : 2);
@@ -3903,19 +3807,17 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         0.90,
                                     height: 300,
                                     decoration: BoxDecoration(
-                                        color: Colors.deepOrange[300],
+                                        color: potmColorOne,
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(15)),
                                         boxShadow: [
                                           BoxShadow(
-                                              color: Colors.deepOrange
-                                                  .withAlpha(30),
+                                              color: potmColorTwo.withAlpha(30),
                                               offset: const Offset(4.0, 2.0),
                                               blurRadius: 1.0,
                                               spreadRadius: 1.0),
                                           BoxShadow(
-                                              color: Colors.deepOrange
-                                                  .withAlpha(60),
+                                              color: potmColorTwo.withAlpha(60),
                                               offset: const Offset(-2.0, -1.0),
                                               blurRadius: 1.0,
                                               spreadRadius: 1.0)
@@ -3933,20 +3835,18 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                             width: 200,
                                             height: 120,
                                             decoration: BoxDecoration(
-                                              color: Colors.deepOrange[300],
+                                              color: potmColorOne,
                                               borderRadius:
                                                   const BorderRadius.all(
                                                       Radius.circular(15)),
                                               boxShadow: [
                                                 BoxShadow(
-                                                    color:
-                                                        Colors.deepOrange[500]!,
+                                                    color: potmColorThree!,
                                                     offset: -distance,
                                                     blurRadius: blur,
                                                     spreadRadius: 1.0),
                                                 BoxShadow(
-                                                    color:
-                                                        Colors.deepOrange[200]!,
+                                                    color: potmColorFour!,
                                                     offset: distance,
                                                     blurRadius: blur,
                                                     spreadRadius: 1.0),
@@ -3955,26 +3855,24 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                             child: Align(
                                               alignment: Alignment.center,
                                               child: Text(
-                                                'YAY!',
+                                                potmYayTitle,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 60,
                                                     shadows: [
-                                                      const Shadow(
-                                                          offset: Offset(3, 3),
+                                                      Shadow(
+                                                          offset: const Offset(
+                                                              3, 3),
                                                           // color: Colors.black38,
-                                                          color: Color.fromRGBO(
-                                                              112, 32, 3, 0.38),
+                                                          color: potmColorFive,
                                                           blurRadius: 10),
                                                       Shadow(
                                                           offset: const Offset(
                                                               -3, -3),
-                                                          color: Colors
-                                                              .deepOrange[300]!,
+                                                          color: potmColorOne!,
                                                           blurRadius: 10)
                                                     ],
-                                                    color:
-                                                        Colors.deepOrange[300]),
+                                                    color: potmColorOne),
                                               ),
                                             ),
                                           ),
@@ -4000,21 +3898,17 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       Container(
                                                           // height: 120,
                                                           child: Lottie.asset(
-                                                        'assets/json/potm_award.json',
+                                                        lottieJsonPOTMTitle,
                                                         // width: MediaQuery.of(context).size.width * 0.80,
                                                         height: 200,
                                                         fit: BoxFit.contain,
                                                       )),
                                                       const SizedBox(
                                                           height: 20),
-                                                      const Text(
-                                                        "No POTM Nominated Yet",
+                                                      Text(
+                                                        potmEmptyTitle,
                                                         style: TextStyle(
-                                                          color: Color.fromRGBO(
-                                                              210,
-                                                              201,
-                                                              201,
-                                                              1.0),
+                                                          color: potmColorSix,
                                                         ),
                                                       )
                                                     ],
@@ -4031,9 +3925,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   ),
                                                   contentPadding:
                                                       const EdgeInsets.all(10),
-                                                  backgroundColor:
-                                                      const Color.fromRGBO(
-                                                          184, 106, 65, 1.0),
+                                                  backgroundColor: dialogColor,
                                                   content: ConfettiWidget(
                                                     createParticlePath:
                                                         drawStar,
@@ -4137,8 +4029,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                     .size
                                                                     .width,
                                                                 child:
-                                                                    Image.asset(
-                                                                  "assets/images/back_field.png",
+                                                                Image.asset(
+                                                                  assetPOTMBackgroundTitle,
                                                                   fit: BoxFit
                                                                       .cover,
                                                                 ),
@@ -4163,7 +4055,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                             40),
                                                                     child: Image
                                                                         .asset(
-                                                                      "assets/images/MVP_Blooded_3.png",
+                                                                      assetPOTMMVPTitle,
                                                                       width: MediaQuery.of(context)
                                                                               .size
                                                                               .width *
@@ -4189,8 +4081,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 MediaQuery.of(context).size.width * 0.35,
                                                                             child:
                                                                                 Text(
-                                                                              playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerName!.replaceAll(" ", "\n"),
-                                                                              style: GoogleFonts.rubikMicrobe(color: const Color.fromRGBO(184, 106, 65, 1.0), fontSize: 30, fontWeight: FontWeight.bold, height: 0.81),
+                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerName!.replaceAll(" ", "\n"),
+                                                                              style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, height: 0.81),
                                                                               overflow: TextOverflow.ellipsis,
                                                                             ),
                                                                           ),
@@ -4206,7 +4098,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
                                                                                   playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].goalsConcededGkDef.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: const Color.fromRGBO(184, 106, 65, 1.0), fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4215,9 +4107,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  'Goals Conceded',
+                                                                                  playerGoalsConcededTwoTitle,
                                                                                   style: GoogleFonts.arimo(
-                                                                                    color: Colors.white70,
+                                                                                    color: containerColor,
                                                                                     fontSize: 14,
                                                                                     fontWeight: FontWeight.w200,
                                                                                   ),
@@ -4235,7 +4127,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
                                                                                   playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].cleanSheetGk.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: const Color.fromRGBO(184, 106, 65, 1.0), fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4244,9 +4136,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  'Clean Sheets',
+                                                                                  playerCleanSheetTitle,
                                                                                   style: GoogleFonts.arimo(
-                                                                                    color: Colors.white70,
+                                                                                    color: containerColor,
                                                                                     fontSize: 14,
                                                                                     fontWeight: FontWeight.w200,
                                                                                   ),
@@ -4264,7 +4156,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
                                                                                   playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].matchesPlayed.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: const Color.fromRGBO(184, 106, 65, 1.0), fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4273,9 +4165,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  'Matches Played',
+                                                                                  matchesPlayedTitle,
                                                                                   style: GoogleFonts.arimo(
-                                                                                    color: Colors.white70,
+                                                                                    color: containerColor,
                                                                                     fontSize: 14,
                                                                                     fontWeight: FontWeight.w200,
                                                                                   ),
@@ -4312,8 +4204,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 MediaQuery.of(context).size.width * 0.35,
                                                                             child:
                                                                                 Text(
-                                                                              playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerName!.replaceAll(" ", "\n"),
-                                                                              style: GoogleFonts.rubikMicrobe(color: const Color.fromRGBO(184, 106, 65, 1.0), fontSize: 25, fontWeight: FontWeight.bold, height: 0.81),
+                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerName!.replaceAll(" ", "\n"),
+                                                                              style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 25, fontWeight: FontWeight.bold, height: 0.81),
                                                                               overflow: TextOverflow.ellipsis,
                                                                             ),
                                                                           ),
@@ -4329,7 +4221,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
                                                                                   playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerPosition.toString().toUpperCase(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: const Color.fromRGBO(184, 106, 65, 1.0), fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4338,9 +4230,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  'Player Position',
+                                                                                  playerPositionTwoTitle,
                                                                                   style: GoogleFonts.arimo(
-                                                                                    color: Colors.white70,
+                                                                                    color: containerColor,
                                                                                     fontSize: 14,
                                                                                     fontWeight: FontWeight.w200,
                                                                                   ),
@@ -4358,7 +4250,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
                                                                                   playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].goalsConcededGkDef.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: const Color.fromRGBO(184, 106, 65, 1.0), fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4367,9 +4259,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  'Goals Conceded',
+                                                                                  playerGoalsConcededTwoTitle,
                                                                                   style: GoogleFonts.arimo(
-                                                                                    color: Colors.white70,
+                                                                                    color: containerColor,
                                                                                     fontSize: 14,
                                                                                     fontWeight: FontWeight.w200,
                                                                                   ),
@@ -4387,7 +4279,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
                                                                                   playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].matchesPlayed.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: const Color.fromRGBO(184, 106, 65, 1.0), fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4396,9 +4288,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  'Matches Played',
+                                                                                  matchesPlayedTitle,
                                                                                   style: GoogleFonts.arimo(
-                                                                                    color: Colors.white70,
+                                                                                    color: containerColor,
                                                                                     fontSize: 14,
                                                                                     fontWeight: FontWeight.w200,
                                                                                   ),
@@ -4422,8 +4314,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 MediaQuery.of(context).size.width * 0.35,
                                                                             child:
                                                                                 Text(
-                                                                              playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerName!.replaceAll(" ", "\n"),
-                                                                              style: GoogleFonts.rubikMicrobe(color: const Color.fromRGBO(184, 106, 65, 1.0), fontSize: 25, fontWeight: FontWeight.bold, height: 0.81),
+                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerName!.replaceAll(" ", "\n"),
+                                                                              style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 25, fontWeight: FontWeight.bold, height: 0.81),
                                                                               overflow: TextOverflow.ellipsis,
                                                                             ),
                                                                           ),
@@ -4439,7 +4331,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
                                                                                   playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].goalsScored.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: const Color.fromRGBO(184, 106, 65, 1.0), fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4448,9 +4340,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  'Goals Scored',
+                                                                                  playerGoalsScoredTwoTitle,
                                                                                   style: GoogleFonts.arimo(
-                                                                                    color: Colors.white70,
+                                                                                    color: containerColor,
                                                                                     fontSize: 14,
                                                                                     fontWeight: FontWeight.w200,
                                                                                   ),
@@ -4468,7 +4360,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
                                                                                   playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].assists.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: const Color.fromRGBO(184, 106, 65, 1.0), fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4477,9 +4369,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  'Assists Provided',
+                                                                                  playerAssistsTwoTitle,
                                                                                   style: GoogleFonts.arimo(
-                                                                                    color: Colors.white70,
+                                                                                    color: containerColor,
                                                                                     fontSize: 14,
                                                                                     fontWeight: FontWeight.w200,
                                                                                   ),
@@ -4497,7 +4389,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
                                                                                   playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].matchesPlayed.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: const Color.fromRGBO(184, 106, 65, 1.0), fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4506,9 +4398,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  'Matches Played',
+                                                                                  matchesPlayedTitle,
                                                                                   style: GoogleFonts.arimo(
-                                                                                    color: Colors.white70,
+                                                                                    color: containerColor,
                                                                                     fontSize: 14,
                                                                                     fontWeight: FontWeight.w200,
                                                                                   ),
@@ -4659,11 +4551,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                           width:
                                                                               MediaQuery.of(context).size.width * 0.65,
                                                                           child:
-                                                                              Text(
-                                                                            "PLAYER OF THE MONTH",
+                                                                          Text(
+                                                                            potmTwoTitle,
                                                                             style:
                                                                                 GoogleFonts.orbitron(
-                                                                              color: const Color.fromRGBO(184, 106, 65, 1.0),
+                                                                              color: dialogColor,
                                                                               fontSize: 18,
                                                                               fontWeight: FontWeight.bold,
                                                                             ),
@@ -4682,11 +4574,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                           width:
                                                                               MediaQuery.of(context).size.width * 0.65,
                                                                           child:
-                                                                              Text(
-                                                                            'Presented By',
+                                                                          Text(
+                                                                            presentedByTitle,
                                                                             style:
                                                                                 GoogleFonts.arimo(
-                                                                              color: Colors.white70,
+                                                                              color: containerColor,
                                                                               fontSize: 14,
                                                                               fontWeight: FontWeight.w200,
                                                                             ),
@@ -4703,11 +4595,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                           width:
                                                                               MediaQuery.of(context).size.width * 0.65,
                                                                           child:
-                                                                              Text(
-                                                                            'Nouvellesoft.io Inc.',
+                                                                          Text(
+                                                                            nouvellesoftTitle,
                                                                             style:
                                                                                 GoogleFonts.gloriaHallelujah(
-                                                                              color: Colors.white70,
+                                                                              color: containerColor,
                                                                               fontSize: 15,
                                                                               fontWeight: FontWeight.bold,
                                                                             ),
@@ -4749,8 +4641,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                         height: 30,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              Colors.grey[200],
+                                                              color: potmColorSeven,
                                                           shape: BoxShape
                                                               .rectangle,
                                                           borderRadius:
@@ -4763,9 +4654,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               Alignment.center,
                                                           child: Icon(
                                                             Icons.close,
-                                                            color: Colors
-                                                                .deepOrangeAccent,
-                                                          ),
+                                                              color: Colors
+                                                                  .deepOrangeAccent),
                                                         ),
                                                       ),
                                                     ),
@@ -4790,8 +4680,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                         height: 30,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              Colors.grey[200],
+                                                              color: potmColorSeven,
                                                           shape: BoxShape
                                                               .rectangle,
                                                           borderRadius:
