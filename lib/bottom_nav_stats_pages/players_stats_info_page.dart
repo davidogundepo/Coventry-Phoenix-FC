@@ -51,7 +51,9 @@ late CumMOTMPlayersStatsAndInfoNotifier cumMOTMPlayersStatsAndInfoNotifier;
 late CoachesReviewsCommentNotifier coachesReviewsCommentNotifier;
 late FoundersReviewsCommentNotifier foundersReviewsCommentNotifier;
 
-Color? backgroundColor = const Color.fromRGBO(21, 29, 59, 1);
+Color? backgroundColor = const Color.fromRGBO(247, 246, 242, 1);
+Color parallaxRainColor = const Color.fromRGBO(221, 212, 212, 1.0);
+Color? iconColor = const Color.fromRGBO(196, 174, 137, 1.0);
 Color? clubNameColor = const Color.fromRGBO(205, 133, 133, 1);
 Color? playerNameColor = const Color.fromRGBO(150, 129, 129, 1.0);
 Color? topPlayersColor = const Color.fromRGBO(140, 112, 84, 1.0);
@@ -223,9 +225,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
         Provider.of<FoundersReviewsCommentNotifier>(context);
 
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(247, 246, 242, 1),
+      backgroundColor: backgroundColor,
       body: ParallaxRain(
-        dropColors: const [Color.fromRGBO(221, 212, 212, 1.0)],
+        dropColors: [parallaxRainColor],
         trail: true,
         numberOfLayers: 3,
         dropFallSpeed: 2,
@@ -242,7 +244,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                         shape: Border.all(
                           width: 2,
                         ),
-                        color: const Color.fromRGBO(196, 174, 137, 1.0),
+                        color: iconColor,
                         child: IconButton(
                             onPressed: () {
                               navigateMyApp(context);
