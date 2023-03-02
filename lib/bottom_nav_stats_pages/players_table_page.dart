@@ -835,7 +835,7 @@ class PlayersTableDataSource extends DataGridSource {
 }
 
 class PlayersTable {
-  String? id;
+  int? id;
   String? image;
   String? playerName;
   int? matchesPlayed;
