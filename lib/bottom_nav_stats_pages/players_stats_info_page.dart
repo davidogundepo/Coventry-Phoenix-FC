@@ -1278,8 +1278,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               topLeft: Radius
                                                                   .circular(7),
                                                               bottomRight:
-                                                                  Radius.circular(
-                                                                      7)),
+                                                                  Radius
+                                                                      .circular(
+                                                                          7)),
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -1571,8 +1572,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               topLeft: Radius
                                                                   .circular(7),
                                                               bottomRight:
-                                                                  Radius.circular(
-                                                                      7)),
+                                                                  Radius
+                                                                      .circular(
+                                                                          7)),
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -2002,8 +2004,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               overflow:
                                                                   TextOverflow
                                                                       .fade,
-                                                              style:
-                                                              TextStyle(
+                                                              style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
@@ -4653,7 +4654,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                           alignment:
                                                               Alignment.center,
                                                           child: Icon(
-                                                            Icons.close,
+                                                              Icons.close,
                                                               color: Colors
                                                                   .deepOrangeAccent),
                                                         ),
