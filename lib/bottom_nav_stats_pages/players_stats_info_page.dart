@@ -1356,7 +1356,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                     TextOverflow
                                                                         .ellipsis,
                                                                 style:
-                                                                TextStyle(
+                                                                    TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
