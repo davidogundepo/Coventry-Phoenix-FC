@@ -6,9 +6,9 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import '../main.dart';
 
-String twitterUsernameID = 'CovPhoenixFC';
-String facebookUsernameID = '627500899180951';
-String instagramUsernameID = 'Cog4e0egTOu';
+// String dummyTwitterUsernameID = 'CovPhoenixFC';
+// String dummyFacebookUsernameID = '627500899180951';
+// String dummyInstagramUsernameID = 'Cog4e0egTOu';
 
 String clubAcronym = 'CPFC';
 String titleText = "Tweets, Grams, Posts | CPFC";
