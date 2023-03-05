@@ -492,7 +492,6 @@ class PlayersPopulationChartData {
   PlayersPopulationChartData(this.x, this.y, [this.color]);
 
   final String x;
-
   // dynamic y;
   int y;
   final Color? color;
