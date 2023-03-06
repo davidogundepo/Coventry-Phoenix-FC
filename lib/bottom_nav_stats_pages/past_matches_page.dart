@@ -146,8 +146,6 @@ class AnimCardState extends State<AnimCard> {
                   children: [
                     SingleChildScrollView(
                       child: Column(
-                        // mainAxisSize: MainAxisSize.min,
-                        // mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
