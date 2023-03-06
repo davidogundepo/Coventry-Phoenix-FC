@@ -4809,7 +4809,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
     super.dispose();
   }
 
-  /// A custom Path to paint stars.
+  /// A custom Path to paint stars with letters.
   Path drawStar(Size size) {
     // Method to convert degree to radians
     double degToRad(double deg) => deg * (pi / 180.0);
@@ -4824,12 +4824,36 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
     final fullAngle = degToRad(360);
     path.moveTo(size.width, halfWidth);
 
-    for (double step = 0; step < fullAngle; step += degreesPerStep) {
-      path.lineTo(halfWidth + externalRadius * cos(step),
-          halfWidth + externalRadius * sin(step));
-      path.lineTo(halfWidth + internalRadius * cos(step + halfDegreesPerStep),
-          halfWidth + internalRadius * sin(step + halfDegreesPerStep));
-    }
+    // Draw the "M"
+    path.lineTo(halfWidth - externalRadius * cos(degToRad(18)),
+        halfWidth + externalRadius * sin(degToRad(18)));
+    path.lineTo(halfWidth - externalRadius * cos(degToRad(54)),
+        halfWidth - externalRadius * sin(degToRad(54)));
+    path.lineTo(halfWidth - internalRadius * cos(degToRad(54)),
+        halfWidth - internalRadius * sin(degToRad(54)));
+    path.lineTo(halfWidth - internalRadius * cos(degToRad(18)),
+        halfWidth + internalRadius * sin(degToRad(18)));
+    path.lineTo(halfWidth + externalRadius * cos(degToRad(18)),
+        halfWidth + externalRadius * sin(degToRad(18)));
+
+    // Draw the "V"
+    path.moveTo(halfWidth + internalRadius * cos(degToRad(54)),
+        halfWidth - internalRadius * sin(degToRad(54)));
+    path.lineTo(halfWidth + externalRadius * cos(degToRad(54)),
+        halfWidth + externalRadius * sin(degToRad(54)));
+    path.lineTo(halfWidth + internalRadius * cos(degToRad(54)),
+        halfWidth + internalRadius * sin(degToRad(54)));
+
+    // Draw the "P"
+    path.moveTo(halfWidth + internalRadius * cos(degToRad(54)),
+        halfWidth - internalRadius * sin(degToRad(54)));
+    path.lineTo(halfWidth + externalRadius * cos(degToRad(54)),
+        halfWidth - externalRadius * sin(degToRad(54)));
+    path.lineTo(halfWidth + externalRadius * cos(degToRad(90)),
+        halfWidth - externalRadius * sin(degToRad(90)));
+    path.lineTo(halfWidth + internalRadius * cos(degToRad(90)),
+        halfWidth - internalRadius * sin(degToRad(90)));
+
     path.close();
     return path;
   }
