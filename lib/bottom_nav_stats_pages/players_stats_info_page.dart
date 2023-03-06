@@ -3938,13 +3938,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     // set a lower max blast force
                                                     minBlastForce: 20,
                                                     // set a lower min blast force
-                                                    emissionFrequency: 0.35,
+                                                    emissionFrequency: 0.035,
                                                     blastDirectionality:
                                                         BlastDirectionality
                                                             .explosive,
                                                     numberOfParticles: 50,
                                                     // a lot of particles at once
-                                                    gravity: 1,
+                                                    gravity: 0.1,
                                                     child: SizedBox(
                                                       width:
                                                           MediaQuery.of(context)
@@ -4809,7 +4809,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
     super.dispose();
   }
 
-  /// A custom Path to paint stars with letters.
+  /// A custom Path to paint stars.
   Path drawStar(Size size) {
     // Method to convert degree to radians
     double degToRad(double deg) => deg * (pi / 180.0);
@@ -4824,36 +4824,12 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
     final fullAngle = degToRad(360);
     path.moveTo(size.width, halfWidth);
 
-    // Draw the "M"
-    path.lineTo(halfWidth - externalRadius * cos(degToRad(18)),
-        halfWidth + externalRadius * sin(degToRad(18)));
-    path.lineTo(halfWidth - externalRadius * cos(degToRad(54)),
-        halfWidth - externalRadius * sin(degToRad(54)));
-    path.lineTo(halfWidth - internalRadius * cos(degToRad(54)),
-        halfWidth - internalRadius * sin(degToRad(54)));
-    path.lineTo(halfWidth - internalRadius * cos(degToRad(18)),
-        halfWidth + internalRadius * sin(degToRad(18)));
-    path.lineTo(halfWidth + externalRadius * cos(degToRad(18)),
-        halfWidth + externalRadius * sin(degToRad(18)));
-
-    // Draw the "V"
-    path.moveTo(halfWidth + internalRadius * cos(degToRad(54)),
-        halfWidth - internalRadius * sin(degToRad(54)));
-    path.lineTo(halfWidth + externalRadius * cos(degToRad(54)),
-        halfWidth + externalRadius * sin(degToRad(54)));
-    path.lineTo(halfWidth + internalRadius * cos(degToRad(54)),
-        halfWidth + internalRadius * sin(degToRad(54)));
-
-    // Draw the "P"
-    path.moveTo(halfWidth + internalRadius * cos(degToRad(54)),
-        halfWidth - internalRadius * sin(degToRad(54)));
-    path.lineTo(halfWidth + externalRadius * cos(degToRad(54)),
-        halfWidth - externalRadius * sin(degToRad(54)));
-    path.lineTo(halfWidth + externalRadius * cos(degToRad(90)),
-        halfWidth - externalRadius * sin(degToRad(90)));
-    path.lineTo(halfWidth + internalRadius * cos(degToRad(90)),
-        halfWidth - internalRadius * sin(degToRad(90)));
-
+    for (double step = 0; step < fullAngle; step += degreesPerStep) {
+      path.lineTo(halfWidth + externalRadius * cos(step),
+          halfWidth + externalRadius * sin(step));
+      path.lineTo(halfWidth + internalRadius * cos(step + halfDegreesPerStep),
+          halfWidth + internalRadius * sin(step + halfDegreesPerStep));
+    }
     path.close();
     return path;
   }
