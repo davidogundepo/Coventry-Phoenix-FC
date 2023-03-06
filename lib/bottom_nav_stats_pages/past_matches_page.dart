@@ -252,7 +252,6 @@ class AnimCardState extends State<AnimCard> {
                                 decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(5)),
-                                    // shape: BoxShape.circle,
                                     image: DecorationImage(
                                         image: CachedNetworkImageProvider(
                                             pastMatchesNotifier
