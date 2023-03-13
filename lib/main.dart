@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'api/PushNotificationService.dart';
@@ -120,6 +121,12 @@ void main() async {
       // App received a notification when it was killed
     }
   }, FirebaseCrashlytics.instance.recordError);
+
+  OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
+  OneSignal.shared.setAppId("6b1cda87-62bf-44d0-9243-9088805b7909");
+  OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
+    // print("Accepted permission: $accepted");
+  });
 }
 
 class MyApp extends StatefulWidget {
