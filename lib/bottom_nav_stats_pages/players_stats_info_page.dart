@@ -615,14 +615,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                             Text(
                                                               topGoalsPlayersStatsAndInfoNotifier
                                                                   .topGoalsPlayersStatsAndInfoList[
-                                                                      index]
+                                                              index]
                                                                   .playerName!,
                                                               overflow:
-                                                                  TextOverflow
-                                                                      .fade,
+                                                              TextOverflow.clip,
                                                               style: TextStyle(
                                                                 color:
-                                                                    playerNameColor,
+                                                                playerNameColor,
                                                               ),
                                                             ),
                                                           ],
@@ -3474,7 +3473,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                         width: 15,
                                                       ),
                                                       Text(
-                                                        "$coachTitle+${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].name!.replaceAll(" ", "\n")}",
+                                                        "$coachTitle${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].name!.replaceAll(" ", "\n")}",
                                                         style: GoogleFonts
                                                             .kottaOne(
                                                           color: keyTextColor,
@@ -3493,7 +3492,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   Column(
                                                     children: [
                                                       Text(
-                                                          "$monthReviewTitle+[${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].date!}]",
+                                                          "$monthReviewTitle[${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].date!}]",
                                                           style: GoogleFonts
                                                               .iceberg(
                                                             color:
@@ -3734,7 +3733,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   Column(
                                                     children: [
                                                       Text(
-                                                          "$monthReviewTitle+[${foundersReviewsCommentNotifier.foundersReviewsCommentList[index].date!}]",
+                                                          "$monthReviewTitle[${foundersReviewsCommentNotifier.foundersReviewsCommentList[index].date!}]",
                                                           style: GoogleFonts
                                                               .iceberg(
                                                             color:
