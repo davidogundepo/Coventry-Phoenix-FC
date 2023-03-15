@@ -37,6 +37,7 @@ target 'Runner' do
   pod 'Firebase/Analytics', :modular_headers => true
   pod 'Firebase/Performance', :modular_headers => true
   pod 'GoogleUtilities'
+  pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0'
   
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
@@ -46,6 +47,7 @@ target 'CPFC ImageNotification' do
   use_frameworks!
   pod 'Firebase/Messaging'
   pod 'GoogleUtilities'
+  pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0'
 end
 
 

@@ -910,6 +910,7 @@ DEPENDENCIES:
   - GoogleUtilities
   - lottie-ios
   - onesignal_flutter (from `.symlinks/plugins/onesignal_flutter/ios`)
+  - OneSignalXCFramework (< 4.0, >= 3.0.0)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
@@ -1020,6 +1021,6 @@ SPEC CHECKSUMS:
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
 
-PODFILE CHECKSUM: cb331246b801a4f383215375e8234d6b0b1d1954
+PODFILE CHECKSUM: 47be034938e80e88e4cfd7d398901f2d8b3873a2
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0
