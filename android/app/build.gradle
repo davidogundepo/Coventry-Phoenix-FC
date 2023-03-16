@@ -80,9 +80,12 @@ apply plugin: 'com.google.firebase.crashlytics'
 
             firebaseCrashlytics {
                 nativeSymbolUploadEnabled true
-                // These paths are relative to the app/ folder
-                strippedNativeLibsDir "build/ndklibs/obj"
-                unstrippedNativeLibsDir "build/ndklibs/libs"
+                /// These paths are relative to the app/ folder
+//                strippedNativeLibsDir "build/ndklibs/obj"
+//                unstrippedNativeLibsDir "build/ndklibs/libs"
+
+//                strippedNativeLibsDir 'build/intermediates/stripped_native_libs/release/out/lib'
+                unstrippedNativeLibsDir '../../build/app/intermediates/merged_native_libs/release/out/lib'
             }
         }
     }
@@ -100,7 +103,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.5.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'com.google.firebase:firebase-auth:21.1.0'
-    implementation 'com.google.firebase:firebase-firestore:24.4.3'
+    implementation 'com.google.firebase:firebase-firestore:24.4.4'
     implementation 'com.android.support:multidex:2.0.0'
     implementation 'com.google.firebase:firebase-crashlytics:18.3.5'
     implementation 'com.google.firebase:firebase-crashlytics-ndk'
