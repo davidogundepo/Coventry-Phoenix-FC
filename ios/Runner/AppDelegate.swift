@@ -5,7 +5,7 @@ import OneSignal
 //import UserNotifications
 
 @UIApplicationMain
-@objc class AppDelegate: UIResponder, UIApplicationDelegate, FlutterAppDelegate, MessagingDelegate  {
+@objc class AppDelegate: FlutterAppDelegate, MessagingDelegate  {
     
     lazy var flutterEngine = FlutterEngine(name: "MyApp")
     
