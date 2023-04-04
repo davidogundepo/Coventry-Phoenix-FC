@@ -107,67 +107,105 @@ Color cardTextColor = Colors.white.withAlpha(250);
 
 class AboutAppDetails extends StatefulWidget {
   const AboutAppDetails({Key? key, this.title}) : super(key: key);
-
   final String? title;
 
   @override
   State<AboutAppDetails> createState() => _AboutAppDetailsState();
 }
 
+// This class represents the stateful widget that displays the details about the app.
 class _AboutAppDetailsState extends State<AboutAppDetails> {
   @override
   Widget build(BuildContext context) {
+    // Scaffold widget provides a framework for implementing the basic material design visual layout structure of the app.
+    // It is the root of the widget tree for this screen.
     return Scaffold(
+      // Background color of the scaffold.
       backgroundColor: backgroundColor,
+      // AppBar widget provides a header section in the scaffold.
       appBar: AppBar(
+        // Title of the app bar.
         title: Text(
           title,
           style: TextStyle(color: appBarTextColor),
         ),
+        // Whether to center the title.
         centerTitle: true,
+        // Elevation of the app bar shadow.
         elevation: 10,
+        // Background color of the app bar.
         backgroundColor: appBarBackgroundColor,
+        // Leading widget of the app bar.
         leading: IconButton(
+          // Icon to be displayed.
           icon: Icon(Icons.arrow_back_ios, color: appBarIconColor),
+          // Function to be called when the icon is pressed.
           onPressed: () {
+            // Navigate to the previous screen when the back arrow is pressed.
             Navigator.pop(context);
           },
         ),
       ),
+      // Body widget of the scaffold.
       body: SingleChildScrollView(
         child: Column(
+          // Alignment of the children widgets in the column.
           mainAxisAlignment: MainAxisAlignment.start,
+          // List of children widgets of the column.
           children: <Widget>[
+            // Card widget displays content within a Material Design card.
             Card(
-                elevation: 10,
-                margin: const EdgeInsets.all(20),
-                child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                  stream: FirebaseFirestore.instance
-                      .collection('SliversPages')
-                      .doc('non_slivers_pages')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const CircularProgressIndicator();
-                    }
-                    return Container(
-                      height: 300,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: CachedNetworkImageProvider(
-                                snapshot.data?.data()!['about_app_page'],
-                              ),
-                              fit: BoxFit.cover)),
-                    );
-                  },
-                )),
-            Card(
+              // Elevation of the card shadow.
+              elevation: 10,
+              // Margin of the card.
               margin: const EdgeInsets.all(20),
+              // StreamBuilder widget listens to the Firestore collection and rebuilds itself whenever the collection changes.
+              child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                // Stream that emits snapshots of the current contents of the Firestore document.
+                stream: FirebaseFirestore.instance
+                    .collection('SliversPages')
+                    .doc('non_slivers_pages')
+                    .snapshots(),
+                // Function that gets called each time a new snapshot is available.
+                builder: (context, snapshot) {
+                  // Check if the snapshot has data.
+                  if (!snapshot.hasData) {
+                    // If the snapshot doesn't have data, return a circular progress indicator to indicate that the data is loading.
+                    return const CircularProgressIndicator();
+                  }
+                  // If the snapshot has data, return a container with an image background.
+                  return Container(
+                    // Height of the container.
+                    height: 300,
+                    // Decoration of the container.
+                    decoration: BoxDecoration(
+                      // Image to be displayed as the background of the container.
+                      image: DecorationImage(
+                        // Cached network image provider that loads the image from the network and caches it.
+                        image: CachedNetworkImageProvider(
+                          snapshot.data?.data()!['about_app_page'],
+                        ),
+                        // Fit of the image within the container.
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            // This widget displays a Card with multiple TextSpan widgets that contain legal terms and information
+            Card(
+              // Sets the margin of the card
+              margin: const EdgeInsets.all(20),
+              // Sets the background color of the card
               color: cardBackgroundColor,
               child: Column(
+                // Aligns children to the start of the main axis (vertical)
                 mainAxisAlignment: MainAxisAlignment.start,
+                // Aligns children to the end of the cross axis (horizontal)
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
+                  // Adds a centered Card widget at the top of the column with the app title
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.only(
@@ -179,6 +217,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                           padding: const EdgeInsets.only(
                               top: 15, bottom: 15, left: 30, right: 30),
                           child: Text(
+                            // The app title
                             clubAlmanac,
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -191,13 +230,16 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                       ),
                     ),
                   ),
+                  // Adds a RichText widget with multiple TextSpan widgets that contain legal terms and information
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 10, right: 10, top: 10, bottom: 10),
                     child: RichText(
+                      // Aligns the text to be justified
                       textAlign: TextAlign.justify,
                       text: TextSpan(
                         children: <TextSpan>[
+                          // Displays the app description text
                           TextSpan(
                             text: '$aboutApp\n\n\n',
                             style: TextStyle(
@@ -206,6 +248,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
+                          // Displays a disclaimer text
                           TextSpan(
                             text: '$blemish\n\n\n',
                             style: TextStyle(
@@ -214,6 +257,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                                 fontWeight: FontWeight.w300,
                                 fontStyle: FontStyle.italic),
                           ),
+                          // Displays the terms and conditions text
                           TextSpan(
                             text: '$termsEtConditions\n\n',
                             style: TextStyle(
@@ -222,6 +266,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
+                          // Displays the copyright text
                           TextSpan(
                             text: '$copyrightTerms\n\n',
                             style: TextStyle(
@@ -230,6 +275,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
+                          // Displays additional terms and conditions
                           TextSpan(
                             text: '$termsEtConditions2\n\n',
                             style: TextStyle(
@@ -238,6 +284,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
+                          // Displays more terms and conditions
                           TextSpan(
                             text: '$termsEtConditions3\n\n',
                             style: TextStyle(
