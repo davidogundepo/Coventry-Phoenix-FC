@@ -1,0 +1,10 @@
+dependencies: \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/Libuv-gRPC/uv.framework/Modules/module.modulemap \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Libuv-gRPC/src/version.c \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Target\ Support\ Files/Libuv-gRPC/Libuv-gRPC-prefix.pch \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Libuv-gRPC/include/uv.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Libuv-gRPC/include/uv/errno.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Libuv-gRPC/include/uv/version.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Libuv-gRPC/include/uv/unix.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Libuv-gRPC/include/uv/threadpool.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Libuv-gRPC/include/uv/darwin.h

@@ -1,0 +1,34 @@
+dependencies: \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphonesimulator/FirebasePerformance.build/module.modulemap \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/AppActivity/FPRAppActivityTracker.m \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/AppActivity/FPRAppActivityTracker.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Public/FirebasePerformance/FIRTrace.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Public/FirebasePerformance/FIRPerformanceAttributable.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/AppActivity/FPRSessionManager.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/AppActivity/FPRSessionDetails.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Configurations/FPRConfigurations.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Gauges/CPU/FPRCPUGaugeCollector+Private.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Gauges/CPU/FPRCPUGaugeCollector.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Gauges/CPU/FPRCPUGaugeData.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Gauges/FPRGaugeCollector.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Gauges/FPRGaugeManager.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Gauges/Memory/FPRMemoryGaugeCollector+Private.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Gauges/Memory/FPRMemoryGaugeCollector.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Gauges/Memory/FPRMemoryGaugeData.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Timer/FIRTrace+Internal.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Timer/FPRCounterList.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/FIRPerformance+Internal.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Public/FirebasePerformance/FIRPerformance.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Timer/FIRTrace+Private.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/AppActivity/FPRTraceBackgroundActivityTracker.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/FPRClient+Private.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/FPRClient.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/FPRConfiguration.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Instrumentation/FPRNetworkTrace.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebasePerformance/FirebasePerformance/Sources/Protogen/nanopb/perf_metric.nanopb.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphonesimulator/nanopb.build/module.modulemap \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Target\ Support\ Files/nanopb/nanopb-umbrella.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/nanopb/pb.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/nanopb/pb_common.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/nanopb/pb_decode.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/nanopb/pb_encode.h

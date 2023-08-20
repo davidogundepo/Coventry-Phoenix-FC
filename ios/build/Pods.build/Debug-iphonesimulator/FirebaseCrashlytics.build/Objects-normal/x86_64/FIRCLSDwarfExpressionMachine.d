@@ -1,0 +1,25 @@
+dependencies: \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphonesimulator/FirebaseCrashlytics.build/module.modulemap \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Unwind/Dwarf/FIRCLSDwarfExpressionMachine.c \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Unwind/Dwarf/FIRCLSDwarfExpressionMachine.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Helpers/FIRCLSFeatures.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Helpers/FIRCLSDefines.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Helpers/FIRCLSThreadState.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Unwind/Dwarf/FIRCLSDataParsing.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Unwind/Dwarf/FIRCLSDwarfUnwindRegisters.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Unwind/FIRCLSUnwind_arch.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Unwind/Compact/FIRCLSCompactUnwind.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Helpers/FIRCLSUtility.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Components/FIRCLSGlobals.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Components/FIRCLSContext.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Components/FIRCLSBinaryImage.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Helpers/FIRCLSFile.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Shared/FIRCLSMachO/FIRCLSMachO.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Components/FIRCLSHost.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Components/FIRCLSUserLogging.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Handlers/FIRCLSException.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Handlers/FIRCLSMachException.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Handlers/FIRCLSSignal.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Helpers/FIRCLSAllocate.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Helpers/FIRCLSInternalLogging.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/third_party/libunwind/dwarf.h

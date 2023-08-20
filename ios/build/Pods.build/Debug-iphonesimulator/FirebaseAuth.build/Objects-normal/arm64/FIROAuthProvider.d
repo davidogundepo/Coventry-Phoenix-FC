@@ -1,0 +1,43 @@
+dependencies: \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphonesimulator/FirebaseAuth.build/module.modulemap \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/AuthProvider/OAuth/FIROAuthProvider.m \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIROAuthProvider.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRFederatedAuthProvider.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRAuthUIDelegate.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRFacebookAuthProvider.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIROAuthCredential.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRAuthCredential.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseCore/Extension/FirebaseCoreInternal.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphonesimulator/FirebaseCore.build/module.modulemap \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Target\ Support\ Files/FirebaseCore/FirebaseCore-umbrella.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRApp.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRConfiguration.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRLoggerLevel.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FirebaseCore.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIROptions.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRVersion.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseCore/Extension/FIRAppInternal.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseCore/Extension/FIRComponent.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseCore/Extension/FIRComponentContainer.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseCore/Extension/FIRComponentType.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseCore/Extension/FIRDependency.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseCore/Extension/FIRHeartbeatLogger.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseCore/Extension/FIRLibrary.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseCore/Extension/FIRLogger.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseCore/Extension/FIROptionsInternal.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Auth/FIRAuthGlobalWorkQueue.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Auth/FIRAuth_Internal.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Interop/FIRAuthInterop.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRAuth.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRAuthAPNSTokenType.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRAuthErrors.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/AuthProvider/OAuth/FIROAuthCredential_Internal.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Backend/FIRAuthBackend.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Backend/FIRAuthRPCRequest.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Backend/FIRAuthRPCResponse.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Backend/FIRAuthRequestConfiguration.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Utilities/FIRAuthErrorUtils.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRMultiFactorInfo.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Utilities/FIRAuthInternalErrors.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Utilities/FIRAuthWebUtils.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Utilities/FIRAuthURLPresenter.h

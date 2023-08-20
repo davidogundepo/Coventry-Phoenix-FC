@@ -25,6 +25,7 @@ String newPlayersTitle = "New Players";
 String captainsTitle = "CPFC Captains";
 String coachesTitle = "Coaching Staff";
 String managementBodyTitle = "Management Body";
+String sponsorsTitle = "Club Sponsors";
 
 String exitAppStatement = "Exit from App";
 String exitAppTitle = "Come on!";
@@ -63,8 +64,15 @@ class SideBar extends StatefulWidget {
 class _SideBarState extends State<SideBar>
     with SingleTickerProviderStateMixin<SideBar> {
   int _currentNAVSelected = 0;
+  bool _isClubSponsorsClicked = false; // New variable to track the "Club Sponsors" click
 
   _onSelected(int index) {
+    if (index == 6) { // Check if the selected item is "Club Sponsors"
+      _isClubSponsorsClicked = true;
+      // showToast("Club Sponsors Clicked"); // Show the toast message
+    } else {
+      _isClubSponsorsClicked = false;
+    }
     setState(() => _currentNAVSelected = index);
   }
 
@@ -130,349 +138,381 @@ class _SideBarState extends State<SideBar>
       initialData: false,
       stream: isSidebarOpenedStream,
       builder: (context, isSidebarOpenedAsync) {
-        return AnimatedPositioned(
-          duration: _animationDuration,
-          top: 0,
-          bottom: 0,
-          left: isSidebarOpenedAsync.data! ? 0 : -screeWidthLeft,
-          right: isSidebarOpenedAsync.data! ? 0 : screeWidthLeft - 55,
+        return Visibility(
+          visible: !_isClubSponsorsClicked, // Hide the sidebar when "Club Sponsors" is clicked,
+          child: AnimatedPositioned(
+            duration: _animationDuration,
+            top: 0,
+            bottom: 0,
+            left: isSidebarOpenedAsync.data! ? 0 : -screeWidthLeft,
+            right: isSidebarOpenedAsync.data! ? 0 : screeWidthLeft - 55,
 
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Card(
-                  color: containerBackgroundColor,
-                  elevation: 20,
-                  margin: const EdgeInsets.all(0),
-                  child: Align(
-                    alignment: const Alignment(0, -1.0),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft,
-                              colors: [gradientColor, gradientColor])),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Column(
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 60,
-                            ),
-                            Stack(
-                              children: <Widget>[
-                                Opacity(
-                                  opacity: 0.7,
-                                  child: StreamBuilder<
-                                      DocumentSnapshot<Map<String, dynamic>>>(
-                                    stream: getDataFromFirestore(),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.waiting) {
-                                        return const Center(
-                                            child: CircularProgressIndicator());
-                                      } else {
-                                        return Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.4,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              alignment:
-                                                  const Alignment(0, -0.8),
-                                              image: CachedNetworkImageProvider(
-                                                snapshot.data
-                                                    ?.data()!['sidebar_page'],
-                                              ),
-                                              fit: BoxFit.cover,
-                                            ),
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: [
-                                                linearGradientColor,
-                                                linearGradientColorTwo
-                                                    .withAlpha(50)
-                                              ],
-                                              stops: const [0.3, 1],
-                                            ),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: boxShadowColor,
-                                                blurRadius: 12,
-                                                offset: const Offset(3, 12),
-                                              )
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Material(
-                                            color: materialBackgroundColor,
-                                            child: InkWell(
-                                              splashColor: splashColor,
-                                              onTap: () {},
-                                              child: Align(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Card(
+                    color: containerBackgroundColor,
+                    elevation: 20,
+                    margin: const EdgeInsets.all(0),
+                    child: Align(
+                      alignment: const Alignment(0, -1.0),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft,
+                                colors: [gradientColor, gradientColor])),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Column(
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 60,
+                              ),
+                              Stack(
+                                children: <Widget>[
+                                  Opacity(
+                                    opacity: 0.7,
+                                    child: StreamBuilder<
+                                        DocumentSnapshot<Map<String, dynamic>>>(
+                                      stream: getDataFromFirestore(),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.connectionState ==
+                                            ConnectionState.waiting) {
+                                          return const Center(
+                                              child: CircularProgressIndicator());
+                                        } else {
+                                          return Container(
+                                            width:
+                                                MediaQuery.of(context).size.width,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.4,
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
                                                 alignment:
-                                                    const Alignment(0, 0.9),
-                                                child: ListTile(
-                                                  title: Text(
-                                                    clubName.toUpperCase(),
-                                                    style: GoogleFonts.gorditas(
+                                                    const Alignment(0, -0.8),
+                                                image: CachedNetworkImageProvider(
+                                                  snapshot.data
+                                                      ?.data()!['sidebar_page'],
+                                                ),
+                                                fit: BoxFit.cover,
+                                              ),
+                                              gradient: LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                                colors: [
+                                                  linearGradientColor,
+                                                  linearGradientColorTwo
+                                                      .withAlpha(50)
+                                                ],
+                                                stops: const [0.3, 1],
+                                              ),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: boxShadowColor,
+                                                  blurRadius: 12,
+                                                  offset: const Offset(3, 12),
+                                                )
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Material(
+                                              color: materialBackgroundColor,
+                                              child: InkWell(
+                                                splashColor: splashColor,
+                                                onTap: () {},
+                                                child: Align(
+                                                  alignment:
+                                                      const Alignment(0, 0.9),
+                                                  child: ListTile(
+                                                    title: Text(
+                                                      clubName.toUpperCase(),
+                                                      style: GoogleFonts.gorditas(
+                                                          color: textColor,
+                                                          fontSize: 25,
+                                                          fontWeight:
+                                                              FontWeight.w800,
+                                                          shadows: <Shadow>[
+                                                            Shadow(
+                                                                blurRadius: 50,
+                                                                color:
+                                                                    textShadowColor,
+                                                                offset: Offset
+                                                                    .fromDirection(
+                                                                        100, 12))
+                                                          ]),
+                                                    ),
+                                                    subtitle: Text(
+                                                      subtitle,
+                                                      style: GoogleFonts.varela(
                                                         color: textColor,
-                                                        fontSize: 25,
                                                         fontWeight:
-                                                            FontWeight.w800,
-                                                        shadows: <Shadow>[
-                                                          Shadow(
-                                                              blurRadius: 50,
-                                                              color:
-                                                                  textShadowColor,
-                                                              offset: Offset
-                                                                  .fromDirection(
-                                                                      100, 12))
-                                                        ]),
-                                                  ),
-                                                  subtitle: Text(
-                                                    subtitle,
-                                                    style: GoogleFonts.varela(
-                                                      color: textColor,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 20,
+                                                            FontWeight.w500,
+                                                        fontSize: 20,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        );
-                                      }
-                                    },
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Opacity(
+                                        opacity: 0.6,
+                                        child: Container(
+                                          width: 140.0,
+                                          height: 140.0,
+                                          decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      'assets/images/cpfc_logo.jpeg'))),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              Divider(
+                                height: 30,
+                                thickness: 0.5,
+                                color: dividerColor.withOpacity(0.3),
+                                indent: 32,
+                                endIndent: 32,
+                              ),
+                              Material(
+                                color: _currentNAVSelected == 0
+                                    ? gradientColorTwo.withOpacity(0.3)
+                                    : materialBackgroundColor,
+                                child: InkWell(
+                                  splashColor: splashColorThree,
+                                  onTap: () {
+                                    _onSelected(0);
+                                    onIconPressed();
+                                    BlocProvider.of<NavigationBloc>(context).add(
+                                        NavigationEvents
+                                            .myFirstTeamClassPageClickedEvent);
+                                  },
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: MenuItems(
+                                      icon: MdiIcons.soccer,
+                                      title: returningPlayersTitle,
+                                    ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(12.0),
+                              ),
+                              Material(
+                                color: _currentNAVSelected == 1
+                                    ? gradientColorTwo.withOpacity(0.3)
+                                    : materialBackgroundColor,
+                                child: InkWell(
+                                  splashColor: splashColorThree,
+                                  onTap: () {
+                                    _onSelected(1);
+                                    onIconPressed();
+                                    BlocProvider.of<NavigationBloc>(context).add(
+                                        NavigationEvents
+                                            .mySecondTeamClassPageClickedEvent);
+                                  },
                                   child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Opacity(
-                                      opacity: 0.6,
-                                      child: Container(
-                                        width: 140.0,
-                                        height: 140.0,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    'assets/images/cpfc_logo.jpeg'))),
+                                    alignment: Alignment.centerLeft,
+                                    child: MenuItems(
+                                      icon: MdiIcons.soccer,
+                                      title: newPlayersTitle,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // Material(
+                              //   color: _currentNAVSelected == 2 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
+                              //   child: InkWell(
+                              //     splashColor: splashColorThree,
+                              //     onTap: () {
+                              //       _onSelected(2);
+                              //       onIconPressed();
+                              //       BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.myThirdTeamClassPageClickedEvent);
+                              //     },
+                              //     child: Align(
+                              //       alignment: Alignment.centerLeft,
+                              //       child: MenuItems(
+                              //         icon: MdiIcons.soccer,
+                              //         title: thirdTeamClassTitle,
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
+                              Material(
+                                color: _currentNAVSelected == 3
+                                    ? gradientColorTwo.withOpacity(0.3)
+                                    : materialBackgroundColor,
+                                child: InkWell(
+                                  splashColor: splashColorThree,
+                                  onTap: () {
+                                    _onSelected(3);
+                                    onIconPressed();
+                                    BlocProvider.of<NavigationBloc>(context).add(
+                                        NavigationEvents
+                                            .myCaptainsPageClickedEvent);
+                                  },
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: MenuItems(
+                                      icon: MdiIcons.accountStar,
+                                      title: captainsTitle,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Material(
+                                color: _currentNAVSelected == 4
+                                    ? gradientColorTwo.withOpacity(0.3)
+                                    : materialBackgroundColor,
+                                child: InkWell(
+                                  splashColor: splashColorThree,
+                                  onTap: () {
+                                    _onSelected(4);
+                                    onIconPressed();
+                                    BlocProvider.of<NavigationBloc>(context).add(
+                                        NavigationEvents
+                                            .myCoachesPageClickedEvent);
+                                  },
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: MenuItems(
+                                      icon: MdiIcons.podiumSilver,
+                                      title: coachesTitle,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Material(
+                                color: _currentNAVSelected == 5
+                                    ? gradientColorTwo.withOpacity(0.3)
+                                    : materialBackgroundColor,
+                                child: InkWell(
+                                  splashColor: splashColorThree,
+                                  onTap: () {
+                                    _onSelected(5);
+                                    onIconPressed();
+                                    BlocProvider.of<NavigationBloc>(context).add(
+                                        NavigationEvents
+                                            .myManagementBodyPageClickedEvent);
+                                  },
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: MenuItems(
+                                      icon: MdiIcons.accountTie,
+                                      title: managementBodyTitle,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                height: 20,
+                                thickness: 0.5,
+                                color: dividerColor.withOpacity(0.3),
+                                indent: 32,
+                                endIndent: 32,
+                              ),
+                              Material(
+                                color: _currentNAVSelected == 6
+                                    ? gradientColorTwo.withOpacity(0.3)
+                                    : materialBackgroundColor,
+                                child: InkWell(
+                                  splashColor: splashColorThree,
+                                  onTap: () {
+                                    _onSelected(6);
+                                    onIconPressed();
+                                    BlocProvider.of<NavigationBloc>(context).add(
+                                        NavigationEvents
+                                            .myClubSponsorsPageClickedEvent);
+                                  },
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: MenuItems(
+                                      icon: MdiIcons.cashCheck,
+                                      title: sponsorsTitle,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                height: 20,
+                                thickness: 0.5,
+                                color: dividerColor.withOpacity(0.3),
+                                indent: 32,
+                                endIndent: 32,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(bottom: 50, top: 10),
+                                child: Material(
+                                  color: materialBackgroundColor,
+                                  child: InkWell(
+                                    splashColor: splashColorThree,
+                                    onTap: () {
+                                      _onWillPop();
+                                      onIconPressed();
+                                    },
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: MenuItems(
+                                        icon: MdiIcons.logout,
+                                        title: exitAppStatement,
                                       ),
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-
-                            Divider(
-                              height: 30,
-                              thickness: 0.5,
-                              color: dividerColor.withOpacity(0.3),
-                              indent: 32,
-                              endIndent: 32,
-                            ),
-                            Material(
-                              color: _currentNAVSelected == 0
-                                  ? gradientColorTwo.withOpacity(0.3)
-                                  : materialBackgroundColor,
-                              child: InkWell(
-                                splashColor: splashColorThree,
-                                onTap: () {
-                                  _onSelected(0);
-                                  onIconPressed();
-                                  BlocProvider.of<NavigationBloc>(context).add(
-                                      NavigationEvents
-                                          .myFirstTeamClassPageClickedEvent);
-                                },
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: MenuItems(
-                                    icon: MdiIcons.soccer,
-                                    title: returningPlayersTitle,
-                                  ),
-                                ),
                               ),
-                            ),
-                            Material(
-                              color: _currentNAVSelected == 1
-                                  ? gradientColorTwo.withOpacity(0.3)
-                                  : materialBackgroundColor,
-                              child: InkWell(
-                                splashColor: splashColorThree,
-                                onTap: () {
-                                  _onSelected(1);
-                                  onIconPressed();
-                                  BlocProvider.of<NavigationBloc>(context).add(
-                                      NavigationEvents
-                                          .mySecondTeamClassPageClickedEvent);
-                                },
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: MenuItems(
-                                    icon: MdiIcons.soccer,
-                                    title: newPlayersTitle,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            // Material(
-                            //   color: _currentNAVSelected == 2 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
-                            //   child: InkWell(
-                            //     splashColor: splashColorThree,
-                            //     onTap: () {
-                            //       _onSelected(2);
-                            //       onIconPressed();
-                            //       BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.myThirdTeamClassPageClickedEvent);
-                            //     },
-                            //     child: Align(
-                            //       alignment: Alignment.centerLeft,
-                            //       child: MenuItems(
-                            //         icon: MdiIcons.soccer,
-                            //         title: thirdTeamClassTitle,
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
-                            Material(
-                              color: _currentNAVSelected == 3
-                                  ? gradientColorTwo.withOpacity(0.3)
-                                  : materialBackgroundColor,
-                              child: InkWell(
-                                splashColor: splashColorThree,
-                                onTap: () {
-                                  _onSelected(3);
-                                  onIconPressed();
-                                  BlocProvider.of<NavigationBloc>(context).add(
-                                      NavigationEvents
-                                          .myCaptainsPageClickedEvent);
-                                },
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: MenuItems(
-                                    icon: MdiIcons.accountStar,
-                                    title: captainsTitle,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Material(
-                              color: _currentNAVSelected == 4
-                                  ? gradientColorTwo.withOpacity(0.3)
-                                  : materialBackgroundColor,
-                              child: InkWell(
-                                splashColor: splashColorThree,
-                                onTap: () {
-                                  _onSelected(4);
-                                  onIconPressed();
-                                  BlocProvider.of<NavigationBloc>(context).add(
-                                      NavigationEvents
-                                          .myCoachesPageClickedEvent);
-                                },
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: MenuItems(
-                                    icon: MdiIcons.podiumSilver,
-                                    title: coachesTitle,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Material(
-                              color: _currentNAVSelected == 5
-                                  ? gradientColorTwo.withOpacity(0.3)
-                                  : materialBackgroundColor,
-                              child: InkWell(
-                                splashColor: splashColorThree,
-                                onTap: () {
-                                  _onSelected(5);
-                                  onIconPressed();
-                                  BlocProvider.of<NavigationBloc>(context).add(
-                                      NavigationEvents
-                                          .myManagementBodyPageClickedEvent);
-                                },
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: MenuItems(
-                                    icon: MdiIcons.accountTie,
-                                    title: managementBodyTitle,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Divider(
-                              height: 64,
-                              thickness: 0.5,
-                              color: dividerColor.withOpacity(0.3),
-                              indent: 32,
-                              endIndent: 32,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(bottom: 50, top: 10),
-                              child: Material(
-                                color: materialBackgroundColor,
-                                child: InkWell(
-                                  splashColor: splashColorThree,
-                                  onTap: () {
-                                    _onWillPop();
-                                    onIconPressed();
-                                  },
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: MenuItems(
-                                      icon: MdiIcons.logout,
-                                      title: exitAppStatement,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: const Alignment(-0.1, -0.9),
-                child: GestureDetector(
-                  onTap: () {
-                    onIconPressed();
-                  },
-                  child: ClipPath(
-                    clipper: CustomMenuClipper(),
-                    child: Card(
-                      elevation: 20,
-                      margin: const EdgeInsets.all(0),
-                      child: Container(
-                        width: 35,
-                        height: 110,
-                        color: containerBackgroundColor,
-                        alignment: Alignment.centerLeft,
-                        child: AnimatedIcon(
-                          progress: _animationController.view,
-                          icon: AnimatedIcons.menu_close,
-                          color: containerIconColor,
-                          size: 25,
+                Align(
+                  alignment: const Alignment(-0.1, -0.9),
+                  child: GestureDetector(
+                    onTap: () {
+                      onIconPressed();
+                    },
+                    child: ClipPath(
+                      clipper: CustomMenuClipper(),
+                      child: Card(
+                        elevation: 20,
+                        margin: const EdgeInsets.all(0),
+                        child: Container(
+                          width: 35,
+                          height: 110,
+                          color: containerBackgroundColor,
+                          alignment: Alignment.centerLeft,
+                          child: AnimatedIcon(
+                            progress: _animationController.view,
+                            icon: AnimatedIcons.menu_close,
+                            color: containerIconColor,
+                            size: 25,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

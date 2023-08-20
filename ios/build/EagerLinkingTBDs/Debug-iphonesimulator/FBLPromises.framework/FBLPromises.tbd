@@ -1,0 +1,11 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+install-name:    '@rpath/FBLPromises.framework/FBLPromises'
+exports:
+  - targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+    symbols:         [ _FBLPromiseAwait, _FBLPromiseErrorDomain, _FBLPromiseRetryDefaultAttemptsCount, 
+                       _FBLPromiseRetryDefaultDelayInterval, _FBLPromisesVersionNumber, 
+                       _FBLPromisesVersionString, _FBLWaitForPromisesWithTimeout ]
+    objc-classes:    [ FBLPromise, PodsDummy_PromisesObjC ]
+...

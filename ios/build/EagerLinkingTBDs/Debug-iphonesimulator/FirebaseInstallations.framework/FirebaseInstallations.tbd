@@ -1,0 +1,42 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+install-name:    '@rpath/FirebaseInstallations.framework/FirebaseInstallations'
+exports:
+  - targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+    symbols:         [ _FIRInstallationIDDidChangeNotification, _FIRInstallationsItemSetErrorToPointer, 
+                       _FIRRealCurrentDateProvider, _FirebaseInstallationsVersionNumber, 
+                       _FirebaseInstallationsVersionString, _kFIRInstallationIDDidChangeNotificationAppNameKey, 
+                       _kFIRInstallationsAPIBaseURL, _kFIRInstallationsAPIKey, _kFIRInstallationsBundleId, 
+                       _kFIRInstallationsHeartbeatKey, _kFIRInstallationsIIDMigrationAuthHeader, 
+                       _kFIRInstallationsMessageCodeAPIRequestNetworkError, _kFIRInstallationsMessageCodeAPIRequestResponse, 
+                       _kFIRInstallationsMessageCodeAPIResponseParsingAuthTokenFailed, 
+                       _kFIRInstallationsMessageCodeAPIResponseParsingAuthTokenSucceed, 
+                       _kFIRInstallationsMessageCodeAPIResponseParsingInstallationFailed, 
+                       _kFIRInstallationsMessageCodeAPIResponseParsingInstallationSucceed, 
+                       _kFIRInstallationsMessageCodeAuthTokenCoderVersionMismatch, 
+                       _kFIRInstallationsMessageCodeCorruptedStoredInstallation, 
+                       _kFIRInstallationsMessageCodeIIDCheckinCoderVersionMismatch, 
+                       _kFIRInstallationsMessageCodeIIDCheckinFailedToDecode, _kFIRInstallationsMessageCodeInstallationCoderVersionMismatch, 
+                       _kFIRInstallationsMessageCodeInvalidFirebaseAppOptions, _kFIRInstallationsMessageCodeInvalidFirebaseConfiguration, 
+                       _kFIRInstallationsMessageCodeNewDeleteInstallationOperationCreated, 
+                       _kFIRInstallationsMessageCodeNewGetAuthTokenOperationCreated, 
+                       _kFIRInstallationsMessageCodeNewGetInstallationOperationCreated, 
+                       _kFIRInstallationsMessageCodeParsingAPIResponse, _kFIRInstallationsMessageCodeSendAPIRequest, 
+                       _kFIRInstallationsMessageCodeUnexpectedAPIRequestResponse, 
+                       _kFIRInstallationsStoreUserDefaultsID, _kFIRInstallationsStoredAuthTokenExpirationDateKey, 
+                       _kFIRInstallationsStoredAuthTokenStatusKey, _kFIRInstallationsStoredAuthTokenStorageVersion, 
+                       _kFIRInstallationsStoredAuthTokenStorageVersionKey, _kFIRInstallationsStoredAuthTokenTokenKey, 
+                       _kFIRInstallationsStoredItemAuthTokenKey, _kFIRInstallationsStoredItemFirebaseInstallationIDKey, 
+                       _kFIRInstallationsStoredItemIIDDefaultTokenKey, _kFIRInstallationsStoredItemRefreshTokenKey, 
+                       _kFIRInstallationsStoredItemRegistrationStatusKey, _kFIRInstallationsStoredItemStorageVersion, 
+                       _kFIRInstallationsStoredItemStorageVersionKey, _kFIRInstallationsTokenExpirationThreshold, 
+                       _kFIRLoggerInstallations, _kFirebaseInstallationsErrorDomain ]
+    objc-classes:    [ FIRInstallations, FIRInstallationsAPIService, FIRInstallationsAuthTokenResult, 
+                       FIRInstallationsBackoffController, FIRInstallationsBackoffEventData, 
+                       FIRInstallationsErrorUtil, FIRInstallationsHTTPError, FIRInstallationsIDController, 
+                       FIRInstallationsIIDStore, FIRInstallationsIIDTokenInfo, FIRInstallationsIIDTokenStore, 
+                       FIRInstallationsItem, FIRInstallationsSingleOperationPromiseCache, 
+                       FIRInstallationsStore, FIRInstallationsStoredAuthToken, FIRInstallationsStoredItem, 
+                       FIRInstallationsURLSessionResponse, PodsDummy_FirebaseInstallations ]
+...

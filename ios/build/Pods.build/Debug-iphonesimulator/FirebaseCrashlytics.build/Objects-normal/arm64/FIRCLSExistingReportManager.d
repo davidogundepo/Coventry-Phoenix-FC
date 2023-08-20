@@ -1,0 +1,44 @@
+dependencies: \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphonesimulator/FirebaseCrashlytics.build/module.modulemap \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Controllers/FIRCLSExistingReportManager.m \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Controllers/FIRCLSExistingReportManager.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Controllers/FIRCLSManagerData.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Controllers/FIRCLSReportUploader.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/DataCollection/FIRCLSDataCollectionArbiter.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/DataCollection/FIRCLSDataCollectionToken.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Helpers/FIRCLSLogger.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Models/FIRCLSFileManager.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Models/FIRCLSInternalReport.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Helpers/FIRCLSFeatures.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Helpers/FIRCLSDefines.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Models/FIRCLSSettings.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromises.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphonesimulator/PromisesObjC.build/module.modulemap \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Target\ Support\ Files/PromisesObjC/PromisesObjC-umbrella.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+All.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromiseError.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Always.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Any.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Async.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Await.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Catch.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Delay.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Do.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Race.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Recover.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Reduce.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Retry.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Testing.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Then.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Timeout.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Validate.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Wrap.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Private/FIRCLSOnDemandModel_Private.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Models/FIRCLSOnDemandModel.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Private/FIRCLSExistingReportManager_Private.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Private/FIRExceptionModel_Private.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Public/FirebaseCrashlytics/FIRExceptionModel.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Public/FirebaseCrashlytics/FIRStackFrame.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Private/FIRCrashlyticsReport_Private.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Public/FirebaseCrashlytics/FIRCrashlyticsReport.h

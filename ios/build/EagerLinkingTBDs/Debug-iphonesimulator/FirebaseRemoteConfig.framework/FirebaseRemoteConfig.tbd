@@ -1,0 +1,21 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+flags:           [ not_app_extension_safe ]
+install-name:    '@rpath/FirebaseRemoteConfig.framework/FirebaseRemoteConfig'
+exports:
+  - targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+    symbols:         [ _FIRNamespaceGoogleMobilePlatform, _FIRRemoteConfigActivateNotification, 
+                       _FIRRemoteConfigAppBuildVersion, _FIRRemoteConfigAppManagerLocales, 
+                       _FIRRemoteConfigAppVersion, _FIRRemoteConfigDeviceContextWithProjectIdentifier, 
+                       _FIRRemoteConfigDeviceCountry, _FIRRemoteConfigDeviceLocale, 
+                       _FIRRemoteConfigDeviceSubtype, _FIRRemoteConfigErrorDomain, 
+                       _FIRRemoteConfigFirebaseLocaleMap, _FIRRemoteConfigHasDeviceContextChanged, 
+                       _FIRRemoteConfigPodVersion, _FIRRemoteConfigThrottledEndTimeInSecondsKey, 
+                       _FIRRemoteConfigTimezone, _FirebaseRemoteConfigVersionNumber, 
+                       _FirebaseRemoteConfigVersionString, _kDatabaseLoadTimeoutSecs ]
+    objc-classes:    [ FIRRemoteConfig, FIRRemoteConfigComponent, FIRRemoteConfigSettings, 
+                       FIRRemoteConfigValue, PodsDummy_FirebaseRemoteConfig, RCNConfigContent, 
+                       RCNConfigDBManager, RCNConfigExperiment, RCNConfigFetch, RCNConfigSettings, 
+                       RCNPersonalization, RCNUserDefaultsManager ]
+...

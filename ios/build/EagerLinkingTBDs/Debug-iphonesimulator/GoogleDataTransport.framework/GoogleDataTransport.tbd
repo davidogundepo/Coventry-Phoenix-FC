@@ -1,0 +1,49 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+install-name:    '@rpath/GoogleDataTransport.framework/GoogleDataTransport'
+exports:
+  - targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+    symbols:         [ _GDTCCTConstructBatchedLogRequest, _GDTCCTConstructClientInfo, 
+                       _GDTCCTConstructGlobalMetrics, _GDTCCTConstructLogEvent, _GDTCCTConstructLogRequest, 
+                       _GDTCCTConstructLogSourceMetrics, _GDTCCTConstructMacClientInfo, 
+                       _GDTCCTConstructNetworkConnectionInfoData, _GDTCCTConstructTimeWindow, 
+                       _GDTCCTConstructiOSClientInfo, _GDTCCTConvertEventDropReasonToProtoReason, 
+                       _GDTCCTDecodeLogResponse, _GDTCCTEncodeBatchedLogRequest, 
+                       _GDTCCTEncodeData, _GDTCCTEncodeString, _GDTCCTEventCodeInfo, 
+                       _GDTCCTGetLogSourceMetricsCount, _GDTCCTNeedsNetworkConnectionInfo, 
+                       _GDTCCTNetworkConnectionInfo, _GDTCCTNetworkConnectionInfoNetworkMobileSubtype, 
+                       _GDTCORAssertionBlockToRunInstead, _GDTCORBackgroundIdentifierInvalid, 
+                       _GDTCORConsoleLoggerLoggingLevel, _GDTCORDecodeArchive, _GDTCORDecodeArchiveAtPath, 
+                       _GDTCORDeviceModel, _GDTCOREncodeArchive, _GDTCORFlatFileStorageErrorDomain, 
+                       _GDTCORLog, _GDTCORLogAssert, _GDTCORMessageCodeEnumToString, 
+                       _GDTCORMetricsControllerInstanceForTarget, _GDTCORNetworkMobileSubTypeMessage, 
+                       _GDTCORNetworkTypeMessage, _GDTCORReachabilityFlagsContainWWAN, 
+                       _GDTCORReachabilityFlagsReachable, _GDTCORRootDirectory, _GDTCORStorageInstanceForTarget, 
+                       _GDTCORStoragePromiseInstanceForTarget, _GDTCORWriteDataToFile, 
+                       _GoogleDataTransportVersionNumber, _GoogleDataTransportVersionString, 
+                       _gdt_cct_BatchedLogRequest_fields, _gdt_cct_ClientInfo_fields, 
+                       _gdt_cct_IosClientInfo_fields, _gdt_cct_LogEvent_fields, _gdt_cct_LogRequest_fields, 
+                       _gdt_cct_LogRequest_qos_tier_default, _gdt_cct_LogResponse_fields, 
+                       _gdt_cct_MacClientInfo_fields, _gdt_cct_NetworkConnectionInfo_fields, 
+                       _gdt_cct_NetworkConnectionInfo_mobile_subtype_default, _gdt_cct_NetworkConnectionInfo_network_type_default, 
+                       _gdt_cct_QosTierConfiguration_fields, _gdt_cct_QosTierConfiguration_log_source_default, 
+                       _gdt_cct_QosTiersOverride_fields, _gdt_client_metrics_ClientMetrics_fields, 
+                       _gdt_client_metrics_GlobalMetrics_fields, _gdt_client_metrics_LogEventDropped_fields, 
+                       _gdt_client_metrics_LogSourceMetrics_fields, _gdt_client_metrics_StorageMetrics_fields, 
+                       _gdt_client_metrics_TimeWindow_fields, _kGDTCORApplicationDidEnterBackgroundNotification, 
+                       _kGDTCORApplicationWillEnterForegroundNotification, _kGDTCORApplicationWillTerminateNotification, 
+                       _kGDTCORBatchComponentsBatchIDKey, _kGDTCORBatchComponentsExpirationKey, 
+                       _kGDTCORBatchComponentsTargetKey, _kGDTCOREventComponentsEventIDKey, 
+                       _kGDTCOREventComponentsExpirationKey, _kGDTCOREventComponentsMappingIDKey, 
+                       _kGDTCOREventComponentsQoSTierKey, _kGDTCORFlatFileStorageSizeLimit, 
+                       _kGDTCORVersion ]
+    objc-classes:    [ GDTCCTCompressionHelper, GDTCCTUploadOperation, GDTCCTUploader, 
+                       GDTCORApplication, GDTCORClock, GDTCORDirectorySizeTracker, 
+                       GDTCOREndpoints, GDTCOREvent, GDTCORFlatFileStorage, GDTCORLifecycle, 
+                       GDTCORLogSourceMetrics, GDTCORMetrics, GDTCORMetricsController, 
+                       GDTCORMetricsMetadata, GDTCORReachability, GDTCORRegistrar, 
+                       GDTCORStorageEventSelector, GDTCORStorageMetadata, GDTCORTransformer, 
+                       GDTCORTransport, GDTCORUploadBatch, GDTCORUploadCoordinator, 
+                       PodsDummy_GoogleDataTransport ]
+...

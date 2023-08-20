@@ -1,5 +1,9 @@
 import 'dart:async';
 
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:coventry_phoenix_fc/notifier/a_upcoming_matches_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/club_sponsors_notifier.dart';
+import 'package:coventry_phoenix_fc/sidebar/thrown_club_sponsors_page.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -24,7 +28,7 @@ import 'notifier/most_assists_players_stats_info_notifier.dart';
 import 'notifier/most_fouled_rc_players_stats_info_notifier.dart';
 import 'notifier/most_fouled_yc_players_stats_info_notifier.dart';
 import 'notifier/motm_players_stats_info_notifier.dart';
-import 'notifier/past_matches_notifier.dart';
+import 'notifier/a_past_matches_notifier.dart';
 import 'notifier/player_of_the_month_stats_info_notifier.dart';
 import 'notifier/second_team_class_notifier.dart';
 import 'notifier/sidebar_notifier.dart';
@@ -114,7 +118,15 @@ void main() async {
       ChangeNotifierProvider(
         create: (context) => PastMatchesNotifier(),
       ),
+      ChangeNotifierProvider(
+        create: (context) => UpcomingMatchesNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => ClubSponsorsNotifier(),
+      ),
+
     ], child: const MyApp()));
+
     RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
     if (initialMessage != null) {
@@ -135,6 +147,7 @@ class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return MyAppState();
+    // return PandCTransitions();
   }
 }
 
@@ -179,10 +192,245 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
-      home: const SideBarLayout(),
+      home: const PandCTransitions(),
+      // home: const SideBarLayout(),
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
+    );
+  }
+}
+
+
+class PandCTransitions extends StatelessWidget {
+  const PandCTransitions({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            _buildBackgroundImage(),
+            _buildTranslucentOverlay(context),
+            _buildButtonContainer(context),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBackgroundImage() {
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/cpfc_logo_android_ios.jpeg'),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTranslucentOverlay(context) {
+    return Container(
+      color: Colors.black.withOpacity(0.5),
+      width: MediaQuery.of(context).size.width * 0.85,
+      height: MediaQuery.of(context).size.height * 0.55,
+      alignment: Alignment.center,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20.0),
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.8,
+          height: MediaQuery.of(context).size.height * 0.5,
+          color: Colors.white.withOpacity(0.35),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildButtonContainer(context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.7,
+      height: MediaQuery.of(context).size.height * 0.55,
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(height: 60),
+          const Text(
+            'Welcome to Coventry Phoenix FC App',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 150),
+          const Text(
+            'Please, choose your path',
+            style: TextStyle(
+              color: Colors.orangeAccent,
+              fontSize: 19,
+              fontWeight: FontWeight.w600,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          ElevatedButton(
+            onPressed: () {
+              Fluttertoast.showToast(
+                msg: 'Thank you and welcome!',
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                backgroundColor: Colors.green,
+                textColor: Colors.white,
+                fontSize: 16.0,
+              );
+              Navigator.push(context,
+                SlideTransition1(const SideBarLayout()),
+              );
+              // You can navigate here if needed
+            },
+            child: const Text(
+              'Going Inside',
+              style: TextStyle(
+                color: Colors.blue,
+              ),
+
+            ),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () => _showAdminDialog(context),
+            child: const Text(
+              'Admin Access',
+              style: TextStyle(
+                color: Colors.orangeAccent,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showAdminDialog(BuildContext context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        backgroundColor: const Color.fromRGBO(57, 62, 70, 1),
+        title: const Text(
+          'Enter the passcode',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: 'Passcode',
+                hintStyle: TextStyle(color: Colors.white70),
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Navigator.pop(context);
+                _showAdminWelcomeToast();
+                // Navigate to the right page if the password is correct
+                Navigator.push(context,
+                  SlideTransition1( MyClubSponsorsPage()),
+                );
+              },
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showAdminWelcomeToast() {
+    Fluttertoast.showToast(
+      msg: 'Welcome, Admin',
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      backgroundColor: Colors.green,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+
+  }
+}
+
+
+
+class SlideTransition1 extends PageRouteBuilder {
+  final Widget page;
+
+  SlideTransition1(this.page)
+      : super(
+      pageBuilder: (context, animation, anotherAnimation) => page,
+      transitionDuration: const Duration(milliseconds: 1000),
+      reverseTransitionDuration: const Duration(milliseconds: 400),
+      transitionsBuilder: (context, animation, anotherAnimation, child) {
+        animation = CurvedAnimation(
+            curve: Curves.fastLinearToSlowEaseIn,
+            parent: animation,
+            reverseCurve: Curves.fastOutSlowIn);
+        return SlideTransition(
+          position: Tween(begin: const Offset(1.0, 0.0), end: const Offset(0.0, 0.0))
+              .animate(animation),
+          child: page,
+        );
+      });
+}
+
+class SlideTransition2 extends PageRouteBuilder {
+  final Widget page;
+
+  SlideTransition2(this.page)
+      : super(
+      pageBuilder: (context, animation, anotherAnimation) => page,
+      transitionDuration: const Duration(milliseconds: 1000),
+      reverseTransitionDuration: const Duration(milliseconds: 400),
+      transitionsBuilder: (context, animation, anotherAnimation, child) {
+        animation = CurvedAnimation(
+            curve: Curves.fastLinearToSlowEaseIn,
+            parent: animation,
+            reverseCurve: Curves.fastOutSlowIn);
+        return SlideTransition(
+          position: Tween(begin: const Offset(1.0, 0.0), end: const Offset(0.0, 0.0))
+              .animate(animation),
+          textDirection: TextDirection.rtl,
+          child: page,
+        );
+      });
+}
+
+
+
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        // brightness: Brightness.dark,
+        centerTitle: true,
+        title: const Text('Slide Transition'),
+      ),
     );
   }
 }

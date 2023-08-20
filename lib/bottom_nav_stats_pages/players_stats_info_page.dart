@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clay_containers/clay_containers.dart';
 import 'package:confetti/confetti.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+// import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -254,17 +254,17 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                       const SizedBox(
                         width: 60,
                       ),
-                      NeumorphicText(
-                        clubName,
-                        style: NeumorphicStyle(
-                          depth: 4,
-                          color: clubNameColor,
-                        ),
-                        textStyle: NeumorphicTextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
+                      // NeumorphicText(
+                      //   clubName,
+                      //   style: NeumorphicStyle(
+                      //     depth: 4,
+                      //     color: clubNameColor,
+                      //   ),
+                      //   textStyle: NeumorphicTextStyle(
+                      //     fontSize: 20,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // )
                     ],
                   ),
                 ),

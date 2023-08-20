@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coventry_phoenix_fc/api/a_upcoming_matches_api.dart';
+import 'package:coventry_phoenix_fc/api/club_sponsors_api.dart';
 import 'package:coventry_phoenix_fc/api/second_team_class_api.dart';
 import 'package:coventry_phoenix_fc/notifier/achievement_images_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/club_arial_notifier.dart';
@@ -44,6 +46,8 @@ import '../api/trainings_games_reels_api.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../bottom_nav_stats_pages/bottom_navigator.dart';
 import '../details_pages/first_team_details_page.dart';
+import '../notifier/a_upcoming_matches_notifier.dart';
+import '../notifier/club_sponsors_notifier.dart';
 import '../notifier/cum_motm_players_stats_info_notifier.dart';
 import '../notifier/first_team_class_notifier.dart';
 import '../notifier/founders_reviews_comment_notifier.dart';
@@ -557,9 +561,6 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
     }
   }
 
-
-
-
   aboutAppWelcomeDialog() async {
     SharedPreferences appOverviewPrefs = await SharedPreferences.getInstance();
     bool? appOverviewChecked = appOverviewPrefs.getBool('overview_time');
@@ -725,6 +726,14 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
     FoundersReviewsCommentNotifier foundersReviewsCommentNotifier =
         Provider.of<FoundersReviewsCommentNotifier>(context, listen: false);
     getFoundersReviewsComment(foundersReviewsCommentNotifier);
+
+    UpcomingMatchesNotifier upcomingMatchesNotifier =
+    Provider.of<UpcomingMatchesNotifier>(context, listen: false);
+    getUpcomingMatches(upcomingMatchesNotifier);
+
+    ClubSponsorsNotifier clubSponsorsNotifier =
+    Provider.of<ClubSponsorsNotifier>(context, listen: false);
+    getClubSponsors(clubSponsorsNotifier);
 
 
     setState(() {

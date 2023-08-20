@@ -1,3 +1,4 @@
+import 'package:coventry_phoenix_fc/sidebar/thrown_club_sponsors_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../thrown_pages/captains_thrown_page.dart';
@@ -13,6 +14,7 @@ enum NavigationEvents {
   myThirdTeamClassPageClickedEvent,
   myCoachesPageClickedEvent,
   myManagementBodyPageClickedEvent,
+  myClubSponsorsPageClickedEvent,
   myCaptainsPageClickedEvent,
 }
 
@@ -38,6 +40,9 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         break;
       case NavigationEvents.myManagementBodyPageClickedEvent:
         yield MyManagementBodyPage();
+        break;
+        case NavigationEvents.myClubSponsorsPageClickedEvent:
+        yield MyClubSponsorsPage();
         break;
       case NavigationEvents.myCaptainsPageClickedEvent:
         yield MyCaptainsPage();

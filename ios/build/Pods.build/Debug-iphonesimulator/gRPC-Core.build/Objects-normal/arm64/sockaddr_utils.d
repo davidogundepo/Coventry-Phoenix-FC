@@ -1,0 +1,45 @@
+dependencies: \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/src/core/lib/address_utils/sockaddr_utils.cc \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Target\ Support\ Files/gRPC-Core/gRPC-Core-prefix.pch \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/include/grpc/support/port_platform.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/include/grpc/impl/codegen/port_platform.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/src/core/lib/address_utils/sockaddr_utils.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/src/core/lib/iomgr/resolved_address.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/src/core/lib/iomgr/port.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/strings/str_cat.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/base/port.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/base/attributes.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/base/config.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/base/options.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/base/policy_checks.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/base/optimization.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/strings/numbers.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/base/macros.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/numeric/bits.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/numeric/internal/bits.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/numeric/int128.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/numeric/int128_have_intrinsic.inc \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/strings/string_view.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/base/internal/throw_delegate.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/strings/str_format.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/strings/internal/str_format/arg.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/meta/type_traits.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/strings/internal/str_format/extension.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/strings/internal/str_format/output.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/strings/internal/str_format/bind.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/strings/internal/str_format/checker.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/strings/internal/str_format/parser.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/types/span.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/types/internal/span.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/build/ios/Debug-iphonesimulator/abseil/absl.framework/Headers/algorithm/algorithm.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/include/grpc/support/alloc.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/include/grpc/support/log.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/include/grpc/impl/codegen/log.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/src/core/lib/gpr/string.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/include/grpc/impl/codegen/gpr_types.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/src/core/lib/gprpp/host_port.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/src/core/lib/iomgr/sockaddr.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/src/core/lib/event_engine/sockaddr.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/src/core/lib/iomgr/sockaddr_posix.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/src/core/lib/iomgr/sockaddr_windows.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/gRPC-Core/src/core/lib/iomgr/socket_utils.h

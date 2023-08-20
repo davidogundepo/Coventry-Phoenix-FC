@@ -1,0 +1,30 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+flags:           [ not_app_extension_safe ]
+install-name:    '@rpath/esys_flutter_share_plus.framework/esys_flutter_share_plus'
+swift-abi-version: 7
+exports:
+  - targets:         [ x86_64-ios-simulator ]
+    symbols:         [ _Swift51Overrides, __Z34_swiftoverride_class_getSuperclassPKN5swift14TargetMetadataINS_9InProcessEEE, 
+                       __ZN5swift39swift51override_conformsToSwiftProtocolEPKNS_14TargetMetadataINS_9InProcessEEEPKNS_24TargetProtocolDescriptorIS1_EEN7__swift9__runtime4llvm9StringRefEPFPKNS_35TargetProtocolConformanceDescriptorIS1_EES4_S8_SC_E ]
+  - targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+    symbols:         [ '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginC4file9argumentsyypSg_tF', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginC4file9argumentsyypSg_tFTq', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginC4text9argumentsyypSg_tF', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginC4text9argumentsyypSg_tFTq', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginC5files9argumentsyypSg_tF', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginC5files9argumentsyypSg_tFTq', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginC6handle_6resultySo0G10MethodCallC_yypSgctF', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginC6handle_6resultySo0G10MethodCallC_yypSgctFTq', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginC8register4withySo0gI9Registrar_p_tFZ', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginCACycfC', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginCACycfc', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginCMa', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginCMn', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginCN', 
+                       '_$s23esys_flutter_share_plus27SwiftEsysFlutterSharePluginCfD', 
+                       _esys_flutter_share_plusVersionNumber, _esys_flutter_share_plusVersionString ]
+    objc-classes:    [ EsysFlutterSharePlugin, PodsDummy_esys_flutter_share_plus, 
+                       _TtC23esys_flutter_share_plus27SwiftEsysFlutterSharePlugin ]
+...

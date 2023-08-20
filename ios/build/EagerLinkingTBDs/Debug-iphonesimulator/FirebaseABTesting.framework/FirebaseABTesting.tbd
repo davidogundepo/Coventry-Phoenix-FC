@@ -1,0 +1,16 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+flags:           [ not_app_extension_safe ]
+install-name:    '@rpath/FirebaseABTesting.framework/FirebaseABTesting'
+exports:
+  - targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+    symbols:         [ _ABTDeserializeExperimentPayload, _ABTExperimentsToClearFromPayloads, 
+                       _ABTExperimentsToSetFromPayloads, _FIRActivateExperimentEventName, 
+                       _FIRClearExperimentEventName, _FIRDefaultExperimentOverflowPolicy, 
+                       _FIRExpireExperimentEventName, _FIRSetExperimentEventName, 
+                       _FIRTimeoutExperimentEventName, _FirebaseABTestingVersionNumber, 
+                       _FirebaseABTestingVersionString, _kFIRLoggerABTesting ]
+    objc-classes:    [ ABTConditionalUserPropertyController, ABTExperimentLite, ABTExperimentPayload, 
+                       FIRExperimentController, FIRLifecycleEvents, PodsDummy_FirebaseABTesting ]
+...

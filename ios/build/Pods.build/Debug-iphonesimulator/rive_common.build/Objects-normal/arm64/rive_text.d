@@ -1,0 +1,37 @@
+dependencies: \
+  /Users/user/.pub-cache/hosted/pub.dev/rive_common-0.1.0/ios/rive_text/rive_text.cpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/Target\ Support\ Files/rive_common/rive_common-prefix.pch \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/text/font_hb.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/factory.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/renderer.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/shapes/paint/color.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/command_path.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/math/mat2d.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/math/vec2d.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/rive_types.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/math/path_types.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/layout.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/refcnt.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/span.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/math/aabb.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/shapes/paint/blend_mode.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/shapes/paint/stroke_cap.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/shapes/paint/stroke_join.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/text_engine.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/math/raw_path.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/rive-cpp/include/rive/simple_array.hpp \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-blob.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-common.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-buffer.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-unicode.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-font.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-face.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-set.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-draw.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-deprecated.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-map.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-shape.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-shape-plan.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-style.h \
+  /Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/.symlinks/plugins/rive_common/ios/harfbuzz/src/hb-version.h
