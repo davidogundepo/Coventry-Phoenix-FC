@@ -1,4 +1,4 @@
-import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/social_media_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -25,7 +25,8 @@ import '../notifier/top_defensive_players_stats_info_notifier.dart';
 import '../notifier/top_gk_players_stats_info_notifier.dart';
 import '../notifier/top_goals_players_stats_info_notifier.dart';
 import '../notifier/trainings_games_reels_notifier.dart';
-import 'a_tabview_matches_page.dart';
+import 'matches_page/a_tabview_matches_page.dart';
+import 'social_media/b_tabview_social_media_page.dart';
 import 'players_stats_info_page.dart';
 import 'players_table_page.dart';
 import 'trainings_games_reels_page.dart';
@@ -68,7 +69,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
     const PlayersStatsAndInfoPage(),
     const TabviewMatchesPage(),
     // const SeasonTimeline(),
-    const SocialMediaPage(),
+    const TabviewSocialMediaPage(),
     TrainingsAndGamesReelsPage(),
   ];
 

@@ -6,7 +6,7 @@ import '../notifier/club_captains_notifier.dart';
 getCaptains(CaptainsNotifier captainsNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
       .collection('Captains')
-      .orderBy('id')
+      .orderBy('name')
       .get();
 
   List<Captains> captainsList = [];

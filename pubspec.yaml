@@ -85,6 +85,7 @@ dependencies:
   esys_flutter_share_plus: ^2.2.0
   flutter_screenutil: ^5.8.4
   fluttertoast: ^8.2.2
+  youtube_player_flutter: ^8.1.2
 
 
 flutter_app_name:

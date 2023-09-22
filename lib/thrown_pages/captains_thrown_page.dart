@@ -17,7 +17,7 @@ import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../bottom_nav_stats_pages/bottom_navigator.dart';
 import '../details_pages/club_captains_details_page.dart';
 import '../notifier/club_captains_notifier.dart';
-import '../sidebar/thrown_club_sponsors_page.dart';
+import '../club_admin/club_sponsors/thrown_club_sponsors_page.dart';
 import '../thrown_searches/captains_thrown_search.dart';
 
 String clubName = "Coventry Phoenix FC";

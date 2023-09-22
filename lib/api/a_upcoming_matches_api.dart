@@ -5,7 +5,7 @@ import '../notifier/a_upcoming_matches_notifier.dart';
 getUpcomingMatches(UpcomingMatchesNotifier upcomingMatchesNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
       .collection('UpcomingMatches')
-      .orderBy('id', descending: true)
+      .orderBy('id', descending: false)
       .get();
 
   List<UpcomingMatches> upcomingMatchesList = [];

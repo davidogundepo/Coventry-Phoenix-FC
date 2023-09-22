@@ -1901,7 +1901,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                               );
                             } else {
                               return Visibility(
-                                  visible: !_isVisible,
+                                  visible: _isVisible,
                                   child: Container(
                                     decoration: BoxDecoration(
                                         color: shapeDecorationColorTwo
@@ -1928,7 +1928,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                                                           FontWeight.bold,
                                                     )),
                                                 TextSpan(
-                                                    text: ' $_autoBio',
+                                                    text: " ${ _name.substring(0, _name.indexOf(' '))} hasn't filled his data",
                                                     style: GoogleFonts.trykker(
                                                       color: textColor,
                                                       fontSize: 19,

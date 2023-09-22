@@ -11,6 +11,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../notifier/sidebar_notifier.dart';
@@ -26,6 +28,9 @@ String captainsTitle = "CPFC Captains";
 String coachesTitle = "Coaching Staff";
 String managementBodyTitle = "Management Body";
 String sponsorsTitle = "Club Sponsors";
+String adminTitle = "Club Admin";
+
+String aiStatsTitle = "AI Stats";
 
 String exitAppStatement = "Exit from App";
 String exitAppTitle = "Come on!";
@@ -35,6 +40,8 @@ String exitAppYes = "I Have To";
 
 Color gradientColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color gradientColorTwo = Colors.white;
+Color gradientColorThree = const Color.fromRGBO(197, 33, 75, 1.0);
+Color gradientColorFour = const Color.fromRGBO(70, 94, 213, 1.0);
 Color linearGradientColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color linearGradientColorTwo = const Color.fromRGBO(24, 26, 36, 1.0);
 Color boxShadowColor = const Color.fromRGBO(24, 26, 36, 1.0);
@@ -67,7 +74,7 @@ class _SideBarState extends State<SideBar>
   bool _isClubSponsorsClicked = false; // New variable to track the "Club Sponsors" click
 
   _onSelected(int index) {
-    if (index == 6) { // Check if the selected item is "Club Sponsors"
+    if (index == 6 || index == 8) { // Check if the selected item is "Club Sponsors"
       _isClubSponsorsClicked = true;
       // showToast("Club Sponsors Clicked"); // Show the toast message
     } else {
@@ -421,11 +428,11 @@ class _SideBarState extends State<SideBar>
                                 ),
                               ),
                               Divider(
-                                height: 20,
+                                height: 5,
                                 thickness: 0.5,
                                 color: dividerColor.withOpacity(0.3),
-                                indent: 32,
-                                endIndent: 32,
+                                indent: 12,
+                                endIndent: 15,
                               ),
                               Material(
                                 color: _currentNAVSelected == 6
@@ -445,16 +452,73 @@ class _SideBarState extends State<SideBar>
                                     child: MenuItems(
                                       icon: MdiIcons.cashCheck,
                                       title: sponsorsTitle,
+                                      textColor: gradientColorThree
                                     ),
                                   ),
                                 ),
                               ),
                               Divider(
-                                height: 20,
+                                height: 5,
                                 thickness: 0.5,
                                 color: dividerColor.withOpacity(0.3),
-                                indent: 32,
-                                endIndent: 32,
+                                indent: 12,
+                                endIndent: 15,
+                              ),
+                              Material(
+                                color: _currentNAVSelected == 7
+                                    ? gradientColorTwo.withOpacity(0.3)
+                                    : materialBackgroundColor,
+                                child: InkWell(
+                                  splashColor: splashColorThree,
+                                  onTap: () {
+                                    // _onSelected(7);
+                                    // onIconPressed();
+                                    // BlocProvider.of<NavigationBloc>(context).add(
+                                    //     NavigationEvents
+                                    //         .myClubSponsorsPageClickedEvent);
+
+                                    showToast();
+
+                                  },
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: MenuItems(
+                                      icon: MdiIcons.star,
+                                      title: aiStatsTitle,
+                                      textColor: gradientColorFour
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                height: 5,
+                                thickness: 0.5,
+                                color: dividerColor.withOpacity(0.3),
+                                indent: 12,
+                                endIndent: 15,
+                              ),
+                              Material(
+                                color: _currentNAVSelected == 8
+                                    ? gradientColorTwo.withOpacity(0.3)
+                                    : materialBackgroundColor,
+                                child: InkWell(
+                                  splashColor: splashColorThree,
+                                  onTap: () {
+                                    _onSelected(8);
+                                    onIconPressed();
+                                    BlocProvider.of<NavigationBloc>(context).add(
+                                        NavigationEvents
+                                            .myClubAdminPageClickedEvent);
+                                  },
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: MenuItems(
+                                        icon: MdiIcons.security,
+                                        title: adminTitle,
+                                        textColor: gradientColorTwo
+                                    ),
+                                  ),
+                                ),
                               ),
                               Padding(
                                 padding:
@@ -617,4 +681,16 @@ class CustomPILLCardShapePainter extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) {
     return true;
   }
+}
+
+void showToast() {
+  Fluttertoast.showToast(
+    msg: "Coming Soon",
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 1,
+    backgroundColor: Colors.deepOrangeAccent,
+    textColor: Colors.white,
+    fontSize: 16.0,
+  );
 }

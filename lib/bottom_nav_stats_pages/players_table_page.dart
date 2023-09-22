@@ -48,7 +48,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
 
   Stream<QuerySnapshot> getDataFromFirestore() {
     return FirebaseFirestore.instance
-        .collection('PlayersTable')
+        .collection('PllayersTable')
         .orderBy('goals_scored', descending: true)
         .snapshots();
   }

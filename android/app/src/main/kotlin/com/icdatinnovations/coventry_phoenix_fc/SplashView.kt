@@ -9,13 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import io.flutter.embedding.android.SplashScreen
+import android.window.SplashScreen
+//import io.flutter.embedding.android.SplashScreen
 
 class SplashView : SplashScreen {
 
     private val nullParent: ViewGroup? = null
 
-    override fun createSplashView(context: Context, savedInstanceState: Bundle?): View {
+    fun createSplashView(context: Context, savedInstanceState: Bundle?): View {
         val rootView = FrameLayout(context)
         rootView.apply {
             layoutParams = FrameLayout.LayoutParams(
@@ -31,7 +32,19 @@ class SplashView : SplashScreen {
     }
 
 
-    override fun transitionToFlutter(onTransitionComplete: Runnable) {
+    fun transitionToFlutter(onTransitionComplete: Runnable) {
         Handler(Looper.getMainLooper()).postDelayed(onTransitionComplete,5700)
+    }
+
+    override fun setOnExitAnimationListener(p0: SplashScreen.OnExitAnimationListener) {
+        TODO("Not yet implemented")
+    }
+
+    override fun clearOnExitAnimationListener() {
+        TODO("Not yet implemented")
+    }
+
+    override fun setSplashScreenTheme(p0: Int) {
+        TODO("Not yet implemented")
     }
 }

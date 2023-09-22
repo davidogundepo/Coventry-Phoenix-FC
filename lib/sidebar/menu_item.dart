@@ -7,9 +7,15 @@ class MenuItems extends StatelessWidget {
   final IconData? icon;
   final String? title;
   final void Function()? onTap;
+  final Color? textColor; // Add a textColor parameter
 
-  const MenuItems({Key? key, this.icon, this.title, this.onTap})
-      : super(key: key);
+  const MenuItems({
+    Key? key,
+    this.icon,
+    this.title,
+    this.onTap,
+    this.textColor, // Initialize the textColor parameter
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class MenuItems extends StatelessWidget {
             children: <Widget>[
               Icon(
                 icon,
-                color: iconColor,
+                color: Colors.white, // Set a default color for the icon
                 size: 30,
               ),
               const SizedBox(
@@ -32,9 +38,10 @@ class MenuItems extends StatelessWidget {
               Text(
                 title!,
                 style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 15,
-                    color: textColor),
+                  fontWeight: FontWeight.w300,
+                  fontSize: 15,
+                  color: textColor ?? Colors.white, // Use the provided textColor or default to white
+                ),
               ),
             ],
           ),

@@ -1,9 +1,13 @@
 import 'dart:async';
 
+import 'package:coventry_phoenix_fc/notifier/all_club_members_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/players_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/b_youtube_notifier.dart';
+import 'package:coventry_phoenix_fc/club_admin/club_admin_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:coventry_phoenix_fc/notifier/a_upcoming_matches_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/club_sponsors_notifier.dart';
-import 'package:coventry_phoenix_fc/sidebar/thrown_club_sponsors_page.dart';
+import 'package:coventry_phoenix_fc/club_admin/club_sponsors/thrown_club_sponsors_page.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -15,6 +19,7 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'api/PushNotificationService.dart';
+import 'api/club_sponsors_api.dart';
 import 'notifier/achievement_images_notifier.dart';
 import 'notifier/club_arial_notifier.dart';
 import 'notifier/club_captains_notifier.dart';
@@ -122,7 +127,16 @@ void main() async {
         create: (context) => UpcomingMatchesNotifier(),
       ),
       ChangeNotifierProvider(
+        create: (context) => YoutubeNotifier(),
+      ),
+      ChangeNotifierProvider(
         create: (context) => ClubSponsorsNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => PlayersNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => AllClubMembersNotifier(),
       ),
 
     ], child: const MyApp()));
@@ -181,6 +195,15 @@ class MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
+  }
+
+  @override
+  void didChangeDependencies() {
+    ClubSponsorsNotifier clubSponsorsNotifier =
+    Provider.of<ClubSponsorsNotifier>(context, listen: true);
+    getClubSponsors(clubSponsorsNotifier);
+    super.didChangeDependencies();
   }
 
   @override
@@ -346,11 +369,11 @@ class PandCTransitions extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Navigator.pop(context);
+                Navigator.pop(context);
                 _showAdminWelcomeToast();
                 // Navigate to the right page if the password is correct
                 Navigator.push(context,
-                  SlideTransition1( MyClubSponsorsPage()),
+                  SlideTransition1( MyClubAdminPage()),
                 );
               },
               child: const Text('Submit'),

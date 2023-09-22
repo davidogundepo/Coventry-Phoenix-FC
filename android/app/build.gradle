@@ -34,7 +34,7 @@ apply plugin: 'com.google.firebase.crashlytics'
   }
 
   android {
-              
+    ndkVersion "25.1.8937393"
     compileSdkVersion 33
 
 
