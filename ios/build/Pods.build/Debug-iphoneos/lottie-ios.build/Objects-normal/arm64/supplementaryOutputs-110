@@ -1,0 +1,110 @@
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/CoreAnimation/Animations/StrokeAnimation.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StrokeAnimation.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StrokeAnimation.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StrokeAnimation.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StrokeAnimation.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/CoreAnimation/Layers/SolidLayer.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SolidLayer.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SolidLayer.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SolidLayer.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SolidLayer.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/NodeRenderSystem/Nodes/PathNodes/ShapeNode.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeNode.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeNode.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeNode.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeNode.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/CoreAnimation/Layers/ShapeLayer.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeLayer.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeLayer.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeLayer.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeLayer.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/NodeRenderSystem/RenderLayers/ShapeContainerLayer.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeContainerLayer.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeContainerLayer.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeContainerLayer.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeContainerLayer.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/LayerContainers/CompLayers/SolidCompositionLayer.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SolidCompositionLayer.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SolidCompositionLayer.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SolidCompositionLayer.dia"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SolidCompositionLayer.swiftdeps"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/NodeRenderSystem/Nodes/RenderNodes/StrokeNode.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StrokeNode.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StrokeNode.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StrokeNode.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StrokeNode.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Model/Layers/ShapeLayerModel.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeLayerModel.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeLayerModel.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeLayerModel.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeLayerModel.o"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/NodeRenderSystem/Nodes/PathNodes/StarNode.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StarNode.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StarNode.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StarNode.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StarNode.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Model/ShapeItems/ShapeItem.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeItem.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeItem.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeItem.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeItem.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/DynamicProperties/ValueProviders/SizeValueProvider.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SizeValueProvider.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SizeValueProvider.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SizeValueProvider.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SizeValueProvider.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/NodeRenderSystem/RenderLayers/ShapeRenderLayer.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeRenderLayer.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeRenderLayer.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeRenderLayer.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeRenderLayer.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Model/Layers/SolidLayerModel.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SolidLayerModel.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SolidLayerModel.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SolidLayerModel.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SolidLayerModel.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Model/ShapeItems/Star.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Star.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Star.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Star.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Star.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/NodeRenderSystem/NodeProperties/ValueProviders/SingleValueProvider.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SingleValueProvider.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SingleValueProvider.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SingleValueProvider.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/SingleValueProvider.swiftdeps"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Utility/Debugging/TestHelpers.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/TestHelpers.dia"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/TestHelpers.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/TestHelpers.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/TestHelpers.o"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Model/ShapeItems/Stroke.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Stroke.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Stroke.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Stroke.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Stroke.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/NodeRenderSystem/Nodes/OutputNodes/Renderables/StrokeRenderer.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StrokeRenderer.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StrokeRenderer.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StrokeRenderer.dia"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StrokeRenderer.swiftdeps"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Utility/Extensions/StringExtensions.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StringExtensions.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StringExtensions.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StringExtensions.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StringExtensions.o"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Model/ShapeItems/ShapeTransform.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeTransform.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeTransform.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeTransform.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeTransform.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/CoreAnimation/Layers/ShapeItemLayer.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeItemLayer.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeItemLayer.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeItemLayer.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ShapeItemLayer.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/CoreAnimation/Animations/StarAnimation.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StarAnimation.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StarAnimation.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StarAnimation.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/StarAnimation.dia"

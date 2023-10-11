@@ -1,0 +1,115 @@
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/FontProvider/AnimationFontProvider.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationFontProvider.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationFontProvider.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationFontProvider.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationFontProvider.swiftdeps"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/AnimationCache/AnimationCacheProvider.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationCacheProvider.dia"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationCacheProvider.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationCacheProvider.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationCacheProvider.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Utility/Extensions/AnimationKeypathExtension.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationKeypathExtension.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationKeypathExtension.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationKeypathExtension.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationKeypathExtension.swiftdeps"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/CoreAnimation/Layers/AnimationLayer.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationLayer.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationLayer.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationLayer.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationLayer.o"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Utility/Helpers/AnimationContext.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationContext.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationContext.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationContext.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationContext.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/iOS/AnimationSubview.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationSubview.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationSubview.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationSubview.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationSubview.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/NodeRenderSystem/NodeProperties/Protocols/AnyNodeProperty.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnyNodeProperty.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnyNodeProperty.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnyNodeProperty.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnyNodeProperty.o"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/ImageProvider/AnimationImageProvider.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationImageProvider.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationImageProvider.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationImageProvider.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationImageProvider.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Utility/Primitives/BezierPath.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/BezierPath.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/BezierPath.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/BezierPath.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/BezierPath.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/NodeRenderSystem/Protocols/AnimatorNode.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatorNode.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatorNode.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatorNode.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatorNode.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Utility/Debugging/AnimatorNodeDebugging.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatorNodeDebugging.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatorNodeDebugging.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatorNodeDebugging.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatorNodeDebugging.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/NodeRenderSystem/NodeProperties/Protocols/AnyValueContainer.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnyValueContainer.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnyValueContainer.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnyValueContainer.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnyValueContainer.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/CoreAnimation/Layers/BaseCompositionLayer.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/BaseCompositionLayer.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/BaseCompositionLayer.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/BaseCompositionLayer.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/BaseCompositionLayer.swiftdeps"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/DynamicProperties/AnyValueProvider.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnyValueProvider.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnyValueProvider.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnyValueProvider.dia"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnyValueProvider.swiftdeps"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/iOS/AnimatedSwitch.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatedSwitch.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatedSwitch.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatedSwitch.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatedSwitch.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/DynamicProperties/AnimationKeypath.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationKeypath.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationKeypath.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationKeypath.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationKeypath.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/TextProvider/AnimationTextProvider.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationTextProvider.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationTextProvider.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationTextProvider.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationTextProvider.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/iOS/AnimatedButton.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatedButton.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatedButton.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatedButton.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatedButton.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/Primitives/AnimationTime.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationTime.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationTime.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationTime.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimationTime.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Model/Assets/AssetLibrary.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AssetLibrary.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AssetLibrary.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AssetLibrary.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AssetLibrary.o"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/CoreAnimation/Layers/BaseAnimationLayer.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/BaseAnimationLayer.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/BaseAnimationLayer.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/BaseAnimationLayer.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/BaseAnimationLayer.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Model/Assets/Asset.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Asset.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Asset.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Asset.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Asset.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/iOS/AnimatedControl.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatedControl.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatedControl.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatedControl.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/AnimatedControl.dia"

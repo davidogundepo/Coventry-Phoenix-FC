@@ -1,0 +1,50 @@
+"/Users/user/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.7.2+3/ios/Classes/Types/WKContentWorld.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKContentWorld.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKContentWorld.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKContentWorld.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKContentWorld.swiftdeps"
+"/Users/user/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.7.2+3/ios/Classes/Types/WKNavigationAction.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKNavigationAction.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKNavigationAction.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKNavigationAction.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKNavigationAction.dia"
+"/Users/user/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.7.2+3/ios/Classes/Types/WKNavigationResponse.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKNavigationResponse.dia"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKNavigationResponse.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKNavigationResponse.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKNavigationResponse.o"
+"/Users/user/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.7.2+3/ios/Classes/WKProcessPoolManager.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKProcessPoolManager.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKProcessPoolManager.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKProcessPoolManager.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKProcessPoolManager.o"
+"/Users/user/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.7.2+3/ios/Classes/Types/WKSecurityOrigin.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKSecurityOrigin.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKSecurityOrigin.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKSecurityOrigin.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKSecurityOrigin.dia"
+"/Users/user/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.7.2+3/ios/Classes/Types/WKUserContentController.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKUserContentController.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKUserContentController.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKUserContentController.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKUserContentController.d"
+"/Users/user/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.7.2+3/ios/Classes/PluginScriptsJS/WindowIdJS.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WindowIdJS.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WindowIdJS.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WindowIdJS.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WindowIdJS.dia"
+"/Users/user/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.7.2+3/ios/Classes/Types/WKFrameInfo.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKFrameInfo.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKFrameInfo.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKFrameInfo.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKFrameInfo.d"
+"/Users/user/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.7.2+3/ios/Classes/Types/WebViewTransport.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WebViewTransport.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WebViewTransport.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WebViewTransport.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WebViewTransport.dia"
+"/Users/user/.pub-cache/hosted/pub.dev/flutter_inappwebview-5.7.2+3/ios/Classes/Types/WKWindowFeatures.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKWindowFeatures.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKWindowFeatures.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKWindowFeatures.dia"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview.build/Objects-normal/arm64/WKWindowFeatures.swiftdeps"

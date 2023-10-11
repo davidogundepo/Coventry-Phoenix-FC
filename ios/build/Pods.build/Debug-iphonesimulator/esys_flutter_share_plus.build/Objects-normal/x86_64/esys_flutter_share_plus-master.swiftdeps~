@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
-options: "86756ec8970dce5ddbd9300c075828071c3f21cf67d174d355b2867fecb4caf4"
-build_start_time: [1692554486, 172434000]
-build_end_time: [1692554487, 82303000]
-inputs:
-  "/Users/user/.pub-cache/hosted/pub.dev/esys_flutter_share_plus-2.2.0/ios/Classes/SwiftEsysFlutterSharePlugin.swift": !private [1692554067, 285746497]

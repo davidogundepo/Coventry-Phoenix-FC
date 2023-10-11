@@ -1,0 +1,110 @@
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/Keyframes/Keyframe.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Keyframe.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Keyframe.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Keyframe.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Keyframe.swiftdeps"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Model/Extensions/KeyedDecodingContainerExtensions.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyedDecodingContainerExtensions.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyedDecodingContainerExtensions.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyedDecodingContainerExtensions.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyedDecodingContainerExtensions.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/LayerContainers/Utility/LayerTextProvider.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerTextProvider.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerTextProvider.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerTextProvider.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerTextProvider.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Utility/Interpolatable/KeyframeGroup+Extensions.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeGroup+Extensions.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeGroup+Extensions.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeGroup+Extensions.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeGroup+Extensions.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Model/Layers/LayerModel.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerModel.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerModel.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerModel.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerModel.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/CoreAnimation/Animations/LayerProperty.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerProperty.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerProperty.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerProperty.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerProperty.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Model/Keyframes/KeyframeGroup.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeGroup.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeGroup.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeGroup.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeGroup.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/CoreAnimation/Layers/LayerModel+makeAnimationLayer.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerModel+makeAnimationLayer.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerModel+makeAnimationLayer.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerModel+makeAnimationLayer.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerModel+makeAnimationLayer.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/LayerContainers/Utility/InvertedMatteLayer.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/InvertedMatteLayer.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/InvertedMatteLayer.dia"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/InvertedMatteLayer.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/InvertedMatteLayer.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Model/Keyframes/KeyframeData.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeData.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeData.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeData.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeData.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Utility/Interpolatable/InterpolatableExtensions.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/InterpolatableExtensions.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/InterpolatableExtensions.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/InterpolatableExtensions.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/InterpolatableExtensions.swiftdeps"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/NodeRenderSystem/Extensions/ItemsExtension.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ItemsExtension.dia"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ItemsExtension.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ItemsExtension.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/ItemsExtension.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/NodeRenderSystem/NodeProperties/Protocols/KeypathSearchable.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeypathSearchable.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeypathSearchable.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeypathSearchable.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeypathSearchable.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/LayerContainers/Utility/LayerTransformNode.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerTransformNode.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerTransformNode.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerTransformNode.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerTransformNode.swiftdeps"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Utility/Interpolatable/KeyframeExtensions.swift":
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeExtensions.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeExtensions.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeExtensions.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeExtensions.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/CoreAnimation/Extensions/Keyframes+combined.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Keyframes+combined.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Keyframes+combined.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Keyframes+combined.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Keyframes+combined.swiftdeps"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/LayerContainers/Utility/LayerFontProvider.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerFontProvider.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerFontProvider.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerFontProvider.swiftdeps"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerFontProvider.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/MainThread/LayerContainers/Utility/LayerImageProvider.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerImageProvider.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerImageProvider.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerImageProvider.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerImageProvider.d"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Public/Keyframes/Interpolatable.swift":
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Interpolatable.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Interpolatable.dia"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Interpolatable.d"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/Interpolatable.swiftdeps"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Utility/Interpolatable/KeyframeInterpolator.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeInterpolator.swiftdeps"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeInterpolator.o"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeInterpolator.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeInterpolator.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/Utility/Debugging/LayerDebugging.swift":
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerDebugging.swiftdeps"
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerDebugging.d"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerDebugging.o"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/LayerDebugging.dia"
+"/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/lottie-ios/Sources/Private/CoreAnimation/Extensions/KeyframeGroup+exactlyOneKeyframe.swift":
+  dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeGroup+exactlyOneKeyframe.d"
+  diagnostics: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeGroup+exactlyOneKeyframe.dia"
+  object: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeGroup+exactlyOneKeyframe.o"
+  swift-dependencies: "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/lottie-ios.build/Objects-normal/arm64/KeyframeGroup+exactlyOneKeyframe.swiftdeps"

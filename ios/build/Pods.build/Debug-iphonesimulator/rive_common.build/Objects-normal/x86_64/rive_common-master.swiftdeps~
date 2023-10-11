@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
-options: "c20a37d8551767559462a3669e4ad14456f86679534275613a62c8cecfe06986"
-build_start_time: [1692554486, 93094000]
-build_end_time: [1692554487, 75503000]
-inputs:
-  "/Users/user/.pub-cache/hosted/pub.dev/rive_common-0.1.0/ios/Classes/SwiftRivePlugin.swift": !private [1692554088, 735147586]

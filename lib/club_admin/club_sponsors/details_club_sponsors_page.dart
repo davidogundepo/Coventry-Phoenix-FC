@@ -26,6 +26,7 @@ Color instagramColor = const Color.fromRGBO(255, 255, 255, 1.0);
 Color facebookColor = const Color.fromRGBO(43, 103, 195, 1.0);
 Color snapchatColor = const Color.fromRGBO(222, 163, 36, 1.0);
 Color youtubeColor = const Color.fromRGBO(220, 45, 45, 1.0);
+Color websiteColor = const Color.fromRGBO(104, 79, 178, 1.0);
 Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
 Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
 Color backgroundColor = const Color.fromRGBO(19, 20, 21, 1.0);
@@ -40,6 +41,7 @@ String mailSECOND = "?subject=Hello ";
 String urlTwitter = "https://twitter.com/";
 String urlFacebook = "https://facebook.com/";
 String urlYoutube = "https://youtube.com/";
+String urlWebsite = "https://youtube.com/";
 String urlInstagram = "https://www.instagram.com/";
 String urlSnapchat = "https://www.snapchat.com/add/";
 
@@ -50,6 +52,7 @@ String twitterButton = "Our Twitter";
 String instagramButton = "Our Instagram";
 String facebookButton = "Our Facebook";
 String youtubeButton = "Our Youtube";
+String websiteButton = "Our Website";
 String snapchatButton = "Our Snapchat";
 
 String reachUsTitle = "Reach Us";
@@ -71,6 +74,7 @@ dynamic _twitter;
 dynamic _instagram;
 dynamic _facebook;
 dynamic _youtube;
+dynamic _website;
 dynamic _snapchat;
 dynamic _aboutUs;
 dynamic _ourServices;
@@ -550,6 +554,39 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                           ),
                                         ),
                                         Visibility(
+                                          visible: _website.isNotEmpty,
+                                          child: OutlinedButton.icon(
+                                            onPressed: () {
+                                              facebookLink();
+                                            },
+                                            style: OutlinedButton.styleFrom(
+                                              foregroundColor: websiteColor,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                BorderRadius.circular(20.0),
+                                              ),
+                                              side: BorderSide(
+                                                color: Colors.white
+                                                    .withOpacity(0.5),
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            icon: Icon(
+                                              MdiIcons.searchWeb,
+                                              size: 17,
+                                              color: whiteColor,
+                                            ),
+                                            label: Text(
+                                              websiteButton,
+                                              style: GoogleFonts.raleway(
+                                                color: textColor,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Visibility(
                                           visible: _facebook.isNotEmpty,
                                           child: OutlinedButton.icon(
                                             onPressed: () {
@@ -645,7 +682,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                     children: <TextSpan>[
                                       TextSpan(
                                           text:
-                                              '${clubSponsorsNotifier.currentClubSponsors.name!}\n\n',
+                                              '${clubSponsorsNotifier.currentClubSponsors.name!}\n',
                                           style: GoogleFonts.aBeeZee(
                                             color: textColor,
                                             fontSize: 19,
@@ -659,7 +696,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                             fontWeight: FontWeight.w300,
                                           )),
                                       TextSpan(
-                                          text: '$ourServicesTitle\n\n',
+                                          text: '$ourServicesTitle\n',
                                           style: GoogleFonts.aBeeZee(
                                             color: textColor,
                                             fontSize: 19,
@@ -782,6 +819,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
     _instagram = clubSponsorsNotifier.currentClubSponsors.instagram;
     _facebook = clubSponsorsNotifier.currentClubSponsors.facebook;
     _youtube = clubSponsorsNotifier.currentClubSponsors.youtube;
+    _website = clubSponsorsNotifier.currentClubSponsors.website;
     _snapchat = clubSponsorsNotifier.currentClubSponsors.snapchat;
     _aboutUs = clubSponsorsNotifier.currentClubSponsors.aboutUs;
     _ourServices = clubSponsorsNotifier.currentClubSponsors.ourServices;

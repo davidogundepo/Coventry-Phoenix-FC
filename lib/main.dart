@@ -1,6 +1,10 @@
 import 'dart:async';
 
 import 'package:coventry_phoenix_fc/notifier/all_club_members_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_club.dart';
+import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_club_opp.dart';
+import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_league.dart';
+import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_location.dart';
 import 'package:coventry_phoenix_fc/notifier/players_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/b_youtube_notifier.dart';
 import 'package:coventry_phoenix_fc/club_admin/club_admin_page.dart';
@@ -138,6 +142,23 @@ void main() async {
       ChangeNotifierProvider(
         create: (context) => AllClubMembersNotifier(),
       ),
+
+      ChangeNotifierProvider(
+        create: (context) => MatchDayBannerForClubNotifier(),
+      ),
+
+      ChangeNotifierProvider(
+        create: (context) => MatchDayBannerForClubOppNotifier(),
+      ),
+
+      ChangeNotifierProvider(
+        create: (context) => MatchDayBannerForLeagueNotifier(),
+      ),
+
+      ChangeNotifierProvider(
+        create: (context) => MatchDayBannerForLocationNotifier(),
+      ),
+
 
     ], child: const MyApp()));
 

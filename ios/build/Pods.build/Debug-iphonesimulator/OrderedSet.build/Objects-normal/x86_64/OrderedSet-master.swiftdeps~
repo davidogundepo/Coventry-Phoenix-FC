@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
-options: "3f9ed51f4912af3e4eb54b152d93e2e83a4425086620a7d3ac35ad2d2f4f7d8b"
-build_start_time: [1678928867, 755413055]
-build_end_time: [1678928867, 993500947]
-inputs:
-  "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/OrderedSet/Sources/OrderedSet.swift": !private [1678928805, 361526966]

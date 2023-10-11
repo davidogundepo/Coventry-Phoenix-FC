@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Debug-iphoneos/esys_flutter_share_plus/esys_flutter_share_plus.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/esys_flutter_share_plus.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Debug-iphoneos/esys_flutter_share_plus/esys_flutter_share_plus.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "esys_flutter_share_plus-Swift.h",
+      'external-contents': "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/esys_flutter_share_plus.build/unextended-interface-header.h",
+    }]
+    }]
+}

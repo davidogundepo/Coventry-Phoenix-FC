@@ -5,6 +5,7 @@ import 'package:coventry_phoenix_fc/club_admin/add_club_member/a_tabview_add_clu
 import 'package:coventry_phoenix_fc/club_admin/modify_member/modify_coaches_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/modify_member/modify_management_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/club_sponsors/thrown_club_sponsors_page.dart';
+import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_matchday_sm_post.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +14,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../api/c_match_day_banner_for_club_api.dart';
+import '../api/c_match_day_banner_for_club_opp_api.dart';
+import '../api/c_match_day_banner_for_league_api.dart';
+import '../api/c_match_day_banner_for_location_api.dart';
 import '../api/club_captains_api.dart';
 import '../api/coaching_staff_api.dart';
 import '../api/first_team_class_api.dart';
 import '../api/management_body_api.dart';
 import '../api/second_team_class_api.dart';
 import '../notifier/all_club_members_notifier.dart';
+import '../notifier/c_match_day_banner_for_club.dart';
+import '../notifier/c_match_day_banner_for_club_opp.dart';
+import '../notifier/c_match_day_banner_for_league.dart';
+import '../notifier/c_match_day_banner_for_location.dart';
 import '../notifier/players_notifier.dart';
 import '../notifier/club_captains_notifier.dart';
 import '../notifier/coaching_staff_notifier.dart';
@@ -26,10 +35,12 @@ import '../notifier/first_team_class_notifier.dart';
 import '../notifier/management_body_notifier.dart';
 import '../notifier/second_team_class_notifier.dart';
 import '../sidebar/menu_item.dart';
-import 'modify_captains/A_tabview_modify_club_captains_page.dart';
+import 'modify_captains/a_tabview_modify_club_captains_page.dart';
 import 'modify_member/modify_players_page.dart';
 
+
 String removeCoachTitle = "Remove Coaching Staff";
+String createSMPostTitle = "Create a Social Media Post";
 String removeManagerTitle = "Remove Club Manager(s)";
 String addPlayerTitle = "Add Player(s), Coach(es) or Manager(s)";
 String removePlayerTitle = "Remove Player(s)";
@@ -102,6 +113,64 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
             children: <Widget>[
               const SizedBox(
                 height: 30,
+              ),
+              Divider(
+                height: 5,
+                thickness: 0.5,
+                color: dividerColor.withOpacity(0.3),
+                indent: 12,
+                endIndent: 15,
+              ),
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  splashColor: splashColorThree,
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Select an Option'),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              ListTile(
+                                title: Text('Create a Matchday Fixtures Post'),
+                                onTap: () {
+                                  Navigator.pop(context); // Close the dialog
+                                  navigateToCreateSMPost(context); // Navigate to the appropriate page
+                                },
+                              ),
+                              ListTile(
+                                title: Text('Post an Upcoming Event'),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  // navigateToUpcomingEventPage(context); // Navigate to the appropriate page
+                                },
+                              ),
+                              ListTile(
+                                title: Text('Sponsors S/O on Social Media'),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  // navigateToSponsorsSocialMediaPage(context); // Navigate to the appropriate page
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: MenuItems(
+                        icon: MdiIcons.security,
+                        title: createSMPostTitle,
+                        textColor: gradientColorTwo
+                    ),
+                  ),
+                ),
               ),
               Divider(
                 height: 5,
@@ -367,11 +436,32 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
       allClubMembersNotifier.setCoaches(coachesNotifier.coachesList);
       allClubMembersNotifier.setMGMTBody(managementBodyNotifier.managementBodyList);
 
+
+      MatchDayBannerForClubNotifier matchDayBannerForClubNotifier =
+      Provider.of<MatchDayBannerForClubNotifier>(context, listen: false);
+
+      MatchDayBannerForClubOppNotifier matchDayBannerForClubOppNotifier =
+      Provider.of<MatchDayBannerForClubOppNotifier>(context, listen: false);
+
+      MatchDayBannerForLeagueNotifier matchDayBannerForLeagueNotifier =
+      Provider.of<MatchDayBannerForLeagueNotifier>(context, listen: false);
+
+      MatchDayBannerForLocationNotifier matchDayBannerForLocationNotifier =
+      Provider.of<MatchDayBannerForLocationNotifier>(context, listen: false);
+
+      getMatchDayBannerForClub(matchDayBannerForClubNotifier);
+      getMatchDayBannerForClubOpp(matchDayBannerForClubOppNotifier);
+      getMatchDayBannerForLeague(matchDayBannerForLeagueNotifier);
+      getMatchDayBannerForLocation(matchDayBannerForLocationNotifier);
       setState(() {});
     });
   }
 }
 
+Future navigateToCreateSMPost(context) async {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => CreateMatchdaySocialMediaPost()));
+}
 Future navigateToClubSponsors(context) async {
   Navigator.push(context,
       MaterialPageRoute(builder: (context) => MyClubSponsorsPage()));

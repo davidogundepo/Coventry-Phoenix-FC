@@ -10,5 +10,14 @@
       'name': "module.modulemap",
       'external-contents': "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/path_provider_foundation.build/unextended-module.modulemap",
     }]
-  }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Debug-iphoneos/path_provider_foundation/path_provider_foundation.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "path_provider_foundation-Swift.h",
+      'external-contents': "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/path_provider_foundation.build/unextended-interface-header.h",
+    }]
+    }]
 }

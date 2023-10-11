@@ -40,6 +40,7 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
   late AnimationController _animationController;
   late Animation<double> _zoomAnimation;
   int _currentIndex = 0;
+  int _animationCount = 0; // Add a counter variable
 
   @override
   void initState() {
@@ -63,12 +64,16 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
 
     Timer.periodic(const Duration(seconds: 5), (_) {
       setState(() {
-        if (_currentIndex < clubSponsorsNotifier.clubSponsorsList.length - 1) {
-          _currentIndex++;
-        } else {
+        _currentIndex++;
+
+        // If _currentIndex exceeds the total number of images, reset it to 0
+        if (_currentIndex == 5) {
           _currentIndex = 0;
         }
         _animationController.forward(from: 0.0);
+
+        _animationCount++; // Increment the animation count
+
       });
     });
   }

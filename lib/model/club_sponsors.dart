@@ -1,5 +1,6 @@
 class ClubSponsors {
   dynamic id;
+  String? sponsorIcon;
   String? image;
   String? imageTwo;
   String? imageThree;
@@ -12,6 +13,7 @@ class ClubSponsors {
   String? facebook;
   String? snapchat;
   String? youtube;
+  String? website;
   String? email;
   String? aboutUs;
   String? ourServices;
@@ -20,6 +22,7 @@ class ClubSponsors {
 
   ClubSponsors.fromMap(Map<String?, dynamic> data) {
     id = data['id'];
+    sponsorIcon = data['sponsor_icon'];
     image = data['image'];
     imageTwo = data['image_two'];
     imageThree = data['image_three'];
@@ -32,6 +35,7 @@ class ClubSponsors {
     facebook = data['facebook'];
     snapchat = data['snapchat'];
     youtube = data['youtube'];
+    website = data['website'];
     email = data['email'];
     aboutUs = data['about_us'];
     ourServices = data['our_services'];
