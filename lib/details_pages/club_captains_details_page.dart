@@ -128,7 +128,7 @@ class _CaptainsDetailsPage extends State<CaptainsDetailsPage> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(MdiIcons.alertRhombus),
+                                  Icon(MdiIcons.alertRhombus),
                             ),
                             secondChild: CachedNetworkImage(
                               imageUrl: captainsNotifier.currentCaptains.image!,
@@ -136,7 +136,7 @@ class _CaptainsDetailsPage extends State<CaptainsDetailsPage> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(MdiIcons.alertRhombus),
+                                  Icon(MdiIcons.alertRhombus),
                             ),
                           ),
                         ),
@@ -174,7 +174,7 @@ class _CaptainsDetailsPage extends State<CaptainsDetailsPage> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(MdiIcons.alertRhombus),
+                                  Icon(MdiIcons.alertRhombus),
                             ),
                             secondChild: CachedNetworkImage(
                               imageUrl:
@@ -183,7 +183,7 @@ class _CaptainsDetailsPage extends State<CaptainsDetailsPage> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(MdiIcons.alertRhombus),
+                                  Icon(MdiIcons.alertRhombus),
                             ),
                           ),
                         ),

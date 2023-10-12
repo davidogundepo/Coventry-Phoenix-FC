@@ -34,10 +34,12 @@ target 'Runner' do
   pod 'lottie-ios'
   pod 'Firebase', :modular_headers => true
   pod 'Firebase/Crashlytics', :modular_headers => true
+#   pod 'Firebase/Crashlytics', '~> 8.0'
   pod 'Firebase/Analytics', :modular_headers => true
   pod 'Firebase/Performance', :modular_headers => true
   pod 'GoogleUtilities'
-  pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0'
+  pod 'OneSignalXCFramework', '>= 5.0.0', '< 6.0'
+#   pod 'OneSignal/OneSignalInAppMessages', '>= 5.0.0', '< 6.0'
   
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
@@ -46,8 +48,10 @@ end
 target 'CPFC ImageNotification' do
   use_frameworks!
   pod 'Firebase/Messaging'
+#   pod 'Firebase/Crashlytics', '~> 8.0'
   pod 'GoogleUtilities'
-  pod 'OneSignalXCFramework', '>= 3.0.0', '< 4.0'
+  pod 'OneSignalXCFramework', '>= 5.0.0', '< 6.0'
+#   pod 'OneSignal/OneSignalInAppMessages', '>= 5.0.0', '< 6.0'
 end
 
 
@@ -56,7 +60,12 @@ post_install do |installer|
     flutter_additional_ios_build_settings(target)
     target.build_configurations.each do |config|
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
-      
+      # --- Fix for Xcode 15.0 ---
+      xcconfig_path = config.base_configuration_reference.real_path
+      xcconfig = File.read(xcconfig_path)
+      xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+      File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
+
 #      config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'No'
 #      config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
 

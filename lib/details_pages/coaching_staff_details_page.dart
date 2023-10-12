@@ -227,7 +227,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(MdiIcons.alertRhombus),
+                                  Icon(MdiIcons.alertRhombus),
                             ),
                             secondChild: CachedNetworkImage(
                               imageUrl: coachesNotifier.currentCoaches.image!,
@@ -235,7 +235,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(MdiIcons.alertRhombus),
+                                  Icon(MdiIcons.alertRhombus),
                             ),
                           ),
                         ),
@@ -273,7 +273,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(MdiIcons.alertRhombus),
+                                  Icon(MdiIcons.alertRhombus),
                             ),
                             secondChild: CachedNetworkImage(
                               imageUrl:
@@ -282,7 +282,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(MdiIcons.alertRhombus),
+                                  Icon(MdiIcons.alertRhombus),
                             ),
                           ),
                         ),

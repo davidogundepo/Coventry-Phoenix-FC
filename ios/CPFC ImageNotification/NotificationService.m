@@ -7,7 +7,7 @@
 
 #import "NotificationService.h"
 #import "FirebaseMessaging.h"
-#import <OneSignal/OneSignal.h>
+#import <OneSignalFramework/OneSignalFramework.h>
 
 @interface NotificationService ()
 

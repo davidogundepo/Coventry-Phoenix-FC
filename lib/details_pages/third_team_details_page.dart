@@ -263,7 +263,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(MdiIcons.alertRhombus),
+                                  Icon(MdiIcons.alertRhombus),
                             ),
                             secondChild: CachedNetworkImage(
                               imageUrl: thirdTeamClassNotifier
@@ -272,7 +272,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(MdiIcons.alertRhombus),
+                                  Icon(MdiIcons.alertRhombus),
                             ),
                           ),
                         ),
@@ -311,7 +311,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(MdiIcons.alertRhombus),
+                                  Icon(MdiIcons.alertRhombus),
                             ),
                             secondChild: CachedNetworkImage(
                               imageUrl: thirdTeamClassNotifier
@@ -320,7 +320,7 @@ class _ThirdTeamClassDetailsPage extends State<ThirdTeamClassDetailsPage> {
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  const Icon(MdiIcons.alertRhombus),
+                                  Icon(MdiIcons.alertRhombus),
                             ),
                           ),
                         ),

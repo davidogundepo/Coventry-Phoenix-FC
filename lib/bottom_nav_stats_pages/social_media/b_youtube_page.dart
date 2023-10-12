@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+// import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 
 class YoutubePage extends StatefulWidget {
@@ -10,7 +10,7 @@ class YoutubePage extends StatefulWidget {
 }
 
 class _YoutubePageState extends State<YoutubePage> {
-  YoutubePlayerController? _controller;
+  // YoutubePlayerController? _controller;
 
   late double width;
   late double height;
@@ -22,25 +22,27 @@ class _YoutubePageState extends State<YoutubePage> {
     width = MediaQuery.of(context).size.width * 0.7;
     height: MediaQuery.of(context).size.height * 0.55;
 
-    return Scaffold(
-      body: YoutubePlayerBuilder(
-        player: YoutubePlayer(
-          controller: _controller!,
-          showVideoProgressIndicator: true,
-          progressIndicatorColor: Colors.orange,
-          progressColors: const ProgressBarColors(
-            playedColor: Colors.orange,
-            handleColor: Colors.orangeAccent
-          ),
-        ),
-        builder: (context, player) {
-          return Column(
-            children: [
-              player,
-            ],
-          );
-        },
-      ),
+    return const Scaffold(
+      // body: YoutubePlayerBuilder(
+      //   player: YoutubePlayer(
+      //     controller: _controller!,
+      //     showVideoProgressIndicator: true,
+      //     progressIndicatorColor: Colors.orange,
+      //     progressColors: const ProgressBarColors(
+      //       playedColor: Colors.orange,
+      //       handleColor: Colors.orangeAccent
+      //     ),
+      //   ),
+      //   builder: (context, player) {
+      //     return Column(
+      //       children: [
+      //         player,
+      //       ],
+      //     );
+      //   },
+      // ),
+
+
     );
   }
 
@@ -49,12 +51,12 @@ class _YoutubePageState extends State<YoutubePage> {
   void initState() {
     super.initState();
 
-    _controller = YoutubePlayerController(
-      initialVideoId: 'oLBbFgDOYZU',
-      flags: const YoutubePlayerFlags(
-        autoPlay: false,
-        mute: false,
-      )
-    );
+    // _controller = YoutubePlayerController(
+    //   initialVideoId: 'oLBbFgDOYZU',
+    //   flags: const YoutubePlayerFlags(
+    //     autoPlay: false,
+    //     mute: false,
+    //   )
+    // );
   }
 }

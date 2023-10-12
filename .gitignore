@@ -10,6 +10,10 @@
 .svn/
 migrate_working_dir/
 
+build.db
+Pods/
+ios/build/
+
 # IntelliJ related
 *.iml
 *.ipr

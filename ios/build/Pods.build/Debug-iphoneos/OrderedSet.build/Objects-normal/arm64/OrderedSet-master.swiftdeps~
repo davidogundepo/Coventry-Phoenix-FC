@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
-options: "66d2b5f7532f7d6a1e33648cc43aab2bbf2769b5ffa5010d42cbf1d1c5d6bc51"
-build_start_time: [1696912156, 44819000]
-build_end_time: [1696912160, 654672000]
-inputs:
-  "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Pods/OrderedSet/Sources/OrderedSet.swift": [1692560937, 381821362]

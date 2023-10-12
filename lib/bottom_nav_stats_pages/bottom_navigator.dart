@@ -121,7 +121,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
                         text: 'Top Players',
                         rippleColor: Colors.blueGrey,
                       ),
-                      const GButton(
+                      GButton(
                         gap: 2,
                         icon: MdiIcons.soccerField,
                         textColor: Color.fromRGBO(247, 246, 242, 1),

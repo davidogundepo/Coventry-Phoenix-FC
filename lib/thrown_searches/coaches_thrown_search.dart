@@ -60,7 +60,7 @@ class MyCoachesSearch extends SearchDelegate {
         Visibility(
           visible: true,
           child: IconButton(
-            icon: const Visibility(
+            icon: Visibility(
                 visible: true, child: Icon(MdiIcons.closeCircleOutline)),
             onPressed: () {
               query = '';
@@ -73,7 +73,7 @@ class MyCoachesSearch extends SearchDelegate {
         Visibility(
           visible: false,
           child: IconButton(
-            icon: const Visibility(
+            icon: Visibility(
                 visible: false, child: Icon(MdiIcons.closeCircleOutline)),
             onPressed: () {
               query = '';
@@ -87,7 +87,7 @@ class MyCoachesSearch extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: const Icon(MdiIcons.chevronTripleLeft),
+      icon: Icon(MdiIcons.chevronTripleLeft),
       onPressed: () {
         close(context, null);
       },
