@@ -6,10 +6,9 @@ import '../../model/coaches.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../notifier/coaching_staff_notifier.dart';
 
-
+Color backgroundColor = const Color.fromRGBO(187, 192, 195, 1.0);
 
 late CoachesNotifier coachesNotifier;
-
 
 class MyModifyCoachesPage extends StatefulWidget with NavigationStates {
   MyModifyCoachesPage({Key? key}) : super(key: key);
@@ -27,8 +26,10 @@ class MyModifyCoachesPageState extends State<MyModifyCoachesPage> {
     coachesNotifier = Provider.of<CoachesNotifier>(context);
 
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: Text('All Coaches'),
+        backgroundColor: backgroundColor,
+        title: const Text('All Coaches'),
         actions: [
           // Add a button to toggle "Edit" mode
           IconButton(
@@ -51,56 +52,62 @@ class MyModifyCoachesPageState extends State<MyModifyCoachesPage> {
             title: Text(coach.name ?? 'No Name'),
             trailing: isEditing
                 ? Checkbox(
-              value: selectedCoaches.contains(coach),
-              onChanged: (value) {
-                setState(() {
-                  if (value != null && value) {
-                    selectedCoaches.add(coach);
-                  } else {
-                    selectedCoaches.remove(coach);
-                  }
-                });
-              },
-            )
+                    value: selectedCoaches.contains(coach),
+                    onChanged: (value) {
+                      setState(() {
+                        if (value != null && value) {
+                          selectedCoaches.add(coach);
+                        } else {
+                          selectedCoaches.remove(coach);
+                        }
+                      });
+                    },
+                  )
                 : null, // Show checkbox only in "Edit" mode
             // Add other coach information you want to display
           );
         },
       ),
       bottomSheet: isEditing
-          ? Container(
-        padding: EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            Text('Selected Coaches:'),
-            SizedBox(width: 8.0),
-            Expanded(
-              child: Wrap(
-                children: selectedCoaches.map((coach) {
-                  return Chip(
-                    label: Text(coach.name ?? ''),
-                    onDeleted: () {
-                      setState(() {
-                        selectedCoaches.remove(coach);
-                      });
-                    },
-                  );
-                }).toList(),
+          ? SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Container(
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height * 0.27,
+                ),
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    const Text('Selected Coaches:'),
+                    const SizedBox(width: 8.0),
+                    Expanded(
+                      child: Wrap(
+                        children: selectedCoaches.map((coach) {
+                          return Chip(
+                            label: Text(coach.name ?? ''),
+                            onDeleted: () {
+                              setState(() {
+                                selectedCoaches.remove(coach);
+                              });
+                            },
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await deleteSelectedCoaches(selectedCoaches);
+                        // Clear selected coaches list after deletion
+                        setState(() {
+                          selectedCoaches.clear();
+                        });
+                      },
+                      child: const Text('Delete Selected'),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                await deleteSelectedCoaches(selectedCoaches);
-                // Clear selected coaches list after deletion
-                setState(() {
-                  selectedCoaches.clear();
-                });
-              },
-              child: Text('Delete Selected'),
-            ),
-          ],
-        ),
-      )
+            )
           : null, // Show selected coaches at the bottom only in "Edit" mode
     );
   }
@@ -116,11 +123,7 @@ class MyModifyCoachesPageState extends State<MyModifyCoachesPage> {
       final coachName = coach.name; // Get the name of the coach
       if (coachName != null) {
         // Delete coaches with matching names
-        await firestore
-            .collection('Coaches')
-            .where('name', isEqualTo: coachName)
-            .get()
-            .then((querySnapshot) {
+        await firestore.collection('Coaches').where('name', isEqualTo: coachName).get().then((querySnapshot) {
           for (var doc in querySnapshot.docs) {
             doc.reference.delete();
           }
@@ -137,11 +140,9 @@ class MyModifyCoachesPageState extends State<MyModifyCoachesPage> {
 
   @override
   void initState() {
-    CoachesNotifier coachesNotifier =
-    Provider.of<CoachesNotifier>(context, listen: false);
+    CoachesNotifier coachesNotifier = Provider.of<CoachesNotifier>(context, listen: false);
     getCoaches(coachesNotifier);
 
     super.initState();
   }
-
 }

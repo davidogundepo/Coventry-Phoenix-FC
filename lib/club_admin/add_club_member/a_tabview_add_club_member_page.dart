@@ -11,8 +11,21 @@ String acmTitle = 'Add Club Members';
 String amTitle = 'Add New Member';
 String ecmTitle = 'Current Members';
 
-Color? backgroundColor = const Color.fromRGBO(34, 40, 49, 1);
-Color? selectedTabColor = Colors.indigo[200];
+Color? selectedTabColor = Colors.black;
+
+Color conColor = const Color.fromRGBO(194, 194, 220, 1.0);
+Color conColorTwo = const Color.fromRGBO(151, 147, 151, 1.0);
+Color whiteColor = const Color.fromRGBO(255, 253, 253, 1.0);
+Color twitterColor = const Color.fromRGBO(36, 81, 149, 1.0);
+Color appBarIconColor = const Color.fromRGBO(239, 239, 241, 1.0);
+Color instagramColor = const Color.fromRGBO(255, 255, 255, 1.0);
+Color facebookColor = const Color.fromRGBO(43, 103, 195, 1.0);
+Color snapchatColor = const Color.fromRGBO(222, 163, 36, 1.0);
+Color youtubeColor = const Color.fromRGBO(220, 45, 45, 1.0);
+Color websiteColor = const Color.fromRGBO(104, 79, 178, 1.0);
+Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
+Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
+Color backgroundColor = const Color.fromRGBO(147, 165, 193, 1.0);
 
 
 class TabviewClubMemberPage extends StatefulWidget with NavigationStates{
@@ -46,6 +59,7 @@ class TabviewClubMemberPageState extends State<TabviewClubMemberPage> with Singl
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgrou?ndColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: backgroundColor,
         title: Text(
@@ -64,7 +78,7 @@ class TabviewClubMemberPageState extends State<TabviewClubMemberPage> with Singl
         ),
         bottom: TabBar(
           labelColor: selectedTabColor,
-          unselectedLabelColor: Colors.orange,
+          unselectedLabelColor: Colors.white,
           indicatorColor: Colors.white,
           controller: _tabController,
           tabs: [

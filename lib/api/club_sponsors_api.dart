@@ -5,7 +5,9 @@ import '../notifier/club_sponsors_notifier.dart';
 
 getClubSponsors(ClubSponsorsNotifier clubSponsorsNotifier) async {
   QuerySnapshot snapshot =
-      await FirebaseFirestore.instance.collection('ClubSponsors').get();
+      await FirebaseFirestore.instance.collection('ClubSponsors')
+          .orderBy('name', descending: false)
+          .get();
 
   List<ClubSponsors> clubSponsorsList = [];
 

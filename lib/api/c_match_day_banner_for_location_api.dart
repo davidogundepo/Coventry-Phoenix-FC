@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../model/c_match_day_banner_for_location.dart';
-import '../notifier/c_match_day_banner_for_location.dart';
+import '../notifier/c_match_day_banner_for_location_notifier.dart';
 
 getMatchDayBannerForLocation(MatchDayBannerForLocationNotifier matchDayBannerForLocationNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
       .collection('MatchDayBannerForLocation')
-      .orderBy('id', descending: false)
+      .orderBy('location', descending: false)
       .get();
 
   List<MatchDayBannerForLocation> matchDayBannerForLocationList = [];

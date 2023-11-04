@@ -13,6 +13,7 @@ migrate_working_dir/
 build.db
 Pods/
 ios/build/
+ios/build/XCBuildData/build.db
 
 # IntelliJ related
 *.iml
@@ -49,3 +50,4 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+ios/build/XCBuildData/build.db

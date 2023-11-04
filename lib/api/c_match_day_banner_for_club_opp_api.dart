@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../model/c_match_day_banner_for_club_opp.dart';
-import '../notifier/c_match_day_banner_for_club_opp.dart';
+import '../notifier/c_match_day_banner_for_club_opp_notifier.dart';
 
 getMatchDayBannerForClubOpp(MatchDayBannerForClubOppNotifier matchDayBannerForClubOppNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
       .collection('MatchDayBannerForClubOpp')
-      .orderBy('id', descending: false)
+      .orderBy('club_name', descending: false)
       .get();
 
   List<MatchDayBannerForClubOpp> matchDayBannerForClubOppList = [];

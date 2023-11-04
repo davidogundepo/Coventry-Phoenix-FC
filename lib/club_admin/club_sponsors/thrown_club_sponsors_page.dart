@@ -20,9 +20,21 @@ String clubSponsorsTitle = "Club Sponsors";
 
 Color splashColor = const Color.fromRGBO(98, 98, 213, 1.0);
 Color textColor = const Color.fromRGBO(222, 214, 214, 1.0);
-Color backgroundColor = const Color.fromRGBO(19, 20, 21, 1.0);
 Color textColorTwo = const Color.fromRGBO(19, 20, 21, 1.0);
 Color dialogBackgroundColor = const Color.fromRGBO(238, 235, 235, 1.0);
+
+Color conColor = const Color.fromRGBO(194, 194, 220, 1.0);
+Color conColorTwo = const Color.fromRGBO(151, 147, 151, 1.0);
+Color whiteColor = const Color.fromRGBO(255, 253, 253, 1.0);
+Color twitterColor = const Color.fromRGBO(36, 81, 149, 1.0);
+Color instagramColor = const Color.fromRGBO(255, 255, 255, 1.0);
+Color facebookColor = const Color.fromRGBO(43, 103, 195, 1.0);
+Color snapchatColor = const Color.fromRGBO(222, 163, 36, 1.0);
+Color youtubeColor = const Color.fromRGBO(220, 45, 45, 1.0);
+Color websiteColor = const Color.fromRGBO(104, 79, 178, 1.0);
+Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
+Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
+Color backgroundColor = const Color.fromRGBO(147, 165, 193, 1.0);
 
 late ClubSponsorsNotifier clubSponsorsNotifier;
 
@@ -226,6 +238,7 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
         //     },
         //   ),
         // ),
+        backgroundColor: backgroundColor,
         body: SafeArea(
           child: Stack(
             children: [
@@ -265,7 +278,7 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
                               'BACK',
                               style: GoogleFonts.aldrich(
                                 color: textColor,
-                                fontSize: 17,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -281,7 +294,7 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
                       'List of Club Sponsors',
                       style: GoogleFonts.aldrich(
                         color: textColorTwo,
-                        fontSize: 23,
+                        fontSize: 16,
                         fontWeight: FontWeight.w400,
                       ),
                     ),

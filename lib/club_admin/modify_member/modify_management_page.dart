@@ -7,6 +7,8 @@ import '../../notifier/management_body_notifier.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
+Color backgroundColor = const Color.fromRGBO(187, 192, 195, 1.0);
+
 late ManagementBodyNotifier managementBodyNotifier;
 
 class MyModifyManagementBodyPage extends StatefulWidget with NavigationStates {
@@ -25,8 +27,10 @@ class MyModifyManagementBodyPageState extends State<MyModifyManagementBodyPage> 
     managementBodyNotifier = Provider.of<ManagementBodyNotifier>(context);
 
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: Text('All Club Managers'),
+        backgroundColor: backgroundColor,
+        title: const Text('All Club Managers'),
         actions: [
           // Add a button to toggle "Edit" mode
           IconButton(
@@ -66,39 +70,45 @@ class MyModifyManagementBodyPageState extends State<MyModifyManagementBodyPage> 
         },
       ),
       bottomSheet: isEditing
-          ? Container(
-        padding: EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            Text('Selected Management:'),
-            SizedBox(width: 8.0),
-            Expanded(
-              child: Wrap(
-                children: selectedManagementBody.map((managementBody) {
-                  return Chip(
-                    label: Text(managementBody.name ?? ''),
-                    onDeleted: () {
-                      setState(() {
-                        selectedManagementBody.remove(managementBody);
-                      });
-                    },
-                  );
-                }).toList(),
+          ? SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Container(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.27,
+          ),
+          padding: const EdgeInsets.all(16.0),
+                    child: Row(
+            children: [
+              const Text('Selected Management:'),
+              const SizedBox(width: 8.0),
+              Expanded(
+                child: Wrap(
+                  children: selectedManagementBody.map((managementBody) {
+                    return Chip(
+                      label: Text(managementBody.name ?? ''),
+                      onDeleted: () {
+                        setState(() {
+                          selectedManagementBody.remove(managementBody);
+                        });
+                      },
+                    );
+                  }).toList(),
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                await deleteSelectedManagementBody(selectedManagementBody);
-                // Clear selected management list after deletion
-                setState(() {
-                  selectedManagementBody.clear();
-                });
-              },
-              child: Text('Delete Selected'),
-            ),
-          ],
-        ),
-      )
+              ElevatedButton(
+                onPressed: () async {
+                  await deleteSelectedManagementBody(selectedManagementBody);
+                  // Clear selected management list after deletion
+                  setState(() {
+                    selectedManagementBody.clear();
+                  });
+                },
+                child: const Text('Delete Selected'),
+              ),
+            ],
+                    ),
+                  ),
+          )
           : null, // Show selected management at the bottom only in "Edit" mode
     );
   }

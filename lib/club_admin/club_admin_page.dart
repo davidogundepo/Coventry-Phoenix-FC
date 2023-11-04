@@ -5,12 +5,17 @@ import 'package:coventry_phoenix_fc/club_admin/add_club_member/a_tabview_add_clu
 import 'package:coventry_phoenix_fc/club_admin/modify_member/modify_coaches_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/modify_member/modify_management_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/club_sponsors/thrown_club_sponsors_page.dart';
+import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_announcement_sm_post.dart';
 import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_matchday_sm_post.dart';
+import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_sponsors_so_sm_post.dart';
+import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_upcoming_event_sm_post.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -24,10 +29,10 @@ import '../api/first_team_class_api.dart';
 import '../api/management_body_api.dart';
 import '../api/second_team_class_api.dart';
 import '../notifier/all_club_members_notifier.dart';
-import '../notifier/c_match_day_banner_for_club.dart';
-import '../notifier/c_match_day_banner_for_club_opp.dart';
-import '../notifier/c_match_day_banner_for_league.dart';
-import '../notifier/c_match_day_banner_for_location.dart';
+import '../notifier/c_match_day_banner_for_club_notifier.dart';
+import '../notifier/c_match_day_banner_for_club_opp_notifier.dart';
+import '../notifier/c_match_day_banner_for_league_notifier.dart';
+import '../notifier/c_match_day_banner_for_location_notifier.dart';
 import '../notifier/players_notifier.dart';
 import '../notifier/club_captains_notifier.dart';
 import '../notifier/coaching_staff_notifier.dart';
@@ -50,6 +55,7 @@ String selectedCaptainsTitle = "Select Club Captains";
 String othersTitle = "Others";
 
 
+Color backgroundColor = const Color.fromRGBO(34, 36, 54, 1.0);
 Color gradientColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color gradientColorTwo = Colors.white;
 Color gradientColorThree = const Color.fromRGBO(197, 33, 75, 1.0);
@@ -68,10 +74,20 @@ Color dialogBackgroundColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color dialogTextColor = Colors.white;
 Color splashColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color splashColorTwo = Colors.white;
-Color splashColorThree = Colors.white;
+Color splashColorThree = Colors.black;
 Color textColor = Colors.white;
 Color textColorTwo = const Color.fromRGBO(24, 26, 36, 1.0);
 Color textShadowColor = Colors.white;
+
+Color blueColor = Colors.blueAccent;
+Color redColor = Colors.red;
+Color greenColor = Colors.green;
+Color yellowColor = Colors.yellow;
+Color brownColor = Colors.brown;
+Color cyanColor = Colors.cyan;
+Color whiteColor = Colors.white;
+Color deepOrangeColor = Colors.deepOrange;
+Color tealColor = Colors.teal;
 
 class MyClubAdminPage extends StatefulWidget with NavigationStates{
   MyClubAdminPage({Key? key}) : super(key: key);
@@ -97,7 +113,7 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
           ),
         ),
         elevation: 10,
-        backgroundColor: containerBackgroundColor,
+        backgroundColor: backgroundColor,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
           onPressed: () {
@@ -105,7 +121,7 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
           },
         ),
       ),
-      backgroundColor: containerBackgroundColor,
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -130,29 +146,65 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Select an Option'),
+                          backgroundColor: containerBackgroundColor,
+                          title: const Text('Select an Option',
+                            style: TextStyle(
+                                color: Colors.white70,
+                              fontSize: 15
+                            ),
+                          ),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               ListTile(
-                                title: Text('Create a Matchday Fixtures Post'),
+                                title: const Text('Publish MatchDay Fixtures',
+                                  style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 14
+                                  ),
+                                ),
                                 onTap: () {
                                   Navigator.pop(context); // Close the dialog
                                   navigateToCreateSMPost(context); // Navigate to the appropriate page
                                 },
                               ),
                               ListTile(
-                                title: Text('Post an Upcoming Event'),
+                                title: const Text('Publish an Upcoming Event',
+                                  style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 14
+                                  ),
+                                ),
                                 onTap: () {
                                   Navigator.pop(context);
-                                  // navigateToUpcomingEventPage(context); // Navigate to the appropriate page
+                                  navigateToCreateUpcomingEventSMPost(context);
+
                                 },
                               ),
                               ListTile(
-                                title: Text('Sponsors S/O on Social Media'),
+                                title: const Text('Publish an Announcement',
+                                  style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 14
+                                  ),
+                                ),
                                 onTap: () {
                                   Navigator.pop(context);
-                                  // navigateToSponsorsSocialMediaPage(context); // Navigate to the appropriate page
+                                  navigateToCreateAnnouncementSMPost(context);
+
+                                },
+                              ),
+                              ListTile(
+                                title: const Text('Sponsors S/O on Social Media',
+                                  style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 14
+                                  ),
+                                ),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  navigateToCreateSponsorsShoutOutSMPost(context);
+
                                 },
                               ),
                             ],
@@ -164,10 +216,36 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
 
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: MenuItems(
-                        icon: MdiIcons.security,
-                        title: createSMPostTitle,
-                        textColor: gradientColorTwo
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: blueColor.withAlpha(80),
+                            ),
+                            child: IconButton(
+                              icon: const FaIcon(
+                                FontAwesomeIcons.handsAslInterpreting,
+                                color: Colors.blue,
+                                size: 25,
+                              ), onPressed: () {  },
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                              createSMPostTitle,
+                            style: TextStyle(
+                              color: gradientColorTwo,
+                              fontSize: 16
+                            ),
+
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -189,10 +267,36 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: MenuItems(
-                        icon: MdiIcons.security,
-                        title: sponsorsTitle,
-                        textColor: gradientColorTwo
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: greenColor.withAlpha(80),
+                            ),
+                            child: IconButton(
+                              icon: FaIcon(
+                                FontAwesomeIcons.jedi,
+                                color: greenColor,
+                                size: 25,
+                              ), onPressed: () {  },
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                            sponsorsTitle,
+                            style: TextStyle(
+                                color: gradientColorTwo,
+                                fontSize: 16
+                            ),
+
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -213,10 +317,36 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: MenuItems(
-                        icon: MdiIcons.security,
-                        title: selectedCaptainsTitle,
-                        textColor: gradientColorTwo
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: brownColor.withAlpha(80),
+                            ),
+                            child: IconButton(
+                              icon: FaIcon(
+                                FontAwesomeIcons.om,
+                                color: redColor,
+                                size: 25,
+                              ), onPressed: () {  },
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                            selectedCaptainsTitle,
+                            style: TextStyle(
+                                color: gradientColorTwo,
+                                fontSize: 16
+                            ),
+
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -237,10 +367,36 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: MenuItems(
-                        icon: MdiIcons.security,
-                        title: addPlayerTitle,
-                        textColor: gradientColorTwo
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: whiteColor.withAlpha(80),
+                            ),
+                            child: IconButton(
+                              icon: FaIcon(
+                                FontAwesomeIcons.spider,
+                                color: whiteColor,
+                                size: 25,
+                              ), onPressed: () {  },
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                            addPlayerTitle,
+                            style: TextStyle(
+                                color: gradientColorTwo,
+                                fontSize: 14
+                            ),
+
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -261,10 +417,36 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: MenuItems(
-                        icon: MdiIcons.security,
-                        title: removePlayerTitle,
-                        textColor: gradientColorTwo
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: yellowColor.withAlpha(80),
+                            ),
+                            child: IconButton(
+                              icon: FaIcon(
+                                FontAwesomeIcons.leaf,
+                                color: yellowColor,
+                                size: 25,
+                              ), onPressed: () {  },
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                            removePlayerTitle,
+                            style: TextStyle(
+                                color: gradientColorTwo,
+                                fontSize: 16
+                            ),
+
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -285,10 +467,36 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: MenuItems(
-                        icon: MdiIcons.security,
-                        title: removeCoachTitle,
-                        textColor: gradientColorTwo
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: cyanColor.withAlpha(80),
+                            ),
+                            child: IconButton(
+                              icon: FaIcon(
+                                FontAwesomeIcons.vrCardboard,
+                                color: cyanColor,
+                                size: 25,
+                              ), onPressed: () {  },
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                            removeCoachTitle,
+                            style: TextStyle(
+                                color: gradientColorTwo,
+                                fontSize: 16
+                            ),
+
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -309,10 +517,36 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: MenuItems(
-                        icon: MdiIcons.security,
-                        title: removeManagerTitle,
-                        textColor: gradientColorTwo
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: deepOrangeColor.withAlpha(80),
+                            ),
+                            child: IconButton(
+                              icon: FaIcon(
+                                FontAwesomeIcons.dragon,
+                                color: deepOrangeColor,
+                                size: 25,
+                              ), onPressed: () {  },
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                            removeManagerTitle,
+                            style: TextStyle(
+                                color: gradientColorTwo,
+                                fontSize: 16
+                            ),
+
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -329,16 +563,50 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                 child: InkWell(
                   splashColor: splashColorThree,
                   onTap: () {
-                    BlocProvider.of<NavigationBloc>(context).add(
-                        NavigationEvents
-                            .myClubSponsorsPageClickedEvent);
+                    // BlocProvider.of<NavigationBloc>(context).add(
+                    //     NavigationEvents
+                    //         .myClubSponsorsPageClickedEvent);
+
+                    Fluttertoast.showToast(
+                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.deepOrangeAccent,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: MenuItems(
-                        icon: MdiIcons.security,
-                        title: commsTitle,
-                        textColor: gradientColorTwo
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: tealColor.withAlpha(80),
+                            ),
+                            child: IconButton(
+                              icon: FaIcon(
+                                FontAwesomeIcons.tree,
+                                color: tealColor,
+                                size: 25,
+                              ), onPressed: () {  },
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                            commsTitle,
+                            style: TextStyle(
+                                color: gradientColorTwo,
+                                fontSize: 16
+                            ),
+
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -355,16 +623,50 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                 child: InkWell(
                   splashColor: splashColorThree,
                   onTap: () {
-                    BlocProvider.of<NavigationBloc>(context).add(
-                        NavigationEvents
-                            .myClubSponsorsPageClickedEvent);
+                    // BlocProvider.of<NavigationBloc>(context).add(
+                    //     NavigationEvents
+                    //         .myClubSponsorsPageClickedEvent);
+
+                    Fluttertoast.showToast(
+                      msg: 'Coming Soon',
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.deepOrangeAccent,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: MenuItems(
-                        icon: MdiIcons.security,
-                        title: othersTitle,
-                        textColor: gradientColorTwo
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: brownColor.withAlpha(80),
+                            ),
+                            child: IconButton(
+                              icon: FaIcon(
+                                FontAwesomeIcons.wandMagicSparkles,
+                                color: brownColor,
+                                size: 25,
+                              ), onPressed: () {  },
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                            othersTitle,
+                            style: TextStyle(
+                                color: gradientColorTwo,
+                                fontSize: 16
+                            ),
+
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -460,7 +762,19 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
 
 Future navigateToCreateSMPost(context) async {
   Navigator.push(context,
-      MaterialPageRoute(builder: (context) => CreateMatchdaySocialMediaPost()));
+      MaterialPageRoute(builder: (context) => CreateMatchDaySocialMediaPost()));
+}
+Future navigateToCreateUpcomingEventSMPost(context) async {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => CreateUpcomingEventSMPost()));
+}
+Future navigateToCreateAnnouncementSMPost(context) async {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => CreateAnnouncementSMPost()));
+}
+Future navigateToCreateSponsorsShoutOutSMPost(context) async {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => CreateSponsorsShoutOutSMPost()));
 }
 Future navigateToClubSponsors(context) async {
   Navigator.push(context,

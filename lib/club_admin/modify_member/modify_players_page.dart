@@ -8,12 +8,13 @@ import '../../notifier/first_team_class_notifier.dart';
 import '../../notifier/second_team_class_notifier.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+Color backgroundColor = const Color.fromRGBO(187, 192, 195, 1.0);
+
 class MyModifyClubPlayersPage extends StatefulWidget with NavigationStates {
   MyModifyClubPlayersPage({Key? key}) : super(key: key);
 
   @override
-  State<MyModifyClubPlayersPage> createState() =>
-      MyModifyClubPlayersPageState();
+  State<MyModifyClubPlayersPage> createState() => MyModifyClubPlayersPageState();
 }
 
 class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
@@ -23,12 +24,13 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
   @override
   Widget build(BuildContext context) {
     // Use the PlayersNotifier to access the combined list of players
-    PlayersNotifier playersNotifier =
-    Provider.of<PlayersNotifier>(context);
+    PlayersNotifier playersNotifier = Provider.of<PlayersNotifier>(context);
 
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: Text('All Players'),
+        backgroundColor: backgroundColor,
+        title: const Text('All Players'),
         actions: [
           // Add a button to toggle "Edit" mode
           IconButton(
@@ -56,17 +58,17 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
               title: Text(player.name ?? 'No Name'),
               trailing: isEditing
                   ? Checkbox(
-                value: selectedPlayers.contains(player),
-                onChanged: (value) {
-                  setState(() {
-                    if (value != null && value) {
-                      selectedPlayers.add(player);
-                    } else {
-                      selectedPlayers.remove(player);
-                    }
-                  });
-                },
-              )
+                      value: selectedPlayers.contains(player),
+                      onChanged: (value) {
+                        setState(() {
+                          if (value != null && value) {
+                            selectedPlayers.add(player);
+                          } else {
+                            selectedPlayers.remove(player);
+                          }
+                        });
+                      },
+                    )
                   : null, // Show checkbox only in "Edit" mode
               // Add other player information you want to display
             );
@@ -74,39 +76,45 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
         ),
       ),
       bottomSheet: isEditing
-          ? Container(
-        padding: EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            Text('Selected Players:'),
-            SizedBox(width: 8.0),
-            Expanded(
-              child: Wrap(
-                children: selectedPlayers.map((player) {
-                  return Chip(
-                    label: Text(player.name ?? ''),
-                    onDeleted: () {
-                      setState(() {
-                        selectedPlayers.remove(player);
-                      });
-                    },
-                  );
-                }).toList(),
+          ? SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Container(
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height * 0.27,
+                ),
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    const Text('Selected Players:'),
+                    const SizedBox(width: 8.0),
+                    Expanded(
+                      child: Wrap(
+                        children: selectedPlayers.map((player) {
+                          return Chip(
+                            label: Text(player.name ?? ''),
+                            onDeleted: () {
+                              setState(() {
+                                selectedPlayers.remove(player);
+                              });
+                            },
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await deleteSelectedPlayers(selectedPlayers);
+                        // Clear selected players list after deletion
+                        setState(() {
+                          selectedPlayers.clear();
+                        });
+                      },
+                      child: const Text('Delete Selected'),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                await deleteSelectedPlayers(selectedPlayers);
-                // Clear selected players list after deletion
-                setState(() {
-                  selectedPlayers.clear();
-                });
-              },
-              child: Text('Delete Selected'),
-            ),
-          ],
-        ),
-      )
+            )
           : null, // Show selected players at the bottom only in "Edit" mode
     );
   }
@@ -116,22 +124,17 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
     super.initState();
 
     // Fetch data for the first and second teams using their notifiers
-    FirstTeamClassNotifier firstTeamNotifier =
-    Provider.of<FirstTeamClassNotifier>(context, listen: false);
+    FirstTeamClassNotifier firstTeamNotifier = Provider.of<FirstTeamClassNotifier>(context, listen: false);
     getFirstTeamClass(firstTeamNotifier);
 
-    SecondTeamClassNotifier secondTeamNotifier =
-    Provider.of<SecondTeamClassNotifier>(context, listen: false);
+    SecondTeamClassNotifier secondTeamNotifier = Provider.of<SecondTeamClassNotifier>(context, listen: false);
     getSecondTeamClass(secondTeamNotifier);
 
     // Populate the PlayersNotifier with data from both teams
-    PlayersNotifier playersNotifier =
-    Provider.of<PlayersNotifier>(context, listen: false);
+    PlayersNotifier playersNotifier = Provider.of<PlayersNotifier>(context, listen: false);
 
-    playersNotifier
-        .setFirstTeamPlayers(firstTeamNotifier.firstTeamClassList);
-    playersNotifier
-        .setSecondTeamPlayers(secondTeamNotifier.secondTeamClassList);
+    playersNotifier.setFirstTeamPlayers(firstTeamNotifier.firstTeamClassList);
+    playersNotifier.setSecondTeamPlayers(secondTeamNotifier.secondTeamClassList);
   }
 
   Future<void> deleteSelectedPlayers(List<dynamic> selectedPlayers) async {
@@ -151,12 +154,8 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
     showSnackbar(selectedPlayers);
   }
 
-  Future<void> deletePlayerByName(
-      FirebaseFirestore firestore, String collection, String name) async {
-    final querySnapshot = await firestore
-        .collection(collection)
-        .where('name', isEqualTo: name)
-        .get();
+  Future<void> deletePlayerByName(FirebaseFirestore firestore, String collection, String name) async {
+    final querySnapshot = await firestore.collection(collection).where('name', isEqualTo: name).get();
 
     for (final document in querySnapshot.docs) {
       await document.reference.delete();

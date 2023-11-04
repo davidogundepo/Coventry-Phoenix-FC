@@ -36,16 +36,12 @@ import '../notifier/top_gk_players_stats_info_notifier.dart';
 import '../notifier/top_goals_players_stats_info_notifier.dart';
 
 late TopGoalsPlayersStatsAndInfoNotifier? topGoalsPlayersStatsAndInfoNotifier;
-late MostAssistsPlayersStatsAndInfoNotifier
-    mostAssistsPlayersStatsAndInfoNotifier;
-late MostFouledYCPlayersStatsAndInfoNotifier
-    mostFouledYCPlayersStatsAndInfoNotifier;
-late MostFouledRCPlayersStatsAndInfoNotifier
-    mostFouledRCPlayersStatsAndInfoNotifier;
+late MostAssistsPlayersStatsAndInfoNotifier mostAssistsPlayersStatsAndInfoNotifier;
+late MostFouledYCPlayersStatsAndInfoNotifier mostFouledYCPlayersStatsAndInfoNotifier;
+late MostFouledRCPlayersStatsAndInfoNotifier mostFouledRCPlayersStatsAndInfoNotifier;
 late PlayerOfTheMonthStatsAndInfoNotifier playerOfTheMonthStatsAndInfoNotifier;
 late TopGKPlayersStatsAndInfoNotifier topGKPlayersStatsAndInfoNotifier;
-late TopDefensivePlayersStatsAndInfoNotifier
-    topDefensivePlayersStatsAndInfoNotifier;
+late TopDefensivePlayersStatsAndInfoNotifier topDefensivePlayersStatsAndInfoNotifier;
 late MOTMPlayersStatsAndInfoNotifier motmPlayersStatsAndInfoNotifier;
 late CumMOTMPlayersStatsAndInfoNotifier cumMOTMPlayersStatsAndInfoNotifier;
 late CoachesReviewsCommentNotifier coachesReviewsCommentNotifier;
@@ -106,8 +102,7 @@ String cumMOTMCountPlayersEmptyTitle = "No Most Awarded MOTM Players Yet";
 String coachesMonthlyCommentsTitle = "Coaches' Monthly Comments";
 String coachesMonthlyCommentsEmptyTitle = "No Comment From Any Coach Yet";
 String foundersMonthlyCommentsTitle = "Founders' Monthly Comments";
-String foundersMonthlyCommentsEmptyTitle =
-    "No Comment From Any CPFC Founder Yet";
+String foundersMonthlyCommentsEmptyTitle = "No Comment From Any CPFC Founder Yet";
 String potmTitle = "Player Of The Month";
 String potmTwoTitle = "PLAYER OF THE MONTH";
 String potmEmptyTitle = "No POTM Nominated Yet";
@@ -140,10 +135,8 @@ String lottieJsonRedCardTitle = "assets/json/redcard_two_gif.json";
 String lottieJsonGoalKeeperTitle = "assets/json/top_goal_keeper_gif.json";
 String lottieJsonMOTMTitle = "assets/json/motm_award.json";
 String lottieJsonCumAwardMOTMTitle = "assets/json/cum_motm_award.json";
-String lottieJsonCoachesCommentMOTMTitle =
-    "assets/json/coaches_comment_gif.json";
-String lottieJsonFoundersCommentMOTMTitle =
-    "assets/json/founders_comment_gif.json";
+String lottieJsonCoachesCommentMOTMTitle = "assets/json/coaches_comment_gif.json";
+String lottieJsonFoundersCommentMOTMTitle = "assets/json/founders_comment_gif.json";
 String lottieJsonPOTMTitle = "assets/json/potm_award.json";
 
 String assetPOTMBackgroundTitle = "assets/images/back_field.png";
@@ -155,8 +148,7 @@ class PlayersStatsAndInfoPage extends StatefulWidget {
   const PlayersStatsAndInfoPage({Key? key}) : super(key: key);
 
   @override
-  State<PlayersStatsAndInfoPage> createState() =>
-      _PlayersStatsAndInfoPageState();
+  State<PlayersStatsAndInfoPage> createState() => _PlayersStatsAndInfoPageState();
 }
 
 class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
@@ -184,44 +176,29 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
 
     _controllerTopCenter.play();
 
-    TopGoalsPlayersStatsAndInfoNotifier topGoalsPlayersStatsAndInfoNotifier =
-        Provider.of<TopGoalsPlayersStatsAndInfoNotifier>(context);
+    TopGoalsPlayersStatsAndInfoNotifier topGoalsPlayersStatsAndInfoNotifier = Provider.of<TopGoalsPlayersStatsAndInfoNotifier>(context);
 
-    MostAssistsPlayersStatsAndInfoNotifier
-        mostAssistsPlayersStatsAndInfoNotifier =
-        Provider.of<MostAssistsPlayersStatsAndInfoNotifier>(context);
+    MostAssistsPlayersStatsAndInfoNotifier mostAssistsPlayersStatsAndInfoNotifier = Provider.of<MostAssistsPlayersStatsAndInfoNotifier>(context);
 
-    TopGKPlayersStatsAndInfoNotifier topGKPlayersStatsAndInfoNotifier =
-        Provider.of<TopGKPlayersStatsAndInfoNotifier>(context);
+    TopGKPlayersStatsAndInfoNotifier topGKPlayersStatsAndInfoNotifier = Provider.of<TopGKPlayersStatsAndInfoNotifier>(context);
 
-    TopDefensivePlayersStatsAndInfoNotifier
-        topDefensivePlayersStatsAndInfoNotifier =
-        Provider.of<TopDefensivePlayersStatsAndInfoNotifier>(context);
+    TopDefensivePlayersStatsAndInfoNotifier topDefensivePlayersStatsAndInfoNotifier = Provider.of<TopDefensivePlayersStatsAndInfoNotifier>(context);
 
-    MostFouledYCPlayersStatsAndInfoNotifier
-        mostFouledYCPlayersStatsAndInfoNotifier =
-        Provider.of<MostFouledYCPlayersStatsAndInfoNotifier>(context,
-            listen: true);
+    MostFouledYCPlayersStatsAndInfoNotifier mostFouledYCPlayersStatsAndInfoNotifier =
+        Provider.of<MostFouledYCPlayersStatsAndInfoNotifier>(context, listen: true);
 
-    MostFouledRCPlayersStatsAndInfoNotifier
-        mostFouledRCPlayersStatsAndInfoNotifier =
-        Provider.of<MostFouledRCPlayersStatsAndInfoNotifier>(context,
-            listen: true);
+    MostFouledRCPlayersStatsAndInfoNotifier mostFouledRCPlayersStatsAndInfoNotifier =
+        Provider.of<MostFouledRCPlayersStatsAndInfoNotifier>(context, listen: true);
 
-    PlayerOfTheMonthStatsAndInfoNotifier playerOfTheMonthStatsAndInfoNotifier =
-        Provider.of<PlayerOfTheMonthStatsAndInfoNotifier>(context);
+    PlayerOfTheMonthStatsAndInfoNotifier playerOfTheMonthStatsAndInfoNotifier = Provider.of<PlayerOfTheMonthStatsAndInfoNotifier>(context);
 
-    MOTMPlayersStatsAndInfoNotifier motmPlayersStatsAndInfoNotifier =
-        Provider.of<MOTMPlayersStatsAndInfoNotifier>(context);
+    MOTMPlayersStatsAndInfoNotifier motmPlayersStatsAndInfoNotifier = Provider.of<MOTMPlayersStatsAndInfoNotifier>(context);
 
-    CumMOTMPlayersStatsAndInfoNotifier cumMOTMPlayersStatsAndInfoNotifier =
-        Provider.of<CumMOTMPlayersStatsAndInfoNotifier>(context);
+    CumMOTMPlayersStatsAndInfoNotifier cumMOTMPlayersStatsAndInfoNotifier = Provider.of<CumMOTMPlayersStatsAndInfoNotifier>(context);
 
-    CoachesReviewsCommentNotifier coachesReviewsCommentNotifier =
-        Provider.of<CoachesReviewsCommentNotifier>(context);
+    CoachesReviewsCommentNotifier coachesReviewsCommentNotifier = Provider.of<CoachesReviewsCommentNotifier>(context);
 
-    FoundersReviewsCommentNotifier foundersReviewsCommentNotifier =
-        Provider.of<FoundersReviewsCommentNotifier>(context);
+    FoundersReviewsCommentNotifier foundersReviewsCommentNotifier = Provider.of<FoundersReviewsCommentNotifier>(context);
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -248,8 +225,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                             onPressed: () {
                               navigateMyApp(context);
                             },
-                            icon:
-                                const Icon(Icons.arrow_back_ios_new_outlined)),
+                            icon: const Icon(Icons.arrow_back_ios_new_outlined)),
                       ),
                       const SizedBox(
                         width: 60,
@@ -294,62 +270,41 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                       }),
                                       child: Text(
                                         topGoalScorersTitle,
-                                        style: TextStyle(
-                                            color: topPlayersColor,
-                                            shadows: [
-                                              for (double i = 1;
-                                                  i < (isTextPressed ? 1 : 2);
-                                                  i++)
-                                                Shadow(
-                                                  color: shadowColor,
-                                                  blurRadius: 3 * i,
-                                                ),
-                                            ]),
+                                        style: TextStyle(color: topPlayersColor, shadows: [
+                                          for (double i = 1; i < (isTextPressed ? 1 : 2); i++)
+                                            Shadow(
+                                              color: shadowColor,
+                                              blurRadius: 3 * i,
+                                            ),
+                                        ]),
                                       ),
                                     )),
-                                if (topGoalsPlayersStatsAndInfoNotifier
-                                    .topGoalsPlayersStatsAndInfoList
-                                    .isEmpty) ...[
+                                if (topGoalsPlayersStatsAndInfoNotifier.topGoalsPlayersStatsAndInfoList.isEmpty) ...[
                                   Center(
                                     child: Container(
                                       height: 330,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                       child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.80,
+                                          width: MediaQuery.of(context).size.width * 0.80,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(children: <Widget>[
                                               Center(
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                         // height: 70,
@@ -362,9 +317,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     const SizedBox(height: 20),
                                                     Text(
                                                       topGoalScorersEmptyTitle,
-                                                      style: TextStyle(
-                                                          color:
-                                                              topPlayersEmptyColor),
+                                                      style: TextStyle(color: topPlayersEmptyColor),
                                                     )
                                                   ],
                                                 ),
@@ -381,42 +334,26 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                 ] else ...[
                                   Container(
                                     height: 330,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                     child: Swiper(
                                       autoplay: true,
                                       viewportFraction: 0.8,
                                       scale: 0.9,
-                                      itemCount:
-                                          topGoalsPlayersStatsAndInfoNotifier
-                                              .topGoalsPlayersStatsAndInfoList
-                                              .length,
+                                      itemCount: topGoalsPlayersStatsAndInfoNotifier.topGoalsPlayersStatsAndInfoList.length,
                                       itemBuilder: (context, index) => Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.90,
+                                          width: MediaQuery.of(context).size.width * 0.90,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(
@@ -424,67 +361,38 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 Align(
                                                   alignment: Alignment.topRight,
                                                   child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            15.0),
+                                                    padding: const EdgeInsets.all(15.0),
                                                     child: Container(
                                                       width: 100.0,
                                                       height: 100.0,
                                                       decoration: BoxDecoration(
                                                         image: DecorationImage(
-                                                            alignment:
-                                                                const Alignment(
-                                                                    0, -1),
+                                                            alignment: const Alignment(0, -1),
                                                             image: CachedNetworkImageProvider(
-                                                                (topGoalsPlayersStatsAndInfoNotifier
-                                                                    .topGoalsPlayersStatsAndInfoList[
-                                                                        index]
-                                                                    .image)!),
+                                                                (topGoalsPlayersStatsAndInfoNotifier.topGoalsPlayersStatsAndInfoList[index].image)!),
                                                             fit: BoxFit.cover),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  10),
+                                                        borderRadius: const BorderRadius.only(
+                                                          topLeft: Radius.circular(10),
+                                                          bottomLeft: Radius.circular(10),
+                                                          topRight: Radius.circular(10),
+                                                          bottomRight: Radius.circular(10),
                                                         ),
-                                                        shape:
-                                                            BoxShape.rectangle,
+                                                        shape: BoxShape.rectangle,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 50.0, top: 40),
+                                                  padding: const EdgeInsets.only(right: 50.0, top: 40),
                                                   child: Align(
-                                                    alignment:
-                                                        Alignment.centerRight,
+                                                    alignment: Alignment.centerRight,
                                                     child: Container(
-                                                      decoration: BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          color:
-                                                              containerColor),
+                                                      decoration: BoxDecoration(shape: BoxShape.circle, color: containerColor),
                                                       child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
+                                                        padding: const EdgeInsets.all(8.0),
                                                         child: Text(
-                                                          (index + 1)
-                                                              .toString(),
-                                                          textAlign:
-                                                              TextAlign.center,
+                                                          (index + 1).toString(),
+                                                          textAlign: TextAlign.center,
                                                           style: TextStyle(
                                                             color: textColorOne,
                                                           ),
@@ -494,49 +402,32 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   ),
                                                 ),
                                                 Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: <Widget>[
                                                     Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
+                                                      mainAxisAlignment: MainAxisAlignment.start,
                                                       children: [
                                                         SizedBox(
                                                           height: 50,
-                                                          child:
-                                                              VerticalDivider(
+                                                          child: VerticalDivider(
                                                             // width: 14,
                                                             thickness: 3,
-                                                            color:
-                                                                verticalDividerOneColor,
+                                                            color: verticalDividerOneColor,
                                                           ),
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                           children: <Widget>[
                                                             Text(
                                                               playerPositionTitle,
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
-                                                            const SizedBox(
-                                                                height: 10),
+                                                            const SizedBox(height: 10),
                                                             Text(
                                                               '       ${(topGoalsPlayersStatsAndInfoNotifier.topGoalsPlayersStatsAndInfoList[index].playerPosition?.toUpperCase())!}',
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                           ],
                                                         ),
@@ -547,32 +438,22 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       children: [
                                                         SizedBox(
                                                           height: 50,
-                                                          child:
-                                                              VerticalDivider(
+                                                          child: VerticalDivider(
                                                             thickness: 3,
-                                                            color:
-                                                                verticalDividerTwoColor,
+                                                            color: verticalDividerTwoColor,
                                                           ),
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerPreferredFootTitle,
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
-                                                            const SizedBox(
-                                                                height: 10),
+                                                            const SizedBox(height: 10),
                                                             Text(
                                                               '       ${(topGoalsPlayersStatsAndInfoNotifier.topGoalsPlayersStatsAndInfoList[index].preferredFoot)!}',
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                           ],
                                                         ),
@@ -584,61 +465,41 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     ),
                                                     const SizedBox(height: 5),
                                                     Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                       children: <Widget>[
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerNameTitle,
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                             SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerThreeColor,
+                                                                color: verticalDividerThreeColor,
                                                               ),
                                                             ),
                                                             Text(
-                                                              topGoalsPlayersStatsAndInfoNotifier
-                                                                  .topGoalsPlayersStatsAndInfoList[
-                                                              index]
-                                                                  .playerName!,
-                                                              overflow:
-                                                              TextOverflow.clip,
+                                                              topGoalsPlayersStatsAndInfoNotifier.topGoalsPlayersStatsAndInfoList[index].playerName!,
+                                                              overflow: TextOverflow.clip,
                                                               style: TextStyle(
-                                                                color:
-                                                                playerNameColor,
+                                                                color: playerNameColor,
                                                               ),
                                                             ),
                                                           ],
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerGoalsScoredTitle,
                                                               style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color:
-                                                                    keyTextColor,
+                                                                fontWeight: FontWeight.bold,
+                                                                color: keyTextColor,
                                                               ),
                                                             ),
                                                             SizedBox(
@@ -646,48 +507,36 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerFourColor,
+                                                                color: verticalDividerFourColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '      ${topGoalsPlayersStatsAndInfoNotifier.topGoalsPlayersStatsAndInfoList[index].goalsScored}',
                                                               style: TextStyle(
-                                                                color:
-                                                                    keyTextColor,
+                                                                color: keyTextColor,
                                                               ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .right,
+                                                              textAlign: TextAlign.right,
                                                             ),
                                                           ],
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerMatchesPlayedTitle,
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                             SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 15,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerFiveColor,
+                                                                color: verticalDividerFiveColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '   ${topGoalsPlayersStatsAndInfoNotifier.topGoalsPlayersStatsAndInfoList[index].matchesPlayed} played',
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
                                                           ],
                                                         ),
@@ -700,9 +549,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                           ),
                                         ),
                                       ),
-                                      itemWidth:
-                                          MediaQuery.of(context).size.width *
-                                              0.9,
+                                      itemWidth: MediaQuery.of(context).size.width * 0.9,
                                       layout: SwiperLayout.DEFAULT,
                                     ),
                                   ),
@@ -726,62 +573,41 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                       }),
                                       child: Text(
                                         topAssistsPlayersTitle,
-                                        style: TextStyle(
-                                            color: topPlayersColor,
-                                            shadows: [
-                                              for (double i = 1;
-                                                  i < (isTextPressed ? 1 : 2);
-                                                  i++)
-                                                Shadow(
-                                                  color: shadowColor,
-                                                  blurRadius: 3 * i,
-                                                ),
-                                            ]),
+                                        style: TextStyle(color: topPlayersColor, shadows: [
+                                          for (double i = 1; i < (isTextPressed ? 1 : 2); i++)
+                                            Shadow(
+                                              color: shadowColor,
+                                              blurRadius: 3 * i,
+                                            ),
+                                        ]),
                                       ),
                                     )),
-                                if (mostAssistsPlayersStatsAndInfoNotifier
-                                    .mostAssistsPlayersStatsAndInfoList
-                                    .isEmpty) ...[
+                                if (mostAssistsPlayersStatsAndInfoNotifier.mostAssistsPlayersStatsAndInfoList.isEmpty) ...[
                                   Center(
                                     child: Container(
                                       height: 330,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                       child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.80,
+                                          width: MediaQuery.of(context).size.width * 0.80,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(children: <Widget>[
                                               Center(
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                         // height: 70,
@@ -795,8 +621,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Text(
                                                       topAssistsPlayersEmptyTitle,
                                                       style: TextStyle(
-                                                        color:
-                                                            topPlayersEmptyColor,
+                                                        color: topPlayersEmptyColor,
                                                       ),
                                                     )
                                                   ],
@@ -814,42 +639,26 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                 ] else ...[
                                   Container(
                                     height: 330,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                     child: Swiper(
                                       autoplay: true,
                                       viewportFraction: 0.8,
                                       scale: 0.9,
-                                      itemCount:
-                                          mostAssistsPlayersStatsAndInfoNotifier
-                                              .mostAssistsPlayersStatsAndInfoList
-                                              .length,
+                                      itemCount: mostAssistsPlayersStatsAndInfoNotifier.mostAssistsPlayersStatsAndInfoList.length,
                                       itemBuilder: (context, index) => Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.90,
+                                          width: MediaQuery.of(context).size.width * 0.90,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(
@@ -857,81 +666,47 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 Align(
                                                   alignment: Alignment.topRight,
                                                   child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            15.0),
+                                                    padding: const EdgeInsets.all(15.0),
                                                     child: Container(
                                                       width: 100.0,
                                                       height: 100.0,
                                                       decoration: BoxDecoration(
                                                         image: DecorationImage(
-                                                            alignment:
-                                                                const Alignment(
-                                                                    0, -1),
-                                                            image: CachedNetworkImageProvider(
-                                                                mostAssistsPlayersStatsAndInfoNotifier
-                                                                    .mostAssistsPlayersStatsAndInfoList[
-                                                                        index]
-                                                                    .image!),
+                                                            alignment: const Alignment(0, -1),
+                                                            image: CachedNetworkImageProvider(mostAssistsPlayersStatsAndInfoNotifier
+                                                                .mostAssistsPlayersStatsAndInfoList[index].image!),
                                                             fit: BoxFit.cover),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  10),
+                                                        borderRadius: const BorderRadius.only(
+                                                          topLeft: Radius.circular(10),
+                                                          bottomLeft: Radius.circular(10),
+                                                          topRight: Radius.circular(10),
+                                                          bottomRight: Radius.circular(10),
                                                         ),
-                                                        shape:
-                                                            BoxShape.rectangle,
+                                                        shape: BoxShape.rectangle,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 50.0, top: 40),
+                                                  padding: const EdgeInsets.only(right: 50.0, top: 40),
                                                   child: Align(
-                                                    alignment:
-                                                        Alignment.centerRight,
+                                                    alignment: Alignment.centerRight,
                                                     child: Container(
-                                                      decoration: BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          color:
-                                                              containerColor),
+                                                      decoration: BoxDecoration(shape: BoxShape.circle, color: containerColor),
                                                       child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
+                                                        padding: const EdgeInsets.all(8.0),
                                                         child: Text(
-                                                          (index + 1)
-                                                              .toString(),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                              color:
-                                                                  textColorOne),
+                                                          (index + 1).toString(),
+                                                          textAlign: TextAlign.center,
+                                                          style: TextStyle(color: textColorOne),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                                 Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: <Widget>[
                                                     Row(
                                                       children: [
@@ -943,24 +718,16 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               color: verticalDividerOneColor),
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerPositionTitle,
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
-                                                            const SizedBox(
-                                                                height: 10),
+                                                            const SizedBox(height: 10),
                                                             Text(
                                                               '       ${mostAssistsPlayersStatsAndInfoNotifier.mostAssistsPlayersStatsAndInfoList[index].playerPosition?.toUpperCase()}',
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                           ],
                                                         ),
@@ -971,30 +738,19 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       children: [
                                                         SizedBox(
                                                           height: 50,
-                                                          child: VerticalDivider(
-                                                              thickness: 3,
-                                                              color:
-                                                                  verticalDividerTwoColor),
+                                                          child: VerticalDivider(thickness: 3, color: verticalDividerTwoColor),
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerPreferredFootTitle,
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
-                                                            const SizedBox(
-                                                                height: 10),
+                                                            const SizedBox(height: 10),
                                                             Text(
                                                               '       ${mostAssistsPlayersStatsAndInfoNotifier.mostAssistsPlayersStatsAndInfoList[index].preferredFoot!}',
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                           ],
                                                         ),
@@ -1006,60 +762,36 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     ),
                                                     const SizedBox(height: 5),
                                                     Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                       children: <Widget>[
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerNameTitle,
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                             SizedBox(
                                                               width: 70,
-                                                              child: Divider(
-                                                                  indent: 5,
-                                                                  thickness: 3,
-                                                                  color:
-                                                                      verticalDividerThreeColor),
+                                                              child: Divider(indent: 5, thickness: 3, color: verticalDividerThreeColor),
                                                             ),
                                                             Text(
                                                               mostAssistsPlayersStatsAndInfoNotifier
-                                                                  .mostAssistsPlayersStatsAndInfoList[
-                                                                      index]
-                                                                  .playerName!,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .fade,
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorOne),
+                                                                  .mostAssistsPlayersStatsAndInfoList[index].playerName!,
+                                                              overflow: TextOverflow.fade,
+                                                              style: TextStyle(color: textColorOne),
                                                             ),
                                                           ],
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerAssistsTitle,
                                                               style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color:
-                                                                    keyTextColor,
+                                                                fontWeight: FontWeight.bold,
+                                                                color: keyTextColor,
                                                               ),
                                                             ),
                                                             SizedBox(
@@ -1067,48 +799,36 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerFourColor,
+                                                                color: verticalDividerFourColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '      ${mostAssistsPlayersStatsAndInfoNotifier.mostAssistsPlayersStatsAndInfoList[index].assists}',
                                                               style: TextStyle(
-                                                                color:
-                                                                    keyTextColor,
+                                                                color: keyTextColor,
                                                               ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .right,
+                                                              textAlign: TextAlign.right,
                                                             ),
                                                           ],
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerMatchesPlayedTitle,
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                             SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 15,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerFiveColor,
+                                                                color: verticalDividerFiveColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '   ${mostAssistsPlayersStatsAndInfoNotifier.mostAssistsPlayersStatsAndInfoList[index].matchesPlayed} played',
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
                                                           ],
                                                         )
@@ -1121,9 +841,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                           ),
                                         ),
                                       ),
-                                      itemWidth:
-                                          MediaQuery.of(context).size.width *
-                                              0.9,
+                                      itemWidth: MediaQuery.of(context).size.width * 0.9,
                                       layout: SwiperLayout.DEFAULT,
                                     ),
                                   ),
@@ -1137,8 +855,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 20, left: 22, bottom: 15),
+                                    padding: const EdgeInsets.only(top: 20, left: 22, bottom: 15),
                                     child: Listener(
                                       onPointerDown: (_) => setState(() {
                                         isTextPressed = true;
@@ -1148,59 +865,42 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                       }),
                                       child: Text(
                                         topYellowCardedPlayersTitle,
-                                        style: TextStyle(
-                                            color: topPlayersColor,
-                                            shadows: [
-                                              for (double i = 1;
-                                                  i < (isTextPressed ? 1 : 2);
-                                                  i++)
-                                                Shadow(
-                                                  color: shadowColor,
-                                                  blurRadius: 3 * i,
-                                                ),
-                                            ]),
+                                        style: TextStyle(color: topPlayersColor, shadows: [
+                                          for (double i = 1; i < (isTextPressed ? 1 : 2); i++)
+                                            Shadow(
+                                              color: shadowColor,
+                                              blurRadius: 3 * i,
+                                            ),
+                                        ]),
                                       ),
                                     )),
-                                if (mostFouledYCPlayersStatsAndInfoNotifier
-                                    .mostFouledYCPlayersStatsAndInfoList
-                                    .isEmpty) ...[
+                                if (mostFouledYCPlayersStatsAndInfoNotifier.mostFouledYCPlayersStatsAndInfoList.isEmpty) ...[
                                   Center(
                                     child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      width: MediaQuery.of(context).size.width *
-                                          0.6,
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                                      width: MediaQuery.of(context).size.width * 0.6,
                                       height: 250,
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.35,
+                                          width: MediaQuery.of(context).size.width * 0.35,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 30,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight: Radius.circular(70),
-                                                  bottomLeft:
-                                                      Radius.circular(7),
-                                                  topLeft: Radius.circular(7),
-                                                  bottomRight:
-                                                      Radius.circular(7)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.circular(70),
+                                              bottomLeft: Radius.circular(7),
+                                              topLeft: Radius.circular(7),
+                                              bottomRight: Radius.circular(7)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(children: <Widget>[
                                               Center(
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                         // height: 70,
@@ -1231,9 +931,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                   ),
                                 ] else ...[
                                   Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                     width: MediaQuery.of(context).size.width,
                                     height: 250,
                                     child: Center(
@@ -1241,125 +939,66 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         autoplay: true,
                                         viewportFraction: 0.8,
                                         scale: 0.9,
-                                        itemCount:
-                                            mostFouledYCPlayersStatsAndInfoNotifier
-                                                .mostFouledYCPlayersStatsAndInfoList
-                                                .length,
+                                        itemCount: mostFouledYCPlayersStatsAndInfoNotifier.mostFouledYCPlayersStatsAndInfoList.length,
                                         itemBuilder: (context, index) => Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Stack(
                                               children: <Widget>[
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
+                                                  padding: const EdgeInsets.all(8.0),
                                                   child: ClayContainer(
-                                                      width: MediaQuery.of(
-                                                                  context)
-                                                              .size
-                                                              .width *
-                                                          0.35,
+                                                      width: MediaQuery.of(context).size.width * 0.35,
                                                       emboss: true,
                                                       spread: 2,
                                                       color: clayContainerColor,
                                                       depth: 30,
-                                                      curveType:
-                                                          CurveType.concave,
-                                                      customBorderRadius:
-                                                          const BorderRadius
-                                                                  .only(
-                                                              topRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          70),
-                                                              bottomLeft: Radius
-                                                                  .circular(7),
-                                                              topLeft: Radius
-                                                                  .circular(7),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          7)),
+                                                      curveType: CurveType.concave,
+                                                      customBorderRadius: const BorderRadius.only(
+                                                          topRight: Radius.circular(70),
+                                                          bottomLeft: Radius.circular(7),
+                                                          topLeft: Radius.circular(7),
+                                                          bottomRight: Radius.circular(7)),
                                                       child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 8,
-                                                                right: 8,
-                                                                top: 70),
+                                                        padding: const EdgeInsets.only(left: 8, right: 8, top: 70),
                                                         child: Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
+                                                          mainAxisAlignment: MainAxisAlignment.start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          mainAxisSize: MainAxisSize.min,
                                                           children: <Widget>[
                                                             Text(
                                                               playerYellowCardedTitle,
                                                               style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color:
-                                                                    keyTextTwoColor,
+                                                                fontWeight: FontWeight.bold,
+                                                                color: keyTextTwoColor,
                                                               ),
                                                             ),
                                                             Text(mostFouledYCPlayersStatsAndInfoNotifier
-                                                                .mostFouledYCPlayersStatsAndInfoList[
-                                                                    index]
-                                                                .yellowCard
+                                                                .mostFouledYCPlayersStatsAndInfoList[index].yellowCard
                                                                 .toString()),
-                                                            const SizedBox(
-                                                                height: 5),
+                                                            const SizedBox(height: 5),
                                                             Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left:
-                                                                          40.0),
+                                                              padding: const EdgeInsets.only(left: 40.0),
                                                               child: Container(
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    color:
-                                                                        containerColor),
+                                                                decoration: BoxDecoration(shape: BoxShape.circle, color: containerColor),
                                                                 child: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                              .all(
-                                                                          8.0),
+                                                                  padding: const EdgeInsets.all(8.0),
                                                                   child: Text(
-                                                                    (index + 1)
-                                                                        .toString(),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
+                                                                    (index + 1).toString(),
+                                                                    textAlign: TextAlign.center,
                                                                   ),
                                                                 ),
                                                               ),
                                                             ),
-                                                            const SizedBox(
-                                                                height: 15),
+                                                            const SizedBox(height: 15),
                                                             Center(
                                                               child: Text(
                                                                 mostFouledYCPlayersStatsAndInfoNotifier
-                                                                    .mostFouledYCPlayersStatsAndInfoList[
-                                                                        index]
-                                                                    .playerName!,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  color:
-                                                                      playerNameColor,
+                                                                    .mostFouledYCPlayersStatsAndInfoList[index].playerName!,
+                                                                overflow: TextOverflow.ellipsis,
+                                                                style: TextStyle(
+                                                                  fontWeight: FontWeight.bold,
+                                                                  color: playerNameColor,
                                                                 ),
                                                               ),
                                                             ),
@@ -1377,31 +1016,18 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   depth: 49,
                                                   // borderRadius: 75,
                                                   curveType: CurveType.concave,
-                                                  customBorderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(40)),
+                                                  customBorderRadius: const BorderRadius.all(Radius.circular(40)),
                                                   child: Container(
                                                     width: 70.0,
                                                     height: 70.0,
                                                     decoration: BoxDecoration(
-                                                        color:
-                                                            Colors.transparent,
+                                                        color: Colors.transparent,
                                                         shape: BoxShape.circle,
                                                         image: DecorationImage(
-                                                            colorFilter:
-                                                                const ColorFilter
-                                                                        .mode(
-                                                                    Colors.grey,
-                                                                    BlendMode
-                                                                        .saturation),
-                                                            alignment:
-                                                                const Alignment(
-                                                                    0, -1),
-                                                            image: CachedNetworkImageProvider(
-                                                                mostFouledYCPlayersStatsAndInfoNotifier
-                                                                    .mostFouledYCPlayersStatsAndInfoList[
-                                                                        index]
-                                                                    .image!),
+                                                            colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.saturation),
+                                                            alignment: const Alignment(0, -1),
+                                                            image: CachedNetworkImageProvider(mostFouledYCPlayersStatsAndInfoNotifier
+                                                                .mostFouledYCPlayersStatsAndInfoList[index].image!),
                                                             fit: BoxFit.cover)),
                                                   ),
                                                 ),
@@ -1410,9 +1036,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                             const SizedBox(width: 20),
                                           ],
                                         ),
-                                        control: const SwiperControl(
-                                            color: Color.fromRGBO(
-                                                109, 101, 72, 1.0)),
+                                        control: const SwiperControl(color: Color.fromRGBO(109, 101, 72, 1.0)),
                                         itemWidth: 250,
                                         layout: SwiperLayout.STACK,
                                       ),
@@ -1428,8 +1052,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 20, left: 22, bottom: 15),
+                                    padding: const EdgeInsets.only(top: 20, left: 22, bottom: 15),
                                     child: Listener(
                                       onPointerDown: (_) => setState(() {
                                         isTextPressed = true;
@@ -1439,59 +1062,42 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                       }),
                                       child: Text(
                                         topRedCardedPlayersTitle,
-                                        style: TextStyle(
-                                            color: topPlayersColor,
-                                            shadows: [
-                                              for (double i = 1;
-                                                  i < (isTextPressed ? 1 : 2);
-                                                  i++)
-                                                Shadow(
-                                                  color: shadowColor,
-                                                  blurRadius: 3 * i,
-                                                ),
-                                            ]),
+                                        style: TextStyle(color: topPlayersColor, shadows: [
+                                          for (double i = 1; i < (isTextPressed ? 1 : 2); i++)
+                                            Shadow(
+                                              color: shadowColor,
+                                              blurRadius: 3 * i,
+                                            ),
+                                        ]),
                                       ),
                                     )),
-                                if (mostFouledRCPlayersStatsAndInfoNotifier
-                                    .mostFouledRCPlayersStatsAndInfoList
-                                    .isEmpty) ...[
+                                if (mostFouledRCPlayersStatsAndInfoNotifier.mostFouledRCPlayersStatsAndInfoList.isEmpty) ...[
                                   Center(
                                     child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      width: MediaQuery.of(context).size.width *
-                                          0.6,
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                                      width: MediaQuery.of(context).size.width * 0.6,
                                       height: 270,
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.35,
+                                          width: MediaQuery.of(context).size.width * 0.35,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 30,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight: Radius.circular(70),
-                                                  bottomLeft:
-                                                      Radius.circular(7),
-                                                  topLeft: Radius.circular(7),
-                                                  bottomRight:
-                                                      Radius.circular(7)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.circular(70),
+                                              bottomLeft: Radius.circular(7),
+                                              topLeft: Radius.circular(7),
+                                              bottomRight: Radius.circular(7)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(children: <Widget>[
                                               Center(
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                         // height: 70,
@@ -1505,11 +1111,9 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Text(
                                                       topRedCardedPlayersEmptyTitle,
                                                       style: TextStyle(
-                                                        color:
-                                                            topPlayersEmptyColor,
+                                                        color: topPlayersEmptyColor,
                                                       ),
-                                                      textAlign:
-                                                          TextAlign.center,
+                                                      textAlign: TextAlign.center,
                                                     )
                                                   ],
                                                 ),
@@ -1525,9 +1129,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                   ),
                                 ] else ...[
                                   Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                     width: MediaQuery.of(context).size.width,
                                     height: 250,
                                     child: Center(
@@ -1535,125 +1137,66 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         autoplay: true,
                                         viewportFraction: 0.8,
                                         scale: 0.9,
-                                        itemCount:
-                                            mostFouledRCPlayersStatsAndInfoNotifier
-                                                .mostFouledRCPlayersStatsAndInfoList
-                                                .length,
+                                        itemCount: mostFouledRCPlayersStatsAndInfoNotifier.mostFouledRCPlayersStatsAndInfoList.length,
                                         itemBuilder: (context, index) => Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Stack(
                                               children: <Widget>[
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
+                                                  padding: const EdgeInsets.all(8.0),
                                                   child: ClayContainer(
-                                                      width: MediaQuery.of(
-                                                                  context)
-                                                              .size
-                                                              .width *
-                                                          0.35,
+                                                      width: MediaQuery.of(context).size.width * 0.35,
                                                       emboss: true,
                                                       spread: 2,
                                                       color: clayContainerColor,
                                                       depth: 49,
-                                                      curveType:
-                                                          CurveType.concave,
-                                                      customBorderRadius:
-                                                          const BorderRadius
-                                                                  .only(
-                                                              topRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          70),
-                                                              bottomLeft: Radius
-                                                                  .circular(7),
-                                                              topLeft: Radius
-                                                                  .circular(7),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          7)),
+                                                      curveType: CurveType.concave,
+                                                      customBorderRadius: const BorderRadius.only(
+                                                          topRight: Radius.circular(70),
+                                                          bottomLeft: Radius.circular(7),
+                                                          topLeft: Radius.circular(7),
+                                                          bottomRight: Radius.circular(7)),
                                                       child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 8,
-                                                                right: 8,
-                                                                top: 70),
+                                                        padding: const EdgeInsets.only(left: 8, right: 8, top: 70),
                                                         child: Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
+                                                          mainAxisAlignment: MainAxisAlignment.start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          mainAxisSize: MainAxisSize.min,
                                                           children: <Widget>[
                                                             Text(
                                                               playerRedCardedTitle,
                                                               style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color:
-                                                                    keyTextThreeColor,
+                                                                fontWeight: FontWeight.bold,
+                                                                color: keyTextThreeColor,
                                                               ),
                                                             ),
                                                             Text(mostFouledRCPlayersStatsAndInfoNotifier
-                                                                .mostFouledRCPlayersStatsAndInfoList[
-                                                                    index]
-                                                                .redCard
+                                                                .mostFouledRCPlayersStatsAndInfoList[index].redCard
                                                                 .toString()),
-                                                            const SizedBox(
-                                                                height: 5),
+                                                            const SizedBox(height: 5),
                                                             Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left:
-                                                                          40.0),
+                                                              padding: const EdgeInsets.only(left: 40.0),
                                                               child: Container(
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    color:
-                                                                        containerColor),
+                                                                decoration: BoxDecoration(shape: BoxShape.circle, color: containerColor),
                                                                 child: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                              .all(
-                                                                          8.0),
+                                                                  padding: const EdgeInsets.all(8.0),
                                                                   child: Text(
-                                                                    (index + 1)
-                                                                        .toString(),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
+                                                                    (index + 1).toString(),
+                                                                    textAlign: TextAlign.center,
                                                                   ),
                                                                 ),
                                                               ),
                                                             ),
-                                                            const SizedBox(
-                                                                height: 15),
+                                                            const SizedBox(height: 15),
                                                             Center(
                                                               child: Text(
                                                                 mostFouledRCPlayersStatsAndInfoNotifier
-                                                                    .mostFouledRCPlayersStatsAndInfoList[
-                                                                        index]
-                                                                    .playerName!,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                style:
-                                                                TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  color:
-                                                                      playerNameColor,
+                                                                    .mostFouledRCPlayersStatsAndInfoList[index].playerName!,
+                                                                overflow: TextOverflow.ellipsis,
+                                                                style: TextStyle(
+                                                                  fontWeight: FontWeight.bold,
+                                                                  color: playerNameColor,
                                                                 ),
                                                               ),
                                                             ),
@@ -1671,31 +1214,18 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   depth: 49,
                                                   // borderRadius: 75,
                                                   curveType: CurveType.concave,
-                                                  customBorderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(40)),
+                                                  customBorderRadius: const BorderRadius.all(Radius.circular(40)),
                                                   child: Container(
                                                     width: 70.0,
                                                     height: 70.0,
                                                     decoration: BoxDecoration(
-                                                        color:
-                                                            Colors.transparent,
+                                                        color: Colors.transparent,
                                                         shape: BoxShape.circle,
                                                         image: DecorationImage(
-                                                            colorFilter:
-                                                                const ColorFilter
-                                                                        .mode(
-                                                                    Colors.grey,
-                                                                    BlendMode
-                                                                        .saturation),
-                                                            alignment:
-                                                                const Alignment(
-                                                                    0, -1),
-                                                            image: CachedNetworkImageProvider(
-                                                                mostFouledRCPlayersStatsAndInfoNotifier
-                                                                    .mostFouledRCPlayersStatsAndInfoList[
-                                                                        index]
-                                                                    .image!),
+                                                            colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.saturation),
+                                                            alignment: const Alignment(0, -1),
+                                                            image: CachedNetworkImageProvider(mostFouledRCPlayersStatsAndInfoNotifier
+                                                                .mostFouledRCPlayersStatsAndInfoList[index].image!),
                                                             fit: BoxFit.cover)),
                                                   ),
                                                 ),
@@ -1732,61 +1262,41 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                       }),
                                       child: Text(
                                         topGoalkeepersTitle,
-                                        style: TextStyle(
-                                            color: topPlayersColor,
-                                            shadows: [
-                                              for (double i = 1;
-                                                  i < (isTextPressed ? 1 : 2);
-                                                  i++)
-                                                Shadow(
-                                                  color: shadowColor,
-                                                  blurRadius: 3 * i,
-                                                ),
-                                            ]),
+                                        style: TextStyle(color: topPlayersColor, shadows: [
+                                          for (double i = 1; i < (isTextPressed ? 1 : 2); i++)
+                                            Shadow(
+                                              color: shadowColor,
+                                              blurRadius: 3 * i,
+                                            ),
+                                        ]),
                                       ),
                                     )),
-                                if (topGKPlayersStatsAndInfoNotifier
-                                    .topGKPlayersStatsAndInfoList.isEmpty) ...[
+                                if (topGKPlayersStatsAndInfoNotifier.topGKPlayersStatsAndInfoList.isEmpty) ...[
                                   Center(
                                     child: Container(
                                       height: 330,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                       child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.80,
+                                          width: MediaQuery.of(context).size.width * 0.80,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(children: <Widget>[
                                               Center(
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                         // height: 70,
@@ -1800,8 +1310,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     Text(
                                                       topGoalkeepersEmptyTitle,
                                                       style: TextStyle(
-                                                        color:
-                                                            topPlayersEmptyColor,
+                                                        color: topPlayersEmptyColor,
                                                       ),
                                                     )
                                                   ],
@@ -1819,42 +1328,26 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                 ] else ...[
                                   Container(
                                     height: 330,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                     child: Swiper(
                                       autoplay: true,
                                       viewportFraction: 0.8,
                                       scale: 0.9,
-                                      itemCount:
-                                          topGKPlayersStatsAndInfoNotifier
-                                              .topGKPlayersStatsAndInfoList
-                                              .length,
+                                      itemCount: topGKPlayersStatsAndInfoNotifier.topGKPlayersStatsAndInfoList.length,
                                       itemBuilder: (context, index) => Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.90,
+                                          width: MediaQuery.of(context).size.width * 0.90,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(
@@ -1862,67 +1355,38 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 Align(
                                                   alignment: Alignment.topRight,
                                                   child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            15.0),
+                                                    padding: const EdgeInsets.all(15.0),
                                                     child: Container(
                                                       width: 100.0,
                                                       height: 100.0,
                                                       decoration: BoxDecoration(
                                                         image: DecorationImage(
-                                                            alignment:
-                                                                const Alignment(
-                                                                    0, -1),
+                                                            alignment: const Alignment(0, -1),
                                                             image: CachedNetworkImageProvider(
-                                                                topGKPlayersStatsAndInfoNotifier
-                                                                    .topGKPlayersStatsAndInfoList[
-                                                                        index]
-                                                                    .image!),
+                                                                topGKPlayersStatsAndInfoNotifier.topGKPlayersStatsAndInfoList[index].image!),
                                                             fit: BoxFit.cover),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  10),
+                                                        borderRadius: const BorderRadius.only(
+                                                          topLeft: Radius.circular(10),
+                                                          bottomLeft: Radius.circular(10),
+                                                          topRight: Radius.circular(10),
+                                                          bottomRight: Radius.circular(10),
                                                         ),
-                                                        shape:
-                                                            BoxShape.rectangle,
+                                                        shape: BoxShape.rectangle,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 50.0, top: 40),
+                                                  padding: const EdgeInsets.only(right: 50.0, top: 40),
                                                   child: Align(
-                                                    alignment:
-                                                        Alignment.centerRight,
+                                                    alignment: Alignment.centerRight,
                                                     child: Container(
-                                                      decoration: BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          color:
-                                                              containerColor),
+                                                      decoration: BoxDecoration(shape: BoxShape.circle, color: containerColor),
                                                       child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
+                                                        padding: const EdgeInsets.all(8.0),
                                                         child: Text(
-                                                          (index + 1)
-                                                              .toString(),
-                                                          textAlign:
-                                                              TextAlign.center,
+                                                          (index + 1).toString(),
+                                                          textAlign: TextAlign.center,
                                                           style: TextStyle(
                                                             color: textColorOne,
                                                           ),
@@ -1932,43 +1396,30 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   ),
                                                 ),
                                                 Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: <Widget>[
                                                     Row(
                                                       children: [
                                                         SizedBox(
                                                           height: 50,
-                                                          child:
-                                                              VerticalDivider(
+                                                          child: VerticalDivider(
                                                             // width: 14,
                                                             thickness: 3,
-                                                            color:
-                                                                verticalDividerOneColor,
+                                                            color: verticalDividerOneColor,
                                                           ),
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerPositionTitle,
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
-                                                            const SizedBox(
-                                                                height: 10),
+                                                            const SizedBox(height: 10),
                                                             Text(
                                                               '       ${topGKPlayersStatsAndInfoNotifier.topGKPlayersStatsAndInfoList[index].playerPosition?.toUpperCase()}',
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                           ],
                                                         ),
@@ -1979,37 +1430,25 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       children: [
                                                         SizedBox(
                                                           height: 50,
-                                                          child:
-                                                              VerticalDivider(
+                                                          child: VerticalDivider(
                                                             thickness: 3,
-                                                            color:
-                                                                verticalDividerTwoColor,
+                                                            color: verticalDividerTwoColor,
                                                           ),
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerNameTitle,
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
-                                                            const SizedBox(
-                                                                height: 10),
+                                                            const SizedBox(height: 10),
                                                             Text(
                                                               '       ${topGKPlayersStatsAndInfoNotifier.topGKPlayersStatsAndInfoList[index].playerName!}',
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .fade,
+                                                              overflow: TextOverflow.fade,
                                                               style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color:
-                                                                    playerNameColor,
+                                                                fontWeight: FontWeight.bold,
+                                                                color: playerNameColor,
                                                               ),
                                                             ),
                                                           ],
@@ -2022,103 +1461,72 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     ),
                                                     const SizedBox(height: 5),
                                                     Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                       children: <Widget>[
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerGoalsConcededTitle,
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                             SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerThreeColor,
+                                                                color: verticalDividerThreeColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '      ${topGKPlayersStatsAndInfoNotifier.topGKPlayersStatsAndInfoList[index].goalsConcededGkDef.toString()}',
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
                                                           ],
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerCleanSheetTitle,
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  color:
-                                                                      keyTextColor),
+                                                              style: TextStyle(fontWeight: FontWeight.bold, color: keyTextColor),
                                                             ),
                                                             SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerFourColor,
+                                                                color: verticalDividerFourColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '      ${topGKPlayersStatsAndInfoNotifier.topGKPlayersStatsAndInfoList[index].cleanSheetGk}',
                                                               style: TextStyle(
-                                                                color:
-                                                                    keyTextColor,
+                                                                color: keyTextColor,
                                                               ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .right,
+                                                              textAlign: TextAlign.right,
                                                             ),
                                                           ],
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerMatchesPlayedTitle,
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                             SizedBox(
                                                               width: 60,
                                                               child: Divider(
                                                                 indent: 10,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerFiveColor,
+                                                                color: verticalDividerFiveColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '${topGKPlayersStatsAndInfoNotifier.topGKPlayersStatsAndInfoList[index].matchesPlayed} played',
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
                                                           ],
                                                         )
@@ -2131,9 +1539,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                           ),
                                         ),
                                       ),
-                                      itemWidth:
-                                          MediaQuery.of(context).size.width *
-                                              0.9,
+                                      itemWidth: MediaQuery.of(context).size.width * 0.9,
                                       layout: SwiperLayout.DEFAULT,
                                     ),
                                   ),
@@ -2157,55 +1563,37 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                       }),
                                       child: Text(
                                         topDefensivePlayersTitle,
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                140, 112, 84, 1.0),
-                                            shadows: [
-                                              for (double i = 1;
-                                                  i < (isTextPressed ? 1 : 2);
-                                                  i++)
-                                                Shadow(
-                                                  color: shadowColor,
-                                                  blurRadius: 3 * i,
-                                                ),
-                                            ]),
+                                        style: TextStyle(color: const Color.fromRGBO(140, 112, 84, 1.0), shadows: [
+                                          for (double i = 1; i < (isTextPressed ? 1 : 2); i++)
+                                            Shadow(
+                                              color: shadowColor,
+                                              blurRadius: 3 * i,
+                                            ),
+                                        ]),
                                       ),
                                     )),
                                 Container(
                                   height: 330,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10)),
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                   child: Swiper(
                                     autoplay: true,
                                     viewportFraction: 0.8,
                                     scale: 0.9,
-                                    itemCount:
-                                        topDefensivePlayersStatsAndInfoNotifier
-                                            .topDefensivePlayersStatsAndInfoList
-                                            .length,
+                                    itemCount: topDefensivePlayersStatsAndInfoNotifier.topDefensivePlayersStatsAndInfoList.length,
                                     itemBuilder: (context, index) => Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 18,
-                                          bottom: 18,
-                                          left: 8,
-                                          right: 8),
+                                      padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                       child: ClayContainer(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.90,
+                                        width: MediaQuery.of(context).size.width * 0.90,
                                         emboss: true,
                                         spread: 2,
                                         color: clayContainerColor,
                                         depth: 20,
                                         curveType: CurveType.concave,
-                                        customBorderRadius:
-                                            const BorderRadius.only(
-                                                topRight:
-                                                    Radius.elliptical(70, 70),
-                                                bottomLeft: Radius.circular(10),
-                                                topLeft: Radius.circular(10),
-                                                bottomRight:
-                                                    Radius.circular(10)),
+                                        customBorderRadius: const BorderRadius.only(
+                                            topRight: Radius.elliptical(70, 70),
+                                            bottomLeft: Radius.circular(10),
+                                            topLeft: Radius.circular(10),
+                                            bottomRight: Radius.circular(10)),
                                         child: Padding(
                                           padding: const EdgeInsets.all(15.0),
                                           child: Stack(
@@ -2213,33 +1601,21 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               Align(
                                                 alignment: Alignment.topRight,
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      15.0),
+                                                  padding: const EdgeInsets.all(15.0),
                                                   child: Container(
                                                     width: 100.0,
                                                     height: 100.0,
                                                     decoration: BoxDecoration(
                                                       image: DecorationImage(
-                                                          alignment:
-                                                              const Alignment(
-                                                                  0, -1),
-                                                          image: CachedNetworkImageProvider(
-                                                              topDefensivePlayersStatsAndInfoNotifier
-                                                                  .topDefensivePlayersStatsAndInfoList[
-                                                                      index]
-                                                                  .image!),
+                                                          alignment: const Alignment(0, -1),
+                                                          image: CachedNetworkImageProvider(topDefensivePlayersStatsAndInfoNotifier
+                                                              .topDefensivePlayersStatsAndInfoList[index].image!),
                                                           fit: BoxFit.cover),
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                              .only(
-                                                        topLeft:
-                                                            Radius.circular(10),
-                                                        bottomLeft:
-                                                            Radius.circular(10),
-                                                        topRight:
-                                                            Radius.circular(10),
-                                                        bottomRight:
-                                                            Radius.circular(10),
+                                                      borderRadius: const BorderRadius.only(
+                                                        topLeft: Radius.circular(10),
+                                                        bottomLeft: Radius.circular(10),
+                                                        topRight: Radius.circular(10),
+                                                        bottomRight: Radius.circular(10),
                                                       ),
                                                       shape: BoxShape.rectangle,
                                                     ),
@@ -2247,23 +1623,16 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 50.0, top: 40),
+                                                padding: const EdgeInsets.only(right: 50.0, top: 40),
                                                 child: Align(
-                                                  alignment:
-                                                      Alignment.centerRight,
+                                                  alignment: Alignment.centerRight,
                                                   child: Container(
-                                                    decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        color: containerColor),
+                                                    decoration: BoxDecoration(shape: BoxShape.circle, color: containerColor),
                                                     child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
+                                                      padding: const EdgeInsets.all(8.0),
                                                       child: Text(
                                                         (index + 1).toString(),
-                                                        textAlign:
-                                                            TextAlign.center,
+                                                        textAlign: TextAlign.center,
                                                         style: TextStyle(
                                                           color: textColorOne,
                                                         ),
@@ -2273,11 +1642,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 ),
                                               ),
                                               Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Row(
                                                     children: [
@@ -2286,29 +1652,20 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                         child: VerticalDivider(
                                                           // width: 14,
                                                           thickness: 3,
-                                                          color:
-                                                              verticalDividerOneColor,
+                                                          color: verticalDividerOneColor,
                                                         ),
                                                       ),
                                                       Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: <Widget>[
                                                           Text(
                                                             playerPositionTitle,
-                                                            style: TextStyle(
-                                                                color:
-                                                                    textColorTwo),
+                                                            style: TextStyle(color: textColorTwo),
                                                           ),
-                                                          const SizedBox(
-                                                              height: 10),
+                                                          const SizedBox(height: 10),
                                                           Text(
                                                             '       ${topDefensivePlayersStatsAndInfoNotifier.topDefensivePlayersStatsAndInfoList[index].playerPosition?.toUpperCase()}',
-                                                            style: const TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
+                                                            style: const TextStyle(fontWeight: FontWeight.bold),
                                                           ),
                                                         ],
                                                       ),
@@ -2321,29 +1678,20 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                         height: 50,
                                                         child: VerticalDivider(
                                                           thickness: 3,
-                                                          color:
-                                                              verticalDividerTwoColor,
+                                                          color: verticalDividerTwoColor,
                                                         ),
                                                       ),
                                                       Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: <Widget>[
                                                           Text(
                                                             playerPreferredFootTitle,
-                                                            style: TextStyle(
-                                                                color:
-                                                                    textColorTwo),
+                                                            style: TextStyle(color: textColorTwo),
                                                           ),
-                                                          const SizedBox(
-                                                              height: 10),
+                                                          const SizedBox(height: 10),
                                                           Text(
                                                             '       ${topDefensivePlayersStatsAndInfoNotifier.topDefensivePlayersStatsAndInfoList[index].preferredFoot!}',
-                                                            style: const TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
+                                                            style: const TextStyle(fontWeight: FontWeight.bold),
                                                           ),
                                                         ],
                                                       ),
@@ -2355,59 +1703,41 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   ),
                                                   const SizedBox(height: 5),
                                                   Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                     children: <Widget>[
                                                       Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: <Widget>[
                                                           Text(
                                                             playerNameTitle,
-                                                            style: const TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
+                                                            style: const TextStyle(fontWeight: FontWeight.bold),
                                                           ),
                                                           SizedBox(
                                                             width: 70,
                                                             child: Divider(
                                                               indent: 5,
                                                               thickness: 3,
-                                                              color:
-                                                                  verticalDividerThreeColor,
+                                                              color: verticalDividerThreeColor,
                                                             ),
                                                           ),
                                                           Text(
                                                             '   ${topDefensivePlayersStatsAndInfoNotifier.topDefensivePlayersStatsAndInfoList[index].playerName!}',
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .fade,
+                                                            overflow: TextOverflow.fade,
                                                             style: TextStyle(
-                                                              color:
-                                                                  playerNameColor,
+                                                              color: playerNameColor,
                                                             ),
                                                           ),
                                                         ],
                                                       ),
                                                       Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: <Widget>[
                                                           Text(
                                                             playerGoalsConcededTitle,
                                                             style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              color:
-                                                                  keyTextColor,
+                                                              fontWeight: FontWeight.bold,
+                                                              color: keyTextColor,
                                                             ),
                                                           ),
                                                           SizedBox(
@@ -2415,47 +1745,36 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                             child: Divider(
                                                               indent: 5,
                                                               thickness: 3,
-                                                              color:
-                                                                  verticalDividerFourColor,
+                                                              color: verticalDividerFourColor,
                                                             ),
                                                           ),
                                                           Text(
                                                             '      ${topDefensivePlayersStatsAndInfoNotifier.topDefensivePlayersStatsAndInfoList[index].goalsConcededGkDef}',
                                                             style: TextStyle(
-                                                              color:
-                                                                  keyTextColor,
+                                                              color: keyTextColor,
                                                             ),
-                                                            textAlign:
-                                                                TextAlign.right,
+                                                            textAlign: TextAlign.right,
                                                           ),
                                                         ],
                                                       ),
                                                       Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: <Widget>[
                                                           Text(
                                                             playerMatchesPlayedTitle,
-                                                            style: const TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
+                                                            style: const TextStyle(fontWeight: FontWeight.bold),
                                                           ),
                                                           SizedBox(
                                                             width: 60,
                                                             child: Divider(
                                                               indent: 10,
                                                               thickness: 3,
-                                                              color:
-                                                                  verticalDividerFiveColor,
+                                                              color: verticalDividerFiveColor,
                                                             ),
                                                           ),
                                                           Text(
                                                             '${topDefensivePlayersStatsAndInfoNotifier.topDefensivePlayersStatsAndInfoList[index].matchesPlayed} played',
-                                                            style: TextStyle(
-                                                                color:
-                                                                    textColorTwo),
+                                                            style: TextStyle(color: textColorTwo),
                                                           ),
                                                         ],
                                                       )
@@ -2468,8 +1787,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         ),
                                       ),
                                     ),
-                                    itemWidth:
-                                        MediaQuery.of(context).size.width * 0.9,
+                                    itemWidth: MediaQuery.of(context).size.width * 0.9,
                                     layout: SwiperLayout.DEFAULT,
                                   ),
                                 ),
@@ -2492,61 +1810,41 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                       }),
                                       child: Text(
                                         weeklyMOTMPlayersTitle,
-                                        style: TextStyle(
-                                            color: topPlayersColor,
-                                            shadows: [
-                                              for (double i = 1;
-                                                  i < (isTextPressed ? 1 : 2);
-                                                  i++)
-                                                Shadow(
-                                                  color: shadowColor,
-                                                  blurRadius: 3 * i,
-                                                ),
-                                            ]),
+                                        style: TextStyle(color: topPlayersColor, shadows: [
+                                          for (double i = 1; i < (isTextPressed ? 1 : 2); i++)
+                                            Shadow(
+                                              color: shadowColor,
+                                              blurRadius: 3 * i,
+                                            ),
+                                        ]),
                                       ),
                                     )),
-                                if (motmPlayersStatsAndInfoNotifier
-                                    .mOTMPlayersStatsAndInfoList.isEmpty) ...[
+                                if (motmPlayersStatsAndInfoNotifier.mOTMPlayersStatsAndInfoList.isEmpty) ...[
                                   Center(
                                     child: Container(
                                       height: 330,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                       child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.80,
+                                          width: MediaQuery.of(context).size.width * 0.80,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(children: <Widget>[
                                               Center(
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                         // height: 70,
@@ -2578,40 +1876,26 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                 ] else ...[
                                   Container(
                                     height: 330,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                     child: Swiper(
                                       autoplay: true,
                                       viewportFraction: 0.8,
                                       scale: 0.9,
-                                      itemCount: motmPlayersStatsAndInfoNotifier
-                                          .mOTMPlayersStatsAndInfoList.length,
+                                      itemCount: motmPlayersStatsAndInfoNotifier.mOTMPlayersStatsAndInfoList.length,
                                       itemBuilder: (context, index) => Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.90,
+                                          width: MediaQuery.of(context).size.width * 0.90,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(
@@ -2619,67 +1903,38 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 Align(
                                                   alignment: Alignment.topRight,
                                                   child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            15.0),
+                                                    padding: const EdgeInsets.all(15.0),
                                                     child: Container(
                                                       width: 100.0,
                                                       height: 100.0,
                                                       decoration: BoxDecoration(
                                                         image: DecorationImage(
-                                                            alignment:
-                                                                const Alignment(
-                                                                    0, -1),
+                                                            alignment: const Alignment(0, -1),
                                                             image: CachedNetworkImageProvider(
-                                                                (motmPlayersStatsAndInfoNotifier
-                                                                    .mOTMPlayersStatsAndInfoList[
-                                                                        index]
-                                                                    .image)!),
+                                                                (motmPlayersStatsAndInfoNotifier.mOTMPlayersStatsAndInfoList[index].image)!),
                                                             fit: BoxFit.cover),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  10),
+                                                        borderRadius: const BorderRadius.only(
+                                                          topLeft: Radius.circular(10),
+                                                          bottomLeft: Radius.circular(10),
+                                                          topRight: Radius.circular(10),
+                                                          bottomRight: Radius.circular(10),
                                                         ),
-                                                        shape:
-                                                            BoxShape.rectangle,
+                                                        shape: BoxShape.rectangle,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 50.0, top: 40),
+                                                  padding: const EdgeInsets.only(right: 50.0, top: 40),
                                                   child: Align(
-                                                    alignment:
-                                                        Alignment.centerRight,
+                                                    alignment: Alignment.centerRight,
                                                     child: Container(
-                                                      decoration: BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          color:
-                                                              containerColor),
+                                                      decoration: BoxDecoration(shape: BoxShape.circle, color: containerColor),
                                                       child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
+                                                        padding: const EdgeInsets.all(8.0),
                                                         child: Text(
-                                                          (index + 1)
-                                                              .toString(),
-                                                          textAlign:
-                                                              TextAlign.center,
+                                                          (index + 1).toString(),
+                                                          textAlign: TextAlign.center,
                                                           style: TextStyle(
                                                             color: textColorOne,
                                                           ),
@@ -2689,46 +1944,31 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   ),
                                                 ),
                                                 Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: <Widget>[
                                                     Row(
                                                       children: [
                                                         SizedBox(
                                                           height: 50,
-                                                          child:
-                                                              VerticalDivider(
+                                                          child: VerticalDivider(
                                                             // width: 14,
                                                             thickness: 3,
-                                                            color:
-                                                                verticalDividerOneColor,
+                                                            color: verticalDividerOneColor,
                                                           ),
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                           children: <Widget>[
                                                             Text(
                                                               playerPositionTitle,
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
-                                                            const SizedBox(
-                                                                height: 10),
+                                                            const SizedBox(height: 10),
                                                             Text(
                                                               '       ${motmPlayersStatsAndInfoNotifier.mOTMPlayersStatsAndInfoList[index].playerPosition?.toUpperCase()}',
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                           ],
                                                         ),
@@ -2739,32 +1979,22 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       children: [
                                                         SizedBox(
                                                           height: 50,
-                                                          child:
-                                                              VerticalDivider(
+                                                          child: VerticalDivider(
                                                             thickness: 3,
-                                                            color:
-                                                                verticalDividerTwoColor,
+                                                            color: verticalDividerTwoColor,
                                                           ),
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerPreferredFootTitle,
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
-                                                            const SizedBox(
-                                                                height: 10),
+                                                            const SizedBox(height: 10),
                                                             Text(
                                                               '       ${(motmPlayersStatsAndInfoNotifier.mOTMPlayersStatsAndInfoList[index].preferredFoot)!}',
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                           ],
                                                         ),
@@ -2776,72 +2006,51 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     ),
                                                     const SizedBox(height: 5),
                                                     Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                       children: <Widget>[
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerNameTitle,
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                             SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerThreeColor,
+                                                                color: verticalDividerThreeColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '   ${motmPlayersStatsAndInfoNotifier.mOTMPlayersStatsAndInfoList[index].playerName!}',
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .fade,
+                                                              overflow: TextOverflow.fade,
                                                               style: TextStyle(
-                                                                color:
-                                                                    playerNameColor,
+                                                                color: playerNameColor,
                                                               ),
                                                             ),
                                                           ],
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerMatchesPlayedTitle,
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                             SizedBox(
                                                               width: 60,
                                                               child: Divider(
                                                                 indent: 10,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerFiveColor,
+                                                                color: verticalDividerFiveColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '${motmPlayersStatsAndInfoNotifier.mOTMPlayersStatsAndInfoList[index].matchesPlayed} played',
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
                                                           ],
                                                         )
@@ -2854,9 +2063,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                           ),
                                         ),
                                       ),
-                                      itemWidth:
-                                          MediaQuery.of(context).size.width *
-                                              0.9,
+                                      itemWidth: MediaQuery.of(context).size.width * 0.9,
                                       layout: SwiperLayout.DEFAULT,
                                     ),
                                   ),
@@ -2880,62 +2087,41 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                       }),
                                       child: Text(
                                         cumAwardMOTMPlayersTitle,
-                                        style: TextStyle(
-                                            color: topPlayersColor,
-                                            shadows: [
-                                              for (double i = 1;
-                                                  i < (isTextPressed ? 1 : 2);
-                                                  i++)
-                                                Shadow(
-                                                  color: shadowColor,
-                                                  blurRadius: 3 * i,
-                                                ),
-                                            ]),
+                                        style: TextStyle(color: topPlayersColor, shadows: [
+                                          for (double i = 1; i < (isTextPressed ? 1 : 2); i++)
+                                            Shadow(
+                                              color: shadowColor,
+                                              blurRadius: 3 * i,
+                                            ),
+                                        ]),
                                       ),
                                     )),
-                                if (cumMOTMPlayersStatsAndInfoNotifier
-                                    .cumMOTMPlayersStatsAndInfoList
-                                    .isEmpty) ...[
+                                if (cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList.isEmpty) ...[
                                   Center(
                                     child: Container(
                                       height: 330,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                       child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.80,
+                                          width: MediaQuery.of(context).size.width * 0.80,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(children: <Widget>[
                                               Center(
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                         // height: 70,
@@ -2967,42 +2153,26 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                 ] else ...[
                                   Container(
                                     height: 330,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                     child: Swiper(
                                       autoplay: true,
                                       viewportFraction: 0.8,
                                       scale: 0.9,
-                                      itemCount:
-                                          cumMOTMPlayersStatsAndInfoNotifier
-                                              .cumMOTMPlayersStatsAndInfoList
-                                              .length,
+                                      itemCount: cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList.length,
                                       itemBuilder: (context, index) => Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.90,
+                                          width: MediaQuery.of(context).size.width * 0.90,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(
@@ -3010,67 +2180,38 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 Align(
                                                   alignment: Alignment.topRight,
                                                   child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            15.0),
+                                                    padding: const EdgeInsets.all(15.0),
                                                     child: Container(
                                                       width: 100.0,
                                                       height: 100.0,
                                                       decoration: BoxDecoration(
                                                         image: DecorationImage(
-                                                            alignment:
-                                                                const Alignment(
-                                                                    0, -1),
+                                                            alignment: const Alignment(0, -1),
                                                             image: CachedNetworkImageProvider(
-                                                                cumMOTMPlayersStatsAndInfoNotifier
-                                                                    .cumMOTMPlayersStatsAndInfoList[
-                                                                        index]
-                                                                    .image!),
+                                                                cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList[index].image!),
                                                             fit: BoxFit.cover),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  10),
+                                                        borderRadius: const BorderRadius.only(
+                                                          topLeft: Radius.circular(10),
+                                                          bottomLeft: Radius.circular(10),
+                                                          topRight: Radius.circular(10),
+                                                          bottomRight: Radius.circular(10),
                                                         ),
-                                                        shape:
-                                                            BoxShape.rectangle,
+                                                        shape: BoxShape.rectangle,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 50.0, top: 40),
+                                                  padding: const EdgeInsets.only(right: 50.0, top: 40),
                                                   child: Align(
-                                                    alignment:
-                                                        Alignment.centerRight,
+                                                    alignment: Alignment.centerRight,
                                                     child: Container(
-                                                      decoration: BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          color:
-                                                              containerColor),
+                                                      decoration: BoxDecoration(shape: BoxShape.circle, color: containerColor),
                                                       child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
+                                                        padding: const EdgeInsets.all(8.0),
                                                         child: Text(
-                                                          (index + 1)
-                                                              .toString(),
-                                                          textAlign:
-                                                              TextAlign.center,
+                                                          (index + 1).toString(),
+                                                          textAlign: TextAlign.center,
                                                           style: TextStyle(
                                                             color: textColorOne,
                                                           ),
@@ -3080,43 +2221,30 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   ),
                                                 ),
                                                 Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: <Widget>[
                                                     Row(
                                                       children: [
                                                         SizedBox(
                                                           height: 50,
-                                                          child:
-                                                              VerticalDivider(
+                                                          child: VerticalDivider(
                                                             // width: 14,
                                                             thickness: 3,
-                                                            color:
-                                                                verticalDividerOneColor,
+                                                            color: verticalDividerOneColor,
                                                           ),
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerPositionTitle,
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
-                                                            const SizedBox(
-                                                                height: 10),
+                                                            const SizedBox(height: 10),
                                                             Text(
                                                               '       ${cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList[index].playerPosition?.toUpperCase()}',
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                           ],
                                                         ),
@@ -3127,32 +2255,22 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       children: [
                                                         SizedBox(
                                                           height: 50,
-                                                          child:
-                                                              VerticalDivider(
+                                                          child: VerticalDivider(
                                                             thickness: 3,
-                                                            color:
-                                                                verticalDividerTwoColor,
+                                                            color: verticalDividerTwoColor,
                                                           ),
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerPreferredFootTitle,
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textColorTwo),
+                                                              style: TextStyle(color: textColorTwo),
                                                             ),
-                                                            const SizedBox(
-                                                                height: 10),
+                                                            const SizedBox(height: 10),
                                                             Text(
                                                               '       ${cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList[index].preferredFoot!}',
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                           ],
                                                         ),
@@ -3164,59 +2282,41 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     ),
                                                     const SizedBox(height: 5),
                                                     Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                       children: <Widget>[
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               playerNameTitle,
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                              style: const TextStyle(fontWeight: FontWeight.bold),
                                                             ),
                                                             SizedBox(
                                                               width: 70,
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerThreeColor,
+                                                                color: verticalDividerThreeColor,
                                                               ),
                                                             ),
                                                             Text(
                                                               '   ${cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList[index].playerName!}',
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .fade,
+                                                              overflow: TextOverflow.fade,
                                                               style: TextStyle(
-                                                                color:
-                                                                    playerNameColor,
+                                                                color: playerNameColor,
                                                               ),
                                                             ),
                                                           ],
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
                                                             Text(
                                                               cumMOTMCountPlayersTitle,
                                                               style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color:
-                                                                    keyTextColor,
+                                                                fontWeight: FontWeight.bold,
+                                                                color: keyTextColor,
                                                               ),
                                                             ),
                                                             SizedBox(
@@ -3224,56 +2324,35 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               child: Divider(
                                                                 indent: 5,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerFourColor,
+                                                                color: verticalDividerFourColor,
                                                               ),
                                                             ),
                                                             Text(
                                                                 '      ${cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList[index].cumMOTMCount}',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color:
-                                                                      keyTextColor,
+                                                                style: TextStyle(
+                                                                  color: keyTextColor,
                                                                 ),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .right,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis),
+                                                                textAlign: TextAlign.right,
+                                                                overflow: TextOverflow.ellipsis),
                                                           ],
                                                         ),
                                                         Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: <Widget>[
-                                                            Text(
-                                                                playerMatchesPlayedTitle,
-                                                                style: const TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis),
+                                                            Text(playerMatchesPlayedTitle,
+                                                                style: const TextStyle(fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis),
                                                             SizedBox(
                                                               width: 60,
                                                               child: Divider(
                                                                 indent: 10,
                                                                 thickness: 3,
-                                                                color:
-                                                                    verticalDividerFiveColor,
+                                                                color: verticalDividerFiveColor,
                                                               ),
                                                             ),
                                                             Text(
                                                                 '${cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList[index].matchesPlayed} played',
-                                                                style: TextStyle(
-                                                                    color:
-                                                                        textColorTwo),
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis),
+                                                                style: TextStyle(color: textColorTwo),
+                                                                overflow: TextOverflow.ellipsis),
                                                           ],
                                                         )
                                                       ],
@@ -3285,9 +2364,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                           ),
                                         ),
                                       ),
-                                      itemWidth:
-                                          MediaQuery.of(context).size.width *
-                                              0.9,
+                                      itemWidth: MediaQuery.of(context).size.width * 0.9,
                                       layout: SwiperLayout.DEFAULT,
                                     ),
                                   ),
@@ -3311,61 +2388,41 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                       }),
                                       child: Text(
                                         coachesMonthlyCommentsTitle,
-                                        style: TextStyle(
-                                            color: topPlayersColor,
-                                            shadows: [
-                                              for (double i = 1;
-                                                  i < (isTextPressed ? 1 : 2);
-                                                  i++)
-                                                Shadow(
-                                                  color: shadowColor,
-                                                  blurRadius: 3 * i,
-                                                ),
-                                            ]),
+                                        style: TextStyle(color: topPlayersColor, shadows: [
+                                          for (double i = 1; i < (isTextPressed ? 1 : 2); i++)
+                                            Shadow(
+                                              color: shadowColor,
+                                              blurRadius: 3 * i,
+                                            ),
+                                        ]),
                                       ),
                                     )),
-                                if (coachesReviewsCommentNotifier
-                                    .coachesReviewsCommentList.isEmpty) ...[
+                                if (coachesReviewsCommentNotifier.coachesReviewsCommentList.isEmpty) ...[
                                   Center(
                                     child: Container(
                                       height: 330,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                       child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.80,
+                                          width: MediaQuery.of(context).size.width * 0.80,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(children: <Widget>[
                                               Center(
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                         // height: 120,
@@ -3397,75 +2454,48 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                 ] else ...[
                                   Container(
                                     height: 330,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                     child: Swiper(
                                       autoplay: true,
                                       viewportFraction: 0.8,
                                       scale: 0.9,
-                                      itemCount: coachesReviewsCommentNotifier
-                                          .coachesReviewsCommentList.length,
+                                      itemCount: coachesReviewsCommentNotifier.coachesReviewsCommentList.length,
                                       itemBuilder: (context, index) => Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.90,
+                                          width: MediaQuery.of(context).size.width * 0.90,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: SingleChildScrollView(
                                               child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
                                                       Align(
-                                                        alignment:
-                                                            Alignment.topLeft,
+                                                        alignment: Alignment.topLeft,
                                                         child: Container(
                                                           width: 100.0,
                                                           height: 100.0,
-                                                          decoration:
-                                                              BoxDecoration(
+                                                          decoration: BoxDecoration(
                                                             image: DecorationImage(
-                                                                alignment:
-                                                                    const Alignment(
-                                                                        0, -1),
+                                                                alignment: const Alignment(0, -1),
                                                                 image: CachedNetworkImageProvider(
-                                                                    coachesReviewsCommentNotifier
-                                                                        .coachesReviewsCommentList[
-                                                                            index]
-                                                                        .image!),
-                                                                fit: BoxFit
-                                                                    .cover),
-                                                            shape:
-                                                                BoxShape.circle,
+                                                                    coachesReviewsCommentNotifier.coachesReviewsCommentList[index].image!),
+                                                                fit: BoxFit.cover),
+                                                            shape: BoxShape.circle,
                                                           ),
                                                         ),
                                                       ),
@@ -3474,15 +2504,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       ),
                                                       Text(
                                                         "$coachTitle${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].name!.replaceAll(" ", "\n")}",
-                                                        style: GoogleFonts
-                                                            .kottaOne(
+                                                        style: GoogleFonts.kottaOne(
                                                           color: keyTextColor,
                                                           fontSize: 25,
                                                           // fontWeight: FontWeight.bold,
                                                           // height: 0.81
                                                         ),
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
+                                                        overflow: TextOverflow.ellipsis,
                                                       )
                                                     ],
                                                   ),
@@ -3493,26 +2521,15 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     children: [
                                                       Text(
                                                           "$monthReviewTitle[${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].date!}]",
-                                                          style: GoogleFonts
-                                                              .iceberg(
-                                                            color:
-                                                                textColorThree,
+                                                          style: GoogleFonts.iceberg(
+                                                            color: textColorThree,
                                                             fontSize: 15,
                                                           ),
-                                                          textAlign:
-                                                              TextAlign.start),
+                                                          textAlign: TextAlign.start),
                                                       const SizedBox(height: 5),
-                                                      Text(
-                                                          '"${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].comment!}"',
-                                                          style: GoogleFonts.iceberg(
-                                                              color:
-                                                                  textColorFour,
-                                                              fontSize: 13,
-                                                              fontStyle:
-                                                                  FontStyle
-                                                                      .italic),
-                                                          textAlign:
-                                                              TextAlign.justify)
+                                                      Text('"${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].comment!}"',
+                                                          style: GoogleFonts.iceberg(color: textColorFour, fontSize: 13, fontStyle: FontStyle.italic),
+                                                          textAlign: TextAlign.justify)
                                                     ],
                                                   )
                                                 ],
@@ -3521,9 +2538,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                           ),
                                         ),
                                       ),
-                                      itemWidth:
-                                          MediaQuery.of(context).size.width *
-                                              0.9,
+                                      itemWidth: MediaQuery.of(context).size.width * 0.9,
                                       layout: SwiperLayout.DEFAULT,
                                     ),
                                   ),
@@ -3547,61 +2562,41 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                       }),
                                       child: Text(
                                         foundersMonthlyCommentsTitle,
-                                        style: TextStyle(
-                                            color: topPlayersColor,
-                                            shadows: [
-                                              for (double i = 1;
-                                                  i < (isTextPressed ? 1 : 2);
-                                                  i++)
-                                                Shadow(
-                                                  color: shadowColor,
-                                                  blurRadius: 3 * i,
-                                                ),
-                                            ]),
+                                        style: TextStyle(color: topPlayersColor, shadows: [
+                                          for (double i = 1; i < (isTextPressed ? 1 : 2); i++)
+                                            Shadow(
+                                              color: shadowColor,
+                                              blurRadius: 3 * i,
+                                            ),
+                                        ]),
                                       ),
                                     )),
-                                if (foundersReviewsCommentNotifier
-                                    .foundersReviewsCommentList.isEmpty) ...[
+                                if (foundersReviewsCommentNotifier.foundersReviewsCommentList.isEmpty) ...[
                                   Center(
                                     child: Container(
                                       height: 330,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                       child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.80,
+                                          width: MediaQuery.of(context).size.width * 0.80,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: Stack(children: <Widget>[
                                               Center(
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                         // height: 120,
@@ -3633,75 +2628,48 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                 ] else ...[
                                   Container(
                                     height: 330,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                                     child: Swiper(
                                       autoplay: true,
                                       viewportFraction: 0.8,
                                       scale: 0.9,
-                                      itemCount: foundersReviewsCommentNotifier
-                                          .foundersReviewsCommentList.length,
+                                      itemCount: foundersReviewsCommentNotifier.foundersReviewsCommentList.length,
                                       itemBuilder: (context, index) => Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 18,
-                                            bottom: 18,
-                                            left: 8,
-                                            right: 8),
+                                        padding: const EdgeInsets.only(top: 18, bottom: 18, left: 8, right: 8),
                                         child: ClayContainer(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.90,
+                                          width: MediaQuery.of(context).size.width * 0.90,
                                           emboss: true,
                                           spread: 2,
                                           color: clayContainerColor,
                                           depth: 20,
                                           curveType: CurveType.concave,
-                                          customBorderRadius:
-                                              const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.elliptical(70, 70),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                          customBorderRadius: const BorderRadius.only(
+                                              topRight: Radius.elliptical(70, 70),
+                                              bottomLeft: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
                                             child: SingleChildScrollView(
                                               child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
                                                       Align(
-                                                        alignment:
-                                                            Alignment.topLeft,
+                                                        alignment: Alignment.topLeft,
                                                         child: Container(
                                                           width: 100.0,
                                                           height: 100.0,
-                                                          decoration:
-                                                              BoxDecoration(
+                                                          decoration: BoxDecoration(
                                                             image: DecorationImage(
-                                                                alignment:
-                                                                    const Alignment(
-                                                                        0, -1),
+                                                                alignment: const Alignment(0, -1),
                                                                 image: CachedNetworkImageProvider(
-                                                                    foundersReviewsCommentNotifier
-                                                                        .foundersReviewsCommentList[
-                                                                            index]
-                                                                        .image!),
-                                                                fit: BoxFit
-                                                                    .cover),
-                                                            shape:
-                                                                BoxShape.circle,
+                                                                    foundersReviewsCommentNotifier.foundersReviewsCommentList[index].image!),
+                                                                fit: BoxFit.cover),
+                                                            shape: BoxShape.circle,
                                                           ),
                                                         ),
                                                       ),
@@ -3709,21 +2677,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                         width: 15,
                                                       ),
                                                       Text(
-                                                        foundersReviewsCommentNotifier
-                                                            .foundersReviewsCommentList[
-                                                                index]
-                                                            .name!
-                                                            .replaceAll(
-                                                                " ", "\n"),
-                                                        style: GoogleFonts
-                                                            .kottaOne(
+                                                        foundersReviewsCommentNotifier.foundersReviewsCommentList[index].name!.replaceAll(" ", "\n"),
+                                                        style: GoogleFonts.kottaOne(
                                                           color: keyTextColor,
                                                           fontSize: 25,
                                                           // fontWeight: FontWeight.bold,
                                                           // height: 0.81
                                                         ),
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
+                                                        overflow: TextOverflow.ellipsis,
                                                       )
                                                     ],
                                                   ),
@@ -3734,26 +2695,15 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     children: [
                                                       Text(
                                                           "$monthReviewTitle[${foundersReviewsCommentNotifier.foundersReviewsCommentList[index].date!}]",
-                                                          style: GoogleFonts
-                                                              .iceberg(
-                                                            color:
-                                                                textColorThree,
+                                                          style: GoogleFonts.iceberg(
+                                                            color: textColorThree,
                                                             fontSize: 15,
                                                           ),
-                                                          textAlign:
-                                                              TextAlign.start),
+                                                          textAlign: TextAlign.start),
                                                       const SizedBox(height: 5),
-                                                      Text(
-                                                          '"${foundersReviewsCommentNotifier.foundersReviewsCommentList[index].comment!}"',
-                                                          style: GoogleFonts.iceberg(
-                                                              color:
-                                                                  textColorFour,
-                                                              fontSize: 13,
-                                                              fontStyle:
-                                                                  FontStyle
-                                                                      .italic),
-                                                          textAlign:
-                                                              TextAlign.justify)
+                                                      Text('"${foundersReviewsCommentNotifier.foundersReviewsCommentList[index].comment!}"',
+                                                          style: GoogleFonts.iceberg(color: textColorFour, fontSize: 13, fontStyle: FontStyle.italic),
+                                                          textAlign: TextAlign.justify)
                                                     ],
                                                   )
                                                 ],
@@ -3762,9 +2712,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                           ),
                                         ),
                                       ),
-                                      itemWidth:
-                                          MediaQuery.of(context).size.width *
-                                              0.9,
+                                      itemWidth: MediaQuery.of(context).size.width * 0.9,
                                       layout: SwiperLayout.DEFAULT,
                                     ),
                                   ),
@@ -3778,8 +2726,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 22, bottom: 22),
+                                    padding: const EdgeInsets.only(left: 22, bottom: 22),
                                     child: Listener(
                                       onPointerDown: (_) => setState(() {
                                         isTextPressed = true;
@@ -3789,68 +2736,41 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                       }),
                                       child: Text(
                                         potmTitle,
-                                        style: TextStyle(
-                                            color: topPlayersColor,
-                                            shadows: [
-                                              for (double i = 1;
-                                                  i < (isTextPressed ? 1 : 2);
-                                                  i++)
-                                                Shadow(
-                                                  color: shadowColor,
-                                                  blurRadius: 3 * i,
-                                                ),
-                                            ]),
+                                        style: TextStyle(color: topPlayersColor, shadows: [
+                                          for (double i = 1; i < (isTextPressed ? 1 : 2); i++)
+                                            Shadow(
+                                              color: shadowColor,
+                                              blurRadius: 3 * i,
+                                            ),
+                                        ]),
                                       ),
                                     )),
                                 Center(
                                   child: Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.90,
+                                    width: MediaQuery.of(context).size.width * 0.90,
                                     height: 300,
-                                    decoration: BoxDecoration(
-                                        color: potmColorOne,
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(15)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: potmColorTwo.withAlpha(30),
-                                              offset: const Offset(4.0, 2.0),
-                                              blurRadius: 1.0,
-                                              spreadRadius: 1.0),
-                                          BoxShadow(
-                                              color: potmColorTwo.withAlpha(60),
-                                              offset: const Offset(-2.0, -1.0),
-                                              blurRadius: 1.0,
-                                              spreadRadius: 1.0)
-                                        ]),
+                                    decoration:
+                                        BoxDecoration(color: potmColorOne, borderRadius: const BorderRadius.all(Radius.circular(15)), boxShadow: [
+                                      BoxShadow(
+                                          color: potmColorTwo.withAlpha(30), offset: const Offset(4.0, 2.0), blurRadius: 1.0, spreadRadius: 1.0),
+                                      BoxShadow(
+                                          color: potmColorTwo.withAlpha(60), offset: const Offset(-2.0, -1.0), blurRadius: 1.0, spreadRadius: 1.0)
+                                    ]),
                                     child: GestureDetector(
                                       child: Center(
                                         child: Listener(
-                                          onPointerUp: (_) =>
-                                              setState(() => isPressed = false),
-                                          onPointerDown: (_) =>
-                                              setState(() => isPressed = true),
+                                          onPointerUp: (_) => setState(() => isPressed = false),
+                                          onPointerDown: (_) => setState(() => isPressed = true),
                                           child: AnimatedContainer(
-                                            duration: const Duration(
-                                                milliseconds: 200),
+                                            duration: const Duration(milliseconds: 200),
                                             width: 200,
                                             height: 120,
                                             decoration: BoxDecoration(
                                               color: potmColorOne,
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(15)),
+                                              borderRadius: const BorderRadius.all(Radius.circular(15)),
                                               boxShadow: [
-                                                BoxShadow(
-                                                    color: potmColorThree!,
-                                                    offset: -distance,
-                                                    blurRadius: blur,
-                                                    spreadRadius: 1.0),
-                                                BoxShadow(
-                                                    color: potmColorFour!,
-                                                    offset: distance,
-                                                    blurRadius: blur,
-                                                    spreadRadius: 1.0),
+                                                BoxShadow(color: potmColorThree!, offset: -distance, blurRadius: blur, spreadRadius: 1.0),
+                                                BoxShadow(color: potmColorFour!, offset: distance, blurRadius: blur, spreadRadius: 1.0),
                                               ],
                                             ),
                                             child: Align(
@@ -3862,16 +2782,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                     fontSize: 60,
                                                     shadows: [
                                                       Shadow(
-                                                          offset: const Offset(
-                                                              3, 3),
+                                                          offset: const Offset(3, 3),
                                                           // color: Colors.black38,
                                                           color: potmColorFive,
                                                           blurRadius: 10),
-                                                      Shadow(
-                                                          offset: const Offset(
-                                                              -3, -3),
-                                                          color: potmColorOne!,
-                                                          blurRadius: 10)
+                                                      Shadow(offset: const Offset(-3, -3), color: potmColorOne!, blurRadius: 10)
                                                     ],
                                                     color: potmColorOne),
                                               ),
@@ -3884,17 +2799,11 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                           context: context,
                                           builder: (context) => Stack(
                                             children: [
-                                              if (playerOfTheMonthStatsAndInfoNotifier
-                                                  .playerOfTheMonthStatsAndInfoList
-                                                  .isEmpty) ...[
+                                              if (playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList.isEmpty) ...[
                                                 Center(
                                                   child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
                                                       Container(
                                                           // height: 120,
@@ -3904,8 +2813,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                         height: 200,
                                                         fit: BoxFit.contain,
                                                       )),
-                                                      const SizedBox(
-                                                          height: 20),
+                                                      const SizedBox(height: 20),
                                                       Text(
                                                         potmEmptyTitle,
                                                         style: TextStyle(
@@ -3917,180 +2825,107 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 )
                                               ] else ...[
                                                 AlertDialog(
-                                                  shape:
-                                                      const RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                10.0)),
+                                                  shape: const RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
                                                   ),
-                                                  contentPadding:
-                                                      const EdgeInsets.all(10),
+                                                  contentPadding: const EdgeInsets.all(10),
                                                   backgroundColor: dialogColor,
                                                   content: ConfettiWidget(
-                                                    createParticlePath:
-                                                        drawStar,
-                                                    confettiController:
-                                                        _controllerTopCenter,
+                                                    createParticlePath: drawStar,
+                                                    confettiController: _controllerTopCenter,
                                                     blastDirection: -pi / 2,
                                                     maxBlastForce: 50,
                                                     // set a lower max blast force
                                                     minBlastForce: 20,
                                                     // set a lower min blast force
                                                     emissionFrequency: 0.035,
-                                                    blastDirectionality:
-                                                        BlastDirectionality
-                                                            .explosive,
+                                                    blastDirectionality: BlastDirectionality.explosive,
                                                     numberOfParticles: 50,
                                                     // a lot of particles at once
                                                     gravity: 0.1,
                                                     child: SizedBox(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height *
-                                                              0.6,
+                                                      width: MediaQuery.of(context).size.width,
+                                                      height: MediaQuery.of(context).size.height * 0.6,
                                                       child: ListView.builder(
-                                                        itemExtent:
-                                                            MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .height *
-                                                                0.585,
+                                                        itemExtent: MediaQuery.of(context).size.height * 0.585,
                                                         shrinkWrap: true,
-                                                        itemCount:
-                                                            playerOfTheMonthStatsAndInfoNotifier
-                                                                .playerOfTheMonthStatsAndInfoList
-                                                                .length,
-                                                        itemBuilder:
-                                                            (context, index) =>
-                                                                Stack(
-                                                          alignment:
-                                                              AlignmentDirectional
-                                                                  .topStart,
+                                                        itemCount: playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList.length,
+                                                        itemBuilder: (context, index) => Stack(
+                                                          alignment: AlignmentDirectional.topStart,
                                                           // fit: StackFit.loose,
                                                           children: [
                                                             Align(
-                                                              alignment: Alignment
-                                                                  .centerLeft,
+                                                              alignment: Alignment.centerLeft,
                                                               child: SizedBox(
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    .43,
-                                                                height: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    2,
+                                                                width: MediaQuery.of(context).size.width * .43,
+                                                                height: MediaQuery.of(context).size.height * 2,
                                                                 child: Image(
-                                                                  height: double
-                                                                      .infinity,
-                                                                  width: double
-                                                                      .infinity,
-                                                                  image:
-                                                                      CachedNetworkImageProvider(
+                                                                  height: double.infinity,
+                                                                  width: double.infinity,
+                                                                  image: CachedNetworkImageProvider(
                                                                     playerOfTheMonthStatsAndInfoNotifier
-                                                                        .playerOfTheMonthStatsAndInfoList[
-                                                                            index]
-                                                                        .image!,
+                                                                        .playerOfTheMonthStatsAndInfoList[index].image!,
                                                                     scale: 0.2,
                                                                   ),
-                                                                  fit: BoxFit
-                                                                      .cover,
-                                                                  color: Colors
-                                                                      .grey,
-                                                                  colorBlendMode:
-                                                                      BlendMode
-                                                                          .softLight,
-                                                                  alignment:
-                                                                      const Alignment(
-                                                                          0.4,
-                                                                          -1),
+                                                                  fit: BoxFit.cover,
+                                                                  color: Colors.grey,
+                                                                  colorBlendMode: BlendMode.softLight,
+                                                                  alignment: const Alignment(0.4, -1),
                                                                 ),
                                                               ),
                                                             ),
                                                             Align(
-                                                              alignment: Alignment
-                                                                  .centerRight,
+                                                              alignment: Alignment.centerRight,
                                                               child: SizedBox(
                                                                 // color: Colors.green,
-                                                                height: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .height,
+                                                                height: MediaQuery.of(context).size.height,
                                                                 // height: 500,
-                                                                width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Image.asset(
+                                                                width: MediaQuery.of(context).size.width,
+                                                                child: Image.asset(
                                                                   assetPOTMBackgroundTitle,
-                                                                  fit: BoxFit
-                                                                      .cover,
+                                                                  fit: BoxFit.cover,
                                                                 ),
                                                               ),
                                                             ),
                                                             Align(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .topRight,
+                                                              alignment: Alignment.topRight,
                                                               child: Column(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .end,
+                                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                                crossAxisAlignment: CrossAxisAlignment.end,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsets
-                                                                            .only(
-                                                                        right:
-                                                                            40),
-                                                                    child: Image
-                                                                        .asset(
+                                                                    padding: const EdgeInsets.only(right: 40),
+                                                                    child: Image.asset(
                                                                       assetPOTMMVPTitle,
-                                                                      width: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width *
-                                                                          0.35,
+                                                                      width: MediaQuery.of(context).size.width * 0.35,
                                                                     ),
                                                                   ),
 
                                                                   if (playerOfTheMonthStatsAndInfoNotifier
-                                                                          .playerOfTheMonthStatsAndInfoList[
-                                                                              index]
-                                                                          .playerPosition
+                                                                          .playerOfTheMonthStatsAndInfoList[index].playerPosition
                                                                           .toString()
                                                                           .toLowerCase() ==
                                                                       'gk') ...[
                                                                     Column(
                                                                       children: [
                                                                         Padding(
-                                                                          padding:
-                                                                              const EdgeInsets.only(right: 10),
-                                                                          child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width * 0.35,
-                                                                            child:
-                                                                                Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerName!.replaceAll(" ", "\n"),
-                                                                              style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, height: 0.81),
+                                                                          padding: const EdgeInsets.only(right: 10),
+                                                                          child: SizedBox(
+                                                                            width: MediaQuery.of(context).size.width * 0.35,
+                                                                            child: Text(
+                                                                              playerOfTheMonthStatsAndInfoNotifier
+                                                                                  .playerOfTheMonthStatsAndInfoList[index].playerName!
+                                                                                  .replaceAll(" ", "\n"),
+                                                                              style: GoogleFonts.rubikMicrobe(
+                                                                                  color: dialogColor,
+                                                                                  fontSize: 30,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  height: 0.81),
                                                                               overflow: TextOverflow.ellipsis,
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        const SizedBox(
-                                                                            height:
-                                                                                40),
+                                                                        const SizedBox(height: 40),
                                                                         Column(
                                                                           children: [
                                                                             Padding(
@@ -4098,8 +2933,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].goalsConcededGkDef.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  playerOfTheMonthStatsAndInfoNotifier
+                                                                                      .playerOfTheMonthStatsAndInfoList[index].goalsConcededGkDef
+                                                                                      .toString(),
+                                                                                  style: GoogleFonts.rubikMicrobe(
+                                                                                      color: dialogColor,
+                                                                                      fontSize: 30,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4127,8 +2968,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].cleanSheetGk.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  playerOfTheMonthStatsAndInfoNotifier
+                                                                                      .playerOfTheMonthStatsAndInfoList[index].cleanSheetGk
+                                                                                      .toString(),
+                                                                                  style: GoogleFonts.rubikMicrobe(
+                                                                                      color: dialogColor,
+                                                                                      fontSize: 30,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4156,8 +3003,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].matchesPlayed.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  playerOfTheMonthStatsAndInfoNotifier
+                                                                                      .playerOfTheMonthStatsAndInfoList[index].matchesPlayed
+                                                                                      .toString(),
+                                                                                  style: GoogleFonts.rubikMicrobe(
+                                                                                      color: dialogColor,
+                                                                                      fontSize: 30,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4180,40 +3033,41 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                         ),
                                                                       ],
                                                                     ),
-                                                                  ] else if (playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerPosition.toString().toLowerCase() == 'cb' ||
+                                                                  ] else if (playerOfTheMonthStatsAndInfoNotifier
+                                                                              .playerOfTheMonthStatsAndInfoList[index].playerPosition
+                                                                              .toString()
+                                                                              .toLowerCase() ==
+                                                                          'cb' ||
                                                                       playerOfTheMonthStatsAndInfoNotifier
-                                                                              .playerOfTheMonthStatsAndInfoList[
-                                                                                  index]
-                                                                              .playerPosition
+                                                                              .playerOfTheMonthStatsAndInfoList[index].playerPosition
                                                                               .toString()
                                                                               .toLowerCase() ==
                                                                           'lb' ||
                                                                       playerOfTheMonthStatsAndInfoNotifier
-                                                                              .playerOfTheMonthStatsAndInfoList[index]
-                                                                              .playerPosition
+                                                                              .playerOfTheMonthStatsAndInfoList[index].playerPosition
                                                                               .toString()
                                                                               .toLowerCase() ==
                                                                           'rb') ...[
                                                                     Column(
                                                                       children: [
                                                                         Padding(
-                                                                          padding:
-                                                                              const EdgeInsets.only(right: 10),
-                                                                          child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width * 0.35,
-                                                                            child:
-                                                                                Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerName!.replaceAll(" ", "\n"),
-                                                                              style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 25, fontWeight: FontWeight.bold, height: 0.81),
+                                                                          padding: const EdgeInsets.only(right: 10),
+                                                                          child: SizedBox(
+                                                                            width: MediaQuery.of(context).size.width * 0.35,
+                                                                            child: Text(
+                                                                              playerOfTheMonthStatsAndInfoNotifier
+                                                                                  .playerOfTheMonthStatsAndInfoList[index].playerName!
+                                                                                  .replaceAll(" ", "\n"),
+                                                                              style: GoogleFonts.rubikMicrobe(
+                                                                                  color: dialogColor,
+                                                                                  fontSize: 25,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  height: 0.81),
                                                                               overflow: TextOverflow.ellipsis,
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        const SizedBox(
-                                                                            height:
-                                                                                40),
+                                                                        const SizedBox(height: 40),
                                                                         Column(
                                                                           children: [
                                                                             Padding(
@@ -4221,8 +3075,15 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerPosition.toString().toUpperCase(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  playerOfTheMonthStatsAndInfoNotifier
+                                                                                      .playerOfTheMonthStatsAndInfoList[index].playerPosition
+                                                                                      .toString()
+                                                                                      .toUpperCase(),
+                                                                                  style: GoogleFonts.rubikMicrobe(
+                                                                                      color: dialogColor,
+                                                                                      fontSize: 30,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4250,8 +3111,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].goalsConcededGkDef.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  playerOfTheMonthStatsAndInfoNotifier
+                                                                                      .playerOfTheMonthStatsAndInfoList[index].goalsConcededGkDef
+                                                                                      .toString(),
+                                                                                  style: GoogleFonts.rubikMicrobe(
+                                                                                      color: dialogColor,
+                                                                                      fontSize: 30,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4279,8 +3146,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].matchesPlayed.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  playerOfTheMonthStatsAndInfoNotifier
+                                                                                      .playerOfTheMonthStatsAndInfoList[index].matchesPlayed
+                                                                                      .toString(),
+                                                                                  style: GoogleFonts.rubikMicrobe(
+                                                                                      color: dialogColor,
+                                                                                      fontSize: 30,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4307,23 +3180,23 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                     Column(
                                                                       children: [
                                                                         Padding(
-                                                                          padding:
-                                                                              const EdgeInsets.only(right: 10),
-                                                                          child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width * 0.35,
-                                                                            child:
-                                                                                Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerName!.replaceAll(" ", "\n"),
-                                                                              style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 25, fontWeight: FontWeight.bold, height: 0.81),
+                                                                          padding: const EdgeInsets.only(right: 10),
+                                                                          child: SizedBox(
+                                                                            width: MediaQuery.of(context).size.width * 0.35,
+                                                                            child: Text(
+                                                                              playerOfTheMonthStatsAndInfoNotifier
+                                                                                  .playerOfTheMonthStatsAndInfoList[index].playerName!
+                                                                                  .replaceAll(" ", "\n"),
+                                                                              style: GoogleFonts.rubikMicrobe(
+                                                                                  color: dialogColor,
+                                                                                  fontSize: 25,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  height: 0.81),
                                                                               overflow: TextOverflow.ellipsis,
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        const SizedBox(
-                                                                            height:
-                                                                                40),
+                                                                        const SizedBox(height: 40),
                                                                         Column(
                                                                           children: [
                                                                             Padding(
@@ -4331,8 +3204,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].goalsScored.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  playerOfTheMonthStatsAndInfoNotifier
+                                                                                      .playerOfTheMonthStatsAndInfoList[index].goalsScored
+                                                                                      .toString(),
+                                                                                  style: GoogleFonts.rubikMicrobe(
+                                                                                      color: dialogColor,
+                                                                                      fontSize: 30,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4360,8 +3239,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].assists.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  playerOfTheMonthStatsAndInfoNotifier
+                                                                                      .playerOfTheMonthStatsAndInfoList[index].assists
+                                                                                      .toString(),
+                                                                                  style: GoogleFonts.rubikMicrobe(
+                                                                                      color: dialogColor,
+                                                                                      fontSize: 30,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4389,8 +3274,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                               child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width * 0.35,
                                                                                 child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].matchesPlayed.toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(color: dialogColor, fontSize: 30, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                                                                                  playerOfTheMonthStatsAndInfoNotifier
+                                                                                      .playerOfTheMonthStatsAndInfoList[index].matchesPlayed
+                                                                                      .toString(),
+                                                                                  style: GoogleFonts.rubikMicrobe(
+                                                                                      color: dialogColor,
+                                                                                      fontSize: 30,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      fontStyle: FontStyle.italic),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -4545,69 +3436,49 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                   Column(
                                                                     children: [
                                                                       Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.only(right: 10),
-                                                                        child:
-                                                                            SizedBox(
-                                                                          width:
-                                                                              MediaQuery.of(context).size.width * 0.65,
-                                                                          child:
-                                                                          Text(
+                                                                        padding: const EdgeInsets.only(right: 10),
+                                                                        child: SizedBox(
+                                                                          width: MediaQuery.of(context).size.width * 0.65,
+                                                                          child: Text(
                                                                             potmTwoTitle,
-                                                                            style:
-                                                                                GoogleFonts.orbitron(
+                                                                            style: GoogleFonts.orbitron(
                                                                               color: dialogColor,
                                                                               fontSize: 18,
                                                                               fontWeight: FontWeight.bold,
                                                                             ),
-                                                                            textAlign:
-                                                                                TextAlign.center,
-                                                                            overflow:
-                                                                                TextOverflow.ellipsis,
+                                                                            textAlign: TextAlign.center,
+                                                                            overflow: TextOverflow.ellipsis,
                                                                           ),
                                                                         ),
                                                                       ),
                                                                       Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.only(top: 4),
-                                                                        child:
-                                                                            SizedBox(
-                                                                          width:
-                                                                              MediaQuery.of(context).size.width * 0.65,
-                                                                          child:
-                                                                          Text(
+                                                                        padding: const EdgeInsets.only(top: 4),
+                                                                        child: SizedBox(
+                                                                          width: MediaQuery.of(context).size.width * 0.65,
+                                                                          child: Text(
                                                                             presentedByTitle,
-                                                                            style:
-                                                                                GoogleFonts.arimo(
+                                                                            style: GoogleFonts.arimo(
                                                                               color: containerColor,
                                                                               fontSize: 14,
                                                                               fontWeight: FontWeight.w200,
                                                                             ),
-                                                                            textAlign:
-                                                                                TextAlign.center,
+                                                                            textAlign: TextAlign.center,
                                                                           ),
                                                                         ),
                                                                       ),
                                                                       Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.only(top: 5),
-                                                                        child:
-                                                                            SizedBox(
-                                                                          width:
-                                                                              MediaQuery.of(context).size.width * 0.65,
-                                                                          child:
-                                                                          Text(
+                                                                        padding: const EdgeInsets.only(top: 5),
+                                                                        child: SizedBox(
+                                                                          width: MediaQuery.of(context).size.width * 0.65,
+                                                                          child: Text(
                                                                             nouvellesoftTitle,
-                                                                            style:
-                                                                                GoogleFonts.gloriaHallelujah(
+                                                                            style: GoogleFonts.gloriaHallelujah(
                                                                               color: containerColor,
                                                                               fontSize: 15,
                                                                               fontWeight: FontWeight.bold,
                                                                             ),
-                                                                            textAlign:
-                                                                                TextAlign.center,
-                                                                            overflow:
-                                                                                TextOverflow.ellipsis,
+                                                                            textAlign: TextAlign.center,
+                                                                            overflow: TextOverflow.ellipsis,
                                                                           ),
                                                                         ),
                                                                       ),
@@ -4624,15 +3495,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 ),
                                                 if (Platform.isAndroid) ...[
                                                   Positioned(
-                                                    top: MediaQuery.of(context)
-                                                            .size
-                                                            .height *
-                                                        0.19,
-                                                    right:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.14,
+                                                    top: MediaQuery.of(context).size.height * 0.19,
+                                                    right: MediaQuery.of(context).size.width * 0.14,
                                                     child: GestureDetector(
                                                       onTap: () {
                                                         Navigator.pop(context);
@@ -4640,38 +3504,22 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       child: Container(
                                                         width: 30,
                                                         height: 30,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                              color: potmColorSeven,
-                                                          shape: BoxShape
-                                                              .rectangle,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      6.0),
+                                                        decoration: BoxDecoration(
+                                                          color: potmColorSeven,
+                                                          shape: BoxShape.rectangle,
+                                                          borderRadius: BorderRadius.circular(6.0),
                                                         ),
                                                         child: const Align(
-                                                          alignment:
-                                                              Alignment.center,
-                                                          child: Icon(
-                                                              Icons.close,
-                                                              color: Colors
-                                                                  .deepOrangeAccent),
+                                                          alignment: Alignment.center,
+                                                          child: Icon(Icons.close, color: Colors.deepOrangeAccent),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
                                                 ] else if (Platform.isIOS) ...[
                                                   Positioned(
-                                                    top: MediaQuery.of(context)
-                                                            .size
-                                                            .height *
-                                                        0.165,
-                                                    right:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.13,
+                                                    top: MediaQuery.of(context).size.height * 0.165,
+                                                    right: MediaQuery.of(context).size.width * 0.13,
                                                     child: GestureDetector(
                                                       onTap: () {
                                                         Navigator.pop(context);
@@ -4679,23 +3527,16 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       child: Container(
                                                         width: 30,
                                                         height: 30,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                              color: potmColorSeven,
-                                                          shape: BoxShape
-                                                              .rectangle,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      6.0),
+                                                        decoration: BoxDecoration(
+                                                          color: potmColorSeven,
+                                                          shape: BoxShape.rectangle,
+                                                          borderRadius: BorderRadius.circular(6.0),
                                                         ),
                                                         child: const Align(
-                                                          alignment:
-                                                              Alignment.center,
+                                                          alignment: Alignment.center,
                                                           child: Icon(
                                                             Icons.close,
-                                                            color: Colors
-                                                                .deepOrangeAccent,
+                                                            color: Colors.deepOrangeAccent,
                                                           ),
                                                         ),
                                                       ),
@@ -4737,47 +3578,32 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
   @override
   initState() {
     TopGoalsPlayersStatsAndInfoNotifier topGoalsPlayersStatsAndInfoNotifier =
-        Provider.of<TopGoalsPlayersStatsAndInfoNotifier>(context,
-            listen: false);
+        Provider.of<TopGoalsPlayersStatsAndInfoNotifier>(context, listen: false);
 
-    MostAssistsPlayersStatsAndInfoNotifier
-        mostAssistsPlayersStatsAndInfoNotifier =
-        Provider.of<MostAssistsPlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    MostAssistsPlayersStatsAndInfoNotifier mostAssistsPlayersStatsAndInfoNotifier =
+        Provider.of<MostAssistsPlayersStatsAndInfoNotifier>(context, listen: false);
 
-    MostFouledYCPlayersStatsAndInfoNotifier
-        mostFouledYCPlayersStatsAndInfoNotifier =
-        Provider.of<MostFouledYCPlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    MostFouledYCPlayersStatsAndInfoNotifier mostFouledYCPlayersStatsAndInfoNotifier =
+        Provider.of<MostFouledYCPlayersStatsAndInfoNotifier>(context, listen: false);
 
-    MostFouledRCPlayersStatsAndInfoNotifier
-        mostFouledRCPlayersStatsAndInfoNotifier =
-        Provider.of<MostFouledRCPlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    MostFouledRCPlayersStatsAndInfoNotifier mostFouledRCPlayersStatsAndInfoNotifier =
+        Provider.of<MostFouledRCPlayersStatsAndInfoNotifier>(context, listen: false);
 
     PlayerOfTheMonthStatsAndInfoNotifier playerOfTheMonthStatsAndInfoNotifier =
-        Provider.of<PlayerOfTheMonthStatsAndInfoNotifier>(context,
-            listen: false);
+        Provider.of<PlayerOfTheMonthStatsAndInfoNotifier>(context, listen: false);
 
-    TopGKPlayersStatsAndInfoNotifier topGKPlayersStatsAndInfoNotifier =
-        Provider.of<TopGKPlayersStatsAndInfoNotifier>(context, listen: false);
+    TopGKPlayersStatsAndInfoNotifier topGKPlayersStatsAndInfoNotifier = Provider.of<TopGKPlayersStatsAndInfoNotifier>(context, listen: false);
 
-    TopDefensivePlayersStatsAndInfoNotifier
-        topDefensivePlayersStatsAndInfoNotifier =
-        Provider.of<TopDefensivePlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    TopDefensivePlayersStatsAndInfoNotifier topDefensivePlayersStatsAndInfoNotifier =
+        Provider.of<TopDefensivePlayersStatsAndInfoNotifier>(context, listen: false);
 
-    MOTMPlayersStatsAndInfoNotifier motmPlayersStatsAndInfoNotifier =
-        Provider.of<MOTMPlayersStatsAndInfoNotifier>(context, listen: false);
+    MOTMPlayersStatsAndInfoNotifier motmPlayersStatsAndInfoNotifier = Provider.of<MOTMPlayersStatsAndInfoNotifier>(context, listen: false);
 
-    CumMOTMPlayersStatsAndInfoNotifier cumMOTMPlayersStatsAndInfoNotifier =
-        Provider.of<CumMOTMPlayersStatsAndInfoNotifier>(context, listen: false);
+    CumMOTMPlayersStatsAndInfoNotifier cumMOTMPlayersStatsAndInfoNotifier = Provider.of<CumMOTMPlayersStatsAndInfoNotifier>(context, listen: false);
 
-    CoachesReviewsCommentNotifier coachesReviewsCommentNotifier =
-        Provider.of<CoachesReviewsCommentNotifier>(context, listen: false);
+    CoachesReviewsCommentNotifier coachesReviewsCommentNotifier = Provider.of<CoachesReviewsCommentNotifier>(context, listen: false);
 
-    FoundersReviewsCommentNotifier foundersReviewsCommentNotifier =
-        Provider.of<FoundersReviewsCommentNotifier>(context, listen: false);
+    FoundersReviewsCommentNotifier foundersReviewsCommentNotifier = Provider.of<FoundersReviewsCommentNotifier>(context, listen: false);
 
     getTopGoalsPlayersStatsAndInfo(topGoalsPlayersStatsAndInfoNotifier);
     getMostAssistsPlayersStatsAndInfo(mostAssistsPlayersStatsAndInfoNotifier);
@@ -4791,8 +3617,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
     getCoachesReviewsComment(coachesReviewsCommentNotifier);
     getFoundersReviewsComment(foundersReviewsCommentNotifier);
 
-    _controllerTopCenter =
-        ConfettiController(duration: const Duration(seconds: 3));
+    _controllerTopCenter = ConfettiController(duration: const Duration(seconds: 3));
 
     super.initState();
 
@@ -4824,10 +3649,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
     path.moveTo(size.width, halfWidth);
 
     for (double step = 0; step < fullAngle; step += degreesPerStep) {
-      path.lineTo(halfWidth + externalRadius * cos(step),
-          halfWidth + externalRadius * sin(step));
-      path.lineTo(halfWidth + internalRadius * cos(step + halfDegreesPerStep),
-          halfWidth + internalRadius * sin(step + halfDegreesPerStep));
+      path.lineTo(halfWidth + externalRadius * cos(step), halfWidth + externalRadius * sin(step));
+      path.lineTo(halfWidth + internalRadius * cos(step + halfDegreesPerStep), halfWidth + internalRadius * sin(step + halfDegreesPerStep));
     }
     path.close();
     return path;

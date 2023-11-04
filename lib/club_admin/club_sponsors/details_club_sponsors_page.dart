@@ -29,7 +29,7 @@ Color youtubeColor = const Color.fromRGBO(220, 45, 45, 1.0);
 Color websiteColor = const Color.fromRGBO(104, 79, 178, 1.0);
 Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
 Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
-Color backgroundColor = const Color.fromRGBO(19, 20, 21, 1.0);
+Color backgroundColor = const Color.fromRGBO(20, 36, 62, 1.0);
 
 String callFIRST = "tel:+44";
 String smsFIRST = "sms:+44";
@@ -61,8 +61,7 @@ String addressTitle = "Our Location:";
 String categoryTitle = "Category:";
 
 String facebookProfileSharedPreferencesTitle = "Manual Website Search";
-String facebookProfileSharedPreferencesContentOne =
-    "Apparently, you'd need to search manually for ";
+String facebookProfileSharedPreferencesContentOne = "Apparently, you'd need to search manually for ";
 String facebookProfileSharedPreferencesContentTwo = ", on Facebook.com";
 String facebookProfileSharedPreferencesButton = "Go to Facebook";
 String facebookProfileSharedPreferencesButtonTwo = "Lol, No";
@@ -94,12 +93,10 @@ class ClubSponsorsDetailsPage extends StatefulWidget {
   const ClubSponsorsDetailsPage({Key? key}) : super(key: key);
 
   @override
-  State<ClubSponsorsDetailsPage> createState() =>
-      _ClubSponsorsDetailsPageState();
+  State<ClubSponsorsDetailsPage> createState() => _ClubSponsorsDetailsPageState();
 }
 
 class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
-
   GlobalKey _contentKey = GlobalKey();
 
   Future launchURL(String url) async {
@@ -115,8 +112,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    clubSponsorsNotifier =
-        Provider.of<ClubSponsorsNotifier>(context, listen: true);
+    clubSponsorsNotifier = Provider.of<ClubSponsorsNotifier>(context, listen: true);
     upcomingMatchesNotifier = Provider.of<UpcomingMatchesNotifier>(context);
 
     // _homeTeamIcon = upcomingMatchesNotifier.currentUpcomingMatches.homeTeamIcon;
@@ -133,6 +129,13 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        title: Text(
+          clubSponsorsNotifier.currentClubSponsors.name!,
+          style: GoogleFonts.alkatra(
+              color: textColor,
+              fontSize: 25,
+              fontWeight: FontWeight.w400),
+        ),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(30),
@@ -148,17 +151,18 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.upload),
+            icon: const Icon(Icons.upload),
             onPressed: () {
               _showUploadDialog();
             },
           ),
         ],
       ),
+
       backgroundColor: backgroundColor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(22.0),
+          padding: const EdgeInsets.all(12.0),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Stack(
@@ -166,9 +170,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                 Container(
                   width: width,
                   // height: height/0.8,
-                  decoration: BoxDecoration(
-                      color: conColor.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(20)),
+                  decoration: BoxDecoration(color: conColor.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
                   child: Column(
                     children: [
                       Row(
@@ -192,8 +194,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                     color: conColorTwo.withOpacity(0.3),
                                     borderRadius: BorderRadius.circular(14),
                                     image: DecorationImage(
-                                      image: NetworkImage(clubSponsorsNotifier
-                                          .currentClubSponsors.image!),
+                                      image: NetworkImage(clubSponsorsNotifier.currentClubSponsors.image!),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -208,13 +209,11 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                               height: width / 2.7,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    clubSponsorsNotifier
-                                        .currentClubSponsors.name!,
+                                    clubSponsorsNotifier.currentClubSponsors.name!,
                                     style: GoogleFonts.aldrich(
                                       color: textColor,
                                       fontSize: 17,
@@ -275,8 +274,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                     ),
                                     Wrap(
                                       runAlignment: WrapAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          WrapCrossAlignment.center,
+                                      crossAxisAlignment: WrapCrossAlignment.center,
                                       alignment: WrapAlignment.spaceBetween,
                                       spacing: 8,
                                       children: [
@@ -284,12 +282,8 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                           visible: _phone.isNotEmpty,
                                           child: OutlinedButton.icon(
                                             onPressed: () {
-                                              if (_phone
-                                                  .toString()
-                                                  .startsWith('0')) {
-                                                var most = _phone
-                                                    .toString()
-                                                    .substring(1);
+                                              if (_phone.toString().startsWith('0')) {
+                                                var most = _phone.toString().substring(1);
                                                 launchURL(callFIRST + most);
                                               } else {
                                                 launchURL(callFIRST + _phone);
@@ -298,12 +292,10 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                             style: OutlinedButton.styleFrom(
                                               foregroundColor: phoneColor,
                                               shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
+                                                borderRadius: BorderRadius.circular(20.0),
                                               ),
                                               side: BorderSide(
-                                                color: Colors.white
-                                                    .withOpacity(0.5),
+                                                color: Colors.white.withOpacity(0.5),
                                                 width: 2.0,
                                               ),
                                             ),
@@ -326,49 +318,23 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                           visible: _phone.isNotEmpty,
                                           child: OutlinedButton.icon(
                                             onPressed: () {
-                                              if (_phone
-                                                  .toString()
-                                                  .startsWith('0')) {
-                                                var most = _phone
-                                                    .toString()
-                                                    .substring(1);
-                                                var firstName = _name
-                                                    .toString()
-                                                    .substring(
-                                                        0,
-                                                        _name
-                                                            .toString()
-                                                            .indexOf(" "));
-                                                launchURL(whatsAppFIRST +
-                                                    most +
-                                                    whatsAppSECOND +
-                                                    firstName +
-                                                    whatsAppTHIRD);
+                                              if (_phone.toString().startsWith('0')) {
+                                                var most = _phone.toString().substring(1);
+                                                var firstName = _name.toString().substring(0, _name.toString().indexOf(" "));
+                                                launchURL(whatsAppFIRST + most + whatsAppSECOND + firstName + whatsAppTHIRD);
                                                 launchURL(whatsAppFIRST + most);
                                               } else {
-                                                var firstName = _name
-                                                    .toString()
-                                                    .substring(
-                                                        0,
-                                                        _name
-                                                            .toString()
-                                                            .indexOf(" "));
-                                                launchURL(whatsAppFIRST +
-                                                    _phone +
-                                                    whatsAppSECOND +
-                                                    firstName +
-                                                    whatsAppTHIRD);
+                                                var firstName = _name.toString().substring(0, _name.toString().indexOf(" "));
+                                                launchURL(whatsAppFIRST + _phone + whatsAppSECOND + firstName + whatsAppTHIRD);
                                               }
                                             },
                                             style: OutlinedButton.styleFrom(
                                               foregroundColor: phoneColor,
                                               shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
+                                                borderRadius: BorderRadius.circular(20.0),
                                               ),
                                               side: BorderSide(
-                                                color: Colors.white
-                                                    .withOpacity(0.5),
+                                                color: Colors.white.withOpacity(0.5),
                                                 width: 2.0,
                                               ),
                                             ),
@@ -391,20 +357,15 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                           visible: _email.isNotEmpty,
                                           child: OutlinedButton.icon(
                                             onPressed: () {
-                                              launchURL(mailFIRST +
-                                                  _email +
-                                                  mailSECOND +
-                                                  _name);
+                                              launchURL(mailFIRST + _email + mailSECOND + _name);
                                             },
                                             style: OutlinedButton.styleFrom(
                                               foregroundColor: emailColor,
                                               shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
+                                                borderRadius: BorderRadius.circular(20.0),
                                               ),
                                               side: BorderSide(
-                                                color: Colors.white
-                                                    .withOpacity(0.5),
+                                                color: Colors.white.withOpacity(0.5),
                                                 width: 2.0,
                                               ),
                                             ),
@@ -427,27 +388,20 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                           visible: _twitter.isNotEmpty,
                                           child: OutlinedButton.icon(
                                             onPressed: () {
-                                              if (_twitter
-                                                  .toString()
-                                                  .startsWith('@')) {
-                                                var handle = _twitter
-                                                    .toString()
-                                                    .substring(1);
+                                              if (_twitter.toString().startsWith('@')) {
+                                                var handle = _twitter.toString().substring(1);
                                                 launchURL(urlTwitter + handle);
                                               } else {
-                                                launchURL(
-                                                    urlTwitter + _twitter);
+                                                launchURL(urlTwitter + _twitter);
                                               }
                                             },
                                             style: OutlinedButton.styleFrom(
                                               foregroundColor: twitterColor,
                                               shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
+                                                borderRadius: BorderRadius.circular(20.0),
                                               ),
                                               side: BorderSide(
-                                                color: Colors.white
-                                                    .withOpacity(0.5),
+                                                color: Colors.white.withOpacity(0.5),
                                                 width: 2.0,
                                               ),
                                             ),
@@ -470,28 +424,20 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                           visible: _instagram.isNotEmpty,
                                           child: OutlinedButton.icon(
                                             onPressed: () {
-                                              if (_instagram
-                                                  .toString()
-                                                  .startsWith('@')) {
-                                                var handle = _instagram
-                                                    .toString()
-                                                    .substring(1);
-                                                launchURL(
-                                                    urlInstagram + handle);
+                                              if (_instagram.toString().startsWith('@')) {
+                                                var handle = _instagram.toString().substring(1);
+                                                launchURL(urlInstagram + handle);
                                               } else {
-                                                launchURL(
-                                                    urlInstagram + _instagram);
+                                                launchURL(urlInstagram + _instagram);
                                               }
                                             },
                                             style: OutlinedButton.styleFrom(
                                               foregroundColor: instagramColor,
                                               shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
+                                                borderRadius: BorderRadius.circular(20.0),
                                               ),
                                               side: BorderSide(
-                                                color: Colors.white
-                                                    .withOpacity(0.5),
+                                                color: Colors.white.withOpacity(0.5),
                                                 width: 2.0,
                                               ),
                                             ),
@@ -514,27 +460,20 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                           visible: _snapchat.isNotEmpty,
                                           child: OutlinedButton.icon(
                                             onPressed: () {
-                                              if (_snapchat
-                                                  .toString()
-                                                  .startsWith('@')) {
-                                                var handle = _snapchat
-                                                    .toString()
-                                                    .substring(1);
+                                              if (_snapchat.toString().startsWith('@')) {
+                                                var handle = _snapchat.toString().substring(1);
                                                 launchURL(urlSnapchat + handle);
                                               } else {
-                                                launchURL(
-                                                    urlSnapchat + _snapchat);
+                                                launchURL(urlSnapchat + _snapchat);
                                               }
                                             },
                                             style: OutlinedButton.styleFrom(
                                               foregroundColor: snapchatColor,
                                               shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
+                                                borderRadius: BorderRadius.circular(20.0),
                                               ),
                                               side: BorderSide(
-                                                color: Colors.white
-                                                    .withOpacity(0.5),
+                                                color: Colors.white.withOpacity(0.5),
                                                 width: 2.0,
                                               ),
                                             ),
@@ -562,12 +501,10 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                             style: OutlinedButton.styleFrom(
                                               foregroundColor: websiteColor,
                                               shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                BorderRadius.circular(20.0),
+                                                borderRadius: BorderRadius.circular(20.0),
                                               ),
                                               side: BorderSide(
-                                                color: Colors.white
-                                                    .withOpacity(0.5),
+                                                color: Colors.white.withOpacity(0.5),
                                                 width: 2.0,
                                               ),
                                             ),
@@ -595,12 +532,10 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                             style: OutlinedButton.styleFrom(
                                               foregroundColor: facebookColor,
                                               shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
+                                                borderRadius: BorderRadius.circular(20.0),
                                               ),
                                               side: BorderSide(
-                                                color: Colors.white
-                                                    .withOpacity(0.5),
+                                                color: Colors.white.withOpacity(0.5),
                                                 width: 2.0,
                                               ),
                                             ),
@@ -628,12 +563,10 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                             style: OutlinedButton.styleFrom(
                                               foregroundColor: youtubeColor,
                                               shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
+                                                borderRadius: BorderRadius.circular(20.0),
                                               ),
                                               side: BorderSide(
-                                                color: Colors.white
-                                                    .withOpacity(0.5),
+                                                color: Colors.white.withOpacity(0.5),
                                                 width: 2.0,
                                               ),
                                             ),
@@ -681,8 +614,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                   TextSpan(
                                     children: <TextSpan>[
                                       TextSpan(
-                                          text:
-                                              '${clubSponsorsNotifier.currentClubSponsors.name!}\n',
+                                          text: '${clubSponsorsNotifier.currentClubSponsors.name!}\n',
                                           style: GoogleFonts.aBeeZee(
                                             color: textColor,
                                             fontSize: 19,
@@ -722,7 +654,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(10.0),
+                            padding: const EdgeInsets.all(13.0),
                             child: Container(
                               width: width / 1.19,
                               height: width / 1.6,
@@ -735,12 +667,10 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                 autoplay: true,
                                 viewportFraction: 0.8,
                                 scale: 0.9,
-                                itemCount: clubSponsorsNotifier.clubSponsorsList
-                                    .length, // Total count of images in all documents
+                                itemCount: clubSponsorsNotifier.clubSponsorsList.length, // Total count of images in all documents
                                 itemBuilder: (context, index) {
                                   int imageIndex = index % 5;
-                                  ClubSponsors sponsor =
-                                      clubSponsorsNotifier.currentClubSponsors;
+                                  ClubSponsors sponsor = clubSponsorsNotifier.currentClubSponsors;
 
                                   String? imageUrl;
                                   switch (imageIndex) {
@@ -769,20 +699,17 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(10)),
+                                          borderRadius: const BorderRadius.all(Radius.circular(10)),
                                           image: DecorationImage(
                                             alignment: Alignment.topCenter,
-                                            image: CachedNetworkImageProvider(
-                                                imageUrl),
+                                            image: CachedNetworkImageProvider(imageUrl),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
                                     );
                                   } else {
-                                    return const SizedBox
-                                        .shrink(); // Return an empty container if image URL is null
+                                    return const SizedBox.shrink(); // Return an empty container if image URL is null
                                   }
                                 },
                                 layout: SwiperLayout.DEFAULT,
@@ -804,12 +731,10 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
 
   @override
   void initState() {
-    ClubSponsorsNotifier clubSponsorsNotifier =
-        Provider.of<ClubSponsorsNotifier>(context, listen: false);
+    ClubSponsorsNotifier clubSponsorsNotifier = Provider.of<ClubSponsorsNotifier>(context, listen: false);
     getClubSponsors(clubSponsorsNotifier);
 
-    upcomingMatchesNotifier =
-        Provider.of<UpcomingMatchesNotifier>(context, listen: false);
+    upcomingMatchesNotifier = Provider.of<UpcomingMatchesNotifier>(context, listen: false);
     getUpcomingMatches(upcomingMatchesNotifier);
 
     _name = clubSponsorsNotifier.currentClubSponsors.name;
@@ -829,8 +754,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
     _homeTeam = upcomingMatchesNotifier.upcomingMatchesList[0].homeTeam;
     _awayTeam = upcomingMatchesNotifier.upcomingMatchesList[0].awayTeam;
     _matchDate = upcomingMatchesNotifier.upcomingMatchesList[0].matchDate;
-    _matchDayKickOff =
-        upcomingMatchesNotifier.upcomingMatchesList[0].matchDayKickOff;
+    _matchDayKickOff = upcomingMatchesNotifier.upcomingMatchesList[0].matchDayKickOff;
     _venue = upcomingMatchesNotifier.upcomingMatchesList[0].venue;
 
     super.initState();
@@ -854,8 +778,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                   key: _contentKey,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(
-                          top: 45), // Add top padding of 16 units
+                      padding: const EdgeInsets.only(top: 45), // Add top padding of 16 units
                       child: Image.asset(
                         'assets/images/cpfc_logo.jpeg',
                         fit: BoxFit.cover,
@@ -869,15 +792,11 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                       padding: const EdgeInsets.only(left: 8, right: 8),
                       child: Text(
                         "Our Sponsor for today is ${clubSponsorsNotifier.currentClubSponsors.name!}, with their image:",
-                        style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black),
+                        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black),
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.only(
-                          top: 50), // Add a top margin of 16 units
+                      margin: const EdgeInsets.only(top: 50), // Add a top margin of 16 units
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -889,8 +808,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                               height: 50,
                             ),
                           ),
-                          Text('Matchday',
-                              style: TextStyle(fontSize: 25, color: Colors.white)),
+                          const Text('Matchday', style: TextStyle(fontSize: 25, color: Colors.white)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Image.network(
@@ -907,10 +825,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                       child: Center(
                         child: Text(
                           '${_homeTeam!} vs ${_awayTeam!}',
-                          style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                         ),
                       ),
                     ),
@@ -919,17 +834,14 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('When', style: TextStyle(color: Colors.white)),
+                          const Text('When', style: TextStyle(color: Colors.white)),
                           Text(
                             _matchDate!,
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                           Text(
                             '${_matchDayKickOff} kick off',
-                            style: TextStyle(fontSize: 16, color: Colors.white),
+                            style: const TextStyle(fontSize: 16, color: Colors.white),
                           ),
                         ],
                       ),
@@ -939,15 +851,12 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Where', style: TextStyle(color: Colors.white)),
+                          const Text('Where', style: TextStyle(color: Colors.white)),
                           Text(
                             _venue!,
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
-                          Text(
+                          const Text(
                             // clubSponsorsNotifier.currentClubSponsors.postcode!,
                             'CV3 1HW',
                             style: TextStyle(fontSize: 16, color: Colors.white),
@@ -967,14 +876,14 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                             padding: const EdgeInsets.all(1.0),
                             child: Text(
                               'Sponsored by ${clubSponsorsNotifier.currentClubSponsors.name!}',
-                              style: TextStyle(color: Colors.black),
+                              style: const TextStyle(color: Colors.black),
                             ),
                           ),
                         ), // Yellow rectangular space
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 300.0),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 300.0),
                       child: SizedBox(),
                     ),
                   ],
@@ -989,13 +898,13 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                 _shareContent(boundaryKey);
                 Navigator.pop(context);
               },
-              child: Text("Share", style: TextStyle(color: Colors.black)),
+              child: const Text("Share", style: TextStyle(color: Colors.black)),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text("Cancel", style: TextStyle(color: Colors.black)),
+              child: const Text("Cancel", style: TextStyle(color: Colors.black)),
             ),
           ],
         );
@@ -1003,11 +912,9 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
     );
   }
 
-
   void _shareContent(GlobalKey boundaryKey) async {
     // Get the RenderObject from the RepaintBoundary using its key
-    RenderRepaintBoundary boundary =
-    boundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+    RenderRepaintBoundary boundary = boundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
 
     // Increase the pixelRatio for higher resolution
     double pixelRatio = 3.0; // You can adjust this value based on your needs
@@ -1016,8 +923,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List? pngBytes = byteData?.buffer.asUint8List();
 
-    String text =
-        "Our Sponsor for today is ${clubSponsorsNotifier.currentClubSponsors.name!}, with their image:";
+    String text = "Our Sponsor for today is ${clubSponsorsNotifier.currentClubSponsors.name!}, with their image:";
 
     // Share the image with caption and text
     await Share.file(
@@ -1028,8 +934,6 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
       text: text,
     );
   }
-
-
 }
 
 facebookLink() async {

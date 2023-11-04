@@ -5,7 +5,7 @@
     "emit-module-diagnostics" : "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/shared_preferences_foundation.build/Objects-normal/arm64/shared_preferences_foundation-master-emit-module.dia",
     "swift-dependencies" : "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/shared_preferences_foundation.build/Objects-normal/arm64/shared_preferences_foundation-master.swiftdeps"
   },
-  "/Users/user/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.1.4/darwin/Classes/messages.g.swift" : {
+  "/Users/user/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.3.4/darwin/Classes/messages.g.swift" : {
     "const-values" : "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/shared_preferences_foundation.build/Objects-normal/arm64/messages.g.swiftconstvalues",
     "dependencies" : "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/shared_preferences_foundation.build/Objects-normal/arm64/messages.g.d",
     "diagnostics" : "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/shared_preferences_foundation.build/Objects-normal/arm64/messages.g.dia",
@@ -15,7 +15,7 @@
     "swift-dependencies" : "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/shared_preferences_foundation.build/Objects-normal/arm64/messages.g.swiftdeps",
     "swiftmodule" : "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/shared_preferences_foundation.build/Objects-normal/arm64/messages.g~partial.swiftmodule"
   },
-  "/Users/user/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.1.4/darwin/Classes/SharedPreferencesPlugin.swift" : {
+  "/Users/user/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.3.4/darwin/Classes/SharedPreferencesPlugin.swift" : {
     "const-values" : "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/shared_preferences_foundation.build/Objects-normal/arm64/SharedPreferencesPlugin.swiftconstvalues",
     "dependencies" : "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/shared_preferences_foundation.build/Objects-normal/arm64/SharedPreferencesPlugin.d",
     "diagnostics" : "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/build/Pods.build/Debug-iphoneos/shared_preferences_foundation.build/Objects-normal/arm64/SharedPreferencesPlugin.dia",

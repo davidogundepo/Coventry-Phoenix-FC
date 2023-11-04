@@ -17,6 +17,20 @@ import '../../notifier/first_team_class_notifier.dart';
 import '../../notifier/management_body_notifier.dart';
 import '../../notifier/second_team_class_notifier.dart';
 
+Color conColor = const Color.fromRGBO(194, 194, 220, 1.0);
+Color conColorTwo = const Color.fromRGBO(151, 147, 151, 1.0);
+Color textColor = const Color.fromRGBO(222, 214, 214, 1.0);
+Color whiteColor = const Color.fromRGBO(255, 253, 253, 1.0);
+Color twitterColor = const Color.fromRGBO(36, 81, 149, 1.0);
+Color instagramColor = const Color.fromRGBO(255, 255, 255, 1.0);
+Color facebookColor = const Color.fromRGBO(43, 103, 195, 1.0);
+Color snapchatColor = const Color.fromRGBO(222, 163, 36, 1.0);
+Color youtubeColor = const Color.fromRGBO(220, 45, 45, 1.0);
+Color websiteColor = const Color.fromRGBO(104, 79, 178, 1.0);
+Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
+Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
+Color backgroundColor = const Color.fromRGBO(237, 241, 241, 1.0);
+
 
 class MyShowAllClubMemberPage extends StatefulWidget with NavigationStates {
   MyShowAllClubMemberPage({Key? key}) : super(key: key);
@@ -47,6 +61,7 @@ class MyShowAllClubMemberPageState
         (a.name ?? 'No Name').toLowerCase().compareTo((b.name ?? 'No Name').toLowerCase()));
 
     return Scaffold(
+      backgroundColor: backgroundColor,
       body: ListView.builder(
         itemCount: sortedMembers.length,
         itemBuilder: (context, index) {

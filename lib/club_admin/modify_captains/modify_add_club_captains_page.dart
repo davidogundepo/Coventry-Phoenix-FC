@@ -9,16 +9,28 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../../notifier/first_team_class_notifier.dart';
 import '../../notifier/second_team_class_notifier.dart';
 
+Color conColor = const Color.fromRGBO(194, 194, 220, 1.0);
+Color conColorTwo = const Color.fromRGBO(151, 147, 151, 1.0);
+Color textColor = const Color.fromRGBO(222, 214, 214, 1.0);
+Color whiteColor = const Color.fromRGBO(255, 253, 253, 1.0);
+Color twitterColor = const Color.fromRGBO(36, 81, 149, 1.0);
+Color instagramColor = const Color.fromRGBO(255, 255, 255, 1.0);
+Color facebookColor = const Color.fromRGBO(43, 103, 195, 1.0);
+Color snapchatColor = const Color.fromRGBO(222, 163, 36, 1.0);
+Color youtubeColor = const Color.fromRGBO(220, 45, 45, 1.0);
+Color websiteColor = const Color.fromRGBO(104, 79, 178, 1.0);
+Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
+Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
+Color backgroundColor = const Color.fromRGBO(20, 36, 62, 1.0);
+
 class MyModifyAddClubCaptainsPage extends StatefulWidget with NavigationStates {
   MyModifyAddClubCaptainsPage({Key? key}) : super(key: key);
 
   @override
-  State<MyModifyAddClubCaptainsPage> createState() =>
-      MyModifyAddClubCaptainsPageState();
+  State<MyModifyAddClubCaptainsPage> createState() => MyModifyAddClubCaptainsPageState();
 }
 
-class MyModifyAddClubCaptainsPageState
-    extends State<MyModifyAddClubCaptainsPage> {
+class MyModifyAddClubCaptainsPageState extends State<MyModifyAddClubCaptainsPage> {
   bool isTeamSelected = false;
   bool isEditing = false; // Flag to determine if the user is in "Edit" mode
   List<String> selectedPlayerNames = []; // List to store selected player names
@@ -28,16 +40,27 @@ class MyModifyAddClubCaptainsPageState
   @override
   Widget build(BuildContext context) {
     // Use the PlayersNotifier to access the combined list of players
-    PlayersNotifier playersNotifier =
-    Provider.of<PlayersNotifier>(context);
+    PlayersNotifier playersNotifier = Provider.of<PlayersNotifier>(context);
 
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: Text('All Players'),
+        backgroundColor: backgroundColor,
+        leading: IconButton(
+          icon: const Icon(Icons.accessibility, color: Colors.white),
+          onPressed: () {},
+        ),
+        title: const Text(
+          'All Players',
+          style: TextStyle(color: Colors.white),
+        ),
         actions: [
           // Add a button to toggle "Edit" mode
           IconButton(
-            icon: Icon(isEditing ? Icons.done : Icons.edit),
+            icon: Icon(
+              isEditing ? Icons.done : Icons.edit,
+              color: Colors.white,
+            ),
             onPressed: () {
               // Toggle "Edit" mode and clear selected players list
               setState(() {
@@ -57,7 +80,7 @@ class MyModifyAddClubCaptainsPageState
           stream: FirebaseFirestore.instance.collection('Captains').snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
@@ -89,24 +112,27 @@ class MyModifyAddClubCaptainsPageState
                 return ListTile(
                   title: Text(
                     '$playerName ${teamForPlayer != null ? '($teamForPlayer)' : ''}',
+                    style: const TextStyle(color: Colors.white),
                   ),
                   trailing: isEditing
                       ? Checkbox(
-                    value: isSelected, // Check by player name
-                    onChanged: (value) {
-                      setState(() {
-                        if (value != null) {
-                          if (value && !isSelected) {
-                            // Player is selected, and not already in the list
-                            selectedPlayerNames.add(playerName);
-                          } else if (!value && isSelected) {
-                            // Player is unselected, and in the list
-                            selectedPlayerNames.remove(playerName);
-                          }
-                        }
-                      });
-                    },
-                  )
+                          activeColor: Colors.white,
+                          checkColor: backgroundColor,
+                          value: isSelected, // Check by player name
+                          onChanged: (value) {
+                            setState(() {
+                              if (value != null) {
+                                if (value && !isSelected) {
+                                  // Player is selected, and not already in the list
+                                  selectedPlayerNames.add(playerName);
+                                } else if (!value && isSelected) {
+                                  // Player is unselected, and in the list
+                                  selectedPlayerNames.remove(playerName);
+                                }
+                              }
+                            });
+                          },
+                        )
                       : null,
                 );
               },
@@ -115,57 +141,69 @@ class MyModifyAddClubCaptainsPageState
         ),
       ),
       bottomSheet: isEditing
-          ? Container(
-        padding: EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            Text('Selected Players:'),
-            SizedBox(width: 8.0),
-            Expanded(
-              child: Wrap(
-                children: selectedPlayerNames.map((playerName) {
-                  return Chip(
-                    label: Text(playerName),
-                    onDeleted: () {
-                      setState(() {
-                        selectedPlayerNames.remove(playerName);
-                      });
-                    },
-                  );
-                }).toList(),
+          ? SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Container(
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height * 0.27,
+                ),
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    const Text(
+                      'Selected Players:',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    const SizedBox(width: 8.0),
+                    Expanded(
+                      child: Wrap(
+                        children: selectedPlayerNames.map((playerName) {
+                          return Chip(
+                            label: Text(playerName),
+                            onDeleted: () {
+                              setState(() {
+                                selectedPlayerNames.remove(playerName);
+                              });
+                            },
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: isTeamSelected
+                          ? () async {
+                              await addPlayersAsCaptains(selectedPlayerNames);
+                              // Clear selected players list after addition
+                              setState(() {
+                                selectedPlayerNames.clear();
+                              });
+                            }
+                          : () {
+                              // Show a toast if no team is selected
+                              Fluttertoast.showToast(
+                                msg: 'Select Team first',
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                              );
+                            },
+                      child: const Text(
+                        'Add as Captains',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: isTeamSelected
-                  ? () async {
-                await addPlayersAsCaptains(selectedPlayerNames);
-                // Clear selected players list after addition
-                setState(() {
-                  selectedPlayerNames.clear();
-                });
-              }
-                  : () {
-                // Show a toast if no team is selected
-                Fluttertoast.showToast(
-                  msg: 'Select Team first',
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.BOTTOM,
-                );
-              },
-              child: Text('Add as Captains'),
-            ),
-
-          ],
-        ),
-      )
+            )
           : null, // Show selected players at the bottom only in "Edit" mode
       floatingActionButton: isEditing
           ? FloatingActionButton(
-        onPressed: () {
-          _showTeamSelectionDialog();
-        },
-        child: Icon(Icons.sports_soccer),
-      )
+              backgroundColor: twitterColor,
+              onPressed: () {
+                _showTeamSelectionDialog();
+              },
+              child: const Icon(Icons.sports_soccer, color: Colors.white),
+            )
           : null,
     );
   }
@@ -175,12 +213,19 @@ class MyModifyAddClubCaptainsPageState
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Select a Team'),
+          backgroundColor: backgroundColor,
+          title: const Text(
+            'Select a Team',
+            style: TextStyle(color: Colors.white),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                title: Text('First Team'),
+                title: const Text(
+                  'First Team',
+                  style: TextStyle(color: Colors.white),
+                ),
                 onTap: () {
                   Navigator.of(context).pop('First Team');
                   setState(() {
@@ -194,7 +239,10 @@ class MyModifyAddClubCaptainsPageState
                 },
               ),
               ListTile(
-                title: Text('Reserve Team'),
+                title: const Text(
+                  'Reserve Team',
+                  style: TextStyle(color: Colors.white),
+                ),
                 onTap: () {
                   Navigator.of(context).pop('Reserve Team');
                   setState(() {
@@ -208,7 +256,10 @@ class MyModifyAddClubCaptainsPageState
                 },
               ),
               ListTile(
-                title: Text('Third Team'),
+                title: const Text(
+                  'Third Team',
+                  style: TextStyle(color: Colors.white),
+                ),
                 onTap: () {
                   Navigator.of(context).pop('Third Team');
                   setState(() {
@@ -247,17 +298,14 @@ class MyModifyAddClubCaptainsPageState
     super.initState();
 
     // Fetch data for the first and second teams using their notifiers
-    FirstTeamClassNotifier firstTeamNotifier =
-    Provider.of<FirstTeamClassNotifier>(context, listen: false);
+    FirstTeamClassNotifier firstTeamNotifier = Provider.of<FirstTeamClassNotifier>(context, listen: false);
     getFirstTeamClass(firstTeamNotifier);
 
-    SecondTeamClassNotifier secondTeamNotifier =
-    Provider.of<SecondTeamClassNotifier>(context, listen: false);
+    SecondTeamClassNotifier secondTeamNotifier = Provider.of<SecondTeamClassNotifier>(context, listen: false);
     getSecondTeamClass(secondTeamNotifier);
 
     // Populate the PlayersNotifier with data from both teams
-    PlayersNotifier playersNotifier =
-    Provider.of<PlayersNotifier>(context, listen: false);
+    PlayersNotifier playersNotifier = Provider.of<PlayersNotifier>(context, listen: false);
 
     playersNotifier.setFirstTeamPlayers(firstTeamNotifier.firstTeamClassList);
     playersNotifier.setSecondTeamPlayers(secondTeamNotifier.secondTeamClassList);
@@ -268,20 +316,15 @@ class MyModifyAddClubCaptainsPageState
 
     // Get the current players in the 'Captains' collection
     final captainsCollection = await firestore.collection('Captains').get();
-    final existingCaptains = captainsCollection.docs
-        .map((doc) => doc['name'] as String)
-        .toSet();
+    final existingCaptains = captainsCollection.docs.map((doc) => doc['name'] as String).toSet();
 
     // Access the PlayersNotifier to retrieve player data
-    PlayersNotifier playersNotifier =
-    Provider.of<PlayersNotifier>(context, listen: false);
+    PlayersNotifier playersNotifier = Provider.of<PlayersNotifier>(context, listen: false);
 
     // Iterate through the selected players and add them as captains if they don't already exist
     for (final playerName in selectedPlayerNames) {
       if (!existingCaptains.contains(playerName)) {
-        final player = playersNotifier.playersList
-            .firstWhere((player) => player.name == playerName,
-            orElse: () => null);
+        final player = playersNotifier.playersList.firstWhere((player) => player.name == playerName, orElse: () => null);
 
         if (player != null) {
           final imageUrl = player.image ?? ''; // Get the image URL
@@ -290,16 +333,14 @@ class MyModifyAddClubCaptainsPageState
           // Add player as captain to the 'Captains' collection with the image URLs
           await firestore.collection('Captains').add({
             'name': playerName,
-            'team_captaining':
-            selectedTeam.isNotEmpty ? selectedTeam : 'YourTeamHere',
+            'team_captaining': selectedTeam.isNotEmpty ? selectedTeam : 'YourTeamHere',
             'image': imageUrl, // Use the retrieved image URL
             'image_two': imageTwoUrl, // Use the retrieved imageTwo URL
             'id': '10',
           });
 
           // Update the playerTeams map with the new captain
-          playerTeams[playerName] =
-          selectedTeam.isNotEmpty ? selectedTeam : 'YourTeamHere';
+          playerTeams[playerName] = selectedTeam.isNotEmpty ? selectedTeam : 'YourTeamHere';
         }
       }
     }
@@ -317,8 +358,7 @@ class MyModifyAddClubCaptainsPageState
 
   void showSnackbar(List<String> playerNames) {
     final snackBar = SnackBar(
-      content: Text(
-          '${playerNames.length} players have been added as captains: ${playerNames.join(", ")}'),
+      content: Text('${playerNames.length} players have been added as captains: ${playerNames.join(", ")}'),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

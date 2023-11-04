@@ -42,6 +42,7 @@ dependencies:
   firebase_auth: ^4.10.1
   firebase_crashlytics: ^3.3.7
   firebase_analytics: ^10.5.1
+  firebase_storage: ^11.4.1
   provider: ^6.0.5
   http: ^1.1.0
   syncfusion_flutter_core: ^23.1.40
@@ -93,6 +94,12 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.1
+  image: ^4.1.3
+  image_gallery_saver: ^2.0.3
+  flutter_colorpicker: ^1.0.3
+#  flutter_blurhash: ^0.7.0
+  flutter_text_drawable: ^1.0.0
+
 
 
 flutter_app_name:
