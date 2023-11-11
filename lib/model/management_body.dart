@@ -5,6 +5,7 @@ class ManagementBody {
   String? regionOfOrigin;
   String? nationality;
   String? hobbies;
+  String? dob;
   String? bestMoment;
   String? worstMoment;
   String? philosophy;
@@ -40,6 +41,7 @@ class ManagementBody {
     bestMoment = data['best_moment'];
     worstMoment = data['worst_moment'];
     staffPosition = data['staff_position'];
+    dob = data['d_o_b'];
     philosophy = data['philosophy'];
     whyLoveCoachingOrFCManagement =
         data['why_you_love_coaching_or_fc_management'];

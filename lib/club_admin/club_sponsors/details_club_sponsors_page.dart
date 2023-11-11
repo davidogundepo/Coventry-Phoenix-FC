@@ -149,14 +149,14 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
             Navigator.pop(context);
           },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.upload),
-            onPressed: () {
-              _showUploadDialog();
-            },
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: const Icon(Icons.upload),
+        //     onPressed: () {
+        //       _showUploadDialog();
+        //     },
+        //   ),
+        // ],
       ),
 
       backgroundColor: backgroundColor,

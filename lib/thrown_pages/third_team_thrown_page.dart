@@ -311,20 +311,20 @@ class _MyThirdTeamClassPage extends State<MyThirdTeamClassPage> {
                                                   navigateTablesAndStatsDetails(
                                                       context);
                                                 }),
-                                            ListTile(
-                                                leading: Icon(MdiIcons.atom,
-                                                    color: iconColorTwo),
-                                                title: Text(
-                                                  whoWeAre,
-                                                  style: GoogleFonts.zillaSlab(
-                                                      color: textColorTwo),
-                                                ),
-                                                onTap: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
-                                                  navigateToWhoWeArePage(
-                                                      context);
-                                                }),
+                                            // ListTile(
+                                            //     leading: Icon(MdiIcons.atom,
+                                            //         color: iconColorTwo),
+                                            //     title: Text(
+                                            //       whoWeAre,
+                                            //       style: GoogleFonts.zillaSlab(
+                                            //           color: textColorTwo),
+                                            //     ),
+                                            //     onTap: () {
+                                            //       Navigator.of(context)
+                                            //           .pop(false);
+                                            //       navigateToWhoWeArePage(
+                                            //           context);
+                                            //     }),
                                             ListTile(
                                               leading: Icon(
                                                   MdiIcons.accountGroup,
@@ -397,10 +397,11 @@ class _MyThirdTeamClassPage extends State<MyThirdTeamClassPage> {
                   floating: false,
                   pinned: true,
                   flexibleSpace: FlexibleSpaceBar(
-                      centerTitle: true,
-                      title: Center(
-                        heightFactor: 0.6,
-                        child: Text(thrownName,
+                      title: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                            thrownName,
+                            textAlign: TextAlign.start,
                             style: GoogleFonts.abel(
                                 color: appBarTextColor,
                                 fontSize: 26.0,

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +11,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-
+import 'package:simple_icons/simple_icons.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../notifier/sidebar_notifier.dart';
 import '../sidebar/menu_item.dart';
@@ -21,16 +19,16 @@ import '../sidebar/menu_item.dart';
 String clubName = "Coventry Phoenix FC";
 String subtitle = "We breed elite players here";
 
-String returningPlayersTitle = "Returning Players";
-String newPlayersTitle = "New Players";
+String returningPlayersTitle = "Coventry Phoenix I";
+String newPlayersTitle = "Coventry Phoenix II";
 // String thirdTeamClassTitle = "Reserve Team Players";
 String captainsTitle = "CPFC Captains";
 String coachesTitle = "Coaching Staff";
 String managementBodyTitle = "Management Body";
 String sponsorsTitle = "Club Sponsors";
-String adminTitle = "Club Admin";
+// String adminTitle = "Club Admin";
 
-String aiStatsTitle = "AI Stats";
+String aiStatsTitle = "Ask ChatGFA";
 
 String exitAppStatement = "Exit from App";
 String exitAppTitle = "Come on!";
@@ -40,8 +38,8 @@ String exitAppYes = "I Have To";
 
 Color gradientColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color gradientColorTwo = Colors.white;
-Color gradientColorThree = const Color.fromRGBO(197, 33, 75, 1.0);
-Color gradientColorFour = const Color.fromRGBO(70, 94, 213, 1.0);
+Color gradientColorThree = const Color.fromRGBO(215, 71, 108, 1.0);
+Color gradientColorFour = const Color.fromRGBO(255, 107, 53, 1.0);
 Color linearGradientColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color linearGradientColorTwo = const Color.fromRGBO(24, 26, 36, 1.0);
 Color boxShadowColor = const Color.fromRGBO(24, 26, 36, 1.0);
@@ -68,13 +66,13 @@ class SideBar extends StatefulWidget {
   State<StatefulWidget> createState() => _SideBarState();
 }
 
-class _SideBarState extends State<SideBar>
-    with SingleTickerProviderStateMixin<SideBar> {
+class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<SideBar> {
   int _currentNAVSelected = 0;
   bool _isClubSponsorsClicked = false; // New variable to track the "Club Sponsors" click
 
   _onSelected(int index) {
-    if (index == 6 || index == 8) { // Check if the selected item is "Club Sponsors"
+    if (index == 7 || index == 8) {
+      // Check if the selected item is "Club Sponsors"
       _isClubSponsorsClicked = true;
       // showToast("Club Sponsors Clicked"); // Show the toast message
     } else {
@@ -87,14 +85,11 @@ class _SideBarState extends State<SideBar>
   late StreamController<bool> isSidebarOpenedStreamController;
   late Stream<bool> isSidebarOpenedStream;
   late StreamSink<bool> isSidebarOpenedSink;
-  final bool isSidebarOpened = false;
+  final bool isSidebarOpened = true;
   final _animationDuration = const Duration(milliseconds: 500);
 
   Stream<DocumentSnapshot<Map<String, dynamic>>> getDataFromFirestore() {
-    return FirebaseFirestore.instance
-        .collection('SliversPages')
-        .doc('non_slivers_pages')
-        .snapshots();
+    return FirebaseFirestore.instance.collection('SliversPages').doc('non_slivers_pages').snapshots();
   }
 
   @override
@@ -103,8 +98,7 @@ class _SideBarState extends State<SideBar>
 
     getDataFromFirestore();
 
-    _animationController =
-        AnimationController(vsync: this, duration: _animationDuration);
+    _animationController = AnimationController(vsync: this, duration: _animationDuration);
     isSidebarOpenedStreamController = PublishSubject<bool>();
     isSidebarOpenedStream = isSidebarOpenedStreamController.stream;
     isSidebarOpenedSink = isSidebarOpenedStreamController.sink;
@@ -113,6 +107,7 @@ class _SideBarState extends State<SideBar>
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
   }
 
   @override
@@ -151,9 +146,8 @@ class _SideBarState extends State<SideBar>
             duration: _animationDuration,
             top: 0,
             bottom: 0,
-            left: isSidebarOpenedAsync.data! ? 0 : -screeWidthLeft,
-            right: isSidebarOpenedAsync.data! ? 0 : screeWidthLeft - 55,
-
+            left: isSidebarOpenedAsync.data! ? -screeWidthLeft : 0,
+            right: isSidebarOpenedAsync.data! ? screeWidthLeft - 55 : 0,
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -166,10 +160,7 @@ class _SideBarState extends State<SideBar>
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topRight,
-                                end: Alignment.bottomLeft,
-                                colors: [gradientColor, gradientColor])),
+                            gradient: LinearGradient(begin: Alignment.topRight, end: Alignment.bottomLeft, colors: [gradientColor, gradientColor])),
                         child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: Column(
@@ -181,40 +172,27 @@ class _SideBarState extends State<SideBar>
                                 children: <Widget>[
                                   Opacity(
                                     opacity: 0.7,
-                                    child: StreamBuilder<
-                                        DocumentSnapshot<Map<String, dynamic>>>(
+                                    child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                                       stream: getDataFromFirestore(),
                                       builder: (context, snapshot) {
-                                        if (snapshot.connectionState ==
-                                            ConnectionState.waiting) {
-                                          return const Center(
-                                              child: CircularProgressIndicator());
+                                        if (snapshot.connectionState == ConnectionState.waiting) {
+                                          return const Center(child: CircularProgressIndicator());
                                         } else {
                                           return Container(
-                                            width:
-                                                MediaQuery.of(context).size.width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.4,
+                                            width: MediaQuery.of(context).size.width,
+                                            height: MediaQuery.of(context).size.height * 0.4,
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
-                                                alignment:
-                                                    const Alignment(0, -0.8),
+                                                alignment: const Alignment(0, -0.8),
                                                 image: CachedNetworkImageProvider(
-                                                  snapshot.data
-                                                      ?.data()!['sidebar_page'],
+                                                  snapshot.data?.data()!['sidebar_page'],
                                                 ),
                                                 fit: BoxFit.cover,
                                               ),
                                               gradient: LinearGradient(
                                                 begin: Alignment.topLeft,
                                                 end: Alignment.bottomRight,
-                                                colors: [
-                                                  linearGradientColor,
-                                                  linearGradientColorTwo
-                                                      .withAlpha(50)
-                                                ],
+                                                colors: [linearGradientColor, linearGradientColorTwo.withAlpha(50)],
                                                 stops: const [0.3, 1],
                                               ),
                                               boxShadow: [
@@ -224,8 +202,7 @@ class _SideBarState extends State<SideBar>
                                                   offset: const Offset(3, 12),
                                                 )
                                               ],
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                              borderRadius: BorderRadius.circular(10),
                                             ),
                                             child: Material(
                                               color: materialBackgroundColor,
@@ -233,32 +210,23 @@ class _SideBarState extends State<SideBar>
                                                 splashColor: splashColor,
                                                 onTap: () {},
                                                 child: Align(
-                                                  alignment:
-                                                      const Alignment(0, 0.9),
+                                                  alignment: const Alignment(0, 0.9),
                                                   child: ListTile(
                                                     title: Text(
                                                       clubName.toUpperCase(),
                                                       style: GoogleFonts.gorditas(
                                                           color: textColor,
-                                                          fontSize: 25,
-                                                          fontWeight:
-                                                              FontWeight.w800,
+                                                          fontSize: 21,
+                                                          fontWeight: FontWeight.w700,
                                                           shadows: <Shadow>[
-                                                            Shadow(
-                                                                blurRadius: 50,
-                                                                color:
-                                                                    textShadowColor,
-                                                                offset: Offset
-                                                                    .fromDirection(
-                                                                        100, 12))
+                                                            Shadow(blurRadius: 50, color: textShadowColor, offset: Offset.fromDirection(100, 12))
                                                           ]),
                                                     ),
                                                     subtitle: Text(
                                                       subtitle,
                                                       style: GoogleFonts.varela(
                                                         color: textColor,
-                                                        fontWeight:
-                                                            FontWeight.w500,
+                                                        fontWeight: FontWeight.w500,
                                                         fontSize: 20,
                                                       ),
                                                     ),
@@ -281,10 +249,7 @@ class _SideBarState extends State<SideBar>
                                           width: 140.0,
                                           height: 140.0,
                                           decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      'assets/images/cpfc_logo.jpeg'))),
+                                              shape: BoxShape.circle, image: DecorationImage(image: AssetImage('assets/images/cpfc_logo.jpeg'))),
                                         ),
                                       ),
                                     ),
@@ -300,17 +265,13 @@ class _SideBarState extends State<SideBar>
                                 endIndent: 32,
                               ),
                               Material(
-                                color: _currentNAVSelected == 0
-                                    ? gradientColorTwo.withOpacity(0.3)
-                                    : materialBackgroundColor,
+                                color: _currentNAVSelected == 0 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
                                 child: InkWell(
                                   splashColor: splashColorThree,
                                   onTap: () {
                                     _onSelected(0);
                                     onIconPressed();
-                                    BlocProvider.of<NavigationBloc>(context).add(
-                                        NavigationEvents
-                                            .myFirstTeamClassPageClickedEvent);
+                                    BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.myFirstTeamClassPageClickedEvent);
                                   },
                                   child: Align(
                                     alignment: Alignment.centerLeft,
@@ -322,17 +283,13 @@ class _SideBarState extends State<SideBar>
                                 ),
                               ),
                               Material(
-                                color: _currentNAVSelected == 1
-                                    ? gradientColorTwo.withOpacity(0.3)
-                                    : materialBackgroundColor,
+                                color: _currentNAVSelected == 1 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
                                 child: InkWell(
                                   splashColor: splashColorThree,
                                   onTap: () {
                                     _onSelected(1);
                                     onIconPressed();
-                                    BlocProvider.of<NavigationBloc>(context).add(
-                                        NavigationEvents
-                                            .mySecondTeamClassPageClickedEvent);
+                                    BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.mySecondTeamClassPageClickedEvent);
                                   },
                                   child: Align(
                                     alignment: Alignment.centerLeft,
@@ -362,17 +319,13 @@ class _SideBarState extends State<SideBar>
                               //   ),
                               // ),
                               Material(
-                                color: _currentNAVSelected == 3
-                                    ? gradientColorTwo.withOpacity(0.3)
-                                    : materialBackgroundColor,
+                                color: _currentNAVSelected == 3 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
                                 child: InkWell(
                                   splashColor: splashColorThree,
                                   onTap: () {
                                     _onSelected(3);
                                     onIconPressed();
-                                    BlocProvider.of<NavigationBloc>(context).add(
-                                        NavigationEvents
-                                            .myCaptainsPageClickedEvent);
+                                    BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.myCaptainsPageClickedEvent);
                                   },
                                   child: Align(
                                     alignment: Alignment.centerLeft,
@@ -384,17 +337,13 @@ class _SideBarState extends State<SideBar>
                                 ),
                               ),
                               Material(
-                                color: _currentNAVSelected == 4
-                                    ? gradientColorTwo.withOpacity(0.3)
-                                    : materialBackgroundColor,
+                                color: _currentNAVSelected == 4 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
                                 child: InkWell(
                                   splashColor: splashColorThree,
                                   onTap: () {
                                     _onSelected(4);
                                     onIconPressed();
-                                    BlocProvider.of<NavigationBloc>(context).add(
-                                        NavigationEvents
-                                            .myCoachesPageClickedEvent);
+                                    BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.myCoachesPageClickedEvent);
                                   },
                                   child: Align(
                                     alignment: Alignment.centerLeft,
@@ -406,17 +355,13 @@ class _SideBarState extends State<SideBar>
                                 ),
                               ),
                               Material(
-                                color: _currentNAVSelected == 5
-                                    ? gradientColorTwo.withOpacity(0.3)
-                                    : materialBackgroundColor,
+                                color: _currentNAVSelected == 5 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
                                 child: InkWell(
                                   splashColor: splashColorThree,
                                   onTap: () {
                                     _onSelected(5);
                                     onIconPressed();
-                                    BlocProvider.of<NavigationBloc>(context).add(
-                                        NavigationEvents
-                                            .myManagementBodyPageClickedEvent);
+                                    BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.myManagementBodyPageClickedEvent);
                                   },
                                   child: Align(
                                     alignment: Alignment.centerLeft,
@@ -435,39 +380,7 @@ class _SideBarState extends State<SideBar>
                                 endIndent: 15,
                               ),
                               Material(
-                                color: _currentNAVSelected == 6
-                                    ? gradientColorTwo.withOpacity(0.3)
-                                    : materialBackgroundColor,
-                                child: InkWell(
-                                  splashColor: splashColorThree,
-                                  onTap: () {
-                                    _onSelected(6);
-                                    onIconPressed();
-                                    BlocProvider.of<NavigationBloc>(context).add(
-                                        NavigationEvents
-                                            .myClubSponsorsPageClickedEvent);
-                                  },
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: MenuItems(
-                                      icon: MdiIcons.cashCheck,
-                                      title: sponsorsTitle,
-                                      textColor: gradientColorThree
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Divider(
-                                height: 5,
-                                thickness: 0.5,
-                                color: dividerColor.withOpacity(0.3),
-                                indent: 12,
-                                endIndent: 15,
-                              ),
-                              Material(
-                                color: _currentNAVSelected == 7
-                                    ? gradientColorTwo.withOpacity(0.3)
-                                    : materialBackgroundColor,
+                                color: _currentNAVSelected == 6 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
                                 child: InkWell(
                                   splashColor: splashColorThree,
                                   onTap: () {
@@ -478,15 +391,10 @@ class _SideBarState extends State<SideBar>
                                     //         .myClubSponsorsPageClickedEvent);
 
                                     showToast();
-
                                   },
                                   child: Align(
                                     alignment: Alignment.centerLeft,
-                                    child: MenuItems(
-                                      icon: MdiIcons.star,
-                                      title: aiStatsTitle,
-                                      textColor: gradientColorFour
-                                    ),
+                                    child: MenuItems(icon: SimpleIcons.rubysinatra, title: aiStatsTitle, textColor: gradientColorFour),
                                   ),
                                 ),
                               ),
@@ -498,31 +406,52 @@ class _SideBarState extends State<SideBar>
                                 endIndent: 15,
                               ),
                               Material(
-                                color: _currentNAVSelected == 8
-                                    ? gradientColorTwo.withOpacity(0.3)
-                                    : materialBackgroundColor,
+                                color: _currentNAVSelected == 7 ? gradientColorTwo.withOpacity(0.3) : materialBackgroundColor,
                                 child: InkWell(
                                   splashColor: splashColorThree,
                                   onTap: () {
-                                    _onSelected(8);
+                                    _onSelected(7);
                                     onIconPressed();
-                                    BlocProvider.of<NavigationBloc>(context).add(
-                                        NavigationEvents
-                                            .myClubAdminPageClickedEvent);
+                                    BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.myClubSponsorsPageClickedEvent);
                                   },
                                   child: Align(
                                     alignment: Alignment.centerLeft,
-                                    child: MenuItems(
-                                        icon: MdiIcons.security,
-                                        title: adminTitle,
-                                        textColor: gradientColorTwo
-                                    ),
+                                    child: MenuItems(icon: SimpleIcons.icinga, title: sponsorsTitle, textColor: gradientColorThree),
                                   ),
                                 ),
                               ),
+                              Divider(
+                                height: 5,
+                                thickness: 0.5,
+                                color: dividerColor.withOpacity(0.3),
+                                indent: 12,
+                                endIndent: 15,
+                              ),
+                              // Material(
+                              //   color: _currentNAVSelected == 8
+                              //       ? gradientColorTwo.withOpacity(0.3)
+                              //       : materialBackgroundColor,
+                              //   child: InkWell(
+                              //     splashColor: splashColorThree,
+                              //     onTap: () {
+                              //       _onSelected(8);
+                              //       onIconPressed();
+                              //       BlocProvider.of<NavigationBloc>(context).add(
+                              //           NavigationEvents
+                              //               .myClubAdminPageClickedEvent);
+                              //     },
+                              //     child: Align(
+                              //       alignment: Alignment.centerLeft,
+                              //       child: MenuItems(
+                              //           icon: MdiIcons.security,
+                              //           title: adminTitle,
+                              //           textColor: gradientColorTwo
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(bottom: 50, top: 10),
+                                padding: const EdgeInsets.only(bottom: 50, top: 10),
                                 child: Material(
                                   color: materialBackgroundColor,
                                   child: InkWell(
@@ -566,7 +495,9 @@ class _SideBarState extends State<SideBar>
                           alignment: Alignment.centerLeft,
                           child: AnimatedIcon(
                             progress: _animationController.view,
-                            icon: AnimatedIcons.menu_close,
+                            icon: _animationController.status == AnimationStatus.completed
+                                ? AnimatedIcons.menu_arrow
+                                : AnimatedIcons.close_menu,
                             color: containerIconColor,
                             size: 25,
                           ),
@@ -584,6 +515,13 @@ class _SideBarState extends State<SideBar>
   }
 
   Future<bool>? _onWillPop() async {
+
+    //moves the screen up
+    // if (Provider.of<SideBarNotifier>(context, listen: false).isOpened) {
+    //   onIconPressed();
+    //   return false;
+    // }
+
     return await showDialog(
           context: context,
           builder: (context) => AlertDialog(
@@ -658,16 +596,12 @@ class CustomPILLCardShapePainter extends CustomPainter {
 
     var david = Paint();
     david.shader = ui.Gradient.linear(
-        const Offset(0, 0), Offset(size.width, size.height), [
-      HSLColor.fromColor(startColor).withLightness(0.8).toColor(),
-      endColor
-    ]);
+        const Offset(0, 0), Offset(size.width, size.height), [HSLColor.fromColor(startColor).withLightness(0.8).toColor(), endColor]);
 
     var jesus = Path()
       ..moveTo(0, size.height)
       ..lineTo(size.width - radius, size.height)
-      ..quadraticBezierTo(
-          size.width, size.height, size.width, size.height - radius)
+      ..quadraticBezierTo(size.width, size.height, size.width, size.height - radius)
       ..lineTo(size.width, radius)
       ..quadraticBezierTo(size.width, 0, size.width - radius, 0)
       ..lineTo(size.width - 1.5 * radius, 0)

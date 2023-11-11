@@ -2,18 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:coventry_phoenix_fc/bloc_navigation_bloc/navigation_bloc.dart';
 
-Color conColor = const Color.fromRGBO(194, 194, 220, 1.0);
-Color conColorTwo = const Color.fromRGBO(151, 147, 151, 1.0);
-Color textColor = const Color.fromRGBO(222, 214, 214, 1.0);
-Color whiteColor = const Color.fromRGBO(255, 253, 253, 1.0);
-Color twitterColor = const Color.fromRGBO(36, 81, 149, 1.0);
-Color instagramColor = const Color.fromRGBO(255, 255, 255, 1.0);
-Color facebookColor = const Color.fromRGBO(43, 103, 195, 1.0);
-Color snapchatColor = const Color.fromRGBO(222, 163, 36, 1.0);
-Color youtubeColor = const Color.fromRGBO(220, 45, 45, 1.0);
-Color websiteColor = const Color.fromRGBO(104, 79, 178, 1.0);
-Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
-Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
+
 Color backgroundColor = const Color.fromRGBO(237, 241, 241, 1.0);
 
 class MyAddClubMemberPage extends StatefulWidget with NavigationStates {
@@ -68,8 +57,8 @@ class MyAddClubMemberPageState extends State<MyAddClubMemberPage> {
             'best_moment': '',
             'email': '',
             'facebook': '',
-            'image': 'https://firebasestorage.googleapis.com/v0/b/uk-football-club-template.appspot.com/o/Footballers%2Ff_8.jpeg?alt=media&token=753c98c2-fb09-4ef4-94fa-8557ba42320d',
-            'image_two': 'https://firebasestorage.googleapis.com/v0/b/uk-football-club-template.appspot.com/o/Footballers%2Ff_8.jpeg?alt=media&token=753c98c2-fb09-4ef4-94fa-8557ba42320d',
+            'image': 'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/Players%2FAI_GENERATED%2Fai_player_1.jpg?alt=media&token=585caeeb-2d2c-4dd9-a298-c802f9998356',
+            'image_two': 'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/Players%2FAI_GENERATED%2Fai_player_2.jpg?alt=media&token=6f10032a-813e-476e-92ee-d34bb35bfff0',
             'instagram': '',
             'name': fullName,
             'nickname': '',
@@ -105,8 +94,8 @@ class MyAddClubMemberPageState extends State<MyAddClubMemberPage> {
             'best_moment': '',
             'email': '',
             'facebook': '',
-            'image': 'https://firebasestorage.googleapis.com/v0/b/uk-football-club-template.appspot.com/o/Footballers%2Ff_8.jpeg?alt=media&token=753c98c2-fb09-4ef4-94fa-8557ba42320d',
-            'image_two': 'https://firebasestorage.googleapis.com/v0/b/uk-football-club-template.appspot.com/o/Footballers%2Ff_8.jpeg?alt=media&token=753c98c2-fb09-4ef4-94fa-8557ba42320d',
+            'image': 'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/Players%2FAI_GENERATED%2Fai_player_1.jpg?alt=media&token=585caeeb-2d2c-4dd9-a298-c802f9998356',
+            'image_two': 'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/Players%2FAI_GENERATED%2Fai_player_2.jpg?alt=media&token=6f10032a-813e-476e-92ee-d34bb35bfff0',
             'instagram': '',
             'name': fullName,
             'nickname': '',
@@ -141,8 +130,8 @@ class MyAddClubMemberPageState extends State<MyAddClubMemberPage> {
             'autobio': '',
             'email': '',
             'facebook': '',
-            'image': 'https://firebasestorage.googleapis.com/v0/b/uk-football-club-template.appspot.com/o/Footballers%2Ff_8.jpeg?alt=media&token=753c98c2-fb09-4ef4-94fa-8557ba42320d',
-            'image_two': 'https://firebasestorage.googleapis.com/v0/b/uk-football-club-template.appspot.com/o/Footballers%2Ff_8.jpeg?alt=media&token=753c98c2-fb09-4ef4-94fa-8557ba42320d',
+            'image': 'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/Players%2FAI_GENERATED%2Fai_coach_1.jpg?alt=media&token=d5960c59-a7b7-4556-87e3-4095c638a056',
+            'image_two': 'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/Players%2FAI_GENERATED%2Fai_coach_2.jpg?alt=media&token=487a3e8c-2692-4d3d-92a4-471a2a547920',
             'instagram': '',
             'name': fullName,
             'phone': '',
@@ -154,6 +143,7 @@ class MyAddClubMemberPageState extends State<MyAddClubMemberPage> {
             'hobbies': '',
             'best_moment': '',
             'worst_moment': '',
+            'd_o_b': '',
             'staff_position': '',
             'philosophy': '',
             'why_you_love_coaching_or_fc_management': '',
@@ -167,8 +157,8 @@ class MyAddClubMemberPageState extends State<MyAddClubMemberPage> {
             'autobio': '',
             'email': '',
             'facebook': '',
-            'image': 'https://firebasestorage.googleapis.com/v0/b/uk-football-club-template.appspot.com/o/Footballers%2Ff_8.jpeg?alt=media&token=753c98c2-fb09-4ef4-94fa-8557ba42320d',
-            'image_two': 'https://firebasestorage.googleapis.com/v0/b/uk-football-club-template.appspot.com/o/Footballers%2Ff_8.jpeg?alt=media&token=753c98c2-fb09-4ef4-94fa-8557ba42320d',
+            'image': 'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/Players%2FAI_GENERATED%2Fai_manager_2.jpg?alt=media&token=afc23732-5674-4008-9662-9b756b66e9f6',
+            'image_two': 'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/Players%2FAI_GENERATED%2Fai_manager_1.jpg?alt=media&token=eb2ce227-a66b-4fa3-a642-f4742f3ad40e',
             'instagram': '',
             'name': fullName,
             'phone': '',
@@ -180,6 +170,7 @@ class MyAddClubMemberPageState extends State<MyAddClubMemberPage> {
             'hobbies': '',
             'best_moment': '',
             'worst_moment': '',
+            'd_o_b': '',
             'staff_position': '',
             'philosophy': '',
             'why_you_love_coaching_or_fc_management': '',

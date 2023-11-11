@@ -18,7 +18,7 @@ class SideBarLayout extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             IgnorePointer(
-              ignoring: sideBarNotifier.isOpened,
+              ignoring: !sideBarNotifier.isOpened,
               child: BlocBuilder<NavigationBloc, NavigationStates>(
                 builder: (context, navigationState) {
                   return navigationState as Widget;

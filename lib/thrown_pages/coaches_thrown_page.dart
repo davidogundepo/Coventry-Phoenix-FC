@@ -284,20 +284,20 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                                                   navigateTablesAndStatsDetails(
                                                       context);
                                                 }),
-                                            ListTile(
-                                                leading: Icon(MdiIcons.atom,
-                                                    color: modalIconColor),
-                                                title: Text(
-                                                  whoWeAre,
-                                                  style: GoogleFonts.zillaSlab(
-                                                      color: modalTextColor),
-                                                ),
-                                                onTap: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
-                                                  navigateToWhoWeArePage(
-                                                      context);
-                                                }),
+                                            // ListTile(
+                                            //     leading: Icon(MdiIcons.atom,
+                                            //         color: modalIconColor),
+                                            //     title: Text(
+                                            //       whoWeAre,
+                                            //       style: GoogleFonts.zillaSlab(
+                                            //           color: modalTextColor),
+                                            //     ),
+                                            //     onTap: () {
+                                            //       Navigator.of(context)
+                                            //           .pop(false);
+                                            //       navigateToWhoWeArePage(
+                                            //           context);
+                                            //     }),
                                             ListTile(
                                               leading: Icon(
                                                   MdiIcons.accountGroup,
@@ -370,10 +370,11 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                   floating: false,
                   pinned: true,
                   flexibleSpace: FlexibleSpaceBar(
-                      centerTitle: true,
-                      title: Center(
-                        heightFactor: 0.6,
-                        child: Text(thrownName,
+                      title: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                            thrownName,
+                            textAlign: TextAlign.start,
                             style: GoogleFonts.abel(
                                 color: appBarTextColor,
                                 fontSize: 26.0,

@@ -16,7 +16,7 @@ enum NavigationEvents {
   myManagementBodyPageClickedEvent,
   myCaptainsPageClickedEvent,
   myClubSponsorsPageClickedEvent,
-  myClubAdminPageClickedEvent,
+  // myClubAdminPageClickedEvent,
 }
 
 abstract class NavigationStates {}
@@ -48,9 +48,9 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
       case NavigationEvents.myClubSponsorsPageClickedEvent:
         yield MyClubSponsorsPage();
         break;
-      case NavigationEvents.myClubAdminPageClickedEvent:
-        yield MyClubAdminPage();
-        break;
+      // case NavigationEvents.myClubAdminPageClickedEvent:
+      //   yield MyClubAdminPage();
+      //   break;
     }
   }
 }

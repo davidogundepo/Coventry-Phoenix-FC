@@ -8,6 +8,7 @@ class Coaches {
   String? bestMoment;
   String? worstMoment;
   String? philosophy;
+  String? dob;
   String? email;
   String? facebook;
   String? id;
@@ -37,6 +38,7 @@ class Coaches {
     regionOfOrigin = data['region_of_origin'];
     nationality = data['nationality'];
     hobbies = data['hobbies'];
+    dob = data['d_o_b'];
     bestMoment = data['best_moment'];
     worstMoment = data['worst_moment'];
     staffPosition = data['staff_position'];

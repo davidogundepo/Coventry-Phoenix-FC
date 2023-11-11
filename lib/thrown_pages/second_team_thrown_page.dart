@@ -315,20 +315,20 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                                                   navigateTablesAndStatsDetails(
                                                       context);
                                                 }),
-                                            ListTile(
-                                                leading: Icon(MdiIcons.atom,
-                                                    color: iconColor),
-                                                title: Text(
-                                                  whoWeAre,
-                                                  style: GoogleFonts.zillaSlab(
-                                                      color: textColor),
-                                                ),
-                                                onTap: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
-                                                  navigateToWhoWeArePage(
-                                                      context);
-                                                }),
+                                            // ListTile(
+                                            //     leading: Icon(MdiIcons.atom,
+                                            //         color: iconColor),
+                                            //     title: Text(
+                                            //       whoWeAre,
+                                            //       style: GoogleFonts.zillaSlab(
+                                            //           color: textColor),
+                                            //     ),
+                                            //     onTap: () {
+                                            //       Navigator.of(context)
+                                            //           .pop(false);
+                                            //       navigateToWhoWeArePage(
+                                            //           context);
+                                            //     }),
                                             ListTile(
                                               leading: Icon(
                                                   MdiIcons.accountGroup,
@@ -402,10 +402,11 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                   floating: false,
                   pinned: true,
                   flexibleSpace: FlexibleSpaceBar(
-                      centerTitle: true,
-                      title: Center(
-                        heightFactor: 0.6,
-                        child: Text(thrownName,
+                      title: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                            thrownName,
+                            textAlign: TextAlign.start,
                             style: GoogleFonts.abel(
                                 color: appBarTextColor,
                                 fontSize: 26.0,

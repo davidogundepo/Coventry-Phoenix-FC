@@ -1,5 +1,5 @@
 class ClubSponsors {
-  dynamic id;
+  String? id;
   String? sponsorIcon;
   String? image;
   String? imageTwo;

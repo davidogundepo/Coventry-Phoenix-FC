@@ -1,14 +1,14 @@
-import 'package:coventry_phoenix_fc/bloc_navigation_bloc/navigation_bloc.dart';
-import 'package:coventry_phoenix_fc/club_admin/add_club_member/add_club_member_page.dart';
-import 'package:coventry_phoenix_fc/club_admin/add_club_member/show_all_club_members_page.dart';
-import 'package:flutter/services.dart';
+import 'package:coventry_phoenix_fc/club_admin/club_sponsors/add_club_sponsors_page.dart';
+import 'package:coventry_phoenix_fc/club_admin/club_sponsors/remove_club_sponsors_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../bloc_navigation_bloc/navigation_bloc.dart';
 
-String acmTitle = 'Add Club Members';
-String amTitle = 'Add New Member';
-String ecmTitle = 'Current Members';
+String acsTitle = 'Modify Club Sponsors';
+String ancsTitle = 'Add New Club Sponsor';
+String rcsTitle = 'Remove Club Sponsor';
 
 Color? selectedTabColor = Colors.black;
 
@@ -26,15 +26,15 @@ Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
 Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
 Color backgroundColor = const Color.fromRGBO(147, 165, 193, 1.0);
 
-
-class TabviewClubMemberPage extends StatefulWidget with NavigationStates{
-  TabviewClubMemberPage({super.key});
+class TabviewClubSponsorsPage extends StatefulWidget with NavigationStates {
+  TabviewClubSponsorsPage({super.key});
 
   @override
-  State<TabviewClubMemberPage> createState() => TabviewClubMemberPageState();
+  State<TabviewClubSponsorsPage> createState() => _TabviewClubSponsorsPageState();
 }
 
-class TabviewClubMemberPageState extends State<TabviewClubMemberPage> with SingleTickerProviderStateMixin {
+class _TabviewClubSponsorsPageState extends State<TabviewClubSponsorsPage> with SingleTickerProviderStateMixin {
+
   late TabController _tabController;
 
   @override
@@ -47,7 +47,6 @@ class TabviewClubMemberPageState extends State<TabviewClubMemberPage> with Singl
       DeviceOrientation.portraitDown,
     ]);
   }
-
 
   @override
   void dispose() {
@@ -62,7 +61,7 @@ class TabviewClubMemberPageState extends State<TabviewClubMemberPage> with Singl
       appBar: AppBar(
         backgroundColor: backgroundColor,
         title: Text(
-            acmTitle,
+            acsTitle,
             style: GoogleFonts.jura(
                 fontSize: 23,
                 fontWeight: FontWeight.w800,
@@ -81,16 +80,16 @@ class TabviewClubMemberPageState extends State<TabviewClubMemberPage> with Singl
           indicatorColor: Colors.white,
           controller: _tabController,
           tabs: [
-            Tab(text: amTitle),
-            Tab(text: ecmTitle),
+            Tab(text: ancsTitle),
+            Tab(text: rcsTitle),
           ],
         ),
       ),
       body: TabBarView(
         controller: _tabController,
         children: [
-          MyAddClubMemberPage(),
-          MyShowAllClubMemberPage(),
+          MyAddClubSponsorPage(),
+          MyRemoveClubSponsorPage(),
         ],
       ),
     );

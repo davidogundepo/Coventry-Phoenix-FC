@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Color iconColor = Colors.white;
 Color textColor = Colors.white;
@@ -37,7 +38,7 @@ class MenuItems extends StatelessWidget {
               ),
               Text(
                 title!,
-                style: TextStyle(
+                style: GoogleFonts.notoSerifYezidi(
                   fontWeight: FontWeight.w300,
                   fontSize: 15,
                   color: textColor ?? Colors.white, // Use the provided textColor or default to white

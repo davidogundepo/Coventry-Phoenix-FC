@@ -752,31 +752,31 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                                       textAlign:TextAlign.justify,
                                       TextSpan(
                                         children: <TextSpan>[
-                                          TextSpan(
-                                              text:  'Tuesdays\n',
-                                              style: GoogleFonts.aldrich(
-                                                color: Colors.white70,
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.w700,
-                                              )),
-                                          TextSpan(
-                                              text:
-                                              '  🔹At Moat House Leisure, Winston Ave, Coventry CV2 1EA [7pm - 8pm].\n\n\n\n\n',
-                                              style: GoogleFonts.aldrich(
-                                                color: Colors.white70,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w300,
-                                              )),
+                                          // TextSpan(
+                                          //     text:  'Tuesdays\n',
+                                          //     style: GoogleFonts.aldrich(
+                                          //       color: Colors.white70,
+                                          //       fontSize: 22,
+                                          //       fontWeight: FontWeight.w700,
+                                          //     )),
+                                          // TextSpan(
+                                          //     text:
+                                          //     '  🔹At Moat House Leisure, Winston Ave, Coventry CV2 1EA [7pm - 8pm].\n\n\n\n\n',
+                                          //     style: GoogleFonts.aldrich(
+                                          //       color: Colors.white70,
+                                          //       fontSize: 14,
+                                          //       fontWeight: FontWeight.w300,
+                                          //     )),
                                           TextSpan(
                                               text:  'Thursdays\n',
                                               style: GoogleFonts.aldrich(
                                                 color: Colors.white70,
-                                                fontSize: 22,
+                                                fontSize: 17,
                                                 fontWeight: FontWeight.w700,
                                               )),
                                           TextSpan(
                                               text:
-                                              '  🔹At The Alan Higgs Centre, Allard Way, Coventry CV3 1HW [8pm - 9pm].',
+                                              '  🔹At The Alan Higgs Centre, Allard Way, Coventry CV3 1HW [8pm - 10pm].',
                                               style: GoogleFonts.aldrich(
                                                 color: Colors.white70,
                                                 fontSize: 14,
@@ -848,45 +848,45 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                                               text:  'Monthly\n',
                                               style: GoogleFonts.aldrich(
                                                 color: Colors.white70,
-                                                fontSize: 20,
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.w700,
                                               )),
                                           TextSpan(
                                               text:
-                                              '  🔹Every month we hold trials on Thursdays between 6pm-7pm.\n\n\n',
+                                              '  🔹Every month we hold trials on Thursdays between 6pm-7pm.\n\n',
                                               style: GoogleFonts.aldrich(
                                                 color: Colors.white70,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w300,
                                               )),
                                           TextSpan(
                                               text:  'Location\n',
                                               style: GoogleFonts.aldrich(
                                                 color: Colors.white70,
-                                                fontSize: 20,
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.w700,
                                               )),
                                           TextSpan(
                                               text:
-                                              ' 🔹At The Alan Higgs Centre, Allard Way, Coventry CV3 1HW [8pm - 9pm].\n\n\n',
+                                              ' 🔹At The Alan Higgs Centre, Allard Way, Coventry CV3 1HW.\n\n',
                                               style: GoogleFonts.aldrich(
                                                 color: Colors.white70,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w300,
                                               )),
                                           TextSpan(
                                               text:  'Please Note\n',
                                               style: GoogleFonts.aldrich(
                                                 color: Colors.white70,
-                                                fontSize: 20,
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.w700,
                                               )),
                                           TextSpan(
                                               text:
-                                              '  🔹Come on time, prepare to be tested and we wish you good luck.\n\n\n',
+                                              '  🔹Come on time, prepare to be tested and we wish you good luck.\n\n',
                                               style: GoogleFonts.aldrich(
                                                 color: Colors.white70,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w300,
                                               )),
 

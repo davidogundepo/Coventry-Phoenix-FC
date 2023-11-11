@@ -82,16 +82,27 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
 
   String? selectedTeamA = ''; // Store selected team A name
   String? selectedTeamB = ''; // Store selected team B name
-  String? selectedLeague;
-  String? selectedLocation;
+  String? selectedLeague = '';
+  String? selectedLocation = '';
   String? selectedLocationPostCode;
   String? selectedSponsorsString = '';
   String? selectedBannerLowResImageUrl;
   String? selectedBannerHighResImageUrl;
   String formattedTime = '';
 
-  DateTime selectedDate = DateTime(2023, 10, 31, 2, 15);
-  TimeOfDay selectedTime = const TimeOfDay(hour: 2, minute: 15);
+  String homeTeamTitle = 'Select Home Team';
+  String awayTeamTitle = 'Select Away Team';
+  String leagueTitle = 'Select League';
+  String locationTitle = 'Select Location';
+  String selectDateTitle = 'Select Date';
+  String selectTimeTitle = 'Select Time';
+  String sponsorsTitle = 'Choose Sponsors';
+
+  IconData addBoxRounded = Icons.add_box_rounded;
+  IconData dateRangeRounded = Icons.date_range_rounded;
+
+  DateTime selectedDate = DateTime(2023, 10, 31, 14, 15);
+  TimeOfDay selectedTime = const TimeOfDay(hour: 14, minute: 15);
 
   DateTime? date;
   TimeOfDay? time;
@@ -192,13 +203,13 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                     children: [
                                       const SizedBox(height: 15),
                                       Icon(
-                                        Icons.add_box_rounded,
+                                        addBoxRounded,
                                         color: materialBackgroundColor,
                                         size: 30,
                                       ),
                                       const SizedBox(height: 10),
                                       Text(
-                                        'Select Home Team',
+                                        homeTeamTitle,
                                         textAlign: TextAlign.center,
                                         overflow: TextOverflow.visible,
                                         style: TextStyle(
@@ -263,13 +274,13 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                     children: [
                                       const SizedBox(height: 10),
                                       Icon(
-                                        Icons.add_box_rounded,
+                                        addBoxRounded,
                                         color: materialBackgroundColor,
                                         size: 30,
                                       ),
                                       const SizedBox(height: 10),
                                       Text(
-                                        'Select Away Team',
+                                        awayTeamTitle,
                                         textAlign: TextAlign.center,
                                         overflow: TextOverflow.visible,
                                         style: TextStyle(
@@ -322,7 +333,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            selectedLeague != null
+                            selectedLeague!.isNotEmpty
                                 ? Column(
                                     children: [
                                       Padding(
@@ -346,22 +357,28 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                       )
                                     ],
                                   )
-                                : Icon(
-                                    Icons.add_box_rounded,
-                                    color: materialBackgroundColor,
-                                    size: 30,
+                                : Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        addBoxRounded,
+                                        color: materialBackgroundColor,
+                                        size: 30,
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Text(
+                                        leagueTitle,
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.visible,
+                                        style: TextStyle(
+                                          color: materialBackgroundColor,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                            if (selectedLeague == null)
-                              Text(
-                                'Select League',
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.visible,
-                                style: TextStyle(
-                                  color: materialBackgroundColor,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
                           ],
                         ),
                       ),
@@ -393,7 +410,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              selectedLocation != null
+                              selectedLocation!.isNotEmpty
                                   ? Column(
                                       children: [
                                         Padding(
@@ -427,22 +444,28 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                         ),
                                       ],
                                     )
-                                  : Icon(
-                                      Icons.add_box_rounded,
-                                      color: materialBackgroundColor,
-                                      size: 30,
+                                  : Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          addBoxRounded,
+                                          color: materialBackgroundColor,
+                                          size: 30,
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Text(
+                                          locationTitle,
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.visible,
+                                          style: TextStyle(
+                                            color: materialBackgroundColor,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                              if (selectedLocation == null)
-                                Text(
-                                  'Select Location',
-                                  textAlign: TextAlign.center,
-                                  overflow: TextOverflow.visible,
-                                  style: TextStyle(
-                                    color: materialBackgroundColor,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
                             ],
                           ),
                         ),
@@ -484,7 +507,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                 ? Column(
                                     children: [
                                       Text(
-                                        'Select Date',
+                                        selectDateTitle,
                                         textAlign: TextAlign.center,
                                         overflow: TextOverflow.visible,
                                         style: TextStyle(
@@ -495,7 +518,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                       ),
                                       const SizedBox(height: 10),
                                       Icon(
-                                        Icons.date_range_rounded,
+                                        dateRangeRounded,
                                         color: iconColor,
                                         size: 25,
                                       )
@@ -555,7 +578,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                 ? Column(
                                     children: [
                                       Text(
-                                        'Select Time',
+                                        selectTimeTitle,
                                         textAlign: TextAlign.center,
                                         overflow: TextOverflow.visible,
                                         style: TextStyle(
@@ -566,7 +589,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                       ),
                                       const SizedBox(height: 10),
                                       Icon(
-                                        Icons.date_range_rounded,
+                                        dateRangeRounded,
                                         color: iconColor,
                                         size: 25,
                                       )
@@ -630,7 +653,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                               : Padding(
                                   padding: const EdgeInsets.all(4),
                                   child: Text(
-                                    'Choose Sponsors',
+                                    sponsorsTitle,
                                     textAlign: TextAlign.center,
                                     overflow: TextOverflow.visible,
                                     style: TextStyle(
@@ -732,7 +755,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                             return AlertDialog(
                                               backgroundColor: modalBackgroundColor,
                                               title: const Text("Are you sure?", style: TextStyle(color: Colors.white70)),
-                                              content: const Text("Do you want to delete this image?", style: TextStyle(color: Colors.white70)),
+                                              content: const Text("Do you want to delete this Design?", style: TextStyle(color: Colors.white70)),
                                               actions: [
                                                 TextButton(
                                                   child: const Text("Cancel", style: TextStyle(color: Colors.white70)),
@@ -1217,11 +1240,10 @@ ${lastThreeSelectedLeagueNames.length >= 3 ? '🏆 ${lastThreeSelectedLeagueName
 ${lastThreeSelectedTeamA.length >= 3 ? lastThreeSelectedTeamA.elementAt(lastThreeSelectedTeamA.length - 3) : ''}
 ${lastThreeSelectedTeamB.length >= 3 ? ' Vs ${lastThreeSelectedTeamB.elementAt(lastThreeSelectedTeamB.length - 3)}' : ''}
 ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSponsorNames.join(', ')}' : ''}
-    """.trim();
+    """
+              .trim();
 
           print(matchDayInfo);
-
-
         }
       }
     });
@@ -1377,14 +1399,14 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
                                     .where((entry) => entry.value) // Filter selected sponsors
                                     .map(
                                       (entry) => Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 2),
-                                    child: Image.network(
-                                      clubSponsorsNotifier!.clubSponsorsList[entry.key].sponsorIcon!,
-                                      width: 20,
-                                      height: 20,
-                                    ),
-                                  ),
-                                )
+                                        padding: const EdgeInsets.symmetric(horizontal: 2),
+                                        child: Image.network(
+                                          clubSponsorsNotifier!.clubSponsorsList[entry.key].sponsorIcon!,
+                                          width: 20,
+                                          height: 20,
+                                        ),
+                                      ),
+                                    )
                                     .toList(),
                               ],
                             ),
@@ -1402,6 +1424,15 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
                   // Capture the screenshot and share the content
                   _shareContent(boundaryKey);
                   Navigator.pop(context);
+
+                  setState(() {
+                    selectedTeamA = '';
+                    selectedTeamB = '';
+                    selectedLeague = '';
+                    selectedLocation = '';
+                    selectedSponsorsString = '';
+                  });
+
                   Fluttertoast.showToast(
                     msg: 'Success! Generated', // Show success message (you can replace it with actual banner generation logic)
                     gravity: ToastGravity.BOTTOM,
@@ -1439,8 +1470,8 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
     String uniqueIdentifierHighRes = DateTime.now().millisecondsSinceEpoch.toString(); // For high-resolution image
 
     // Create dynamic file names for the images (e.g., banner_<timestamp>.png)
-    String fileNameLowRes = 'banner_low_$uniqueIdentifierLowRes.png';
-    String fileNameHighRes = 'banner_high_$uniqueIdentifierHighRes.png';
+    String fileNameLowRes = 'md_banner_low_$uniqueIdentifierLowRes.png';
+    String fileNameHighRes = 'md_banner_high_$uniqueIdentifierHighRes.png';
 
     final metadata = SettableMetadata(
       contentType: 'image/png',
@@ -1448,8 +1479,8 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
     );
 
     // Reference to the Firebase Storage paths with dynamic file names
-    var storageRefLowRes = FirebaseStorage.instance.ref().child('banners/low_resolution/$fileNameLowRes');
-    var storageRefHighRes = FirebaseStorage.instance.ref().child('banners/high_resolution/$fileNameHighRes');
+    var storageRefLowRes = FirebaseStorage.instance.ref().child('matchday_banners/low_resolution/$fileNameLowRes');
+    var storageRefHighRes = FirebaseStorage.instance.ref().child('matchday_banners/high_resolution/$fileNameHighRes');
 
     // Compress the image for low-resolution version
     img.Image compressedImage = img.decodeImage(Uint8List.fromList(pngBytes!))!;
@@ -1571,7 +1602,13 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
   }
 
   bool checkMissingSteps() {
-    if (selectedTeamA!.isEmpty || selectedTeamB!.isEmpty || selectedLocation == null || selectedLeague == null || selectedSponsorsString!.isEmpty) {
+    if (selectedTeamA!.isEmpty ||
+        selectedTeamB!.isEmpty ||
+        selectedLocation == null ||
+        selectedLeague == null ||
+        selectedSponsorsString!.isEmpty ||
+        date == null ||
+        time == null) {
       return true; // Return true if any step is missing
     }
     return false; // Return false if all steps are completed

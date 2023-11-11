@@ -1,7 +1,7 @@
-
-
+import 'package:coventry_phoenix_fc/api/club_sponsors_api.dart';
 import 'package:coventry_phoenix_fc/bloc_navigation_bloc/navigation_bloc.dart';
 import 'package:coventry_phoenix_fc/club_admin/add_club_member/a_tabview_add_club_member_page.dart';
+import 'package:coventry_phoenix_fc/club_admin/club_sponsors/add_club_sponsors_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/modify_member/modify_coaches_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/modify_member/modify_management_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/club_sponsors/thrown_club_sponsors_page.dart';
@@ -9,6 +9,7 @@ import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_announcement_sm_p
 import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_matchday_sm_post.dart';
 import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_sponsors_so_sm_post.dart';
 import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_upcoming_event_sm_post.dart';
+import 'package:coventry_phoenix_fc/notifier/club_sponsors_notifier.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -40,9 +41,9 @@ import '../notifier/first_team_class_notifier.dart';
 import '../notifier/management_body_notifier.dart';
 import '../notifier/second_team_class_notifier.dart';
 import '../sidebar/menu_item.dart';
+import 'club_sponsors/a_tabview_modify_club_sponsors_page.dart';
 import 'modify_captains/a_tabview_modify_club_captains_page.dart';
 import 'modify_member/modify_players_page.dart';
-
 
 String removeCoachTitle = "Remove Coaching Staff";
 String createSMPostTitle = "Create a Social Media Post";
@@ -53,7 +54,6 @@ String sponsorsTitle = "See Club Sponsors";
 String commsTitle = "More Communications";
 String selectedCaptainsTitle = "Select Club Captains";
 String othersTitle = "Others";
-
 
 Color backgroundColor = const Color.fromRGBO(34, 36, 54, 1.0);
 Color gradientColor = const Color.fromRGBO(24, 26, 36, 1.0);
@@ -89,7 +89,7 @@ Color whiteColor = Colors.white;
 Color deepOrangeColor = Colors.deepOrange;
 Color tealColor = Colors.teal;
 
-class MyClubAdminPage extends StatefulWidget with NavigationStates{
+class MyClubAdminPage extends StatefulWidget with NavigationStates {
   MyClubAdminPage({Key? key}) : super(key: key);
 
   @override
@@ -101,10 +101,9 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Club Admin',
-          style: TextStyle(
-              color: Colors.white
-          ),
+        title: const Text(
+          'Club Admin',
+          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         shape: const RoundedRectangleBorder(
@@ -147,21 +146,17 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       builder: (BuildContext context) {
                         return AlertDialog(
                           backgroundColor: containerBackgroundColor,
-                          title: const Text('Select an Option',
-                            style: TextStyle(
-                                color: Colors.white70,
-                              fontSize: 15
-                            ),
+                          title: const Text(
+                            'Select an Option',
+                            style: TextStyle(color: Colors.white70, fontSize: 17, fontWeight: FontWeight.w600),
                           ),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               ListTile(
-                                title: const Text('Publish MatchDay Fixtures',
-                                  style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 14
-                                  ),
+                                title: const Text(
+                                  'Publish MatchDay Fixtures',
+                                  style: TextStyle(color: Colors.white70, fontSize: 14),
                                 ),
                                 onTap: () {
                                   Navigator.pop(context); // Close the dialog
@@ -169,42 +164,49 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 },
                               ),
                               ListTile(
-                                title: const Text('Publish an Upcoming Event',
-                                  style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 14
-                                  ),
+                                title: const Text(
+                                  'Publish an Upcoming Event',
+                                  style: TextStyle(color: Colors.white70, fontSize: 14),
                                 ),
                                 onTap: () {
                                   Navigator.pop(context);
                                   navigateToCreateUpcomingEventSMPost(context);
-
                                 },
                               ),
                               ListTile(
-                                title: const Text('Publish an Announcement',
-                                  style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 14
-                                  ),
+                                title: const Text(
+                                  'Publish an Announcement',
+                                  style: TextStyle(color: Colors.white70, fontSize: 14),
                                 ),
                                 onTap: () {
-                                  Navigator.pop(context);
-                                  navigateToCreateAnnouncementSMPost(context);
+                                  // Navigator.pop(context);
+                                  // navigateToCreateAnnouncementSMPost(context);
 
+                                  Fluttertoast.showToast(
+                                    msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: Colors.deepOrangeAccent,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0,
+                                  );
                                 },
                               ),
                               ListTile(
-                                title: const Text('Sponsors S/O on Social Media',
-                                  style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 14
-                                  ),
+                                title: const Text(
+                                  'Sponsors S/O on Social Media',
+                                  style: TextStyle(color: Colors.white70, fontSize: 14),
                                 ),
                                 onTap: () {
-                                  Navigator.pop(context);
-                                  navigateToCreateSponsorsShoutOutSMPost(context);
+                                  // Navigator.pop(context);
+                                  // navigateToCreateSponsorsShoutOutSMPost(context);
 
+                                  Fluttertoast.showToast(
+                                    msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: Colors.deepOrangeAccent,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0,
+                                  );
                                 },
                               ),
                             ],
@@ -213,7 +215,6 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       },
                     );
                   },
-
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -232,17 +233,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 FontAwesomeIcons.handsAslInterpreting,
                                 color: Colors.blue,
                                 size: 25,
-                              ), onPressed: () {  },
+                              ),
+                              onPressed: () {},
                             ),
                           ),
                           const SizedBox(width: 20),
                           Text(
-                              createSMPostTitle,
-                            style: TextStyle(
-                              color: gradientColorTwo,
-                              fontSize: 16
-                            ),
-
+                            createSMPostTitle,
+                            style: TextStyle(color: gradientColorTwo, fontSize: 16),
                           )
                         ],
                       ),
@@ -262,8 +260,46 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                 child: InkWell(
                   splashColor: splashColorThree,
                   onTap: () {
-                    navigateToClubSponsors(context);
-                    // Navigator.pop(context);
+                    {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: containerBackgroundColor,
+                            title: const Text(
+                              'Select an Option',
+                              style: TextStyle(color: Colors.white70, fontSize: 17, fontWeight: FontWeight.w600),
+                            ),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                ListTile(
+                                  title: const Text(
+                                    'See Club Sponsors',
+                                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  ),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    navigateToClubSponsors(context);
+                                  },
+                                ),
+                                ListTile(
+                                  title: const Text(
+                                    'Modify Club Sponsors',
+                                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  ),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    navigateToModifyClubSponsors(context);
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    }
+                    ;
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -283,17 +319,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 FontAwesomeIcons.jedi,
                                 color: greenColor,
                                 size: 25,
-                              ), onPressed: () {  },
+                              ),
+                              onPressed: () {},
                             ),
                           ),
                           const SizedBox(width: 20),
                           Text(
                             sponsorsTitle,
-                            style: TextStyle(
-                                color: gradientColorTwo,
-                                fontSize: 16
-                            ),
-
+                            style: TextStyle(color: gradientColorTwo, fontSize: 16),
                           )
                         ],
                       ),
@@ -333,17 +366,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 FontAwesomeIcons.om,
                                 color: redColor,
                                 size: 25,
-                              ), onPressed: () {  },
+                              ),
+                              onPressed: () {},
                             ),
                           ),
                           const SizedBox(width: 20),
                           Text(
                             selectedCaptainsTitle,
-                            style: TextStyle(
-                                color: gradientColorTwo,
-                                fontSize: 16
-                            ),
-
+                            style: TextStyle(color: gradientColorTwo, fontSize: 16),
                           )
                         ],
                       ),
@@ -383,17 +413,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 FontAwesomeIcons.spider,
                                 color: whiteColor,
                                 size: 25,
-                              ), onPressed: () {  },
+                              ),
+                              onPressed: () {},
                             ),
                           ),
                           const SizedBox(width: 20),
                           Text(
                             addPlayerTitle,
-                            style: TextStyle(
-                                color: gradientColorTwo,
-                                fontSize: 14
-                            ),
-
+                            style: TextStyle(color: gradientColorTwo, fontSize: 14),
                           )
                         ],
                       ),
@@ -433,17 +460,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 FontAwesomeIcons.leaf,
                                 color: yellowColor,
                                 size: 25,
-                              ), onPressed: () {  },
+                              ),
+                              onPressed: () {},
                             ),
                           ),
                           const SizedBox(width: 20),
                           Text(
                             removePlayerTitle,
-                            style: TextStyle(
-                                color: gradientColorTwo,
-                                fontSize: 16
-                            ),
-
+                            style: TextStyle(color: gradientColorTwo, fontSize: 16),
                           )
                         ],
                       ),
@@ -483,17 +507,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 FontAwesomeIcons.vrCardboard,
                                 color: cyanColor,
                                 size: 25,
-                              ), onPressed: () {  },
+                              ),
+                              onPressed: () {},
                             ),
                           ),
                           const SizedBox(width: 20),
                           Text(
                             removeCoachTitle,
-                            style: TextStyle(
-                                color: gradientColorTwo,
-                                fontSize: 16
-                            ),
-
+                            style: TextStyle(color: gradientColorTwo, fontSize: 16),
                           )
                         ],
                       ),
@@ -533,17 +554,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 FontAwesomeIcons.dragon,
                                 color: deepOrangeColor,
                                 size: 25,
-                              ), onPressed: () {  },
+                              ),
+                              onPressed: () {},
                             ),
                           ),
                           const SizedBox(width: 20),
                           Text(
                             removeManagerTitle,
-                            style: TextStyle(
-                                color: gradientColorTwo,
-                                fontSize: 16
-                            ),
-
+                            style: TextStyle(color: gradientColorTwo, fontSize: 16),
                           )
                         ],
                       ),
@@ -563,17 +581,85 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                 child: InkWell(
                   splashColor: splashColorThree,
                   onTap: () {
-                    // BlocProvider.of<NavigationBloc>(context).add(
-                    //     NavigationEvents
-                    //         .myClubSponsorsPageClickedEvent);
-
-                    Fluttertoast.showToast(
-                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
-                      gravity: ToastGravity.BOTTOM,
-                      backgroundColor: Colors.deepOrangeAccent,
-                      textColor: Colors.white,
-                      fontSize: 16.0,
-                    );
+                    {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: containerBackgroundColor,
+                            title: const Text(
+                              'Select an Option',
+                              style: TextStyle(color: Colors.white70, fontSize: 17, fontWeight: FontWeight.w600),
+                            ),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                ListTile(
+                                  title: const Text(
+                                    'Select Player of the Month',
+                                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  ),
+                                  onTap: () {
+                                    Fluttertoast.showToast(
+                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.deepOrangeAccent,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0,
+                                    );
+                                  },
+                                ),
+                                ListTile(
+                                  title: const Text(
+                                    'Add Monthly Reels',
+                                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  ),
+                                  onTap: () {
+                                    Fluttertoast.showToast(
+                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.deepOrangeAccent,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0,
+                                    );
+                                  },
+                                ),
+                                ListTile(
+                                  title: const Text(
+                                    'Report an issue',
+                                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  ),
+                                  onTap: () {
+                                    Fluttertoast.showToast(
+                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.deepOrangeAccent,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0,
+                                    );
+                                  },
+                                ),
+                                ListTile(
+                                  title: const Text(
+                                    'Request a feature',
+                                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  ),
+                                  onTap: () {
+                                    Fluttertoast.showToast(
+                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.deepOrangeAccent,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0,
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    }
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -593,17 +679,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 FontAwesomeIcons.tree,
                                 color: tealColor,
                                 size: 25,
-                              ), onPressed: () {  },
+                              ),
+                              onPressed: () {},
                             ),
                           ),
                           const SizedBox(width: 20),
                           Text(
                             commsTitle,
-                            style: TextStyle(
-                                color: gradientColorTwo,
-                                fontSize: 16
-                            ),
-
+                            style: TextStyle(color: gradientColorTwo, fontSize: 16),
                           )
                         ],
                       ),
@@ -623,17 +706,100 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                 child: InkWell(
                   splashColor: splashColorThree,
                   onTap: () {
-                    // BlocProvider.of<NavigationBloc>(context).add(
-                    //     NavigationEvents
-                    //         .myClubSponsorsPageClickedEvent);
-
-                    Fluttertoast.showToast(
-                      msg: 'Coming Soon',
-                      gravity: ToastGravity.BOTTOM,
-                      backgroundColor: Colors.deepOrangeAccent,
-                      textColor: Colors.white,
-                      fontSize: 16.0,
-                    );
+                    {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: containerBackgroundColor,
+                            title: const Text(
+                              'Select an Option',
+                              style: TextStyle(color: Colors.white70, fontSize: 17, fontWeight: FontWeight.w600),
+                            ),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                ListTile(
+                                  title: const Text(
+                                    'Modify Vision Statement',
+                                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  ),
+                                  onTap: () {
+                                    Fluttertoast.showToast(
+                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.deepOrangeAccent,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0,
+                                    );
+                                  },
+                                ),
+                                ListTile(
+                                  title: const Text(
+                                    'Modify Mission Statement',
+                                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  ),
+                                  onTap: () {
+                                    Fluttertoast.showToast(
+                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.deepOrangeAccent,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0,
+                                    );
+                                  },
+                                ),
+                                ListTile(
+                                  title: const Text(
+                                    "Modify Club's Achievements",
+                                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  ),
+                                  onTap: () {
+                                    Fluttertoast.showToast(
+                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.deepOrangeAccent,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0,
+                                    );
+                                  },
+                                ),
+                                ListTile(
+                                  title: const Text(
+                                    "Modify Club's Population",
+                                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  ),
+                                  onTap: () {
+                                    Fluttertoast.showToast(
+                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.deepOrangeAccent,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0,
+                                    );
+                                  },
+                                ),
+                                ListTile(
+                                  title: const Text(
+                                    "Modify Embedded SM Posts",
+                                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  ),
+                                  onTap: () {
+                                    Fluttertoast.showToast(
+                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.deepOrangeAccent,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0,
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    }
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -653,17 +819,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 FontAwesomeIcons.wandMagicSparkles,
                                 color: brownColor,
                                 size: 25,
-                              ), onPressed: () {  },
+                              ),
+                              onPressed: () {},
                             ),
                           ),
                           const SizedBox(width: 20),
                           Text(
                             othersTitle,
-                            style: TextStyle(
-                                color: gradientColorTwo,
-                                fontSize: 16
-                            ),
-
+                            style: TextStyle(color: gradientColorTwo, fontSize: 16),
                           )
                         ],
                       ),
@@ -687,7 +850,6 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
 
   @override
   void initState() {
-
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -702,54 +864,45 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
       }
 
       // Fetch data for the first and second teams using their notifiers
-      FirstTeamClassNotifier firstTeamNotifier =
-      Provider.of<FirstTeamClassNotifier>(context, listen: false);
+      FirstTeamClassNotifier firstTeamNotifier = Provider.of<FirstTeamClassNotifier>(context, listen: false);
       getFirstTeamClass(firstTeamNotifier);
 
-      SecondTeamClassNotifier secondTeamNotifier =
-      Provider.of<SecondTeamClassNotifier>(context, listen: false);
+      SecondTeamClassNotifier secondTeamNotifier = Provider.of<SecondTeamClassNotifier>(context, listen: false);
       getSecondTeamClass(secondTeamNotifier);
 
       // Populate the PlayersNotifier with data from both teams
-      PlayersNotifier playersNotifier =
-      Provider.of<PlayersNotifier>(context, listen: false);
+      PlayersNotifier playersNotifier = Provider.of<PlayersNotifier>(context, listen: false);
 
       playersNotifier.setFirstTeamPlayers(firstTeamNotifier.firstTeamClassList);
       playersNotifier.setSecondTeamPlayers(secondTeamNotifier.secondTeamClassList);
 
-      CoachesNotifier coachesNotifier =
-      Provider.of<CoachesNotifier>(context, listen: false);
+      CoachesNotifier coachesNotifier = Provider.of<CoachesNotifier>(context, listen: false);
       getCoaches(coachesNotifier);
 
-      ManagementBodyNotifier managementBodyNotifier =
-      Provider.of<ManagementBodyNotifier>(context, listen: false);
+      ManagementBodyNotifier managementBodyNotifier = Provider.of<ManagementBodyNotifier>(context, listen: false);
       getManagementBody(managementBodyNotifier);
 
-      CaptainsNotifier clubCaptainsNotifier =
-      Provider.of<CaptainsNotifier>(context, listen: false);
+      CaptainsNotifier clubCaptainsNotifier = Provider.of<CaptainsNotifier>(context, listen: false);
       getCaptains(clubCaptainsNotifier);
 
+      ClubSponsorsNotifier clubSponsorsNotifier = Provider.of<ClubSponsorsNotifier>(context, listen: false);
+      getClubSponsors(clubSponsorsNotifier);
+
       // Populate the AllClubMembersNotifier with data from both teams
-      AllClubMembersNotifier allClubMembersNotifier =
-      Provider.of<AllClubMembersNotifier>(context, listen: false);
+      AllClubMembersNotifier allClubMembersNotifier = Provider.of<AllClubMembersNotifier>(context, listen: false);
 
       allClubMembersNotifier.setFirstTeamAllClubMembers(firstTeamNotifier.firstTeamClassList);
       allClubMembersNotifier.setSecondTeamAllClubMembers(secondTeamNotifier.secondTeamClassList);
       allClubMembersNotifier.setCoaches(coachesNotifier.coachesList);
       allClubMembersNotifier.setMGMTBody(managementBodyNotifier.managementBodyList);
 
+      MatchDayBannerForClubNotifier matchDayBannerForClubNotifier = Provider.of<MatchDayBannerForClubNotifier>(context, listen: false);
 
-      MatchDayBannerForClubNotifier matchDayBannerForClubNotifier =
-      Provider.of<MatchDayBannerForClubNotifier>(context, listen: false);
+      MatchDayBannerForClubOppNotifier matchDayBannerForClubOppNotifier = Provider.of<MatchDayBannerForClubOppNotifier>(context, listen: false);
 
-      MatchDayBannerForClubOppNotifier matchDayBannerForClubOppNotifier =
-      Provider.of<MatchDayBannerForClubOppNotifier>(context, listen: false);
+      MatchDayBannerForLeagueNotifier matchDayBannerForLeagueNotifier = Provider.of<MatchDayBannerForLeagueNotifier>(context, listen: false);
 
-      MatchDayBannerForLeagueNotifier matchDayBannerForLeagueNotifier =
-      Provider.of<MatchDayBannerForLeagueNotifier>(context, listen: false);
-
-      MatchDayBannerForLocationNotifier matchDayBannerForLocationNotifier =
-      Provider.of<MatchDayBannerForLocationNotifier>(context, listen: false);
+      MatchDayBannerForLocationNotifier matchDayBannerForLocationNotifier = Provider.of<MatchDayBannerForLocationNotifier>(context, listen: false);
 
       getMatchDayBannerForClub(matchDayBannerForClubNotifier);
       getMatchDayBannerForClubOpp(matchDayBannerForClubOppNotifier);
@@ -761,47 +914,48 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
 }
 
 Future navigateToCreateSMPost(context) async {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => CreateMatchDaySocialMediaPost()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => CreateMatchDaySocialMediaPost()));
 }
+
 Future navigateToCreateUpcomingEventSMPost(context) async {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => CreateUpcomingEventSMPost()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => CreateUpcomingEventSMPost()));
 }
+
 Future navigateToCreateAnnouncementSMPost(context) async {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => CreateAnnouncementSMPost()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => CreateAnnouncementSMPost()));
 }
+
 Future navigateToCreateSponsorsShoutOutSMPost(context) async {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => CreateSponsorsShoutOutSMPost()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => CreateSponsorsShoutOutSMPost()));
 }
+
 Future navigateToClubSponsors(context) async {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => MyClubSponsorsPage()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => MyClubSponsorsPage()));
 }
+
+Future navigateToModifyClubSponsors(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewClubSponsorsPage()));
+}
+
 Future navigateToModifyClubCaptains(context) async {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => TabviewCaptainsPage()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewCaptainsPage()));
 }
+
 Future navigateToModifyCoaches(context) async {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => MyModifyCoachesPage()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => MyModifyCoachesPage()));
 }
+
 Future navigateToModifyManagementBody(context) async {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => MyModifyManagementBodyPage()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => MyModifyManagementBodyPage()));
 }
+
 Future navigateToModifyAllClubPlayers(context) async {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => MyModifyClubPlayersPage()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => MyModifyClubPlayersPage()));
 }
+
 Future navigateToAddClubMember(context) async {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => TabviewClubMemberPage()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewClubMemberPage()));
 }
-
-
 
 Future navigateMyApp(context) async {
   Navigator.of(context).pop(false);

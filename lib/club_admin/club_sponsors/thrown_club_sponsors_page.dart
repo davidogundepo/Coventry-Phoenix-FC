@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:coventry_phoenix_fc/api/club_sponsors_api.dart';
 import 'package:coventry_phoenix_fc/bloc_navigation_bloc/navigation_bloc.dart';
 import 'package:coventry_phoenix_fc/notifier/club_sponsors_notifier.dart';
+import '../../sidebar/sidebar.dart';
 import 'details_club_sponsors_page.dart';
 import 'package:coventry_phoenix_fc/sidebar/sidebar_layout.dart';
 import 'package:flutter/material.dart';
@@ -259,7 +260,12 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
                     GestureDetector(
                       onTap: () {
                         // navigateToHomePage(context);
-                        Navigator.pop(context);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => const SideBarLayout())
+                        );
+                        // Navigator.pop(context);
+
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8.0),
