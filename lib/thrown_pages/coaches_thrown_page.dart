@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,9 @@ import '../about_menu_details_pages/who_we_are.dart';
 import '../api/coaching_staff_api.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../bottom_nav_stats_pages/bottom_navigator.dart';
+import '../club_admin/club_admin_page.dart';
 import '../details_pages/coaching_staff_details_page.dart';
+import '../main.dart';
 import '../notifier/coaching_staff_notifier.dart';
 import '../thrown_searches/coaches_thrown_search.dart';
 
@@ -30,7 +33,8 @@ String exitAppYes = "I Have To";
 
 String whoWeAre = "Who We Are";
 String aboutClub = "About $clubName";
-String tablesAndStats = "Tables and Stats";
+// String tablesAndStats = "Tables and Stats";
+String clubAdmin = "Go to Club Admin";
 String acronymMeanings = "Acronym Meanings";
 String aboutApp = "About App";
 
@@ -214,6 +218,84 @@ class _MyCoachesPage extends State<MyCoachesPage> {
         context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
   }
 
+  void _showAdminDialog(BuildContext context) {
+    TextEditingController passcodeController = TextEditingController(); // Controller for the passcode TextField
+
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        backgroundColor: const Color.fromRGBO(57, 62, 70, 1),
+        title: const Text(
+          'Enter the passcode',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: passcodeController,
+              obscureText: true,
+              decoration: const InputDecoration(
+                hintText: 'Passcode',
+                hintStyle: TextStyle(color: Colors.white70),
+              ),
+              style: TextStyle(
+                  color: Colors.white70
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                String enteredPasscode = passcodeController.text.trim();
+
+                // Retrieve the stored passcode from Firestore
+                DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
+                    .collection('SliversPages') // Replace with your Firestore collection
+                    .doc('non_slivers_pages') // Replace with your Firestore document
+                    .get();
+
+                String storedPasscode = snapshot.data()!['admin_passcode'] ?? '';
+
+                // Check if the entered passcode matches the stored passcode
+                if (enteredPasscode == storedPasscode) {
+                  Navigator.pop(context);
+                  _showAdminWelcomeToast();
+                  Navigator.push(context, SlideTransition1(MyClubAdminPage()));
+                } else {
+                  // Show a toast for incorrect passcode
+                  Fluttertoast.showToast(
+                    msg: 'Incorrect passcode',
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                  );
+                }
+              },
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showAdminWelcomeToast() {
+    Fluttertoast.showToast(
+      msg: 'Welcome, Admin',
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.black,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
+
   @override
   void initState() {
     CoachesNotifier coachesNotifier =
@@ -274,15 +356,14 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                                                   color: modalIconColor,
                                                 ),
                                                 title: Text(
-                                                  tablesAndStats,
+                                                  clubAdmin,
                                                   style: GoogleFonts.zillaSlab(
                                                       color: modalTextColor),
                                                 ),
                                                 onTap: () {
                                                   Navigator.of(context)
                                                       .pop(false);
-                                                  navigateTablesAndStatsDetails(
-                                                      context);
+                                                  _showAdminDialog(context);
                                                 }),
                                             // ListTile(
                                             //     leading: Icon(MdiIcons.atom,

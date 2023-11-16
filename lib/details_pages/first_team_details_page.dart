@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confetti/confetti.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +15,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../notifier/first_team_class_notifier.dart';
@@ -158,6 +160,13 @@ class SubPage extends StatefulWidget {
 }
 
 class _SubPageState extends State<SubPage> {
+  // final _formKey = GlobalKey<FormState>();
+  String otpCode = "";
+  String otp = "";
+  bool isLoaded = false;
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  String _verificationId = ""; // Add this line
+
   ConfettiController? _confettiController;
 
   bool _isVisible = true;
@@ -499,495 +508,600 @@ class _SubPageState extends State<SubPage> {
                       ),
                     ],
                 onSelected: (item) {
-                  switch (item) {
-                    case 0:
-                      showDialog<String>(
-                        barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
-                        context: context,
-                        builder: (BuildContext context) => Dialog(
+                  Fluttertoast.showToast(
+                    msg: 'Success! Your yy is updated', // Show success message (you can replace it with actual banner generation logic)
+                    gravity: ToastGravity.BOTTOM,
+                    backgroundColor: Colors.deepOrangeAccent,
+                    textColor: Colors.white,
+                    fontSize: 16.0,
+                  );
+                  showDialog<String>(
+                      // barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                           backgroundColor: const Color.fromRGBO(223, 225, 229, 1.0),
-                          child: Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Form(
-                              key: _formKey,
-                              child: ListView(
-                                children: [
-                                  DropdownButtonFormField<String>(
-                                    value: _selectedFootballPositionRole,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        _selectedFootballPositionRole = newValue!;
-                                      });
-                                    },
-                                    items: _footballPositionOptions.map((role) {
-                                      return DropdownMenuItem<String>(
-                                        value: role,
-                                        child: Text(
-                                          role,
-                                          style: const TextStyle(fontSize: 14),
-                                        ),
-                                      );
-                                    }).toList(),
-                                    decoration: const InputDecoration(
-                                      labelText: 'My Play Position',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myOtherPlayPositionController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'My Other Play Position',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "Left Winger, Right Winger, Left Back",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  DropdownButtonFormField<String>(
-                                    value: _selectedLOrRFootedRole,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        _selectedLOrRFootedRole = newValue!;
-                                      });
-                                    },
-                                    items: _lOrRFootedOptions.map((role) {
-                                      return DropdownMenuItem<String>(
-                                        value: role,
-                                        child: Text(
-                                          role,
-                                          style: const TextStyle(fontSize: 14),
-                                        ),
-                                      );
-                                    }).toList(),
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Dominant Foot',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myClubInceptionController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'When did you join the football club',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "May 2017",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myDreamFCController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Dream Club Fantasy',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "Real Madrid",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myATFavController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Favourite All Time Footballer',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "Ronaldinho",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  DropdownButtonFormField<String>(
-                                    value: _selectedAdidasOrNikeRole,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        _selectedAdidasOrNikeRole = newValue!;
-                                      });
-                                    },
-                                    items: _adidasOrNikeOptions.map((role) {
-                                      return DropdownMenuItem<String>(
-                                        value: role,
-                                        child: Text(
-                                          role,
-                                          style: const TextStyle(fontSize: 14),
-                                        ),
-                                      );
-                                    }).toList(),
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Preferred Apparel',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  DropdownButtonFormField<String>(
-                                    value: _selectedRonaldoOrMessiRole,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        _selectedRonaldoOrMessiRole = newValue!;
-                                      });
-                                    },
-                                    items: _ronaldoOrMessiOptions.map((role) {
-                                      return DropdownMenuItem<String>(
-                                        value: role,
-                                        child: Text(
-                                          role,
-                                          style: const TextStyle(fontSize: 14),
-                                        ),
-                                      );
-                                    }).toList(),
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Preferred World Class Player',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myBestMomentInClubController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Best Moment so far',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "When I scored the qualifying goal, 2022 ",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myWorstMomentInClubController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Worst Moment so far',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "When Kyle took the penalty instead of me, and missed it",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myNicknameController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Nickname',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "Chef Blake",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myHobbiesController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Hobbies',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "Travelling, Megavalanche, Poetry",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 20),
-                                  Column(
-                                    children: [
-                                      const Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          'Your Birthday',
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(color: Colors.black54),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 5),
-                                      Container(
-                                        width: MediaQuery.of(context).size.width * 0.9,
-                                        height: MediaQuery.of(context).size.width * 0.1,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: const Color.fromRGBO(225, 231, 241, 1.0),
-                                        ),
-                                        child: Material(
-                                          color: Colors.transparent,
-                                          child: InkWell(
-                                            onTap: () async {
-                                              date = await pickDate();
-                                              if (date == null) return;
+                          title: const Text(
+                            'Please, input your OTP after generating',
+                            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black),
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                // Navigator.of(context).pop(); // Close the AlertDialog
 
-                                              final newDateTime =
-                                                  DateTime(date!.year, date!.month, date!.day, selectedDateA.hour, selectedDateA.minute);
-
-                                              setState(() {
-                                                selectedDateA = newDateTime;
-                                                formattedDate = getFormattedDate(selectedDateA).toUpperCase();
-                                              });
-                                            },
-                                            splashColor: splashColor,
-                                            child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.all(4.0),
-                                                  child: Text(
-                                                    formattedDate != "" ? formattedDate!.toUpperCase() : 'Choose your birth date',
-                                                    textAlign: TextAlign.center,
-                                                    overflow: TextOverflow.visible,
-                                                    style: const TextStyle(
-                                                      color: Colors.black87,
-                                                      fontSize: 12,
-                                                      fontWeight: FontWeight.w400,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myNationalityController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Nationality',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "British",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myRegionOfOriginController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Region of Origin',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "Southend-on-Sea, Essex",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myAutobiographyController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Autobiography',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "I am filled with so much energy, you can't resist the step-up I emulate",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myPhilosophyController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Philosophy',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "When there's no enemy within, the enemy outside can do us no harm",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextFormField(
-                                    cursorColor: Colors.black54,
-                                    style: GoogleFonts.cabin(color: textColor),
-                                    controller: _myDroplineController,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Your Drop-line to fellow Players',
-                                      labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
-                                      floatingLabelStyle: TextStyle(color: Colors.black87),
-                                      hintText: "Failure is only a step to success, stay courageous",
-                                      hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  DropdownButtonFormField<String>(
-                                    value: _selectedCaptainRole,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        _selectedCaptainRole = newValue!;
-                                      });
-                                    },
-                                    items: _captainOptions.map((role) {
-                                      return DropdownMenuItem<String>(
-                                        value: role,
-                                        child: Text(
-                                          role,
-                                          style: const TextStyle(fontSize: 14),
-                                        ),
-                                      );
-                                    }).toList(),
-                                    decoration: const InputDecoration(
-                                      labelText: 'Are you a Captain',
-                                      labelStyle: TextStyle(fontSize: 16, color: Colors.black87),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  DropdownButtonFormField<String>(
-                                    value: _selectedCaptainTeamRole,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        _selectedCaptainTeamRole = newValue!;
-                                      });
-                                    },
-                                    items: _captainTeamOptions.map((role) {
-                                      return DropdownMenuItem<String>(
-                                        value: role,
-                                        child: Text(
-                                          role,
-                                          style: const TextStyle(fontSize: 14),
-                                        ),
-                                      );
-                                    }).toList(),
-                                    decoration: const InputDecoration(
-                                      labelText: 'If Yes, what team',
-                                      labelStyle: TextStyle(fontSize: 16, color: Colors.black87),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 40),
-                                  ElevatedButton(
-                                    onPressed: () async {
-                                      await _submitForm();
-                                      Navigator.pop(context); // Close the dialog
-                                    },
-                                    child: const Text('Update Autobiography'),
-                                  ),
-                                ],
-                              ),
+                                // Generate and send OTP using Firebase Authentication
+                                try {
+                                  _sendOtpToPhoneNumber();
+                                  Fluttertoast.showToast(
+                                    msg: 'Success! OTP sent to your phone number',
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: Colors.deepOrangeAccent,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0,
+                                  );
+                                } catch (e) {
+                                  print('Error sending OTP: $e');
+                                  Fluttertoast.showToast(
+                                    msg: 'Error sending OTP. Please try again.',
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0,
+                                  );
+                                }
+                              },
+                              child: const Text('Generate OTP', style: TextStyle(color: Colors.black)),
                             ),
-                          ),
-                        ),
-                      );
-                      break;
-                    case 1:
-                      showDialog<String>(
-                        context: context,
-                        builder: (BuildContext context) => Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          backgroundColor: const Color.fromRGBO(223, 225, 229, 1.0),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Click each image to replace your profile pictures',
-                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
-                                  textAlign: TextAlign.center,
-                                ),
-                                SizedBox(height: 50),
-                                // Display the selected images or placeholder icons
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        final File? image = await pickImage();
-                                        if (image != null) {
-                                          setState(() {
-                                            _imageOne = image;
-                                          });
-                                        }
-                                      },
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Container(
-                                        width: MediaQuery.sizeOf(context).width / 4.1,
-                                        height: MediaQuery.sizeOf(context).width / 3.5,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Colors.black.withAlpha(20),
-                                          border: Border.all(color: Colors.black, width: 2),
-                                        ),
-                                        child: _imageOne != null
-                                            ? Image.file(_imageOne!, height: 100, width: 100)
-                                            : CachedNetworkImage(
-                                          imageUrl: firstTeamClassNotifier.currentFirstTeamClass.image!,
-                                          fit: BoxFit.cover,
-                                          placeholder: (context, url) => const CircularProgressIndicator(),
-                                          errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
-                                        ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () async {
-                                        final File? image = await pickImage();
-                                        if (image != null) {
-                                          setState(() {
-                                            _imageTwo = image;
-                                          });
-                                        }
-                                      },
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Container(
-                                        width: MediaQuery.sizeOf(context).width / 4.1,
-                                        height: MediaQuery.sizeOf(context).width / 3.5,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Colors.black.withAlpha(20),
-                                          border: Border.all(color: Colors.black, width: 2),
-                                        ),
-                                        child: _imageTwo != null
-                                            ? Image.file(_imageTwo!, height: 100, width: 100)
-                                            : CachedNetworkImage(
-                                          imageUrl: firstTeamClassNotifier.currentFirstTeamClass.imageTwo!,
-                                          fit: BoxFit.cover,
-                                          placeholder: (context, url) => const CircularProgressIndicator(),
-                                          errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-
-                                SizedBox(height: 40),
-
-                                // Button to upload the selected images to Firebase Storage
-                                ElevatedButton(
-                                  onPressed: () async {
-                                    // await _checkAndUpdatePhoto(toString(), toString());
-                                  },
-                                  child: Text('Upload Photos'),
-                                ),
-                              ],
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                // await _submitForm();
+                                // Fluttertoast.showToast(
+                                //   msg: 'Success! Generated',
+                                //   gravity: ToastGravity.BOTTOM,
+                                //   backgroundColor: Colors.deepOrangeAccent,
+                                //   textColor: Colors.white,
+                                //   fontSize: 16.0,
+                                // );
+                              },
+                              child: const Text('Confirm OTP', style: TextStyle(color: Colors.black)),
                             ),
-                          ),
-                        ),
-                      );
-                      break;
-                    default:
-                      break;
-                  }
+                          ],
+                          content: Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: PinFieldAutoFill(
+                                currentCode: otpCode,
+                                decoration: BoxLooseDecoration(
+                                    gapSpace: 5, radius: const Radius.circular(8), strokeColorBuilder: const FixedColorBuilder(Color(0xFFE16641))),
+                                codeLength: 6,
+                                onCodeChanged: (code) {
+                                  print("OnCodeChanged : $code");
+                                  otpCode = code.toString();
+                                },
+                                onCodeSubmitted: (val) {
+                                  print("OnCodeSubmitted : $val");
+                                },
+                              ))));
+                  // switch (item) {
+                  //   case 0:
+                  //     showDialog<String>(
+                  //       barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
+                  //       context: context,
+                  //       builder: (BuildContext context) => Dialog(
+                  //         shape: RoundedRectangleBorder(
+                  //           borderRadius: BorderRadius.circular(20.0),
+                  //         ),
+                  //         backgroundColor: const Color.fromRGBO(223, 225, 229, 1.0),
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.all(18.0),
+                  //           child: Form(
+                  //             key: _formKey,
+                  //             child: ListView(
+                  //               children: [
+                  //                 DropdownButtonFormField<String>(
+                  //                   value: _selectedFootballPositionRole,
+                  //                   onChanged: (newValue) {
+                  //                     setState(() {
+                  //                       _selectedFootballPositionRole = newValue!;
+                  //                     });
+                  //                   },
+                  //                   items: _footballPositionOptions.map((role) {
+                  //                     return DropdownMenuItem<String>(
+                  //                       value: role,
+                  //                       child: Text(
+                  //                         role,
+                  //                         style: const TextStyle(fontSize: 14),
+                  //                       ),
+                  //                     );
+                  //                   }).toList(),
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'My Play Position',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myOtherPlayPositionController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'My Other Play Position',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "Left Winger, Right Winger, Left Back",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 DropdownButtonFormField<String>(
+                  //                   value: _selectedLOrRFootedRole,
+                  //                   onChanged: (newValue) {
+                  //                     setState(() {
+                  //                       _selectedLOrRFootedRole = newValue!;
+                  //                     });
+                  //                   },
+                  //                   items: _lOrRFootedOptions.map((role) {
+                  //                     return DropdownMenuItem<String>(
+                  //                       value: role,
+                  //                       child: Text(
+                  //                         role,
+                  //                         style: const TextStyle(fontSize: 14),
+                  //                       ),
+                  //                     );
+                  //                   }).toList(),
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Dominant Foot',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myClubInceptionController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'When did you join the football club',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "May 2017",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myDreamFCController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Dream Club Fantasy',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "Real Madrid",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myATFavController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Favourite All Time Footballer',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "Ronaldinho",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 DropdownButtonFormField<String>(
+                  //                   value: _selectedAdidasOrNikeRole,
+                  //                   onChanged: (newValue) {
+                  //                     setState(() {
+                  //                       _selectedAdidasOrNikeRole = newValue!;
+                  //                     });
+                  //                   },
+                  //                   items: _adidasOrNikeOptions.map((role) {
+                  //                     return DropdownMenuItem<String>(
+                  //                       value: role,
+                  //                       child: Text(
+                  //                         role,
+                  //                         style: const TextStyle(fontSize: 14),
+                  //                       ),
+                  //                     );
+                  //                   }).toList(),
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Preferred Apparel',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 DropdownButtonFormField<String>(
+                  //                   value: _selectedRonaldoOrMessiRole,
+                  //                   onChanged: (newValue) {
+                  //                     setState(() {
+                  //                       _selectedRonaldoOrMessiRole = newValue!;
+                  //                     });
+                  //                   },
+                  //                   items: _ronaldoOrMessiOptions.map((role) {
+                  //                     return DropdownMenuItem<String>(
+                  //                       value: role,
+                  //                       child: Text(
+                  //                         role,
+                  //                         style: const TextStyle(fontSize: 14),
+                  //                       ),
+                  //                     );
+                  //                   }).toList(),
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Preferred World Class Player',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myBestMomentInClubController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Best Moment so far',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "When I scored the qualifying goal, 2022 ",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myWorstMomentInClubController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Worst Moment so far',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "When Kyle took the penalty instead of me, and missed it",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myNicknameController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Nickname',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "Chef Blake",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myHobbiesController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Hobbies',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "Travelling, Megavalanche, Poetry",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 20),
+                  //                 Column(
+                  //                   children: [
+                  //                     const Align(
+                  //                       alignment: Alignment.centerLeft,
+                  //                       child: Text(
+                  //                         'Your Birthday',
+                  //                         textAlign: TextAlign.left,
+                  //                         style: TextStyle(color: Colors.black54),
+                  //                       ),
+                  //                     ),
+                  //                     const SizedBox(height: 5),
+                  //                     Container(
+                  //                       width: MediaQuery.of(context).size.width * 0.9,
+                  //                       height: MediaQuery.of(context).size.width * 0.1,
+                  //                       decoration: BoxDecoration(
+                  //                         borderRadius: BorderRadius.circular(10),
+                  //                         color: const Color.fromRGBO(225, 231, 241, 1.0),
+                  //                       ),
+                  //                       child: Material(
+                  //                         color: Colors.transparent,
+                  //                         child: InkWell(
+                  //                           onTap: () async {
+                  //                             date = await pickDate();
+                  //                             if (date == null) return;
+                  //
+                  //                             final newDateTime =
+                  //                                 DateTime(date!.year, date!.month, date!.day, selectedDateA.hour, selectedDateA.minute);
+                  //
+                  //                             setState(() {
+                  //                               selectedDateA = newDateTime;
+                  //                               formattedDate = getFormattedDate(selectedDateA).toUpperCase();
+                  //                             });
+                  //                           },
+                  //                           splashColor: splashColor,
+                  //                           child: Column(
+                  //                             mainAxisAlignment: MainAxisAlignment.center,
+                  //                             children: [
+                  //                               Padding(
+                  //                                 padding: const EdgeInsets.all(4.0),
+                  //                                 child: Text(
+                  //                                   formattedDate != "" ? formattedDate!.toUpperCase() : 'Choose your birth date',
+                  //                                   textAlign: TextAlign.center,
+                  //                                   overflow: TextOverflow.visible,
+                  //                                   style: const TextStyle(
+                  //                                     color: Colors.black87,
+                  //                                     fontSize: 12,
+                  //                                     fontWeight: FontWeight.w400,
+                  //                                   ),
+                  //                                 ),
+                  //                               ),
+                  //                             ],
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                     ),
+                  //                   ],
+                  //                 ),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myNationalityController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Nationality',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "British",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myRegionOfOriginController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Region of Origin',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "Southend-on-Sea, Essex",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myAutobiographyController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Autobiography',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "I am filled with so much energy, you can't resist the step-up I emulate",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myPhilosophyController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Philosophy',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "When there's no enemy within, the enemy outside can do us no harm",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 TextFormField(
+                  //                   cursorColor: Colors.black54,
+                  //                   style: GoogleFonts.cabin(color: textColor),
+                  //                   controller: _myDroplineController,
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Your Drop-line to fellow Players',
+                  //                     labelStyle: TextStyle(fontSize: 14, color: Colors.black54),
+                  //                     floatingLabelStyle: TextStyle(color: Colors.black87),
+                  //                     hintText: "Failure is only a step to success, stay courageous",
+                  //                     hintStyle: TextStyle(color: Colors.black54, fontSize: 13),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 DropdownButtonFormField<String>(
+                  //                   value: _selectedCaptainRole,
+                  //                   onChanged: (newValue) {
+                  //                     setState(() {
+                  //                       _selectedCaptainRole = newValue!;
+                  //                     });
+                  //                   },
+                  //                   items: _captainOptions.map((role) {
+                  //                     return DropdownMenuItem<String>(
+                  //                       value: role,
+                  //                       child: Text(
+                  //                         role,
+                  //                         style: const TextStyle(fontSize: 14),
+                  //                       ),
+                  //                     );
+                  //                   }).toList(),
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'Are you a Captain',
+                  //                     labelStyle: TextStyle(fontSize: 16, color: Colors.black87),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 DropdownButtonFormField<String>(
+                  //                   value: _selectedCaptainTeamRole,
+                  //                   onChanged: (newValue) {
+                  //                     setState(() {
+                  //                       _selectedCaptainTeamRole = newValue!;
+                  //                     });
+                  //                   },
+                  //                   items: _captainTeamOptions.map((role) {
+                  //                     return DropdownMenuItem<String>(
+                  //                       value: role,
+                  //                       child: Text(
+                  //                         role,
+                  //                         style: const TextStyle(fontSize: 14),
+                  //                       ),
+                  //                     );
+                  //                   }).toList(),
+                  //                   decoration: const InputDecoration(
+                  //                     labelText: 'If Yes, what team',
+                  //                     labelStyle: TextStyle(fontSize: 16, color: Colors.black87),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 40),
+                  //                 ElevatedButton(
+                  //                   onPressed: () async {
+                  //                     await _submitForm();
+                  //                     Navigator.pop(context); // Close the dialog
+                  //                   },
+                  //                   child: const Text('Update Autobiography'),
+                  //                 ),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     );
+                  //     break;
+                  //   case 1:
+                  //     showDialog<String>(
+                  //       context: context,
+                  //       builder: (BuildContext context) => Dialog(
+                  //         shape: RoundedRectangleBorder(
+                  //           borderRadius: BorderRadius.circular(10.0),
+                  //         ),
+                  //         backgroundColor: const Color.fromRGBO(223, 225, 229, 1.0),
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.all(16.0),
+                  //           child: Column(
+                  //             mainAxisSize: MainAxisSize.min,
+                  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //             children: [
+                  //               Row(
+                  //                 mainAxisAlignment: MainAxisAlignment.start,
+                  //                 children: [
+                  //                   Container(
+                  //                     width: 240,
+                  //                     child: Text(
+                  //                       'Click each image to replace your profile pictures',
+                  //                       style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+                  //                       textAlign: TextAlign.center,
+                  //                     ),
+                  //                   ),
+                  //                   SizedBox(width: 5),
+                  //                   GestureDetector(
+                  //                     onTap: () {
+                  //                       Navigator.pop(context);
+                  //                     },
+                  //                     child: Container(
+                  //                       width: 30,
+                  //                       height: 30,
+                  //                       decoration: BoxDecoration(
+                  //                         color: Colors.white,
+                  //                         shape: BoxShape.rectangle,
+                  //                         borderRadius: BorderRadius.circular(6.0),
+                  //                       ),
+                  //                       child: const Align(
+                  //                         alignment: Alignment.center,
+                  //                         child: Icon(
+                  //                           Icons.close,
+                  //                           color: Colors.black,
+                  //                         ),
+                  //                       ),
+                  //                     ),
+                  //                   ),
+                  //                 ],
+                  //               ),
+                  //               SizedBox(height: 50),
+                  //               // Display the selected images or placeholder icons
+                  //               Row(
+                  //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //                 children: [
+                  //                   InkWell(
+                  //                     onTap: () async {
+                  //                       // final File? image = await pickImage();
+                  //                       // if (image != null) {
+                  //                       //   setState(() {
+                  //                       //     _imageOne = image;
+                  //                       //   });
+                  //                       // }
+                  //                     },
+                  //                     borderRadius: BorderRadius.circular(10),
+                  //                     child: Container(
+                  //                       width: MediaQuery.sizeOf(context).width / 4.1,
+                  //                       height: MediaQuery.sizeOf(context).width / 3.5,
+                  //                       decoration: BoxDecoration(
+                  //                         borderRadius: BorderRadius.circular(10),
+                  //                         color: Colors.black.withAlpha(20),
+                  //                         border: Border.all(color: Colors.black, width: 2),
+                  //                       ),
+                  //                       child: _imageOne != null
+                  //                           ? Image.file(_imageOne!, height: 100, width: 100)
+                  //                           : CachedNetworkImage(
+                  //                               imageUrl: firstTeamClassNotifier.currentFirstTeamClass.image!,
+                  //                               fit: BoxFit.cover,
+                  //                               placeholder: (context, url) => const CircularProgressIndicator(),
+                  //                               errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
+                  //                             ),
+                  //                     ),
+                  //                   ),
+                  //                   InkWell(
+                  //                     onTap: () async {
+                  //                       final File? image = await pickImage();
+                  //                       if (image != null) {
+                  //                         setState(() {
+                  //                           _imageTwo = image;
+                  //                         });
+                  //                       }
+                  //                     },
+                  //                     borderRadius: BorderRadius.circular(10),
+                  //                     child: Container(
+                  //                       width: MediaQuery.sizeOf(context).width / 4.1,
+                  //                       height: MediaQuery.sizeOf(context).width / 3.5,
+                  //                       decoration: BoxDecoration(
+                  //                         borderRadius: BorderRadius.circular(10),
+                  //                         color: Colors.black.withAlpha(20),
+                  //                         border: Border.all(color: Colors.black, width: 2),
+                  //                       ),
+                  //                       child: _imageTwo != null
+                  //                           ? Image.file(_imageTwo!, height: 100, width: 100)
+                  //                           : CachedNetworkImage(
+                  //                               imageUrl: firstTeamClassNotifier.currentFirstTeamClass.imageTwo!,
+                  //                               fit: BoxFit.cover,
+                  //                               placeholder: (context, url) => const CircularProgressIndicator(),
+                  //                               errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
+                  //                             ),
+                  //                     ),
+                  //                   ),
+                  //                 ],
+                  //               ),
+                  //               SizedBox(height: 40),
+                  //               // Button to upload the selected images to Firebase Storage
+                  //               ElevatedButton(
+                  //                 onPressed: () async {
+                  //                   // await _checkAndUpdatePhoto(toString(), toString());
+                  //                 },
+                  //                 child: Text('Upload Photos'),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     );
+                  //     break;
+                  //   default:
+                  //     break;
+                  // }
                 }),
           ],
         ),
@@ -2925,6 +3039,8 @@ class _SubPageState extends State<SubPage> {
     _worstMoment = firstTeamClassNotifier.currentFirstTeamClass.worstMoment;
 
     loadFormData();
+
+    _listenOtp();
 
     userBIO = <int, Widget>{
       /** 0: Useful for CPFC 1st Version and other FC Apps, DND */
@@ -5025,6 +5141,19 @@ class _SubPageState extends State<SubPage> {
     super.initState();
   }
 
+  void _listenOtp() async {
+    await SmsAutoFill().listenForCode();
+    print("OTP Listen is called");
+  }
+
+  @override
+  void dispose() {
+    _confettiController!.dispose();
+    SmsAutoFill().unregisterListener();
+    print("Unregistered Listener");
+    super.dispose();
+  }
+
   Future<void> loadFormData() async {
     String collectionName = 'FirstTeamClassPlayers';
 
@@ -5103,6 +5232,55 @@ class _SubPageState extends State<SubPage> {
     } catch (e) {
       print('Error loading form data: $e');
     }
+  }
+
+  void _sendOtpToPhoneNumber() {
+    String phoneNumber = "+447541315929"; // Replace with your hardcoded phone number
+
+    // Send OTP using Firebase Authentication
+    auth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      timeout: const Duration(seconds: 60),
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        // Handle auto verification completed (if needed)
+        await auth.signInWithCredential(credential).then(
+              (value) => print('Logged In Successfully'),
+            );
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        // Handle verification failed
+        print("Verification failed: ${e.message}");
+        throw Exception("Error sending OTP: ${e.message}");
+      },
+      codeSent: (String verificationId, int? resendToken) async {
+        // Save the verification ID to use it later
+        _verificationId = verificationId;
+
+        // Display a message to the user to check their messages for the OTP
+        Fluttertoast.showToast(
+          msg: 'Please check your messages for the OTP',
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.deepOrangeAccent,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+
+        // Optionally, you can set a timer to automatically fill the OTP field after some delay
+        // For example, wait for 30 seconds before filling the OTP field
+        await Future.delayed(const Duration(seconds: 30));
+
+        // Set the received OTP in the PinFieldAutoFill
+        setState(() {
+          otpCode = _verificationId;
+        });
+
+        setState(() {});
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        // Handle timeout (if needed)
+        print('TimeOut');
+      },
+    );
   }
 
   int sharedValue = 0;
@@ -5187,11 +5365,5 @@ class _SubPageState extends State<SubPage> {
       ),
     );
 //    }
-  }
-
-  @override
-  void dispose() {
-    _confettiController!.dispose();
-    super.dispose();
   }
 }

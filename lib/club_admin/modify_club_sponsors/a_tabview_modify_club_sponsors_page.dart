@@ -1,5 +1,5 @@
-import 'package:coventry_phoenix_fc/club_admin/club_sponsors/add_club_sponsors_page.dart';
-import 'package:coventry_phoenix_fc/club_admin/club_sponsors/remove_club_sponsors_page.dart';
+import 'package:coventry_phoenix_fc/club_admin/modify_club_sponsors/add_club_sponsors_page.dart';
+import 'package:coventry_phoenix_fc/club_admin/modify_club_sponsors/remove_club_sponsors_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';

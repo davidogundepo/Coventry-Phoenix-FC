@@ -161,7 +161,7 @@ class AnimCardState extends State<AnimCard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            margin: const EdgeInsets.only(left: 15, bottom: 5),
+                            margin: const EdgeInsets.only(left: 15, bottom: 5, top: 5),
                             height: 55,
                             width: 53,
                             decoration: const BoxDecoration(
@@ -186,11 +186,12 @@ class AnimCardState extends State<AnimCard> {
                             ),
                           ),
                           Container(
-                            // width: 120,
+                            width: MediaQuery.of(context).size.width * 0.3,
                             margin: const EdgeInsets.only(left: 7),
                             child: Text(
                               upcomingMatchesNotifier
                                   .upcomingMatchesList[widget.index].homeTeam!,
+                              overflow: TextOverflow.clip,
                               style: GoogleFonts.allertaStencil(
                                   color: Colors.white,
                                   fontSize: 11,
@@ -217,15 +218,21 @@ class AnimCardState extends State<AnimCard> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                                upcomingMatchesNotifier
-                                    .upcomingMatchesList[widget.index]
-                                    .matchDayKickOff!,
-                                style: GoogleFonts.jura(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w800,
-                                  color: Colors.white,
-                                )),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              child: Text(
+                                  upcomingMatchesNotifier
+                                      .upcomingMatchesList[widget.index]
+                                      .matchDayKickOff!,
+                                  style: GoogleFonts.jura(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w800,
+                                    color: Colors.white,
+                                  ),
+                                textAlign: TextAlign.center,
+                              ),
+
+                            ),
                           ],
                         ),
                       ],
@@ -237,7 +244,7 @@ class AnimCardState extends State<AnimCard> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Container(
-                            margin: const EdgeInsets.only(right: 15, bottom: 5),
+                            margin: const EdgeInsets.only(right: 15, bottom: 5, top: 5),
                             height: 55,
                             width: 53,
                             decoration: const BoxDecoration(
@@ -262,8 +269,8 @@ class AnimCardState extends State<AnimCard> {
                             ),
                           ),
                           Container(
-                            // width: 140,
-                            margin: const EdgeInsets.only(right: 15),
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            padding: const EdgeInsets.only(right: 15),
                             child: Text(
                               upcomingMatchesNotifier
                                   .upcomingMatchesList[widget.index].awayTeam!,

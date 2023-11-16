@@ -496,7 +496,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                           child: AnimatedIcon(
                             progress: _animationController.view,
                             icon: _animationController.status == AnimationStatus.completed
-                                ? AnimatedIcons.menu_arrow
+                                ? AnimatedIcons.menu_home
                                 : AnimatedIcons.close_menu,
                             color: containerIconColor,
                             size: 25,

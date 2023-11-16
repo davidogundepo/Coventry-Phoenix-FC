@@ -2,19 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../model/b_youtube.dart';
 import '../notifier/b_youtube_notifier.dart';
 
-getYoutube(YoutubeNotifier youtubeNotifier) async {
+getYouTube(YouTubeNotifier youTubeNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
-      .collection('Youtube')
+      .collection('YouTube')
       .orderBy('id', descending: true)
+      .limit(10)
       .get();
 
-  List<Youtube> youtubeList = [];
+  List<YouTube> youTubeList = [];
 
   for (var document in snapshot.docs) {
-    Youtube youtube =
-    Youtube.fromMap(document.data() as Map<String, dynamic>);
-    youtubeList.add(youtube);
+    YouTube youTube =
+    YouTube.fromMap(document.data() as Map<String, dynamic>);
+    youTubeList.add(youTube);
   }
 
-  youtubeNotifier.youtubeList = youtubeList;
+  youTubeNotifier.youTubeList = youTubeList;
 }

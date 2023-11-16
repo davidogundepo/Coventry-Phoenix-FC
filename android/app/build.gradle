@@ -97,15 +97,15 @@ flutter {
 
 dependencies {
     implementation platform('com.google.firebase:firebase-bom:28.4.1')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22"
     implementation 'com.google.firebase:firebase-analytics'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.5.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation 'com.google.firebase:firebase-auth:21.1.0'
-    implementation 'com.google.firebase:firebase-firestore:24.4.4'
+    implementation 'com.google.firebase:firebase-auth:22.2.0'
+    implementation 'com.google.firebase:firebase-firestore:24.9.1'
     implementation 'com.android.support:multidex:2.0.0'
-    implementation 'com.google.firebase:firebase-crashlytics:18.3.5'
+    implementation 'com.google.firebase:firebase-crashlytics:18.5.1'
     implementation 'com.google.firebase:firebase-crashlytics-ndk'
     implementation "com.airbnb.android:lottie:5.0.3"
     implementation "com.android.support.constraint:constraint-layout:2.0.4"

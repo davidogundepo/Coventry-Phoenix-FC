@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 import 'dart:ui';
 import 'dart:io';
+import 'package:flutter_spinner_time_picker/flutter_spinner_time_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -201,7 +202,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      const SizedBox(height: 15),
+                                      const SizedBox(height: 10),
                                       Icon(
                                         addBoxRounded,
                                         color: materialBackgroundColor,
@@ -906,40 +907,42 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                         )),
                   ),
                   Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: Container()),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Container(
-                      width: MediaQuery.sizeOf(context).width / 2,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        // color: cardBackgroundColorTwo,
-                        gradient: const LinearGradient(
-                          colors: [Colors.red, Colors.blue], // Set your desired gradient colors
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width / 2,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          // color: cardBackgroundColorTwo,
+                          gradient: const LinearGradient(
+                            colors: [Colors.red, Colors.blue], // Set your desired gradient colors
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
                         ),
-                      ),
-                      child: InkWell(
-                        onTap: () {
-                          // _shareMultipleImages(highResImageUrls);
-                        },
-                        splashColor: splashColorTwo,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Publish Banner(s)',
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.visible,
-                              style: TextStyle(
-                                color: materialBackgroundColor,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w900,
+                        child: InkWell(
+                          onTap: () {
+                            // _shareMultipleImages(highResImageUrls);
+                          },
+                          splashColor: splashColorTwo,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Publish Banner(s)',
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.visible,
+                                style: TextStyle(
+                                  color: materialBackgroundColor,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w900,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -957,10 +960,12 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
   Future<DateTime?> pickDate() => showDatePicker(
       context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2100), barrierColor: backgroundColor);
 
-  Future<TimeOfDay?> pickTime() => showTimePicker(
-        context: context,
-        initialTime: TimeOfDay(hour: selectedDate.hour, minute: selectedDate.minute),
-      );
+  Future<TimeOfDay?> pickTime() => showSpinnerTimePicker(
+    context,
+    initTime: TimeOfDay(hour: selectedDate.hour, minute: selectedDate.minute),
+    is24HourFormat: false,
+
+  );
 
   void _showTeamASelectionDialog() {
     showDialog(
@@ -1253,6 +1258,19 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
     // Create a GlobalKey for the RepaintBoundary
     GlobalKey boundaryKey = GlobalKey();
 
+    // Get the screen size
+    Size screenSize = MediaQuery.of(context).size;
+
+// Calculate the desired size based on the screen size
+    double imageSize = screenSize.width; // Adjust the multiplier as needed
+
+// Set the maximum and minimum size based on your requirements
+    double maxWidth = 260;
+    double minWidth = 110;
+
+// Ensure the calculated size is within the desired range
+    double finalSize = imageSize.clamp(minWidth, maxWidth);
+
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -1270,6 +1288,8 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
                         padding: const EdgeInsets.only(top: 15), // Add top padding of 16 units
                         child: Image.asset(
                           'assets/images/cpfc_sm_banner.jpg',
+                          width: finalSize,
+                          height: finalSize,
                           fit: BoxFit.cover,
                         ),
                       ),

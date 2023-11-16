@@ -483,11 +483,18 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                 color: verticalDividerThreeColor,
                                                               ),
                                                             ),
-                                                            Text(
-                                                              topGoalsPlayersStatsAndInfoNotifier.topGoalsPlayersStatsAndInfoList[index].playerName!,
-                                                              overflow: TextOverflow.clip,
-                                                              style: TextStyle(
-                                                                color: playerNameColor,
+                                                            SizedBox(
+                                                              width: MediaQuery.sizeOf(context).width * 0.25,
+                                                              child: FittedBox(
+                                                                fit: BoxFit.scaleDown,
+                                                                child: Text(
+                                                                  topGoalsPlayersStatsAndInfoNotifier
+                                                                      .topGoalsPlayersStatsAndInfoList[index].playerName!,
+                                                                  overflow: TextOverflow.clip,
+                                                                  style: TextStyle(
+                                                                    color: playerNameColor,
+                                                                  ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ],
@@ -776,11 +783,17 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               width: 70,
                                                               child: Divider(indent: 5, thickness: 3, color: verticalDividerThreeColor),
                                                             ),
-                                                            Text(
-                                                              mostAssistsPlayersStatsAndInfoNotifier
-                                                                  .mostAssistsPlayersStatsAndInfoList[index].playerName!,
-                                                              overflow: TextOverflow.fade,
-                                                              style: TextStyle(color: textColorOne),
+                                                            SizedBox(
+                                                              width: MediaQuery.sizeOf(context).width * 0.25,
+                                                              child: FittedBox(
+                                                                fit: BoxFit.scaleDown,
+                                                                child: Text(
+                                                                  mostAssistsPlayersStatsAndInfoNotifier
+                                                                      .mostAssistsPlayersStatsAndInfoList[index].playerName!,
+                                                                  overflow: TextOverflow.fade,
+                                                                  style: TextStyle(color: textColorOne),
+                                                                ),
+                                                              ),
                                                             ),
                                                           ],
                                                         ),
@@ -1721,11 +1734,17 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                               color: verticalDividerThreeColor,
                                                             ),
                                                           ),
-                                                          Text(
-                                                            '   ${topDefensivePlayersStatsAndInfoNotifier.topDefensivePlayersStatsAndInfoList[index].playerName!}',
-                                                            overflow: TextOverflow.fade,
-                                                            style: TextStyle(
-                                                              color: playerNameColor,
+                                                          SizedBox(
+                                                            width: MediaQuery.sizeOf(context).width * 0.25,
+                                                            child: FittedBox(
+                                                              fit: BoxFit.scaleDown,
+                                                              child: Text(
+                                                                '   ${topDefensivePlayersStatsAndInfoNotifier.topDefensivePlayersStatsAndInfoList[index].playerName!}',
+                                                                overflow: TextOverflow.fade,
+                                                                style: TextStyle(
+                                                                  color: playerNameColor,
+                                                                ),
+                                                              ),
                                                             ),
                                                           ),
                                                         ],
@@ -2300,11 +2319,17 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                 color: verticalDividerThreeColor,
                                                               ),
                                                             ),
-                                                            Text(
-                                                              '   ${cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList[index].playerName!}',
-                                                              overflow: TextOverflow.fade,
-                                                              style: TextStyle(
-                                                                color: playerNameColor,
+                                                            SizedBox(
+                                                              width: MediaQuery.sizeOf(context).width * 0.25,
+                                                              child: FittedBox(
+                                                                fit: BoxFit.scaleDown,
+                                                                child: Text(
+                                                                  '   ${cumMOTMPlayersStatsAndInfoNotifier.cumMOTMPlayersStatsAndInfoList[index].playerName!}',
+                                                                  overflow: TextOverflow.fade,
+                                                                  style: TextStyle(
+                                                                    color: playerNameColor,
+                                                                  ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ],
@@ -2502,15 +2527,18 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       const SizedBox(
                                                         width: 15,
                                                       ),
-                                                      Text(
-                                                        "$coachTitle${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].name!.replaceAll(" ", "\n")}",
-                                                        style: GoogleFonts.kottaOne(
-                                                          color: keyTextColor,
-                                                          fontSize: 25,
-                                                          // fontWeight: FontWeight.bold,
-                                                          // height: 0.81
+                                                      FittedBox(
+                                                        fit: BoxFit.scaleDown,
+                                                        child: Text(
+                                                          "$coachTitle${coachesReviewsCommentNotifier.coachesReviewsCommentList[index].name!.replaceAll(" ", "\n")}",
+                                                          style: GoogleFonts.kottaOne(
+                                                            color: keyTextColor,
+                                                            fontSize: 20,
+                                                            // fontWeight: FontWeight.bold,
+                                                            // height: 0.81
+                                                          ),
+                                                          overflow: TextOverflow.clip,
                                                         ),
-                                                        overflow: TextOverflow.ellipsis,
                                                       )
                                                     ],
                                                   ),
@@ -3067,7 +3095,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        const SizedBox(height: 40),
+                                                                        const SizedBox(height: 30),
                                                                         Column(
                                                                           children: [
                                                                             Padding(
@@ -3196,7 +3224,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        const SizedBox(height: 40),
+                                                                        const SizedBox(height: 30),
                                                                         Column(
                                                                           children: [
                                                                             Padding(
@@ -3299,7 +3327,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                                 ),
                                                                               ),
                                                                             ),
-                                                                            const SizedBox(height: 80),
+                                                                            const SizedBox(height: 20),
                                                                           ],
                                                                         ),
                                                                       ],
@@ -3439,15 +3467,18 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                         padding: const EdgeInsets.only(right: 10),
                                                                         child: SizedBox(
                                                                           width: MediaQuery.of(context).size.width * 0.65,
-                                                                          child: Text(
-                                                                            potmTwoTitle,
-                                                                            style: GoogleFonts.orbitron(
-                                                                              color: dialogColor,
-                                                                              fontSize: 18,
-                                                                              fontWeight: FontWeight.bold,
+                                                                          child: FittedBox(
+                                                                            fit: BoxFit.scaleDown,
+                                                                            child: Text(
+                                                                              potmTwoTitle,
+                                                                              style: GoogleFonts.orbitron(
+                                                                                color: dialogColor,
+                                                                                fontSize: 14,
+                                                                                fontWeight: FontWeight.bold,
+                                                                              ),
+                                                                              textAlign: TextAlign.center,
+                                                                              overflow: TextOverflow.ellipsis,
                                                                             ),
-                                                                            textAlign: TextAlign.center,
-                                                                            overflow: TextOverflow.ellipsis,
                                                                           ),
                                                                         ),
                                                                       ),
@@ -3458,10 +3489,10 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                           child: Text(
                                                                             presentedByTitle,
                                                                             style: GoogleFonts.arimo(
-                                                                              color: containerColor,
-                                                                              fontSize: 14,
-                                                                              fontWeight: FontWeight.w200,
-                                                                            ),
+                                                                                color: containerColor,
+                                                                                fontSize: 14,
+                                                                                fontWeight: FontWeight.w200,
+                                                                                fontStyle: FontStyle.italic),
                                                                             textAlign: TextAlign.center,
                                                                           ),
                                                                         ),
@@ -3472,7 +3503,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                                           width: MediaQuery.of(context).size.width * 0.65,
                                                                           child: Text(
                                                                             nouvellesoftTitle,
-                                                                            style: GoogleFonts.gloriaHallelujah(
+                                                                            style: GoogleFonts.zenDots(
                                                                               color: containerColor,
                                                                               fontSize: 15,
                                                                               fontWeight: FontWeight.bold,
@@ -3519,7 +3550,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                 ] else if (Platform.isIOS) ...[
                                                   Positioned(
                                                     top: MediaQuery.of(context).size.height * 0.165,
-                                                    right: MediaQuery.of(context).size.width * 0.13,
+                                                    right: MediaQuery.of(context).size.width * 0.14,
                                                     child: GestureDetector(
                                                       onTap: () {
                                                         Navigator.pop(context);

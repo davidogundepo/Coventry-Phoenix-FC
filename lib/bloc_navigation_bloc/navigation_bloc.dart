@@ -1,5 +1,5 @@
-import '../club_admin/club_sponsors/thrown_club_sponsors_page.dart';
-import '../club_admin/club_admin_page.dart';
+import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/social_media/b_youtube_page.dart';
+import '../thrown_pages/club_sponsors_thrown_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../thrown_pages/captains_thrown_page.dart';
 import '../thrown_pages/coaches_thrown_page.dart';
@@ -16,7 +16,7 @@ enum NavigationEvents {
   myManagementBodyPageClickedEvent,
   myCaptainsPageClickedEvent,
   myClubSponsorsPageClickedEvent,
-  // myClubAdminPageClickedEvent,
+  myYouTubePageClickedEvent,
 }
 
 abstract class NavigationStates {}
@@ -46,11 +46,11 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         yield MyCaptainsPage();
         break;
       case NavigationEvents.myClubSponsorsPageClickedEvent:
-        yield MyClubSponsorsPage();
+        yield MyClubSponsorsPage(fromPage1: false);
         break;
-      // case NavigationEvents.myClubAdminPageClickedEvent:
-      //   yield MyClubAdminPage();
-      //   break;
+      case NavigationEvents.myYouTubePageClickedEvent:
+        yield MyYouTubePage();
+        break;
     }
   }
 }

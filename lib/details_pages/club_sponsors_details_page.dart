@@ -10,12 +10,13 @@ import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../api/a_upcoming_matches_api.dart';
-import '../../model/club_sponsors.dart';
+import '../api/a_upcoming_matches_api.dart';
+import '../model/club_sponsors.dart';
 
 Color conColor = const Color.fromRGBO(194, 194, 220, 1.0);
 Color conColorTwo = const Color.fromRGBO(151, 147, 151, 1.0);
@@ -40,8 +41,7 @@ String mailFIRST = "mailto:";
 String mailSECOND = "?subject=Hello ";
 String urlTwitter = "https://twitter.com/";
 String urlFacebook = "https://facebook.com/";
-String urlYoutube = "https://youtube.com/";
-String urlWebsite = "https://youtube.com/";
+String urlYoutube = "https://youtube.com/watch?v=";
 String urlInstagram = "https://www.instagram.com/";
 String urlSnapchat = "https://www.snapchat.com/add/";
 
@@ -101,8 +101,8 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
 
   Future launchURL(String url) async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
-    if (await canLaunch(Uri.parse(url) as String)) {
-      await launch(Uri.parse(url) as String);
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
     } else {
       scaffoldMessenger.showSnackBar(
         const SnackBar(content: Text("The required app is not installed.")),
@@ -131,10 +131,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
         centerTitle: true,
         title: Text(
           clubSponsorsNotifier.currentClubSponsors.name!,
-          style: GoogleFonts.alkatra(
-              color: textColor,
-              fontSize: 25,
-              fontWeight: FontWeight.w400),
+          style: GoogleFonts.alkatra(color: textColor, fontSize: 25, fontWeight: FontWeight.w400),
         ),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
@@ -158,7 +155,6 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
         //   ),
         // ],
       ),
-
       backgroundColor: backgroundColor,
       body: SafeArea(
         child: Padding(
@@ -228,12 +224,15 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                                  Text(
-                                    '$categoryTitle ${clubSponsorsNotifier.currentClubSponsors.category!}',
-                                    style: GoogleFonts.aldrich(
-                                      color: textColor,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w400,
+                                  FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Text(
+                                      '$categoryTitle ${clubSponsorsNotifier.currentClubSponsors.category!}',
+                                      style: GoogleFonts.aldrich(
+                                        color: textColor,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -249,7 +248,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Container(
-                              width: width / 1.29,
+                              width: width / 1.22,
                               decoration: BoxDecoration(
                                 color: conColor.withOpacity(0.3),
                                 borderRadius: BorderRadius.circular(14),
@@ -308,7 +307,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                               callButton,
                                               style: GoogleFonts.raleway(
                                                 color: textColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -347,7 +346,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                               whatsAppButton,
                                               style: GoogleFonts.raleway(
                                                 color: textColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -378,7 +377,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                               emailButton,
                                               style: GoogleFonts.raleway(
                                                 color: textColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -414,7 +413,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                               twitterButton,
                                               style: GoogleFonts.raleway(
                                                 color: textColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -450,7 +449,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                               instagramButton,
                                               style: GoogleFonts.raleway(
                                                 color: textColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -486,7 +485,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                               snapchatButton,
                                               style: GoogleFonts.raleway(
                                                 color: textColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -496,7 +495,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                           visible: _website.isNotEmpty,
                                           child: OutlinedButton.icon(
                                             onPressed: () {
-                                              facebookLink();
+                                              launchURL(_website);
                                             },
                                             style: OutlinedButton.styleFrom(
                                               foregroundColor: websiteColor,
@@ -517,7 +516,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                               websiteButton,
                                               style: GoogleFonts.raleway(
                                                 color: textColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -548,7 +547,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                               facebookButton,
                                               style: GoogleFonts.raleway(
                                                 color: textColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -557,8 +556,9 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                         Visibility(
                                           visible: _youtube.isNotEmpty,
                                           child: OutlinedButton.icon(
+
                                             onPressed: () {
-                                              facebookLink();
+                                              launchURL(urlYoutube + _youtube);
                                             },
                                             style: OutlinedButton.styleFrom(
                                               foregroundColor: youtubeColor,
@@ -579,7 +579,7 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                               youtubeButton,
                                               style: GoogleFonts.raleway(
                                                 color: textColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -667,7 +667,8 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
                                 autoplay: true,
                                 viewportFraction: 0.8,
                                 scale: 0.9,
-                                itemCount: clubSponsorsNotifier.clubSponsorsList.length, // Total count of images in all documents
+                                itemCount: clubSponsorsNotifier.clubSponsorsList.length,
+                                // Total count of images in all documents
                                 itemBuilder: (context, index) {
                                   int imageIndex = index % 5;
                                   ClubSponsors sponsor = clubSponsorsNotifier.currentClubSponsors;
@@ -934,51 +935,51 @@ class _ClubSponsorsDetailsPageState extends State<ClubSponsorsDetailsPage> {
       text: text,
     );
   }
-}
 
-facebookLink() async {
-  // showDialog(
-  //   context: context,
-  //   builder: (context) => AlertDialog(
-  //     shape: const RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.all(Radius.circular(8)),
-  //     ),
-  //     backgroundColor: backGroundColor,
-  //     title: Text(
-  //       facebookProfileSharedPreferencesTitle,
-  //       style: TextStyle(color: textColor),
-  //     ),
-  //     content: Text(
-  //       facebookProfileSharedPreferencesContentOne +
-  //           _facebook +
-  //           facebookProfileSharedPreferencesContentTwo,
-  //       textAlign: TextAlign.justify,
-  //       style: TextStyle(color: textColor),
-  //     ),
-  //     actions: <Widget>[
-  //       TextButton(
-  //         onPressed: () {
-  //           launchURL(urlFacebook);
-  //           Toast.show("Loading up Facebook.com",
-  //               duration: Toast.lengthLong,
-  //               gravity: Toast.bottom,
-  //               webTexColor: textColor,
-  //               backgroundColor: backGroundColor,
-  //               backgroundRadius: 10);
-  //         },
-  //         child: Text(
-  //           facebookProfileSharedPreferencesButton,
-  //           style: TextStyle(color: textColor),
-  //         ),
-  //       ),
-  //       TextButton(
-  //         onPressed: () => Navigator.of(context).pop(false),
-  //         child: Text(
-  //           facebookProfileSharedPreferencesButtonTwo,
-  //           style: TextStyle(color: textColor),
-  //         ),
-  //       ),
-  //     ],
-  //   ),
-  // );
+  void facebookLink() async {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        backgroundColor: backgroundColor,
+        title: Text(
+          facebookProfileSharedPreferencesTitle,
+          style: TextStyle(color: textColor),
+        ),
+        content: Text(
+          facebookProfileSharedPreferencesContentOne + _facebook + facebookProfileSharedPreferencesContentTwo,
+          textAlign: TextAlign.justify,
+          style: TextStyle(color: textColor),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              launchURL(urlFacebook);
+              Fluttertoast.showToast(
+                msg: 'Success! Facebook Page Opening',
+                // Show success message (you can replace it with actual banner generation logic)
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: backgroundColor,
+                textColor: Colors.white,
+                fontSize: 16.0,
+              );
+            },
+            child: Text(
+              facebookProfileSharedPreferencesButton,
+              style: TextStyle(color: textColor),
+            ),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text(
+              facebookProfileSharedPreferencesButtonTwo,
+              style: TextStyle(color: textColor),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

@@ -15,11 +15,11 @@ import 'package:coventry_phoenix_fc/notifier/most_assists_players_stats_info_not
 import 'package:coventry_phoenix_fc/notifier/second_team_class_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:toast/toast.dart';
 
 import '../about_menu_details_pages/about_app.dart';
 import '../about_menu_details_pages/about_club.dart';
@@ -45,7 +45,9 @@ import '../api/top_goals_players_stats_info_api.dart';
 import '../api/trainings_games_reels_api.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../bottom_nav_stats_pages/bottom_navigator.dart';
+import '../club_admin/club_admin_page.dart';
 import '../details_pages/first_team_details_page.dart';
+import '../main.dart';
 import '../notifier/a_upcoming_matches_notifier.dart';
 import '../notifier/club_sponsors_notifier.dart';
 import '../notifier/cum_motm_players_stats_info_notifier.dart';
@@ -77,7 +79,8 @@ String exitAppYes = "I Have To";
 
 String whoWeAre = "Who We Are";
 String aboutClub = "About $clubName";
-String tablesAndStats = "Tables and Stats";
+// String tablesAndStats = "Tables and Stats";
+String clubAdmin = "Go to Club Admin";
 String acronymMeanings = "Acronym Meanings";
 String aboutApp = "About App";
 
@@ -92,11 +95,9 @@ String welcomeOverviewSharedPreferencesKey = "toast_initial";
 
 String appOverviewSharedPreferencesKey = "overview_time";
 String appOverviewSharedPreferencesTitle = "APP OVERVIEW";
-String appOverviewSharedPreferencesContentOne =
-    "This App was developed for $clubName, a Football Club in $city, $stateName. $countryName.\n";
+String appOverviewSharedPreferencesContentOne = "This App was developed for $clubName, a Football Club in $city, $stateName. $countryName.\n";
 // String appOverviewSharedPreferencesContentTwo = "Our vision is to raise the total youth through comprehensive education.\n";
-String appOverviewSharedPreferencesContentThree =
-    "Welcome to our app, do check through and know more!";
+String appOverviewSharedPreferencesContentThree = "Welcome to our app, do check through and know more!";
 String appOverviewSharedPreferencesButton = "Awesome";
 
 Color backgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
@@ -115,8 +116,6 @@ Color textColorTwo = Colors.white70;
 Color dialogBackgroundColor = const Color.fromRGBO(33, 37, 41, 1.0);
 Color borderColor = Colors.black;
 
-
-
 class MyFirstTeamClassPage extends StatefulWidget with NavigationStates {
   MyFirstTeamClassPage({Key? key, this.title}) : super(key: key);
 
@@ -127,8 +126,6 @@ class MyFirstTeamClassPage extends StatefulWidget with NavigationStates {
 }
 
 class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
-  late String? documentId;
-
   bool _isVisible = true;
 
   bool isLoading = true;
@@ -141,10 +138,8 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
 
   @override
   Widget build(BuildContext context) {
-    ToastContext().init(context);
 
-    FirstTeamClassNotifier firstTeamClassNotifier =
-    Provider.of<FirstTeamClassNotifier>(context);
+    FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
 
     return WillPopScope(
       onWillPop: _onWillPop,
@@ -152,8 +147,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
         body: Container(
           color: backgroundColor,
           child: NestedScrollView(
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
                 SliverAppBar(
                   actions: <Widget>[
@@ -164,112 +158,91 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                             backgroundColor: modalColor,
                             context: context,
                             builder: (context) => Container(
-                              // height: 250,
-                              decoration: BoxDecoration(
-                                color: modalBackgroundColor,
-                                borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    topRight: Radius.circular(15)),
-                              ),
-                              child: Material(
-                                color: materialBackgroundColor,
-                                child: InkWell(
-                                  splashColor: splashColor,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 8.0,
-                                        bottom: 35.0,
-                                        right: 8.0,
-                                        left: 8.0),
-                                    child: Wrap(
-                                      children: <Widget>[
-                                        ListTile(
-                                            leading: Icon(
-                                              MdiIcons.tableMultiple,
-                                              color: iconColor,
-                                            ),
-                                            title: Text(
-                                              tablesAndStats,
-                                              style: GoogleFonts.zillaSlab(
-                                                  color: textColor),
-                                            ),
-                                            onTap: () {
-                                              Navigator.of(context)
-                                                  .pop(false);
-                                              navigateTablesAndStatsDetails(
-                                                  context);
-                                            }),
-                                        // ListTile(
-                                        //     leading: Icon(MdiIcons.atom,
-                                        //         color: iconColor),
-                                        //     title: Text(
-                                        //       whoWeAre,
-                                        //       style: GoogleFonts.zillaSlab(
-                                        //         color: textColor,
-                                        //       ),
-                                        //     ),
-                                        //     onTap: () {
-                                        //       Navigator.of(context)
-                                        //           .pop(false);
-                                        //       navigateToWhoWeArePage(
-                                        //           context);
-                                        //     }),
-                                        ListTile(
-                                          leading: Icon(
-                                              MdiIcons.accountGroup,
-                                              color: iconColor),
-                                          title: Text(
-                                            aboutClub,
-                                            style: GoogleFonts.zillaSlab(
-                                              color: textColor,
-                                            ),
-                                          ),
-                                          onTap: () {
-                                            Navigator.of(context)
-                                                .pop(false);
-                                            navigateToAboutClubDetailsPage(
-                                                context);
-                                          },
-                                        ),
-                                        ListTile(
-                                            leading: Icon(
-                                                MdiIcons
-                                                    .sortAlphabeticalAscending,
-                                                color: iconColor),
-                                            title: Text(
-                                              acronymMeanings,
-                                              style: GoogleFonts.zillaSlab(
-                                                color: textColor,
+                                  // height: 250,
+                                  decoration: BoxDecoration(
+                                    color: modalBackgroundColor,
+                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+                                  ),
+                                  child: Material(
+                                    color: materialBackgroundColor,
+                                    child: InkWell(
+                                      splashColor: splashColor,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 8.0, bottom: 35.0, right: 8.0, left: 8.0),
+                                        child: Wrap(
+                                          children: <Widget>[
+                                            ListTile(
+                                                leading: Icon(
+                                                  MdiIcons.tableMultiple,
+                                                  color: iconColor,
+                                                ),
+                                                title: Text(
+                                                  clubAdmin,
+                                                  style: GoogleFonts.zillaSlab(color: textColor),
+                                                ),
+                                                onTap: () {
+                                                  Navigator.of(context).pop(false);
+                                                  _showAdminDialog(context);
+                                                }),
+                                            // ListTile(
+                                            //     leading: Icon(MdiIcons.atom,
+                                            //         color: iconColor),
+                                            //     title: Text(
+                                            //       whoWeAre,
+                                            //       style: GoogleFonts.zillaSlab(
+                                            //         color: textColor,
+                                            //       ),
+                                            //     ),
+                                            //     onTap: () {
+                                            //       Navigator.of(context)
+                                            //           .pop(false);
+                                            //       navigateToWhoWeArePage(
+                                            //           context);
+                                            //     }),
+                                            ListTile(
+                                              leading: Icon(MdiIcons.accountGroup, color: iconColor),
+                                              title: Text(
+                                                aboutClub,
+                                                style: GoogleFonts.zillaSlab(
+                                                  color: textColor,
+                                                ),
                                               ),
+                                              onTap: () {
+                                                Navigator.of(context).pop(false);
+                                                navigateToAboutClubDetailsPage(context);
+                                              },
                                             ),
-                                            onTap: () {
-                                              Navigator.of(context)
-                                                  .pop(false);
-                                              navigateToAcronymsMeaningsPage(
-                                                  context);
-                                            }),
-                                        ListTile(
-                                          leading: Icon(MdiIcons.opacity,
-                                              color: iconColor),
-                                          title: Text(
-                                            aboutApp,
-                                            style: GoogleFonts.zillaSlab(
-                                              color: textColor,
+                                            ListTile(
+                                                leading: Icon(MdiIcons.sortAlphabeticalAscending, color: iconColor),
+                                                title: Text(
+                                                  acronymMeanings,
+                                                  style: GoogleFonts.zillaSlab(
+                                                    color: textColor,
+                                                  ),
+                                                ),
+                                                onTap: () {
+                                                  Navigator.of(context).pop(false);
+                                                  navigateToAcronymsMeaningsPage(context);
+                                                }),
+                                            ListTile(
+                                              leading: Icon(MdiIcons.opacity, color: iconColor),
+                                              title: Text(
+                                                aboutApp,
+                                                style: GoogleFonts.zillaSlab(
+                                                  color: textColor,
+                                                ),
+                                              ),
+                                              onTap: () {
+                                                Navigator.of(context).pop(false);
+                                                navigateToAboutAppDetailsPage(context);
+                                              },
                                             ),
-                                          ),
-                                          onTap: () {
-                                            Navigator.of(context)
-                                                .pop(false);
-                                            navigateToAboutAppDetailsPage(
-                                                context);
-                                          },
+                                          ],
                                         ),
-                                      ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            ));
+                                ));
                       },
                     ),
                     IconButton(
@@ -277,8 +250,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                       onPressed: () {
                         showSearch(
                           context: context,
-                          delegate: MyFirstTeamClassSearch(
-                              all: firstTeamClassNotifier.firstTeamClassList),
+                          delegate: MyFirstTeamClassSearch(all: firstTeamClassNotifier.firstTeamClassList),
                         );
                       },
                       tooltip: "Search",
@@ -291,20 +263,11 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                   flexibleSpace: FlexibleSpaceBar(
                       title: Align(
                         alignment: Alignment.bottomLeft,
-                        child: Text(
-                            thrownName,
-                            textAlign: TextAlign.start,
-                            style: GoogleFonts.abel(
-                                color: appBarTextColor,
-                                fontSize: 26.0,
-                                fontWeight: FontWeight.bold)),
+                        child: Text(thrownName,
+                            textAlign: TextAlign.start, style: GoogleFonts.abel(color: appBarTextColor, fontSize: 26.0, fontWeight: FontWeight.bold)),
                       ),
-                      background:
-                      StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        stream: FirebaseFirestore.instance
-                            .collection('SliversPages')
-                            .doc('slivers_pages')
-                            .snapshots(),
+                      background: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        stream: FirebaseFirestore.instance.collection('SliversPages').doc('slivers_pages').snapshots(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
                             return const CircularProgressIndicator();
@@ -313,9 +276,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: CachedNetworkImageProvider(
-                                      snapshot.data
-                                          ?.data()!['slivers_page_1'] ??
-                                          0,
+                                      snapshot.data?.data()!['slivers_page_1'] ?? 0,
                                     ),
                                     fit: BoxFit.cover)),
                           );
@@ -328,8 +289,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
               padding: const EdgeInsets.only(left: 25, right: 10),
               child: Container(
                 margin: const EdgeInsets.only(bottom: 15),
-                decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                 child: ListView.builder(
                   itemBuilder: _buildProductItem,
                   itemCount: firstTeamClassNotifier.firstTeamClassList.length,
@@ -352,12 +312,10 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
         ),
       ),
     );
-
   }
 
   Widget _buildProductItem(BuildContext context, int index) {
-    FirstTeamClassNotifier firstTeamClassNotifier =
-        Provider.of<FirstTeamClassNotifier>(context);
+    FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
@@ -370,8 +328,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
           child: InkWell(
             splashColor: splashColor,
             onTap: () {
-              firstTeamClassNotifier.currentFirstTeamClass =
-                  firstTeamClassNotifier.firstTeamClassList[index];
+              firstTeamClassNotifier.currentFirstTeamClass = firstTeamClassNotifier.firstTeamClassList[index];
               navigateToSubPage(context);
             },
             child: SingleChildScrollView(
@@ -383,14 +340,10 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                     width: 100,
                     height: 100,
                     decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10)),
+                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
                         image: DecorationImage(
                             alignment: const Alignment(0, -1),
-                            image: CachedNetworkImageProvider(
-                                firstTeamClassNotifier
-                                    .firstTeamClassList[index].image!),
+                            image: CachedNetworkImageProvider(firstTeamClassNotifier.firstTeamClassList[index].image!),
                             fit: BoxFit.cover)),
                   ),
                   Padding(
@@ -402,17 +355,10 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                           padding: const EdgeInsets.only(top: 20),
                           child: Row(
                             children: <Widget>[
-                              Text(
-                                  firstTeamClassNotifier
-                                      .firstTeamClassList[index].name!,
-                                  style: GoogleFonts.tenorSans(
-                                      color: textColor,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600)),
+                              Text(firstTeamClassNotifier.firstTeamClassList[index].name!,
+                                  style: GoogleFonts.tenorSans(color: textColor, fontSize: 17, fontWeight: FontWeight.w600)),
                               (() {
-                                if (firstTeamClassNotifier
-                                        .firstTeamClassList[index].captain ==
-                                    "Yes") {
+                                if (firstTeamClassNotifier.firstTeamClassList[index].captain == "Yes") {
                                   return Row(
                                     children: <Widget>[
                                       const SizedBox(width: 10),
@@ -437,12 +383,8 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                              firstTeamClassNotifier
-                                  .firstTeamClassList[index].positionPlaying!,
-                              style: GoogleFonts.varela(
-                                  color: textColorTwo,
-                                  fontStyle: FontStyle.italic)),
+                          child: Text(firstTeamClassNotifier.firstTeamClassList[index].positionPlaying!,
+                              style: GoogleFonts.varela(color: textColorTwo, fontStyle: FontStyle.italic)),
                         ),
                       ],
                     ),
@@ -494,33 +436,105 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
   }
 
   Future navigateToSubPage(context) async {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const SubPage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const SubPage()));
   }
 
   Future navigateTablesAndStatsDetails(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const BottomNavigator()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const BottomNavigator()));
   }
 
   Future navigateToAboutAppDetailsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const AboutAppDetails()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutAppDetails()));
   }
 
   Future navigateToAcronymsMeaningsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const AcronymsMeanings()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AcronymsMeanings()));
   }
 
   Future navigateToAboutClubDetailsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const AboutClubDetails()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutClubDetails()));
   }
 
   Future navigateToWhoWeArePage(context) async {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
+  }
+
+  void _showAdminDialog(BuildContext context) {
+    TextEditingController passcodeController = TextEditingController(); // Controller for the passcode TextField
+
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        backgroundColor: const Color.fromRGBO(57, 62, 70, 1),
+        title: const Text(
+          'Enter the passcode',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: passcodeController,
+              obscureText: true,
+              decoration: const InputDecoration(
+                hintText: 'Passcode',
+                hintStyle: TextStyle(color: Colors.white70),
+              ),
+              style: TextStyle(
+                  color: Colors.white70
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                String enteredPasscode = passcodeController.text.trim();
+
+                // Retrieve the stored passcode from Firestore
+                DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
+                    .collection('SliversPages') // Replace with your Firestore collection
+                    .doc('non_slivers_pages') // Replace with your Firestore document
+                    .get();
+
+                String storedPasscode = snapshot.data()!['admin_passcode'] ?? '';
+
+                // Check if the entered passcode matches the stored passcode
+                if (enteredPasscode == storedPasscode) {
+                  Navigator.pop(context);
+                  _showAdminWelcomeToast();
+                  Navigator.push(context, SlideTransition1(MyClubAdminPage()));
+                } else {
+                  // Show a toast for incorrect passcode
+                  Fluttertoast.showToast(
+                    msg: 'Incorrect passcode',
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                  );
+                }
+              },
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showAdminWelcomeToast() {
+    Fluttertoast.showToast(
+      msg: 'Welcome, Admin',
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.black,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
   }
 
   void startTime(BuildContext context) async {
@@ -641,100 +655,74 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
 
   @override
   void initState() {
-    FirstTeamClassNotifier firstTeamClassNotifier =
-        Provider.of<FirstTeamClassNotifier>(context, listen: false);
+    FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context, listen: false);
     getFirstTeamClass(firstTeamClassNotifier);
 
-    SecondTeamClassNotifier secondTeamClassNotifier =
-        Provider.of<SecondTeamClassNotifier>(context, listen: false);
+    SecondTeamClassNotifier secondTeamClassNotifier = Provider.of<SecondTeamClassNotifier>(context, listen: false);
     getSecondTeamClass(secondTeamClassNotifier);
 
-    ThirdTeamClassNotifier thirdTeamClassNotifier =
-        Provider.of<ThirdTeamClassNotifier>(context, listen: false);
+    ThirdTeamClassNotifier thirdTeamClassNotifier = Provider.of<ThirdTeamClassNotifier>(context, listen: false);
     getThirdTeamClass(thirdTeamClassNotifier);
 
-    CaptainsNotifier captainsNotifier =
-        Provider.of<CaptainsNotifier>(context, listen: false);
+    CaptainsNotifier captainsNotifier = Provider.of<CaptainsNotifier>(context, listen: false);
     getCaptains(captainsNotifier);
 
-    CoachesNotifier coachesNotifier =
-        Provider.of<CoachesNotifier>(context, listen: false);
+    CoachesNotifier coachesNotifier = Provider.of<CoachesNotifier>(context, listen: false);
     getCoaches(coachesNotifier);
 
-    ManagementBodyNotifier managementBodyNotifier =
-        Provider.of<ManagementBodyNotifier>(context, listen: false);
+    ManagementBodyNotifier managementBodyNotifier = Provider.of<ManagementBodyNotifier>(context, listen: false);
     getManagementBody(managementBodyNotifier);
 
-    ClubArialNotifier clubArialNotifier =
-        Provider.of<ClubArialNotifier>(context, listen: false);
+    ClubArialNotifier clubArialNotifier = Provider.of<ClubArialNotifier>(context, listen: false);
     getClubArial(clubArialNotifier);
 
-    AchievementsNotifier achievementsNotifier =
-        Provider.of<AchievementsNotifier>(context, listen: false);
+    AchievementsNotifier achievementsNotifier = Provider.of<AchievementsNotifier>(context, listen: false);
     getAchievements(achievementsNotifier);
 
-    MostAssistsPlayersStatsAndInfoNotifier
-        mostAssistsPlayersStatsAndInfoNotifier =
-        Provider.of<MostAssistsPlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    MostAssistsPlayersStatsAndInfoNotifier mostAssistsPlayersStatsAndInfoNotifier =
+        Provider.of<MostAssistsPlayersStatsAndInfoNotifier>(context, listen: false);
     getMostAssistsPlayersStatsAndInfo(mostAssistsPlayersStatsAndInfoNotifier);
 
-    MostFouledYCPlayersStatsAndInfoNotifier
-        mostFouledYCPlayersStatsAndInfoNotifier =
-        Provider.of<MostFouledYCPlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    MostFouledYCPlayersStatsAndInfoNotifier mostFouledYCPlayersStatsAndInfoNotifier =
+        Provider.of<MostFouledYCPlayersStatsAndInfoNotifier>(context, listen: false);
     getMostFouledYCPlayersStatsAndInfo(mostFouledYCPlayersStatsAndInfoNotifier);
 
-    MostFouledRCPlayersStatsAndInfoNotifier
-        mostFouledRCPlayersStatsAndInfoNotifier =
-        Provider.of<MostFouledRCPlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    MostFouledRCPlayersStatsAndInfoNotifier mostFouledRCPlayersStatsAndInfoNotifier =
+        Provider.of<MostFouledRCPlayersStatsAndInfoNotifier>(context, listen: false);
     getMostFouledRCPlayersStatsAndInfo(mostFouledRCPlayersStatsAndInfoNotifier);
 
     TopGoalsPlayersStatsAndInfoNotifier topGoalsPlayersStatsAndInfoNotifier =
-        Provider.of<TopGoalsPlayersStatsAndInfoNotifier>(context,
-            listen: false);
+        Provider.of<TopGoalsPlayersStatsAndInfoNotifier>(context, listen: false);
     getTopGoalsPlayersStatsAndInfo(topGoalsPlayersStatsAndInfoNotifier);
 
-    TopGKPlayersStatsAndInfoNotifier topGKPlayersStatsAndInfoNotifier =
-        Provider.of<TopGKPlayersStatsAndInfoNotifier>(context, listen: false);
+    TopGKPlayersStatsAndInfoNotifier topGKPlayersStatsAndInfoNotifier = Provider.of<TopGKPlayersStatsAndInfoNotifier>(context, listen: false);
     getTopGKPlayersStatsAndInfo(topGKPlayersStatsAndInfoNotifier);
 
-    TopDefensivePlayersStatsAndInfoNotifier
-        topDefensivePlayersStatsAndInfoNotifier =
-        Provider.of<TopDefensivePlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    TopDefensivePlayersStatsAndInfoNotifier topDefensivePlayersStatsAndInfoNotifier =
+        Provider.of<TopDefensivePlayersStatsAndInfoNotifier>(context, listen: false);
     getTopDefensivePlayersStatsAndInfo(topDefensivePlayersStatsAndInfoNotifier);
 
-    MOTMPlayersStatsAndInfoNotifier mOTMPlayersStatsAndInfoNotifier =
-        Provider.of<MOTMPlayersStatsAndInfoNotifier>(context, listen: false);
+    MOTMPlayersStatsAndInfoNotifier mOTMPlayersStatsAndInfoNotifier = Provider.of<MOTMPlayersStatsAndInfoNotifier>(context, listen: false);
     getMOTMPlayersStatsAndInfo(mOTMPlayersStatsAndInfoNotifier);
 
-    CumMOTMPlayersStatsAndInfoNotifier cumMOTMPlayersStatsAndInfoNotifier =
-        Provider.of<CumMOTMPlayersStatsAndInfoNotifier>(context, listen: false);
+    CumMOTMPlayersStatsAndInfoNotifier cumMOTMPlayersStatsAndInfoNotifier = Provider.of<CumMOTMPlayersStatsAndInfoNotifier>(context, listen: false);
     getCumMOTMPlayersStatsAndInfo(cumMOTMPlayersStatsAndInfoNotifier);
 
-    TrainingsAndGamesReelsNotifier trainingsAndGamesReelsNotifier =
-        Provider.of<TrainingsAndGamesReelsNotifier>(context, listen: false);
+    TrainingsAndGamesReelsNotifier trainingsAndGamesReelsNotifier = Provider.of<TrainingsAndGamesReelsNotifier>(context, listen: false);
     getTrainingsAndGamesReels(trainingsAndGamesReelsNotifier);
 
     PlayerOfTheMonthStatsAndInfoNotifier playerOfTheMonthStatsAndInfoNotifier =
-        Provider.of<PlayerOfTheMonthStatsAndInfoNotifier>(context,
-            listen: false);
+        Provider.of<PlayerOfTheMonthStatsAndInfoNotifier>(context, listen: false);
     getPlayerOfTheMonthStatsAndInfo(playerOfTheMonthStatsAndInfoNotifier);
 
-    FoundersReviewsCommentNotifier foundersReviewsCommentNotifier =
-        Provider.of<FoundersReviewsCommentNotifier>(context, listen: false);
+    FoundersReviewsCommentNotifier foundersReviewsCommentNotifier = Provider.of<FoundersReviewsCommentNotifier>(context, listen: false);
     getFoundersReviewsComment(foundersReviewsCommentNotifier);
 
-    UpcomingMatchesNotifier upcomingMatchesNotifier =
-    Provider.of<UpcomingMatchesNotifier>(context, listen: false);
+    UpcomingMatchesNotifier upcomingMatchesNotifier = Provider.of<UpcomingMatchesNotifier>(context, listen: false);
     getUpcomingMatches(upcomingMatchesNotifier);
 
-    ClubSponsorsNotifier clubSponsorsNotifier =
-    Provider.of<ClubSponsorsNotifier>(context, listen: false);
+    ClubSponsorsNotifier clubSponsorsNotifier = Provider.of<ClubSponsorsNotifier>(context, listen: false);
     getClubSponsors(clubSponsorsNotifier);
-
 
     setState(() {
       isLoading = false;
@@ -749,5 +737,4 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
       DeviceOrientation.portraitDown,
     ]);
   }
-
 }

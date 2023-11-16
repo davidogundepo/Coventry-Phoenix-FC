@@ -3,14 +3,16 @@ import 'dart:io';
 import 'package:coventry_phoenix_fc/api/club_sponsors_api.dart';
 import 'package:coventry_phoenix_fc/bloc_navigation_bloc/navigation_bloc.dart';
 import 'package:coventry_phoenix_fc/notifier/club_sponsors_notifier.dart';
-import '../../sidebar/sidebar.dart';
-import 'details_club_sponsors_page.dart';
+import '../club_admin/club_admin_page.dart';
+import '../main.dart';
+import '../sidebar/sidebar.dart';
+import '../details_pages/club_sponsors_details_page.dart';
 import 'package:coventry_phoenix_fc/sidebar/sidebar_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:photo_view/photo_view.dart';
-import '../../model/club_sponsors.dart';
+import '../model/club_sponsors.dart';
 
 String exitAppStatement = "Exit from App";
 String exitAppTitle = "Come on!";
@@ -37,18 +39,18 @@ Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
 Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
 Color backgroundColor = const Color.fromRGBO(147, 165, 193, 1.0);
 
-late ClubSponsorsNotifier clubSponsorsNotifier;
-
 class MyClubSponsorsPage extends StatefulWidget with NavigationStates {
-  MyClubSponsorsPage({Key? key, this.title}) : super(key: key);
+
+  final bool fromPage1;
+
+  MyClubSponsorsPage({Key? key, this.title, required this.fromPage1}) : super(key: key);
   final String? title;
 
   @override
   State<MyClubSponsorsPage> createState() => _MyClubSponsorsPageState();
 }
 
-class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTickerProviderStateMixin{
-
+class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTickerProviderStateMixin {
   late ClubSponsorsNotifier clubSponsorsNotifier;
   late AnimationController _animationController;
   late Animation<double> _zoomAnimation;
@@ -86,15 +88,13 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
         _animationController.forward(from: 0.0);
 
         _animationCount++; // Increment the animation count
-
       });
     });
   }
 
   @override
   void didChangeDependencies() {
-    ClubSponsorsNotifier clubSponsorsNotifier =
-    Provider.of<ClubSponsorsNotifier>(context, listen: true);
+    ClubSponsorsNotifier clubSponsorsNotifier = Provider.of<ClubSponsorsNotifier>(context, listen: true);
     getClubSponsors(clubSponsorsNotifier);
     super.didChangeDependencies();
   }
@@ -215,10 +215,11 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     clubSponsorsNotifier = Provider.of<ClubSponsorsNotifier>(context);
+
+    // bool isClickedFromPage1 = true; // Set this variable based on where the button is clicked
 
     return WillPopScope(
       onWillPop: _onWillPop,
@@ -259,13 +260,13 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // navigateToHomePage(context);
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => const SideBarLayout())
-                        );
-                        // Navigator.pop(context);
+                        Navigator.popUntil(context, ModalRoute.withName('/')); // Pop until the root route
 
+                        if (widget.fromPage1) {
+                          Navigator.push(context, SlideTransition1(MyClubAdminPage()));
+                        } else {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SideBarLayout()));
+                        }
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8.0),
@@ -290,11 +291,10 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
                             ),
                           ],
                         ),
-
                       ),
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width*.10,
+                      width: MediaQuery.of(context).size.width * .10,
                     ),
                     Text(
                       'List of Club Sponsors',
@@ -308,60 +308,51 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
                 ),
               ),
               // Positioned for "List of Club Sponsors" text without decoration
-
             ],
           ),
         ),
       ),
     );
-
   }
 
   Future<bool> _onWillPop() async {
     return await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-        ),
-        backgroundColor: dialogBackgroundColor,
-        title: Text(
-          exitAppTitle,
-          style: TextStyle(color: textColorTwo),
-        ),
-        content: Text(
-          exitAppSubtitle,
-          style: TextStyle(color: textColorTwo),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(
-              exitAppNo,
+          context: context,
+          builder: (context) => AlertDialog(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+            ),
+            backgroundColor: dialogBackgroundColor,
+            title: Text(
+              exitAppTitle,
               style: TextStyle(color: textColorTwo),
             ),
-          ),
-          TextButton(
-            onPressed: () => exit(0),
-            child: Text(
-              exitAppYes,
+            content: Text(
+              exitAppSubtitle,
               style: TextStyle(color: textColorTwo),
             ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(
+                  exitAppNo,
+                  style: TextStyle(color: textColorTwo),
+                ),
+              ),
+              TextButton(
+                onPressed: () => exit(0),
+                child: Text(
+                  exitAppYes,
+                  style: TextStyle(color: textColorTwo),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ) ??
+        ) ??
         false;
   }
-
 }
-
 
 Future navigateToClubSponsorsDetailsPage(context) async {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => const ClubSponsorsDetailsPage()));
-}
-Future navigateToHomePage(context) async {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => const SideBarLayout()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => const ClubSponsorsDetailsPage()));
 }

@@ -74,9 +74,9 @@ class TabviewSocialMediaPageState extends State<TabviewSocialMediaPage> with Sin
       ),
       body: TabBarView(
         controller: _tabController,
-        children: const [
-          SocialMediaPage(),
-          YoutubePage(),
+        children: [
+          MySocialMediaPage(),
+          MyYouTubePage(),
         ],
       ),
     );

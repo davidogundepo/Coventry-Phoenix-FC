@@ -853,7 +853,7 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                                               )),
                                           TextSpan(
                                               text:
-                                              '  🔹Every month we hold trials on Thursdays between 6pm-7pm.\n\n',
+                                              '  🔹Every month we hold trials on Thursdays between 8pm-10pm.\n\n',
                                               style: GoogleFonts.aldrich(
                                                 color: Colors.white70,
                                                 fontSize: 12,

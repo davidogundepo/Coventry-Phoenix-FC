@@ -1,7 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.icdatinnovations.coventry_phoenix_fc">
 
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <queries>
         <!-- If your app opens https URLs -->
@@ -20,7 +31,6 @@
             <data android:mimeType="*/*" />
         </intent>
     </queries>
-
 
    <application
        android:label="Coventry Phoenix FC"
@@ -71,5 +81,12 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-    </application>
+
+       <receiver android:name="com.shounakmulay.telephony.sms.IncomingSmsReceiver"
+           android:permission="android.permission.BROADCAST_SMS" android:exported="true">
+           <intent-filter>
+               <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+           </intent-filter>
+       </receiver>
+   </application>
 </manifest>

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -33,16 +32,12 @@ import 'trainings_games_reels_page.dart';
 
 late TrainingsAndGamesReelsNotifier trainingsAndGamesReelsNotifier;
 late PlayerOfTheMonthStatsAndInfoNotifier playerOfTheMonthStatsAndInfoNotifier;
-late MostFouledYCPlayersStatsAndInfoNotifier
-    mostFouledYCPlayersStatsAndInfoNotifier;
-late MostFouledRCPlayersStatsAndInfoNotifier
-    mostFouledRCPlayersStatsAndInfoNotifier;
+late MostFouledYCPlayersStatsAndInfoNotifier mostFouledYCPlayersStatsAndInfoNotifier;
+late MostFouledRCPlayersStatsAndInfoNotifier mostFouledRCPlayersStatsAndInfoNotifier;
 late TopGKPlayersStatsAndInfoNotifier topGKPlayersStatsAndInfoNotifier;
-late TopDefensivePlayersStatsAndInfoNotifier
-    topDefensivePlayersStatsAndInfoNotifier;
+late TopDefensivePlayersStatsAndInfoNotifier topDefensivePlayersStatsAndInfoNotifier;
 late TopGoalsPlayersStatsAndInfoNotifier topGoalsPlayersStatsAndInfoNotifier;
-late MostAssistsPlayersStatsAndInfoNotifier
-    mostAssistsPlayersStatsAndInfoNotifier;
+late MostAssistsPlayersStatsAndInfoNotifier mostAssistsPlayersStatsAndInfoNotifier;
 late MOTMPlayersStatsAndInfoNotifier motmPlayersStatsAndInfoNotifier;
 late CumMOTMPlayersStatsAndInfoNotifier cumMOTMPlayersStatsAndInfoNotifier;
 
@@ -78,9 +73,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
     return Scaffold(
       body: _pageOption[selectedPage],
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(color: backgroundColor, boxShadow: [
-          BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
-        ]),
+        decoration: BoxDecoration(color: backgroundColor, boxShadow: [BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))]),
         child: SafeArea(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -88,8 +81,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+                  padding: const EdgeInsets.symmetric( vertical: 8),
                   child: GNav(
                     tabBorderRadius: 5,
                     rippleColor: Colors.blueGrey,
@@ -97,8 +89,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
                     gap: 2,
                     activeColor: Colors.black,
                     iconSize: 24,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                     duration: const Duration(microseconds: 400),
                     tabBackgroundColor: (cardBackgroundColor)!,
                     color: Colors.black,
@@ -153,12 +144,9 @@ class _BottomNavigatorState extends State<BottomNavigator> {
                         icon: Icons.view_carousel_outlined,
                         textColor: const Color.fromRGBO(255, 141, 41, 0.7),
                         iconColor: Colors.white30,
-                        iconActiveColor:
-                            const Color.fromRGBO(255, 141, 41, 0.7),
+                        iconActiveColor: const Color.fromRGBO(255, 141, 41, 0.7),
                         text: 'Reels',
-                        activeBorder: Border.all(
-                            color: const Color.fromRGBO(255, 141, 41, 0.7),
-                            width: 1),
+                        activeBorder: Border.all(color: const Color.fromRGBO(255, 141, 41, 0.7), width: 1),
                         border: Border.all(color: Colors.transparent),
                         rippleColor: Colors.white30,
                       ),
@@ -181,50 +169,34 @@ class _BottomNavigatorState extends State<BottomNavigator> {
 
   @override
   void initState() {
-    trainingsAndGamesReelsNotifier =
-        Provider.of<TrainingsAndGamesReelsNotifier>(context, listen: false);
+    trainingsAndGamesReelsNotifier = Provider.of<TrainingsAndGamesReelsNotifier>(context, listen: false);
     getTrainingsAndGamesReels(trainingsAndGamesReelsNotifier);
 
-    playerOfTheMonthStatsAndInfoNotifier =
-        Provider.of<PlayerOfTheMonthStatsAndInfoNotifier>(context,
-            listen: false);
+    playerOfTheMonthStatsAndInfoNotifier = Provider.of<PlayerOfTheMonthStatsAndInfoNotifier>(context, listen: false);
     getPlayerOfTheMonthStatsAndInfo(playerOfTheMonthStatsAndInfoNotifier);
 
-    mostFouledYCPlayersStatsAndInfoNotifier =
-        Provider.of<MostFouledYCPlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    mostFouledYCPlayersStatsAndInfoNotifier = Provider.of<MostFouledYCPlayersStatsAndInfoNotifier>(context, listen: false);
     getMostFouledYCPlayersStatsAndInfo(mostFouledYCPlayersStatsAndInfoNotifier);
 
-    mostFouledRCPlayersStatsAndInfoNotifier =
-        Provider.of<MostFouledRCPlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    mostFouledRCPlayersStatsAndInfoNotifier = Provider.of<MostFouledRCPlayersStatsAndInfoNotifier>(context, listen: false);
     getMostFouledRCPlayersStatsAndInfo(mostFouledRCPlayersStatsAndInfoNotifier);
 
-    topGKPlayersStatsAndInfoNotifier =
-        Provider.of<TopGKPlayersStatsAndInfoNotifier>(context, listen: false);
+    topGKPlayersStatsAndInfoNotifier = Provider.of<TopGKPlayersStatsAndInfoNotifier>(context, listen: false);
     getTopGKPlayersStatsAndInfo(topGKPlayersStatsAndInfoNotifier);
 
-    topDefensivePlayersStatsAndInfoNotifier =
-        Provider.of<TopDefensivePlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    topDefensivePlayersStatsAndInfoNotifier = Provider.of<TopDefensivePlayersStatsAndInfoNotifier>(context, listen: false);
     getTopDefensivePlayersStatsAndInfo(topDefensivePlayersStatsAndInfoNotifier);
 
-    motmPlayersStatsAndInfoNotifier =
-        Provider.of<MOTMPlayersStatsAndInfoNotifier>(context, listen: false);
+    motmPlayersStatsAndInfoNotifier = Provider.of<MOTMPlayersStatsAndInfoNotifier>(context, listen: false);
     getMOTMPlayersStatsAndInfo(motmPlayersStatsAndInfoNotifier);
 
-    cumMOTMPlayersStatsAndInfoNotifier =
-        Provider.of<CumMOTMPlayersStatsAndInfoNotifier>(context, listen: false);
+    cumMOTMPlayersStatsAndInfoNotifier = Provider.of<CumMOTMPlayersStatsAndInfoNotifier>(context, listen: false);
     getCumMOTMPlayersStatsAndInfo(cumMOTMPlayersStatsAndInfoNotifier);
 
-    topGoalsPlayersStatsAndInfoNotifier =
-        Provider.of<TopGoalsPlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    topGoalsPlayersStatsAndInfoNotifier = Provider.of<TopGoalsPlayersStatsAndInfoNotifier>(context, listen: false);
     getTopGoalsPlayersStatsAndInfo(topGoalsPlayersStatsAndInfoNotifier);
 
-    mostAssistsPlayersStatsAndInfoNotifier =
-        Provider.of<MostAssistsPlayersStatsAndInfoNotifier>(context,
-            listen: false);
+    mostAssistsPlayersStatsAndInfoNotifier = Provider.of<MostAssistsPlayersStatsAndInfoNotifier>(context, listen: false);
     getMostAssistsPlayersStatsAndInfo(mostAssistsPlayersStatsAndInfoNotifier);
 
     super.initState();

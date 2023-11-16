@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confetti/confetti.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -274,6 +278,78 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
           ),
         );
       }
+    }
+  }
+
+  ////
+
+  final ImagePicker _picker = ImagePicker();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  File? _imageOne;
+  File? _imageTwo;
+  String _userName = 'name'; // Replace with the actual user's name
+
+  Future<String?> uploadImageToStorage(File imageFile, String imageName) async {
+    try {
+      final Reference storageReference = FirebaseStorage.instance.ref().child('coaches').child(_userName).child(imageName);
+      final UploadTask uploadTask = storageReference.putFile(imageFile);
+
+      await uploadTask.whenComplete(() {});
+      final String imageUrl = await storageReference.getDownloadURL();
+      return imageUrl;
+    } catch (e) {
+      print('Error uploading image: $e');
+      return null;
+    }
+  }
+
+  Future<File?> pickImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image == null) return null;
+
+    return File(image.path);
+  }
+
+  Future<void> _checkAndUpdatePhoto(String imageUrl, String imageName) async {
+    try {
+      // Fetch the document based on the user name (or any other criteria)
+      QuerySnapshot querySnapshot = await _firestore
+          .collection('FirstTeamClassPlayers')
+          .where('name', isEqualTo: _userName) // Replace with the actual field used for user identification
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        // Get the first document from the query results
+        DocumentSnapshot documentSnapshot = querySnapshot.docs[0];
+
+        // Update the user document with the new image URL
+        await documentSnapshot.reference.update({imageName: imageUrl});
+      } else {
+        print('Document not found for user: $_userName');
+      }
+    } catch (e) {
+      print('Error updating photo: $e');
+    }
+
+    // Usage
+    // Upload image one to storage
+    String? imageUrlOne = await uploadImageToStorage(_imageOne!, 'image_one.jpg');
+
+    // Check if imageUrlOne is not null before using it
+    if (imageUrlOne != null) {
+      await _checkAndUpdatePhoto(imageUrlOne, 'image_one');
+    } else {
+      print('Image upload failed for image one');
+    }
+
+    // Similarly, for the second image
+    String? imageUrlTwo = await uploadImageToStorage(_imageTwo!, 'image_two.jpg');
+
+    // Check if imageUrlTwo is not null before using it
+    if (imageUrlTwo != null) {
+      await _checkAndUpdatePhoto(imageUrlTwo, 'image_two');
+    } else {
+      print('Image upload failed for image two');
     }
   }
 
@@ -584,23 +660,123 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                         context: context,
                         builder: (BuildContext context) => Dialog(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                           backgroundColor: const Color.fromRGBO(223, 225, 229, 1.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              TextButton(
-                                onPressed: () {},
-                                child: const Text(
-                                  'Okay',
-                                  style: TextStyle(color: Color.fromRGBO(57, 57, 60, 1.0)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 240,
+                                      child: Text(
+                                        'Click each image to replace your profile pictures',
+                                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    SizedBox(width: 5),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Container(
+                                        width: 30,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.rectangle,
+                                          borderRadius: BorderRadius.circular(6.0),
+                                        ),
+                                        child: const Align(
+                                          alignment: Alignment.center,
+                                          child: Icon(
+                                            Icons.close,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
+                                SizedBox(height: 50),
+                                // Display the selected images or placeholder icons
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    InkWell(
+                                      onTap: () async {
+                                        final File? image = await pickImage();
+                                        if (image != null) {
+                                          setState(() {
+                                            _imageOne = image;
+                                          });
+                                        }
+                                      },
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Container(
+                                        width: MediaQuery.sizeOf(context).width / 4.1,
+                                        height: MediaQuery.sizeOf(context).width / 3.5,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: Colors.black.withAlpha(20),
+                                          border: Border.all(color: Colors.black, width: 2),
+                                        ),
+                                        child: _imageOne != null
+                                            ? Image.file(_imageOne!, height: 100, width: 100)
+                                            : CachedNetworkImage(
+                                          imageUrl: coachesNotifier.currentCoaches.image!,
+                                          fit: BoxFit.cover,
+                                          placeholder: (context, url) => const CircularProgressIndicator(),
+                                          errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () async {
+                                        final File? image = await pickImage();
+                                        if (image != null) {
+                                          setState(() {
+                                            _imageTwo = image;
+                                          });
+                                        }
+                                      },
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Container(
+                                        width: MediaQuery.sizeOf(context).width / 4.1,
+                                        height: MediaQuery.sizeOf(context).width / 3.5,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: Colors.black.withAlpha(20),
+                                          border: Border.all(color: Colors.black, width: 2),
+                                        ),
+                                        child: _imageTwo != null
+                                            ? Image.file(_imageTwo!, height: 100, width: 100)
+                                            : CachedNetworkImage(
+                                          imageUrl: coachesNotifier.currentCoaches.imageTwo!,
+                                          fit: BoxFit.cover,
+                                          placeholder: (context, url) => const CircularProgressIndicator(),
+                                          errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 40),
+                                // Button to upload the selected images to Firebase Storage
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    // await _checkAndUpdatePhoto(toString(), toString());
+                                  },
+                                  child: Text('Upload Photos'),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );

@@ -1,10 +1,10 @@
 import 'package:coventry_phoenix_fc/api/club_sponsors_api.dart';
 import 'package:coventry_phoenix_fc/bloc_navigation_bloc/navigation_bloc.dart';
 import 'package:coventry_phoenix_fc/club_admin/add_club_member/a_tabview_add_club_member_page.dart';
-import 'package:coventry_phoenix_fc/club_admin/club_sponsors/add_club_sponsors_page.dart';
+import 'package:coventry_phoenix_fc/club_admin/modify_club_sponsors/add_club_sponsors_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/modify_member/modify_coaches_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/modify_member/modify_management_page.dart';
-import 'package:coventry_phoenix_fc/club_admin/club_sponsors/thrown_club_sponsors_page.dart';
+import 'package:coventry_phoenix_fc/thrown_pages/club_sponsors_thrown_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_announcement_sm_post.dart';
 import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_matchday_sm_post.dart';
 import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_sponsors_so_sm_post.dart';
@@ -41,7 +41,7 @@ import '../notifier/first_team_class_notifier.dart';
 import '../notifier/management_body_notifier.dart';
 import '../notifier/second_team_class_notifier.dart';
 import '../sidebar/menu_item.dart';
-import 'club_sponsors/a_tabview_modify_club_sponsors_page.dart';
+import 'modify_club_sponsors/a_tabview_modify_club_sponsors_page.dart';
 import 'modify_captains/a_tabview_modify_club_captains_page.dart';
 import 'modify_member/modify_players_page.dart';
 
@@ -299,7 +299,6 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                         },
                       );
                     }
-                    ;
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -596,7 +595,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                               children: <Widget>[
                                 ListTile(
                                   title: const Text(
-                                    'Select Player of the Month',
+                                    // 'Select Player of the Month',
+                                    'Add new Home Team',
                                     style: TextStyle(color: Colors.white70, fontSize: 14),
                                   ),
                                   onTap: () {
@@ -611,7 +611,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 ),
                                 ListTile(
                                   title: const Text(
-                                    'Add Monthly Reels',
+                                    // 'Add Monthly Reels',
+                                    'Add new Opposition Team',
                                     style: TextStyle(color: Colors.white70, fontSize: 14),
                                   ),
                                   onTap: () {
@@ -626,7 +627,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 ),
                                 ListTile(
                                   title: const Text(
-                                    'Report an issue',
+                                    // 'Report an issue',
+                                    'Add new League',
                                     style: TextStyle(color: Colors.white70, fontSize: 14),
                                   ),
                                   onTap: () {
@@ -641,7 +643,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 ),
                                 ListTile(
                                   title: const Text(
-                                    'Request a feature',
+                                    // 'Request a feature',
+                                    'Add new Location',
                                     style: TextStyle(color: Colors.white70, fontSize: 14),
                                   ),
                                   onTap: () {
@@ -930,7 +933,7 @@ Future navigateToCreateSponsorsShoutOutSMPost(context) async {
 }
 
 Future navigateToClubSponsors(context) async {
-  Navigator.push(context, MaterialPageRoute(builder: (context) => MyClubSponsorsPage()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => MyClubSponsorsPage(fromPage1: true)));
 }
 
 Future navigateToModifyClubSponsors(context) async {

@@ -138,8 +138,9 @@ class AnimCardState extends State<AnimCard> {
             Align(
               alignment: Alignment.centerRight,
               child: Container(
-                margin: const EdgeInsets.only(right: 10, left: 10, top: 40),
+                margin: const EdgeInsets.only(left: 10, top: 40, right: 10),
                 height: 90,
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -158,7 +159,7 @@ class AnimCardState extends State<AnimCard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            margin: const EdgeInsets.only(left: 30, bottom: 5),
+                            margin: const EdgeInsets.only(left: 10, bottom: 5, top: 5),
                             height: 55,
                             width: 53,
                             decoration: const BoxDecoration(
@@ -182,7 +183,7 @@ class AnimCardState extends State<AnimCard> {
                             ),
                           ),
                           Container(
-                            width: 140,
+                            width: 120,
                             margin: const EdgeInsets.only(left: 7),
                             child: Text(
                               pastMatchesNotifier
@@ -192,6 +193,7 @@ class AnimCardState extends State<AnimCard> {
                                   fontSize: 11,
                                   fontWeight: FontWeight.w300),
                               textAlign: TextAlign.start,
+                              overflow: TextOverflow.clip,
                             ),
                           )
                         ],
@@ -217,13 +219,13 @@ class AnimCardState extends State<AnimCard> {
                                     .pastMatchesList[widget.index]
                                     .homeTeamScore!,
                                 style: GoogleFonts.jura(
-                                  fontSize: 30,
+                                  fontSize: 25,
                                   fontWeight: FontWeight.w800,
                                   color: Colors.white,
                                 )),
                             Text('-',
                                 style: GoogleFonts.jura(
-                                  fontSize: 30,
+                                  fontSize: 25,
                                   fontWeight: FontWeight.w800,
                                   color: Colors.white,
                                 )),
@@ -231,7 +233,7 @@ class AnimCardState extends State<AnimCard> {
                               pastMatchesNotifier
                                   .pastMatchesList[widget.index].awayTeamScore!,
                               style: GoogleFonts.jura(
-                                fontSize: 30,
+                                fontSize: 25,
                                 fontWeight: FontWeight.w800,
                                 color: Colors.white,
                               ),
@@ -242,12 +244,12 @@ class AnimCardState extends State<AnimCard> {
                     )),
                     SingleChildScrollView(
                       child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        // mainAxisSize: MainAxisSize.min,
+                        // mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Container(
-                            margin: const EdgeInsets.only(right: 30, bottom: 5),
+                            margin: const EdgeInsets.only(right: 10, bottom: 5, top: 5),
                             height: 55,
                             width: 53,
                             decoration: const BoxDecoration(
@@ -271,11 +273,12 @@ class AnimCardState extends State<AnimCard> {
                             ),
                           ),
                           Container(
-                            width: 140,
-                            margin: const EdgeInsets.only(right: 15),
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            padding: const EdgeInsets.only(right: 7),
                             child: Text(
                               pastMatchesNotifier
                                   .pastMatchesList[widget.index].awayTeam!,
+                              overflow: TextOverflow.clip,
                               style: GoogleFonts.allertaStencil(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w500,

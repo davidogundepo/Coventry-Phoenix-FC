@@ -2,22 +2,22 @@ import 'dart:collection';
 import 'package:flutter/cupertino.dart';
 import '../model/b_youtube.dart';
 
-class YoutubeNotifier with ChangeNotifier {
-  List<Youtube> _youtubeList = [];
-  late Youtube _currentYoutube;
+class YouTubeNotifier with ChangeNotifier {
+  List<YouTube> _youTubeList = [];
+  late YouTube _currentYouTube;
 
-  UnmodifiableListView<Youtube> get youtubeList =>
-      UnmodifiableListView(_youtubeList);
+  UnmodifiableListView<YouTube> get youTubeList =>
+      UnmodifiableListView(_youTubeList);
 
-  Youtube get currentYoutube => _currentYoutube;
+  YouTube get currentYouTube => _currentYouTube;
 
-  set youtubeList(List<Youtube> youtubeList) {
-    _youtubeList = youtubeList;
+  set youTubeList(List<YouTube> youTubeList) {
+    _youTubeList = youTubeList;
     notifyListeners();
   }
 
-  set currentYoutube(Youtube youtube) {
-    _currentYoutube = youtube;
+  set currentYouTube(YouTube youTube) {
+    _currentYouTube = youTube;
     notifyListeners();
   }
 }
