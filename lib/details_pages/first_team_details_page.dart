@@ -5234,53 +5234,58 @@ class _SubPageState extends State<SubPage> {
     }
   }
 
-  void _sendOtpToPhoneNumber() {
+  Future<void> _sendOtpToPhoneNumber() async {
     String phoneNumber = "+447541315929"; // Replace with your hardcoded phone number
 
-    // Send OTP using Firebase Authentication
-    auth.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      timeout: const Duration(seconds: 60),
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        // Handle auto verification completed (if needed)
-        await auth.signInWithCredential(credential).then(
-              (value) => print('Logged In Successfully'),
-            );
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        // Handle verification failed
-        print("Verification failed: ${e.message}");
-        throw Exception("Error sending OTP: ${e.message}");
-      },
-      codeSent: (String verificationId, int? resendToken) async {
-        // Save the verification ID to use it later
-        _verificationId = verificationId;
+    try {
+      await auth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        timeout: const Duration(seconds: 60),
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          // Handle auto verification completed (if needed)
+          await auth.signInWithCredential(credential);
+          print('Logged In Successfully');
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          // Handle verification failed
+          print("Verification failed: ${e.message}");
+          // You might want to handle the error here or throw an exception
+          throw Exception("Error sending OTP: ${e.message}");
+        },
+        codeSent: (String verificationId, int? resendToken) async {
+          // Save the verification ID to use it later
+          _verificationId = verificationId;
 
-        // Display a message to the user to check their messages for the OTP
-        Fluttertoast.showToast(
-          msg: 'Please check your messages for the OTP',
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.deepOrangeAccent,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
+          // Display a message to the user to check their messages for the OTP
+          Fluttertoast.showToast(
+            msg: 'Please check your messages for the OTP',
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.deepOrangeAccent,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
 
-        // Optionally, you can set a timer to automatically fill the OTP field after some delay
-        // For example, wait for 30 seconds before filling the OTP field
-        await Future.delayed(const Duration(seconds: 30));
+          // Optionally, you can set a timer to automatically fill the OTP field after some delay
+          // For example, wait for 30 seconds before filling the OTP field
+          await Future.delayed(const Duration(seconds: 30));
 
-        // Set the received OTP in the PinFieldAutoFill
-        setState(() {
-          otpCode = _verificationId;
-        });
+          // Set the received OTP in the PinFieldAutoFill
+          setState(() {
+            otpCode = _verificationId;
+          });
 
-        setState(() {});
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        // Handle timeout (if needed)
-        print('TimeOut');
-      },
-    );
+          setState(() {});
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          // Handle timeout (if needed)
+          print('TimeOut');
+        },
+      );
+    } catch (e) {
+      print('Error sending OTP: $e');
+      // Handle any other errors that might occur during the verification process
+      throw Exception("Error sending OTP: $e");
+    }
   }
 
   int sharedValue = 0;

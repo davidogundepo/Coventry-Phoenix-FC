@@ -1012,6 +1012,7 @@ DEPENDENCIES:
   - esys_flutter_share_plus (from `.symlinks/plugins/esys_flutter_share_plus/ios`)
   - Firebase
   - Firebase/Analytics
+  - Firebase/Auth
   - Firebase/Crashlytics
   - Firebase/Messaging
   - Firebase/Performance
@@ -1182,6 +1183,6 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
 
-PODFILE CHECKSUM: 21d76acf60d1ca9e5ab5d548439d020d64ba4417
+PODFILE CHECKSUM: 4760a981420a4149973dae6d528313ed0378f1fa
 
 COCOAPODS: 1.13.0

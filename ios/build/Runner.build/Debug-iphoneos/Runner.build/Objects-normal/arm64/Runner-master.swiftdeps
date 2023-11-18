@@ -1,7 +1,0 @@
-version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
-options: "9853b0efd84b87a76d935597c5442de689b8c85f511b4dc8801c1b12b453c853"
-build_start_time: [1696916027, 608971000]
-build_end_time: [1696916027, 754925000]
-inputs:
-  "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Runner/AppDelegate.swift": !private [1678918211, 117638542]
-  "/Users/user/StudioProjects/Productions/UK/ClubUK/coventry_phoenix_fc/ios/Runner/SplashViewController.swift": !private [1674048250, 99510804]

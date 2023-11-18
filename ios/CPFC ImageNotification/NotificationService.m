@@ -6,6 +6,7 @@
 //
 
 #import "NotificationService.h"
+#import <FirebaseAuth/FirebaseAuth.h>
 #import "FirebaseMessaging.h"
 #import <OneSignalFramework/OneSignalFramework.h>
 
@@ -18,6 +19,15 @@
 @end
 
 @implementation NotificationService
+
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
+    if ([[FIRAuth auth] canHandleURL:url]) {
+        return YES;
+    }
+    // URL not auth-related; it should be handled separately.
+    return NO;
+}
 
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
     self.receivedRequest = request;
