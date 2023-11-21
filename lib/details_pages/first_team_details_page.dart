@@ -511,75 +511,25 @@ class _SubPageState extends State<SubPage> {
                         ),
                       ),
                     ],
-                onSelected: (item) {
-                  setState(() {
+                onSelected: (item) async {
+                  BuildContext currentContext = context; // Capture the context before the async call
+                setState(() {
                     // Set the flag based on the selected item
                     isModifyingAutobiography = item == 0;
                   });
-                  showDialog<String>(
-                      // barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          backgroundColor: const Color.fromRGBO(223, 225, 229, 1.0),
-                          title: const Text(
-                            'Please, input your OTP after generating',
-                            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black),
-                          ),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () async {
-                                if (await isUserVerifiedRecently()) {
-                                  // User has been verified in the last 30 minutes
-                                  if (isModifyingAutobiography) {
-                                    _showAutobiographyModificationDialog();
-                                  } else {
-                                    _showImageModificationDialog();
-                                  }
-                                } else {
-                                  // User needs to send OTP for verification
-                                  _sendOtpToPhoneNumber();
-                                }
-                              },
-                              child: const Text('Generate OTP', style: TextStyle(color: Colors.black)),
-                            ),
-                            TextButton(
-                              onPressed: isOTPComplete ? () {
-                                // Navigator.of(context).pop();
-                                verifyOTPCode();
-                                // _showAutobiographyModificationDialog();
-                                // Handle showing the appropriate dialog based on isModifyingAutobiography
-                                if (isModifyingAutobiography) {
-                                  _showAutobiographyModificationDialog();
-                                } else {
-                                  // Show the modifyImageDialog
-                                  _showImageModificationDialog();
-                                }
-                              } : null,
-                              child: const Text('Verify OTP', style: TextStyle(color: Colors.black)),
-                            ),
-                          ],
-                          content: Padding(
-                              padding: const EdgeInsets.all(6.0),
-                              child: PinFieldAutoFill(
-                                currentCode: otpCode,
-                                decoration: BoxLooseDecoration(
-                                    gapSpace: 5, radius: const Radius.circular(8), strokeColorBuilder: const FixedColorBuilder(Color(0xFFE16641))),
-                                codeLength: 6,
-                                onCodeChanged: (code) {
-                                  print("OnCodeChanged : $code");
-                                  otpCode = code.toString();
-                                  setState(() {
-                                    isOTPComplete = code!.length == 6;
-                                  });
-                                },
-                                onCodeSubmitted: (val) {
-                                  print("OnCodeSubmitted : $val");
-                                },
-                              ))));
-                }),
+
+                  if (await isUserVerifiedRecently()) {
+                    // User has been verified in the last 30 minutes
+                    if (isModifyingAutobiography) {
+                      _showAutobiographyModificationDialog();
+                    } else {
+                      _showImageModificationDialog();
+                    }
+                  } else {
+                    // User needs to send OTP for verification
+                    await _showDialogAndVerify(currentContext); // Pass the context to the function
+                  }
+                })
           ],
         ),
         body: SingleChildScrollView(
@@ -4729,7 +4679,7 @@ class _SubPageState extends State<SubPage> {
           print("Verification failed: ${e.message}");
 
           Fluttertoast.showToast(
-            msg: 'Please wait for 60 seconds',
+            msg: 'Hmmmmm. Check your Internet Connection or too much OTP requests',
             gravity: ToastGravity.BOTTOM,
             backgroundColor: Colors.deepOrangeAccent,
             textColor: Colors.white,
@@ -4754,10 +4704,6 @@ class _SubPageState extends State<SubPage> {
           // Optionally, you can set a timer to automatically fill the OTP field after some delay
           // For example, wait for 30 seconds before filling the OTP field
           await Future.delayed(const Duration(seconds: 5));
-
-          // Save the verification timestamp
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setInt('verificationTime', DateTime.now().millisecondsSinceEpoch);
 
           setState(() {});
         },
@@ -4789,9 +4735,12 @@ class _SubPageState extends State<SubPage> {
       await auth.signInWithCredential(credential).then((value) async {
         print('User verification is Successful');
 
-        // Save the verification timestamp
+        // Save the verification timestamp for the current user
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setInt('verificationTime', DateTime.now().millisecondsSinceEpoch);
+        prefs.setInt('verificationTime_${auth.currentUser?.uid}', DateTime.now().millisecondsSinceEpoch);
+
+        // Start the 30-minute timer
+        isUserVerifiedRecently();
 
         _showAutobiographyModificationDialog();
         Fluttertoast.showToast(
@@ -4817,9 +4766,75 @@ class _SubPageState extends State<SubPage> {
     }
   }
 
+  Future<void> _showDialogAndVerify(BuildContext context) async {
+    showDialog<String>(
+      // barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            backgroundColor: const Color.fromRGBO(223, 225, 229, 1.0),
+            title: const Text(
+              'Please, input your OTP after generating',
+              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () async {
+                  // User needs to send OTP for verification
+                  _sendOtpToPhoneNumber();
+                },
+                child: const Text('Generate OTP', style: TextStyle(color: Colors.black)),
+              ),
+              TextButton(
+                onPressed: isOTPComplete
+                    ? () {
+                  Navigator.of(context).pop();
+                  verifyOTPCode();
+                  setState(() {
+                    otpCode = '';
+                  });
+                  // _showAutobiographyModificationDialog();
+                  // Handle showing the appropriate dialog based on isModifyingAutobiography
+                  if (isModifyingAutobiography) {
+                    _showAutobiographyModificationDialog();
+                  } else {
+                    // Show the modifyImageDialog
+                    _showImageModificationDialog();
+                  }
+                }
+                    : null,
+                child: const Text('Verify OTP', style: TextStyle(color: Colors.black)),
+              ),
+            ],
+            content: Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: PinFieldAutoFill(
+                  currentCode: otpCode,
+                  decoration: BoxLooseDecoration(
+                      gapSpace: 5, radius: const Radius.circular(8), strokeColorBuilder: const FixedColorBuilder(Color(0xFFE16641))),
+                  codeLength: 6,
+                  onCodeChanged: (code) {
+                    print("OnCodeChanged : $code");
+                    otpCode = code.toString();
+                    setState(() {
+                      isOTPComplete = code!.length == 6;
+                    });
+                  },
+                  onCodeSubmitted: (val) {
+                    print("OnCodeSubmitted : $val");
+                    setState(() {
+                      isOTPComplete = val.isEmpty;
+                      otpCode = '';
+                    });
+                  },
+                ))));
+  }
+
   Future<bool> isUserVerifiedRecently() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? verificationTime = prefs.getInt('verificationTime');
+    int? verificationTime = prefs.getInt('verificationTime_${auth.currentUser?.uid}');
 
     if (verificationTime != null) {
       // Check if the last verification was within the last 30 minutes
@@ -4831,7 +4846,6 @@ class _SubPageState extends State<SubPage> {
 
     return false;
   }
-
 
   void _showAutobiographyModificationDialog() {
     showDialog<String>(

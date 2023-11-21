@@ -48,6 +48,7 @@ end
   
 target 'CPFC ImageNotification' do
   use_frameworks!
+  pod 'Firebase/Auth' #, :modular_headers => true  # Add Firebase Authentication
   pod 'Firebase/Messaging'
 #   pod 'Firebase/Crashlytics', '~> 8.0'
   pod 'GoogleUtilities'

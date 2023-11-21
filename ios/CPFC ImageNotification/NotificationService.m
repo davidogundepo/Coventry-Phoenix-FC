@@ -1,12 +1,6 @@
-//
-//  NotificationService.m
-//  CPFC ImageNotification
-//
-//  Created by David OGUNDEPO on 02/08/2022.
-//
+// NotificationService.m
 
 #import "NotificationService.h"
-//#import <FirebasdseAuth/FirebaseAuth.h>
 #import <FirebaseAuth.h>
 #import "FirebaseMessaging.h"
 #import <OneSignalFramework/OneSignalFramework.h>
@@ -21,7 +15,7 @@
 
 @implementation NotificationService
 
-
+// Remove these methods if not used for Firebase Authentication
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
     if ([[FIRAuth auth] canHandleURL:url]) {
         return YES;
@@ -37,64 +31,34 @@
     }
 }
 
-
-
-
-- (void)application:(UIApplication *)application
-    didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  // I used type:FIRAuthAPNSTokenTypeSandbox as the entitlement is set to development
-  [[FIRAuth auth] setAPNSToken:deviceToken type:FIRAuthAPNSTokenTypeSandbox];
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Use FIRAuthAPNSTokenTypeSandbox if the entitlement is set to development
+    [[FIRAuth auth] setAPNSToken:deviceToken type:FIRAuthAPNSTokenTypeSandbox];
 }
 
-- (void)application:(UIApplication *)application
-    didReceiveRemoteNotification:(NSDictionary *)notification
-          fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-  if ([[FIRAuth auth] canHandleNotification:notification]) {
-    completionHandler(UIBackgroundFetchResultNoData);
-    return;
-  }
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)notification fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    if ([[FIRAuth auth] canHandleNotification:notification]) {
+        completionHandler(UIBackgroundFetchResultNoData);
+        return;
+    }
 }
 
-
-
-
+// Main method for handling notification requests
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
     self.receivedRequest = request;
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
-    
-    
-    //If your SDK version is < 3.5.0 uncomment and use this code:
-        /*
-        [OneSignal didReceiveNotificationExtensionRequest:self.receivedRequest
-                           withMutableNotificationContent:self.bestAttemptContent];
-        self.contentHandler(self.bestAttemptContent);
-        */
-        
-        /* DEBUGGING: Uncomment the 2 lines below and comment out the one above to ensure this extension is excuting
-                      Note, this extension only runs when mutable-content is set
-                      Setting an attachment or action buttons automatically adds this */
-        // NSLog(@"Running NotificationServiceExtension");
-        // self.bestAttemptContent.body = [@"[Modified] " stringByAppendingString:self.bestAttemptContent.body];
-        
-        // Uncomment this line to set the default log level of NSE to VERBOSE so we get all logs from NSE logic
-        //[OneSignal setLogLevel:ONE_S_LL_VERBOSE visualLevel:ONE_S_LL_NONE];
-        [OneSignal didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent withContentHandler:self.contentHandler];
 
+    // Handle OneSignal notification request
+    [OneSignal didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent withContentHandler:self.contentHandler];
 
-    
-    
-    // Modify the notification content here...
-//    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [modified]", self.bestAttemptContent.title];
-//
-//    self.contentHandler(self.bestAttemptContent);
+    // Handle Firebase Messaging notification request
     [[FIRMessaging extensionHelper] populateNotificationContent:self.bestAttemptContent withContentHandler:contentHandler];
 }
 
+// Called just before the extension will be terminated by the system
 - (void)serviceExtensionTimeWillExpire {
-    // Called just before the extension will be terminated by the system.
-    // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
-    
+    // Use this as an opportunity to deliver your "best attempt" at modified content
     [OneSignal serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
     self.contentHandler(self.bestAttemptContent);
 }
