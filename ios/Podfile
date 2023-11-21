@@ -37,7 +37,7 @@ target 'Runner' do
 #   pod 'Firebase/Crashlytics', '~> 8.0'
   pod 'Firebase/Analytics', :modular_headers => true
   pod 'Firebase/Performance', :modular_headers => true
-  pod 'Firebase/Auth', :modular_headers => true  # Add Firebase Authentication
+  pod 'Firebase/Auth' #, :modular_headers => true  # Add Firebase Authentication
   pod 'GoogleUtilities'
   pod 'OneSignalXCFramework', '>= 5.0.0', '< 6.0'
 #   pod 'OneSignal/OneSignalInAppMessages', '>= 5.0.0', '< 6.0'
@@ -49,7 +49,6 @@ end
 target 'CPFC ImageNotification' do
   use_frameworks!
   pod 'Firebase/Messaging'
-  pod 'Firebase/Auth', :modular_headers => true  # Add Firebase Authentication
 #   pod 'Firebase/Crashlytics', '~> 8.0'
   pod 'GoogleUtilities'
   pod 'OneSignalXCFramework', '>= 5.0.0', '< 6.0'

@@ -39,7 +39,7 @@ import UserNotifications
             )
         } else {
             let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+                UIUserNotificationSettings(types: [.alert, .badge, .            sound], categories: nil)
             application.registerUserNotificationSettings(settings)
         }
         application.registerForRemoteNotifications()

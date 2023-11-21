@@ -6,7 +6,8 @@
 //
 
 #import "NotificationService.h"
-#import <FirebaseAuth/FirebaseAuth.h>
+//#import <FirebasdseAuth/FirebaseAuth.h>
+#import <FirebaseAuth.h>
 #import "FirebaseMessaging.h"
 #import <OneSignalFramework/OneSignalFramework.h>
 
@@ -28,6 +29,34 @@
     // URL not auth-related; it should be handled separately.
     return NO;
 }
+
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
+    for (UIOpenURLContext *urlContext in URLContexts) {
+        [FIRAuth.auth canHandleURL:urlContext.URL];
+        // URL not auth related; it should be handled separately.
+    }
+}
+
+
+
+
+- (void)application:(UIApplication *)application
+    didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  // I used type:FIRAuthAPNSTokenTypeSandbox as the entitlement is set to development
+  [[FIRAuth auth] setAPNSToken:deviceToken type:FIRAuthAPNSTokenTypeSandbox];
+}
+
+- (void)application:(UIApplication *)application
+    didReceiveRemoteNotification:(NSDictionary *)notification
+          fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+  if ([[FIRAuth auth] canHandleNotification:notification]) {
+    completionHandler(UIBackgroundFetchResultNoData);
+    return;
+  }
+}
+
+
+
 
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
     self.receivedRequest = request;

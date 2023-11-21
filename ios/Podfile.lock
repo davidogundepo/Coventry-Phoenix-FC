@@ -996,6 +996,8 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - smart_auth (0.0.1):
+    - Flutter
   - sms_autofill (0.0.1):
     - Flutter
   - sqflite (0.0.3):
@@ -1035,6 +1037,7 @@ DEPENDENCIES:
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - rive_common (from `.symlinks/plugins/rive_common/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - smart_auth (from `.symlinks/plugins/smart_auth/ios`)
   - sms_autofill (from `.symlinks/plugins/sms_autofill/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - telephony (from `.symlinks/plugins/telephony/ios`)
@@ -1115,6 +1118,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/rive_common/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  smart_auth:
+    :path: ".symlinks/plugins/smart_auth/ios"
   sms_autofill:
     :path: ".symlinks/plugins/sms_autofill/ios"
   sqflite:
@@ -1177,12 +1182,13 @@ SPEC CHECKSUMS:
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   rive_common: 8a159d68033a8b073e5853acc50f03aa486a2888
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
+  smart_auth: 4bedbc118723912d0e45a07e8ab34039c19e04f2
   sms_autofill: c461043483362c3f1709ee76eaae6eb570b31686
   sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
   telephony: c41768fae9fb5495781b05a72004106ca33ec777
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
 
-PODFILE CHECKSUM: 4760a981420a4149973dae6d528313ed0378f1fa
+PODFILE CHECKSUM: 88601357dbdaf95b4b52ac4f3c3519b3d945e74d
 
 COCOAPODS: 1.13.0

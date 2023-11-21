@@ -29,6 +29,13 @@
             {
               "client_id": "901585674848-5673srlpn6veedn7j8opa4fjgqvimtj2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "901585674848-0db0r7sgfqo244up4gavv0oef7ho42lb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.icdatinnovations.coventryPhoenixFc"
+              }
             }
           ]
         }
