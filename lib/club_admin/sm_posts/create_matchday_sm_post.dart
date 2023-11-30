@@ -1,6 +1,9 @@
+import 'dart:async';
 import 'dart:ui' as ui;
 import 'dart:ui';
 import 'dart:io';
+import 'package:collection/collection.dart';
+import 'package:coventry_phoenix_fc/club_admin/club_admin_page.dart';
 import 'package:flutter_spinner_time_picker/flutter_spinner_time_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_storage/firebase_storage.dart';
@@ -18,7 +21,7 @@ import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_club_opp_not
 import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_league_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_location_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/club_sponsors_notifier.dart';
-import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart' as esys;
+import 'package:share_plus/share_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -74,7 +77,11 @@ class CreateMatchDaySocialMediaPost extends StatefulWidget with NavigationStates
 class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMediaPost> {
   GlobalKey _bannerContentKey = GlobalKey();
 
+  bool isPublishing = false;
+
   late List<bool> selectedSponsors;
+  // Function to download an image and return its local path
+  int downloadedImageCount = 0;
 
   List<String> selectedSponsorNames = [];
   List<String> lastThreeSelectedTeamA = [];
@@ -107,6 +114,8 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
 
   DateTime? date;
   TimeOfDay? time;
+
+  GlobalKey<State<StatefulWidget>> get boundaryKeyys => GlobalKey();
 
   String getFormattedDate(DateTime date) {
     String day = DateFormat('d').format(date);
@@ -148,199 +157,155 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
 
     formattedTime = DateFormat.jm().format(selectedDate); // Formats time in 12-hour format with AM/PM
 
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: appBarIconColor,
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: appBarIconColor,
+            ),
+            onPressed: () async {
+              bool shouldPop = await _onWillPop();
+              if (shouldPop) {
+                Navigator.pop(context);
+              }
+            },
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          backgroundColor: appBarBackgroundColor,
+          title: const Center(child: Text('MatchDay Fixtures')),
+          titleTextStyle: TextStyle(color: textColor, fontSize: 20),
         ),
-        backgroundColor: appBarBackgroundColor,
-        title: const Text('MatchDay Fixtures'),
-        titleTextStyle: TextStyle(color: textColor, fontSize: 20),
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Center(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: MediaQuery.sizeOf(context).width / 3.1,
-                    height: MediaQuery.sizeOf(context).width / 3.1,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: borderColor.withAlpha(20),
-                    ),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {
-                          _showTeamASelectionDialog();
-                        },
-                        splashColor: splashColor,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            selectedTeamA!.isNotEmpty
-                                ? Image.network(
-                                    matchDayBannerForClubNotifier!.matchDayBannerForClubList
-                                        .firstWhere((team) => team.clubName == selectedTeamA)
-                                        .clubIcon!,
-                                    width: 50,
-                                    height: 50,
-                                  )
-                                : Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      const SizedBox(height: 10),
-                                      Icon(
-                                        addBoxRounded,
-                                        color: materialBackgroundColor,
-                                        size: 30,
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Text(
-                                        homeTeamTitle,
-                                        textAlign: TextAlign.center,
-                                        overflow: TextOverflow.visible,
-                                        style: TextStyle(
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Center(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.sizeOf(context).width / 3.1,
+                      height: MediaQuery.sizeOf(context).width / 3.1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: borderColor.withAlpha(20),
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            _showTeamASelectionDialog();
+                          },
+                          splashColor: splashColor,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              selectedTeamA!.isNotEmpty
+                                  ? Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: CachedNetworkImageProvider(
+                                                matchDayBannerForClubNotifier!.matchDayBannerForClubList
+                                                    .firstWhere((team) => team.clubName == selectedTeamA)
+                                                    .clubIcon!,
+                                              ),
+                                              fit: BoxFit.cover)),
+                                    )
+                                  : Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        const SizedBox(height: 10),
+                                        Icon(
+                                          addBoxRounded,
                                           color: materialBackgroundColor,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
+                                          size: 30,
                                         ),
-                                      ),
-                                    ],
+                                        const SizedBox(height: 10),
+                                        Text(
+                                          homeTeamTitle,
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.visible,
+                                          style: TextStyle(
+                                            color: materialBackgroundColor,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                              Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Text(
+                                  selectedTeamA!,
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.visible,
+                                  style: GoogleFonts.tenorSans(
+                                    color: materialBackgroundColor,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
                                   ),
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Text(
-                                selectedTeamA!,
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.visible,
-                                style: GoogleFonts.tenorSans(
-                                  color: materialBackgroundColor,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 35),
-                    child: Text(
-                      'VS',
-                      style: TextStyle(fontSize: 25, color: textColorTwo, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
+                      child: Text(
+                        'VS',
+                        style: TextStyle(fontSize: 25, color: textColorTwo, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                      ),
                     ),
-                  ),
-                  Container(
-                    width: MediaQuery.sizeOf(context).width / 3.1,
-                    height: MediaQuery.sizeOf(context).width / 3.1,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: borderColor.withAlpha(20),
-                    ),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {
-                          _showTeamBSelectionDialog();
-                        },
-                        splashColor: splashColor,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            selectedTeamB!.isNotEmpty
-                                ? Image.network(
-                                    matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList
-                                        .firstWhere((team) => team.clubName == selectedTeamB)
-                                        .clubIcon!,
-                                    width: 50,
-                                    height: 50,
-                                  )
-                                : Column(
-                                    children: [
-                                      const SizedBox(height: 10),
-                                      Icon(
-                                        addBoxRounded,
-                                        color: materialBackgroundColor,
-                                        size: 30,
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Text(
-                                        awayTeamTitle,
-                                        textAlign: TextAlign.center,
-                                        overflow: TextOverflow.visible,
-                                        style: TextStyle(
+                    Container(
+                      width: MediaQuery.sizeOf(context).width / 3.1,
+                      height: MediaQuery.sizeOf(context).width / 3.1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: borderColor.withAlpha(20),
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            _showTeamBSelectionDialog();
+                          },
+                          splashColor: splashColor,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              selectedTeamB!.isNotEmpty
+                                  ? Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: CachedNetworkImageProvider(
+                                                matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList
+                                                    .firstWhere((team) => team.clubName == selectedTeamB)
+                                                    .clubIcon!,
+                                              ),
+                                              fit: BoxFit.cover)),
+                                    )
+                                  : Column(
+                                      children: [
+                                        const SizedBox(height: 10),
+                                        Icon(
+                                          addBoxRounded,
                                           color: materialBackgroundColor,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
+                                          size: 30,
                                         ),
-                                      ),
-                                    ],
-                                  ), // Display team icon or '+' icon
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Text(
-                                selectedTeamB!,
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.visible,
-                                style: GoogleFonts.tenorSans(
-                                  color: materialBackgroundColor,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(7),
-                    width: MediaQuery.sizeOf(context).width / 3.1,
-                    height: MediaQuery.sizeOf(context).width / 3.1,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: borderColor.withAlpha(20),
-                    ),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {
-                          _showLeagueSelectionDialog(); // Show dialog for league selection
-                        },
-                        splashColor: splashColor,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            selectedLeague!.isNotEmpty
-                                ? Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: Text(
-                                          selectedLeague!,
+                                        const SizedBox(height: 10),
+                                        Text(
+                                          awayTeamTitle,
                                           textAlign: TextAlign.center,
                                           overflow: TextOverflow.visible,
                                           style: TextStyle(
@@ -349,100 +314,72 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Icon(
-                                        Icons.sports_score_rounded,
-                                        color: iconColor,
-                                        size: 25,
-                                      )
-                                    ],
-                                  )
-                                : Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        addBoxRounded,
-                                        color: materialBackgroundColor,
-                                        size: 30,
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Text(
-                                        leagueTitle,
-                                        textAlign: TextAlign.center,
-                                        overflow: TextOverflow.visible,
-                                        style: TextStyle(
-                                          color: materialBackgroundColor,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ), // Display team icon or '+' icon
+                              Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Text(
+                                  selectedTeamB!,
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.visible,
+                                  style: GoogleFonts.tenorSans(
+                                    color: materialBackgroundColor,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
                                   ),
-                          ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Text(
-                      'AT',
-                      style: TextStyle(fontSize: 25, color: textColorTwo, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(7),
-                    width: MediaQuery.sizeOf(context).width / 3.1,
-                    height: MediaQuery.sizeOf(context).width / 3.1,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: borderColor.withAlpha(20),
-                    ),
-                    child: Center(
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(7),
+                      width: MediaQuery.sizeOf(context).width / 3.1,
+                      height: MediaQuery.sizeOf(context).width / 3.1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: borderColor.withAlpha(20),
+                      ),
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
                           onTap: () {
-                            _showLocationSelectionDialog(); // Show dialog for location selection
+                            _showLeagueSelectionDialog(); // Show dialog for league selection
                           },
                           splashColor: splashColor,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              selectedLocation!.isNotEmpty
+                              selectedLeague!.isNotEmpty
                                   ? Column(
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Text(
-                                            selectedLocation!,
+                                            selectedLeague!,
                                             textAlign: TextAlign.center,
                                             overflow: TextOverflow.visible,
                                             style: TextStyle(
                                               color: materialBackgroundColor,
-                                              fontSize: 13,
+                                              fontSize: 15,
                                               fontWeight: FontWeight.w400,
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(height: 5),
+                                        const SizedBox(height: 10),
                                         Icon(
-                                          Icons.location_on,
+                                          Icons.sports_score_rounded,
                                           color: iconColor,
                                           size: 25,
-                                        ),
-                                        Text(
-                                          selectedLocationPostCode!,
-                                          textAlign: TextAlign.center,
-                                          overflow: TextOverflow.visible,
-                                          style: TextStyle(
-                                            color: materialBackgroundColor,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
+                                        )
                                       ],
                                     )
                                   : Column(
@@ -456,7 +393,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                         ),
                                         const SizedBox(height: 10),
                                         Text(
-                                          locationTitle,
+                                          leagueTitle,
                                           textAlign: TextAlign.center,
                                           overflow: TextOverflow.visible,
                                           style: TextStyle(
@@ -472,500 +409,653 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 4),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(7),
-                    width: MediaQuery.sizeOf(context).width / 3.1,
-                    height: MediaQuery.sizeOf(context).width / 3.1,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: borderColor.withAlpha(20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Text(
+                        'AT',
+                        style: TextStyle(fontSize: 25, color: textColorTwo, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                      ),
                     ),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () async {
-                          date = await pickDate();
-                          if (date == null) return;
-
-                          final newDateTime = DateTime(date!.year, date!.month, date!.day, selectedDate.hour, selectedDate.minute);
-
-                          setState(() {
-                            selectedDate = newDateTime;
-                          });
-                        },
-                        splashColor: splashColor,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            date == null
-                                ? Column(
-                                    children: [
-                                      Text(
-                                        selectDateTitle,
-                                        textAlign: TextAlign.center,
-                                        overflow: TextOverflow.visible,
-                                        style: TextStyle(
-                                          color: materialBackgroundColor,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Icon(
-                                        dateRangeRounded,
-                                        color: iconColor,
-                                        size: 25,
+                    Container(
+                      margin: const EdgeInsets.all(7),
+                      width: MediaQuery.sizeOf(context).width / 3.1,
+                      height: MediaQuery.sizeOf(context).width / 3.1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: borderColor.withAlpha(20),
+                      ),
+                      child: Center(
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {
+                              _showLocationSelectionDialog(); // Show dialog for location selection
+                            },
+                            splashColor: splashColor,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                selectedLocation!.isNotEmpty
+                                    ? Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: Text(
+                                              selectedLocation!,
+                                              textAlign: TextAlign.center,
+                                              overflow: TextOverflow.visible,
+                                              style: TextStyle(
+                                                color: materialBackgroundColor,
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(height: 5),
+                                          Icon(
+                                            Icons.location_on,
+                                            color: iconColor,
+                                            size: 25,
+                                          ),
+                                          Text(
+                                            selectedLocationPostCode!,
+                                            textAlign: TextAlign.center,
+                                            overflow: TextOverflow.visible,
+                                            style: TextStyle(
+                                              color: materialBackgroundColor,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
                                       )
-                                    ],
-                                  )
-                                : Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Text(
-                                      getFormattedDate(selectedDate).toUpperCase(),
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.visible,
-                                      style: TextStyle(
-                                        color: materialBackgroundColor,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w400,
+                                    : Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            addBoxRounded,
+                                            color: materialBackgroundColor,
+                                            size: 30,
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Text(
+                                            locationTitle,
+                                            textAlign: TextAlign.center,
+                                            overflow: TextOverflow.visible,
+                                            style: TextStyle(
+                                              color: materialBackgroundColor,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Text(
-                      'BY',
-                      style: TextStyle(fontSize: 25, color: textColorTwo, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(7),
-                    width: MediaQuery.sizeOf(context).width / 3.1,
-                    height: MediaQuery.sizeOf(context).width / 3.1,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: borderColor.withAlpha(20),
-                    ),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () async {
-                          time = await pickTime();
-                          if (time == null) return;
-
-                          final newDateTime = DateTime(selectedDate.year, selectedDate.month, selectedDate.day, time!.hour, time!.minute);
-
-                          setState(() {
-                            selectedDate = newDateTime;
-                          });
-                        },
-                        splashColor: splashColor,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            time == null
-                                ? Column(
-                                    children: [
-                                      Text(
-                                        selectTimeTitle,
-                                        textAlign: TextAlign.center,
-                                        overflow: TextOverflow.visible,
-                                        style: TextStyle(
-                                          color: materialBackgroundColor,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Icon(
-                                        dateRangeRounded,
-                                        color: iconColor,
-                                        size: 25,
-                                      )
-                                    ],
-                                  )
-                                : Container(),
-                            if (time != null)
-                              Text(
-                                formattedTime,
-                                // '$hour:$minute',
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.visible,
-                                style: TextStyle(
-                                  color: materialBackgroundColor,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: MediaQuery.sizeOf(context).width / 3.1,
-                    height: MediaQuery.sizeOf(context).width / 5.1,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: borderColor.withAlpha(20),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        _showAndSelectSponsorsDialog();
-                      },
-                      splashColor: splashColor,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          selectedSponsorsString!.isNotEmpty
-                              ? Padding(
-                                  padding: const EdgeInsets.all(4),
-                                  child: Text(
-                                    selectedSponsorsString!,
-                                    textAlign: TextAlign.center,
-                                    overflow: TextOverflow.visible,
-                                    style: TextStyle(
-                                      color: materialBackgroundColor,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                )
-                              : Padding(
-                                  padding: const EdgeInsets.all(4),
-                                  child: Text(
-                                    sponsorsTitle,
-                                    textAlign: TextAlign.center,
-                                    overflow: TextOverflow.visible,
-                                    style: TextStyle(
-                                      color: materialBackgroundColor,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: Container()),
-                  Container(
-                    width: MediaQuery.sizeOf(context).width / 2,
-                    height: MediaQuery.sizeOf(context).width / 4.5,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: cardBackgroundColor,
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        if (checkMissingSteps()) {
-                          _showMissingStepsToast(); // Show toast if any step is missing
-                        } else {
-                          // Generate banner logic goes here when all steps are completed
-
-                          _showGeneratedBanner();
-                        }
-                      },
-                      splashColor: splashColorTwo,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Generate Banner',
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.visible,
-                            style: TextStyle(
-                              color: materialBackgroundColor,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w900,
+                              ],
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Container(
-                  width: MediaQuery.sizeOf(context).width,
-                  height: MediaQuery.sizeOf(context).width / 3.1,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: borderColor.withAlpha(20),
-                  ),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: recentImageUrls.isNotEmpty
-                          ? recentImageUrls.map((imageUrls) {
-                              return Stack(
-                                children: [
-                                  Container(
-                                    width: MediaQuery.of(context).size.width / 4,
-                                    height: MediaQuery.of(context).size.width / 4,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: borderColor.withAlpha(20),
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Image.network(
-                                        imageUrls.lowResUrl,
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: -12,
-                                    right: -12,
-                                    child: IconButton(
-                                      icon: const FaIcon(
-                                        FontAwesomeIcons.circleMinus,
-                                        color: Colors.red,
-                                        size: 25,
-                                      ),
-                                      onPressed: () {
-                                        // Show delete confirmation dialog
-                                        showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              backgroundColor: modalBackgroundColor,
-                                              title: const Text("Are you sure?", style: TextStyle(color: Colors.white70)),
-                                              content: const Text("Do you want to delete this Design?", style: TextStyle(color: Colors.white70)),
-                                              actions: [
-                                                TextButton(
-                                                  child: const Text("Cancel", style: TextStyle(color: Colors.white70)),
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                ),
-                                                TextButton(
-                                                  child: const Text("Yes", style: TextStyle(color: Colors.white70)),
-                                                  onPressed: () async {
-                                                    // Find the index of the imageUrls object in the list
-                                                    int index = recentImageUrls.indexWhere(
-                                                        (urls) => urls.lowResUrl == imageUrls.lowResUrl && urls.highResUrl == imageUrls.highResUrl);
-
-                                                    // Check if the object was found
-                                                    if (index != -1) {
-                                                      // Delete the image from Firebase Storage for both low-res and high-res URLs
-                                                      await FirebaseStorage.instance.refFromURL(imageUrls.lowResUrl).delete();
-                                                      await FirebaseStorage.instance.refFromURL(imageUrls.highResUrl).delete();
-
-                                                      // Remove the imageUrls object from the list
-                                                      recentImageUrls.removeAt(index);
-
-                                                      Navigator.of(context).pop(); // Close the dialog
-
-                                                      // Update the UI to reflect the deletion
-                                                      setState(() {});
-                                                    }
-                                                  },
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              );
-                            }).toList()
-                          : [
-                              Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width / 4,
-                                    height: MediaQuery.of(context).size.width / 4,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: borderColor.withAlpha(20),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.image_rounded,
-                                          color: iconColorTwo,
-                                          size: 40,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width / 4,
-                                    height: MediaQuery.of(context).size.width / 4,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: borderColor.withAlpha(20),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.image_rounded,
-                                          color: iconColorTwo,
-                                          size: 40,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width / 4,
-                                    height: MediaQuery.of(context).size.width / 4,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: borderColor.withAlpha(20),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.image_rounded,
-                                          color: iconColorTwo,
-                                          size: 40,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ]),
+                  ],
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: borderColor.withAlpha(20),
-                        ),
-                        child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                          stream: FirebaseFirestore.instance.collection('SliversPages').doc('non_slivers_pages').snapshots(),
-                          builder: (context, snapshot) {
-                            if (!snapshot.hasData) {
-                              return const CircularProgressIndicator();
-                            }
-                            return Container(
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: CachedNetworkImageProvider(
-                                        snapshot.data?.data()!['club_icon'] ?? 0,
-                                      ),
-                                      fit: BoxFit.cover)),
-                            );
-                          },
-                        )),
-                  ),
-                  Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: Container()),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Container(
-                        width: MediaQuery.sizeOf(context).width / 2,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          // color: cardBackgroundColorTwo,
-                          gradient: const LinearGradient(
-                            colors: [Colors.red, Colors.blue], // Set your desired gradient colors
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                          ),
-                        ),
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(7),
+                      width: MediaQuery.sizeOf(context).width / 3.1,
+                      height: MediaQuery.sizeOf(context).width / 3.1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: borderColor.withAlpha(20),
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
                         child: InkWell(
-                          onTap: () {
-                            // _shareMultipleImages(highResImageUrls);
+                          onTap: () async {
+                            date = await pickDate();
+                            if (date == null) return;
+
+                            final newDateTime = DateTime(date!.year, date!.month, date!.day, selectedDate.hour, selectedDate.minute);
+
+                            setState(() {
+                              selectedDate = newDateTime;
+                            });
                           },
-                          splashColor: splashColorTwo,
+                          splashColor: splashColor,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text(
-                                'Publish Banner(s)',
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.visible,
-                                style: TextStyle(
-                                  color: materialBackgroundColor,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
+                              date == null
+                                  ? Column(
+                                      children: [
+                                        Text(
+                                          selectDateTitle,
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.visible,
+                                          style: TextStyle(
+                                            color: materialBackgroundColor,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Icon(
+                                          dateRangeRounded,
+                                          color: iconColor,
+                                          size: 25,
+                                        )
+                                      ],
+                                    )
+                                  : Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Text(
+                                        getFormattedDate(selectedDate).toUpperCase(),
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.visible,
+                                        style: TextStyle(
+                                          color: materialBackgroundColor,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
                             ],
                           ),
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Text(
+                        'BY',
+                        style: TextStyle(fontSize: 25, color: textColorTwo, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(7),
+                      width: MediaQuery.sizeOf(context).width / 3.1,
+                      height: MediaQuery.sizeOf(context).width / 3.1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: borderColor.withAlpha(20),
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () async {
+                            time = await pickTime();
+                            if (time == null) return;
+
+                            final newDateTime = DateTime(selectedDate.year, selectedDate.month, selectedDate.day, time!.hour, time!.minute);
+
+                            setState(() {
+                              selectedDate = newDateTime;
+                            });
+                          },
+                          splashColor: splashColor,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              time == null
+                                  ? Column(
+                                      children: [
+                                        Text(
+                                          selectTimeTitle,
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.visible,
+                                          style: TextStyle(
+                                            color: materialBackgroundColor,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Icon(
+                                          dateRangeRounded,
+                                          color: iconColor,
+                                          size: 25,
+                                        )
+                                      ],
+                                    )
+                                  : Container(),
+                              if (time != null)
+                                Text(
+                                  formattedTime,
+                                  // '$hour:$minute',
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.visible,
+                                  style: TextStyle(
+                                    color: materialBackgroundColor,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.sizeOf(context).width / 3.1,
+                      height: MediaQuery.sizeOf(context).width / 5.1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: borderColor.withAlpha(20),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          _showAndSelectSponsorsDialog();
+                        },
+                        splashColor: splashColor,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            selectedSponsorsString!.isNotEmpty
+                                ? Padding(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Text(
+                                      selectedSponsorsString!,
+                                      textAlign: TextAlign.center,
+                                      overflow: TextOverflow.visible,
+                                      style: TextStyle(
+                                        color: materialBackgroundColor,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Text(
+                                      sponsorsTitle,
+                                      textAlign: TextAlign.center,
+                                      overflow: TextOverflow.visible,
+                                      style: TextStyle(
+                                        color: materialBackgroundColor,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
+                                  )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: Container()),
+                    Container(
+                      width: MediaQuery.sizeOf(context).width / 2,
+                      height: MediaQuery.sizeOf(context).width / 4.5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: cardBackgroundColor,
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          if (checkMissingSteps()) {
+                            _showMissingStepsToast(); // Show toast if any step is missing
+                          } else {
+                            // Generate banner logic goes here when all steps are completed
+
+                            _showToBeGeneratedBanner();
+                          }
+                        },
+                        splashColor: splashColorTwo,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Generate Banner',
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.visible,
+                              style: TextStyle(
+                                color: materialBackgroundColor,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Container(
+                    width: MediaQuery.sizeOf(context).width,
+                    height: MediaQuery.sizeOf(context).width / 3.1,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: borderColor.withAlpha(20),
+                    ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: recentImageUrls.isNotEmpty
+                            ? recentImageUrls.map((imageUrls) {
+                                return Stack(
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width / 4,
+                                      height: MediaQuery.of(context).size.width / 4,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: borderColor.withAlpha(20),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: FadeInImage(
+                                          placeholder: const AssetImage(
+                                              'assets/images/cpfc_logo_android_ios_2.png'), // Replace with your placeholder image asset
+                                          image: NetworkImage(imageUrls.lowResUrl),
+                                          fit: BoxFit.contain,
+                                          imageErrorBuilder: (context, error, stackTrace) {
+                                            return const Center(
+                                              child: Icon(
+                                                Icons.error_outline,
+                                                color: Colors.red,
+                                                size: 40,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: -12,
+                                      right: -12,
+                                      child: IconButton(
+                                        icon: const FaIcon(
+                                          FontAwesomeIcons.circleMinus,
+                                          color: Colors.red,
+                                          size: 25,
+                                        ),
+                                        onPressed: () {
+                                          // Show delete confirmation dialog
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                backgroundColor: modalBackgroundColor,
+                                                title: const Text("Are you sure?", style: TextStyle(color: Colors.white70)),
+                                                content: const Text("Do you want to delete this Design?", style: TextStyle(color: Colors.white70)),
+                                                actions: [
+                                                  TextButton(
+                                                    child: const Text("Cancel", style: TextStyle(color: Colors.white70)),
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                  ),
+                                                  TextButton(
+                                                    child: const Text("Yes", style: TextStyle(color: Colors.white70)),
+                                                    onPressed: () async {
+                                                      // Find the index of the imageUrls object in the list
+                                                      int index = recentImageUrls.indexWhere(
+                                                          (urls) => urls.lowResUrl == imageUrls.lowResUrl && urls.highResUrl == imageUrls.highResUrl);
+
+                                                      // Check if the object was found
+                                                      if (index != -1) {
+                                                        // Delete the image from Firebase Storage for both low-res and high-res URLs
+                                                        await FirebaseStorage.instance.refFromURL(imageUrls.lowResUrl).delete();
+                                                        await FirebaseStorage.instance.refFromURL(imageUrls.highResUrl).delete();
+
+                                                        // Remove the imageUrls object from the list
+                                                        recentImageUrls.removeAt(index);
+
+                                                        Navigator.of(context).pop(); // Close the dialog
+
+                                                        // Update the UI to reflect the deletion
+                                                        setState(() {});
+                                                      }
+                                                    },
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              }).toList()
+                            : [
+                                Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width / 4,
+                                      height: MediaQuery.of(context).size.width / 4,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: borderColor.withAlpha(20),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.image_rounded,
+                                            color: iconColorTwo,
+                                            size: 40,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width / 4,
+                                      height: MediaQuery.of(context).size.width / 4,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: borderColor.withAlpha(20),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.image_rounded,
+                                            color: iconColorTwo,
+                                            size: 40,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width / 4,
+                                      height: MediaQuery.of(context).size.width / 4,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: borderColor.withAlpha(20),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.image_rounded,
+                                            color: iconColorTwo,
+                                            size: 40,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ]),
                   ),
-                ],
-              ),
-              const SizedBox(height: 30)
-            ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: borderColor.withAlpha(20),
+                          ),
+                          child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                            stream: FirebaseFirestore.instance.collection('SliversPages').doc('non_slivers_pages').snapshots(),
+                            builder: (context, snapshot) {
+                              if (!snapshot.hasData) {
+                                return const CircularProgressIndicator();
+                              }
+                              return Container(
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: CachedNetworkImageProvider(
+                                          snapshot.data?.data()!['club_icon'] ?? 0,
+                                        ),
+                                        fit: BoxFit.cover)),
+                              );
+                            },
+                          )),
+                    ),
+                    Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: Container()),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Container(
+                          width: MediaQuery.sizeOf(context).width / 2,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            // color: cardBackgroundColorTwo,
+                            gradient: const LinearGradient(
+                              colors: [Colors.red, Colors.blue], // Set your desired gradient colors
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                          ),
+                          child: InkWell(
+                            splashColor: splashColorTwo,
+                            onTap: () async {
+                              // Check if the publishing process is already in progress
+                              if (isPublishing) {
+                                // Show a toast indicating that publishing is already in progress
+                                Fluttertoast.showToast(
+                                  msg: 'Publishing is already in progress.',
+                                  gravity: ToastGravity.BOTTOM,
+                                  backgroundColor: Colors.orange,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0,
+                                );
+                                return; // Exit the onTap function to avoid re-triggering the process
+                              }
+
+                              // Check if there are images to share
+                              if (recentImageUrls.isNotEmpty) {
+                                // Set the flag to true to indicate that publishing is in progress
+                                setState(() {
+                                  isPublishing = true;
+                                });
+
+                                try {
+                                  // Share the high-resolution images along with additional content
+                                  await _onShareAndPublishBanner(context);
+
+                                  Fluttertoast.showToast(
+                                    msg: 'Success! Now Publishable',
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: Colors.deepOrangeAccent,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0,
+                                  );
+                                } catch (error) {
+                                  // Handle errors if needed
+                                  print('Error: $error');
+                                } finally {
+                                  // Set the flag back to false when the process is complete
+                                  setState(() {
+                                    isPublishing = false;
+                                  });
+                                }
+
+                                setState(() {
+                                  selectedTeamA = '';
+                                  selectedTeamB = '';
+                                  selectedLeague = '';
+                                  selectedLocation = '';
+                                  selectedSponsorsString = '';
+                                });
+                              } else {
+                                // Show a toast indicating that no images have been generated
+                                Fluttertoast.showToast(
+                                  msg: 'Please generate image(s) before publ...',
+                                  gravity: ToastGravity.BOTTOM,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                );
+                              }
+                            },
+
+                            // Conditionally show the CircularProgressIndicator
+                            child: isPublishing
+                                ? const CircularProgressIndicator(
+                                    color: Colors.white,
+                                  )
+                                : Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Publish Banner(s)',
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.visible,
+                                        style: TextStyle(
+                                          color: materialBackgroundColor,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 30)
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Future<DateTime?> pickDate() => showDatePicker(
-      context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2100), barrierColor: backgroundColor);
-
-  Future<TimeOfDay?> pickTime() => showSpinnerTimePicker(
-    context,
-    initTime: TimeOfDay(hour: selectedDate.hour, minute: selectedDate.minute),
-    is24HourFormat: false,
-
-  );
+  //////////////////////////////////////////////////////////////////////
 
   void _showTeamASelectionDialog() {
     showDialog(
@@ -999,10 +1089,16 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                     matchDayBannerForClubNotifier!.matchDayBannerForClubList[index].clubName!,
                     style: const TextStyle(fontSize: 17, color: Colors.white70, fontWeight: FontWeight.w600),
                   ),
-                  leading: Image.network(
-                    matchDayBannerForClubNotifier!.matchDayBannerForClubList[index].clubIcon!,
+                  leading: Container(
                     width: 50,
                     height: 50,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            alignment: const Alignment(0, -1),
+                            image: CachedNetworkImageProvider(
+                              matchDayBannerForClubNotifier!.matchDayBannerForClubList[index].clubIcon!,
+                            ),
+                            fit: BoxFit.cover)),
                   ),
                 );
               },
@@ -1048,10 +1144,16 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                     matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList[index].clubName!,
                     style: const TextStyle(fontSize: 17, color: Colors.white70, fontWeight: FontWeight.w600),
                   ),
-                  leading: Image.network(
-                    matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList[index].clubIcon!,
+                  leading: Container(
                     width: 50,
                     height: 50,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            alignment: const Alignment(0, -1),
+                            image: CachedNetworkImageProvider(
+                              matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList[index].clubIcon!,
+                            ),
+                            fit: BoxFit.cover)),
                   ),
                 );
               },
@@ -1178,10 +1280,15 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                               });
                             }
                           },
-                          secondary: Image.network(
-                            clubSponsorsNotifier!.clubSponsorsList[index].sponsorIcon!,
+                          secondary: Container(
                             width: 30,
                             height: 30,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: CachedNetworkImageProvider(
+                                      clubSponsorsNotifier!.clubSponsorsList[index].sponsorIcon!,
+                                    ),
+                                    fit: BoxFit.cover)),
                           ),
                         );
                       },
@@ -1229,32 +1336,14 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
           setState(() {
             selectedSponsorsString = '${selectedSponsorNames.length}/${clubSponsorsNotifier!.clubSponsorsList.length} sponsors selected';
           });
-
-          // Print the selected sponsor names for debugging (optional)
-          // print('Selected Sponsor Names: $selectedSponsorNames');
-
-          String matchDayInfo = """
-⚽️ Match Day ⚽️                  
-${lastThreeSelectedLeagueNames.isNotEmpty ? '🏆 ${lastThreeSelectedLeagueNames.last}' : ''}
-${lastThreeSelectedTeamA.isNotEmpty ? lastThreeSelectedTeamA.last : ''} Vs 
-${lastThreeSelectedTeamB.isNotEmpty ? lastThreeSelectedTeamB.last : ''}
-${lastThreeSelectedLeagueNames.length >= 2 ? '🏆 ${lastThreeSelectedLeagueNames.elementAt(lastThreeSelectedLeagueNames.length - 2)}' : ''}
-${lastThreeSelectedTeamA.length >= 2 ? lastThreeSelectedTeamA.elementAt(lastThreeSelectedTeamA.length - 2) : ''}
-${lastThreeSelectedTeamB.length >= 2 ? ' Vs ${lastThreeSelectedTeamB.elementAt(lastThreeSelectedTeamB.length - 2)}' : ''}
-${lastThreeSelectedLeagueNames.length >= 3 ? '🏆 ${lastThreeSelectedLeagueNames.elementAt(lastThreeSelectedLeagueNames.length - 3)}' : ''}
-${lastThreeSelectedTeamA.length >= 3 ? lastThreeSelectedTeamA.elementAt(lastThreeSelectedTeamA.length - 3) : ''}
-${lastThreeSelectedTeamB.length >= 3 ? ' Vs ${lastThreeSelectedTeamB.elementAt(lastThreeSelectedTeamB.length - 3)}' : ''}
-${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSponsorNames.join(', ')}' : ''}
-    """
-              .trim();
-
-          print(matchDayInfo);
         }
       }
     });
   }
 
-  void _showGeneratedBanner() async {
+  //////////////////////////////////////////////////////////////////////
+
+  void _showToBeGeneratedBanner() async {
     // Create a GlobalKey for the RepaintBoundary
     GlobalKey boundaryKey = GlobalKey();
 
@@ -1298,20 +1387,32 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
                         left: 10,
                         width: 30,
                         height: 30,
-                        child: Image.network(
-                          matchDayBannerForClubNotifier!.matchDayBannerForClubList.firstWhere((team) => team.clubName == selectedTeamA).clubIcon!,
-                        ),
+                        child: matchDayBannerForClubNotifier!.matchDayBannerForClubList
+                                    .firstWhereOrNull((team) => team.clubName == selectedTeamA)
+                                    ?.clubIcon !=
+                                null
+                            ? Image.network(
+                                matchDayBannerForClubNotifier!.matchDayBannerForClubList
+                                    .firstWhereOrNull((team) => team.clubName == selectedTeamA)!
+                                    .clubIcon!,
+                              )
+                            : Image.asset('assets/images/cpfc_logo.jpeg'), // Replace 'default_icon.png' with your actual asset path
                       ),
                       Positioned(
                         top: 170,
                         right: 12,
                         width: 27,
                         height: 27,
-                        child: Image.network(
-                          matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList
-                              .firstWhere((team) => team.clubName == selectedTeamB)
-                              .clubIcon!,
-                        ),
+                        child: matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList
+                                    .firstWhereOrNull((team) => team.clubName == selectedTeamB)
+                                    ?.clubIcon !=
+                                null
+                            ? Image.network(
+                                matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList
+                                    .firstWhereOrNull((team) => team.clubName == selectedTeamB)!
+                                    .clubIcon!,
+                              )
+                            : Image.asset('assets/images/no_club_image.jpeg'), // Replace 'default_icon.png' with your actual asset path
                       ),
                       Positioned(
                         top: 176,
@@ -1441,8 +1542,10 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
             actions: [
               TextButton(
                 onPressed: () async {
-                  // Capture the screenshot and share the content
-                  _shareContent(boundaryKey);
+                  // Capture the screenshot and hold the content
+                  _generatedBannerContent(boundaryKey);
+                  // Generate or share images based on the availability of URLs
+                  // await _shareImages();
                   Navigator.pop(context);
 
                   setState(() {
@@ -1474,13 +1577,13 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
         });
   }
 
-  Future<List<String>> _shareContent(GlobalKey boundaryKey) async {
+  Future<List<String>> _generatedBannerContent(GlobalKey boundaryKey) async {
     // Get the RenderObject from the RepaintBoundary using its key
-    RenderRepaintBoundary boundary = boundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+    RenderRepaintBoundary? boundary = boundaryKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
 
     // Increase the pixelRatio for higher resolution
     double pixelRatio = 10.0; // You can adjust this value based on your needs
-    ui.Image image = await boundary.toImage(pixelRatio: pixelRatio);
+    ui.Image image = await boundary!.toImage(pixelRatio: pixelRatio);
 
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List? pngBytes = byteData?.buffer.asUint8List();
@@ -1537,79 +1640,71 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
       selectedBannerHighResImageUrl = highResDownloadURL;
     });
 
-    // Return the high-resolution image URLs
+    final box = context.findRenderObject() as RenderBox?;
+
     return [lowResDownloadURL, highResDownloadURL];
   }
 
-  void _shareMultipleImages(List<String> highResImageUrls) async {
-    List<Map<String, List<int>>> files = [];
+  Future<String> _downloadGeneratedImages(String url) async {
+    final response = await http.get(Uri.parse(url));
+    final bytes = response.bodyBytes;
 
-    // Download the high-resolution images and create a list of files to share
-    for (String imageUrl in highResImageUrls) {
-      // Download the image as bytes (you need to implement this function)
-      List<int> imageBytes = await _downloadImage(imageUrl);
+    final directory = await getApplicationDocumentsDirectory();
+    final index = downloadedImageCount + 1; // 1-based index
+    final filePath = '${directory.path}/temp_image_$index.png';
 
-      // Get the file name from the URL
-      String fileName = imageUrl.split('/').last;
+    await File(filePath).writeAsBytes(bytes);
 
-      // Determine the MIME type based on the file extension
-      String mimeType = 'image/png'; // Change this according to your image format
+    // Update the count, reset to 1 if it reaches the maximum
+    downloadedImageCount = (downloadedImageCount + 1) % 3;
 
-      // Create a map for the current file and add it to the list
-      files.add({fileName: imageBytes});
+    return filePath;
+  }
+
+  Future<void> _onShareAndPublishBanner(BuildContext context) async {
+    final List<String> imageUrls = recentImageUrls.map((imageUrls) => imageUrls.highResUrl).toList();
+    final List<String> localImagePaths = [];
+
+    for (String url in imageUrls) {
+      final localPath = await _downloadGeneratedImages(url);
+      localImagePaths.add(localPath);
     }
 
+    // Additional content for sharing, e.g., match day info
+    // Print the selected sponsor names for debugging (optional)
+    // print('Selected Sponsor Names: $selectedSponsorNames');
+
     String matchDayInfo = """
-      ⚽️ Match Day ⚽️                  
-  
-      🏆 $selectedLeague
-  
-      $selectedTeamA Vs 
-      $selectedTeamB
-       
-      🏆 $selectedLeague
-      
-      $selectedTeamA Vs 
-      $selectedTeamB Res 
-      
-      🏆 $selectedLeague 
-      
-      $selectedTeamA Vs 
-      $selectedTeamB 
-   
-      ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSponsorNames.join(', ')}' : ''}
-    """;
+⚽️ Match Day ⚽️                  
+${lastThreeSelectedLeagueNames.isNotEmpty ? '🏆 ${lastThreeSelectedLeagueNames.last}' : ''}
+${lastThreeSelectedTeamA.isNotEmpty ? lastThreeSelectedTeamA.last : ''} Vs 
+${lastThreeSelectedTeamB.isNotEmpty ? lastThreeSelectedTeamB.last : ''}
+${lastThreeSelectedLeagueNames.length >= 2 ? '🏆 ${lastThreeSelectedLeagueNames.elementAt(lastThreeSelectedLeagueNames.length - 2)}' : ''}
+${lastThreeSelectedTeamA.length >= 2 ? lastThreeSelectedTeamA.elementAt(lastThreeSelectedTeamA.length - 2) : ''}
+${lastThreeSelectedTeamB.length >= 2 ? ' Vs ${lastThreeSelectedTeamB.elementAt(lastThreeSelectedTeamB.length - 2)}' : ''}
+${lastThreeSelectedLeagueNames.length >= 3 ? '🏆 ${lastThreeSelectedLeagueNames.elementAt(lastThreeSelectedLeagueNames.length - 3)}' : ''}
+${lastThreeSelectedTeamA.length >= 3 ? lastThreeSelectedTeamA.elementAt(lastThreeSelectedTeamA.length - 3) : ''}
+${lastThreeSelectedTeamB.length >= 3 ? ' Vs ${lastThreeSelectedTeamB.elementAt(lastThreeSelectedTeamB.length - 3)}' : ''}
+${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSponsorNames.join(', ')}' : ''}
+    """
+        .trim();
 
     print(matchDayInfo);
 
-    // Share the high-resolution images
-    await esys.Share.files(
-      'Sponsor Information',
-      files as Map<String, List<int>>,
-      '*/*' as Set<String>, // You can specify specific MIME types here if necessary
-      text: matchDayInfo,
-    );
+    // Share all the downloaded images
+    await Share.shareFiles(localImagePaths, text: matchDayInfo, subject: 'Coventry Phoenix FC');
   }
 
-  Future<List<int>> _downloadImage(String imageUrl) async {
-    http.Response response = await http.get(Uri.parse(imageUrl));
+  //////////////////////////////////////////////////////////////////////
 
-    if (response.statusCode == 200) {
-      // Get temporary directory to store the downloaded image
-      final tempDir = await getTemporaryDirectory();
+  Future<DateTime?> pickDate() => showDatePicker(
+      context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2100), barrierColor: backgroundColor);
 
-      // Write the image bytes to a file in the temporary directory
-      File imageFile = File('${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.png');
-      await imageFile.writeAsBytes(response.bodyBytes);
-
-      // Read the image file as bytes and return
-      List<int> imageBytes = await imageFile.readAsBytes();
-      return imageBytes;
-    } else {
-      // Handle error (e.g., image download failed)
-      throw Exception('Failed to load image');
-    }
-  }
+  Future<TimeOfDay?> pickTime() => showSpinnerTimePicker(
+        context,
+        initTime: TimeOfDay(hour: selectedDate.hour, minute: selectedDate.minute),
+        is24HourFormat: false,
+      );
 
   void _showMissingStepsToast() {
     Fluttertoast.showToast(
@@ -1681,6 +1776,8 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
     }
   }
 
+  //////////////////////////////////////////////////////////////////////
+
   @override
   void initState() {
     MatchDayBannerForClubNotifier matchDayBannerForClubNotifier = Provider.of<MatchDayBannerForClubNotifier>(context, listen: false);
@@ -1709,5 +1806,51 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+  }
+
+  Future<bool> _onWillPop() async {
+    bool shouldPop = false;
+
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        backgroundColor: dialogBackgroundColor,
+        title: const Text(
+          'Are you sure?',
+          style: TextStyle(color: Colors.white70),
+        ),
+        content: const Text(
+          'Exiting now will discard your current work.',
+          style: TextStyle(color: Colors.white70),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              shouldPop = false;
+              Navigator.of(context).pop();
+            },
+            child: const Text(
+              'Cancel',
+              style: TextStyle(color: Colors.white70),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              shouldPop = true;
+              Navigator.of(context).pop();
+            },
+            child: const Text(
+              'Exit',
+              style: TextStyle(color: Colors.white70),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    return shouldPop;
   }
 }

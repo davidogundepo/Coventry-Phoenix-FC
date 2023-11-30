@@ -183,7 +183,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                   // navigateToCreateAnnouncementSMPost(context);
 
                                   Fluttertoast.showToast(
-                                    msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                    msg: 'Coming Soon',
+                                    // Show success message (you can replace it with actual banner generation logic)
                                     gravity: ToastGravity.BOTTOM,
                                     backgroundColor: Colors.deepOrangeAccent,
                                     textColor: Colors.white,
@@ -201,7 +202,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                   // navigateToCreateSponsorsShoutOutSMPost(context);
 
                                   Fluttertoast.showToast(
-                                    msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                    msg: 'Coming Soon',
+                                    // Show success message (you can replace it with actual banner generation logic)
                                     gravity: ToastGravity.BOTTOM,
                                     backgroundColor: Colors.deepOrangeAccent,
                                     textColor: Colors.white,
@@ -222,8 +224,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width / 8,
-                            height: MediaQuery.of(context).size.width / 8,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: blueColor.withAlpha(80),
@@ -307,8 +315,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width / 8,
-                            height: MediaQuery.of(context).size.width / 8,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: greenColor.withAlpha(80),
@@ -354,8 +368,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width / 8,
-                            height: MediaQuery.of(context).size.width / 8,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: brownColor.withAlpha(80),
@@ -401,8 +421,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width / 8,
-                            height: MediaQuery.of(context).size.width / 8,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: whiteColor.withAlpha(80),
@@ -448,8 +474,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width / 8,
-                            height: MediaQuery.of(context).size.width / 8,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: yellowColor.withAlpha(80),
@@ -495,8 +527,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width / 8,
-                            height: MediaQuery.of(context).size.width / 8,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: cyanColor.withAlpha(80),
@@ -542,8 +580,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width / 8,
-                            height: MediaQuery.of(context).size.width / 8,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: deepOrangeColor.withAlpha(80),
@@ -601,7 +645,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                   ),
                                   onTap: () {
                                     Fluttertoast.showToast(
-                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      msg: 'Coming Soon',
+                                      // Show success message (you can replace it with actual banner generation logic)
                                       gravity: ToastGravity.BOTTOM,
                                       backgroundColor: Colors.deepOrangeAccent,
                                       textColor: Colors.white,
@@ -617,7 +662,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                   ),
                                   onTap: () {
                                     Fluttertoast.showToast(
-                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      msg: 'Coming Soon',
+                                      // Show success message (you can replace it with actual banner generation logic)
                                       gravity: ToastGravity.BOTTOM,
                                       backgroundColor: Colors.deepOrangeAccent,
                                       textColor: Colors.white,
@@ -633,7 +679,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                   ),
                                   onTap: () {
                                     Fluttertoast.showToast(
-                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      msg: 'Coming Soon',
+                                      // Show success message (you can replace it with actual banner generation logic)
                                       gravity: ToastGravity.BOTTOM,
                                       backgroundColor: Colors.deepOrangeAccent,
                                       textColor: Colors.white,
@@ -649,7 +696,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                   ),
                                   onTap: () {
                                     Fluttertoast.showToast(
-                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      msg: 'Coming Soon',
+                                      // Show success message (you can replace it with actual banner generation logic)
                                       gravity: ToastGravity.BOTTOM,
                                       backgroundColor: Colors.deepOrangeAccent,
                                       textColor: Colors.white,
@@ -671,8 +719,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width / 8,
-                            height: MediaQuery.of(context).size.width / 8,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: tealColor.withAlpha(80),
@@ -729,7 +783,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                   ),
                                   onTap: () {
                                     Fluttertoast.showToast(
-                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      msg: 'Coming Soon',
+                                      // Show success message (you can replace it with actual banner generation logic)
                                       gravity: ToastGravity.BOTTOM,
                                       backgroundColor: Colors.deepOrangeAccent,
                                       textColor: Colors.white,
@@ -744,7 +799,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                   ),
                                   onTap: () {
                                     Fluttertoast.showToast(
-                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      msg: 'Coming Soon',
+                                      // Show success message (you can replace it with actual banner generation logic)
                                       gravity: ToastGravity.BOTTOM,
                                       backgroundColor: Colors.deepOrangeAccent,
                                       textColor: Colors.white,
@@ -759,7 +815,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                   ),
                                   onTap: () {
                                     Fluttertoast.showToast(
-                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      msg: 'Coming Soon',
+                                      // Show success message (you can replace it with actual banner generation logic)
                                       gravity: ToastGravity.BOTTOM,
                                       backgroundColor: Colors.deepOrangeAccent,
                                       textColor: Colors.white,
@@ -774,7 +831,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                   ),
                                   onTap: () {
                                     Fluttertoast.showToast(
-                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      msg: 'Coming Soon',
+                                      // Show success message (you can replace it with actual banner generation logic)
                                       gravity: ToastGravity.BOTTOM,
                                       backgroundColor: Colors.deepOrangeAccent,
                                       textColor: Colors.white,
@@ -789,7 +847,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                   ),
                                   onTap: () {
                                     Fluttertoast.showToast(
-                                      msg: 'Coming Soon', // Show success message (you can replace it with actual banner generation logic)
+                                      msg: 'Coming Soon',
+                                      // Show success message (you can replace it with actual banner generation logic)
                                       gravity: ToastGravity.BOTTOM,
                                       backgroundColor: Colors.deepOrangeAccent,
                                       textColor: Colors.white,
@@ -811,8 +870,14 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width / 8,
-                            height: MediaQuery.of(context).size.width / 8,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: brownColor.withAlpha(80),
@@ -853,11 +918,11 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
 
   @override
   void initState() {
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
     super.initState();
 
     // Initialize Firebase first
@@ -865,54 +930,55 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
       if (kDebugMode) {
         print("Firebase initialized");
       }
-
-      // Fetch data for the first and second teams using their notifiers
-      FirstTeamClassNotifier firstTeamNotifier = Provider.of<FirstTeamClassNotifier>(context, listen: false);
-      getFirstTeamClass(firstTeamNotifier);
-
-      SecondTeamClassNotifier secondTeamNotifier = Provider.of<SecondTeamClassNotifier>(context, listen: false);
-      getSecondTeamClass(secondTeamNotifier);
-
-      // Populate the PlayersNotifier with data from both teams
-      PlayersNotifier playersNotifier = Provider.of<PlayersNotifier>(context, listen: false);
-
-      playersNotifier.setFirstTeamPlayers(firstTeamNotifier.firstTeamClassList);
-      playersNotifier.setSecondTeamPlayers(secondTeamNotifier.secondTeamClassList);
-
-      CoachesNotifier coachesNotifier = Provider.of<CoachesNotifier>(context, listen: false);
-      getCoaches(coachesNotifier);
-
-      ManagementBodyNotifier managementBodyNotifier = Provider.of<ManagementBodyNotifier>(context, listen: false);
-      getManagementBody(managementBodyNotifier);
-
-      CaptainsNotifier clubCaptainsNotifier = Provider.of<CaptainsNotifier>(context, listen: false);
-      getCaptains(clubCaptainsNotifier);
-
-      ClubSponsorsNotifier clubSponsorsNotifier = Provider.of<ClubSponsorsNotifier>(context, listen: false);
-      getClubSponsors(clubSponsorsNotifier);
-
-      // Populate the AllClubMembersNotifier with data from both teams
-      AllClubMembersNotifier allClubMembersNotifier = Provider.of<AllClubMembersNotifier>(context, listen: false);
-
-      allClubMembersNotifier.setFirstTeamAllClubMembers(firstTeamNotifier.firstTeamClassList);
-      allClubMembersNotifier.setSecondTeamAllClubMembers(secondTeamNotifier.secondTeamClassList);
-      allClubMembersNotifier.setCoaches(coachesNotifier.coachesList);
-      allClubMembersNotifier.setMGMTBody(managementBodyNotifier.managementBodyList);
-
-      MatchDayBannerForClubNotifier matchDayBannerForClubNotifier = Provider.of<MatchDayBannerForClubNotifier>(context, listen: false);
-
-      MatchDayBannerForClubOppNotifier matchDayBannerForClubOppNotifier = Provider.of<MatchDayBannerForClubOppNotifier>(context, listen: false);
-
-      MatchDayBannerForLeagueNotifier matchDayBannerForLeagueNotifier = Provider.of<MatchDayBannerForLeagueNotifier>(context, listen: false);
-
-      MatchDayBannerForLocationNotifier matchDayBannerForLocationNotifier = Provider.of<MatchDayBannerForLocationNotifier>(context, listen: false);
-
-      getMatchDayBannerForClub(matchDayBannerForClubNotifier);
-      getMatchDayBannerForClubOpp(matchDayBannerForClubOppNotifier);
-      getMatchDayBannerForLeague(matchDayBannerForLeagueNotifier);
-      getMatchDayBannerForLocation(matchDayBannerForLocationNotifier);
-      setState(() {});
     });
+
+    // Fetch data for the first and second teams using their notifiers
+    FirstTeamClassNotifier firstTeamNotifier = Provider.of<FirstTeamClassNotifier>(context, listen: false);
+    getFirstTeamClass(firstTeamNotifier);
+
+    SecondTeamClassNotifier secondTeamNotifier = Provider.of<SecondTeamClassNotifier>(context, listen: false);
+    getSecondTeamClass(secondTeamNotifier);
+
+    // Populate the PlayersNotifier with data from both teams
+    PlayersNotifier playersNotifier = Provider.of<PlayersNotifier>(context, listen: false);
+
+    playersNotifier.setFirstTeamPlayers(firstTeamNotifier.firstTeamClassList);
+    playersNotifier.setSecondTeamPlayers(secondTeamNotifier.secondTeamClassList);
+
+    CoachesNotifier coachesNotifier = Provider.of<CoachesNotifier>(context, listen: false);
+    getCoaches(coachesNotifier);
+
+    ManagementBodyNotifier managementBodyNotifier = Provider.of<ManagementBodyNotifier>(context, listen: false);
+    getManagementBody(managementBodyNotifier);
+
+    CaptainsNotifier clubCaptainsNotifier = Provider.of<CaptainsNotifier>(context, listen: false);
+    getCaptains(clubCaptainsNotifier);
+
+    ClubSponsorsNotifier clubSponsorsNotifier = Provider.of<ClubSponsorsNotifier>(context, listen: false);
+    getClubSponsors(clubSponsorsNotifier);
+
+    // Populate the AllClubMembersNotifier with data from both teams
+    AllClubMembersNotifier allClubMembersNotifier = Provider.of<AllClubMembersNotifier>(context, listen: false);
+
+    allClubMembersNotifier.setFirstTeamAllClubMembers(firstTeamNotifier.firstTeamClassList);
+    allClubMembersNotifier.setSecondTeamAllClubMembers(secondTeamNotifier.secondTeamClassList);
+    allClubMembersNotifier.setCoaches(coachesNotifier.coachesList);
+    allClubMembersNotifier.setMGMTBody(managementBodyNotifier.managementBodyList);
+
+    MatchDayBannerForClubNotifier matchDayBannerForClubNotifier = Provider.of<MatchDayBannerForClubNotifier>(context, listen: false);
+
+    MatchDayBannerForClubOppNotifier matchDayBannerForClubOppNotifier = Provider.of<MatchDayBannerForClubOppNotifier>(context, listen: false);
+
+    MatchDayBannerForLeagueNotifier matchDayBannerForLeagueNotifier = Provider.of<MatchDayBannerForLeagueNotifier>(context, listen: false);
+
+    MatchDayBannerForLocationNotifier matchDayBannerForLocationNotifier = Provider.of<MatchDayBannerForLocationNotifier>(context, listen: false);
+
+    getMatchDayBannerForClub(matchDayBannerForClubNotifier);
+    getMatchDayBannerForClubOpp(matchDayBannerForClubOppNotifier);
+    getMatchDayBannerForLeague(matchDayBannerForLeagueNotifier);
+    getMatchDayBannerForLocation(matchDayBannerForLocationNotifier);
+    setState(() {});
+
   }
 }
 

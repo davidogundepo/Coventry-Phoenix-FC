@@ -7,7 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -163,11 +162,13 @@ class SubPage extends StatefulWidget {
 class _SubPageState extends State<SubPage> {
   // final _formKey = GlobalKey<FormState>();
   String otpCode = "";
-  String otp = "";
   bool isLoaded = false;
   final FirebaseAuth auth = FirebaseAuth.instance;
   String _receivedId = ""; // Add this line
   bool isOTPComplete = false;
+  bool isOtpVerified = false; // Add this variable
+  // Declare a boolean variable to track OTP generation
+  bool isOtpGenerated = false;
 
   bool isModifyingAutobiography = true; // Assuming modifying autobiography by default
 
@@ -372,74 +373,155 @@ class _SubPageState extends State<SubPage> {
 
   ////
 
-  final ImagePicker _picker = ImagePicker();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  // final ImagePicker _picker = ImagePicker();
+  // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   File? _imageOne;
   File? _imageTwo;
-  String _userName = 'name'; // Replace with the actual user's name
+  // String _userName = _name;
 
-  Future<String?> uploadImageToStorage(File imageFile, String imageName) async {
+  Future<void> uploadImagesToStorageAndFirestore(List<File> imageFiles) async {
     try {
-      final Reference storageReference = FirebaseStorage.instance.ref().child('players_images').child(_userName).child(imageName);
-      final UploadTask uploadTask = storageReference.putFile(imageFile);
+      // Find the document ID for the user with the specified name (_name)
+      String _queryName = _name.toLowerCase().replaceAll(" ", "");
 
-      await uploadTask.whenComplete(() {});
-      final String imageUrl = await storageReference.getDownloadURL();
-      return imageUrl;
-    } catch (e) {
-      print('Error uploading image: $e');
-      return null;
-    }
-  }
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('FirstTeamClassPlayers').get();
 
-  Future<File?> pickImage() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    if (image == null) return null;
+      String? documentId;
 
-    return File(image.path);
-  }
+      for (QueryDocumentSnapshot document in querySnapshot.docs) {
+        String documentName = document['name'].toLowerCase().replaceAll(" ", "");
+        if (documentName == _queryName) {
+          // Found the document with the matching name
+          documentId = document.id;
+          break; // Exit the loop since we found the document
+        }
+      }
 
-  Future<void> _checkAndUpdatePhoto(String imageUrl, String imageName) async {
-    try {
-      // Fetch the document based on the user name (or any other criteria)
-      QuerySnapshot querySnapshot = await _firestore
-          .collection('FirstTeamClassPlayers')
-          .where('name', isEqualTo: _userName) // Replace with the actual field used for user identification
-          .get();
+      if (documentId != null) {
+        for (int i = 0; i < imageFiles.length; i++) {
+          String imageName = '$_queryName${i + 1}.jpg';
 
-      if (querySnapshot.docs.isNotEmpty) {
-        // Get the first document from the query results
-        DocumentSnapshot documentSnapshot = querySnapshot.docs[0];
+          // Upload each image to Firebase Storage
+          final Reference storageReference = FirebaseStorage.instance.ref().child('players_images').child(_queryName).child(imageName);
+          final UploadTask uploadTask = storageReference.putFile(imageFiles[i]);
+          await uploadTask.whenComplete(() {});
 
-        // Update the user document with the new image URL
-        await documentSnapshot.reference.update({imageName: imageUrl});
+          // Get download URL of the uploaded image
+          final String imageUrl = await storageReference.getDownloadURL();
+
+          // Store the image reference (download URL) in Firestore under the user's name
+          String imageField = i == 0 ? 'image' : 'image_two'; // Set the field name based on the image index
+
+          // Update the existing document for the specified user (_queryName)
+          await FirebaseFirestore.instance.collection('FirstTeamClassPlayers').doc(documentId).update({
+            imageField: imageUrl,
+          });
+        }
+        // Show success toast
+        Fluttertoast.showToast(
+          msg: "Images uploaded and references stored successfully.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.deepOrangeAccent,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+        print('Images uploaded and references stored successfully.');
       } else {
-        print('Document not found for user: $_userName');
+        print('User with name $_queryName not found.');
       }
     } catch (e) {
-      print('Error updating photo: $e');
+      print('Error uploading images and storing references: $e');
+      // Show error toast
+      Fluttertoast.showToast(
+        msg: "Error uploading images and storing references.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
     }
+  }
 
-    // Usage
-    // Upload image one to storage
-    String? imageUrlOne = await uploadImageToStorage(_imageOne!, 'image_one.jpg');
+  Future<void> _checkAndUpdatePhoto() async {
+    if (_imageOne != null || _imageTwo != null) {
+      List<File> imagesToUpload = [];
 
-    // Check if imageUrlOne is not null before using it
-    if (imageUrlOne != null) {
-      await _checkAndUpdatePhoto(imageUrlOne, 'image_one');
+      if (_imageOne != null) {
+        imagesToUpload.add(_imageOne!);
+      }
+
+      if (_imageTwo != null) {
+        imagesToUpload.add(_imageTwo!);
+      }
+
+      // Call the function to upload images to Firebase Storage and update Firestore
+      await uploadImagesToStorageAndFirestore(imagesToUpload);
     } else {
-      print('Image upload failed for image one');
+      // Show toast message if no images are selected
+      Fluttertoast.showToast(
+        msg: "Please select at least one image.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.deepOrangeAccent,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
     }
+  }
 
-    // Similarly, for the second image
-    String? imageUrlTwo = await uploadImageToStorage(_imageTwo!, 'image_two.jpg');
-
-    // Check if imageUrlTwo is not null before using it
-    if (imageUrlTwo != null) {
-      await _checkAndUpdatePhoto(imageUrlTwo, 'image_two');
-    } else {
-      print('Image upload failed for image two');
+  Future<File?> pickImageOne(BuildContext context) async {
+    try {
+      final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (pickedImage != null) {
+        _imageOne = File(pickedImage.path);
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: 'Hmm something is off, please try again',
+        gravity: ToastGravity.BOTTOM,
+        toastLength: Toast.LENGTH_LONG,
+        backgroundColor: Colors.deepOrangeAccent,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
     }
+    return _imageOne;
+  }
+
+  Future<File?> pickImageTwo(BuildContext context) async {
+    try {
+      final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (pickedImage != null) {
+        _imageTwo = File(pickedImage.path);
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: 'Hmm something is off, please try again',
+        gravity: ToastGravity.BOTTOM,
+        toastLength: Toast.LENGTH_LONG,
+        backgroundColor: Colors.deepOrangeAccent,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
+    return _imageTwo;
+  }
+
+  // for selecting imageOne
+  void selectImageOne() async {
+    _imageOne = await pickImageOne(context);
+    setState(() {});
+  }
+
+  // for selecting imageTwo
+  void selectImageTwo() async {
+    _imageTwo = await pickImageTwo(context);
+    setState(() {});
   }
 
   @override
@@ -512,23 +594,12 @@ class _SubPageState extends State<SubPage> {
                       ),
                     ],
                 onSelected: (item) async {
-                  BuildContext currentContext = context; // Capture the context before the async call
-                setState(() {
+                  setState(() {
                     // Set the flag based on the selected item
                     isModifyingAutobiography = item == 0;
                   });
 
-                  if (await isUserVerifiedRecently()) {
-                    // User has been verified in the last 30 minutes
-                    if (isModifyingAutobiography) {
-                      _showAutobiographyModificationDialog();
-                    } else {
-                      _showImageModificationDialog();
-                    }
-                  } else {
-                    // User needs to send OTP for verification
-                    await _showDialogAndVerify(currentContext); // Pass the context to the function
-                  }
+                  modifyProfile(); // Use modifyProfile function instead of _showAutobiographyModificationDialog or _showImageModificationDialog
                 })
           ],
         ),
@@ -2466,6 +2537,8 @@ class _SubPageState extends State<SubPage> {
     _worstMoment = firstTeamClassNotifier.currentFirstTeamClass.worstMoment;
 
     loadFormData();
+
+    // resetVerificationTime();
 
     userBIO = <int, Widget>{
       /** 0: Useful for CPFC 1st Version and other FC Apps, DND */
@@ -4569,7 +4642,6 @@ class _SubPageState extends State<SubPage> {
   @override
   void dispose() {
     _confettiController!.dispose();
-    SmsAutoFill().unregisterListener();
     print("Unregistered Listener");
     super.dispose();
   }
@@ -4655,7 +4727,8 @@ class _SubPageState extends State<SubPage> {
   }
 
   Future<void> _sendOtpToPhoneNumber() async {
-    String phoneNumber = "+447541315929"; // Replace with your hardcoded phone number
+    // String phoneNumber = "+447541315929"; // Replace with your hardcoded phone number
+    String phoneNumber = "+$_phone"; // Replace with your hardcoded phone number
 
     try {
       await auth.verifyPhoneNumber(
@@ -4679,7 +4752,8 @@ class _SubPageState extends State<SubPage> {
           print("Verification failed: ${e.message}");
 
           Fluttertoast.showToast(
-            msg: 'Hmmmmm. Check your Internet Connection or too much OTP requests',
+            msg: 'Hmm. Check your Internet Connection or maybe too many OTP requests',
+            toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             backgroundColor: Colors.deepOrangeAccent,
             textColor: Colors.white,
@@ -4705,7 +4779,10 @@ class _SubPageState extends State<SubPage> {
           // For example, wait for 30 seconds before filling the OTP field
           await Future.delayed(const Duration(seconds: 5));
 
-          setState(() {});
+          // Once OTP is successfully sent, set isOtpGenerated to true
+          setState(() {
+            isOtpGenerated = true;
+          });
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           // Handle timeout (if needed)
@@ -4735,14 +4812,25 @@ class _SubPageState extends State<SubPage> {
       await auth.signInWithCredential(credential).then((value) async {
         print('User verification is Successful');
 
-        // Save the verification timestamp for the current user
+        // Save the verification timestamp only if it's not already set
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setInt('verificationTime_${auth.currentUser?.uid}', DateTime.now().millisecondsSinceEpoch);
+        String? userProperties = prefs.getString('verificationUserProperties');
+        String currentProperties = _name; // You can adjust this combination based on your requirements
 
-        // Start the 30-minute timer
-        isUserVerifiedRecently();
+        if (userProperties == null || userProperties != currentProperties) {
+          // Only update the timestamp if the user's properties are not set or have changed
+          prefs.setString('verificationUserProperties', currentProperties);
+          prefs.setInt('verificationTime', DateTime.now().millisecondsSinceEpoch);
+        }
 
-        _showAutobiographyModificationDialog();
+        // // Start the 30-minute timer
+        // isUserVerifiedRecently();
+
+        // Set isOtpVerified to true upon successful OTP verification
+        setState(() {
+          isOtpVerified = true;
+        });
+
         Fluttertoast.showToast(
           msg: 'Verified. Thank you.',
           gravity: ToastGravity.BOTTOM,
@@ -4750,6 +4838,16 @@ class _SubPageState extends State<SubPage> {
           textColor: Colors.white,
           fontSize: 16.0,
         );
+
+        // Close the OTP verification dialog upon success
+        // Navigator.pop(context);
+
+        // Check if modifying autobiography or image and show the appropriate dialog
+        if (isModifyingAutobiography) {
+          _showAutobiographyModificationDialog();
+        } else {
+          _showImageModificationDialog();
+        }
       });
     } catch (e) {
       print('Error verifying OTP: $e');
@@ -4766,88 +4864,152 @@ class _SubPageState extends State<SubPage> {
     }
   }
 
-  Future<void> _showDialogAndVerify(BuildContext context) async {
+  void modifyProfile() async {
+    if (await isUserVerifiedRecently()) {
+      // User has been verified in the last 30 minutes
+      // Modify profile without asking for OTP
+      if (isModifyingAutobiography) {
+        _showAutobiographyModificationDialog();
+      } else {
+        _showImageModificationDialog();
+      }
+    } else {
+      // User needs to send OTP for verification
+      await _showDialogAndVerify(); // Pass the context to the function
+      Fluttertoast.showToast(
+        msg: "Click 'Generate OTP' first",
+        gravity: ToastGravity.BOTTOM,
+        toastLength: Toast.LENGTH_LONG,
+        backgroundColor: Colors.white,
+        textColor: Colors.black,
+        fontSize: 16.0,
+      );
+    }
+  }
+
+  Future<void> _showDialogAndVerify() async {
+    final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
+
     showDialog<String>(
-      // barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
+        // barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
         context: context,
-        builder: (BuildContext context) => AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            backgroundColor: const Color.fromRGBO(223, 225, 229, 1.0),
-            title: const Text(
-              'Please, input your OTP after generating',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black),
-            ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () async {
-                  // User needs to send OTP for verification
-                  _sendOtpToPhoneNumber();
-                },
-                child: const Text('Generate OTP', style: TextStyle(color: Colors.black)),
+        builder: (BuildContext context) => WillPopScope(
+              onWillPop: () async {
+                // Clear the fields or perform any cleanup actions
+                otpCode = '';
+                isOTPComplete = false;
+
+                return true; // Allow the dialog to be popped
+              },
+              child: AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                backgroundColor: const Color.fromRGBO(223, 225, 229, 1.0),
+                title: const Text(
+                  "Please click 'Generate OTP', input your OTP from the sent sms.",
+                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () async {
+                      // User needs to send OTP for verification
+                      await _sendOtpToPhoneNumber();
+                    },
+                    child: const Text('Generate OTP', style: TextStyle(color: Colors.black)),
+                  ),
+                  TextButton(
+                    onPressed: isOTPComplete
+                        ? () {
+                            verifyOTPCode();
+                            setState(() {
+                              otpCode = '';
+                            });
+                            Navigator.of(context).pop(); // Move this line here
+                          }
+                        : null,
+                    child: const Text('Verify OTP', style: TextStyle(color: Colors.black)),
+                  ),
+                ],
+                content: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: AbsorbPointer(
+                    absorbing: !isOtpGenerated,
+                    child: Form(
+                      key: dialogFormKey,
+                      child: GestureDetector(
+                        onTap: () {
+                          // Show toast message if OTP is not generated
+                          if (!isOtpGenerated) {
+                            Fluttertoast.showToast(
+                              msg: 'Please generate OTP first',
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0,
+                            );
+                          }
+                        },
+                        child: PinFieldAutoFill(
+                          autoFocus: true,
+                          currentCode: otpCode,
+                          decoration: BoxLooseDecoration(
+                            gapSpace: 5,
+                            radius: const Radius.circular(8),
+                            strokeColorBuilder: isOtpGenerated
+                                ? const FixedColorBuilder(Color(0xFFE16641))
+                                : const FixedColorBuilder(Colors.grey), // Use grey color if OTP is not generated
+                          ),
+                          codeLength: 6,
+                          onCodeChanged: (code) {
+                            print("OnCodeChanged : $code");
+                            otpCode = code.toString();
+                            isOTPComplete = code!.length == 6;
+                          },
+                          onCodeSubmitted: (val) {
+                            print("OnCodeSubmitted : $val");
+                            isOTPComplete = val.isEmpty;
+                            otpCode = '';
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              TextButton(
-                onPressed: isOTPComplete
-                    ? () {
-                  Navigator.of(context).pop();
-                  verifyOTPCode();
-                  setState(() {
-                    otpCode = '';
-                  });
-                  // _showAutobiographyModificationDialog();
-                  // Handle showing the appropriate dialog based on isModifyingAutobiography
-                  if (isModifyingAutobiography) {
-                    _showAutobiographyModificationDialog();
-                  } else {
-                    // Show the modifyImageDialog
-                    _showImageModificationDialog();
-                  }
-                }
-                    : null,
-                child: const Text('Verify OTP', style: TextStyle(color: Colors.black)),
-              ),
-            ],
-            content: Padding(
-                padding: const EdgeInsets.all(6.0),
-                child: PinFieldAutoFill(
-                  currentCode: otpCode,
-                  decoration: BoxLooseDecoration(
-                      gapSpace: 5, radius: const Radius.circular(8), strokeColorBuilder: const FixedColorBuilder(Color(0xFFE16641))),
-                  codeLength: 6,
-                  onCodeChanged: (code) {
-                    print("OnCodeChanged : $code");
-                    otpCode = code.toString();
-                    setState(() {
-                      isOTPComplete = code!.length == 6;
-                    });
-                  },
-                  onCodeSubmitted: (val) {
-                    print("OnCodeSubmitted : $val");
-                    setState(() {
-                      isOTPComplete = val.isEmpty;
-                      otpCode = '';
-                    });
-                  },
-                ))));
+            ));
   }
 
   Future<bool> isUserVerifiedRecently() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? verificationTime = prefs.getInt('verificationTime_${auth.currentUser?.uid}');
+    String? userProperties = prefs.getString('verificationUserProperties');
+    String currentProperties = _name; // Adjust this combination based on what you used for verification
+    print("User properties from SharedPreferences: $userProperties");
 
-    if (verificationTime != null) {
+    if (userProperties != null && userProperties == currentProperties) {
       // Check if the last verification was within the last 30 minutes
-      DateTime now = DateTime.now();
-      DateTime verificationDateTime = DateTime.fromMillisecondsSinceEpoch(verificationTime);
+      int? verificationTime = prefs.getInt('verificationTime');
+      if (verificationTime != null) {
+        DateTime now = DateTime.now();
+        DateTime verificationDateTime = DateTime.fromMillisecondsSinceEpoch(verificationTime);
 
-      return now.difference(verificationDateTime).inMinutes <= 30;
+        return now
+            .difference(verificationDateTime)
+            .inMinutes <= 30;
+      }
     }
-
     return false;
   }
 
+  void resetVerificationTime() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('verificationUserProperties');
+    prefs.remove('verificationTime');
+  }
+
   void _showAutobiographyModificationDialog() {
+    final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
+
     showDialog<String>(
       barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
       context: context,
@@ -4859,7 +5021,7 @@ class _SubPageState extends State<SubPage> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Form(
-            key: _formKey,
+            key: dialogFormKey,
             child: ListView(
               children: [
                 DropdownButtonFormField<String>(
@@ -5235,6 +5397,8 @@ class _SubPageState extends State<SubPage> {
   }
 
   void _showImageModificationDialog() {
+    final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
+
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => Dialog(
@@ -5244,124 +5408,111 @@ class _SubPageState extends State<SubPage> {
         backgroundColor: const Color.fromRGBO(223, 225, 229, 1.0),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 240,
-                    child: Text(
-                      'Click each image to replace your profile pictures',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  SizedBox(width: 5),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.circular(6.0),
+          child: Form(
+            key: dialogFormKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 240,
+                      child: const Text(
+                        'Click each image to replace your profile pictures',
+                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.center,
                       ),
-                      child: const Align(
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.close,
-                          color: Colors.black,
+                    ),
+                    const SizedBox(width: 5),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: 30,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(6.0),
+                        ),
+                        child: const Align(
+                          alignment: Alignment.center,
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 50),
-              // Display the selected images or placeholder icons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  InkWell(
-                    onTap: () async {
-                      // final File? image = await pickImage();
-                      // if (image != null) {
-                      //   setState(() {
-                      //     _imageOne = image;
-                      //   });
-                      // }
-                    },
-                    borderRadius: BorderRadius.circular(10),
-                    child: Container(
-                      width: MediaQuery.sizeOf(context).width / 4.1,
-                      height: MediaQuery.sizeOf(context).width / 3.5,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.black.withAlpha(20),
-                        border: Border.all(color: Colors.black, width: 2),
+                  ],
+                ),
+                const SizedBox(height: 50),
+                // Display the selected images or placeholder icons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    InkWell(
+                      onTap: () => selectImageOne(),
+                      borderRadius: BorderRadius.circular(10),
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width / 4.1,
+                        height: MediaQuery.sizeOf(context).width / 3.5,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.black.withAlpha(20),
+                          border: Border.all(color: Colors.black, width: 2),
+                        ),
+                        child: _imageOne != null
+                            ? Image.file(_imageOne!, height: 100, width: 100, fit: BoxFit.cover)
+                            : CachedNetworkImage(
+                                imageUrl: firstTeamClassNotifier.currentFirstTeamClass.image!,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
+                              ),
                       ),
-                      child: _imageOne != null
-                          ? Image.file(_imageOne!, height: 100, width: 100)
-                          : CachedNetworkImage(
-                              imageUrl: firstTeamClassNotifier.currentFirstTeamClass.image!,
-                              fit: BoxFit.cover,
-                              placeholder: (context, url) => const CircularProgressIndicator(),
-                              errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
-                            ),
                     ),
-                  ),
-                  InkWell(
-                    onTap: () async {
-                      final File? image = await pickImage();
-                      if (image != null) {
-                        setState(() {
-                          _imageTwo = image;
-                        });
-                      }
-                    },
-                    borderRadius: BorderRadius.circular(10),
-                    child: Container(
-                      width: MediaQuery.sizeOf(context).width / 4.1,
-                      height: MediaQuery.sizeOf(context).width / 3.5,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.black.withAlpha(20),
-                        border: Border.all(color: Colors.black, width: 2),
+                    InkWell(
+                      onTap: () => selectImageTwo(),
+                      borderRadius: BorderRadius.circular(10),
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width / 4.1,
+                        height: MediaQuery.sizeOf(context).width / 3.5,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.black.withAlpha(20),
+                          border: Border.all(color: Colors.black, width: 2),
+                        ),
+                        child: _imageTwo != null
+                            ? Image.file(_imageTwo!, height: 100, width: 100, fit: BoxFit.cover)
+                            : CachedNetworkImage(
+                                imageUrl: firstTeamClassNotifier.currentFirstTeamClass.imageTwo!,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
+                              ),
                       ),
-                      child: _imageTwo != null
-                          ? Image.file(_imageTwo!, height: 100, width: 100)
-                          : CachedNetworkImage(
-                              imageUrl: firstTeamClassNotifier.currentFirstTeamClass.imageTwo!,
-                              fit: BoxFit.cover,
-                              placeholder: (context, url) => const CircularProgressIndicator(),
-                              errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
-                            ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 40),
-              // Button to upload the selected images to Firebase Storage
-              ElevatedButton(
-                onPressed: () async {
-                  // await _checkAndUpdatePhoto(toString(), toString());
-                },
-                child: Text('Upload Photos'),
-              ),
-            ],
+                  ],
+                ),
+                const SizedBox(height: 40),
+                // Button to upload the selected images to Firebase Storage
+                ElevatedButton(
+                  onPressed: () async {
+                    await _checkAndUpdatePhoto();
+                  },
+                  child: const Text('Upload Photos'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-
-  int sharedValue = 0;
 
   facebookLink() async {
     showDialog(

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:launch_review/launch_review.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -36,7 +37,7 @@ String aboutClub = "About $clubName";
 // String tablesAndStats = "Tables and Stats";
 String clubAdmin = "Go to Club Admin";
 String acronymMeanings = "Acronym Meanings";
-String aboutApp = "About App";
+String aboutApp = "About Developer";
 
 String fabStats = "Stats";
 
@@ -70,8 +71,9 @@ class MySecondTeamClassPage extends StatefulWidget with NavigationStates {
 }
 
 class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
-  bool _isVisible = true;
+  final TextEditingController bugController = TextEditingController();
 
+  bool _isVisible = true;
   void showToast() {
     setState(() {
       _isVisible = !_isVisible;
@@ -79,8 +81,7 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
   }
 
   Widget _buildProductItem(BuildContext context, int index) {
-    SecondTeamClassNotifier secondTeamClassNotifier =
-        Provider.of<SecondTeamClassNotifier>(context);
+    SecondTeamClassNotifier secondTeamClassNotifier = Provider.of<SecondTeamClassNotifier>(context);
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
@@ -93,8 +94,7 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
           child: InkWell(
             splashColor: splashColor,
             onTap: () {
-              secondTeamClassNotifier.currentSecondTeamClass =
-                  secondTeamClassNotifier.secondTeamClassList[index];
+              secondTeamClassNotifier.currentSecondTeamClass = secondTeamClassNotifier.secondTeamClassList[index];
               navigateToSecondTeamClassDetailsPage(context);
             },
             child: SingleChildScrollView(
@@ -106,14 +106,10 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                     width: 100,
                     height: 100,
                     decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10)),
+                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
                         image: DecorationImage(
                             alignment: const Alignment(0, -1),
-                            image: CachedNetworkImageProvider(
-                                secondTeamClassNotifier
-                                    .secondTeamClassList[index].image!),
+                            image: CachedNetworkImageProvider(secondTeamClassNotifier.secondTeamClassList[index].image!),
                             fit: BoxFit.cover)),
                   ),
                   Padding(
@@ -125,17 +121,10 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                           padding: const EdgeInsets.only(top: 30),
                           child: Row(
                             children: <Widget>[
-                              Text(
-                                  secondTeamClassNotifier
-                                      .secondTeamClassList[index].name!,
-                                  style: GoogleFonts.tenorSans(
-                                      color: textColorTwo,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600)),
+                              Text(secondTeamClassNotifier.secondTeamClassList[index].name!,
+                                  style: GoogleFonts.tenorSans(color: textColorTwo, fontSize: 17, fontWeight: FontWeight.w600)),
                               (() {
-                                if (secondTeamClassNotifier
-                                        .secondTeamClassList[index].captain ==
-                                    "Yes") {
+                                if (secondTeamClassNotifier.secondTeamClassList[index].captain == "Yes") {
                                   return Row(
                                     children: <Widget>[
                                       const SizedBox(width: 10),
@@ -160,12 +149,8 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                              secondTeamClassNotifier
-                                  .secondTeamClassList[index].positionPlaying!,
-                              style: GoogleFonts.varela(
-                                  color: textColorThree,
-                                  fontStyle: FontStyle.italic)),
+                          child: Text(secondTeamClassNotifier.secondTeamClassList[index].positionPlaying!,
+                              style: GoogleFonts.varela(color: textColorThree, fontStyle: FontStyle.italic)),
                         ),
                       ],
                     ),
@@ -218,35 +203,101 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
   }
 
   Future navigateToSecondTeamClassDetailsPage(context) async {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => const SecondTeamClassDetailsPage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const SecondTeamClassDetailsPage()));
   }
 
   Future navigateTablesAndStatsDetails(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const BottomNavigator()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const BottomNavigator()));
   }
 
   Future navigateToAboutAppDetailsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const AboutAppDetails()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutAppDetails()));
   }
 
   Future navigateToAcronymsMeaningsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const AcronymsMeanings()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AcronymsMeanings()));
   }
 
   Future navigateToAboutClubDetailsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const AboutClubDetails()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutClubDetails()));
   }
 
   Future navigateToWhoWeArePage(context) async {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
+  }
+
+  void navigateToAppStore(context) async {
+    LaunchReview.launch(androidAppId: 'com.icdatinnovations.coventry_phoenix_fc', iOSAppId: '1637554276');
+    Navigator.of(context).pop(false);
+  }
+
+  void openReportAppBugDialog(context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        backgroundColor: const Color.fromRGBO(57, 62, 70, 1),
+        title: const Text(
+          'Enter the Bug found please',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: bugController,
+              decoration: const InputDecoration(
+                hintText: 'Describe the bug...',
+                hintStyle: TextStyle(color: Colors.white70),
+              ),
+              style: const TextStyle(
+                color: Colors.white70,
+              ),
+              maxLines: 2, // Allow multiple lines for bug description
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                String bugDescription = bugController.text.trim();
+
+                bugController.clear();
+
+                // Check if bugDescription is not empty before storing
+                if (bugDescription.isNotEmpty) {
+                  // Store bug report in Firestore
+                  await FirebaseFirestore.instance.collection('BugReports').add({
+                    'bug_description': bugDescription,
+                    'timestamp': FieldValue.serverTimestamp(),
+                  });
+
+                  Navigator.pop(context);
+                  // You can add a toast or any other UI feedback for successful bug submission
+                  Fluttertoast.showToast(
+                    msg: 'Bug report submitted!',
+                    backgroundColor: Colors.white,
+                    textColor: Colors.black,
+                  );
+                } else {
+                  // Show a toast for empty bug description
+                  Fluttertoast.showToast(
+                    msg: 'Please enter a bug description',
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                  );
+                }
+              },
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   void _showAdminDialog(BuildContext context) {
@@ -277,9 +328,7 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                 hintText: 'Passcode',
                 hintStyle: TextStyle(color: Colors.white70),
               ),
-              style: TextStyle(
-                  color: Colors.white70
-              ),
+              style: TextStyle(color: Colors.white70),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -321,7 +370,7 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
       msg: 'Welcome, Admin',
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.blueAccent,
       textColor: Colors.white,
       fontSize: 16.0,
     );
@@ -329,8 +378,7 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
 
   @override
   void initState() {
-    SecondTeamClassNotifier secondTeamClassNotifier =
-        Provider.of<SecondTeamClassNotifier>(context, listen: false);
+    SecondTeamClassNotifier secondTeamClassNotifier = Provider.of<SecondTeamClassNotifier>(context, listen: false);
     getSecondTeamClass(secondTeamClassNotifier);
     super.initState();
 
@@ -342,8 +390,7 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
 
   @override
   Widget build(BuildContext context) {
-    SecondTeamClassNotifier secondTeamClassNotifier =
-        Provider.of<SecondTeamClassNotifier>(context);
+    SecondTeamClassNotifier secondTeamClassNotifier = Provider.of<SecondTeamClassNotifier>(context);
 
     return WillPopScope(
       onWillPop: _onWillPop,
@@ -351,8 +398,7 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
         body: Container(
           color: backgroundColor,
           child: NestedScrollView(
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
                 SliverAppBar(
                   actions: <Widget>[
@@ -365,20 +411,14 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                             builder: (context) => Container(
                                   decoration: BoxDecoration(
                                     color: modalBackgroundColor,
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(15),
-                                        topRight: Radius.circular(15)),
+                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                                   ),
                                   child: Material(
                                     color: materialBackgroundColor,
                                     child: InkWell(
                                       splashColor: splashColorTwo,
                                       child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 8.0,
-                                            bottom: 35.0,
-                                            right: 8.0,
-                                            left: 8.0),
+                                        padding: const EdgeInsets.only(top: 8.0, bottom: 35.0, right: 8.0, left: 8.0),
                                         child: Wrap(
                                           children: <Widget>[
                                             ListTile(
@@ -388,12 +428,10 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                                                 ),
                                                 title: Text(
                                                   clubAdmin,
-                                                  style: GoogleFonts.zillaSlab(
-                                                      color: textColor),
+                                                  style: GoogleFonts.zillaSlab(color: textColor),
                                                 ),
                                                 onTap: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
+                                                  Navigator.of(context).pop(false);
                                                   _showAdminDialog(context);
                                                 }),
                                             // ListTile(
@@ -411,40 +449,28 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                                             //           context);
                                             //     }),
                                             ListTile(
-                                              leading: Icon(
-                                                  MdiIcons.accountGroup,
-                                                  color: iconColor),
+                                              leading: Icon(MdiIcons.accountGroup, color: iconColor),
                                               title: Text(
                                                 aboutClub,
-                                                style: GoogleFonts.zillaSlab(
-                                                    color: textColor),
+                                                style: GoogleFonts.zillaSlab(color: textColor),
                                               ),
                                               onTap: () {
-                                                Navigator.of(context)
-                                                    .pop(false);
-                                                navigateToAboutClubDetailsPage(
-                                                    context);
+                                                Navigator.of(context).pop(false);
+                                                navigateToAboutClubDetailsPage(context);
                                               },
                                             ),
                                             ListTile(
-                                                leading: Icon(
-                                                    MdiIcons
-                                                        .sortAlphabeticalAscending,
-                                                    color: iconColor),
+                                                leading: Icon(MdiIcons.sortAlphabeticalAscending, color: iconColor),
                                                 title: Text(
                                                   acronymMeanings,
-                                                  style: GoogleFonts.zillaSlab(
-                                                      color: textColor),
+                                                  style: GoogleFonts.zillaSlab(color: textColor),
                                                 ),
                                                 onTap: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
-                                                  navigateToAcronymsMeaningsPage(
-                                                      context);
+                                                  Navigator.of(context).pop(false);
+                                                  navigateToAcronymsMeaningsPage(context);
                                                 }),
                                             ListTile(
-                                              leading: Icon(MdiIcons.opacity,
-                                                  color: iconColor),
+                                              leading: Icon(MdiIcons.opacity, color: iconColor),
                                               title: Text(
                                                 aboutApp,
                                                 style: GoogleFonts.zillaSlab(
@@ -452,11 +478,55 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                                                 ),
                                               ),
                                               onTap: () {
-                                                Navigator.of(context)
-                                                    .pop(false);
-                                                navigateToAboutAppDetailsPage(
-                                                    context);
+                                                Navigator.of(context).pop(false);
+                                                navigateToAboutAppDetailsPage(context);
                                               },
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              children: [
+                                                InkWell(
+                                                  onTap: () {
+                                                    navigateToAppStore(context);
+                                                  },
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
+                                                    child: Text(
+                                                      'Give App Review',
+                                                      style: GoogleFonts.quantico(
+                                                        fontSize: 15,
+                                                        fontStyle: FontStyle.italic,
+                                                        fontWeight: FontWeight.w700,
+                                                        color: Colors.black87, // Change the color as needed
+                                                        // decoration: TextDecoration.underline,
+                                                        //   decorationColor: Colors.blueAccent,
+                                                        //   decorationThickness: 2.0
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    Navigator.of(context).pop(false);
+                                                    openReportAppBugDialog(context);
+                                                  },
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
+                                                    child: Text(
+                                                      'Report an App Bug',
+                                                      style: GoogleFonts.quantico(
+                                                        fontSize: 15,
+                                                        fontStyle: FontStyle.italic,
+                                                        fontWeight: FontWeight.w700,
+                                                        color: Colors.black87, // Change the color as needed
+                                                        // decoration: TextDecoration.underline,
+                                                        // decorationColor: textColor,
+                                                        // decorationThickness: 2.0
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
@@ -471,8 +541,7 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                       onPressed: () {
                         showSearch(
                           context: context,
-                          delegate: MySecondTeamClassSearch(
-                              all: secondTeamClassNotifier.secondTeamClassList),
+                          delegate: MySecondTeamClassSearch(all: secondTeamClassNotifier.secondTeamClassList),
                         );
                       },
                       tooltip: "Search",
@@ -485,20 +554,11 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
                   flexibleSpace: FlexibleSpaceBar(
                       title: Align(
                         alignment: Alignment.bottomLeft,
-                        child: Text(
-                            thrownName,
-                            textAlign: TextAlign.start,
-                            style: GoogleFonts.abel(
-                                color: appBarTextColor,
-                                fontSize: 26.0,
-                                fontWeight: FontWeight.bold)),
+                        child: Text(thrownName,
+                            textAlign: TextAlign.start, style: GoogleFonts.abel(color: appBarTextColor, fontSize: 26.0, fontWeight: FontWeight.bold)),
                       ),
-                      background:
-                          StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        stream: FirebaseFirestore.instance
-                            .collection('SliversPages')
-                            .doc('slivers_pages')
-                            .snapshots(),
+                      background: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        stream: FirebaseFirestore.instance.collection('SliversPages').doc('slivers_pages').snapshots(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
                             return const CircularProgressIndicator();
@@ -520,8 +580,7 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
               padding: const EdgeInsets.only(left: 25, right: 10),
               child: Container(
                 margin: const EdgeInsets.only(bottom: 15),
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                 child: ListView.builder(
                   itemBuilder: _buildProductItem,
                   itemCount: secondTeamClassNotifier.secondTeamClassList.length,
@@ -560,27 +619,16 @@ class BackGround extends CustomPainter {
     paint2.strokeWidth = 100;
     paint2.isAntiAlias = true;
 
-    canvas.drawLine(const Offset(300, -120),
-        Offset(size.width + 60, size.width - 280), paint2);
-    canvas.drawLine(const Offset(200, -80),
-        Offset(size.width + 60, size.width - 160), paint);
-    canvas.drawLine(const Offset(100, -40),
-        Offset(size.width + 60, size.width - 40), paint2);
-    canvas.drawLine(
-        const Offset(0, 0), Offset(size.width + 60, size.width + 80), paint);
-    canvas.drawLine(const Offset(-100, 40),
-        Offset(size.width + 60, size.width + 200), paint2);
-    canvas.drawLine(const Offset(-200, 90),
-        Offset(size.width + 60, size.width + 320), paint);
-    canvas.drawLine(const Offset(-300, 140),
-        Offset(size.width + 60, size.width + 440), paint2);
-    canvas.drawLine(const Offset(-400, 190),
-        Offset(size.width + 60, size.width + 560), paint);
-    canvas.drawLine(const Offset(-500, 240),
-        Offset(size.width + 60, size.width + 680), paint2);
-    canvas.drawLine(const Offset(-600, 290),
-        Offset(size.width + 60, size.width + 800), paint);
-
+    canvas.drawLine(const Offset(300, -120), Offset(size.width + 60, size.width - 280), paint2);
+    canvas.drawLine(const Offset(200, -80), Offset(size.width + 60, size.width - 160), paint);
+    canvas.drawLine(const Offset(100, -40), Offset(size.width + 60, size.width - 40), paint2);
+    canvas.drawLine(const Offset(0, 0), Offset(size.width + 60, size.width + 80), paint);
+    canvas.drawLine(const Offset(-100, 40), Offset(size.width + 60, size.width + 200), paint2);
+    canvas.drawLine(const Offset(-200, 90), Offset(size.width + 60, size.width + 320), paint);
+    canvas.drawLine(const Offset(-300, 140), Offset(size.width + 60, size.width + 440), paint2);
+    canvas.drawLine(const Offset(-400, 190), Offset(size.width + 60, size.width + 560), paint);
+    canvas.drawLine(const Offset(-500, 240), Offset(size.width + 60, size.width + 680), paint2);
+    canvas.drawLine(const Offset(-600, 290), Offset(size.width + 60, size.width + 800), paint);
 
 //  var color = Paint();
 //  color.color = Colors.green[800];
@@ -597,7 +645,6 @@ class BackGround extends CustomPainter {
 //  create.lineTo(0, size.height);
 //
 //  canvas.drawPath(create, color);
-
   }
 
   @override

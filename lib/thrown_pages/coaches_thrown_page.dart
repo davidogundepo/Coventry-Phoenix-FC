@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:launch_review/launch_review.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -36,7 +37,7 @@ String aboutClub = "About $clubName";
 // String tablesAndStats = "Tables and Stats";
 String clubAdmin = "Go to Club Admin";
 String acronymMeanings = "Acronym Meanings";
-String aboutApp = "About App";
+String aboutApp = "About Developer";
 
 String fabStats = "Stats";
 
@@ -69,6 +70,9 @@ class MyCoachesPage extends StatefulWidget with NavigationStates {
 }
 
 class _MyCoachesPage extends State<MyCoachesPage> {
+
+  final TextEditingController bugController = TextEditingController();
+
   Widget _buildProductItem(BuildContext context, int index) {
     CoachesNotifier coachesNotifier = Provider.of<CoachesNotifier>(context);
     return Padding(
@@ -218,6 +222,83 @@ class _MyCoachesPage extends State<MyCoachesPage> {
         context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
   }
 
+  void navigateToAppStore(context) async {
+    LaunchReview.launch(
+        androidAppId: 'com.icdatinnovations.coventry_phoenix_fc',
+        iOSAppId: '1637554276'
+    );
+    Navigator.of(context).pop(false);
+  }
+
+  void openReportAppBugDialog(context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        backgroundColor: const Color.fromRGBO(57, 62, 70, 1),
+        title: const Text(
+          'Enter the Bug found please',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: bugController,
+              decoration: const InputDecoration(
+                hintText: 'Describe the bug...',
+                hintStyle: TextStyle(color: Colors.white70),
+              ),
+              style: const TextStyle(
+                color: Colors.white70,
+              ),
+              maxLines: 2, // Allow multiple lines for bug description
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                String bugDescription = bugController.text.trim();
+
+                bugController.clear();
+
+                // Check if bugDescription is not empty before storing
+                if (bugDescription.isNotEmpty) {
+                  // Store bug report in Firestore
+                  await FirebaseFirestore.instance.collection('BugReports').add({
+                    'bug_description': bugDescription,
+                    'timestamp': FieldValue.serverTimestamp(),
+                  });
+
+                  Navigator.pop(context);
+                  // You can add a toast or any other UI feedback for successful bug submission
+                  Fluttertoast.showToast(
+                    msg: 'Bug report submitted!',
+                    backgroundColor: Colors.white,
+                    textColor: Colors.black,
+                  );
+                } else {
+                  // Show a toast for empty bug description
+                  Fluttertoast.showToast(
+                    msg: 'Please enter a bug description',
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                  );
+                }
+              },
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   void _showAdminDialog(BuildContext context) {
     TextEditingController passcodeController = TextEditingController(); // Controller for the passcode TextField
 
@@ -290,7 +371,7 @@ class _MyCoachesPage extends State<MyCoachesPage> {
       msg: 'Welcome, Admin',
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.blueAccent,
       textColor: Colors.white,
       fontSize: 16.0,
     );
@@ -425,6 +506,52 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                                                 navigateToAboutAppDetailsPage(
                                                     context);
                                               },
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              children: [
+                                                InkWell(
+                                                  onTap: () {
+                                                    navigateToAppStore(context);
+                                                  },
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
+                                                    child: Text(
+                                                      'Give App Review',
+                                                      style: GoogleFonts.quantico(
+                                                        fontSize: 15,
+                                                        fontStyle: FontStyle.italic,
+                                                        fontWeight: FontWeight.w700,
+                                                        color: Colors.white70, // Change the color as needed
+                                                        // decoration: TextDecoration.underline,
+                                                        //   decorationColor: Colors.blueAccent,
+                                                        //   decorationThickness: 2.0
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    Navigator.of(context).pop(false);
+                                                    openReportAppBugDialog(context);
+                                                  },
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
+                                                    child: Text(
+                                                      'Report an App Bug',
+                                                      style: GoogleFonts.quantico(
+                                                        fontSize: 15,
+                                                        fontStyle: FontStyle.italic,
+                                                        fontWeight: FontWeight.w700,
+                                                        color: Colors.white70, // Change the color as needed
+                                                        // decoration: TextDecoration.underline,
+                                                        // decorationColor: textColor,
+                                                        // decorationThickness: 2.0
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),

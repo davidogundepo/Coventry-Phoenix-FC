@@ -2,12 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 String clubName = "Coventry Phoenix FC";
-String title = "About App";
-String clubAlmanac = "$clubName AppBook, 2022";
-String developerWebsite = "https://icdatinnovation.web.app/";
+String title = "About Developer";
+String clubAlmanac = "$clubName App, 2023";
+String developerWebsite = "https://novelsoft.co.uk/";
 
 String googlePlayServicesPolicyWebsite =
     "https://play.google.com/about/privacy-security-deception/";
@@ -25,7 +26,7 @@ String mailFIRST = "mailto:";
 String mailSECOND = "?subject=Hello ";
 
 String aboutApp =
-    "PLEASE READ CAREFULLY.\n\nThis AppBook Software was engineered and developed by 'Nouvellesoft.io Inc.'";
+    "PLEASE READ CAREFULLY.\n\nThis GFA (Grassroot Football App Software was engineered and developed by 'Nouvellesoft.io Inc.'";
 String blemish =
     '"Do not be concerned about the blemishes and imperfections you may notice on the software, it is those blemishes that prove that the app is authentic. :)"';
 String copyrightTerms =
@@ -94,15 +95,15 @@ String contactUs = "Contact Us";
 String contactUs1 =
     "If you have any questions or suggestions about our Terms and Conditions, Disclaimer, Privacy Policy, Software do not hesitate to send an email by clicking me too.";
 String termsEtConditionsMore =
-    "For more information about our terms and conditions, please trust and click me.";
+    "For more information about our terms and conditions, please click me.";
 
-Color backgroundColor = const Color.fromRGBO(102, 66, 36, 1);
+Color backgroundColor = const Color.fromRGBO(40, 38, 38, 1.0);
 Color appBarTextColor = Colors.white.withAlpha(250);
-Color appBarBackgroundColor = const Color.fromRGBO(104, 65, 34, 1);
+Color appBarBackgroundColor = const Color.fromRGBO(40, 38, 38, 1.0);
 Color appBarIconColor = Colors.white.withAlpha(250);
-Color cardBackgroundColor = Colors.brown;
+Color cardBackgroundColor =  const Color.fromRGBO(58, 55, 55, 1.0);
 Color headingCardColor = Colors.white.withAlpha(250);
-Color headingCardTextColor = Colors.brown;
+Color headingCardTextColor = const Color.fromRGBO(58, 55, 55, 1.0);
 Color cardTextColor = Colors.white.withAlpha(250);
 
 class AboutAppDetails extends StatefulWidget {
@@ -115,6 +116,22 @@ class AboutAppDetails extends StatefulWidget {
 
 // This class represents the stateful widget that displays the details about the app.
 class _AboutAppDetailsState extends State<AboutAppDetails> {
+
+  final _email = "david.oludepo@gmail.com";
+  final _instagram = "nouvellesoft";
+  final _twitter = "novelsoftinc";
+  final _facebook = "novelsoft";
+  final _linkedIn = "nouvellesoft";
+
+
+  String mailFIRST = "mailto:";
+  String mailSECOND = "?subject=Hello ";
+  String urlTwitter = "https://twitter.com/";
+  String urlFacebook = "https://facebook.com/";
+  String urlLinkedIn = "https://linkedin.com/company/";
+  String urlInstagram = "https://instagram.com/";
+
+
   @override
   Widget build(BuildContext context) {
     // Scaffold widget provides a framework for implementing the basic material design visual layout structure of the app.
@@ -145,6 +162,71 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
             Navigator.pop(context);
           },
         ),
+        actions: [
+          PopupMenuButton<int>(
+            color: Colors.white,
+            icon: const Icon(
+              Icons.more_vert,
+              color: Colors.white,
+            ),
+            itemBuilder: (context) => [
+              const PopupMenuItem<int>(
+                value: 0,
+                child: Text(
+                  "Follow us on Instagram",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              const PopupMenuItem<int>(
+                value: 1,
+                child: Text(
+                  "Follow us on Twitter",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              const PopupMenuItem<int>(
+                value: 2,
+                child: Text(
+                  "Follow us on Facebook",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              const PopupMenuItem<int>(
+                value: 3,
+                child: Text(
+                  "Follow us on LinkedIn",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              const PopupMenuItem<int>(
+                value: 4,
+                child: Text(
+                  "Send us an Email",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+            ],
+            onSelected: (item) {
+              switch (item) {
+                case 0:
+                  launchSocialMedia(_instagram, urlInstagram);
+                  break;
+                case 1:
+                  launchSocialMedia(_twitter, urlTwitter);
+                  break;
+                case 2:
+                  launchSocialMedia(_facebook, urlFacebook);
+                  break;
+                case 3:
+                  launchSocialMedia(_linkedIn, urlLinkedIn);
+                  break;
+                case 4:
+                  launchURL(mailFIRST + _email + mailSECOND);
+                  break;
+              }
+            },
+          ),
+        ],
       ),
       // Body widget of the scaffold.
       body: SingleChildScrollView(
@@ -203,7 +285,7 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                 // Aligns children to the start of the main axis (vertical)
                 mainAxisAlignment: MainAxisAlignment.start,
                 // Aligns children to the end of the cross axis (horizontal)
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   // Adds a centered Card widget at the top of the column with the app title
                   Center(
@@ -230,6 +312,59 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 15),
+                  Wrap(
+                    alignment: WrapAlignment.start,
+                    spacing: -30.0,
+                    runSpacing: 9.0,
+                    children: [
+                      SocialMediaButton(
+                        icon: FontAwesomeIcons.facebook,
+                        onPressed: () {
+                          launchSocialMedia(_facebook, urlFacebook);
+                        },
+                      ),
+                      SocialMediaButton(
+                        icon: FontAwesomeIcons.instagram,
+                        onPressed: () {
+                          launchSocialMedia(_instagram, urlInstagram);
+                        },
+                      ),
+                      SocialMediaButton(
+                        icon: FontAwesomeIcons.linkedin,
+                        onPressed: () {
+                          launchSocialMedia(_linkedIn, urlLinkedIn);
+                        },
+                      ),
+                      SocialMediaButton(
+                        icon: FontAwesomeIcons.twitter,
+                        onPressed: () {
+                          launchSocialMedia(_twitter, urlTwitter);
+                        },
+                      ),
+                      SocialMediaButton(
+                        icon: Icons.email,
+                        onPressed: () {
+                          launchURL(mailFIRST + _email + mailSECOND);
+                        },
+                      ),
+                      SocialMediaButton(
+                        icon: FontAwesomeIcons.calendarCheck,
+                        onPressed: () {
+                          dynamic calendlyUrl = "https://calendly.com/david-oludepo";
+                          launchURL(calendlyUrl);
+                        },
+                      ),
+                      SocialMediaButton(
+                        icon: FontAwesomeIcons.google,
+                        onPressed: () {
+                          dynamic websiteUrl = "https://novelsoft.co.uk";
+                          launchURL(websiteUrl);
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
                   // Adds a RichText widget with multiple TextSpan widgets that contain legal terms and information
                   Padding(
                     padding: const EdgeInsets.only(
@@ -651,8 +786,8 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  launchUrl(
-                                      "${mailFIRST}hello@nouvellesoft.io$mailSECOND" as Uri);
+                                  launchURL(
+                                      "${mailFIRST}hello@nouvellesoft.io$mailSECOND");
                                 }),
                         ],
                       ),
@@ -662,6 +797,50 @@ class _AboutAppDetailsState extends State<AboutAppDetails> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  void launchSocialMedia(String handle, String url) async {
+    final fullUrl = handle.startsWith('@') ? url + handle.substring(1) : url + handle;
+    await launchURL(fullUrl);
+  }
+
+  Future launchURL(String url) async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      scaffoldMessenger.showSnackBar(
+        const SnackBar(content: Text("The required app is not installed.")),
+      );
+    }
+  }
+
+}
+
+class SocialMediaButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  SocialMediaButton({required this.icon, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        shape: const CircleBorder(),
+        elevation: 5.0,
+        backgroundColor: const Color.fromRGBO(102, 97, 97, 1.0)
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Icon(
+          icon,
+          size: 30.0,
+          color: Colors.white,
         ),
       ),
     );

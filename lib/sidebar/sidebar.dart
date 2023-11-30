@@ -619,7 +619,7 @@ class CustomPILLCardShapePainter extends CustomPainter {
 
 void showToast() {
   Fluttertoast.showToast(
-    msg: "Coming Soon",
+    msg: "Coming Soon  ⚽️💎💎",
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.BOTTOM,
     timeInSecForIosWeb: 1,

@@ -17,5 +17,19 @@ getYouTube(YouTubeNotifier youTubeNotifier) async {
     youTubeList.add(youTube);
   }
 
+  youTubeList.sort((a, b) {
+    // Handle null cases by placing nulls at the end
+    if (a.id == null && b.id == null) {
+      return 0;
+    } else if (a.id == null) {
+      return 1;
+    } else if (b.id == null) {
+      return -1;
+    } else {
+      // Use compareTo for non-null values
+      return (int.tryParse(b.id!) ?? 0).compareTo(int.tryParse(a.id!) ?? 0);
+    }
+  });
+
   youTubeNotifier.youTubeList = youTubeList;
 }

@@ -1,9 +1,9 @@
 import 'dart:ui' as ui;
 import 'dart:ui';
 import 'dart:io';
+import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
 import 'package:flutter_spinner_time_picker/flutter_spinner_time_picker.dart';
 import 'package:image/image.dart' as img;
-import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart' as esys;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +16,7 @@ import 'package:provider/provider.dart';
 import '../../api/c_match_day_banner_for_location_api.dart';
 import '../../bloc_navigation_bloc/navigation_bloc.dart';
 import '../../notifier/c_match_day_banner_for_location_notifier.dart';
+import '../club_admin_page.dart';
 
 Color backgroundColor = const Color.fromRGBO(34, 36, 54, 1.0);
 Color appBarTextColor = const Color.fromRGBO(255, 107, 53, 1.0);
@@ -55,13 +56,11 @@ class CreateUpcomingEventSMPost extends StatefulWidget with NavigationStates {
 }
 
 class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
-
-
   String? selectedBannerLowResImageUrl;
   String? selectedBannerHighResImageUrl;
 
-
   GlobalKey _bannerContentKey = GlobalKey();
+  GlobalKey _bannerContentKeyed = GlobalKey();
 
   // Define variables to store form input
   TextEditingController _eventNameController = TextEditingController();
@@ -114,7 +113,6 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
   // Implement a function to handle form submission
   _submitForm() async {
     if (_formKey.currentState!.validate()) {
-
       final firestore = FirebaseFirestore.instance;
       final eventName = _eventNameController.text;
       final eventSummary = _eventSummaryController.text;
@@ -147,9 +145,8 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
           // Add the new member if the name doesn't exist
           await firestore.collection(collectionName).add(data);
 
-          _eventNameController.clear();
-          _eventSummaryController.clear();
-
+          // _eventNameController.clear();
+          // _eventSummaryController.clear();
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -180,101 +177,126 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
     // Create a GlobalKey for the RepaintBoundary
     GlobalKey boundaryKey = GlobalKey();
 
-    return Scaffold(
-        backgroundColor: backgroundColor,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: appBarIconColor,
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+          backgroundColor: backgroundColor,
+          appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: appBarIconColor,
+              ),
+              onPressed: () async {
+                bool shouldPop = await _onWillPop();
+                if (shouldPop) {
+                  Navigator.pop(context);
+                }
+              },
             ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            backgroundColor: appBarBackgroundColor,
+            title: const Text('Create Upcoming Event'),
+            titleTextStyle: TextStyle(color: textColor, fontSize: 20),
           ),
-          backgroundColor: appBarBackgroundColor,
-          title: const Text('Create Upcoming Event'),
-          titleTextStyle: TextStyle(color: textColor, fontSize: 20),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              children: [
-                TextFormField(
-                  cursorColor: Colors.white70,
-                  style: GoogleFonts.cabin(color: textColor),
-                  controller: _eventNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Event Name',
-                    labelStyle: const TextStyle(fontSize: 20, color: Colors.white70),
-                    floatingLabelStyle: TextStyle(color: cardBackgroundColor),
-                    hintText: "U18's Trials",
-                    hintStyle: const TextStyle(color: Colors.white70, fontSize: 13),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: ListView(
+                children: [
+                  TextFormField(
+                    cursorColor: Colors.white70,
+                    style: GoogleFonts.cabin(color: textColor),
+                    controller: _eventNameController,
+                    decoration: InputDecoration(
+                      labelText: 'Event Name',
+                      labelStyle: const TextStyle(fontSize: 20, color: Colors.white70),
+                      floatingLabelStyle: TextStyle(color: cardBackgroundColor),
+                      hintText: "U18's Trials",
+                      hintStyle: const TextStyle(color: Colors.white70, fontSize: 13),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter event title';
+                      }
+                      return null;
+                    },
+                    maxLength: 20,
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter event title';
-                    }
-                    return null;
-                  },
-                  maxLength: 20,
-                ),
-                TextFormField(
-                  cursorColor: Colors.white70,
-                  style: GoogleFonts.cabin(color: textColor),
-                  controller: _eventSummaryController,
-                  decoration: InputDecoration(
-                    labelText: 'Event Summary',
-                    labelStyle: const TextStyle(fontSize: 20, color: Colors.white70),
-                    floatingLabelStyle: TextStyle(color: cardBackgroundColor),
-                    hintText: "Coventry Phoenix will be holding open trials for our new under 18s youth team",
-                    hintStyle: const TextStyle(color: Colors.white70, fontSize: 13),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
+                  TextFormField(
+                    cursorColor: Colors.white70,
+                    style: GoogleFonts.cabin(color: textColor),
+                    controller: _eventSummaryController,
+                    decoration: InputDecoration(
+                      labelText: 'Event Summary',
+                      labelStyle: const TextStyle(fontSize: 20, color: Colors.white70),
+                      floatingLabelStyle: TextStyle(color: cardBackgroundColor),
+                      hintText: "Coventry Phoenix will be holding open trials for our new under 18s youth team",
+                      hintStyle: const TextStyle(color: Colors.white70, fontSize: 13),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter a summary';
+                      }
+                      return null;
+                    },
+                    minLines: 1,
+                    maxLines: null,
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter a summary';
-                    }
-                    return null;
-                  },
-                  minLines: 1,
-                  maxLines: null,
-                ),
-                const SizedBox(height: 60),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      width: MediaQuery.sizeOf(context).width / 4.1,
-                      height: MediaQuery.sizeOf(context).width / 4.1,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: borderColor.withAlpha(20),
-                      ),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () async {
-                            date = await pickDate();
-                            if (date == null) return;
+                  const SizedBox(height: 60),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: MediaQuery.sizeOf(context).width / 4.1,
+                        height: MediaQuery.sizeOf(context).width / 4.1,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: borderColor.withAlpha(20),
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () async {
+                              date = await pickDate();
+                              if (date == null) return;
 
-                            final newDateTime = DateTime(date!.year, date!.month, date!.day, selectedDateA.hour, selectedDateA.minute);
+                              final newDateTime = DateTime(date!.year, date!.month, date!.day, selectedDateA.hour, selectedDateA.minute);
 
-                            setState(() {
-                              selectedDateA = newDateTime;
-                            });
-                          },
-                          splashColor: splashColor,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              date == null
-                                  ? Column(
-                                      children: [
-                                        Text(
-                                          'Select Date',
+                              setState(() {
+                                selectedDateA = newDateTime;
+                              });
+                            },
+                            splashColor: splashColor,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                date == null
+                                    ? Column(
+                                        children: [
+                                          Text(
+                                            'Select Date',
+                                            textAlign: TextAlign.center,
+                                            overflow: TextOverflow.visible,
+                                            style: TextStyle(
+                                              color: materialBackgroundColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Icon(
+                                            Icons.date_range_rounded,
+                                            color: iconColor,
+                                            size: 25,
+                                          )
+                                        ],
+                                      )
+                                    : Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Text(
+                                          getFormattedDate(selectedDateA).toUpperCase(),
                                           textAlign: TextAlign.center,
                                           overflow: TextOverflow.visible,
                                           style: TextStyle(
@@ -283,600 +305,600 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
-                                        const SizedBox(height: 10),
-                                        Icon(
-                                          Icons.date_range_rounded,
-                                          color: iconColor,
-                                          size: 25,
-                                        )
-                                      ],
-                                    )
-                                  : Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Text(
-                                        getFormattedDate(selectedDateA).toUpperCase(),
-                                        textAlign: TextAlign.center,
-                                        overflow: TextOverflow.visible,
-                                        style: TextStyle(
-                                          color: materialBackgroundColor,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
-                                        ),
                                       ),
-                                    ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Text(
-                        'AT',
-                        style: TextStyle(fontSize: 25, color: textColorTwo, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Text(
+                          'AT',
+                          style: TextStyle(fontSize: 25, color: textColorTwo, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                        ),
                       ),
-                    ),
-                    Container(
-                      width: MediaQuery.sizeOf(context).width / 4.1,
-                      height: MediaQuery.sizeOf(context).width / 4.1,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: borderColor.withAlpha(20),
+                      Container(
+                        width: MediaQuery.sizeOf(context).width / 4.1,
+                        height: MediaQuery.sizeOf(context).width / 4.1,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: borderColor.withAlpha(20),
+                        ),
+                        child: Center(
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () {
+                                _showLocationSelectionDialog(); // Show dialog for location selection
+                              },
+                              splashColor: splashColor,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  selectedLocation != null
+                                      ? Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(4.0),
+                                              child: Text(
+                                                selectedLocation!,
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.visible,
+                                                style: TextStyle(
+                                                  color: materialBackgroundColor,
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 5),
+                                            Icon(
+                                              Icons.location_on,
+                                              color: iconColor,
+                                              size: 16,
+                                            ),
+                                            Text(
+                                              selectedLocationPostCode!,
+                                              textAlign: TextAlign.center,
+                                              overflow: TextOverflow.visible,
+                                              style: TextStyle(
+                                                color: materialBackgroundColor,
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : Text(
+                                          'Select Location',
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.visible,
+                                          style: TextStyle(
+                                            color: materialBackgroundColor,
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                  if (selectedLocation == null)
+                                    Column(
+                                      children: [
+                                        const SizedBox(height: 10),
+                                        Icon(
+                                          Icons.add_box_rounded,
+                                          color: iconColor,
+                                          size: 25,
+                                        ),
+                                      ],
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                      child: Center(
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: MediaQuery.sizeOf(context).width / 4.1,
+                        height: MediaQuery.sizeOf(context).width / 4.1,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: borderColor.withAlpha(20),
+                        ),
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
-                            onTap: () {
-                              _showLocationSelectionDialog(); // Show dialog for location selection
+                            onTap: () async {
+                              timeA = await pickTimeA();
+                              if (timeA == null) return;
+
+                              final newDateTime = DateTime(selectedDateA.year, selectedDateA.month, selectedDateA.day, timeA!.hour, timeA!.minute);
+
+                              setState(() {
+                                selectedDateA = newDateTime;
+                              });
                             },
                             splashColor: splashColor,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                selectedLocation != null
+                                timeA == null
                                     ? Column(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(4.0),
-                                            child: Text(
-                                              selectedLocation!,
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.visible,
-                                              style: TextStyle(
-                                                color: materialBackgroundColor,
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(height: 5),
-                                          Icon(
-                                            Icons.location_on,
-                                            color: iconColor,
-                                            size: 16,
-                                          ),
                                           Text(
-                                            selectedLocationPostCode!,
+                                            'Select Time',
                                             textAlign: TextAlign.center,
                                             overflow: TextOverflow.visible,
                                             style: TextStyle(
                                               color: materialBackgroundColor,
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
                                             ),
                                           ),
+                                          const SizedBox(height: 10),
+                                          Icon(
+                                            Icons.date_range_rounded,
+                                            color: iconColor,
+                                            size: 25,
+                                          )
                                         ],
                                       )
-                                    : Text(
-                                        'Select Location',
-                                        textAlign: TextAlign.center,
-                                        overflow: TextOverflow.visible,
-                                        style: TextStyle(
-                                          color: materialBackgroundColor,
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                if (selectedLocation == null)
-                                  Column(
-                                    children: [
-                                      const SizedBox(height: 10),
-                                      Icon(
-                                        Icons.add_box_rounded,
-                                        color: iconColor,
-                                        size: 25,
-                                      ),
-                                    ],
+                                    : Container(),
+                                if (timeA != null)
+                                  Text(
+                                    formattedTimeA,
+                                    // '$hour:$minute',
+                                    textAlign: TextAlign.center,
+                                    overflow: TextOverflow.visible,
+                                    style: TextStyle(
+                                      color: materialBackgroundColor,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
                               ],
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      width: MediaQuery.sizeOf(context).width / 4.1,
-                      height: MediaQuery.sizeOf(context).width / 4.1,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: borderColor.withAlpha(20),
-                      ),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () async {
-                            timeA = await pickTimeA();
-                            if (timeA == null) return;
-
-                            final newDateTime = DateTime(selectedDateA.year, selectedDateA.month, selectedDateA.day, timeA!.hour, timeA!.minute);
-
-                            setState(() {
-                              selectedDateA = newDateTime;
-                            });
-                          },
-                          splashColor: splashColor,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              timeA == null
-                                  ? Column(
-                                      children: [
-                                        Text(
-                                          'Select Time',
-                                          textAlign: TextAlign.center,
-                                          overflow: TextOverflow.visible,
-                                          style: TextStyle(
-                                            color: materialBackgroundColor,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 10),
-                                        Icon(
-                                          Icons.date_range_rounded,
-                                          color: iconColor,
-                                          size: 25,
-                                        )
-                                      ],
-                                    )
-                                  : Container(),
-                              if (timeA != null)
-                                Text(
-                                  formattedTimeA,
-                                  // '$hour:$minute',
-                                  textAlign: TextAlign.center,
-                                  overflow: TextOverflow.visible,
-                                  style: TextStyle(
-                                    color: materialBackgroundColor,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                            ],
-                          ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Text(
+                          'TO',
+                          style: TextStyle(fontSize: 25, color: textColorTwo, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Text(
-                        'TO',
-                        style: TextStyle(fontSize: 25, color: textColorTwo, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.sizeOf(context).width / 4.1,
-                      height: MediaQuery.sizeOf(context).width / 4.1,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: borderColor.withAlpha(20),
-                      ),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () async {
-                            timeB = await pickTimeB();
-                            if (timeB == null) return;
-
-                            final newDateTime = DateTime(selectedDateB.year, selectedDateB.month, selectedDateB.day, timeB!.hour, timeB!.minute);
-
-                            setState(() {
-                              selectedDateB = newDateTime;
-                            });
-                          },
-                          splashColor: splashColor,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              timeB == null
-                                  ? Column(
-                                      children: [
-                                        Text(
-                                          'Select Time',
-                                          textAlign: TextAlign.center,
-                                          overflow: TextOverflow.visible,
-                                          style: TextStyle(
-                                            color: materialBackgroundColor,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 10),
-                                        Icon(
-                                          Icons.date_range_rounded,
-                                          color: iconColor,
-                                          size: 25,
-                                        )
-                                      ],
-                                    )
-                                  : Container(),
-                              if (timeB != null)
-                                Text(
-                                  formattedTimeB,
-                                  // '$hour:$minute',
-                                  textAlign: TextAlign.center,
-                                  overflow: TextOverflow.visible,
-                                  style: TextStyle(
-                                    color: materialBackgroundColor,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                            ],
-                          ),
+                      Container(
+                        width: MediaQuery.sizeOf(context).width / 4.1,
+                        height: MediaQuery.sizeOf(context).width / 4.1,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: borderColor.withAlpha(20),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 60),
-                ElevatedButton(
-                  onPressed: () {
-                    if (checkMissingSteps()) {
-                      _showMissingStepsToast(); // Show toast if any step is missing
-                    } else {
-                      // Generate banner logic goes here when all steps are completed
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            backgroundColor: backgroundColor,
-                            content: RepaintBoundary(
-                              key: boundaryKey,
-                              child: AspectRatio(
-                                aspectRatio: 1.0, // Make the content square
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage('assets/images/cpfc_logo_back_blurred.png'),
-                                      fit: BoxFit.cover,
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () async {
+                              timeB = await pickTimeB();
+                              if (timeB == null) return;
+
+                              final newDateTime = DateTime(selectedDateB.year, selectedDateB.month, selectedDateB.day, timeB!.hour, timeB!.minute);
+
+                              setState(() {
+                                selectedDateB = newDateTime;
+                              });
+                            },
+                            splashColor: splashColor,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                timeB == null
+                                    ? Column(
+                                        children: [
+                                          Text(
+                                            'Select Time',
+                                            textAlign: TextAlign.center,
+                                            overflow: TextOverflow.visible,
+                                            style: TextStyle(
+                                              color: materialBackgroundColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Icon(
+                                            Icons.date_range_rounded,
+                                            color: iconColor,
+                                            size: 25,
+                                          )
+                                        ],
+                                      )
+                                    : Container(),
+                                if (timeB != null)
+                                  Text(
+                                    formattedTimeB,
+                                    // '$hour:$minute',
+                                    textAlign: TextAlign.center,
+                                    overflow: TextOverflow.visible,
+                                    style: TextStyle(
+                                      color: materialBackgroundColor,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   ),
-                                  child: Stack(
-                                    key: _bannerContentKey,
-                                    children: [
-                                      // Top text
-                                      Align(
-                                        alignment: Alignment.topCenter,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Container(
-                                              margin: const EdgeInsets.only(left: 5, top: 19, right: 65),
-                                              child: FittedBox(
-                                                alignment: Alignment.center,
-                                                fit: BoxFit.scaleDown,
-                                                child: Text(
-                                                  _eventNameController.text.toUpperCase(),
-                                                  style: GoogleFonts.metrophobic(
-                                                    color: Colors.yellow,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 20,
-                                                    shadows: [
-                                                      const Shadow(
-                                                        color: Colors.black,
-                                                        offset: Offset(7, 3),
-                                                        blurRadius: 3,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            const SizedBox(height: 20),
-                                            Container(
-                                              padding: const EdgeInsets.only(right: 6),
-                                              margin: const EdgeInsets.only(left: 8, top: 3),
-                                              child: Text(
-                                                _eventSummaryController.text,
-                                                textAlign: TextAlign.justify,
-                                                maxLines: 4,
-                                                overflow: TextOverflow.clip,
-                                                style: GoogleFonts.metrophobic(
-                                                  color: const Color.fromRGBO(199, 177, 153, 1.0),
-                                                  fontWeight: FontWeight.w800,
-                                                  fontSize: 12,
-                                                  shadows: [
-                                                    const Shadow(
-                                                      color: Colors.black,
-                                                      offset: Offset(2, 2),
-                                                      blurRadius: 3,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      // Middle texts
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const SizedBox(height: 40),
-                                            Container(
-                                              margin: const EdgeInsets.only(left: 5, top: 13),
-                                              child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    "WHEN".toUpperCase(),
-                                                    style: GoogleFonts.metrophobic(
-                                                      color: Colors.red,
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: 18,
-                                                      shadows: [
-                                                        const Shadow(
-                                                          color: Colors.black,
-                                                          offset: Offset(2, 2),
-                                                          blurRadius: 3,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 15),
-                                                  Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-                                                        getFormattedDate(selectedDateA).toUpperCase(),
-                                                        style: GoogleFonts.metrophobic(
-                                                          color: const Color.fromRGBO(199, 177, 153, 1.0),
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 10,
-                                                          shadows: [
-                                                            const Shadow(
-                                                              color: Colors.black,
-                                                              offset: Offset(2, 2),
-                                                              blurRadius: 3,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        "$formattedTimeA - $formattedTimeB",
-                                                        style: GoogleFonts.metrophobic(
-                                                          color: Colors.yellow,
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 8,
-                                                          shadows: [
-                                                            const Shadow(
-                                                              color: Colors.black,
-                                                              offset: Offset(2, 2),
-                                                              blurRadius: 3,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            const SizedBox(height: 10),
-                                            Container(
-                                              margin: const EdgeInsets.only(left: 5, top: 5, right: 5),
-                                              child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    "WHERE".toUpperCase(),
-                                                    style: GoogleFonts.metrophobic(
-                                                      color: Colors.red,
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: 18,
-                                                      shadows: [
-                                                        const Shadow(
-                                                          color: Colors.black,
-                                                          offset: Offset(2, 2),
-                                                          blurRadius: 3,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                  Expanded(
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        FittedBox(
-                                                          child: Text(
-                                                            selectedLocation!.toUpperCase(),
-                                                            style: GoogleFonts.metrophobic(
-                                                              color: const Color.fromRGBO(199, 177, 153, 1.0),
-                                                              fontWeight: FontWeight.bold,
-                                                              fontSize: 10,
-                                                              shadows: [
-                                                                const Shadow(
-                                                                  color: Colors.black,
-                                                                  offset: Offset(2, 2),
-                                                                  blurRadius: 3,
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          selectedLocationPostCode!,
-                                                          style: GoogleFonts.metrophobic(
-                                                            color: Colors.yellow,
-                                                            fontWeight: FontWeight.bold,
-                                                            fontSize: 8,
-                                                            shadows: [
-                                                              const Shadow(
-                                                                color: Colors.black,
-                                                                offset: Offset(2, 2),
-                                                                blurRadius: 3,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.bottomCenter,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Container(
-                                              margin: const EdgeInsets.only(top: 10),
-                                              child: Text(
-                                                "All are Welcome!".toUpperCase(),
-                                                style: GoogleFonts.metrophobic(
-                                                  color: const Color.fromRGBO(199, 177, 153, 1.0),
-                                                  fontWeight: FontWeight.w800,
-                                                  fontSize: 13,
-                                                  shadows: [
-                                                    const Shadow(
-                                                      color: Colors.black,
-                                                      offset: Offset(2, 2),
-                                                      blurRadius: 3,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            Container(
-                                              margin: const EdgeInsets.only(left: 5, right: 5, top: 8, bottom: 5),
-                                              child: Expanded(
-                                                child: RichText(
-                                                  maxLines: 2,
-                                                  overflow: TextOverflow.clip,
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text: "Please message us or contact Edwin Greaves on ".toUpperCase(),
-                                                        style: GoogleFonts.metrophobic(
-                                                          color: const Color.fromRGBO(199, 177, 153, 1.0),
-                                                          fontWeight: FontWeight.w800,
-                                                          fontSize: 11,
-                                                          shadows: [
-                                                            const Shadow(
-                                                              color: Colors.black,
-                                                              offset: Offset(2, 2),
-                                                              blurRadius: 3,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      TextSpan(
-                                                        text: "07973370218".toUpperCase(),
-                                                        style: GoogleFonts.metrophobic(
-                                                          color: Colors.yellow,
-                                                          fontWeight: FontWeight.w800,
-                                                          fontSize: 9,
-                                                          shadows: [
-                                                            const Shadow(
-                                                              color: Colors.black,
-                                                              offset: Offset(2, 2),
-                                                              blurRadius: 3,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 60),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (checkMissingSteps()) {
+                        _showMissingStepsToast(); // Show toast if any step is missing
+                      } else {
+                        // Generate banner logic goes here when all steps are completed
+                        _showUploadDialog();
+                      }
+                    },
+                    child: const Text('View Event Design'),
+                  ),
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+
+  void _showUploadDialog() async {
+    // Create a GlobalKey for the RepaintBoundary
+    GlobalKey boundaryKeyed = GlobalKey();
+
+    bool isSharing = false; // Add this variable to track the sharing state
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(builder: (context, setState) {
+          return AlertDialog(
+            backgroundColor: backgroundColor,
+            content: RepaintBoundary(
+              key: boundaryKeyed,
+              child: AspectRatio(
+                aspectRatio: 1.0, // Make the content square
+                child: Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/cpfc_logo_back_blurred.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Stack(
+                    key: _bannerContentKeyed,
+                    children: [
+                      // Top text
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(left: 5, top: 19, right: 65),
+                              child: FittedBox(
+                                alignment: Alignment.center,
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  _eventNameController.text.toUpperCase(),
+                                  style: GoogleFonts.metrophobic(
+                                    color: Colors.yellow,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    shadows: [
+                                      const Shadow(
+                                        color: Colors.black,
+                                        offset: Offset(7, 3),
+                                        blurRadius: 3,
                                       ),
                                     ],
                                   ),
                                 ),
                               ),
                             ),
-                            title: Text(
-                              'Share your Event'.toUpperCase(),
-                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white70),
+                            const SizedBox(height: 20),
+                            Container(
+                              padding: const EdgeInsets.only(right: 6),
+                              margin: const EdgeInsets.only(left: 8, top: 3),
+                              child: Text(
+                                _eventSummaryController.text,
+                                textAlign: TextAlign.justify,
+                                maxLines: 4,
+                                overflow: TextOverflow.clip,
+                                style: GoogleFonts.metrophobic(
+                                  color: const Color.fromRGBO(199, 177, 153, 1.0),
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 12,
+                                  shadows: [
+                                    const Shadow(
+                                      color: Colors.black,
+                                      offset: Offset(2, 2),
+                                      blurRadius: 3,
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text('Cancel', style: TextStyle(color: Colors.white70)),
+                          ],
+                        ),
+                      ),
+                      // Middle texts
+                      Align(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const SizedBox(height: 40),
+                            Container(
+                              margin: const EdgeInsets.only(left: 5, top: 13),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "WHEN".toUpperCase(),
+                                    style: GoogleFonts.metrophobic(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      shadows: [
+                                        const Shadow(
+                                          color: Colors.black,
+                                          offset: Offset(2, 2),
+                                          blurRadius: 3,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 15),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        getFormattedDate(selectedDateA).toUpperCase(),
+                                        style: GoogleFonts.metrophobic(
+                                          color: const Color.fromRGBO(199, 177, 153, 1.0),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                          shadows: [
+                                            const Shadow(
+                                              color: Colors.black,
+                                              offset: Offset(2, 2),
+                                              blurRadius: 3,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Text(
+                                        "$formattedTimeA - $formattedTimeB",
+                                        style: GoogleFonts.metrophobic(
+                                          color: Colors.yellow,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 8,
+                                          shadows: [
+                                            const Shadow(
+                                              color: Colors.black,
+                                              offset: Offset(2, 2),
+                                              blurRadius: 3,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                              TextButton(
-                                onPressed: () async {
-                                  Navigator.of(context).pop();
-                                  await _submitForm();
-                                  _shareContent(boundaryKey);
-                                  Fluttertoast.showToast(
-                                    msg: 'Success! Generated',
-                                    gravity: ToastGravity.BOTTOM,
-                                    backgroundColor: Colors.deepOrangeAccent,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0,
-                                  );
-                                },
-                                child: const Text('Share', style: TextStyle(color: Colors.white70)),
+                            ),
+                            const SizedBox(height: 10),
+                            Container(
+                              margin: const EdgeInsets.only(left: 5, top: 5, right: 5),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "WHERE".toUpperCase(),
+                                    style: GoogleFonts.metrophobic(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      shadows: [
+                                        const Shadow(
+                                          color: Colors.black,
+                                          offset: Offset(2, 2),
+                                          blurRadius: 3,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        FittedBox(
+                                          child: Text(
+                                            selectedLocation!.toUpperCase(),
+                                            style: GoogleFonts.metrophobic(
+                                              color: const Color.fromRGBO(199, 177, 153, 1.0),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10,
+                                              shadows: [
+                                                const Shadow(
+                                                  color: Colors.black,
+                                                  offset: Offset(2, 2),
+                                                  blurRadius: 3,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          selectedLocationPostCode!,
+                                          style: GoogleFonts.metrophobic(
+                                            color: Colors.yellow,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 8,
+                                            shadows: [
+                                              const Shadow(
+                                                color: Colors.black,
+                                                offset: Offset(2, 2),
+                                                blurRadius: 3,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          );
-                        },
-                      );
+                            ),
+                          ],
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(top: 10),
+                              child: Text(
+                                "All are Welcome!".toUpperCase(),
+                                style: GoogleFonts.metrophobic(
+                                  color: const Color.fromRGBO(199, 177, 153, 1.0),
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 13,
+                                  shadows: [
+                                    const Shadow(
+                                      color: Colors.black,
+                                      offset: Offset(2, 2),
+                                      blurRadius: 3,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 5, right: 5, top: 8, bottom: 5),
+                              child: RichText(
+                                maxLines: 2,
+                                overflow: TextOverflow.clip,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: "Please message us or contact Edwin Greaves on ".toUpperCase(),
+                                      style: GoogleFonts.metrophobic(
+                                        color: const Color.fromRGBO(199, 177, 153, 1.0),
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 11,
+                                        shadows: [
+                                          const Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(2, 2),
+                                            blurRadius: 3,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: "07973370218".toUpperCase(),
+                                      style: GoogleFonts.metrophobic(
+                                        color: Colors.yellow,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 9,
+                                        shadows: [
+                                          const Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(2, 2),
+                                            blurRadius: 3,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
 
-                    }
-                  },
-                  child: const Text('View Event Design'),
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ));
+            title: Text(
+              'Share your Event'.toUpperCase(),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white70),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancel', style: TextStyle(color: Colors.white70)),
+              ),
+              isSharing
+                  ? const CircularProgressIndicator() // Show the progress indicator when sharing
+                  : TextButton(
+                      onPressed: () async {
+                        setState(() {
+                          isSharing = true; // Set the state to indicate sharing is in progress
+                        });
+                        // Navigator.of(context).pop();
+                        await _submitForm();
+                        _shareContent(boundaryKeyed);
+                        Fluttertoast.showToast(
+                          msg: 'Success! Generated',
+                          gravity: ToastGravity.BOTTOM,
+                          backgroundColor: Colors.deepOrangeAccent,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
+                        Navigator.of(context).pop(); // Close the dialog after sharing
+                      },
+                      child: const Text('Share', style: TextStyle(color: Colors.white70)),
+                    ),
+            ],
+          );
+        });
+      },
+    );
   }
 
-  Future<List<String>> _shareContent(GlobalKey boundaryKey) async {
+  void _shareContent(GlobalKey boundaryKey) async {
     // Get the RenderObject from the RepaintBoundary using its key
     RenderRepaintBoundary boundary = boundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
 
     // Increase the pixelRatio for higher resolution
     double pixelRatio = 10.0; // You can adjust this value based on your needs
+    double sharePixelRatio = 3.0; // You can adjust this value based on your needs
     ui.Image image = await boundary.toImage(pixelRatio: pixelRatio);
+    ui.Image shareImage = await boundary.toImage(pixelRatio: sharePixelRatio);
 
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    ByteData? shareByteData = await shareImage.toByteData(format: ui.ImageByteFormat.png);
     Uint8List? pngBytes = byteData?.buffer.asUint8List();
+    Uint8List? sharePngBytes = shareByteData?.buffer.asUint8List();
 
     // Generate unique identifiers for the image file names
     String uniqueIdentifierLowRes = DateTime.now().millisecondsSinceEpoch.toString(); // For low-resolution image
@@ -930,24 +952,37 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
       selectedBannerHighResImageUrl = highResDownloadURL;
     });
 
+    String text = "you are invited to our upcoming event. Do check the image for more information:";
+
+    // Share the image with caption and text
+    await Share.file(
+      'Event Information',
+      'event_info.png',
+      sharePngBytes as List<int>,
+      'image/png',
+      text: text,
+    );
+
+    // await Share(sharePngBytes).writeAsBytesSync(bytes);
+
     // Return the high-resolution image URLs
-    return [lowResDownloadURL, highResDownloadURL];
+    // return [lowResDownloadURL, highResDownloadURL];
   }
 
   Future<DateTime?> pickDate() => showDatePicker(
       context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2100), barrierColor: backgroundColor);
 
   Future<TimeOfDay?> pickTimeA() => showSpinnerTimePicker(
-    context,
-    initTime: TimeOfDay(hour: selectedDateA.hour, minute: selectedDateA.minute),
-    is24HourFormat: false,
-  );
+        context,
+        initTime: TimeOfDay(hour: selectedDateA.hour, minute: selectedDateA.minute),
+        is24HourFormat: false,
+      );
 
   Future<TimeOfDay?> pickTimeB() => showSpinnerTimePicker(
-    context,
-    initTime: TimeOfDay(hour: selectedDateB.hour, minute: selectedDateB.minute),
-    is24HourFormat: false,
-  );
+        context,
+        initTime: TimeOfDay(hour: selectedDateB.hour, minute: selectedDateB.minute),
+        is24HourFormat: false,
+      );
 
   void _showLocationSelectionDialog() {
     showDialog(
@@ -1008,7 +1043,6 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
     return false; // Return false if all steps are completed
   }
 
-
   @override
   void initState() {
     MatchDayBannerForLocationNotifier matchDayBannerForLocationNotifier = Provider.of<MatchDayBannerForLocationNotifier>(context, listen: false);
@@ -1021,4 +1055,51 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
       DeviceOrientation.portraitDown,
     ]);
   }
+
+  Future<bool> _onWillPop() async {
+    bool shouldPop = false;
+
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        backgroundColor: dialogBackgroundColor,
+        title: const Text(
+          'Are you sure?',
+          style: TextStyle(color: Colors.white70),
+        ),
+        content: const Text(
+          'Exiting now will discard your current work.',
+          style: TextStyle(color: Colors.white70),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              shouldPop = false;
+              Navigator.of(context).pop();
+            },
+            child: const Text(
+              'Cancel',
+              style: TextStyle(color: Colors.white70),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              shouldPop = true;
+              Navigator.of(context).pop();
+            },
+            child: const Text(
+              'Exit',
+              style: TextStyle(color: Colors.white70),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    return shouldPop;
+  }
+  
 }

@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../bloc_navigation_bloc/navigation_bloc.dart';
@@ -22,6 +22,10 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
   TextEditingController _sponsorNameController = TextEditingController();
   TextEditingController _clubSponsoringSummaryController = TextEditingController();
 
+  String? sponsorName;
+
+  bool _isSubmitting = false;
+
   // Create a GlobalKey for the form
   final _formKey = GlobalKey<FormState>();
 
@@ -34,65 +38,108 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
     return querySnapshot.docs.isNotEmpty;
   }
 
+  Map<String, dynamic> data = {
+    'id': '10',
+    'about_us': '',
+    'address': '',
+    'category': '',
+    'email': '',
+    'facebook': '',
+    'image':
+        'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubSponsors%2Fclub_sponsor_default.jpeg?alt=media&token=20a8e9c6-b2dd-413a-9bbc-cc189d7bfe9f',
+    'image_two':
+        'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubSponsors%2Fclub_sponsor_default.jpeg?alt=media&token=20a8e9c6-b2dd-413a-9bbc-cc189d7bfe9f',
+    'image_three':
+        'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubSponsors%2Fclub_sponsor_default.jpeg?alt=media&token=20a8e9c6-b2dd-413a-9bbc-cc189d7bfe9f',
+    'image_four':
+        'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubSponsors%2Fclub_sponsor_default.jpeg?alt=media&token=20a8e9c6-b2dd-413a-9bbc-cc189d7bfe9f',
+    'image_five':
+        'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubSponsors%2Fclub_sponsor_default.jpeg?alt=media&token=20a8e9c6-b2dd-413a-9bbc-cc189d7bfe9f',
+    'instagram': '',
+    'name': '',
+    'our_services': '',
+    'phone': '',
+    'snapchat': '',
+    'sponsor_icon': '',
+    'twitter': '',
+    'website': '',
+    'youtube': '',
+  };
+
   // Implement a function to handle form submission
   _submitForm() async {
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate() && !_isSubmitting) {
+      setState(() {
+        _isSubmitting = true; // Start submitting
+      });
       final firestore = FirebaseFirestore.instance;
-      final sponsorName = _sponsorNameController.text;
+      sponsorName = _sponsorNameController.text;
       final clubSponsorSummary = _clubSponsoringSummaryController.text;
 
       String collectionName = 'ClubSponsors';
-      Map<String, dynamic> data = {
-        'id': '10',
-        'about_us': clubSponsorSummary,
-        'address': '',
-        'category': '',
-        'email': '',
-        'facebook': '',
-        'image':
-            'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubSponsors%2Fclub_sponsor_default.jpeg?alt=media&token=20a8e9c6-b2dd-413a-9bbc-cc189d7bfe9f',
-        'image_two':
-            'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubSponsors%2Fclub_sponsor_default.jpeg?alt=media&token=20a8e9c6-b2dd-413a-9bbc-cc189d7bfe9f',
-        'image_three':
-            'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubSponsors%2Fclub_sponsor_default.jpeg?alt=media&token=20a8e9c6-b2dd-413a-9bbc-cc189d7bfe9f',
-        'image_four':
-            'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubSponsors%2Fclub_sponsor_default.jpeg?alt=media&token=20a8e9c6-b2dd-413a-9bbc-cc189d7bfe9f',
-        'image_five':
-            'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubSponsors%2Fclub_sponsor_default.jpeg?alt=media&token=20a8e9c6-b2dd-413a-9bbc-cc189d7bfe9f',
-        'instagram': '',
-        'name': sponsorName,
-        'our_services': '',
-        'phone': '',
-        'snapchat': '',
-        'sponsor_icon': '',
-        'twitter': '',
-        'website': '',
-        'youtube': '',
-      };
+
+      // Check if the name already exists
+      bool nameExists = await doesNameExist(sponsorName!, collectionName);
+
+      if (nameExists) {
+        // Show error toast
+        _showErrorToast('Sponsor name already exists.');
+        setState(() {
+          _isSubmitting = false; // Stop submitting
+        });
+        return;
+      }
+
+      // Update the data values
+      data['name'] = sponsorName;
+      data['about_us'] = clubSponsorSummary;
 
       try {
         if (collectionName.isNotEmpty) {
-          data['name'] = sponsorName;
-          data['about_us'] = clubSponsorSummary;
+          /// Add the new member if the name doesn't exist
+          DocumentReference newSponsorRef = await firestore.collection(collectionName).add(data);
 
-          // Add the new member if the name doesn't exist
-          await firestore.collection(collectionName).add(data);
+          // Check if images are selected before calling _uploadAndSaveImages
+          if (_imageOne != null || _imageTwo != null || _imageThree != null || _imageFour != null || _imageFive != null) {
+            // Upload and update images
+            await _uploadAndSaveImages(newSponsorRef.id);
+          }
 
-          _sponsorNameController.clear();
-          _clubSponsoringSummaryController.clear();
+          // Show success toast
+          _showSuccessToast();
+
+          // Update UI to reflect changes
+          setState(() {
+            _sponsorNameController.clear();
+            _clubSponsoringSummaryController.clear();
+
+            // Reset images to null
+            _imageOne = null;
+            _imageTwo = null;
+            _imageThree = null;
+            _imageFour = null;
+            _imageFive = null;
+
+            _isSubmitting = false; // Stop submitting
+          });
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Unsupported role: $collectionName'),
             ),
           );
+          // Update UI to stop submitting
+          setState(() {
+            _isSubmitting = false;
+          });
         }
       } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error creating sponsor: $e'),
-          ),
-        );
+        // Show error toast
+        _showErrorToast(e.toString());
+        // Update UI to stop submitting
+        setState(() {
+          _isSubmitting = false;
+        });
       }
     }
   }
@@ -100,17 +147,36 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
   ////
 
   final ImagePicker _picker = ImagePicker();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   File? _imageOne;
   File? _imageTwo;
   File? _imageThree;
   File? _imageFour;
   File? _imageFive;
-  String _userName = 'name'; // Replace with the actual user's name
 
-  Future<String?> uploadImageToStorage(File imageFile, String imageName) async {
+  Future<void> _uploadAndSaveImages(String documentId) async {
     try {
-      final Reference storageReference = FirebaseStorage.instance.ref().child('players_images').child(_userName).child(imageName);
+      String? imageUrlOne = _imageOne != null ? await _uploadImageToStorage(_imageOne!, 'image_one.jpg') : null;
+      String? imageUrlTwo = _imageTwo != null ? await _uploadImageToStorage(_imageTwo!, 'image_two.jpg') : null;
+      String? imageUrlThree = _imageThree != null ? await _uploadImageToStorage(_imageThree!, 'image_three.jpg') : null;
+      String? imageUrlFour = _imageFour != null ? await _uploadImageToStorage(_imageFour!, 'image_four.jpg') : null;
+      String? imageUrlFive = _imageFive != null ? await _uploadImageToStorage(_imageFive!, 'image_five.jpg') : null;
+
+      // Update Firestore document with image URLs
+      await firestore.collection('ClubSponsors').doc(documentId).update({
+        'image': imageUrlOne ?? data['image'],
+        'image_two': imageUrlTwo ?? data['image_two'],
+        'image_three': imageUrlThree ?? data['image_three'],
+        'image_four': imageUrlFour ?? data['image_four'],
+        'image_five': imageUrlFive ?? data['image_five'],
+      });
+    } catch (e) {
+      print('Error uploading images: $e');
+    }
+  }
+
+  Future<String?> _uploadImageToStorage(File imageFile, String imageName) async {
+    try {
+      final Reference storageReference = FirebaseStorage.instance.ref().child('club_sponsor_images').child(sponsorName!).child(imageName);
       final UploadTask uploadTask = storageReference.putFile(imageFile);
 
       await uploadTask.whenComplete(() {});
@@ -127,79 +193,6 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
     if (image == null) return null;
 
     return File(image.path);
-  }
-
-  Future<void> _checkAndUpdatePhoto(String imageUrl, String imageName) async {
-    try {
-      // Fetch the document based on the user name (or any other criteria)
-      QuerySnapshot querySnapshot = await _firestore
-          .collection('ClubSponsors')
-          .where('name', isEqualTo: _userName) // Replace with the actual field used for user identification
-          .get();
-
-      if (querySnapshot.docs.isNotEmpty) {
-        // Get the first document from the query results
-        DocumentSnapshot documentSnapshot = querySnapshot.docs[0];
-
-        // Update the user document with the new image URL
-        await documentSnapshot.reference.update({imageName: imageUrl});
-      } else {
-        print('Document not found for user: $_userName');
-      }
-    } catch (e) {
-      print('Error updating photo: $e');
-    }
-
-    // Usage
-    // Upload image one to storage
-    String? imageUrlOne = await uploadImageToStorage(_imageOne!, 'image_one.jpg');
-
-    // Check if imageUrlOne is not null before using it
-    if (imageUrlOne != null) {
-      await _checkAndUpdatePhoto(imageUrlOne, 'image_one');
-    } else {
-      print('Image upload failed for image one');
-    }
-
-    // Similarly, for the second image
-    String? imageUrlTwo = await uploadImageToStorage(_imageTwo!, 'image_two.jpg');
-
-    // Check if imageUrlTwo is not null before using it
-    if (imageUrlTwo != null) {
-      await _checkAndUpdatePhoto(imageUrlTwo, 'image_two');
-    } else {
-      print('Image upload failed for image two');
-    }
-
-    // Upload image three to storage
-    String? imageUrlThree = await uploadImageToStorage(_imageOne!, 'image_three.jpg');
-
-    // Check if imageUrlThree is not null before using it
-    if (imageUrlThree != null) {
-      await _checkAndUpdatePhoto(imageUrlThree, 'image_three');
-    } else {
-      print('Image upload failed for image three');
-    }
-
-    // Similarly, for the fourth image
-    String? imageUrlFour = await uploadImageToStorage(_imageTwo!, 'image_four.jpg');
-
-    // Check if imageUrlFour is not null before using it
-    if (imageUrlTwo != null) {
-      await _checkAndUpdatePhoto(imageUrlTwo, 'image_four');
-    } else {
-      print('Image upload failed for image four');
-    }
-
-    // Upload image five to storage
-    String? imageUrlFive = await uploadImageToStorage(_imageOne!, 'image_five.jpg');
-
-    // Check if imageUrlFive is not null before using it
-    if (imageUrlFive != null) {
-      await _checkAndUpdatePhoto(imageUrlFive, 'image_five');
-    } else {
-      print('Image upload failed for image five');
-    }
   }
 
   @override
@@ -243,10 +236,7 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
               const SizedBox(height: 50),
               const Text(
                 "Click to upload sponsor's images (5 max)",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600
-                ),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 30),
               // Display the selected images or placeholder icons
@@ -255,14 +245,13 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
                 children: [
                   InkWell(
                     onTap: () async {
-                      // final File? image = await pickImage();
-                      // if (image != null) {
-                      //   setState(() {
-                      //     _imageOne = image;
-                      //   });
-                      // }
+                      final File? image = await pickImage();
+                      if (image != null) {
+                        setState(() {
+                          _imageOne = image;
+                        });
+                      }
                     },
-                    borderRadius: BorderRadius.circular(10),
                     child: Container(
                         width: MediaQuery.sizeOf(context).width / 4.1,
                         height: MediaQuery.sizeOf(context).width / 3.5,
@@ -272,7 +261,7 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
                           border: Border.all(color: Colors.black, width: 2),
                         ),
                         child: _imageOne != null
-                            ? Image.file(_imageOne!, height: 100, width: 100)
+                            ? Image.file(_imageOne!, height: 100, width: 100, fit: BoxFit.contain)
                             : const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [Icon(Icons.person, size: 60), Text('One')],
@@ -296,7 +285,9 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
                           color: Colors.black.withAlpha(20),
                           border: Border.all(color: Colors.black, width: 2),
                         ),
-                        child: _imageTwo != null ? Image.file(_imageTwo!, height: 100, width: 100) : const Column(
+                        child: _imageTwo != null
+                            ? Image.file(_imageTwo!, height: 100, width: 100, fit: BoxFit.contain)
+                            : const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [Icon(Icons.person, size: 60), Text('Two')],
                               )),
@@ -325,7 +316,9 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
                           color: Colors.black.withAlpha(20),
                           border: Border.all(color: Colors.black, width: 2),
                         ),
-                        child: _imageThree != null ? Image.file(_imageThree!, height: 100, width: 100) : const Column(
+                        child: _imageThree != null
+                            ? Image.file(_imageThree!, height: 100, width: 100, fit: BoxFit.contain)
+                            : const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [Icon(Icons.person, size: 60), Text('Three')],
                               )),
@@ -348,7 +341,9 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
                           color: Colors.black.withAlpha(20),
                           border: Border.all(color: Colors.black, width: 2),
                         ),
-                        child: _imageFour != null ? Image.file(_imageFour!, height: 100, width: 100) : const Column(
+                        child: _imageFour != null
+                            ? Image.file(_imageFour!, height: 100, width: 100, fit: BoxFit.contain)
+                            : const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [Icon(Icons.person, size: 60), Text('Four')],
                               )),
@@ -371,7 +366,9 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
                           color: Colors.black.withAlpha(20),
                           border: Border.all(color: Colors.black, width: 2),
                         ),
-                        child: _imageFive != null ? Image.file(_imageFive!, height: 100, width: 100) : const Column(
+                        child: _imageFive != null
+                            ? Image.file(_imageFive!, height: 100, width: 100, fit: BoxFit.contain)
+                            : const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [Icon(Icons.person, size: 60), Text('Five')],
                               )),
@@ -380,16 +377,44 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
               ),
               const SizedBox(height: 70),
               ElevatedButton(
-                onPressed: _submitForm,
-                child: const Text('Add Club Sponsor'),
+                onPressed: _isSubmitting ? null : _submitForm,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(backgroundColor),
                 ),
+                child: _isSubmitting
+                    ? const CircularProgressIndicator() // Show circular progress indicator
+                    : const Text('Add Club Sponsor'),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  // Function to show a success toast
+  void _showSuccessToast() {
+    Fluttertoast.showToast(
+      msg: "Club sponsor added successfully",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.green,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
+
+  // Function to show an error toast
+  void _showErrorToast(String message) {
+    Fluttertoast.showToast(
+      msg: "Error: $message",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0,
     );
   }
 }

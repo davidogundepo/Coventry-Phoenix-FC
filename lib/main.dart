@@ -1,4 +1,4 @@
-import 'dart:async';
+import  'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coventry_phoenix_fc/notifier/all_club_members_notifier.dart';
@@ -12,7 +12,6 @@ import 'package:coventry_phoenix_fc/club_admin/club_admin_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:coventry_phoenix_fc/notifier/a_upcoming_matches_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/club_sponsors_notifier.dart';
-import 'package:coventry_phoenix_fc/thrown_pages/club_sponsors_thrown_page.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -26,7 +25,6 @@ import 'package:provider/provider.dart';
 import 'api/PushNotificationService.dart';
 import 'api/club_sponsors_api.dart';
 import 'notifier/achievement_images_notifier.dart';
-import 'notifier/b_youtube_notifier.dart';
 import 'notifier/club_arial_notifier.dart';
 import 'notifier/club_captains_notifier.dart';
 import 'notifier/coaches_reviews_comment_notifier.dart';
@@ -264,7 +262,7 @@ class PandCTransitions extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/cpfc_logo_android_ios.jpeg'),
+          image: AssetImage('assets/images/cpfc_logo_android_ios.png'),
           fit: BoxFit.cover,
         ),
       ),
@@ -427,8 +425,8 @@ class PandCTransitions extends StatelessWidget {
       msg: 'Welcome, Admin',
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.BOTTOM,
-      backgroundColor: Colors.white,
-      textColor: Colors.black,
+      backgroundColor: Colors.blueAccent,
+      textColor: Colors.white,
       fontSize: 16.0,
     );
   }

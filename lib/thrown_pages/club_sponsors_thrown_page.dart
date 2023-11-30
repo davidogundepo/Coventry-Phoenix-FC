@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:coventry_phoenix_fc/api/club_sponsors_api.dart';
 import 'package:coventry_phoenix_fc/bloc_navigation_bloc/navigation_bloc.dart';
 import 'package:coventry_phoenix_fc/notifier/club_sponsors_notifier.dart';
 import '../club_admin/club_admin_page.dart';
 import '../main.dart';
-import '../sidebar/sidebar.dart';
 import '../details_pages/club_sponsors_details_page.dart';
 import 'package:coventry_phoenix_fc/sidebar/sidebar_layout.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +40,6 @@ Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
 Color backgroundColor = const Color.fromRGBO(147, 165, 193, 1.0);
 
 class MyClubSponsorsPage extends StatefulWidget with NavigationStates {
-
   final bool fromPage1;
 
   MyClubSponsorsPage({Key? key, this.title, required this.fromPage1}) : super(key: key);
@@ -55,7 +54,6 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
   late AnimationController _animationController;
   late Animation<double> _zoomAnimation;
   int _currentIndex = 0;
-  int _animationCount = 0; // Add a counter variable
 
   @override
   void initState() {
@@ -86,8 +84,7 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
           _currentIndex = 0;
         }
         _animationController.forward(from: 0.0);
-
-        _animationCount++; // Increment the animation count
+        // Increment the animation count
       });
     });
   }
@@ -167,7 +164,7 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
                                         height: double.infinity,
                                         child: PhotoView(
                                           basePosition: const Alignment(0.1, -0.55),
-                                          imageProvider: NetworkImage(imageUrls[i]!),
+                                          imageProvider: CachedNetworkImageProvider(imageUrls[i]!),
                                           loadingBuilder: (context, event) => const Center(
                                             child: CircularProgressIndicator(),
                                           ),

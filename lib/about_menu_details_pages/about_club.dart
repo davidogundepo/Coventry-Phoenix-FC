@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
@@ -19,10 +20,10 @@ String aboutClub = "About $clubName";
 String visionSwipe = "Swipe left on 'OUR VISION STATEMENT'  >>>";
 String visionTitle = "OUR VISION STATEMENT";
 String visionStatement =
-    "Raising the total youth through comprehensive education.";
+    "Fostering the complete development of our youth squads through inclusive training sessions, standout matches, and emphasizing strengths, agility, and teamwork.";
 String missionTitle = "OUR MISSION STATEMENT";
 String missionStatement =
-    "Mobilizing Academic, Moral, Social, Political and Religious tools, by dedicated and vision driven educators in a proactive environment of coaching and learning, which is geared towards impacting and equipping our players to be THE TOTAL YOUTH the world will be proud of.";
+    "Elevating our players through focused coaching, strategic training, and a dynamic environment. We aim to develop their skills, foster agility, and instill a strong sense of teamwork, making them standout athletes on and off the field.";
 
 String coreValues = "OUR CORE VALUES";
 String cvStatement1 = "1. Discipline \n\n";
@@ -33,7 +34,9 @@ String cvStatement5 = "5. Creativity.";
 
 String whyClub = "WHY $clubName?".toUpperCase();
 String whyClubStatement =
-    "$clubName was established on the 3rd of October 2015 out of the vision and passion of Dr. Edwin Greaves to empower today’s youth for tomorrows challenges.\n\nWe offer players (both domestic and international) the opportunity to earn an unparalleled high-quality educational experience. With passionate and  qualified coaching staff, a clean and caring club atmosphere, and the resources to supply players with the skills necessary for their continued personal success, our club looks to help players to realize their potential.";
+    "$clubName was Founded on October 3, 2015, by Chris Corkery and Edwin Greaves, our club is driven by a vision and passion to empower contemporary footballers for competitive games and tournaments. "
+    "We provide players, both domestic and international, with the chance to access an exceptional high-quality educational experience. Supported by a dedicated and qualified coaching staff, a nurturing club environment, and abundant resources, we are committed to equipping players with the skills needed for their ongoing personal success. Our club strives to help players realize their full potential.";
+
 String staffBody = "Staff Body\n\n";
 String staffBodyStatement =
     "We have $coachesPopulation coaching staff and $nonCoachesPopulation non-coaching staff (including management body) in $clubName.";
@@ -73,8 +76,8 @@ String clubArialViews = "Some Arial views of $clubName";
 String clubAchievementsSwipe = "Swipe left or right for more photos";
 String clubAchievements = "Some of our Past Achievements";
 String moreInfoAboutClub =
-    "For more information about $clubName please trust and click me :)";
-String moreInfoAboutClubURL = "https://afcbinley.uk/";
+    "For more information about $clubName please click me";
+String moreInfoAboutClubURL = "https://twitter.com/CovPhoenixFC/";
 
 dynamic coachesPopulation;
 dynamic nonCoachesPopulation;
@@ -134,6 +137,14 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
 
   @override
   void initState() {
+    Fluttertoast.showToast(
+      msg: 'Please Note: Not fully updated', // Show success message (you can replace it with actual banner generation logic)
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.white,
+      textColor: Colors.black,
+      fontSize: 16.0,
+    );
+
     ClubArialNotifier clubArialNotifier =
         Provider.of<ClubArialNotifier>(context, listen: false);
     getClubArial(clubArialNotifier);
@@ -661,16 +672,6 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20, bottom: 10),
-                    child: Text(
-                      trainingSessionsOffered,
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: cardTextColor,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                  Padding(
                     padding:
                         const EdgeInsets.only(left: 20, right: 20, bottom: 10),
                     child: Container(
@@ -1110,7 +1111,7 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                             ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                launchUrl(moreInfoAboutClubURL as Uri);
+                                launchURL(moreInfoAboutClubURL);
                               }),
                       )),
                 ],
@@ -1118,6 +1119,17 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
             ),
           );
         });
+  }
+
+  Future launchURL(String url) async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      scaffoldMessenger.showSnackBar(
+        const SnackBar(content: Text("The required app is not installed.")),
+      );
+    }
   }
 }
 

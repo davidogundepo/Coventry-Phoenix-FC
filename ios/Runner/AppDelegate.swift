@@ -18,30 +18,15 @@ import UserNotifications
         // OneSignal initialization
         OneSignal.initialize("6b1cda87-62bf-44d0-9243-9088805b7909", withLaunchOptions: launchOptions)
 
-        // promptForPushNotifications will show the native iOS notification permission prompt.
-        // We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 😍
-        OneSignal.Notifications.requestPermission { accepted in
-            print("User accepted notifications: \(accepted)")
-        }
+        // No need to request permission here
 
         flutterEngine.run()
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         GeneratedPluginRegistrant.register(with: self.flutterEngine)
 
-        if #available(iOS 10.0, *) {
-            // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate = self
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: { _, _ in }
-            )
-        } else {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
+        // No need to request permission here
+
         application.registerForRemoteNotifications()
         
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)

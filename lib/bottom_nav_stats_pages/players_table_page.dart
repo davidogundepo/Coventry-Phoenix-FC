@@ -295,16 +295,16 @@ class _PlayersTablePageState extends State<PlayersTablePage> {
                 textAlign: TextAlign.left,
                 overflow: TextOverflow.ellipsis,
               ))),
-      GridColumn(
-          columnName: 'assists',
-          width: 50,
-          label: Container(
-              alignment: Alignment.centerLeft,
-              child: const Text(
-                ' A', //'Assists'
-                style: TextStyle(color: Colors.white70),
-                overflow: TextOverflow.ellipsis,
-              ))),
+      // GridColumn(
+      //     columnName: 'assists',
+      //     width: 50,
+      //     label: Container(
+      //         alignment: Alignment.centerLeft,
+      //         child: const Text(
+      //           ' A', //'Assists'
+      //           style: TextStyle(color: Colors.white70),
+      //           overflow: TextOverflow.ellipsis,
+      //         ))),
       GridColumn(
           columnName: 'matches_started',
           width: 50,
@@ -969,7 +969,7 @@ class PlayersTableDataSource extends DataGridSource {
                   columnName: 'matches_played', value: e.matchesPlayed),
               DataGridCell<int>(
                   columnName: 'goals_scored', value: e.goalsScored),
-              DataGridCell<int>(columnName: 'assists', value: e.assists),
+              // DataGridCell<int>(columnName: 'assists', value: e.assists),
               DataGridCell<int>(
                   columnName: 'matches_started', value: e.matchesStarted),
               DataGridCell<int>(

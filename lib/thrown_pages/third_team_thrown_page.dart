@@ -32,7 +32,7 @@ String whoWeAre = "Who We Are";
 String aboutClub = "About $clubName";
 String tablesAndStats = "Tables and Stats";
 String acronymMeanings = "Acronym Meanings";
-String aboutApp = "About App";
+String aboutApp = "About Developer";
 
 String fabStats = "Stats";
 
