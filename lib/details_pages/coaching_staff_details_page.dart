@@ -168,20 +168,20 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
   }
 
   // Define variables to store form input
-  TextEditingController _myClubInceptionController = TextEditingController();
-  TextEditingController _myATFavController = TextEditingController();
-  TextEditingController _myBestMomentInClubController = TextEditingController();
-  TextEditingController _myWorstMomentInClubController = TextEditingController();
-  TextEditingController _myHobbiesController = TextEditingController();
-  TextEditingController _myNationalityController = TextEditingController();
-  TextEditingController _myPhilosophyController = TextEditingController();
-  TextEditingController _myRegionOfOriginController = TextEditingController();
-  TextEditingController _myAutobiographyController = TextEditingController();
-  TextEditingController _myWhyLoveForCoachingController = TextEditingController();
+  final TextEditingController _myClubInceptionController = TextEditingController();
+  final TextEditingController _myATFavController = TextEditingController();
+  final TextEditingController _myBestMomentInClubController = TextEditingController();
+  final TextEditingController _myWorstMomentInClubController = TextEditingController();
+  final TextEditingController _myHobbiesController = TextEditingController();
+  final TextEditingController _myNationalityController = TextEditingController();
+  final TextEditingController _myPhilosophyController = TextEditingController();
+  final TextEditingController _myRegionOfOriginController = TextEditingController();
+  final TextEditingController _myAutobiographyController = TextEditingController();
+  final TextEditingController _myWhyLoveForCoachingController = TextEditingController();
 
   String _selectedCoachingTeamPositionRole = 'Select One'; // Default value
 
-  List<String> _coachingTeamOptions = [
+  final List<String> _coachingTeamOptions = [
     'Select One',
     'Coventry Phoenix 1sts',
     'Coventry Phoenix Reserves',
@@ -219,7 +219,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
   String? formattedDate;
 
   // Create a GlobalKey for the form
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   // Firebase Firestore instance
   final firestore = FirebaseFirestore.instance;
@@ -3393,7 +3393,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
   }
 
   void _showAutobiographyModificationDialog() {
-    final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
+    // final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
 
     showDialog<String>(
       barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
@@ -3406,7 +3406,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Form(
-            key: dialogFormKey,
+            key: _formKey,
             child: ListView(
               children: [
                 DropdownButtonFormField<String>(
@@ -3634,7 +3634,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
   }
 
   void _showImageModificationDialog() {
-    final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
+    // final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
 
     showDialog<String>(
       context: context,
@@ -3646,7 +3646,7 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
-            key: dialogFormKey,
+            key: _formKey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -3654,8 +3654,8 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 240,
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width * .6,
                       child: const Text(
                         'Click each image to replace your profile pictures',
                         style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),

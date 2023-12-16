@@ -77,7 +77,7 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
 
     Timer.periodic(const Duration(seconds: 5), (_) {
       setState(() {
-        _currentIndex++;
+        _currentIndex++; 
 
         // If _currentIndex exceeds the total number of images, reset it to 0
         if (_currentIndex == 5) {

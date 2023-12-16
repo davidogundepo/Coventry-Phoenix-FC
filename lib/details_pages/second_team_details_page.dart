@@ -190,19 +190,19 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
   }
 
   // Define variables to store form input
-  TextEditingController _myOtherPlayPositionController = TextEditingController();
-  TextEditingController _myClubInceptionController = TextEditingController();
-  TextEditingController _myDreamFCController = TextEditingController();
-  TextEditingController _myATFavController = TextEditingController();
-  TextEditingController _myBestMomentInClubController = TextEditingController();
-  TextEditingController _myWorstMomentInClubController = TextEditingController();
-  TextEditingController _myNicknameController = TextEditingController();
-  TextEditingController _myHobbiesController = TextEditingController();
-  TextEditingController _myNationalityController = TextEditingController();
-  TextEditingController _myRegionOfOriginController = TextEditingController();
-  TextEditingController _myAutobiographyController = TextEditingController();
-  TextEditingController _myPhilosophyController = TextEditingController();
-  TextEditingController _myDroplineController = TextEditingController();
+  final TextEditingController _myOtherPlayPositionController = TextEditingController();
+  final TextEditingController _myClubInceptionController = TextEditingController();
+  final TextEditingController _myDreamFCController = TextEditingController();
+  final TextEditingController _myATFavController = TextEditingController();
+  final TextEditingController _myBestMomentInClubController = TextEditingController();
+  final TextEditingController _myWorstMomentInClubController = TextEditingController();
+  final TextEditingController _myNicknameController = TextEditingController();
+  final TextEditingController _myHobbiesController = TextEditingController();
+  final TextEditingController _myNationalityController = TextEditingController();
+  final TextEditingController _myRegionOfOriginController = TextEditingController();
+  final TextEditingController _myAutobiographyController = TextEditingController();
+  final TextEditingController _myPhilosophyController = TextEditingController();
+  final TextEditingController _myDroplineController = TextEditingController();
 
   String _selectedFootballPositionRole = 'Select One'; // Default value
   String _selectedLOrRFootedRole = 'Select One'; // Default value
@@ -211,12 +211,12 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
   String _selectedCaptainRole = 'Select One'; // Default value
   String _selectedCaptainTeamRole = 'Select One'; // Default value
 
-  List<String> _lOrRFootedOptions = ['Select One', 'Right Foot', 'Left Foot'];
-  List<String> _adidasOrNikeOptions = ['Select One', 'Adidas', 'Nike'];
-  List<String> _ronaldoOrMessiOptions = ['Select One', 'Ronaldo', 'Messi'];
-  List<String> _captainOptions = ['Select One', 'Yes', 'No'];
-  List<String> _captainTeamOptions = ['Select One', 'First Team', 'Reserve Team', 'Third Team', 'Under 18 Team', 'Over 35 Team'];
-  List<String> _footballPositionOptions = [
+  final List<String> _lOrRFootedOptions = ['Select One', 'Right Foot', 'Left Foot'];
+  final List<String> _adidasOrNikeOptions = ['Select One', 'Adidas', 'Nike'];
+  final List<String> _ronaldoOrMessiOptions = ['Select One', 'Ronaldo', 'Messi'];
+  final List<String> _captainOptions = ['Select One', 'Yes', 'No'];
+  final List<String> _captainTeamOptions = ['Select One', 'First Team', 'Reserve Team', 'Third Team', 'Under 18 Team', 'Over 35 Team'];
+  final List<String> _footballPositionOptions = [
     'Select One',
     'Goalkeeper',
     'Center Forward',
@@ -261,7 +261,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
   String? formattedDate;
 
   // Create a GlobalKey for the form
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   // Firebase Firestore instance
   final firestore = FirebaseFirestore.instance;
@@ -4997,7 +4997,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
   }
 
   void _showAutobiographyModificationDialog() {
-    final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
+    // final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
 
     showDialog<String>(
       barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
@@ -5010,7 +5010,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Form(
-            key: dialogFormKey,
+            key: _formKey,
             child: ListView(
               children: [
                 DropdownButtonFormField<String>(
@@ -5386,7 +5386,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
   }
 
   void _showImageModificationDialog() {
-    final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
+    // final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
 
     showDialog<String>(
       context: context,
@@ -5398,7 +5398,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
-            key: dialogFormKey,
+            key: _formKey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -5406,15 +5406,15 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 240,
-                      child: Text(
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width * .6,
+                      child: const Text(
                         'Click each image to replace your profile pictures',
                         style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
@@ -5438,7 +5438,7 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 // Display the selected images or placeholder icons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -5487,13 +5487,13 @@ class _SecondTeamClassDetailsPage extends State<SecondTeamClassDetailsPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 // Button to upload the selected images to Firebase Storage
                 ElevatedButton(
                   onPressed: () async {
                     await _checkAndUpdatePhoto();
                   },
-                  child: Text('Upload Photos'),
+                  child: const Text('Upload Photos'),
                 ),
               ],
             ),

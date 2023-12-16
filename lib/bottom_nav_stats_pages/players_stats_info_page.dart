@@ -169,6 +169,8 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
 
   int sharedValue = 0;
 
+  late PlayerOfTheMonthStatsAndInfoNotifier playerOfTheMonthStatsAndInfoNotifier;
+
   @override
   Widget build(BuildContext context) {
     Offset distance = isPressed ? const Offset(2, -2) : const Offset(2, -2);
@@ -190,7 +192,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
     MostFouledRCPlayersStatsAndInfoNotifier mostFouledRCPlayersStatsAndInfoNotifier =
         Provider.of<MostFouledRCPlayersStatsAndInfoNotifier>(context, listen: true);
 
-    PlayerOfTheMonthStatsAndInfoNotifier playerOfTheMonthStatsAndInfoNotifier = Provider.of<PlayerOfTheMonthStatsAndInfoNotifier>(context);
+    playerOfTheMonthStatsAndInfoNotifier = Provider.of<PlayerOfTheMonthStatsAndInfoNotifier>(context);
 
     MOTMPlayersStatsAndInfoNotifier motmPlayersStatsAndInfoNotifier = Provider.of<MOTMPlayersStatsAndInfoNotifier>(context);
 
@@ -2823,761 +2825,10 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                         ),
                                       ),
                                       onTap: () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) => Stack(
-                                            children: [
-                                              if (playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList.isEmpty) ...[
-                                                Center(
-                                                  child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                    children: [
-                                                      Container(
-                                                          // height: 120,
-                                                          child: Lottie.asset(
-                                                        lottieJsonPOTMTitle,
-                                                        // width: MediaQuery.of(context).size.width * 0.80,
-                                                        height: 200,
-                                                        fit: BoxFit.contain,
-                                                      )),
-                                                      const SizedBox(height: 20),
-                                                      Text(
-                                                        potmEmptyTitle,
-                                                        style: TextStyle(
-                                                          color: potmColorSix,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                )
-                                              ] else ...[
-                                                AlertDialog(
-                                                  shape: const RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  contentPadding: const EdgeInsets.all(10),
-                                                  backgroundColor: dialogColor,
-                                                  content: ConfettiWidget(
-                                                    createParticlePath: drawStar,
-                                                    confettiController: _controllerTopCenter,
-                                                    blastDirection: -pi / 2,
-                                                    maxBlastForce: 50,
-                                                    // set a lower max blast force
-                                                    minBlastForce: 20,
-                                                    // set a lower min blast force
-                                                    emissionFrequency: 0.035,
-                                                    blastDirectionality: BlastDirectionality.explosive,
-                                                    numberOfParticles: 50,
-                                                    // a lot of particles at once
-                                                    gravity: 0.1,
-                                                    child: SizedBox(
-                                                      width: MediaQuery.of(context).size.width,
-                                                      height: MediaQuery.of(context).size.height * 0.6,
-                                                      child: ListView.builder(
-                                                        itemExtent: MediaQuery.of(context).size.height * 0.585,
-                                                        shrinkWrap: true,
-                                                        itemCount: playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList.length,
-                                                        itemBuilder: (context, index) => Stack(
-                                                          alignment: AlignmentDirectional.topStart,
-                                                          // fit: StackFit.loose,
-                                                          children: [
-                                                            Align(
-                                                              alignment: Alignment.centerLeft,
-                                                              child: SizedBox(
-                                                                width: MediaQuery.of(context).size.width * .43,
-                                                                height: MediaQuery.of(context).size.height * 2,
-                                                                child: Image(
-                                                                  height: double.infinity,
-                                                                  width: double.infinity,
-                                                                  image: CachedNetworkImageProvider(
-                                                                    playerOfTheMonthStatsAndInfoNotifier
-                                                                        .playerOfTheMonthStatsAndInfoList[index].image!,
-                                                                    scale: 0.2,
-                                                                  ),
-                                                                  fit: BoxFit.cover,
-                                                                  color: Colors.grey,
-                                                                  colorBlendMode: BlendMode.softLight,
-                                                                  alignment: const Alignment(0.4, -1),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Align(
-                                                              alignment: Alignment.centerRight,
-                                                              child: SizedBox(
-                                                                // color: Colors.green,
-                                                                height: MediaQuery.of(context).size.height,
-                                                                // height: 500,
-                                                                width: MediaQuery.of(context).size.width,
-                                                                child: Image.asset(
-                                                                  assetPOTMBackgroundTitle,
-                                                                  fit: BoxFit.cover,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Align(
-                                                              alignment: Alignment.topRight,
-                                                              child: Column(
-                                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                                crossAxisAlignment: CrossAxisAlignment.end,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: const EdgeInsets.only(right: 40),
-                                                                    child: Image.asset(
-                                                                      assetPOTMMVPTitle,
-                                                                      width: MediaQuery.of(context).size.width * 0.35,
-                                                                    ),
-                                                                  ),
+                                        // playerOfTheMonthStatsAndInfoNotifier =
+                                        //     Provider.of<PlayerOfTheMonthStatsAndInfoNotifier>(context, listen: true);
+                                        showCustomDialog(context);
 
-                                                                  if (playerOfTheMonthStatsAndInfoNotifier
-                                                                          .playerOfTheMonthStatsAndInfoList[index].playerPosition
-                                                                          .toString()
-                                                                          .toLowerCase() ==
-                                                                      'gk') ...[
-                                                                    Column(
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: const EdgeInsets.only(right: 10),
-                                                                          child: SizedBox(
-                                                                            width: MediaQuery.of(context).size.width * 0.35,
-                                                                            child: Text(
-                                                                              playerOfTheMonthStatsAndInfoNotifier
-                                                                                  .playerOfTheMonthStatsAndInfoList[index].playerName!
-                                                                                  .replaceAll(" ", "\n"),
-                                                                              style: GoogleFonts.rubikMicrobe(
-                                                                                  color: dialogColor,
-                                                                                  fontSize: 30,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                  height: 0.81),
-                                                                              overflow: TextOverflow.ellipsis,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        const SizedBox(height: 40),
-                                                                        Column(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier
-                                                                                      .playerOfTheMonthStatsAndInfoList[index].goalsConcededGkDef
-                                                                                      .toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(
-                                                                                      color: dialogColor,
-                                                                                      fontSize: 30,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      fontStyle: FontStyle.italic),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerGoalsConcededTwoTitle,
-                                                                                  style: GoogleFonts.arimo(
-                                                                                    color: containerColor,
-                                                                                    fontSize: 14,
-                                                                                    fontWeight: FontWeight.w200,
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            const SizedBox(height: 15),
-                                                                          ],
-                                                                        ),
-                                                                        Column(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier
-                                                                                      .playerOfTheMonthStatsAndInfoList[index].cleanSheetGk
-                                                                                      .toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(
-                                                                                      color: dialogColor,
-                                                                                      fontSize: 30,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      fontStyle: FontStyle.italic),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerCleanSheetTitle,
-                                                                                  style: GoogleFonts.arimo(
-                                                                                    color: containerColor,
-                                                                                    fontSize: 14,
-                                                                                    fontWeight: FontWeight.w200,
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            const SizedBox(height: 15),
-                                                                          ],
-                                                                        ),
-                                                                        Column(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier
-                                                                                      .playerOfTheMonthStatsAndInfoList[index].matchesPlayed
-                                                                                      .toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(
-                                                                                      color: dialogColor,
-                                                                                      fontSize: 30,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      fontStyle: FontStyle.italic),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  matchesPlayedTitle,
-                                                                                  style: GoogleFonts.arimo(
-                                                                                    color: containerColor,
-                                                                                    fontSize: 14,
-                                                                                    fontWeight: FontWeight.w200,
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            const SizedBox(height: 80),
-                                                                          ],
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ] else if (playerOfTheMonthStatsAndInfoNotifier
-                                                                              .playerOfTheMonthStatsAndInfoList[index].playerPosition
-                                                                              .toString()
-                                                                              .toLowerCase() ==
-                                                                          'cb' ||
-                                                                      playerOfTheMonthStatsAndInfoNotifier
-                                                                              .playerOfTheMonthStatsAndInfoList[index].playerPosition
-                                                                              .toString()
-                                                                              .toLowerCase() ==
-                                                                          'lb' ||
-                                                                      playerOfTheMonthStatsAndInfoNotifier
-                                                                              .playerOfTheMonthStatsAndInfoList[index].playerPosition
-                                                                              .toString()
-                                                                              .toLowerCase() ==
-                                                                          'rb') ...[
-                                                                    Column(
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: const EdgeInsets.only(right: 10),
-                                                                          child: SizedBox(
-                                                                            width: MediaQuery.of(context).size.width * 0.35,
-                                                                            child: Text(
-                                                                              playerOfTheMonthStatsAndInfoNotifier
-                                                                                  .playerOfTheMonthStatsAndInfoList[index].playerName!
-                                                                                  .replaceAll(" ", "\n"),
-                                                                              style: GoogleFonts.rubikMicrobe(
-                                                                                  color: dialogColor,
-                                                                                  fontSize: 25,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                  height: 0.81),
-                                                                              overflow: TextOverflow.ellipsis,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        const SizedBox(height: 30),
-                                                                        Column(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier
-                                                                                      .playerOfTheMonthStatsAndInfoList[index].playerPosition
-                                                                                      .toString()
-                                                                                      .toUpperCase(),
-                                                                                  style: GoogleFonts.rubikMicrobe(
-                                                                                      color: dialogColor,
-                                                                                      fontSize: 30,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      fontStyle: FontStyle.italic),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerPositionTwoTitle,
-                                                                                  style: GoogleFonts.arimo(
-                                                                                    color: containerColor,
-                                                                                    fontSize: 14,
-                                                                                    fontWeight: FontWeight.w200,
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            const SizedBox(height: 15),
-                                                                          ],
-                                                                        ),
-                                                                        Column(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier
-                                                                                      .playerOfTheMonthStatsAndInfoList[index].goalsConcededGkDef
-                                                                                      .toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(
-                                                                                      color: dialogColor,
-                                                                                      fontSize: 30,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      fontStyle: FontStyle.italic),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerGoalsConcededTwoTitle,
-                                                                                  style: GoogleFonts.arimo(
-                                                                                    color: containerColor,
-                                                                                    fontSize: 14,
-                                                                                    fontWeight: FontWeight.w200,
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            const SizedBox(height: 15),
-                                                                          ],
-                                                                        ),
-                                                                        Column(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier
-                                                                                      .playerOfTheMonthStatsAndInfoList[index].matchesPlayed
-                                                                                      .toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(
-                                                                                      color: dialogColor,
-                                                                                      fontSize: 30,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      fontStyle: FontStyle.italic),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  matchesPlayedTitle,
-                                                                                  style: GoogleFonts.arimo(
-                                                                                    color: containerColor,
-                                                                                    fontSize: 14,
-                                                                                    fontWeight: FontWeight.w200,
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            const SizedBox(height: 80),
-                                                                          ],
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ] else ...[
-                                                                    Column(
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: const EdgeInsets.only(right: 10),
-                                                                          child: SizedBox(
-                                                                            width: MediaQuery.of(context).size.width * 0.35,
-                                                                            child: Text(
-                                                                              playerOfTheMonthStatsAndInfoNotifier
-                                                                                  .playerOfTheMonthStatsAndInfoList[index].playerName!
-                                                                                  .replaceAll(" ", "\n"),
-                                                                              style: GoogleFonts.rubikMicrobe(
-                                                                                  color: dialogColor,
-                                                                                  fontSize: 25,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                  height: 0.81),
-                                                                              overflow: TextOverflow.ellipsis,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        const SizedBox(height: 30),
-                                                                        Column(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier
-                                                                                      .playerOfTheMonthStatsAndInfoList[index].goalsScored
-                                                                                      .toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(
-                                                                                      color: dialogColor,
-                                                                                      fontSize: 30,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      fontStyle: FontStyle.italic),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerGoalsScoredTwoTitle,
-                                                                                  style: GoogleFonts.arimo(
-                                                                                    color: containerColor,
-                                                                                    fontSize: 14,
-                                                                                    fontWeight: FontWeight.w200,
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            const SizedBox(height: 15),
-                                                                          ],
-                                                                        ),
-                                                                        Column(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier
-                                                                                      .playerOfTheMonthStatsAndInfoList[index].assists
-                                                                                      .toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(
-                                                                                      color: dialogColor,
-                                                                                      fontSize: 30,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      fontStyle: FontStyle.italic),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerAssistsTwoTitle,
-                                                                                  style: GoogleFonts.arimo(
-                                                                                    color: containerColor,
-                                                                                    fontSize: 14,
-                                                                                    fontWeight: FontWeight.w200,
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            const SizedBox(height: 15),
-                                                                          ],
-                                                                        ),
-                                                                        Column(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  playerOfTheMonthStatsAndInfoNotifier
-                                                                                      .playerOfTheMonthStatsAndInfoList[index].matchesPlayed
-                                                                                      .toString(),
-                                                                                  style: GoogleFonts.rubikMicrobe(
-                                                                                      color: dialogColor,
-                                                                                      fontSize: 30,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      fontStyle: FontStyle.italic),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 10),
-                                                                              child: SizedBox(
-                                                                                width: MediaQuery.of(context).size.width * 0.35,
-                                                                                child: Text(
-                                                                                  matchesPlayedTitle,
-                                                                                  style: GoogleFonts.arimo(
-                                                                                    color: containerColor,
-                                                                                    fontSize: 14,
-                                                                                    fontWeight: FontWeight.w200,
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            const SizedBox(height: 20),
-                                                                          ],
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ],
-
-                                                                  // Column(
-                                                                  //   children: [
-                                                                  //     Padding(
-                                                                  //       padding: const EdgeInsets.only(right: 10),
-                                                                  //       child: Container(
-                                                                  //         width: MediaQuery.of(context).size.width * 0.35,
-                                                                  //         child: Text(
-                                                                  //           playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerName!.replaceAll(" ", "\n"),
-                                                                  //           style: GoogleFonts.rubikMicrobe(
-                                                                  //               color: Color.fromRGBO(184, 106, 65, 1.0),
-                                                                  //               fontSize: 30,
-                                                                  //             fontWeight: FontWeight.bold,
-                                                                  //             height: 0.81
-                                                                  //           ),
-                                                                  //           overflow: TextOverflow.ellipsis,
-                                                                  //         ),
-                                                                  //       ),
-                                                                  //     ),
-                                                                  //     const SizedBox(height: 40),
-                                                                  //     Column(
-                                                                  //       children: [
-                                                                  //         Padding(
-                                                                  //           padding: const EdgeInsets.only(right: 10),
-                                                                  //           child: Container(
-                                                                  //             width: MediaQuery.of(context).size.width * 0.35,
-                                                                  //             child: Text(
-                                                                  //               playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].goalsScored.toString(),
-                                                                  //               style: GoogleFonts.rubikMicrobe(
-                                                                  //                   color: Color.fromRGBO(184, 106, 65, 1.0),
-                                                                  //                   fontSize: 30,
-                                                                  //                   fontWeight: FontWeight.bold,
-                                                                  //                   fontStyle: FontStyle.italic
-                                                                  //               ),
-                                                                  //             ),
-                                                                  //           ),
-                                                                  //         ),
-                                                                  //         Padding(
-                                                                  //           padding: const EdgeInsets.only(right: 10),
-                                                                  //           child: Container(
-                                                                  //             width: MediaQuery.of(context).size.width * 0.35,
-                                                                  //             child: Text(
-                                                                  //               'Goals Scored',
-                                                                  //               style: GoogleFonts.arimo(
-                                                                  //                 color: Colors.white70,
-                                                                  //                 fontSize: 14,
-                                                                  //                 fontWeight: FontWeight.w200,
-                                                                  //
-                                                                  //               ),
-                                                                  //             ),
-                                                                  //           ),
-                                                                  //         ),
-                                                                  //         const SizedBox(height: 15),
-                                                                  //       ],
-                                                                  //     ),
-                                                                  //     Column(
-                                                                  //       children: [
-                                                                  //         Padding(
-                                                                  //           padding: const EdgeInsets.only(right: 10),
-                                                                  //           child: Container(
-                                                                  //             width: MediaQuery.of(context).size.width * 0.35,
-                                                                  //             child: Text(
-                                                                  //               playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].assists.toString(),
-                                                                  //               style: GoogleFonts.rubikMicrobe(
-                                                                  //                   color: Color.fromRGBO(184, 106, 65, 1.0),
-                                                                  //                   fontSize: 30,
-                                                                  //                   fontWeight: FontWeight.bold,
-                                                                  //                   fontStyle: FontStyle.italic
-                                                                  //               ),
-                                                                  //             ),
-                                                                  //           ),
-                                                                  //         ),
-                                                                  //         Padding(
-                                                                  //           padding: const EdgeInsets.only(right: 10),
-                                                                  //           child: Container(
-                                                                  //             width: MediaQuery.of(context).size.width * 0.35,
-                                                                  //             child: Text(
-                                                                  //               'Assists Provided',
-                                                                  //               style: GoogleFonts.arimo(
-                                                                  //                 color: Colors.white70,
-                                                                  //                 fontSize: 14,
-                                                                  //                 fontWeight: FontWeight.w200,
-                                                                  //
-                                                                  //               ),
-                                                                  //             ),
-                                                                  //           ),
-                                                                  //         ),
-                                                                  //         const SizedBox(height: 15),
-                                                                  //       ],
-                                                                  //     ),
-                                                                  //     Column(
-                                                                  //       children: [
-                                                                  //         Padding(
-                                                                  //           padding: const EdgeInsets.only(right: 10),
-                                                                  //           child: Container(
-                                                                  //             width: MediaQuery.of(context).size.width * 0.35,
-                                                                  //             child: Text(
-                                                                  //               playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].matchesPlayed.toString(),
-                                                                  //               style: GoogleFonts.rubikMicrobe(
-                                                                  //                   color: Color.fromRGBO(184, 106, 65, 1.0),
-                                                                  //                   fontSize: 30,
-                                                                  //                   fontWeight: FontWeight.bold,
-                                                                  //                   fontStyle: FontStyle.italic
-                                                                  //               ),
-                                                                  //             ),
-                                                                  //           ),
-                                                                  //         ),
-                                                                  //         Padding(
-                                                                  //           padding: const EdgeInsets.only(right: 10),
-                                                                  //           child: Container(
-                                                                  //             width: MediaQuery.of(context).size.width * 0.35,
-                                                                  //             child: Text(
-                                                                  //               'Matches Played',
-                                                                  //               style: GoogleFonts.arimo(
-                                                                  //                 color: Colors.white70,
-                                                                  //                 fontSize: 14,
-                                                                  //                 fontWeight: FontWeight.w200,
-                                                                  //
-                                                                  //               ),
-                                                                  //             ),
-                                                                  //           ),
-                                                                  //         ),
-                                                                  //         const SizedBox(height: 80),
-                                                                  //       ],
-                                                                  //     ),
-                                                                  //   ],
-                                                                  // ),
-
-                                                                  Column(
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: const EdgeInsets.only(right: 10),
-                                                                        child: SizedBox(
-                                                                          width: MediaQuery.of(context).size.width * 0.65,
-                                                                          child: FittedBox(
-                                                                            fit: BoxFit.scaleDown,
-                                                                            child: Text(
-                                                                              potmTwoTitle,
-                                                                              style: GoogleFonts.orbitron(
-                                                                                color: dialogColor,
-                                                                                fontSize: 14,
-                                                                                fontWeight: FontWeight.bold,
-                                                                              ),
-                                                                              textAlign: TextAlign.center,
-                                                                              overflow: TextOverflow.ellipsis,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: const EdgeInsets.only(top: 4),
-                                                                        child: SizedBox(
-                                                                          width: MediaQuery.of(context).size.width * 0.65,
-                                                                          child: Text(
-                                                                            presentedByTitle,
-                                                                            style: GoogleFonts.arimo(
-                                                                                color: containerColor,
-                                                                                fontSize: 14,
-                                                                                fontWeight: FontWeight.w200,
-                                                                                fontStyle: FontStyle.italic),
-                                                                            textAlign: TextAlign.center,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: const EdgeInsets.only(top: 5),
-                                                                        child: SizedBox(
-                                                                          width: MediaQuery.of(context).size.width * 0.65,
-                                                                          child: Text(
-                                                                            nouvellesoftTitle,
-                                                                            style: GoogleFonts.zenDots(
-                                                                              color: containerColor,
-                                                                              fontSize: 15,
-                                                                              fontWeight: FontWeight.bold,
-                                                                            ),
-                                                                            textAlign: TextAlign.center,
-                                                                            overflow: TextOverflow.ellipsis,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                if (Platform.isAndroid) ...[
-                                                  Positioned(
-                                                    top: MediaQuery.of(context).size.height * 0.19,
-                                                    right: MediaQuery.of(context).size.width * 0.14,
-                                                    child: GestureDetector(
-                                                      onTap: () {
-                                                        Navigator.pop(context);
-                                                      },
-                                                      child: Container(
-                                                        width: 30,
-                                                        height: 30,
-                                                        decoration: BoxDecoration(
-                                                          color: potmColorSeven,
-                                                          shape: BoxShape.rectangle,
-                                                          borderRadius: BorderRadius.circular(6.0),
-                                                        ),
-                                                        child: const Align(
-                                                          alignment: Alignment.center,
-                                                          child: Icon(Icons.close, color: Colors.deepOrangeAccent),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ] else if (Platform.isIOS) ...[
-                                                  Positioned(
-                                                    top: MediaQuery.of(context).size.height * 0.165,
-                                                    right: MediaQuery.of(context).size.width * 0.14,
-                                                    child: GestureDetector(
-                                                      onTap: () {
-                                                        Navigator.pop(context);
-                                                      },
-                                                      child: Container(
-                                                        width: 30,
-                                                        height: 30,
-                                                        decoration: BoxDecoration(
-                                                          color: potmColorSeven,
-                                                          shape: BoxShape.rectangle,
-                                                          borderRadius: BorderRadius.circular(6.0),
-                                                        ),
-                                                        child: const Align(
-                                                          alignment: Alignment.center,
-                                                          child: Icon(
-                                                            Icons.close,
-                                                            color: Colors.deepOrangeAccent,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ],
-                                            ],
-                                          ),
-                                        );
                                       },
                                     ),
                                   ),
@@ -3599,6 +2850,1665 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
         ),
       ),
     );
+  }
+
+  void _showSmallScreenDialog(BuildContext context) {
+
+    showDialog(
+      context: context,
+      builder: (context) => Stack(
+        children: [
+          if (playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList.isEmpty) ...[
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    // height: 120,
+                      child: Lottie.asset(
+                        lottieJsonPOTMTitle,
+                        // width: MediaQuery.of(context).size.width * 0.80,
+                        height: 200,
+                        fit: BoxFit.contain,
+                      )),
+                  const SizedBox(height: 20),
+                  Text(
+                    potmEmptyTitle,
+                    style: TextStyle(
+                      color: potmColorSix,
+                    ),
+                  )
+                ],
+              ),
+            )
+          ] else ...[
+            AlertDialog(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              ),
+              contentPadding: const EdgeInsets.all(10),
+              backgroundColor: dialogColor,
+              content: ConfettiWidget(
+                createParticlePath: drawStar,
+                confettiController: _controllerTopCenter,
+                blastDirection: -pi / 2,
+                maxBlastForce: 50,
+                // set a lower max blast force
+                minBlastForce: 20,
+                // set a lower min blast force
+                emissionFrequency: 0.035,
+                blastDirectionality: BlastDirectionality.explosive,
+                numberOfParticles: 50,
+                // a lot of particles at once
+                gravity: 0.1,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.6,
+                  child: ListView.builder(
+                    itemExtent: MediaQuery.of(context).size.height * 0.585,
+                    shrinkWrap: true,
+                    itemCount: playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList.length,
+                    itemBuilder: (context, index) => Stack(
+                      alignment: AlignmentDirectional.topStart,
+                      // fit: StackFit.loose,
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * .43,
+                            height: MediaQuery.of(context).size.height * 2,
+                            child: Image(
+                              height: double.infinity,
+                              width: double.infinity,
+                              image: CachedNetworkImageProvider(
+                                playerOfTheMonthStatsAndInfoNotifier
+                                    .playerOfTheMonthStatsAndInfoList[index].image!,
+                                scale: 0.2,
+                              ),
+                              fit: BoxFit.cover,
+                              color: Colors.grey,
+                              colorBlendMode: BlendMode.softLight,
+                              alignment: const Alignment(0.4, -1),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: SizedBox(
+                            // color: Colors.green,
+                            height: MediaQuery.of(context).size.height,
+                            // height: 500,
+                            width: MediaQuery.of(context).size.width,
+                            child: Image.asset(
+                              assetPOTMBackgroundTitle,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 40),
+                                child: Image.asset(
+                                  assetPOTMMVPTitle,
+                                  width: MediaQuery.of(context).size.width * 0.35,
+                                ),
+                              ),
+
+                              if (playerOfTheMonthStatsAndInfoNotifier
+                                  .playerOfTheMonthStatsAndInfoList[index].playerPosition
+                                  .toString()
+                                  .toLowerCase() ==
+                                  'gk') ...[
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: SizedBox(
+                                        width: MediaQuery.of(context).size.width * 0.35,
+                                        child: Text(
+                                          playerOfTheMonthStatsAndInfoNotifier
+                                              .playerOfTheMonthStatsAndInfoList[index].playerName!
+                                              .replaceAll(" ", "\n"),
+                                          style: GoogleFonts.rubikMicrobe(
+                                              color: dialogColor,
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.bold,
+                                              height: 0.81),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 40),
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerOfTheMonthStatsAndInfoNotifier
+                                                  .playerOfTheMonthStatsAndInfoList[index].goalsConcededGkDef
+                                                  .toString(),
+                                              style: GoogleFonts.rubikMicrobe(
+                                                  color: dialogColor,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle: FontStyle.italic),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerGoalsConcededTwoTitle,
+                                              style: GoogleFonts.arimo(
+                                                color: containerColor,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 15),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerOfTheMonthStatsAndInfoNotifier
+                                                  .playerOfTheMonthStatsAndInfoList[index].cleanSheetGk
+                                                  .toString(),
+                                              style: GoogleFonts.rubikMicrobe(
+                                                  color: dialogColor,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle: FontStyle.italic),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerCleanSheetTitle,
+                                              style: GoogleFonts.arimo(
+                                                color: containerColor,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 15),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerOfTheMonthStatsAndInfoNotifier
+                                                  .playerOfTheMonthStatsAndInfoList[index].matchesPlayed
+                                                  .toString(),
+                                              style: GoogleFonts.rubikMicrobe(
+                                                  color: dialogColor,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle: FontStyle.italic),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              matchesPlayedTitle,
+                                              style: GoogleFonts.arimo(
+                                                color: containerColor,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 80),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ] else if (playerOfTheMonthStatsAndInfoNotifier
+                                  .playerOfTheMonthStatsAndInfoList[index].playerPosition
+                                  .toString()
+                                  .toLowerCase() ==
+                                  'cb' ||
+                                  playerOfTheMonthStatsAndInfoNotifier
+                                      .playerOfTheMonthStatsAndInfoList[index].playerPosition
+                                      .toString()
+                                      .toLowerCase() ==
+                                      'lb' ||
+                                  playerOfTheMonthStatsAndInfoNotifier
+                                      .playerOfTheMonthStatsAndInfoList[index].playerPosition
+                                      .toString()
+                                      .toLowerCase() ==
+                                      'rb') ...[
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: SizedBox(
+                                        width: MediaQuery.of(context).size.width * 0.35,
+                                        child: Text(
+                                          playerOfTheMonthStatsAndInfoNotifier
+                                              .playerOfTheMonthStatsAndInfoList[index].playerName!
+                                              .replaceAll(" ", "\n"),
+                                          style: GoogleFonts.rubikMicrobe(
+                                              color: dialogColor,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold,
+                                              height: 0.81),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 30),
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerOfTheMonthStatsAndInfoNotifier
+                                                  .playerOfTheMonthStatsAndInfoList[index].playerPosition
+                                                  .toString()
+                                                  .toUpperCase(),
+                                              style: GoogleFonts.rubikMicrobe(
+                                                  color: dialogColor,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle: FontStyle.italic),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerPositionTwoTitle,
+                                              style: GoogleFonts.arimo(
+                                                color: containerColor,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 15),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerOfTheMonthStatsAndInfoNotifier
+                                                  .playerOfTheMonthStatsAndInfoList[index].goalsConcededGkDef
+                                                  .toString(),
+                                              style: GoogleFonts.rubikMicrobe(
+                                                  color: dialogColor,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle: FontStyle.italic),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerGoalsConcededTwoTitle,
+                                              style: GoogleFonts.arimo(
+                                                color: containerColor,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 15),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerOfTheMonthStatsAndInfoNotifier
+                                                  .playerOfTheMonthStatsAndInfoList[index].matchesPlayed
+                                                  .toString(),
+                                              style: GoogleFonts.rubikMicrobe(
+                                                  color: dialogColor,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle: FontStyle.italic),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              matchesPlayedTitle,
+                                              style: GoogleFonts.arimo(
+                                                color: containerColor,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 80),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ] else ...[
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: SizedBox(
+                                        width: MediaQuery.of(context).size.width * 0.35,
+                                        child: Center(
+                                          child: Text(
+                                            playerOfTheMonthStatsAndInfoNotifier
+                                                .playerOfTheMonthStatsAndInfoList[index].playerName!
+                                                .replaceAll(" ", "\n"),
+                                            style: GoogleFonts.rubikMicrobe(
+                                                color: dialogColor,
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold,
+                                                height: 0.81),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerOfTheMonthStatsAndInfoNotifier
+                                                  .playerOfTheMonthStatsAndInfoList[index].goalsScored
+                                                  .toString(),
+                                              style: GoogleFonts.rubikMicrobe(
+                                                  color: dialogColor,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle: FontStyle.italic),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerGoalsScoredTwoTitle,
+                                              style: GoogleFonts.arimo(
+                                                color: containerColor,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerOfTheMonthStatsAndInfoNotifier
+                                                  .playerOfTheMonthStatsAndInfoList[index].assists
+                                                  .toString(),
+                                              style: GoogleFonts.rubikMicrobe(
+                                                  color: dialogColor,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle: FontStyle.italic),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerAssistsTwoTitle,
+                                              style: GoogleFonts.arimo(
+                                                color: containerColor,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 6),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              playerOfTheMonthStatsAndInfoNotifier
+                                                  .playerOfTheMonthStatsAndInfoList[index].matchesPlayed
+                                                  .toString(),
+                                              style: GoogleFonts.rubikMicrobe(
+                                                  color: dialogColor,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle: FontStyle.italic),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              matchesPlayedTitle,
+                                              style: GoogleFonts.arimo(
+                                                color: containerColor,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+
+                              // Column(
+                              //   children: [
+                              //     Padding(
+                              //       padding: const EdgeInsets.only(right: 10),
+                              //       child: Container(
+                              //         width: MediaQuery.of(context).size.width * 0.35,
+                              //         child: Text(
+                              //           playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerName!.replaceAll(" ", "\n"),
+                              //           style: GoogleFonts.rubikMicrobe(
+                              //               color: Color.fromRGBO(184, 106, 65, 1.0),
+                              //               fontSize: 30,
+                              //             fontWeight: FontWeight.bold,
+                              //             height: 0.81
+                              //           ),
+                              //           overflow: TextOverflow.ellipsis,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //     const SizedBox(height: 40),
+                              //     Column(
+                              //       children: [
+                              //         Padding(
+                              //           padding: const EdgeInsets.only(right: 10),
+                              //           child: Container(
+                              //             width: MediaQuery.of(context).size.width * 0.35,
+                              //             child: Text(
+                              //               playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].goalsScored.toString(),
+                              //               style: GoogleFonts.rubikMicrobe(
+                              //                   color: Color.fromRGBO(184, 106, 65, 1.0),
+                              //                   fontSize: 30,
+                              //                   fontWeight: FontWeight.bold,
+                              //                   fontStyle: FontStyle.italic
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ),
+                              //         Padding(
+                              //           padding: const EdgeInsets.only(right: 10),
+                              //           child: Container(
+                              //             width: MediaQuery.of(context).size.width * 0.35,
+                              //             child: Text(
+                              //               'Goals Scored',
+                              //               style: GoogleFonts.arimo(
+                              //                 color: Colors.white70,
+                              //                 fontSize: 14,
+                              //                 fontWeight: FontWeight.w200,
+                              //
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ),
+                              //         const SizedBox(height: 15),
+                              //       ],
+                              //     ),
+                              //     Column(
+                              //       children: [
+                              //         Padding(
+                              //           padding: const EdgeInsets.only(right: 10),
+                              //           child: Container(
+                              //             width: MediaQuery.of(context).size.width * 0.35,
+                              //             child: Text(
+                              //               playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].assists.toString(),
+                              //               style: GoogleFonts.rubikMicrobe(
+                              //                   color: Color.fromRGBO(184, 106, 65, 1.0),
+                              //                   fontSize: 30,
+                              //                   fontWeight: FontWeight.bold,
+                              //                   fontStyle: FontStyle.italic
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ),
+                              //         Padding(
+                              //           padding: const EdgeInsets.only(right: 10),
+                              //           child: Container(
+                              //             width: MediaQuery.of(context).size.width * 0.35,
+                              //             child: Text(
+                              //               'Assists Provided',
+                              //               style: GoogleFonts.arimo(
+                              //                 color: Colors.white70,
+                              //                 fontSize: 14,
+                              //                 fontWeight: FontWeight.w200,
+                              //
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ),
+                              //         const SizedBox(height: 15),
+                              //       ],
+                              //     ),
+                              //     Column(
+                              //       children: [
+                              //         Padding(
+                              //           padding: const EdgeInsets.only(right: 10),
+                              //           child: Container(
+                              //             width: MediaQuery.of(context).size.width * 0.35,
+                              //             child: Text(
+                              //               playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].matchesPlayed.toString(),
+                              //               style: GoogleFonts.rubikMicrobe(
+                              //                   color: Color.fromRGBO(184, 106, 65, 1.0),
+                              //                   fontSize: 30,
+                              //                   fontWeight: FontWeight.bold,
+                              //                   fontStyle: FontStyle.italic
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ),
+                              //         Padding(
+                              //           padding: const EdgeInsets.only(right: 10),
+                              //           child: Container(
+                              //             width: MediaQuery.of(context).size.width * 0.35,
+                              //             child: Text(
+                              //               'Matches Played',
+                              //               style: GoogleFonts.arimo(
+                              //                 color: Colors.white70,
+                              //                 fontSize: 14,
+                              //                 fontWeight: FontWeight.w200,
+                              //
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ),
+                              //         const SizedBox(height: 80),
+                              //       ],
+                              //     ),
+                              //   ],
+                              // ),
+
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width * 0.65,
+                                      child: FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        child: Text(
+                                          potmTwoTitle,
+                                          style: GoogleFonts.orbitron(
+                                            color: dialogColor,
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 4),
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width * 0.65,
+                                      child: Text(
+                                        presentedByTitle,
+                                        style: GoogleFonts.arimo(
+                                            color: containerColor,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w200,
+                                            fontStyle: FontStyle.italic),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width * 0.65,
+                                      child: Text(
+                                        nouvellesoftTitle,
+                                        style: GoogleFonts.zenDots(
+                                          color: containerColor,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            if (Platform.isAndroid) ...[
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.19,
+                right: MediaQuery.of(context).size.width * 0.14,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: potmColorSeven,
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(6.0),
+                    ),
+                    child: const Align(
+                      alignment: Alignment.center,
+                      child: Icon(Icons.close, color: Colors.deepOrangeAccent),
+                    ),
+                  ),
+                ),
+              ),
+            ]
+            else if (Platform.isIOS) ...[
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.165,
+                right: MediaQuery.of(context).size.width * 0.14,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: potmColorSeven,
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(6.0),
+                    ),
+                    child: const Align(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.close,
+                        color: Colors.deepOrangeAccent,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ],
+        ],
+      ),
+    );
+
+  }
+
+  void _showLargeScreenDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) =>
+          Stack(
+            children: [
+              if (playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList.isEmpty) ...[
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        // height: 120,
+                          child: Lottie.asset(
+                            lottieJsonPOTMTitle,
+                            // width: MediaQuery.of(context).size.width * 0.80,
+                            height: 200,
+                            fit: BoxFit.contain,
+                          )),
+                      const SizedBox(height: 20),
+                      Text(
+                        potmEmptyTitle,
+                        style: TextStyle(
+                          color: potmColorSix,
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ] else
+                ...[
+                  AlertDialog(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    ),
+                    contentPadding: const EdgeInsets.all(10),
+                    backgroundColor: dialogColor,
+                    content: ConfettiWidget(
+                      createParticlePath: drawStar,
+                      confettiController: _controllerTopCenter,
+                      blastDirection: -pi / 2,
+                      maxBlastForce: 50,
+                      // set a lower max blast force
+                      minBlastForce: 20,
+                      // set a lower min blast force
+                      emissionFrequency: 0.035,
+                      blastDirectionality: BlastDirectionality.explosive,
+                      numberOfParticles: 50,
+                      // a lot of particles at once
+                      gravity: 0.1,
+                      child: SizedBox(
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width,
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height * 0.6,
+                        child: ListView.builder(
+                          itemExtent: MediaQuery
+                              .of(context)
+                              .size
+                              .height * 0.585,
+                          shrinkWrap: true,
+                          itemCount: playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList.length,
+                          itemBuilder: (context, index) =>
+                              Stack(
+                                alignment: AlignmentDirectional.topStart,
+                                // fit: StackFit.loose,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: SizedBox(
+                                      width: MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width * .43,
+                                      height: MediaQuery
+                                          .of(context)
+                                          .size
+                                          .height * 2,
+                                      child: Image(
+                                        height: double.infinity,
+                                        width: double.infinity,
+                                        image: CachedNetworkImageProvider(
+                                          playerOfTheMonthStatsAndInfoNotifier
+                                              .playerOfTheMonthStatsAndInfoList[index].image!,
+                                          scale: 0.2,
+                                        ),
+                                        fit: BoxFit.cover,
+                                        color: Colors.grey,
+                                        colorBlendMode: BlendMode.softLight,
+                                        alignment: const Alignment(0.4, -1),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: SizedBox(
+                                      // color: Colors.green,
+                                      height: MediaQuery
+                                          .of(context)
+                                          .size
+                                          .height,
+                                      // height: 500,
+                                      width: MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width,
+                                      child: Image.asset(
+                                        assetPOTMBackgroundTitle,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 40),
+                                          child: Image.asset(
+                                            assetPOTMMVPTitle,
+                                            width: MediaQuery
+                                                .of(context)
+                                                .size
+                                                .width * 0.35,
+                                          ),
+                                        ),
+
+                                        if (playerOfTheMonthStatsAndInfoNotifier
+                                            .playerOfTheMonthStatsAndInfoList[index].playerPosition
+                                            .toString()
+                                            .toLowerCase() ==
+                                            'gk') ...[
+                                          Column(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(right: 10),
+                                                child: SizedBox(
+                                                  width: MediaQuery
+                                                      .of(context)
+                                                      .size
+                                                      .width * 0.35,
+                                                  child: Text(
+                                                    playerOfTheMonthStatsAndInfoNotifier
+                                                        .playerOfTheMonthStatsAndInfoList[index].playerName!
+                                                        .replaceAll(" ", "\n"),
+                                                    style: GoogleFonts.rubikMicrobe(
+                                                        color: dialogColor,
+                                                        fontSize: 30,
+                                                        fontWeight: FontWeight.bold,
+                                                        height: 0.81),
+                                                    overflow: TextOverflow.ellipsis,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(height: 40),
+                                              Column(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(right: 10),
+                                                    child: SizedBox(
+                                                      width: MediaQuery
+                                                          .of(context)
+                                                          .size
+                                                          .width * 0.35,
+                                                      child: Text(
+                                                        playerOfTheMonthStatsAndInfoNotifier
+                                                            .playerOfTheMonthStatsAndInfoList[index].goalsConcededGkDef
+                                                            .toString(),
+                                                        style: GoogleFonts.rubikMicrobe(
+                                                            color: dialogColor,
+                                                            fontSize: 30,
+                                                            fontWeight: FontWeight.bold,
+                                                            fontStyle: FontStyle.italic),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(right: 10),
+                                                    child: SizedBox(
+                                                      width: MediaQuery
+                                                          .of(context)
+                                                          .size
+                                                          .width * 0.35,
+                                                      child: Text(
+                                                        playerGoalsConcededTwoTitle,
+                                                        style: GoogleFonts.arimo(
+                                                          color: containerColor,
+                                                          fontSize: 14,
+                                                          fontWeight: FontWeight.w200,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 15),
+                                                ],
+                                              ),
+                                              Column(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(right: 10),
+                                                    child: SizedBox(
+                                                      width: MediaQuery
+                                                          .of(context)
+                                                          .size
+                                                          .width * 0.35,
+                                                      child: Text(
+                                                        playerOfTheMonthStatsAndInfoNotifier
+                                                            .playerOfTheMonthStatsAndInfoList[index].cleanSheetGk
+                                                            .toString(),
+                                                        style: GoogleFonts.rubikMicrobe(
+                                                            color: dialogColor,
+                                                            fontSize: 30,
+                                                            fontWeight: FontWeight.bold,
+                                                            fontStyle: FontStyle.italic),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(right: 10),
+                                                    child: SizedBox(
+                                                      width: MediaQuery
+                                                          .of(context)
+                                                          .size
+                                                          .width * 0.35,
+                                                      child: Text(
+                                                        playerCleanSheetTitle,
+                                                        style: GoogleFonts.arimo(
+                                                          color: containerColor,
+                                                          fontSize: 14,
+                                                          fontWeight: FontWeight.w200,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 15),
+                                                ],
+                                              ),
+                                              Column(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(right: 10),
+                                                    child: SizedBox(
+                                                      width: MediaQuery
+                                                          .of(context)
+                                                          .size
+                                                          .width * 0.35,
+                                                      child: Text(
+                                                        playerOfTheMonthStatsAndInfoNotifier
+                                                            .playerOfTheMonthStatsAndInfoList[index].matchesPlayed
+                                                            .toString(),
+                                                        style: GoogleFonts.rubikMicrobe(
+                                                            color: dialogColor,
+                                                            fontSize: 30,
+                                                            fontWeight: FontWeight.bold,
+                                                            fontStyle: FontStyle.italic),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(right: 10),
+                                                    child: SizedBox(
+                                                      width: MediaQuery
+                                                          .of(context)
+                                                          .size
+                                                          .width * 0.35,
+                                                      child: Text(
+                                                        matchesPlayedTitle,
+                                                        style: GoogleFonts.arimo(
+                                                          color: containerColor,
+                                                          fontSize: 14,
+                                                          fontWeight: FontWeight.w200,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 80),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ] else
+                                          if (playerOfTheMonthStatsAndInfoNotifier
+                                              .playerOfTheMonthStatsAndInfoList[index].playerPosition
+                                              .toString()
+                                              .toLowerCase() ==
+                                              'cb' ||
+                                              playerOfTheMonthStatsAndInfoNotifier
+                                                  .playerOfTheMonthStatsAndInfoList[index].playerPosition
+                                                  .toString()
+                                                  .toLowerCase() ==
+                                                  'lb' ||
+                                              playerOfTheMonthStatsAndInfoNotifier
+                                                  .playerOfTheMonthStatsAndInfoList[index].playerPosition
+                                                  .toString()
+                                                  .toLowerCase() ==
+                                                  'rb') ...[
+                                            Column(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.only(right: 10),
+                                                  child: SizedBox(
+                                                    width: MediaQuery
+                                                        .of(context)
+                                                        .size
+                                                        .width * 0.35,
+                                                    child: Text(
+                                                      playerOfTheMonthStatsAndInfoNotifier
+                                                          .playerOfTheMonthStatsAndInfoList[index].playerName!
+                                                          .replaceAll(" ", "\n"),
+                                                      style: GoogleFonts.rubikMicrobe(
+                                                          color: dialogColor,
+                                                          fontSize: 25,
+                                                          fontWeight: FontWeight.bold,
+                                                          height: 0.81),
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 30),
+                                                Column(
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 10),
+                                                      child: SizedBox(
+                                                        width: MediaQuery
+                                                            .of(context)
+                                                            .size
+                                                            .width * 0.35,
+                                                        child: Text(
+                                                          playerOfTheMonthStatsAndInfoNotifier
+                                                              .playerOfTheMonthStatsAndInfoList[index].playerPosition
+                                                              .toString()
+                                                              .toUpperCase(),
+                                                          style: GoogleFonts.rubikMicrobe(
+                                                              color: dialogColor,
+                                                              fontSize: 30,
+                                                              fontWeight: FontWeight.bold,
+                                                              fontStyle: FontStyle.italic),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 10),
+                                                      child: SizedBox(
+                                                        width: MediaQuery
+                                                            .of(context)
+                                                            .size
+                                                            .width * 0.35,
+                                                        child: Text(
+                                                          playerPositionTwoTitle,
+                                                          style: GoogleFonts.arimo(
+                                                            color: containerColor,
+                                                            fontSize: 14,
+                                                            fontWeight: FontWeight.w200,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(height: 15),
+                                                  ],
+                                                ),
+                                                Column(
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 10),
+                                                      child: SizedBox(
+                                                        width: MediaQuery
+                                                            .of(context)
+                                                            .size
+                                                            .width * 0.35,
+                                                        child: Text(
+                                                          playerOfTheMonthStatsAndInfoNotifier
+                                                              .playerOfTheMonthStatsAndInfoList[index].goalsConcededGkDef
+                                                              .toString(),
+                                                          style: GoogleFonts.rubikMicrobe(
+                                                              color: dialogColor,
+                                                              fontSize: 30,
+                                                              fontWeight: FontWeight.bold,
+                                                              fontStyle: FontStyle.italic),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 10),
+                                                      child: SizedBox(
+                                                        width: MediaQuery
+                                                            .of(context)
+                                                            .size
+                                                            .width * 0.35,
+                                                        child: Text(
+                                                          playerGoalsConcededTwoTitle,
+                                                          style: GoogleFonts.arimo(
+                                                            color: containerColor,
+                                                            fontSize: 14,
+                                                            fontWeight: FontWeight.w200,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(height: 15),
+                                                  ],
+                                                ),
+                                                Column(
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 10),
+                                                      child: SizedBox(
+                                                        width: MediaQuery
+                                                            .of(context)
+                                                            .size
+                                                            .width * 0.35,
+                                                        child: Text(
+                                                          playerOfTheMonthStatsAndInfoNotifier
+                                                              .playerOfTheMonthStatsAndInfoList[index].matchesPlayed
+                                                              .toString(),
+                                                          style: GoogleFonts.rubikMicrobe(
+                                                              color: dialogColor,
+                                                              fontSize: 30,
+                                                              fontWeight: FontWeight.bold,
+                                                              fontStyle: FontStyle.italic),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 10),
+                                                      child: SizedBox(
+                                                        width: MediaQuery
+                                                            .of(context)
+                                                            .size
+                                                            .width * 0.35,
+                                                        child: Text(
+                                                          matchesPlayedTitle,
+                                                          style: GoogleFonts.arimo(
+                                                            color: containerColor,
+                                                            fontSize: 14,
+                                                            fontWeight: FontWeight.w200,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(height: 80),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ] else
+                                            ...[
+                                              Column(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(right: 10),
+                                                    child: SizedBox(
+                                                      width: MediaQuery
+                                                          .of(context)
+                                                          .size
+                                                          .width * 0.35,
+                                                      child: Center(
+                                                        child: Text(
+                                                          playerOfTheMonthStatsAndInfoNotifier
+                                                              .playerOfTheMonthStatsAndInfoList[index].playerName!
+                                                              .replaceAll(" ", "\n"),
+                                                          style: GoogleFonts.rubikMicrobe(
+                                                              color: dialogColor,
+                                                              fontSize: 25,
+                                                              fontWeight: FontWeight.bold,
+                                                              height: 0.81),
+                                                          overflow: TextOverflow.ellipsis,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 30),
+                                                  Column(
+                                                    children: [
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(right: 10),
+                                                        child: SizedBox(
+                                                          width: MediaQuery
+                                                              .of(context)
+                                                              .size
+                                                              .width * 0.35,
+                                                          child: Text(
+                                                            playerOfTheMonthStatsAndInfoNotifier
+                                                                .playerOfTheMonthStatsAndInfoList[index].goalsScored
+                                                                .toString(),
+                                                            style: GoogleFonts.rubikMicrobe(
+                                                                color: dialogColor,
+                                                                fontSize: 30,
+                                                                fontWeight: FontWeight.bold,
+                                                                fontStyle: FontStyle.italic),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(right: 10),
+                                                        child: SizedBox(
+                                                          width: MediaQuery
+                                                              .of(context)
+                                                              .size
+                                                              .width * 0.35,
+                                                          child: Text(
+                                                            playerGoalsScoredTwoTitle,
+                                                            style: GoogleFonts.arimo(
+                                                              color: containerColor,
+                                                              fontSize: 14,
+                                                              fontWeight: FontWeight.w200,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(height: 15),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(right: 10),
+                                                        child: SizedBox(
+                                                          width: MediaQuery
+                                                              .of(context)
+                                                              .size
+                                                              .width * 0.35,
+                                                          child: Text(
+                                                            playerOfTheMonthStatsAndInfoNotifier
+                                                                .playerOfTheMonthStatsAndInfoList[index].assists
+                                                                .toString(),
+                                                            style: GoogleFonts.rubikMicrobe(
+                                                                color: dialogColor,
+                                                                fontSize: 30,
+                                                                fontWeight: FontWeight.bold,
+                                                                fontStyle: FontStyle.italic),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(right: 10),
+                                                        child: SizedBox(
+                                                          width: MediaQuery
+                                                              .of(context)
+                                                              .size
+                                                              .width * 0.35,
+                                                          child: Text(
+                                                            playerAssistsTwoTitle,
+                                                            style: GoogleFonts.arimo(
+                                                              color: containerColor,
+                                                              fontSize: 14,
+                                                              fontWeight: FontWeight.w200,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(height: 15),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(right: 10),
+                                                        child: SizedBox(
+                                                          width: MediaQuery
+                                                              .of(context)
+                                                              .size
+                                                              .width * 0.35,
+                                                          child: Text(
+                                                            playerOfTheMonthStatsAndInfoNotifier
+                                                                .playerOfTheMonthStatsAndInfoList[index].matchesPlayed
+                                                                .toString(),
+                                                            style: GoogleFonts.rubikMicrobe(
+                                                                color: dialogColor,
+                                                                fontSize: 30,
+                                                                fontWeight: FontWeight.bold,
+                                                                fontStyle: FontStyle.italic),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(right: 10),
+                                                        child: SizedBox(
+                                                          width: MediaQuery
+                                                              .of(context)
+                                                              .size
+                                                              .width * 0.35,
+                                                          child: Text(
+                                                            matchesPlayedTitle,
+                                                            style: GoogleFonts.arimo(
+                                                              color: containerColor,
+                                                              fontSize: 14,
+                                                              fontWeight: FontWeight.w200,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(height: 20),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+
+                                        // Column(
+                                        //   children: [
+                                        //     Padding(
+                                        //       padding: const EdgeInsets.only(right: 10),
+                                        //       child: Container(
+                                        //         width: MediaQuery.of(context).size.width * 0.35,
+                                        //         child: Text(
+                                        //           playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].playerName!.replaceAll(" ", "\n"),
+                                        //           style: GoogleFonts.rubikMicrobe(
+                                        //               color: Color.fromRGBO(184, 106, 65, 1.0),
+                                        //               fontSize: 30,
+                                        //             fontWeight: FontWeight.bold,
+                                        //             height: 0.81
+                                        //           ),
+                                        //           overflow: TextOverflow.ellipsis,
+                                        //         ),
+                                        //       ),
+                                        //     ),
+                                        //     const SizedBox(height: 40),
+                                        //     Column(
+                                        //       children: [
+                                        //         Padding(
+                                        //           padding: const EdgeInsets.only(right: 10),
+                                        //           child: Container(
+                                        //             width: MediaQuery.of(context).size.width * 0.35,
+                                        //             child: Text(
+                                        //               playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].goalsScored.toString(),
+                                        //               style: GoogleFonts.rubikMicrobe(
+                                        //                   color: Color.fromRGBO(184, 106, 65, 1.0),
+                                        //                   fontSize: 30,
+                                        //                   fontWeight: FontWeight.bold,
+                                        //                   fontStyle: FontStyle.italic
+                                        //               ),
+                                        //             ),
+                                        //           ),
+                                        //         ),
+                                        //         Padding(
+                                        //           padding: const EdgeInsets.only(right: 10),
+                                        //           child: Container(
+                                        //             width: MediaQuery.of(context).size.width * 0.35,
+                                        //             child: Text(
+                                        //               'Goals Scored',
+                                        //               style: GoogleFonts.arimo(
+                                        //                 color: Colors.white70,
+                                        //                 fontSize: 14,
+                                        //                 fontWeight: FontWeight.w200,
+                                        //
+                                        //               ),
+                                        //             ),
+                                        //           ),
+                                        //         ),
+                                        //         const SizedBox(height: 15),
+                                        //       ],
+                                        //     ),
+                                        //     Column(
+                                        //       children: [
+                                        //         Padding(
+                                        //           padding: const EdgeInsets.only(right: 10),
+                                        //           child: Container(
+                                        //             width: MediaQuery.of(context).size.width * 0.35,
+                                        //             child: Text(
+                                        //               playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].assists.toString(),
+                                        //               style: GoogleFonts.rubikMicrobe(
+                                        //                   color: Color.fromRGBO(184, 106, 65, 1.0),
+                                        //                   fontSize: 30,
+                                        //                   fontWeight: FontWeight.bold,
+                                        //                   fontStyle: FontStyle.italic
+                                        //               ),
+                                        //             ),
+                                        //           ),
+                                        //         ),
+                                        //         Padding(
+                                        //           padding: const EdgeInsets.only(right: 10),
+                                        //           child: Container(
+                                        //             width: MediaQuery.of(context).size.width * 0.35,
+                                        //             child: Text(
+                                        //               'Assists Provided',
+                                        //               style: GoogleFonts.arimo(
+                                        //                 color: Colors.white70,
+                                        //                 fontSize: 14,
+                                        //                 fontWeight: FontWeight.w200,
+                                        //
+                                        //               ),
+                                        //             ),
+                                        //           ),
+                                        //         ),
+                                        //         const SizedBox(height: 15),
+                                        //       ],
+                                        //     ),
+                                        //     Column(
+                                        //       children: [
+                                        //         Padding(
+                                        //           padding: const EdgeInsets.only(right: 10),
+                                        //           child: Container(
+                                        //             width: MediaQuery.of(context).size.width * 0.35,
+                                        //             child: Text(
+                                        //               playerOfTheMonthStatsAndInfoNotifier.playerOfTheMonthStatsAndInfoList[index].matchesPlayed.toString(),
+                                        //               style: GoogleFonts.rubikMicrobe(
+                                        //                   color: Color.fromRGBO(184, 106, 65, 1.0),
+                                        //                   fontSize: 30,
+                                        //                   fontWeight: FontWeight.bold,
+                                        //                   fontStyle: FontStyle.italic
+                                        //               ),
+                                        //             ),
+                                        //           ),
+                                        //         ),
+                                        //         Padding(
+                                        //           padding: const EdgeInsets.only(right: 10),
+                                        //           child: Container(
+                                        //             width: MediaQuery.of(context).size.width * 0.35,
+                                        //             child: Text(
+                                        //               'Matches Played',
+                                        //               style: GoogleFonts.arimo(
+                                        //                 color: Colors.white70,
+                                        //                 fontSize: 14,
+                                        //                 fontWeight: FontWeight.w200,
+                                        //
+                                        //               ),
+                                        //             ),
+                                        //           ),
+                                        //         ),
+                                        //         const SizedBox(height: 80),
+                                        //       ],
+                                        //     ),
+                                        //   ],
+                                        // ),
+
+                                        Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(right: 10),
+                                              child: SizedBox(
+                                                width: MediaQuery
+                                                    .of(context)
+                                                    .size
+                                                    .width * 0.65,
+                                                child: FittedBox(
+                                                  fit: BoxFit.scaleDown,
+                                                  child: Text(
+                                                    potmTwoTitle,
+                                                    style: GoogleFonts.orbitron(
+                                                      color: dialogColor,
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                    overflow: TextOverflow.ellipsis,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 4),
+                                              child: SizedBox(
+                                                width: MediaQuery
+                                                    .of(context)
+                                                    .size
+                                                    .width * 0.65,
+                                                child: Text(
+                                                  presentedByTitle,
+                                                  style: GoogleFonts.arimo(
+                                                      color: containerColor,
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w200,
+                                                      fontStyle: FontStyle.italic),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 5),
+                                              child: SizedBox(
+                                                width: MediaQuery
+                                                    .of(context)
+                                                    .size
+                                                    .width * 0.65,
+                                                child: Text(
+                                                  nouvellesoftTitle,
+                                                  style: GoogleFonts.zenDots(
+                                                    color: containerColor,
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  if (Platform.isAndroid) ...[
+                    Positioned(
+                      top: MediaQuery
+                          .of(context)
+                          .size
+                          .height * 0.19,
+                      right: MediaQuery
+                          .of(context)
+                          .size
+                          .width * 0.14,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: potmColorSeven,
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(6.0),
+                          ),
+                          child: const Align(
+                            alignment: Alignment.center,
+                            child: Icon(Icons.close, color: Colors.deepOrangeAccent),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]
+                  else
+                    if (Platform.isIOS) ...[
+                      Positioned(
+                        top: MediaQuery
+                            .of(context)
+                            .size
+                            .height * 0.165,
+                        right: MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.14,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: potmColorSeven,
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(6.0),
+                            ),
+                            child: const Align(
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.close,
+                                color: Colors.deepOrangeAccent,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                ],
+            ],
+          ),
+    );
+  }
+
+  void showCustomDialog(BuildContext context) {
+    // Get the screen size
+    Size screenSize = MediaQuery.of(context).size;
+
+    // Calculate the diagonal size
+    double diagonalSize = _calculateDiagonalSize(screenSize.width, screenSize.height);
+
+    // Decide which dialog to show based on diagonal size
+    if (diagonalSize < 800) {
+      // Small screen dialog
+      _showSmallScreenDialog(context);
+    } else {
+      // Large screen dialog
+      _showLargeScreenDialog(context);
+    }
+  }
+
+  double _calculateDiagonalSize(double width, double height) {
+    return sqrt(width * width + height * height);
   }
 
   Future navigateMyApp(context) async {

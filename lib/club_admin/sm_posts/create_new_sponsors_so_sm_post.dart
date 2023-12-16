@@ -43,14 +43,14 @@ class ImageUrls {
 
 List<ImageUrls> recentImageUrls = [];
 
-class CreateSponsorsShoutOutSMPost extends StatefulWidget with NavigationStates {
-  CreateSponsorsShoutOutSMPost({super.key});
+class CreateNewSponsorsShoutOutSMPost extends StatefulWidget with NavigationStates {
+  CreateNewSponsorsShoutOutSMPost({super.key});
 
   @override
-  State<CreateSponsorsShoutOutSMPost> createState() => _CreateSponsorsShoutOutSMPostState();
+  State<CreateNewSponsorsShoutOutSMPost> createState() => _CreateNewSponsorsShoutOutSMPostState();
 }
 
-class _CreateSponsorsShoutOutSMPostState extends State<CreateSponsorsShoutOutSMPost> {
+class _CreateNewSponsorsShoutOutSMPostState extends State<CreateNewSponsorsShoutOutSMPost> {
   String? selectedBannerLowResImageUrl;
   String? selectedBannerHighResImageUrl;
 
@@ -81,7 +81,7 @@ class _CreateSponsorsShoutOutSMPostState extends State<CreateSponsorsShoutOutSMP
             },
           ),
           backgroundColor: appBarBackgroundColor,
-          title: const Center(child: Text('S/O a Current Sponsor')),
+          title: const Center(child: Text('S/O a New Sponsor')),
           titleTextStyle: TextStyle(color: textColor, fontSize: 20),
         ),
         body: Column(
@@ -132,19 +132,37 @@ class _CreateSponsorsShoutOutSMPostState extends State<CreateSponsorsShoutOutSMP
                       if (selectedSponsorIndex != null)
                         Padding(
                           padding: const EdgeInsets.all(18.0),
-                          child: Container(
-                            width: MediaQuery.sizeOf(context).width * 0.5,
-                            height: MediaQuery.sizeOf(context).width * 0.3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: materialBackgroundColor.withAlpha(20),
-                              image: DecorationImage(
-                                image: CachedNetworkImageProvider(
-                                  clubSponsorsNotifier!.clubSponsorsList[selectedSponsorIndex!].sponsorIcon!,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              CircleAvatar(
+                                radius: MediaQuery.sizeOf(context).width * 0.09,
+                                backgroundColor: Colors.transparent, // Set background color to transparent to avoid unwanted padding
+                                child: ClipOval( // ClipOval to ensure the image is circular
+                                  child: CachedNetworkImage(
+                                    imageUrl: clubSponsorsNotifier!.clubSponsorsList[selectedSponsorIndex!].sponsorIcon!,
+                                    fit: BoxFit.cover, // Use BoxFit.cover to ensure the image covers the entire circle
+                                  ),
                                 ),
-                                fit: BoxFit.fill,
                               ),
-                            ),
+                              Container(
+                                width: MediaQuery.sizeOf(context).width * 0.45,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: materialBackgroundColor.withAlpha(20),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    clubSponsorsNotifier!.clubSponsorsList[selectedSponsorIndex!].name!,
+                                    style: TextStyle(fontSize: 14, color: materialBackgroundColor, fontWeight: FontWeight.w500),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       // const SizedBox(height: 20),
@@ -285,7 +303,7 @@ class _CreateSponsorsShoutOutSMPostState extends State<CreateSponsorsShoutOutSMP
                 child: Container(
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/cpfc_sponsor_so_banner.png'), // Update with your asset image path
+                      image: AssetImage('assets/images/cpfc_new_sponsor_banner.png'), // Update with your asset image path
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -299,22 +317,24 @@ class _CreateSponsorsShoutOutSMPostState extends State<CreateSponsorsShoutOutSMP
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const SizedBox(height: 10),
-                            CachedNetworkImage(
-                              imageUrl: selectedSponsor.sponsorIcon!,
-                              width: 70,
-                              height: 70,
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.4,
+                              child: Text(
+                                'We are delighted to introduce ${selectedSponsor.name!}.\n Welcome aboard to the team!'.toUpperCase(),
+                                style: GoogleFonts.courierPrime(fontSize: 9, color: Colors.white),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
-                            const SizedBox(height: 2),
-                            Text(
-                              selectedSponsor.name!.toUpperCase(),
-                              style: GoogleFonts.monomaniacOne(fontSize: 14, color: Colors.black),
+                            const SizedBox(height: 10),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              child: Text(
+                                website.isNotEmpty ? website : '', // Show an empty string if the website is empty
+                                style: GoogleFonts.monomaniacOne(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w200),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
-                            Text(
-                              website.isNotEmpty ? 'Visit $website for more info'.toUpperCase() : '', // Show an empty string if the website is empty
-                              style: GoogleFonts.varela(fontSize: 9, color: textColorThree, fontWeight: FontWeight.w200),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 25),
+                            const SizedBox(height: 30),
                           ],
                         ),
                       ),
@@ -398,8 +418,8 @@ class _CreateSponsorsShoutOutSMPostState extends State<CreateSponsorsShoutOutSMP
     );
 
     // Reference to the Firebase Storage paths with dynamic file names
-    var storageRefLowRes = FirebaseStorage.instance.ref().child('current_sponsor_event_banners/low_resolution/$fileNameLowRes');
-    var storageRefHighRes = FirebaseStorage.instance.ref().child('current_sponsor_event_banners/high_resolution/$fileNameHighRes');
+    var storageRefLowRes = FirebaseStorage.instance.ref().child('new_sponsor_event_banners/low_resolution/$fileNameLowRes');
+    var storageRefHighRes = FirebaseStorage.instance.ref().child('new_sponsor_event_banners/high_resolution/$fileNameHighRes');
 
     // Compress the image for low-resolution version
     img.Image compressedImage = img.decodeImage(Uint8List.fromList(pngBytes!))!;
@@ -436,7 +456,7 @@ class _CreateSponsorsShoutOutSMPostState extends State<CreateSponsorsShoutOutSMP
       selectedBannerHighResImageUrl = highResDownloadURL;
     });
 
-    String text = "Today, we recognize one of our friends and amiable sponsors:";
+    String text = "You are welcome and appreciated to be a part of our club:";
 
     // Share the image with caption and text
     // await Share.file(
@@ -448,6 +468,7 @@ class _CreateSponsorsShoutOutSMPostState extends State<CreateSponsorsShoutOutSMP
     // );
 
     // Save the image temporarily
+
     final directory = await getTemporaryDirectory();
     final imagePath = '${directory.path}/event_info.png';
     await File(imagePath).writeAsBytes(sharePngBytes!);
@@ -471,17 +492,17 @@ class _CreateSponsorsShoutOutSMPostState extends State<CreateSponsorsShoutOutSMP
   _submitForm() async {
     if (_formKey.currentState!.validate()) {
       final firestore = FirebaseFirestore.instance;
-      final sponsorName = clubSponsorsNotifier!.clubSponsorsList[selectedSponsorIndex!].name!;
+      final newSponsorName = clubSponsorsNotifier!.clubSponsorsList[selectedSponsorIndex!].name!;
 
-      String collectionName = 'CurrentSponsorBanners';
+      String collectionName = 'NewSponsorBanners';
       Map<String, dynamic> data = {
         'id': '10',
-        'sponsor_name': sponsorName,
+        'new_sponsor_name': newSponsorName,
       };
 
       try {
         if (collectionName.isNotEmpty) {
-          data['sponsor_name'] = sponsorName;
+          data['new_sponsor_name'] = newSponsorName;
 
           // Add the new member if the name doesn't exist
           await firestore.collection(collectionName).add(data);

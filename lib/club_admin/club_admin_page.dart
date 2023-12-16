@@ -4,6 +4,7 @@ import 'package:coventry_phoenix_fc/club_admin/add_club_member/a_tabview_add_clu
 import 'package:coventry_phoenix_fc/club_admin/modify_club_sponsors/add_club_sponsors_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/modify_member/modify_coaches_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/modify_member/modify_management_page.dart';
+import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_new_sponsors_so_sm_post.dart';
 import 'package:coventry_phoenix_fc/thrown_pages/club_sponsors_thrown_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_announcement_sm_post.dart';
 import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_matchday_sm_post.dart';
@@ -156,7 +157,7 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                               ListTile(
                                 title: const Text(
                                   'Publish MatchDay Fixtures',
-                                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  style: TextStyle(color: Colors.cyan, fontSize: 14),
                                 ),
                                 onTap: () {
                                   Navigator.pop(context); // Close the dialog
@@ -166,11 +167,31 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                               ListTile(
                                 title: const Text(
                                   'Publish an Upcoming Event',
-                                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                                  style: TextStyle(color: Colors.cyan, fontSize: 14),
                                 ),
                                 onTap: () {
                                   Navigator.pop(context);
                                   navigateToCreateUpcomingEventSMPost(context);
+                                },
+                              ),
+                              ListTile(
+                                title: const Text(
+                                  'Shout Out Current Sponsor',
+                                  style: TextStyle(color: Colors.blueAccent, fontSize: 14),
+                                ),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  navigateToCreateSponsorsShoutOutSMPost(context);
+                                },
+                              ),
+                              ListTile(
+                                title: const Text(
+                                  'Shout Out New Sponsor',
+                                  style: TextStyle(color: Colors.blueAccent, fontSize: 14),
+                                ),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  navigateToCreateNewSponsorsShoutOutSMPost(context);
                                 },
                               ),
                               ListTile(
@@ -181,25 +202,6 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                 onTap: () {
                                   // Navigator.pop(context);
                                   // navigateToCreateAnnouncementSMPost(context);
-
-                                  Fluttertoast.showToast(
-                                    msg: 'Coming Soon',
-                                    // Show success message (you can replace it with actual banner generation logic)
-                                    gravity: ToastGravity.BOTTOM,
-                                    backgroundColor: Colors.deepOrangeAccent,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0,
-                                  );
-                                },
-                              ),
-                              ListTile(
-                                title: const Text(
-                                  'Sponsors S/O on Social Media',
-                                  style: TextStyle(color: Colors.white70, fontSize: 14),
-                                ),
-                                onTap: () {
-                                  // Navigator.pop(context);
-                                  // navigateToCreateSponsorsShoutOutSMPost(context);
 
                                   Fluttertoast.showToast(
                                     msg: 'Coming Soon',
@@ -224,14 +226,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: blueColor.withAlpha(80),
@@ -315,14 +311,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: greenColor.withAlpha(80),
@@ -368,14 +358,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: brownColor.withAlpha(80),
@@ -421,14 +405,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: whiteColor.withAlpha(80),
@@ -474,14 +452,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: yellowColor.withAlpha(80),
@@ -527,14 +499,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: cyanColor.withAlpha(80),
@@ -580,14 +546,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: deepOrangeColor.withAlpha(80),
@@ -719,14 +679,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: tealColor.withAlpha(80),
@@ -870,14 +824,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                       child: Row(
                         children: [
                           Container(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 8,
+                            width: MediaQuery.of(context).size.width / 8,
+                            height: MediaQuery.of(context).size.width / 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: brownColor.withAlpha(80),
@@ -918,7 +866,6 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
 
   @override
   void initState() {
-
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -978,7 +925,6 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
     getMatchDayBannerForLeague(matchDayBannerForLeagueNotifier);
     getMatchDayBannerForLocation(matchDayBannerForLocationNotifier);
     setState(() {});
-
   }
 }
 
@@ -996,6 +942,10 @@ Future navigateToCreateAnnouncementSMPost(context) async {
 
 Future navigateToCreateSponsorsShoutOutSMPost(context) async {
   Navigator.push(context, MaterialPageRoute(builder: (context) => CreateSponsorsShoutOutSMPost()));
+}
+
+Future navigateToCreateNewSponsorsShoutOutSMPost(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => CreateNewSponsorsShoutOutSMPost()));
 }
 
 Future navigateToClubSponsors(context) async {

@@ -1,7 +1,8 @@
 import 'dart:ui' as ui;
 import 'dart:ui';
 import 'dart:io';
-import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:flutter_spinner_time_picker/flutter_spinner_time_picker.dart';
 import 'package:image/image.dart' as img;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -59,12 +60,12 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
   String? selectedBannerLowResImageUrl;
   String? selectedBannerHighResImageUrl;
 
-  GlobalKey _bannerContentKey = GlobalKey();
-  GlobalKey _bannerContentKeyed = GlobalKey();
+  final GlobalKey _bannerContentKey = GlobalKey();
+  final GlobalKey _bannerContentKeyed = GlobalKey();
 
   // Define variables to store form input
-  TextEditingController _eventNameController = TextEditingController();
-  TextEditingController _eventSummaryController = TextEditingController();
+  final TextEditingController _eventNameController = TextEditingController();
+  final TextEditingController _eventSummaryController = TextEditingController();
 
   String formattedTimeA = '';
   String formattedTimeB = '';
@@ -221,6 +222,7 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
                       }
                       return null;
                     },
+                    // make next beyond 20 (say 50)
                     maxLength: 20,
                   ),
                   TextFormField(
@@ -314,7 +316,7 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Text(
-                          'AT',
+                          'AT', //  N/A as option with 'Others' as options
                           style: TextStyle(fontSize: 25, color: textColorTwo, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                         ),
                       ),
@@ -952,16 +954,24 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
       selectedBannerHighResImageUrl = highResDownloadURL;
     });
 
-    String text = "you are invited to our upcoming event. Do check the image for more information:";
+    String text = "You are invited to our upcoming event. Do check the image for more information:";
 
     // Share the image with caption and text
-    await Share.file(
-      'Event Information',
-      'event_info.png',
-      sharePngBytes as List<int>,
-      'image/png',
-      text: text,
-    );
+    // await Share.file(
+    //   'Event Information',
+    //   'event_info.png',
+    //   sharePngBytes as List<int>,
+    //   'image/png',
+    //   text: text,
+    // );
+
+    // Save the image temporarily
+    final directory = await getTemporaryDirectory();
+    final imagePath = '${directory.path}/event_info.png';
+    await File(imagePath).writeAsBytes(sharePngBytes!);
+
+    // Share the image with caption and text
+    await Share.shareXFiles([XFile(imagePath)], text: text, subject: 'Coventry Phoenix FC');
 
     // await Share(sharePngBytes).writeAsBytesSync(bytes);
 

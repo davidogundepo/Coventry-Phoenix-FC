@@ -309,12 +309,16 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                   expandedHeight: 200.0,
                   floating: false,
                   pinned: true,
+                  stretch: true,
                   flexibleSpace: FlexibleSpaceBar(
                       title: Align(
                         alignment: Alignment.bottomLeft,
                         child: Text(thrownName,
                             textAlign: TextAlign.start, style: GoogleFonts.abel(color: appBarTextColor, fontSize: 26.0, fontWeight: FontWeight.bold)),
                       ),
+                    stretchModes: const [
+                      StretchMode.blurBackground
+                    ],
                       background: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                         stream: FirebaseFirestore.instance.collection('SliversPages').doc('slivers_pages').snapshots(),
                         builder: (context, snapshot) {
@@ -330,7 +334,8 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                                     fit: BoxFit.cover)),
                           );
                         },
-                      )),
+                      )
+                  ),
                 ),
               ];
             },

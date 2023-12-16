@@ -7,7 +7,7 @@ getPlayerOfTheMonthStatsAndInfo(
     PlayerOfTheMonthStatsAndInfoNotifier
         playerOfTheMonthStatsAndInfoNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
-      .collection('PlayersTable')
+      .collection('PllayersTable')
       .where('player_of_the_month',
           whereIn: ['yes', 'Yes', 'YES', 'yES', 'yeS', 'YEs', 'yEs', 'YeS'])
       .limit(1)

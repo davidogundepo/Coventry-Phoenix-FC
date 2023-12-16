@@ -327,7 +327,7 @@ class PandCTransitions extends StatelessWidget {
               );
               Navigator.push(
                 context,
-                SlideTransition1(SideBarLayout()),
+                SlideTransition1(const SideBarLayout()),
               );
               // You can navigate here if needed
             },
@@ -381,7 +381,7 @@ class PandCTransitions extends StatelessWidget {
                 hintText: 'Passcode',
                 hintStyle: TextStyle(color: Colors.white70),
               ),
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.white70
               ),
             ),

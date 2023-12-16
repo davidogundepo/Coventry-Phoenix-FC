@@ -192,19 +192,19 @@ class _SubPageState extends State<SubPage> {
   }
 
   // Define variables to store form input
-  TextEditingController _myOtherPlayPositionController = TextEditingController();
-  TextEditingController _myClubInceptionController = TextEditingController();
-  TextEditingController _myDreamFCController = TextEditingController();
-  TextEditingController _myATFavController = TextEditingController();
-  TextEditingController _myBestMomentInClubController = TextEditingController();
-  TextEditingController _myWorstMomentInClubController = TextEditingController();
-  TextEditingController _myNicknameController = TextEditingController();
-  TextEditingController _myHobbiesController = TextEditingController();
-  TextEditingController _myNationalityController = TextEditingController();
-  TextEditingController _myRegionOfOriginController = TextEditingController();
-  TextEditingController _myAutobiographyController = TextEditingController();
-  TextEditingController _myPhilosophyController = TextEditingController();
-  TextEditingController _myDroplineController = TextEditingController();
+  final TextEditingController _myOtherPlayPositionController = TextEditingController();
+  final TextEditingController _myClubInceptionController = TextEditingController();
+  final TextEditingController _myDreamFCController = TextEditingController();
+  final TextEditingController _myATFavController = TextEditingController();
+  final TextEditingController _myBestMomentInClubController = TextEditingController();
+  final TextEditingController _myWorstMomentInClubController = TextEditingController();
+  final TextEditingController _myNicknameController = TextEditingController();
+  final TextEditingController _myHobbiesController = TextEditingController();
+  final TextEditingController _myNationalityController = TextEditingController();
+  final TextEditingController _myRegionOfOriginController = TextEditingController();
+  final TextEditingController _myAutobiographyController = TextEditingController();
+  final TextEditingController _myPhilosophyController = TextEditingController();
+  final TextEditingController _myDroplineController = TextEditingController();
 
   String _selectedFootballPositionRole = 'Select One'; // Default value
   String _selectedLOrRFootedRole = 'Select One'; // Default value
@@ -213,12 +213,12 @@ class _SubPageState extends State<SubPage> {
   String _selectedCaptainRole = 'Select One'; // Default value
   String _selectedCaptainTeamRole = 'Select One'; // Default value
 
-  List<String> _lOrRFootedOptions = ['Select One', 'Right Foot', 'Left Foot'];
-  List<String> _adidasOrNikeOptions = ['Select One', 'Adidas', 'Nike'];
-  List<String> _ronaldoOrMessiOptions = ['Select One', 'Ronaldo', 'Messi'];
-  List<String> _captainOptions = ['Select One', 'Yes', 'No'];
-  List<String> _captainTeamOptions = ['Select One', 'First Team', 'Reserve Team', 'Third Team', 'Under 18 Team', 'Over 35 Team'];
-  List<String> _footballPositionOptions = [
+  final List<String> _lOrRFootedOptions = ['Select One', 'Right Foot', 'Left Foot'];
+  final List<String> _adidasOrNikeOptions = ['Select One', 'Adidas', 'Nike'];
+  final List<String> _ronaldoOrMessiOptions = ['Select One', 'Ronaldo', 'Messi'];
+  final List<String> _captainOptions = ['Select One', 'Yes', 'No'];
+  final List<String> _captainTeamOptions = ['Select One', 'First Team', 'Reserve Team', 'Third Team', 'Under 18 Team', 'Over 35 Team'];
+  final List<String> _footballPositionOptions = [
     'Select One',
     'Goalkeeper',
     'Center Forward',
@@ -263,7 +263,7 @@ class _SubPageState extends State<SubPage> {
   String? formattedDate;
 
   // Create a GlobalKey for the form
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   // Firebase Firestore instance
   final firestore = FirebaseFirestore.instance;
@@ -273,6 +273,7 @@ class _SubPageState extends State<SubPage> {
     String fullName2 = _name;
 
     if (_formKey.currentState!.validate()) {
+
       final firestore = FirebaseFirestore.instance;
       final otherPlayPositionName = _myOtherPlayPositionController.text;
       final clubInceptionName = _myClubInceptionController.text;
@@ -5008,7 +5009,7 @@ class _SubPageState extends State<SubPage> {
   }
 
   void _showAutobiographyModificationDialog() {
-    final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
+    // final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
 
     showDialog<String>(
       barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
@@ -5021,7 +5022,7 @@ class _SubPageState extends State<SubPage> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Form(
-            key: dialogFormKey,
+            key: _formKey,
             child: ListView(
               children: [
                 DropdownButtonFormField<String>(
@@ -5383,8 +5384,14 @@ class _SubPageState extends State<SubPage> {
                 const SizedBox(height: 40),
                 ElevatedButton(
                   onPressed: () async {
-                    await _submitForm();
-                    Navigator.pop(context); // Close the dialog
+                    try {
+                      await _submitForm();
+                      Navigator.pop(context); // Close the dialog
+                    } catch (e) {
+                      print("Error submitting form: $e");
+                      // Handle the error, show a message, or log it as needed
+                      Fluttertoast.showToast(msg: "Error Loading up ,...", gravity: ToastGravity.BOTTOM, backgroundColor: backgroundColor);
+                    }
                   },
                   child: const Text('Update Autobiography'),
                 ),
@@ -5397,7 +5404,7 @@ class _SubPageState extends State<SubPage> {
   }
 
   void _showImageModificationDialog() {
-    final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
+    // final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
 
     showDialog<String>(
       context: context,
@@ -5409,16 +5416,16 @@ class _SubPageState extends State<SubPage> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
-            key: dialogFormKey,
+            key: _formKey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: 240,
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width * .6,
                       child: const Text(
                         'Click each image to replace your profile pictures',
                         style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
@@ -5503,6 +5510,7 @@ class _SubPageState extends State<SubPage> {
                 ElevatedButton(
                   onPressed: () async {
                     await _checkAndUpdatePhoto();
+                    Navigator.pop(context); // Close the dialog
                   },
                   child: const Text('Upload Photos'),
                 ),

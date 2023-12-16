@@ -1350,15 +1350,200 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
     // Get the screen size
     Size screenSize = MediaQuery.of(context).size;
 
-// Calculate the desired size based on the screen size
+    // Calculate the desired size based on the screen size
     double imageSize = screenSize.width; // Adjust the multiplier as needed
 
-// Set the maximum and minimum size based on your requirements
+    // Set the maximum and minimum size based on your requirements
     double maxWidth = 260;
     double minWidth = 110;
 
-// Ensure the calculated size is within the desired range
+    // Ensure the calculated size is within the desired range
     double finalSize = imageSize.clamp(minWidth, maxWidth);
+
+    double positionLeftTeamA;
+    double positionRightTeamB;
+
+    // Customize positions based on screen size
+    if (screenSize.width >= 414 && screenSize.height >= 736) {
+      // iPhone 6 Plus or larger
+      positionLeftTeamA = 45;
+      positionRightTeamB = 45;
+    } else if (screenSize.width >= 375 && screenSize.height >= 667 && screenSize.height < 812) {
+      // iPhone 6 or iPhone 7 or iPhone 8
+      positionLeftTeamA = 35;
+      positionRightTeamB = 35;
+    } else if (screenSize.width >= 375 && screenSize.height >= 812 && screenSize.height < 844) {
+      // iPhone X
+      positionLeftTeamA = 45;
+      positionRightTeamB = 40;
+    } else if (screenSize.width >= 375 && screenSize.height >= 844 && screenSize.height < 926) {
+      // iPhone 12, 13, 14
+      positionLeftTeamA = 45;
+      positionRightTeamB = 45;
+    } else {
+      // Smaller screens
+      positionLeftTeamA = 25;
+      positionRightTeamB = 25;
+    }
+
+    double getTopPositionForTeams(Size screenSize) {
+      // Customize top position based on screen size
+      if (screenSize.width >= 414 && screenSize.height >= 736) {
+        // iPhone 6 Plus or larger
+        return 176;
+      } else if (screenSize.width >= 375 && screenSize.height >= 667 && screenSize.height < 812) {
+        // iPhone 6 or iPhone 7 or iPhone 8
+        return 175;
+      } else if (screenSize.width >= 375 && screenSize.height >= 812 && screenSize.height < 844) {
+        // iPhone X
+        return 175;
+      } else if (screenSize.width >= 375 && screenSize.height >= 844 && screenSize.height < 926) {
+        // iPhone 12, 13, 14
+        return 175;
+      } else if (screenSize.width >= 375 && screenSize.height >= 926 && screenSize.height < 1170) {
+        // iPhone 15
+        return 175; // Adjust as needed
+      } else {
+        // Default for other screens
+        return 160;
+      }
+    }
+
+    double getLeftPositionForTeamA(Size screenSize) {
+      // Customize left position based on screen size
+      if (screenSize.width >= 414 && screenSize.height >= 736) {
+        // iPhone 6 Plus or larger
+        return 10;
+      } else if (screenSize.width >= 375 && screenSize.height >= 667 && screenSize.height < 812) {
+        // iPhone 6 or iPhone 7 or iPhone 8
+        return 3;
+      } else if (screenSize.width >= 375 && screenSize.height >= 812 && screenSize.height < 844) {
+        // iPhone X
+        return 3;
+      } else if (screenSize.width >= 375 && screenSize.height >= 844 && screenSize.height < 926) {
+        // iPhone 12, 13, 14
+        return 9;
+      } else if (screenSize.width >= 375 && screenSize.height >= 926 && screenSize.height < 1170) {
+        // iPhone 15
+        return 9; // Adjust as needed
+      } else {
+        // Smaller screens
+        return 2;
+      }
+    }
+
+    double getRightPositionForTeamB(Size screenSize) {
+      // Customize right position based on screen size
+      if (screenSize.width >= 414 && screenSize.height >= 736) {
+        // iPhone 6 Plus or larger
+        return 12;
+      } else if (screenSize.width >= 375 && screenSize.height >= 667 && screenSize.height < 812) {
+        // iPhone 6 or iPhone 7 or iPhone 8
+        return 5;
+      } else if (screenSize.width >= 375 && screenSize.height >= 812 && screenSize.height < 844) {
+        // iPhone X
+        return 6;
+      } else if (screenSize.width >= 375 && screenSize.height >= 844 && screenSize.height < 926) {
+        // iPhone 12, 13, 14
+        return 12;
+      } else if (screenSize.width >= 375 && screenSize.height >= 926 && screenSize.height < 1170) {
+        // iPhone 15
+        return 12; // Adjust as needed
+      } else {
+        // Smaller screens
+        return 4;
+      }
+    }
+
+    double getBottomPositionForTime(Size screenSize) {
+      if (screenSize.width >= 414 && screenSize.height >= 736 && screenSize.height < 667) {
+        // iPhone 6 Plus or larger
+        return 52;
+      }
+      else
+        if (screenSize.width >= 375 && screenSize.height >= 667 && screenSize.height < 812) {
+        // iPhone 6 or iPhone 7 or iPhone 8
+        return 52;
+      } else if (screenSize.width >= 375 && screenSize.height >= 812 && screenSize.height < 844) {
+        // iPhone X
+        return 52;
+      } else if (screenSize.width >= 375 && screenSize.height >= 844 && screenSize.height < 926) {
+        // iPhone 12, 13, 14
+        return 52;
+      } else if (screenSize.width >= 414 && screenSize.height >= 926 && screenSize.height <= 1300) {
+        // iPhone 15
+        return 52;
+      } else {
+        // Smaller screens
+        return 44;
+      }
+    }
+
+    double getLeftPositionForTime(Size screenSize) {
+      if (screenSize.width >= 414 && screenSize.height >= 736) {
+        // iPhone 6 Plus or larger
+        return 97;
+      } else if (screenSize.width >= 375 && screenSize.height >= 667 && screenSize.height < 812) {
+        // iPhone 6 or iPhone 7 or iPhone 8
+        return 90;
+      } else if (screenSize.width >= 375 && screenSize.height >= 812 && screenSize.height < 844) {
+        // iPhone X
+        return 90;
+      } else if (screenSize.width >= 375 && screenSize.height >= 844 && screenSize.height < 926) {
+        // iPhone 12, 13, 14
+        return 95;
+      } else if (screenSize.width >= 375 && screenSize.height >= 926 && screenSize.height < 1170) {
+        // iPhone 15
+        return 95; // Adjust as needed
+      } else {
+        // Smaller screens
+        return 80;
+      }
+    }
+
+    double getTopMarginForLocation(Size screenSize) {
+      if (screenSize.width >= 414 && screenSize.height >= 736 && screenSize.height < 667) {
+        // iPhone 6 Plus or larger
+        return 265;
+      } else if (screenSize.width >= 375 && screenSize.height >= 667 && screenSize.height < 812) {
+        // iPhone 6, iPhone 7, iPhone 8
+        return 237;
+      } else if (screenSize.width >= 375 && screenSize.height >= 812 && screenSize.height < 844) {
+        // iPhone X
+        return 238;
+      } else if (screenSize.width >= 375 && screenSize.height >= 844 && screenSize.height < 926) {
+        // iPhone 12, 13, 14
+        return 238;
+      } else if (screenSize.width >= 375 && screenSize.height >= 926 && screenSize.height < 1170) {
+        // iPhone 15
+        return 237; // Adjust as needed
+      } else {
+        // Default for other screens
+        return 200;
+      }
+    }
+
+    double getLeftPositionForDate(Size screenSize) {
+      if (screenSize.width >= 414 && screenSize.height >= 736) {
+        // iPhone 6 Plus or larger
+        return 80;
+      } else if (screenSize.width >= 375 && screenSize.height >= 667 && screenSize.height < 812) {
+        // iPhone 6 or iPhone 7 or iPhone 8
+        return 74;
+      } else if (screenSize.width >= 375 && screenSize.height >= 812 && screenSize.height < 844) {
+        // iPhone X
+        return 76;
+      } else if (screenSize.width >= 375 && screenSize.height >= 844 && screenSize.height < 926) {
+        // iPhone 12, 13, 14
+        return 80;
+      } else if (screenSize.width >= 375 && screenSize.height >= 926 && screenSize.height < 1170) {
+        // iPhone 15
+        return 80; // Adjust as needed
+      } else {
+        // Smaller screens
+        return 70;
+      }
+    }
 
     showDialog(
         context: context,
@@ -1379,12 +1564,15 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                           'assets/images/cpfc_sm_banner.jpg',
                           width: finalSize,
                           height: finalSize,
+                          // width: dialogWidth,
+                          // height: dialogHeight,
+
                           fit: BoxFit.cover,
                         ),
                       ),
                       Positioned(
                         top: 170,
-                        left: 10,
+                        left: getLeftPositionForTeamA(screenSize),
                         width: 30,
                         height: 30,
                         child: matchDayBannerForClubNotifier!.matchDayBannerForClubList
@@ -1400,7 +1588,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                       ),
                       Positioned(
                         top: 170,
-                        right: 12,
+                        right: getRightPositionForTeamB(screenSize),
                         width: 27,
                         height: 27,
                         child: matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList
@@ -1415,8 +1603,8 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                             : Image.asset('assets/images/no_club_image.jpeg'), // Replace 'default_icon.png' with your actual asset path
                       ),
                       Positioned(
-                        top: 176,
-                        left: 45,
+                        top: getTopPositionForTeams(screenSize),
+                        left: positionLeftTeamA,
                         child: SizedBox(
                           width: 50,
                           height: calculateLineHeight(calculateFontSize(selectedTeamA!)),
@@ -1430,8 +1618,8 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                         ),
                       ),
                       Positioned(
-                        top: 176,
-                        right: 45,
+                        top: getTopPositionForTeams(screenSize),
+                        right: positionRightTeamB,
                         child: SizedBox(
                           width: 67,
                           height: calculateLineHeight(calculateFontSize(selectedTeamB!)),
@@ -1445,8 +1633,8 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                         ),
                       ),
                       Positioned(
-                        bottom: 52,
-                        left: 97,
+                        bottom: getBottomPositionForTime(screenSize),
+                        left: getLeftPositionForTime(screenSize),
                         child: SizedBox(
                           width: 67,
                           child: Text(
@@ -1459,7 +1647,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                       ),
                       Center(
                         child: Container(
-                          margin: const EdgeInsets.only(top: 239),
+                          margin: EdgeInsets.only(top: getTopMarginForLocation(screenSize)),
                           width: 90,
                           child: Text(
                             '@ ${selectedLocation!.toUpperCase()} - ${selectedLocationPostCode!.toUpperCase()}',
@@ -1472,7 +1660,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                       ),
                       Positioned(
                         bottom: 121,
-                        left: 80,
+                        left: getLeftPositionForDate(screenSize),
                         child: SizedBox(
                           width: 99,
                           child: Text(
@@ -1685,7 +1873,7 @@ ${lastThreeSelectedTeamB.length >= 2 ? ' Vs ${lastThreeSelectedTeamB.elementAt(l
 ${lastThreeSelectedLeagueNames.length >= 3 ? '🏆 ${lastThreeSelectedLeagueNames.elementAt(lastThreeSelectedLeagueNames.length - 3)}' : ''}
 ${lastThreeSelectedTeamA.length >= 3 ? lastThreeSelectedTeamA.elementAt(lastThreeSelectedTeamA.length - 3) : ''}
 ${lastThreeSelectedTeamB.length >= 3 ? ' Vs ${lastThreeSelectedTeamB.elementAt(lastThreeSelectedTeamB.length - 3)}' : ''}
-${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSponsorNames.join(', ')}' : ''}
+${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSponsorNames.join(', ')}.' : ''}
     """
         .trim();
 
