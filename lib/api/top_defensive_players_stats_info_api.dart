@@ -7,7 +7,7 @@ getTopDefensivePlayersStatsAndInfo(
     TopDefensivePlayersStatsAndInfoNotifier
         topDefensivePlayersStatsAndInfoNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
-      .collection('PlayersTable')
+      .collection('PllayersTable')
       .orderBy('goals_conceded_gk_def')
       .limit(10)
       .get();

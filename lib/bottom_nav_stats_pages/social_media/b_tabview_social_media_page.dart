@@ -27,7 +27,7 @@ class TabviewSocialMediaPageState extends State<TabviewSocialMediaPage> with Sin
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this, initialIndex: 1); // Set initialIndex to 1
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,

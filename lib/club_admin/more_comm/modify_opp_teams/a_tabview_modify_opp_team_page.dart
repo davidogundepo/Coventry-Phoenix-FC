@@ -1,14 +1,16 @@
 import 'package:coventry_phoenix_fc/club_admin/modify_club_sponsors/add_club_sponsors_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/modify_club_sponsors/remove_club_sponsors_page.dart';
+import 'package:coventry_phoenix_fc/club_admin/more_comm/modify_opp_teams/remove_opp_team_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../bloc_navigation_bloc/navigation_bloc.dart';
+import '../../../bloc_navigation_bloc/navigation_bloc.dart';
+import 'add_new_opp_team_page.dart';
 
-String acsTitle = 'Modify Club Sponsors';
-String ancsTitle = 'Add New Club Sponsor';
-String rcsTitle = 'Remove Club Sponsor';
+String acsTitle = 'Modify Away Teams';
+String ancsTitle = 'Add New Away Team';
+String rcsTitle = 'Remove Away Team(s)';
 
 Color? selectedTabColor = Colors.black;
 
@@ -26,14 +28,14 @@ Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
 Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
 Color backgroundColor = const Color.fromRGBO(147, 165, 193, 1.0);
 
-class TabviewClubSponsorsPage extends StatefulWidget with NavigationStates {
-  TabviewClubSponsorsPage({super.key});
+class TabviewOppTeamPage extends StatefulWidget with NavigationStates {
+  TabviewOppTeamPage({super.key});
 
   @override
-  State<TabviewClubSponsorsPage> createState() => _TabviewClubSponsorsPageState();
+  State<TabviewOppTeamPage> createState() => _TabviewOppTeamPageState();
 }
 
-class _TabviewClubSponsorsPageState extends State<TabviewClubSponsorsPage> with SingleTickerProviderStateMixin {
+class _TabviewOppTeamPageState extends State<TabviewOppTeamPage> with SingleTickerProviderStateMixin {
 
   late TabController _tabController;
 
@@ -57,7 +59,7 @@ class _TabviewClubSponsorsPageState extends State<TabviewClubSponsorsPage> with 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: backgroundColor,
+      // backgrou?ndColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: backgroundColor,
         title: Text(
@@ -88,8 +90,8 @@ class _TabviewClubSponsorsPageState extends State<TabviewClubSponsorsPage> with 
       body: TabBarView(
         controller: _tabController,
         children: [
-          MyAddClubSponsorPage(),
-          MyRemoveClubSponsorPage(),
+          MyAddNewOppTeamPage(),
+          MyRemoveNewOppTeamPage(),
         ],
       ),
     );

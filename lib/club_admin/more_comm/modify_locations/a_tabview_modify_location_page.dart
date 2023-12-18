@@ -1,14 +1,17 @@
 import 'package:coventry_phoenix_fc/club_admin/modify_club_sponsors/add_club_sponsors_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/modify_club_sponsors/remove_club_sponsors_page.dart';
+import 'package:coventry_phoenix_fc/club_admin/more_comm/modify_locations/remove_location_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../bloc_navigation_bloc/navigation_bloc.dart';
+import '../../../bloc_navigation_bloc/navigation_bloc.dart';
+import '../modify_leagues/add_new_league_page.dart';
+import 'add_new_location_page.dart';
 
-String acsTitle = 'Modify Club Sponsors';
-String ancsTitle = 'Add New Club Sponsor';
-String rcsTitle = 'Remove Club Sponsor';
+String acsTitle = 'Modify Match Locations';
+String ancsTitle = 'Add New Match Location';
+String rcsTitle = 'Remove Match Location(s)';
 
 Color? selectedTabColor = Colors.black;
 
@@ -26,14 +29,14 @@ Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
 Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
 Color backgroundColor = const Color.fromRGBO(147, 165, 193, 1.0);
 
-class TabviewClubSponsorsPage extends StatefulWidget with NavigationStates {
-  TabviewClubSponsorsPage({super.key});
+class TabviewLocationPage extends StatefulWidget with NavigationStates {
+  TabviewLocationPage({super.key});
 
   @override
-  State<TabviewClubSponsorsPage> createState() => _TabviewClubSponsorsPageState();
+  State<TabviewLocationPage> createState() => _TabviewLocationPageState();
 }
 
-class _TabviewClubSponsorsPageState extends State<TabviewClubSponsorsPage> with SingleTickerProviderStateMixin {
+class _TabviewLocationPageState extends State<TabviewLocationPage> with SingleTickerProviderStateMixin {
 
   late TabController _tabController;
 
@@ -57,7 +60,7 @@ class _TabviewClubSponsorsPageState extends State<TabviewClubSponsorsPage> with 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: backgroundColor,
+      // backgrou?ndColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: backgroundColor,
         title: Text(
@@ -88,8 +91,8 @@ class _TabviewClubSponsorsPageState extends State<TabviewClubSponsorsPage> with 
       body: TabBarView(
         controller: _tabController,
         children: [
-          MyAddClubSponsorPage(),
-          MyRemoveClubSponsorPage(),
+          MyAddNewLocationPage(),
+          MyRemoveNewLocationPage(),
         ],
       ),
     );

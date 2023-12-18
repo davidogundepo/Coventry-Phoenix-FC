@@ -42,7 +42,7 @@ class MyModifyRemoveClubCaptainsPageState extends State<MyModifyRemoveClubCaptai
       appBar: AppBar(
         backgroundColor: backgroundColor,
         leading: IconButton(
-          icon: const Icon(Icons.accessibility, color: Colors.white),
+          icon: const Icon(Icons.accessibility, color: Colors.white38),
           onPressed: () {},
         ),
         title: const Text(
@@ -66,64 +66,92 @@ class MyModifyRemoveClubCaptainsPageState extends State<MyModifyRemoveClubCaptai
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: clubCaptainsNotifier.captainsList.length,
-        itemBuilder: (context, index) {
-          final clubCaptains = clubCaptainsNotifier.captainsList[index];
-          return ListTile(
-            title: Text(
-              clubCaptains.name ?? 'No Name',
-              style: const TextStyle(color: Colors.white),
-            ),
-            trailing: isEditing
-                ? Checkbox(
-                    activeColor: Colors.white,
-                    checkColor: backgroundColor,
-                    value: selectedClubCaptains.contains(clubCaptains),
-                    onChanged: (value) {
-                      setState(() {
-                        if (value != null && value) {
-                          selectedClubCaptains.add(clubCaptains);
-                        } else {
-                          selectedClubCaptains.remove(clubCaptains);
-                        }
-                      });
-                    },
-                  )
-                : null, // Show checkbox only in "Edit" mode
-            // Add other clubCaptains information you want to display
-          );
+      body: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          // Hide the keyboard when tapping outside the text field
+          FocusManager.instance.primaryFocus?.unfocus();
         },
+        child: Padding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.width * 0.25),
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification scrollInfo) {
+              // You can add logic here to show/hide the scrollbar based on scroll position
+              return true;
+            },
+            child: Scrollbar(
+              child: ListView.builder(
+                itemCount: clubCaptainsNotifier.captainsList.length,
+                itemBuilder: (context, index) {
+                  final clubCaptains = clubCaptainsNotifier.captainsList[index];
+                  return ListTile(
+                    title: Text(
+                      '${clubCaptains.name!} (${clubCaptains.teamCaptaining!})' ?? 'No Name',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    trailing: isEditing
+                        ? Checkbox(
+                            activeColor: Colors.white,
+                            checkColor: backgroundColor,
+                            value: selectedClubCaptains.contains(clubCaptains),
+                            onChanged: (value) {
+                              setState(() {
+                                if (value != null && value) {
+                                  selectedClubCaptains.add(clubCaptains);
+                                } else {
+                                  selectedClubCaptains.remove(clubCaptains);
+                                }
+                              });
+                            },
+                          )
+                        : null, // Show checkbox only in "Edit" mode
+                    // Add other clubCaptains information you want to display
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
       ),
       bottomSheet: isEditing
           ? SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Container(
+                color: twitterColor,
                 constraints: BoxConstraints(
                   maxHeight: MediaQuery.of(context).size.height * 0.27,
                 ),
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
                   children: [
-                    const Text(
-                      'Selected Captains:',
-                      style: TextStyle(color: Colors.black),
-                    ),
+                    // const Text(
+                    //   'Selected\nCaptains:',
+                    //   style: TextStyle(color: Colors.black),
+                    // ),
                     const SizedBox(width: 8.0),
                     Expanded(
-                      child: Wrap(
-                        children: selectedClubCaptains.map((clubCaptains) {
-                          return Chip(
-                            label: Text(clubCaptains.name ?? ''),
-                            onDeleted: () {
-                              setState(() {
-                                selectedClubCaptains.remove(clubCaptains);
-                              });
-                            },
-                          );
-                        }).toList(),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal, // Set the scroll direction to horizontal
+                        child: Wrap(
+                          children: selectedClubCaptains.map((clubCaptains) {
+                            return Chip(
+                              label: Text(clubCaptains.name ?? '',
+                                style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.redAccent
+                                ),
+                              ),
+                              onDeleted: () {
+                                setState(() {
+                                  selectedClubCaptains.remove(clubCaptains);
+                                });
+                              },
+                            );
+                          }).toList(),
+                        ),
                       ),
                     ),
+                    const SizedBox(width: 8.0),
                     ElevatedButton(
                       onPressed: () async {
                         await deleteSelectedClubCaptains(selectedClubCaptains);
@@ -167,7 +195,7 @@ class MyModifyRemoveClubCaptainsPageState extends State<MyModifyRemoveClubCaptai
       }
     }
 
-    // Update the management list in the notifier
+    // Update the captains list in the notifier
     clubCaptainsNotifier.captainsList = updatedList;
   }
 

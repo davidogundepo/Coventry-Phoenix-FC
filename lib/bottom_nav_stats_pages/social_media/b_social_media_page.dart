@@ -220,8 +220,6 @@ class MySocialMediaPageState extends State<MySocialMediaPage> {
     }
   }
 
-
-
   @override
   void initState() {
     super.initState();

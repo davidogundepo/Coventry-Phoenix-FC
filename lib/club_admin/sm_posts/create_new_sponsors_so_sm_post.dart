@@ -140,7 +140,8 @@ class _CreateNewSponsorsShoutOutSMPostState extends State<CreateNewSponsorsShout
                               CircleAvatar(
                                 radius: MediaQuery.sizeOf(context).width * 0.09,
                                 backgroundColor: Colors.transparent, // Set background color to transparent to avoid unwanted padding
-                                child: ClipOval( // ClipOval to ensure the image is circular
+                                child: ClipOval(
+                                  // ClipOval to ensure the image is circular
                                   child: CachedNetworkImage(
                                     imageUrl: clubSponsorsNotifier!.clubSponsorsList[selectedSponsorIndex!].sponsorIcon!,
                                     fit: BoxFit.cover, // Use BoxFit.cover to ensure the image covers the entire circle
@@ -290,89 +291,96 @@ class _CreateNewSponsorsShoutOutSMPostState extends State<CreateNewSponsorsShout
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: alertDialogBackgroundColor,
-            title: const Text(
-              "Generated Banner",
-              style: TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w500),
-            ),
-            content: RepaintBoundary(
-              key: boundaryKey,
-              child: AspectRatio(
-                aspectRatio: 1.0, // Make the content square
-                child: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/cpfc_new_sponsor_banner.png'), // Update with your asset image path
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Stack(
-                    key: _bannerContentKeyed,
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(height: 10),
-                            SizedBox(
-                              width: MediaQuery.sizeOf(context).width * 0.4,
-                              child: Text(
-                                'We are delighted to introduce ${selectedSponsor.name!}.\n Welcome aboard to the team!'.toUpperCase(),
-                                style: GoogleFonts.courierPrime(fontSize: 9, color: Colors.white),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.5,
-                              child: Text(
-                                website.isNotEmpty ? website : '', // Show an empty string if the website is empty
-                                style: GoogleFonts.monomaniacOne(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w200),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                            const SizedBox(height: 30),
-                          ],
+          return StatefulBuilder(builder: (context, setState) {
+            return AbsorbPointer(
+              absorbing: isSharing,
+              child: AlertDialog(
+                backgroundColor: alertDialogBackgroundColor,
+                title: const Text(
+                  "Generated Banner",
+                  style: TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w700),
+                ),
+                content: RepaintBoundary(
+                  key: boundaryKey,
+                  child: AspectRatio(
+                    aspectRatio: 1.0, // Make the content square
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/cpfc_new_sponsor_banner.png'), // Update with your asset image path
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    ],
+                      child: Stack(
+                        key: _bannerContentKeyed,
+                        children: [
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const SizedBox(height: 10),
+                                SizedBox(
+                                  width: MediaQuery.sizeOf(context).width * 0.4,
+                                  child: Text(
+                                    'We are delighted to introduce ${selectedSponsor.name!}.\n Welcome aboard to the team!'.toUpperCase(),
+                                    style: GoogleFonts.courierPrime(fontSize: 9, color: Colors.white),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width * 0.5,
+                                  child: Text(
+                                    website.isNotEmpty ? website : '', // Show an empty string if the website is empty
+                                    style: GoogleFonts.monomaniacOne(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w200),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                const SizedBox(height: 40),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Cancel', style: TextStyle(color: Colors.black)),
+                  ),
+                  isSharing
+                      ? const CircularProgressIndicator(
+                    color: Colors.black
+                  ) // Show the progress indicator when sharing
+                      : TextButton(
+                          onPressed: () async {
+                            setState(() {
+                              isSharing = true; // Set the state to indicate sharing is in progress
+                            });
+                            // Navigator.of(context).pop();
+                            await _submitForm();
+                            await _shareContent(boundaryKey); // Wait for the sharing to complete
+                            Fluttertoast.showToast(
+                              msg: 'Success! Generated',
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.deepOrangeAccent,
+                              textColor: Colors.white,
+                              fontSize: 16.0,
+                            );
+                            Navigator.of(context).pop(); // Close the dialog after sharing
+                          },
+                          child: const Text('Share', style: TextStyle(color: Colors.black)),
+                        ),
+                ],
               ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Cancel', style: TextStyle(color: Colors.black)),
-              ),
-              isSharing
-                  ? const CircularProgressIndicator() // Show the progress indicator when sharing
-                  : TextButton(
-                      onPressed: () async {
-                        setState(() {
-                          isSharing = true; // Set the state to indicate sharing is in progress
-                        });
-                        // Navigator.of(context).pop();
-                        await _submitForm();
-                        _shareContent(boundaryKey);
-                        Fluttertoast.showToast(
-                          msg: 'Success! Generated',
-                          gravity: ToastGravity.BOTTOM,
-                          backgroundColor: Colors.deepOrangeAccent,
-                          textColor: Colors.white,
-                          fontSize: 16.0,
-                        );
-                        Navigator.of(context).pop(); // Close the dialog after sharing
-                      },
-                      child: const Text('Share', style: TextStyle(color: Colors.black)),
-                    ),
-            ],
-          );
+            );
+          });
         },
       );
     } else {
@@ -389,7 +397,7 @@ class _CreateNewSponsorsShoutOutSMPostState extends State<CreateNewSponsorsShout
     }
   }
 
-  void _shareContent(GlobalKey boundaryKey) async {
+  _shareContent(GlobalKey boundaryKey) async {
     // Get the RenderObject from the RepaintBoundary using its key
     RenderRepaintBoundary boundary = boundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
 

@@ -6,7 +6,7 @@ import '../notifier/top_gk_players_stats_info_notifier.dart';
 getTopGKPlayersStatsAndInfo(
     TopGKPlayersStatsAndInfoNotifier topGKPlayersStatsAndInfoNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
-      .collection('PlayersTable')
+      .collection('PllayersTable')
       .where('clean_sheets_gk', isGreaterThan: 0)
       .orderBy('clean_sheets_gk', descending: true)
       .limit(10)

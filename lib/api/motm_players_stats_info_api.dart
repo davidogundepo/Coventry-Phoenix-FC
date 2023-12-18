@@ -6,7 +6,7 @@ import '../notifier/motm_players_stats_info_notifier.dart';
 getMOTMPlayersStatsAndInfo(
     MOTMPlayersStatsAndInfoNotifier mOTMPlayersStatsAndInfoNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
-      .collection('PlayersTable')
+      .collection('PllayersTable')
       .where('man_of_the_match',
           whereIn: ['yes', 'Yes', 'YES', 'yES', 'yeS', 'YEs', 'yEs', 'YeS'])
       .limit(10)

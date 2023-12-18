@@ -569,189 +569,128 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
       context: context,
       builder: (BuildContext context) {
         return StatefulBuilder(builder: (context, setState) {
-          return AlertDialog(
-            backgroundColor: backgroundColor,
-            content: RepaintBoundary(
-              key: boundaryKeyed,
-              child: AspectRatio(
-                aspectRatio: 1.0, // Make the content square
-                child: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/cpfc_logo_back_blurred.png'),
-                      fit: BoxFit.cover,
+          return AbsorbPointer(
+            absorbing: isSharing,
+            child: AlertDialog(
+              backgroundColor: backgroundColor,
+              content: RepaintBoundary(
+                key: boundaryKeyed,
+                child: AspectRatio(
+                  aspectRatio: 1.0, // Make the content square
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/cpfc_logo_back_blurred.png'),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  child: Stack(
-                    key: _bannerContentKeyed,
-                    children: [
-                      // Top text
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(left: 5, top: 19, right: 65),
-                              child: FittedBox(
-                                alignment: Alignment.center,
-                                fit: BoxFit.scaleDown,
+                    child: Stack(
+                      key: _bannerContentKeyed,
+                      children: [
+                        // Top text
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(left: 5, top: 19, right: 65),
+                                child: FittedBox(
+                                  alignment: Alignment.center,
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    _eventNameController.text.toUpperCase(),
+                                    style: GoogleFonts.metrophobic(
+                                      color: Colors.yellow,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      shadows: [
+                                        const Shadow(
+                                          color: Colors.black,
+                                          offset: Offset(7, 3),
+                                          blurRadius: 3,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              Container(
+                                padding: const EdgeInsets.only(right: 6),
+                                margin: const EdgeInsets.only(left: 8, top: 3),
                                 child: Text(
-                                  _eventNameController.text.toUpperCase(),
+                                  _eventSummaryController.text,
+                                  textAlign: TextAlign.justify,
+                                  maxLines: 4,
+                                  overflow: TextOverflow.clip,
                                   style: GoogleFonts.metrophobic(
-                                    color: Colors.yellow,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
+                                    color: const Color.fromRGBO(199, 177, 153, 1.0),
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 12,
                                     shadows: [
                                       const Shadow(
                                         color: Colors.black,
-                                        offset: Offset(7, 3),
+                                        offset: Offset(2, 2),
                                         blurRadius: 3,
                                       ),
                                     ],
                                   ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 20),
-                            Container(
-                              padding: const EdgeInsets.only(right: 6),
-                              margin: const EdgeInsets.only(left: 8, top: 3),
-                              child: Text(
-                                _eventSummaryController.text,
-                                textAlign: TextAlign.justify,
-                                maxLines: 4,
-                                overflow: TextOverflow.clip,
-                                style: GoogleFonts.metrophobic(
-                                  color: const Color.fromRGBO(199, 177, 153, 1.0),
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 12,
-                                  shadows: [
-                                    const Shadow(
-                                      color: Colors.black,
-                                      offset: Offset(2, 2),
-                                      blurRadius: 3,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      // Middle texts
-                      Align(
-                        alignment: Alignment.center,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const SizedBox(height: 40),
-                            Container(
-                              margin: const EdgeInsets.only(left: 5, top: 13),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "WHEN".toUpperCase(),
-                                    style: GoogleFonts.metrophobic(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                      shadows: [
-                                        const Shadow(
-                                          color: Colors.black,
-                                          offset: Offset(2, 2),
-                                          blurRadius: 3,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(width: 15),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        getFormattedDate(selectedDateA).toUpperCase(),
-                                        style: GoogleFonts.metrophobic(
-                                          color: const Color.fromRGBO(199, 177, 153, 1.0),
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 10,
-                                          shadows: [
-                                            const Shadow(
-                                              color: Colors.black,
-                                              offset: Offset(2, 2),
-                                              blurRadius: 3,
-                                            ),
-                                          ],
-                                        ),
+                        // Middle texts
+                        Align(
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const SizedBox(height: 40),
+                              Container(
+                                margin: const EdgeInsets.only(left: 5, top: 13),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "WHEN".toUpperCase(),
+                                      style: GoogleFonts.metrophobic(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        shadows: [
+                                          const Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(2, 2),
+                                            blurRadius: 3,
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        "$formattedTimeA - $formattedTimeB",
-                                        style: GoogleFonts.metrophobic(
-                                          color: Colors.yellow,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 8,
-                                          shadows: [
-                                            const Shadow(
-                                              color: Colors.black,
-                                              offset: Offset(2, 2),
-                                              blurRadius: 3,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Container(
-                              margin: const EdgeInsets.only(left: 5, top: 5, right: 5),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "WHERE".toUpperCase(),
-                                    style: GoogleFonts.metrophobic(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                      shadows: [
-                                        const Shadow(
-                                          color: Colors.black,
-                                          offset: Offset(2, 2),
-                                          blurRadius: 3,
-                                        ),
-                                      ],
                                     ),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Expanded(
-                                    child: Column(
+                                    const SizedBox(width: 15),
+                                    Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        FittedBox(
-                                          child: Text(
-                                            selectedLocation!.toUpperCase(),
-                                            style: GoogleFonts.metrophobic(
-                                              color: const Color.fromRGBO(199, 177, 153, 1.0),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 10,
-                                              shadows: [
-                                                const Shadow(
-                                                  color: Colors.black,
-                                                  offset: Offset(2, 2),
-                                                  blurRadius: 3,
-                                                ),
-                                              ],
-                                            ),
+                                        Text(
+                                          getFormattedDate(selectedDateA).toUpperCase(),
+                                          style: GoogleFonts.metrophobic(
+                                            color: const Color.fromRGBO(199, 177, 153, 1.0),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 10,
+                                            shadows: [
+                                              const Shadow(
+                                                color: Colors.black,
+                                                offset: Offset(2, 2),
+                                                blurRadius: 3,
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         Text(
-                                          selectedLocationPostCode!,
+                                          "$formattedTimeA - $formattedTimeB",
                                           style: GoogleFonts.metrophobic(
                                             color: Colors.yellow,
                                             fontWeight: FontWeight.bold,
@@ -767,50 +706,21 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(top: 10),
-                              child: Text(
-                                "All are Welcome!".toUpperCase(),
-                                style: GoogleFonts.metrophobic(
-                                  color: const Color.fromRGBO(199, 177, 153, 1.0),
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 13,
-                                  shadows: [
-                                    const Shadow(
-                                      color: Colors.black,
-                                      offset: Offset(2, 2),
-                                      blurRadius: 3,
-                                    ),
                                   ],
                                 ),
                               ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(left: 5, right: 5, top: 8, bottom: 5),
-                              child: RichText(
-                                maxLines: 2,
-                                overflow: TextOverflow.clip,
-                                text: TextSpan(
+                              const SizedBox(height: 10),
+                              Container(
+                                margin: const EdgeInsets.only(left: 5, top: 5, right: 5),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    TextSpan(
-                                      text: "Please message us or contact Edwin Greaves on ".toUpperCase(),
+                                    Text(
+                                      "WHERE".toUpperCase(),
                                       style: GoogleFonts.metrophobic(
-                                        color: const Color.fromRGBO(199, 177, 153, 1.0),
-                                        fontWeight: FontWeight.w800,
-                                        fontSize: 11,
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
                                         shadows: [
                                           const Shadow(
                                             color: Colors.black,
@@ -820,17 +730,42 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
                                         ],
                                       ),
                                     ),
-                                    TextSpan(
-                                      text: "07973370218".toUpperCase(),
-                                      style: GoogleFonts.metrophobic(
-                                        color: Colors.yellow,
-                                        fontWeight: FontWeight.w800,
-                                        fontSize: 9,
-                                        shadows: [
-                                          const Shadow(
-                                            color: Colors.black,
-                                            offset: Offset(2, 2),
-                                            blurRadius: 3,
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          FittedBox(
+                                            child: Text(
+                                              selectedLocation!.toUpperCase(),
+                                              style: GoogleFonts.metrophobic(
+                                                color: const Color.fromRGBO(199, 177, 153, 1.0),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 10,
+                                                shadows: [
+                                                  const Shadow(
+                                                    color: Colors.black,
+                                                    offset: Offset(2, 2),
+                                                    blurRadius: 3,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            selectedLocationPostCode!,
+                                            style: GoogleFonts.metrophobic(
+                                              color: Colors.yellow,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 8,
+                                              shadows: [
+                                                const Shadow(
+                                                  color: Colors.black,
+                                                  offset: Offset(2, 2),
+                                                  blurRadius: 3,
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -838,56 +773,126 @@ class _CreateUpcomingEventSMPostState extends State<CreateUpcomingEventSMPost> {
                                   ],
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(top: 10),
+                                child: Text(
+                                  "All are Welcome!".toUpperCase(),
+                                  style: GoogleFonts.metrophobic(
+                                    color: const Color.fromRGBO(199, 177, 153, 1.0),
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 13,
+                                    shadows: [
+                                      const Shadow(
+                                        color: Colors.black,
+                                        offset: Offset(2, 2),
+                                        blurRadius: 3,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(left: 5, right: 5, top: 8, bottom: 5),
+                                child: RichText(
+                                  maxLines: 2,
+                                  overflow: TextOverflow.clip,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: "Please message us or contact Edwin Greaves on ".toUpperCase(),
+                                        style: GoogleFonts.metrophobic(
+                                          color: const Color.fromRGBO(199, 177, 153, 1.0),
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 11,
+                                          shadows: [
+                                            const Shadow(
+                                              color: Colors.black,
+                                              offset: Offset(2, 2),
+                                              blurRadius: 3,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: "07973370218".toUpperCase(),
+                                        style: GoogleFonts.metrophobic(
+                                          color: Colors.yellow,
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 9,
+                                          shadows: [
+                                            const Shadow(
+                                              color: Colors.black,
+                                              offset: Offset(2, 2),
+                                              blurRadius: 3,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            title: Text(
-              'Share your Event'.toUpperCase(),
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white70),
-            ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Cancel', style: TextStyle(color: Colors.white70)),
+              title: Text(
+                'Share your Event'.toUpperCase(),
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white70),
               ),
-              isSharing
-                  ? const CircularProgressIndicator() // Show the progress indicator when sharing
-                  : TextButton(
-                      onPressed: () async {
-                        setState(() {
-                          isSharing = true; // Set the state to indicate sharing is in progress
-                        });
-                        // Navigator.of(context).pop();
-                        await _submitForm();
-                        _shareContent(boundaryKeyed);
-                        Fluttertoast.showToast(
-                          msg: 'Success! Generated',
-                          gravity: ToastGravity.BOTTOM,
-                          backgroundColor: Colors.deepOrangeAccent,
-                          textColor: Colors.white,
-                          fontSize: 16.0,
-                        );
-                        Navigator.of(context).pop(); // Close the dialog after sharing
-                      },
-                      child: const Text('Share', style: TextStyle(color: Colors.white70)),
-                    ),
-            ],
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancel', style: TextStyle(color: Colors.white70)),
+                ),
+                isSharing
+                    ? const CircularProgressIndicator(
+                  color: Colors.white,
+                ) // Show the progress indicator when sharing
+                    : TextButton(
+                        onPressed: () async {
+                          setState(() {
+                            isSharing = true; // Set the state to indicate sharing is in progress
+                          });
+                          // Navigator.of(context).pop();
+                          await _submitForm();
+                          await _shareContent(boundaryKeyed);
+                          Fluttertoast.showToast(
+                            msg: 'Success! Generated',
+                            gravity: ToastGravity.BOTTOM,
+                            backgroundColor: Colors.deepOrangeAccent,
+                            textColor: Colors.white,
+                            fontSize: 16.0,
+                          );
+                          Navigator.of(context).pop(); // Close the dialog after sharing
+                        },
+                        child: const Text('Share', style: TextStyle(color: Colors.white70)),
+                      ),
+              ],
+            ),
           );
         });
       },
     );
   }
 
-  void _shareContent(GlobalKey boundaryKey) async {
+  _shareContent(GlobalKey boundaryKey) async {
     // Get the RenderObject from the RepaintBoundary using its key
     RenderRepaintBoundary boundary = boundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
 

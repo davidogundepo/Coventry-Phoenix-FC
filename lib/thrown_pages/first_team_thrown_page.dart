@@ -88,9 +88,9 @@ String aboutApp = "About App";
 String fabStats = "Stats";
 
 String networkSharedPreferencesKey = "first_time";
-String networkSharedPreferencesTitle = "Bienvenue! 😎";
-String networkSharedPreferencesContent = "Enjoy and Stay Awesome :)";
-String networkSharedPreferencesButton = "Okies";
+String networkSharedPreferencesTitle = "Welcome! 😎";
+String networkSharedPreferencesContent = "Enjoy the GFA App and Stay Awesome.";
+String networkSharedPreferencesButton = "Okay";
 
 String welcomeOverviewSharedPreferencesKey = "toast_initial";
 
@@ -325,13 +325,19 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                           if (!snapshot.hasData) {
                             return const CircularProgressIndicator();
                           }
-                          return Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: CachedNetworkImageProvider(
-                                      snapshot.data?.data()!['slivers_page_1'] ?? 0,
-                                    ),
-                                    fit: BoxFit.cover)),
+                          return ColorFiltered(
+                            colorFilter: ColorFilter.mode(
+                              Colors.black.withOpacity(0.5), // Adjust the opacity as needed
+                              BlendMode.darken,
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: CachedNetworkImageProvider(
+                                        snapshot.data?.data()!['slivers_page_1'] ?? 0,
+                                      ),
+                                      fit: BoxFit.cover)),
+                            ),
                           );
                         },
                       )

@@ -15,12 +15,12 @@ class MyAddClubMemberPage extends StatefulWidget with NavigationStates {
 class MyAddClubMemberPageState extends State<MyAddClubMemberPage> {
 
   // Define variables to store form input
-  TextEditingController _firstNameController = TextEditingController();
-  TextEditingController _lastNameController = TextEditingController();
-  String _selectedRole = 'Returning Player'; // Default value
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  String _selectedRole = 'Coventry Phoenix I Players'; // Default value
 
   // Create a list of role options for the dropdown menu
-  List<String> _roleOptions = ['Returning Player', 'New Player', 'Coach', 'Manager'];
+  final List<String> _roleOptions = ['Coventry Phoenix I Players', 'Coventry Phoenix II Players', 'Coach', 'Manager'];
 
   // Create a GlobalKey for the form
   final _formKey = GlobalKey<FormState>();
@@ -49,7 +49,7 @@ class MyAddClubMemberPageState extends State<MyAddClubMemberPage> {
       Map<String, dynamic> data = {};
 
       switch (role) {
-        case 'Returning Player':
+        case 'Coventry Phoenix I Players':
           collectionName = 'FirstTeamClassPlayers';
           data = {
             'id': '10',
@@ -86,7 +86,7 @@ class MyAddClubMemberPageState extends State<MyAddClubMemberPage> {
             'worst_moment': '',
           };
           break;
-        case 'New Player':
+        case 'Coventry Phoenix II Players':
           collectionName = 'SecondTeamClassPlayers';
           data = {
             'id': '10',
@@ -208,7 +208,7 @@ class MyAddClubMemberPageState extends State<MyAddClubMemberPage> {
             _firstNameController.clear();
             _lastNameController.clear();
             setState(() {
-              _selectedRole = 'Returning Player';
+              _selectedRole = 'Coventry Phoenix I Players';
             });
           }
         } else {

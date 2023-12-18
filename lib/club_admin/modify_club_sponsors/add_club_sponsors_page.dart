@@ -19,8 +19,8 @@ class MyAddClubSponsorPage extends StatefulWidget with NavigationStates {
 
 class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
   // Define variables to store form input
-  TextEditingController _sponsorNameController = TextEditingController();
-  TextEditingController _clubSponsoringSummaryController = TextEditingController();
+  final TextEditingController _sponsorNameController = TextEditingController();
+  final TextEditingController _clubSponsoringSummaryController = TextEditingController();
 
   String? sponsorName;
 
@@ -258,10 +258,10 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.black.withAlpha(20),
-                          border: Border.all(color: Colors.black, width: 2),
+                          border: Border.all(color: Colors.black26, width: 2),
                         ),
                         child: _imageOne != null
-                            ? Image.file(_imageOne!, height: 100, width: 100, fit: BoxFit.contain)
+                            ? Image.file(_imageOne!, height: 100, width: 100, fit: BoxFit.cover)
                             : const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [Icon(Icons.person, size: 60), Text('One')],
@@ -283,10 +283,10 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.black.withAlpha(20),
-                          border: Border.all(color: Colors.black, width: 2),
+                          border: Border.all(color: Colors.black26, width: 2),
                         ),
                         child: _imageTwo != null
-                            ? Image.file(_imageTwo!, height: 100, width: 100, fit: BoxFit.contain)
+                            ? Image.file(_imageTwo!, height: 100, width: 100, fit: BoxFit.cover)
                             : const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [Icon(Icons.person, size: 60), Text('Two')],
@@ -314,10 +314,10 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.black.withAlpha(20),
-                          border: Border.all(color: Colors.black, width: 2),
+                          border: Border.all(color: Colors.black26, width: 2),
                         ),
                         child: _imageThree != null
-                            ? Image.file(_imageThree!, height: 100, width: 100, fit: BoxFit.contain)
+                            ? Image.file(_imageThree!, height: 100, width: 100, fit: BoxFit.cover)
                             : const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [Icon(Icons.person, size: 60), Text('Three')],
@@ -339,10 +339,10 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.black.withAlpha(20),
-                          border: Border.all(color: Colors.black, width: 2),
+                          border: Border.all(color: Colors.black26, width: 2),
                         ),
                         child: _imageFour != null
-                            ? Image.file(_imageFour!, height: 100, width: 100, fit: BoxFit.contain)
+                            ? Image.file(_imageFour!, height: 100, width: 100, fit: BoxFit.cover)
                             : const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [Icon(Icons.person, size: 60), Text('Four')],
@@ -364,10 +364,10 @@ class MyAddClubSponsorPageState extends State<MyAddClubSponsorPage> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.black.withAlpha(20),
-                          border: Border.all(color: Colors.black, width: 2),
+                          border: Border.all(color: Colors.black26, width: 2),
                         ),
                         child: _imageFive != null
-                            ? Image.file(_imageFive!, height: 100, width: 100, fit: BoxFit.contain)
+                            ? Image.file(_imageFive!, height: 100, width: 100, fit: BoxFit.cover)
                             : const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [Icon(Icons.person, size: 60), Text('Five')],

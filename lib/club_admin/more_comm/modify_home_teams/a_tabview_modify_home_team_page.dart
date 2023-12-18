@@ -1,14 +1,15 @@
-import 'package:coventry_phoenix_fc/club_admin/modify_club_sponsors/add_club_sponsors_page.dart';
-import 'package:coventry_phoenix_fc/club_admin/modify_club_sponsors/remove_club_sponsors_page.dart';
+
+import 'remove_home_team_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../bloc_navigation_bloc/navigation_bloc.dart';
+import '../../../bloc_navigation_bloc/navigation_bloc.dart';
+import 'add_new_home_team_page.dart';
 
-String acsTitle = 'Modify Club Sponsors';
-String ancsTitle = 'Add New Club Sponsor';
-String rcsTitle = 'Remove Club Sponsor';
+String acsTitle = 'Modify Home Teams';
+String ancsTitle = 'Add New Home Team';
+String rcsTitle = 'Remove Home Team(s)';
 
 Color? selectedTabColor = Colors.black;
 
@@ -26,14 +27,14 @@ Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
 Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
 Color backgroundColor = const Color.fromRGBO(147, 165, 193, 1.0);
 
-class TabviewClubSponsorsPage extends StatefulWidget with NavigationStates {
-  TabviewClubSponsorsPage({super.key});
+class TabviewHomeTeamPage extends StatefulWidget with NavigationStates {
+  TabviewHomeTeamPage({super.key});
 
   @override
-  State<TabviewClubSponsorsPage> createState() => _TabviewClubSponsorsPageState();
+  State<TabviewHomeTeamPage> createState() => _TabviewHomeTeamPageState();
 }
 
-class _TabviewClubSponsorsPageState extends State<TabviewClubSponsorsPage> with SingleTickerProviderStateMixin {
+class _TabviewHomeTeamPageState extends State<TabviewHomeTeamPage> with SingleTickerProviderStateMixin {
 
   late TabController _tabController;
 
@@ -88,8 +89,8 @@ class _TabviewClubSponsorsPageState extends State<TabviewClubSponsorsPage> with 
       body: TabBarView(
         controller: _tabController,
         children: [
-          MyAddClubSponsorPage(),
-          MyRemoveClubSponsorPage(),
+          MyAddNewHomeTeamPage(),
+          MyRemoveNewHomeTeamPage(),
         ],
       ),
     );

@@ -216,7 +216,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                                                       clubName.toUpperCase(),
                                                       style: GoogleFonts.gorditas(
                                                           color: textColor,
-                                                          fontSize: 21,
+                                                          fontSize: 19,
                                                           fontWeight: FontWeight.w700,
                                                           shadows: <Shadow>[
                                                             Shadow(blurRadius: 50, color: textShadowColor, offset: Offset.fromDirection(100, 12))
@@ -227,7 +227,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                                                       style: GoogleFonts.varela(
                                                         color: textColor,
                                                         fontWeight: FontWeight.w500,
-                                                        fontSize: 20,
+                                                        fontSize: 16,
                                                       ),
                                                     ),
                                                   ),

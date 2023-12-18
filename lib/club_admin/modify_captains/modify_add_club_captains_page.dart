@@ -23,6 +23,8 @@ Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
 Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
 Color backgroundColor = const Color.fromRGBO(20, 36, 62, 1.0);
 
+PlayersNotifier? playersNotifier;
+
 class MyModifyAddClubCaptainsPage extends StatefulWidget with NavigationStates {
   MyModifyAddClubCaptainsPage({Key? key}) : super(key: key);
 
@@ -36,18 +38,34 @@ class MyModifyAddClubCaptainsPageState extends State<MyModifyAddClubCaptainsPage
   List<String> selectedPlayerNames = []; // List to store selected player names
   Map<String, String> playerTeams = {}; // Map to store player-team mapping
   String selectedTeam = ''; // Variable to store the selected team
+  bool isShowingSplash = false;
+  int splashColorIndex = 0;
+  // Define a flag to determine whether to show the Snackbar
+  bool showSnackbarFlag = true;
+
+  final List<Color> splashColors = [
+    Colors.blueGrey,
+    Colors.lightBlueAccent, // Add more colors as needed
+    Colors.blueAccent,
+    Colors.teal,
+  ];
 
   @override
   Widget build(BuildContext context) {
     // Use the PlayersNotifier to access the combined list of players
-    PlayersNotifier playersNotifier = Provider.of<PlayersNotifier>(context);
+    playersNotifier = Provider.of<PlayersNotifier>(context);
+
+    // Create a copy of the allClubMembersList and sort it alphabetically by name
+    List<dynamic> sortedPlayers = List.from(playersNotifier!.playersList);
+    sortedPlayers.sort((a, b) =>
+        (a.name ?? 'No Name').toLowerCase().compareTo((b.name ?? 'No Name').toLowerCase()));
 
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: backgroundColor,
         leading: IconButton(
-          icon: const Icon(Icons.accessibility, color: Colors.white),
+          icon: const Icon(Icons.accessibility, color: Colors.white38),
           onPressed: () {},
         ),
         title: const Text(
@@ -71,104 +89,132 @@ class MyModifyAddClubCaptainsPageState extends State<MyModifyAddClubCaptainsPage
           ),
         ],
       ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          // Refresh the data when the user pulls down the list
-          await refreshData();
+      body: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          // Hide the keyboard when tapping outside the text field
+          FocusManager.instance.primaryFocus?.unfocus();
         },
-        child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('Captains').snapshots(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-
-            // Create a map to store player-team mappings based on Firestore data
-            Map<String, String> playerCaptains = {};
-
-            for (var doc in snapshot.data!.docs) {
-              final playerName = doc['name'] as String?;
-              final teamCaptaining = doc['team_captaining'] as String?;
-              if (playerName != null && teamCaptaining != null) {
-                playerCaptains[playerName] = teamCaptaining;
-              }
-            }
-
-            // Update the playerTeams map with the Firestore data
-            playerTeams = playerCaptains;
-
-            return ListView.builder(
-              itemCount: playersNotifier.playersList.length,
-              itemBuilder: (context, index) {
-                final player = playersNotifier.playersList[index];
-                final playerName = player.name ?? 'No Name';
-                final playerImage = player.image ?? 'No Image';
-                final isCaptain = playerTeams.containsKey(playerName);
-                final isSelected = selectedPlayerNames.contains(playerName);
-                final teamForPlayer = playerTeams[playerName];
-
-                return ListTile(
-                  title: Text(
-                    '$playerName ${teamForPlayer != null ? '($teamForPlayer)' : ''}',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  trailing: isEditing
-                      ? Checkbox(
-                          activeColor: Colors.white,
-                          checkColor: backgroundColor,
-                          value: isSelected, // Check by player name
-                          onChanged: (value) {
-                            setState(() {
-                              if (value != null) {
-                                if (value && !isSelected) {
-                                  // Player is selected, and not already in the list
-                                  selectedPlayerNames.add(playerName);
-                                } else if (!value && isSelected) {
-                                  // Player is unselected, and in the list
-                                  selectedPlayerNames.remove(playerName);
-                                }
-                              }
-                            });
-                          },
-                        )
-                      : null,
-                );
-              },
-            );
+        child: RefreshIndicator(
+          onRefresh: () async {
+            // Refresh the data when the user pulls down the list
+            await refreshData();
           },
+          child: StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance.collection('Captains').snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              // Create a map to store player-team mappings based on Firestore data
+              Map<String, String> playerCaptains = {};
+
+              for (var doc in snapshot.data!.docs) {
+                final playerName = doc['name'] as String?;
+                final teamCaptaining = doc['team_captaining'] as String?;
+                if (playerName != null && teamCaptaining != null) {
+                  playerCaptains[playerName] = teamCaptaining;
+                }
+              }
+
+              // Update the playerTeams map with the Firestore data
+              playerTeams = playerCaptains;
+
+              return Padding(
+                padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.width * 0.25),
+                child: NotificationListener<ScrollNotification>(
+                  onNotification: (ScrollNotification scrollInfo) {
+                    // You can add logic here to show/hide the scrollbar based on scroll position
+                    return true;
+                  },
+                  child: Scrollbar(
+                    child: ListView.builder(
+                      itemCount: sortedPlayers.length,
+                      itemBuilder: (context, index) {
+                        final player = sortedPlayers[index];
+                        final playerName = player.name ?? 'No Name';
+                        final playerImage = player.image ?? 'No Image';
+                        final isCaptain = playerTeams.containsKey(playerName);
+                        final isSelected = selectedPlayerNames.contains(playerName);
+                        final teamForPlayer = playerTeams[playerName];
+
+                        return ListTile(
+                          title: Text(
+                            '$playerName ${teamForPlayer != null ? '($teamForPlayer)' : ''}',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          trailing: isEditing
+                              ? Checkbox(
+                                  activeColor: Colors.white,
+                                  checkColor: backgroundColor,
+                                  value: isSelected, // Check by player name
+                                  onChanged: (value) {
+                                    setState(() {
+                                      if (value != null) {
+                                        if (value && !isSelected) {
+                                          // Player is selected, and not already in the list
+                                          selectedPlayerNames.add(playerName);
+                                        } else if (!value && isSelected) {
+                                          // Player is unselected, and in the list
+                                          selectedPlayerNames.remove(playerName);
+                                        }
+                                      }
+                                    });
+                                  },
+                                )
+                              : null,
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ),
       bottomSheet: isEditing
           ? SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Container(
+                color: twitterColor,
                 constraints: BoxConstraints(
                   maxHeight: MediaQuery.of(context).size.height * 0.27,
                 ),
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
                   children: [
-                    const Text(
-                      'Selected Players:',
-                      style: TextStyle(color: Colors.black),
-                    ),
+                    // const Text(
+                    //   'Selected\nPlayers:',
+                    //   style: TextStyle(color: Colors.black),
+                    // ),
                     const SizedBox(width: 8.0),
                     Expanded(
-                      child: Wrap(
-                        children: selectedPlayerNames.map((playerName) {
-                          return Chip(
-                            label: Text(playerName),
-                            onDeleted: () {
-                              setState(() {
-                                selectedPlayerNames.remove(playerName);
-                              });
-                            },
-                          );
-                        }).toList(),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal, // Set the scroll direction to horizontal
+                        child: Wrap(
+                          children: selectedPlayerNames.map((playerName) {
+                            return Chip(
+                              label: Text(playerName,
+                                style: const TextStyle(
+                                    fontSize: 12,
+                                  color: Colors.redAccent
+                                ),
+                              ),
+                              onDeleted: () {
+                                setState(() {
+                                  selectedPlayerNames.remove(playerName);
+                                });
+                              },
+                            );
+                          }).toList(),
+                        ),
                       ),
                     ),
+                    const SizedBox(width: 8.0),
                     ElevatedButton(
                       onPressed: isTeamSelected
                           ? () async {
@@ -185,6 +231,20 @@ class MyModifyAddClubCaptainsPageState extends State<MyModifyAddClubCaptainsPage
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
                               );
+
+                              // Show a visual indication on the FloatingActionButton
+                              setState(() {
+                                isShowingSplash = true;
+                                // Cycle through the splash colors
+                                splashColorIndex = (splashColorIndex + 1) % splashColors.length;
+                              });
+
+                              // Delay for a short duration to display the visual effect
+                              Future.delayed(const Duration(seconds: 1), () {
+                                setState(() {
+                                  isShowingSplash = false;
+                                });
+                              });
                             },
                       child: const Text(
                         'Add as Captains',
@@ -198,7 +258,7 @@ class MyModifyAddClubCaptainsPageState extends State<MyModifyAddClubCaptainsPage
           : null, // Show selected players at the bottom only in "Edit" mode
       floatingActionButton: isEditing
           ? FloatingActionButton(
-              backgroundColor: twitterColor,
+              backgroundColor: isShowingSplash ? splashColors[splashColorIndex] : twitterColor,
               onPressed: () {
                 _showTeamSelectionDialog();
               },
@@ -314,39 +374,146 @@ class MyModifyAddClubCaptainsPageState extends State<MyModifyAddClubCaptainsPage
   Future<void> addPlayersAsCaptains(List<String> selectedPlayerNames) async {
     final firestore = FirebaseFirestore.instance;
 
-    // Get the current players in the 'Captains' collection
+    // Create a map to store existing captains with their corresponding team
+    Map<String, String> existingCaptains = {};
+
+    // Fetch existing captains data from Firestore
     final captainsCollection = await firestore.collection('Captains').get();
-    final existingCaptains = captainsCollection.docs.map((doc) => doc['name'] as String).toSet();
+    for (final doc in captainsCollection.docs) {
+      final playerName = doc['name'] as String?;
+      final teamCaptaining = doc['team_captaining'] as String?;
+      if (playerName != null && teamCaptaining != null) {
+        existingCaptains[playerName] = teamCaptaining;
+      }
+    }
 
-    // Access the PlayersNotifier to retrieve player data
-    PlayersNotifier playersNotifier = Provider.of<PlayersNotifier>(context, listen: false);
+    // Create a list to store player names that need confirmation
+    List<String> playersWithConfirmation = [];
 
-    // Iterate through the selected players and add them as captains if they don't already exist
+    // Iterate through the selected players and check if they are existing captains
     for (final playerName in selectedPlayerNames) {
-      if (!existingCaptains.contains(playerName)) {
-        final player = playersNotifier.playersList.firstWhere((player) => player.name == playerName, orElse: () => null);
+      final teamName = selectedTeam.isNotEmpty ? selectedTeam : 'YourTeamHere';
 
-        if (player != null) {
-          final imageUrl = player.image ?? ''; // Get the image URL
-          final imageTwoUrl = player.imageTwo ?? ''; // Get the imageTwo URL
-
-          // Add player as captain to the 'Captains' collection with the image URLs
-          await firestore.collection('Captains').add({
-            'name': playerName,
-            'team_captaining': selectedTeam.isNotEmpty ? selectedTeam : 'YourTeamHere',
-            'image': imageUrl, // Use the retrieved image URL
-            'image_two': imageTwoUrl, // Use the retrieved imageTwo URL
-            'id': '10',
-          });
-
-          // Update the playerTeams map with the new captain
-          playerTeams[playerName] = selectedTeam.isNotEmpty ? selectedTeam : 'YourTeamHere';
-        }
+      if (existingCaptains.containsValue(teamName)) {
+        // Existing captain for the selected team, add to the confirmation list
+        playersWithConfirmation.add(playerName);
+        await showConfirmationDialog(playerName, teamName);
+      } else {
+        // No existing captain for the selected team, proceed to add them
+        await addPlayerAsCaptain(firestore, playerName);
       }
     }
 
     // Show a Snackbar message indicating the players that have been added as captains
-    showSnackbar(selectedPlayerNames);
+    if (showSnackbarFlag) {
+      showSnackbar(selectedPlayerNames);
+    }
+  }
+
+  Future<void> showConfirmationDialog(String playerName, String teamName) async {
+    final confirmation = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirm Replacement'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: [
+                RichText(
+                  text: TextSpan(
+                    style: const TextStyle(fontSize: 16.0, color: Colors.black),
+                    children: <TextSpan>[
+                      const TextSpan(text: 'Are you sure you want to replace the current captain of '),
+                      TextSpan(text: teamName, style: const TextStyle(fontWeight: FontWeight.w700)),
+                      const TextSpan(text: ' with '),
+                      TextSpan(text: playerName, style: const TextStyle(fontWeight: FontWeight.w700)),
+                      const TextSpan(text: '?'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('No'),
+              onPressed: () {
+                Navigator.of(context).pop(false);
+                // Set the flag to false when "No" is pressed
+                showSnackbarFlag = false;
+                return;
+              },
+            ),
+            TextButton(
+              child: const Text('Yes'),
+              onPressed: () {
+                Navigator.of(context).pop(true);
+              },
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmation != null && confirmation) {
+      // Use the 'then' method to replace the captain after confirmation
+      replaceCaptain(playerName).then((_) {
+        // Continue processing or add any other logic after replacement
+        print('Captain replaced successfully');
+      });
+    }
+  }
+
+  Future<void> addPlayerAsCaptain(FirebaseFirestore firestore, String playerName) async {
+    final playersNotifier = Provider.of<PlayersNotifier>(context, listen: false);
+
+    // Find the player by name in the PlayersNotifier
+    final player = playersNotifier.playersList.firstWhere(
+          (player) => player.name == playerName,
+      orElse: () => null,
+    );
+
+    if (player != null) {
+      final imageUrl = player.image ?? ''; // Get the image URL
+      final imageTwoUrl = player.imageTwo ?? ''; // Get the imageTwo URL
+
+      // Add player as captain to the 'Captains' collection with the image URLs
+      await firestore.collection('Captains').add({
+        'name': playerName,
+        'team_captaining': selectedTeam.isNotEmpty ? selectedTeam : 'YourTeamHere',
+        'image': imageUrl, // Use the retrieved image URL
+        'image_two': imageTwoUrl, // Use the retrieved imageTwo URL
+        'id': '10',
+      });
+
+      // Update the playerTeams map with the new captain
+      playerTeams[playerName] = selectedTeam.isNotEmpty ? selectedTeam : 'YourTeamHere';
+    }
+  }
+
+  Future<void> replaceCaptain(String playerName) async {
+    final firestore = FirebaseFirestore.instance;
+
+    // Fetch the existing captain document ID
+    final querySnapshot = await firestore
+        .collection('Captains')
+        .where('team_captaining', isEqualTo: selectedTeam.isNotEmpty ? selectedTeam : 'YourTeamHere')
+        .get();
+
+    for (final doc in querySnapshot.docs) {
+      // Delete the existing captain document
+      await doc.reference.delete();
+    }
+
+    // Add the player as captain to the 'Captains' collection with the updated team
+    await addPlayerAsCaptain(firestore, playerName);
+
+    // Slight delay before refreshing data
+    await Future.delayed(const Duration(seconds: 1));
+
+    // Refresh the data in the PlayersNotifier
+    refreshData();
   }
 
   Future<void> refreshData() async {
@@ -362,4 +529,5 @@ class MyModifyAddClubCaptainsPageState extends State<MyModifyAddClubCaptainsPage
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+
 }

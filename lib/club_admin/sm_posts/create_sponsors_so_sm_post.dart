@@ -272,87 +272,95 @@ class _CreateSponsorsShoutOutSMPostState extends State<CreateSponsorsShoutOutSMP
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: alertDialogBackgroundColor,
-            title: const Text(
-              "Generated Banner",
-              style: TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w500),
-            ),
-            content: RepaintBoundary(
-              key: boundaryKey,
-              child: AspectRatio(
-                aspectRatio: 1.0, // Make the content square
-                child: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/cpfc_sponsor_so_banner.png'), // Update with your asset image path
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Stack(
-                    key: _bannerContentKeyed,
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(height: 10),
-                            CachedNetworkImage(
-                              imageUrl: selectedSponsor.sponsorIcon!,
-                              width: 70,
-                              height: 70,
-                            ),
-                            const SizedBox(height: 2),
-                            Text(
-                              selectedSponsor.name!.toUpperCase(),
-                              style: GoogleFonts.monomaniacOne(fontSize: 14, color: Colors.black),
-                            ),
-                            Text(
-                              website.isNotEmpty ? 'Visit $website for more info'.toUpperCase() : '', // Show an empty string if the website is empty
-                              style: GoogleFonts.varela(fontSize: 9, color: textColorThree, fontWeight: FontWeight.w200),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 25),
-                          ],
+          return StatefulBuilder(builder: (context, setState) {
+            return AbsorbPointer(
+              absorbing: isSharing,
+              child: AlertDialog(
+                backgroundColor: alertDialogBackgroundColor,
+                title: const Text(
+                  "Generated Banner",
+                  style: TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w500),
+                ),
+                content: RepaintBoundary(
+                  key: boundaryKey,
+                  child: AspectRatio(
+                    aspectRatio: 1.0, // Make the content square
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/cpfc_sponsor_so_banner.png'), // Update with your asset image path
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    ],
+                      child: Stack(
+                        key: _bannerContentKeyed,
+                        children: [
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const SizedBox(height: 10),
+                                CachedNetworkImage(
+                                  imageUrl: selectedSponsor.sponsorIcon!,
+                                  width: 70,
+                                  height: 70,
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  selectedSponsor.name!.toUpperCase(),
+                                  style: GoogleFonts.monomaniacOne(fontSize: 14, color: Colors.black),
+                                ),
+                                Text(
+                                  website.isNotEmpty ? 'Visit $website for more info'.toUpperCase() : '',
+                                  // Show an empty string if the website is empty
+                                  style: GoogleFonts.varela(fontSize: 9, color: textColorThree, fontWeight: FontWeight.w200),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 25),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Cancel', style: TextStyle(color: Colors.black)),
+                  ),
+                  isSharing
+                      ? const CircularProgressIndicator(
+                    color: Colors.black,
+                  ) // Show the progress indicator when sharing
+                      : TextButton(
+                          onPressed: () async {
+                            setState(() {
+                              isSharing = true; // Set the state to indicate sharing is in progress
+                            });
+                            // Navigator.of(context).pop();
+                            await _submitForm();
+                            await _shareContent(boundaryKey); // Wait for the sharing to complete
+                            Fluttertoast.showToast(
+                              msg: 'Success! Generated',
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.deepOrangeAccent,
+                              textColor: Colors.white,
+                              fontSize: 16.0,
+                            );
+                            Navigator.of(context).pop(); // Close the dialog after sharing
+                          },
+                          child: const Text('Share', style: TextStyle(color: Colors.black)),
+                        ),
+                ],
               ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Cancel', style: TextStyle(color: Colors.black)),
-              ),
-              isSharing
-                  ? const CircularProgressIndicator() // Show the progress indicator when sharing
-                  : TextButton(
-                      onPressed: () async {
-                        setState(() {
-                          isSharing = true; // Set the state to indicate sharing is in progress
-                        });
-                        // Navigator.of(context).pop();
-                        await _submitForm();
-                        _shareContent(boundaryKey);
-                        Fluttertoast.showToast(
-                          msg: 'Success! Generated',
-                          gravity: ToastGravity.BOTTOM,
-                          backgroundColor: Colors.deepOrangeAccent,
-                          textColor: Colors.white,
-                          fontSize: 16.0,
-                        );
-                        Navigator.of(context).pop(); // Close the dialog after sharing
-                      },
-                      child: const Text('Share', style: TextStyle(color: Colors.black)),
-                    ),
-            ],
-          );
+            );
+          });
         },
       );
     } else {
@@ -369,7 +377,7 @@ class _CreateSponsorsShoutOutSMPostState extends State<CreateSponsorsShoutOutSMP
     }
   }
 
-  void _shareContent(GlobalKey boundaryKey) async {
+  _shareContent(GlobalKey boundaryKey) async {
     // Get the RenderObject from the RepaintBoundary using its key
     RenderRepaintBoundary boundary = boundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
 

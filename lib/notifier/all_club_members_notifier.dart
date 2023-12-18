@@ -12,19 +12,13 @@ class AllClubMembersNotifier with ChangeNotifier {
   List<Coaches> _coachesClassList = [];
   List<ManagementBody> _mgmtBodyClassList = [];
 
-  UnmodifiableListView<FirstTeamClass> get firstTeamClassList =>
-      UnmodifiableListView(_firstTeamClassList);
+  UnmodifiableListView<FirstTeamClass> get firstTeamClassList => UnmodifiableListView(_firstTeamClassList);
 
-  UnmodifiableListView<SecondTeamClass> get secondTeamClassList =>
-      UnmodifiableListView(_secondTeamClassList);
+  UnmodifiableListView<SecondTeamClass> get secondTeamClassList => UnmodifiableListView(_secondTeamClassList);
 
-  UnmodifiableListView<Coaches> get coachesClassList =>
-      UnmodifiableListView(_coachesClassList);
+  UnmodifiableListView<Coaches> get coachesClassList => UnmodifiableListView(_coachesClassList);
 
-  UnmodifiableListView<ManagementBody> get mgmtBodyClassList =>
-      UnmodifiableListView(_mgmtBodyClassList);
-
-
+  UnmodifiableListView<ManagementBody> get mgmtBodyClassList => UnmodifiableListView(_mgmtBodyClassList);
 
   // StreamController and Stream for allClubMembers
   final _allClubMembersController = StreamController<List<dynamic>>.broadcast();
@@ -58,18 +52,12 @@ class AllClubMembersNotifier with ChangeNotifier {
     _updateAllClubMembers();
   }
 
-
-
   // Add a private method to update the allClubMembers stream
   void _updateAllClubMembers() {
-    final allClubMembersList = [
-      ..._firstTeamClassList, ..._secondTeamClassList,
-      ..._coachesClassList, ..._mgmtBodyClassList];
+    final allClubMembersList = [..._firstTeamClassList, ..._secondTeamClassList, ..._coachesClassList, ..._mgmtBodyClassList];
     _allClubMembersController.add(allClubMembersList);
   }
 
   // Getter for all allClubMembers
-  List<dynamic> get allClubMembersList => [
-        ..._firstTeamClassList, ..._secondTeamClassList,
-        ..._coachesClassList, ..._mgmtBodyClassList];
+  List<dynamic> get allClubMembersList => [..._firstTeamClassList, ..._secondTeamClassList, ..._coachesClassList, ..._mgmtBodyClassList];
 }

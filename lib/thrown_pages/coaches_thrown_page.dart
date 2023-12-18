@@ -598,13 +598,19 @@ class _MyCoachesPage extends State<MyCoachesPage> {
                           if (!snapshot.hasData) {
                             return const CircularProgressIndicator();
                           }
-                          return Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: CachedNetworkImageProvider(
-                                      snapshot.data?.data()!['slivers_page_5'],
-                                    ),
-                                    fit: BoxFit.cover)),
+                          return ColorFiltered(
+                            colorFilter: ColorFilter.mode(
+                              Colors.black.withOpacity(0.7), // Adjust the opacity as needed
+                              BlendMode.darken,
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: CachedNetworkImageProvider(
+                                        snapshot.data?.data()!['slivers_page_5'],
+                                      ),
+                                      fit: BoxFit.cover)),
+                            ),
                           );
                         },
                       )),

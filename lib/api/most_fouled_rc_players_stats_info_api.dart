@@ -7,7 +7,7 @@ getMostFouledRCPlayersStatsAndInfo(
     MostFouledRCPlayersStatsAndInfoNotifier
         mostFouledRCPlayersStatsAndInfoNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
-      .collection('PlayersTable')
+      .collection('PllayersTable')
       .where('red_card', isGreaterThan: 0)
       .orderBy('red_card', descending: true)
       .limit(8)

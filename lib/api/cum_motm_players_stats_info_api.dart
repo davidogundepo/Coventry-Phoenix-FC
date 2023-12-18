@@ -7,7 +7,7 @@ getCumMOTMPlayersStatsAndInfo(
     CumMOTMPlayersStatsAndInfoNotifier
         cumMOTMPlayersStatsAndInfoNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
-      .collection('PlayersTable')
+      .collection('PllayersTable')
       .orderBy('man_of_the_match_cum', descending: true)
       .where('man_of_the_match_cum', isGreaterThan: 0)
       .limit(10)

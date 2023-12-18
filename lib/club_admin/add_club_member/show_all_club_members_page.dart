@@ -31,6 +31,10 @@ Color emailColor = const Color.fromRGBO(230, 45, 45, 1.0);
 Color phoneColor = const Color.fromRGBO(20, 134, 46, 1.0);
 Color backgroundColor = const Color.fromRGBO(237, 241, 241, 1.0);
 
+// Define colors for different departments
+Color playerColor = Colors.black; // Change the color based on your preference
+Color coachColor = phoneColor; // Change the color based on your preference
+Color managerColor = Colors.orange; // Change the color based on your preference
 
 class MyShowAllClubMemberPage extends StatefulWidget with NavigationStates {
   MyShowAllClubMemberPage({Key? key}) : super(key: key);
@@ -56,39 +60,76 @@ class MyShowAllClubMemberPageState
     Provider.of<AllClubMembersNotifier>(context);
 
     // Create a copy of the allClubMembersList and sort it alphabetically by name
-    List<dynamic> sortedMembers = List.from(allClubMembersNotifier.allClubMembersList);
+    List<dynamic> sortedMembers =
+    List.from(allClubMembersNotifier.allClubMembersList);
     sortedMembers.sort((a, b) =>
         (a.name ?? 'No Name').toLowerCase().compareTo((b.name ?? 'No Name').toLowerCase()));
 
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: ListView.builder(
-        itemCount: sortedMembers.length,
-        itemBuilder: (context, index) {
-          final player = sortedMembers[index];
-          final memberName = player.name ?? 'No Name';
-          String deptForMember = '';
-
-          // Determine the department based on the type of player
-          if (player is FirstTeamClass || player is SecondTeamClass) {
-            deptForMember = 'Player';
-          } else if (player is Coaches) {
-            deptForMember = 'Coach';
-          } else if (player is ManagementBody) {
-            deptForMember = 'Manager';
-          }
-
-          final isCaptain = memberDept.containsKey(memberName);
-          final isSelected = selectedMemberNames.contains(memberName);
-
-          return ListTile(
-            title: Text(
-              '$memberName (${deptForMember.isNotEmpty ? deptForMember : 'No Department'})',
-            ),
-          );
+      body: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          // Hide the keyboard when tapping outside the text field
+          FocusManager.instance.primaryFocus?.unfocus();
         },
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 25.0),
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification scrollInfo) {
+              // You can add logic here to show/hide the scrollbar based on scroll position
+              return true;
+            },
+            child: Scrollbar(
+              child: ListView.builder(
+                itemCount: sortedMembers.length,
+                itemBuilder: (context, index) {
+                  final player = sortedMembers[index];
+                  final memberName = player.name ?? 'No Name';
+                  String deptForMember = '';
+
+                  // Determine the department based on the type of player
+                  if (player is FirstTeamClass || player is SecondTeamClass) {
+                    deptForMember = 'Player';
+                  } else if (player is Coaches) {
+                    deptForMember = 'Coach';
+                  } else if (player is ManagementBody) {
+                    deptForMember = 'Manager';
+                  }
+
+                  // Assign color based on the department
+                  Color memberColor = _getMemberColor(deptForMember);
+
+                  final isCaptain = memberDept.containsKey(memberName);
+                  final isSelected = selectedMemberNames.contains(memberName);
+
+                  return ListTile(
+                    title: Text(
+                      '$memberName (${deptForMember.isNotEmpty ? deptForMember : 'No Department'})',
+                      style: TextStyle(color: memberColor),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
       ),
     );
+  }
+
+  Color _getMemberColor(String department) {
+    // Return the color based on the department
+    switch (department) {
+      case 'Player':
+        return playerColor;
+      case 'Coach':
+        return coachColor;
+      case 'Manager':
+        return managerColor;
+      default:
+        return Colors.blue; // Change the default color based on your preference
+    }
   }
 
   @override

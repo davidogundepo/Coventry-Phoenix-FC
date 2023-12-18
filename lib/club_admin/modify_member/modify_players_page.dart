@@ -8,6 +8,8 @@ import '../../notifier/first_team_class_notifier.dart';
 import '../../notifier/second_team_class_notifier.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+PlayersNotifier? playersNotifier;
+
 Color backgroundColor = const Color.fromRGBO(187, 192, 195, 1.0);
 
 class MyModifyClubPlayersPage extends StatefulWidget with NavigationStates {
@@ -24,7 +26,13 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
   @override
   Widget build(BuildContext context) {
     // Use the PlayersNotifier to access the combined list of players
-    PlayersNotifier playersNotifier = Provider.of<PlayersNotifier>(context);
+    playersNotifier = Provider.of<PlayersNotifier>(context);
+
+    // Create a copy of the allClubMembersList and sort it alphabetically by name
+    List<dynamic> sortedPlayers = List.from(playersNotifier!.playersList);
+    sortedPlayers.sort((a, b) =>
+        (a.name ?? 'No Name').toLowerCase().compareTo((b.name ?? 'No Name').toLowerCase()));
+
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -45,34 +53,52 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
           ),
         ],
       ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          // Refresh the data when the user pulls down the list
-          await refreshData();
+      body:GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          // Hide the keyboard when tapping outside the text field
+          FocusManager.instance.primaryFocus?.unfocus();
         },
-        child: ListView.builder(
-          itemCount: playersNotifier.playersList.length,
-          itemBuilder: (context, index) {
-            final player = playersNotifier.playersList[index];
-            return ListTile(
-              title: Text(player.name ?? 'No Name'),
-              trailing: isEditing
-                  ? Checkbox(
-                      value: selectedPlayers.contains(player),
-                      onChanged: (value) {
-                        setState(() {
-                          if (value != null && value) {
-                            selectedPlayers.add(player);
-                          } else {
-                            selectedPlayers.remove(player);
-                          }
-                        });
-                      },
-                    )
-                  : null, // Show checkbox only in "Edit" mode
-              // Add other player information you want to display
-            );
+        child: RefreshIndicator(
+          onRefresh: () async {
+            // Refresh the data when the user pulls down the list
+            await refreshData();
           },
+          child: Padding(
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.width * 0.25),
+            child: NotificationListener<ScrollNotification>(
+              onNotification: (ScrollNotification scrollInfo) {
+                // You can add logic here to show/hide the scrollbar based on scroll position
+                return true;
+              },
+              child: Scrollbar(
+                child: ListView.builder(
+                  itemCount: sortedPlayers.length,
+                  itemBuilder: (context, index) {
+                    final player = sortedPlayers[index];
+                    return ListTile(
+                      title: Text(player.name ?? 'No Name'),
+                      trailing: isEditing
+                          ? Checkbox(
+                              value: selectedPlayers.contains(player),
+                              onChanged: (value) {
+                                setState(() {
+                                  if (value != null && value) {
+                                    selectedPlayers.add(player);
+                                  } else {
+                                    selectedPlayers.remove(player);
+                                  }
+                                });
+                              },
+                            )
+                          : null, // Show checkbox only in "Edit" mode
+                      // Add other player information you want to display
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
         ),
       ),
       bottomSheet: isEditing
@@ -85,22 +111,30 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
                   children: [
-                    const Text('Selected Players:'),
+                    // const Text('Selected\nPlayers:'),
                     const SizedBox(width: 8.0),
                     Expanded(
-                      child: Wrap(
-                        children: selectedPlayers.map((player) {
-                          return Chip(
-                            label: Text(player.name ?? ''),
-                            onDeleted: () {
-                              setState(() {
-                                selectedPlayers.remove(player);
-                              });
-                            },
-                          );
-                        }).toList(),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal, // Set the scroll direction to horizontal
+                        child: Wrap(
+                          children: selectedPlayers.map((player) {
+                            return Chip(
+                              label: Text(player.name ?? '',
+                                style: const TextStyle(
+                                    fontSize: 12
+                                ),
+                              ),
+                              onDeleted: () {
+                                setState(() {
+                                  selectedPlayers.remove(player);
+                                });
+                              },
+                            );
+                          }).toList(),
+                        ),
                       ),
                     ),
+                    const SizedBox(width: 8.0),
                     ElevatedButton(
                       onPressed: () async {
                         await deleteSelectedPlayers(selectedPlayers);
@@ -152,6 +186,9 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
 
     // Show a Snackbar message indicating the players that have been removed
     showSnackbar(selectedPlayers);
+
+    // Refresh the data to trigger a UI update
+    await refreshData();
   }
 
   Future<void> deletePlayerByName(FirebaseFirestore firestore, String collection, String name) async {
@@ -163,11 +200,14 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
   }
 
   Future<void> refreshData() async {
-    // Add logic here to refresh the data in the PlayersNotifier
-    // You can re-fetch the data or update it as needed
+    // Assuming you have a method to fetch or update player data in your notifier
+    // Replace the following line with the actual logic to update your data
+    // await playersNotifier!.fetchData(); // Replace 'fetchData()' with your actual method
+
     // After refreshing, call setState to trigger a UI update
     setState(() {});
   }
+
 
   void showSnackbar(List<dynamic> players) {
     final snackBar = SnackBar(

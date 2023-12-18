@@ -7,7 +7,7 @@ getTopGoalsPlayersStatsAndInfo(
     TopGoalsPlayersStatsAndInfoNotifier
         topGoalsPlayersStatsAndInfoNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
-      .collection('PlayersTable')
+      .collection('PllayersTable')
       .where('goals_scored', isGreaterThan: 0)
       .orderBy('goals_scored', descending: true)
       .limit(10)

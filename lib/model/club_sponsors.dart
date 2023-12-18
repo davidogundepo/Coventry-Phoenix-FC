@@ -42,4 +42,55 @@ class ClubSponsors {
     address = data['address'];
     category = data['category'];
   }
+
+  @override
+  bool operator == (Object other) {
+    if (identical(this, other)) return true;
+
+    return other is ClubSponsors &&
+        other.id == id &&
+        other.sponsorIcon == sponsorIcon &&
+        other.image == image &&
+        other.imageTwo == imageTwo &&
+        other.imageThree == imageThree &&
+        other.imageFour == imageFour &&
+        other.imageFive == imageFive &&
+        other.name == name &&
+        other.phone == phone &&
+        other.twitter == twitter &&
+        other.instagram == instagram &&
+        other.facebook == facebook &&
+        other.snapchat == snapchat &&
+        other.youtube == youtube &&
+        other.website == website &&
+        other.email == email &&
+        other.aboutUs == aboutUs &&
+        other.ourServices == ourServices &&
+        other.address == address &&
+        other.category == category;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        sponsorIcon.hashCode ^
+        image.hashCode ^
+        imageTwo.hashCode ^
+        imageThree.hashCode ^
+        imageFour.hashCode ^
+        imageFive.hashCode ^
+        name.hashCode ^
+        phone.hashCode ^
+        twitter.hashCode ^
+        instagram.hashCode ^
+        facebook.hashCode ^
+        snapchat.hashCode ^
+        youtube.hashCode ^
+        website.hashCode ^
+        email.hashCode ^
+        aboutUs.hashCode ^
+        ourServices.hashCode ^
+        address.hashCode ^
+        category.hashCode;
+  }
 }

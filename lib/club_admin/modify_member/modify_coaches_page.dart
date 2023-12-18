@@ -44,67 +44,98 @@ class MyModifyCoachesPageState extends State<MyModifyCoachesPage> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: coachesNotifier.coachesList.length,
-        itemBuilder: (context, index) {
-          final coach = coachesNotifier.coachesList[index];
-          return ListTile(
-            title: Text(coach.name ?? 'No Name'),
-            trailing: isEditing
-                ? Checkbox(
-                    value: selectedCoaches.contains(coach),
-                    onChanged: (value) {
-                      setState(() {
-                        if (value != null && value) {
-                          selectedCoaches.add(coach);
-                        } else {
-                          selectedCoaches.remove(coach);
-                        }
-                      });
-                    },
-                  )
-                : null, // Show checkbox only in "Edit" mode
-            // Add other coach information you want to display
-          );
+      body: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          // Hide the keyboard when tapping outside the text field
+          FocusManager.instance.primaryFocus?.unfocus();
         },
+        child: Padding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.width * 0.25),
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification scrollInfo) {
+              // You can add logic here to show/hide the scrollbar based on scroll position
+              return true;
+            },
+            child: Scrollbar(
+              child: ListView.builder(
+                itemCount: coachesNotifier.coachesList.length,
+                itemBuilder: (context, index) {
+                  final coach = coachesNotifier.coachesList[index];
+                  return ListTile(
+                    title: Text(coach.name ?? 'No Name'),
+                    trailing: isEditing
+                        ? Checkbox(
+                            value: selectedCoaches.contains(coach),
+                            onChanged: (value) {
+                              setState(() {
+                                if (value != null && value) {
+                                  selectedCoaches.add(coach);
+                                } else {
+                                  selectedCoaches.remove(coach);
+                                }
+                              });
+                            },
+                          )
+                        : null, // Show checkbox only in "Edit" mode
+                    // Add other coach information you want to display
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
       ),
       bottomSheet: isEditing
           ? SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              child: Container(
-                constraints: BoxConstraints(
-                  maxHeight: MediaQuery.of(context).size.height * 0.27,
-                ),
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  children: [
-                    const Text('Selected Coaches:'),
-                    const SizedBox(width: 8.0),
-                    Expanded(
-                      child: Wrap(
-                        children: selectedCoaches.map((coach) {
-                          return Chip(
-                            label: Text(coach.name ?? ''),
-                            onDeleted: () {
-                              setState(() {
-                                selectedCoaches.remove(coach);
-                              });
-                            },
-                          );
-                        }).toList(),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: Container(
+                  constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height * 0.27,
+                  ),
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      // const Text('Selected\nCoaches:'),
+                      const SizedBox(width: 8.0),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal, // Set the scroll direction to horizontal
+                          child: Wrap(
+                            children: selectedCoaches.map((coach) {
+                              return Chip(
+                                label: Text(
+                                  coach.name ?? '',
+                                  style: const TextStyle(
+                                    fontSize: 12
+                                  ),
+                                ),
+                                onDeleted: () {
+                                  setState(() {
+                                    selectedCoaches.remove(coach);
+                                  });
+                                },
+                              );
+                            }).toList(),
+                          ),
+                        ),
                       ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        await deleteSelectedCoaches(selectedCoaches);
-                        // Clear selected coaches list after deletion
-                        setState(() {
-                          selectedCoaches.clear();
-                        });
-                      },
-                      child: const Text('Delete Selected'),
-                    ),
-                  ],
+                      const SizedBox(width: 8.0),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await deleteSelectedCoaches(selectedCoaches);
+                          // Clear selected coaches list after deletion
+                          setState(() {
+                            selectedCoaches.clear();
+                          });
+                        },
+                        child: const Text('Delete Selected'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )

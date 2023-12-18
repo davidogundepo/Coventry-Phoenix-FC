@@ -6,7 +6,7 @@ getClubSponsors(ClubSponsorsNotifier clubSponsorsNotifier) async {
   QuerySnapshot snapshot =
       await FirebaseFirestore.instance
           .collection('ClubSponsors')
-          .orderBy('name', descending: false)
+          .orderBy('id', descending: false)
           .get();
 
   List<ClubSponsors> clubSponsorsList = [];

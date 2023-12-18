@@ -1,7 +1,7 @@
 class YouTube {
   String? toastName;
   String? yid;
-  String? id;
+  dynamic id;
 
   YouTube.fromMap(Map<String?, dynamic> data) {
     toastName = data['toast_name'];

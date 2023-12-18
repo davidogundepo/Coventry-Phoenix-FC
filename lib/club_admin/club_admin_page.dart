@@ -31,6 +31,7 @@ import '../api/first_team_class_api.dart';
 import '../api/management_body_api.dart';
 import '../api/second_team_class_api.dart';
 import '../notifier/all_club_members_notifier.dart';
+import '../notifier/all_fc_teams_notifier.dart';
 import '../notifier/c_match_day_banner_for_club_notifier.dart';
 import '../notifier/c_match_day_banner_for_club_opp_notifier.dart';
 import '../notifier/c_match_day_banner_for_league_notifier.dart';
@@ -45,6 +46,10 @@ import '../sidebar/menu_item.dart';
 import 'modify_club_sponsors/a_tabview_modify_club_sponsors_page.dart';
 import 'modify_captains/a_tabview_modify_club_captains_page.dart';
 import 'modify_member/modify_players_page.dart';
+import 'more_comm/modify_home_teams/a_tabview_modify_home_team_page.dart';
+import 'more_comm/modify_leagues/a_tabview_modify_league_page.dart';
+import 'more_comm/modify_locations/a_tabview_modify_location_page.dart';
+import 'more_comm/modify_opp_teams/a_tabview_modify_opp_team_page.dart';
 
 String removeCoachTitle = "Remove Coaching Staff";
 String createSMPostTitle = "Create a Social Media Post";
@@ -98,8 +103,10 @@ class MyClubAdminPage extends StatefulWidget with NavigationStates {
 }
 
 class MyClubAdminPageState extends State<MyClubAdminPage> {
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -604,31 +611,20 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                     style: TextStyle(color: Colors.white70, fontSize: 14),
                                   ),
                                   onTap: () {
-                                    Fluttertoast.showToast(
-                                      msg: 'Coming Soon',
-                                      // Show success message (you can replace it with actual banner generation logic)
-                                      gravity: ToastGravity.BOTTOM,
-                                      backgroundColor: Colors.deepOrangeAccent,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0,
-                                    );
+                                    Navigator.pop(context); // Close the dialog
+                                    navigateToModifyHomeTeam(context);
                                   },
                                 ),
                                 ListTile(
+
                                   title: const Text(
                                     // 'Add Monthly Reels',
                                     'Add new Opposition Team',
                                     style: TextStyle(color: Colors.white70, fontSize: 14),
                                   ),
                                   onTap: () {
-                                    Fluttertoast.showToast(
-                                      msg: 'Coming Soon',
-                                      // Show success message (you can replace it with actual banner generation logic)
-                                      gravity: ToastGravity.BOTTOM,
-                                      backgroundColor: Colors.deepOrangeAccent,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0,
-                                    );
+                                    Navigator.pop(context); // Close the dialog
+                                    navigateToModifyOppTeam(context);
                                   },
                                 ),
                                 ListTile(
@@ -638,14 +634,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                     style: TextStyle(color: Colors.white70, fontSize: 14),
                                   ),
                                   onTap: () {
-                                    Fluttertoast.showToast(
-                                      msg: 'Coming Soon',
-                                      // Show success message (you can replace it with actual banner generation logic)
-                                      gravity: ToastGravity.BOTTOM,
-                                      backgroundColor: Colors.deepOrangeAccent,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0,
-                                    );
+                                    Navigator.pop(context); // Close the dialog
+                                    navigateToModifyLeague(context);
                                   },
                                 ),
                                 ListTile(
@@ -655,14 +645,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                     style: TextStyle(color: Colors.white70, fontSize: 14),
                                   ),
                                   onTap: () {
-                                    Fluttertoast.showToast(
-                                      msg: 'Coming Soon',
-                                      // Show success message (you can replace it with actual banner generation logic)
-                                      gravity: ToastGravity.BOTTOM,
-                                      backgroundColor: Colors.deepOrangeAccent,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0,
-                                    );
+                                    Navigator.pop(context); // Close the dialog
+                                    navigateToModifyLocation(context);
                                   },
                                 ),
                               ],
@@ -924,6 +908,13 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
     getMatchDayBannerForClubOpp(matchDayBannerForClubOppNotifier);
     getMatchDayBannerForLeague(matchDayBannerForLeagueNotifier);
     getMatchDayBannerForLocation(matchDayBannerForLocationNotifier);
+
+
+    AllFCTeamsNotifier allFCTeamsNotifier = Provider.of<AllFCTeamsNotifier>(context, listen: false);
+
+    allFCTeamsNotifier.setMatchDayBannerForClubAllFCTeams(matchDayBannerForClubNotifier.matchDayBannerForClubList);
+    allFCTeamsNotifier.setMatchDayBannerForClubOppAllFCTeams(matchDayBannerForClubOppNotifier.matchDayBannerForClubOppList);
+
     setState(() {});
   }
 }
@@ -974,6 +965,22 @@ Future navigateToModifyAllClubPlayers(context) async {
 
 Future navigateToAddClubMember(context) async {
   Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewClubMemberPage()));
+}
+
+Future navigateToModifyHomeTeam(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewHomeTeamPage()));
+}
+
+Future navigateToModifyOppTeam(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewOppTeamPage()));
+}
+
+Future navigateToModifyLeague(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewLeaguePage()));
+}
+
+Future navigateToModifyLocation(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewLocationPage()));
 }
 
 Future navigateMyApp(context) async {

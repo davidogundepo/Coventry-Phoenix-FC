@@ -2,6 +2,7 @@ import  'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coventry_phoenix_fc/notifier/all_club_members_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/all_fc_teams_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_club_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_club_opp_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_league_notifier.dart';
@@ -141,6 +142,9 @@ void main() async {
       ),
       ChangeNotifierProvider(
         create: (context) => AllClubMembersNotifier(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => AllFCTeamsNotifier(),
       ),
       ChangeNotifierProvider(
         create: (context) => MatchDayBannerForClubNotifier(),
@@ -468,6 +472,8 @@ class SlideTransition2 extends PageRouteBuilder {
 }
 
 class SecondPage extends StatelessWidget {
+  const SecondPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

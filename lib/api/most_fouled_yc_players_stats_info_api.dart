@@ -7,7 +7,7 @@ getMostFouledYCPlayersStatsAndInfo(
     MostFouledYCPlayersStatsAndInfoNotifier
         mostFouledYCPlayersStatsAndInfoNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
-      .collection('PlayersTable')
+      .collection('PllayersTable')
       .where('yellow_card', isGreaterThan: 0)
       .orderBy('yellow_card', descending: true)
       .limit(8)

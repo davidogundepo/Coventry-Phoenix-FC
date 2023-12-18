@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image/image.dart' as img;
+import 'package:image/image.dart' as img_lib;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coventry_phoenix_fc/api/c_match_day_banner_for_club_api.dart';
@@ -31,6 +32,7 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import '../../api/club_sponsors_api.dart';
+import '../../notifier/all_fc_teams_notifier.dart';
 
 Color backgroundColor = const Color.fromRGBO(34, 36, 54, 1.0);
 Color appBarTextColor = const Color.fromRGBO(255, 107, 53, 1.0);
@@ -55,6 +57,7 @@ MatchDayBannerForClubNotifier? matchDayBannerForClubNotifier;
 MatchDayBannerForClubOppNotifier? matchDayBannerForClubOppNotifier;
 MatchDayBannerForLeagueNotifier? matchDayBannerForLeagueNotifier;
 MatchDayBannerForLocationNotifier? matchDayBannerForLocationNotifier;
+AllFCTeamsNotifier? allFCTeamsNotifier;
 
 ClubSponsorsNotifier? clubSponsorsNotifier;
 
@@ -75,8 +78,9 @@ class CreateMatchDaySocialMediaPost extends StatefulWidget with NavigationStates
 }
 
 class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMediaPost> {
-  GlobalKey _bannerContentKey = GlobalKey();
+  final GlobalKey _bannerContentKey = GlobalKey();
 
+  bool isGenerating = false;
   bool isPublishing = false;
 
   late List<bool> selectedSponsors;
@@ -142,6 +146,13 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
 
   @override
   Widget build(BuildContext context) {
+    // Use the AllFCTeamsNotifier to access the combined list of AllFCTeams
+    allFCTeamsNotifier = Provider.of<AllFCTeamsNotifier>(context);
+
+    // Create a copy of the allClubMembersList and sort it alphabetically by name
+    List<dynamic> sortedFCClubs = List.from(allFCTeamsNotifier!.allFCTeamsList);
+    sortedFCClubs.sort((a, b) => (a.clubName ?? 'No Name').toLowerCase().compareTo((b.clubName ?? 'No Name').toLowerCase()));
+
     matchDayBannerForClubNotifier = Provider.of<MatchDayBannerForClubNotifier>(context);
 
     matchDayBannerForClubOppNotifier = Provider.of<MatchDayBannerForClubOppNotifier>(context);
@@ -289,9 +300,8 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
                                               image: CachedNetworkImageProvider(
-                                                matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList
-                                                    .firstWhere((team) => team.clubName == selectedTeamB)
-                                                    .clubIcon!,
+                                                // matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList,
+                                                sortedFCClubs.firstWhere((team) => team.clubName == selectedTeamB).clubIcon!,
                                               ),
                                               fit: BoxFit.cover)),
                                     )
@@ -922,23 +932,26 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                           height: 100,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: borderColor.withAlpha(20),
+                            // color: borderColor.withAlpha(20),
                           ),
-                          child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                            stream: FirebaseFirestore.instance.collection('SliversPages').doc('non_slivers_pages').snapshots(),
-                            builder: (context, snapshot) {
-                              if (!snapshot.hasData) {
-                                return const CircularProgressIndicator();
-                              }
-                              return Container(
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: CachedNetworkImageProvider(
-                                          snapshot.data?.data()!['club_icon'] ?? 0,
-                                        ),
-                                        fit: BoxFit.cover)),
-                              );
-                            },
+                          child: InkWell(
+                            onTap: () {},
+                            child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                              stream: FirebaseFirestore.instance.collection('SliversPages').doc('non_slivers_pages').snapshots(),
+                              builder: (context, snapshot) {
+                                if (!snapshot.hasData) {
+                                  return const CircularProgressIndicator();
+                                }
+                                return Container(
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: CachedNetworkImageProvider(
+                                            snapshot.data?.data()!['club_icon'] ?? 0,
+                                          ),
+                                          fit: BoxFit.cover)),
+                                );
+                              },
+                            ),
                           )),
                     ),
                     Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: Container()),
@@ -1007,6 +1020,8 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                                   selectedLeague = '';
                                   selectedLocation = '';
                                   selectedSponsorsString = '';
+                                  // Remove all elements from recentImageUrls
+                                  recentImageUrls.clear();
                                 });
                               } else {
                                 // Show a toast indicating that no images have been generated
@@ -1051,6 +1066,12 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
             ),
           ),
         ),
+        // body: ListView.builder(
+        //     itemCount: sortedFCClubs.length,
+        //     itemBuilder: (context, index) {
+        //       return Text(sortedFCClubs[index].clubName ?? 'No Name');
+        //     }
+        // ),
       ),
     );
   }
@@ -1110,6 +1131,13 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
   }
 
   void _showTeamBSelectionDialog() {
+    // Use the AllFCTeamsNotifier to access the combined list of AllFCTeams
+    allFCTeamsNotifier = Provider.of<AllFCTeamsNotifier>(context, listen: false);
+
+    // Create a copy of the allClubMembersList and sort it alphabetically by name
+    List<dynamic> sortedFCClubs = List.from(allFCTeamsNotifier!.allFCTeamsList);
+    sortedFCClubs.sort((a, b) => (a.clubName ?? 'No Name').toLowerCase().compareTo((b.clubName ?? 'No Name').toLowerCase()));
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -1123,13 +1151,18 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
             width: double.maxFinite,
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList.length,
+              // itemCount: matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList.length,
+              itemCount: sortedFCClubs.length,
               itemBuilder: (BuildContext context, int index) {
+                final fcTeam = sortedFCClubs[index];
+                final memberClub = fcTeam.clubName ?? 'No Name';
+                final clubIcon = fcTeam.clubIcon; // Get the clubIcon
                 return ListTile(
                   onTap: () {
                     Navigator.pop(context);
                     setState(() {
-                      selectedTeamB = matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList[index].clubName!;
+                      // selectedTeamB = matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList[index].clubName!;
+                      selectedTeamB = fcTeam.clubName ?? 'No Name';
                       // Rearrange list based on the latest selection
                       if (lastThreeSelectedTeamB.contains(selectedTeamB)) {
                         lastThreeSelectedTeamB.remove(selectedTeamB);
@@ -1141,19 +1174,20 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
                     });
                   },
                   title: Text(
-                    matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList[index].clubName!,
+                    // matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList[index].clubName!,
+                    fcTeam.clubName ?? 'No Name',
                     style: const TextStyle(fontSize: 17, color: Colors.white70, fontWeight: FontWeight.w600),
                   ),
                   leading: Container(
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
-                        image: DecorationImage(
-                            alignment: const Alignment(0, -1),
-                            image: CachedNetworkImageProvider(
-                              matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList[index].clubIcon!,
-                            ),
-                            fit: BoxFit.cover)),
+                      image: clubIcon != null && clubIcon.isNotEmpty
+                          ? DecorationImage(alignment: const Alignment(0, -1), image: CachedNetworkImageProvider(
+                              // matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList[index].clubIcon!,
+                              clubIcon), fit: BoxFit.cover)
+                          : null, // Handle cases where clubIcon is null or empty
+                    ),
                   ),
                 );
               },
@@ -1344,6 +1378,13 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
   //////////////////////////////////////////////////////////////////////
 
   void _showToBeGeneratedBanner() async {
+    // Use the AllFCTeamsNotifier to access the combined list of AllFCTeams
+    allFCTeamsNotifier = Provider.of<AllFCTeamsNotifier>(context, listen: false);
+
+    // Create a copy of the allClubMembersList and sort it alphabetically by name
+    List<dynamic> sortedFCClubs = List.from(allFCTeamsNotifier!.allFCTeamsList);
+    sortedFCClubs.sort((a, b) => (a.clubName ?? 'No Name').toLowerCase().compareTo((b.clubName ?? 'No Name').toLowerCase()));
+
     // Create a GlobalKey for the RepaintBoundary
     GlobalKey boundaryKey = GlobalKey();
 
@@ -1459,9 +1500,7 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
       if (screenSize.width >= 414 && screenSize.height >= 736 && screenSize.height < 667) {
         // iPhone 6 Plus or larger
         return 52;
-      }
-      else
-        if (screenSize.width >= 375 && screenSize.height >= 667 && screenSize.height < 812) {
+      } else if (screenSize.width >= 375 && screenSize.height >= 667 && screenSize.height < 812) {
         // iPhone 6 or iPhone 7 or iPhone 8
         return 52;
       } else if (screenSize.width >= 375 && screenSize.height >= 812 && screenSize.height < 844) {
@@ -1548,219 +1587,251 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: modalBackgroundColor,
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                RepaintBoundary(
-                  key: boundaryKey, // Set the key for RepaintBoundary,
-                  child: Stack(
-                    key: _bannerContentKey,
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AbsorbPointer(
+                absorbing: isGenerating,
+                child: AlertDialog(
+                  backgroundColor: modalBackgroundColor,
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15), // Add top padding of 16 units
-                        child: Image.asset(
-                          'assets/images/cpfc_sm_banner.jpg',
-                          width: finalSize,
-                          height: finalSize,
-                          // width: dialogWidth,
-                          // height: dialogHeight,
+                      RepaintBoundary(
+                        key: boundaryKey, // Set the key for RepaintBoundary,
+                        child: Stack(
+                          key: _bannerContentKey,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15), // Add top padding of 16 units
+                              child: Image.asset(
+                                'assets/images/cpfc_sm_banner.jpg',
+                                width: finalSize,
+                                height: finalSize,
+                                // width: dialogWidth,
+                                // height: dialogHeight,
 
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Positioned(
-                        top: 170,
-                        left: getLeftPositionForTeamA(screenSize),
-                        width: 30,
-                        height: 30,
-                        child: matchDayBannerForClubNotifier!.matchDayBannerForClubList
-                                    .firstWhereOrNull((team) => team.clubName == selectedTeamA)
-                                    ?.clubIcon !=
-                                null
-                            ? Image.network(
-                                matchDayBannerForClubNotifier!.matchDayBannerForClubList
-                                    .firstWhereOrNull((team) => team.clubName == selectedTeamA)!
-                                    .clubIcon!,
-                              )
-                            : Image.asset('assets/images/cpfc_logo.jpeg'), // Replace 'default_icon.png' with your actual asset path
-                      ),
-                      Positioned(
-                        top: 170,
-                        right: getRightPositionForTeamB(screenSize),
-                        width: 27,
-                        height: 27,
-                        child: matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList
-                                    .firstWhereOrNull((team) => team.clubName == selectedTeamB)
-                                    ?.clubIcon !=
-                                null
-                            ? Image.network(
-                                matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList
-                                    .firstWhereOrNull((team) => team.clubName == selectedTeamB)!
-                                    .clubIcon!,
-                              )
-                            : Image.asset('assets/images/no_club_image.jpeg'), // Replace 'default_icon.png' with your actual asset path
-                      ),
-                      Positioned(
-                        top: getTopPositionForTeams(screenSize),
-                        left: positionLeftTeamA,
-                        child: SizedBox(
-                          width: 50,
-                          height: calculateLineHeight(calculateFontSize(selectedTeamA!)),
-                          child: Text(
-                            selectedTeamA!.toUpperCase(),
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.visible,
-                            style: GoogleFonts.barlowCondensed(
-                                color: Colors.black, fontSize: calculateFontSize(selectedTeamA), fontWeight: FontWeight.w600, height: 1),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: getTopPositionForTeams(screenSize),
-                        right: positionRightTeamB,
-                        child: SizedBox(
-                          width: 67,
-                          height: calculateLineHeight(calculateFontSize(selectedTeamB!)),
-                          child: Text(
-                            selectedTeamB!.toUpperCase(),
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.visible,
-                            style: GoogleFonts.barlowCondensed(
-                                color: Colors.black, fontSize: calculateFontSize(selectedTeamB), fontWeight: FontWeight.w600, height: 1),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: getBottomPositionForTime(screenSize),
-                        left: getLeftPositionForTime(screenSize),
-                        child: SizedBox(
-                          width: 67,
-                          child: Text(
-                            formattedTime.toUpperCase(),
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.visible,
-                            style: GoogleFonts.barlowCondensed(color: Colors.black, fontSize: 8, fontWeight: FontWeight.w600, height: 1),
-                          ),
-                        ),
-                      ),
-                      Center(
-                        child: Container(
-                          margin: EdgeInsets.only(top: getTopMarginForLocation(screenSize)),
-                          width: 90,
-                          child: Text(
-                            '@ ${selectedLocation!.toUpperCase()} - ${selectedLocationPostCode!.toUpperCase()}',
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.clip,
-                            style: GoogleFonts.barlowCondensed(
-                                color: Colors.black, fontSize: calculateFontSizeTwo(selectedLocation), fontWeight: FontWeight.w600, height: 0.9),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 121,
-                        left: getLeftPositionForDate(screenSize),
-                        child: SizedBox(
-                          width: 99,
-                          child: Text(
-                            getFormattedDate(selectedDate).toUpperCase(),
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.visible,
-                            style: GoogleFonts.barlowCondensed(color: Colors.white, fontSize: 8, fontWeight: FontWeight.w600, height: 1),
-                          ),
-                        ),
-                      ),
-                      Center(
-                        child: Container(
-                          margin: const EdgeInsets.only(top: 80),
-                          alignment: Alignment.center,
-                          child: Center(
-                            child: Text(
-                              selectedLeague!.toUpperCase(),
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.visible,
-                              style: GoogleFonts.barlowCondensed(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600, height: 1),
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 22,
-                        left: 60,
-                        child: Visibility(
-                          visible: selectedSponsors.any((sponsorSelected) => sponsorSelected),
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Proudly Sponsored by: '.toUpperCase(),
+                            Positioned(
+                              top: 170,
+                              left: getLeftPositionForTeamA(screenSize),
+                              width: 30,
+                              height: 30,
+                              child: matchDayBannerForClubNotifier!.matchDayBannerForClubList
+                                          .firstWhereOrNull((team) => team.clubName == selectedTeamA)
+                                          ?.clubIcon !=
+                                      null
+                                  ? Image.network(
+                                      matchDayBannerForClubNotifier!.matchDayBannerForClubList
+                                          .firstWhereOrNull((team) => team.clubName == selectedTeamA)!
+                                          .clubIcon!,
+                                    )
+                                  : Image.asset('assets/images/cpfc_logo.jpeg'), // Replace 'default_icon.png' with your actual asset path
+                            ),
+                            Positioned(
+                              top: 170,
+                              right: getRightPositionForTeamB(screenSize),
+                              width: 27,
+                              height: 27,
+                              // child: matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList
+                              child: sortedFCClubs.firstWhereOrNull((team) => team.clubName == selectedTeamB)?.clubIcon != null
+                                  ? Image.network(
+                                      // matchDayBannerForClubOppNotifier!.matchDayBannerForClubOppList
+                                      sortedFCClubs.firstWhereOrNull((team) => team.clubName == selectedTeamB)!.clubIcon!,
+                                    )
+                                  : Image.asset('assets/images/no_club_image.jpeg'), // Replace 'default_icon.png' with your actual asset path
+                            ),
+                            Positioned(
+                              top: getTopPositionForTeams(screenSize),
+                              left: positionLeftTeamA,
+                              child: SizedBox(
+                                width: 50,
+                                height: calculateLineHeight(calculateFontSize(selectedTeamA!)),
+                                child: Text(
+                                  selectedTeamA!.toUpperCase(),
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.visible,
+                                  style: GoogleFonts.barlowCondensed(
+                                      color: Colors.black, fontSize: calculateFontSize(selectedTeamA), fontWeight: FontWeight.w600, height: 1),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: getTopPositionForTeams(screenSize),
+                              right: positionRightTeamB,
+                              child: SizedBox(
+                                width: 67,
+                                height: calculateLineHeight(calculateFontSize(selectedTeamB!)),
+                                child: Text(
+                                  selectedTeamB!.toUpperCase(),
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.visible,
+                                  style: GoogleFonts.barlowCondensed(
+                                      color: Colors.black, fontSize: calculateFontSize(selectedTeamB), fontWeight: FontWeight.w600, height: 1),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: getBottomPositionForTime(screenSize),
+                              left: getLeftPositionForTime(screenSize),
+                              child: SizedBox(
+                                width: 67,
+                                child: Text(
+                                  formattedTime.toUpperCase(),
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.visible,
+                                  style: GoogleFonts.barlowCondensed(color: Colors.black, fontSize: 8, fontWeight: FontWeight.w600, height: 1),
+                                ),
+                              ),
+                            ),
+                            Center(
+                              child: Container(
+                                margin: EdgeInsets.only(top: getTopMarginForLocation(screenSize)),
+                                width: 90,
+                                child: Text(
+                                  '@ ${selectedLocation!.toUpperCase()} - ${selectedLocationPostCode!.toUpperCase()}',
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.clip,
+                                  style: GoogleFonts.barlowCondensed(
+                                      color: Colors.black,
+                                      fontSize: calculateFontSizeTwo(selectedLocation),
+                                      fontWeight: FontWeight.w600,
+                                      height: 0.9),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 121,
+                              left: getLeftPositionForDate(screenSize),
+                              child: SizedBox(
+                                width: 99,
+                                child: Text(
+                                  getFormattedDate(selectedDate).toUpperCase(),
                                   textAlign: TextAlign.center,
                                   overflow: TextOverflow.visible,
                                   style: GoogleFonts.barlowCondensed(color: Colors.white, fontSize: 8, fontWeight: FontWeight.w600, height: 1),
                                 ),
-                                const SizedBox(width: 5), // Add some space between text and icons
-                                // Display selected sponsor icons here
-                                ...selectedSponsors
-                                    .asMap()
-                                    .entries
-                                    .where((entry) => entry.value) // Filter selected sponsors
-                                    .map(
-                                      (entry) => Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 2),
-                                        child: Image.network(
-                                          clubSponsorsNotifier!.clubSponsorsList[entry.key].sponsorIcon!,
-                                          width: 20,
-                                          height: 20,
-                                        ),
-                                      ),
-                                    )
-                                    .toList(),
-                              ],
+                              ),
                             ),
-                          ),
+                            Center(
+                              child: Container(
+                                margin: const EdgeInsets.only(top: 80),
+                                alignment: Alignment.center,
+                                child: Center(
+                                  child: Text(
+                                    selectedLeague!.toUpperCase(),
+                                    textAlign: TextAlign.center,
+                                    overflow: TextOverflow.visible,
+                                    style: GoogleFonts.barlowCondensed(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600, height: 1),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 22,
+                              left: 60,
+                              child: Visibility(
+                                visible: selectedSponsors.any((sponsorSelected) => sponsorSelected),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'Proudly Sponsored by '.toUpperCase(),
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.visible,
+                                        style: GoogleFonts.barlowCondensed(color: Colors.white, fontSize: 8, fontWeight: FontWeight.w600, height: 1),
+                                      ),
+                                      const SizedBox(width: 5), // Add some space between text and icons
+                                      // Display selected sponsor icons here
+                                      ...selectedSponsors
+                                          .asMap()
+                                          .entries
+                                          .where((entry) => entry.value) // Filter selected sponsors
+                                          .map(
+                                            (entry) => Padding(
+                                              padding: const EdgeInsets.symmetric(horizontal: 2),
+                                              child: Image.network(
+                                                clubSponsorsNotifier!.clubSponsorsList[entry.key].sponsorIcon!,
+                                                width: 20,
+                                                height: 20,
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
+                  actions: [
+                    if (isGenerating)
+                      const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )
+                    else
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            onPressed: () async {
+                              // Set isGenerating to true to show CircularProgressIndicator
+                              setState(() {
+                                isGenerating = true;
+                              });
+
+                              // Capture the screenshot and hold the content
+                              await _generatedBannerContent(boundaryKey);
+                              // Generate or share images based on the availability of URLs
+                              // await _shareImages();
+
+                              // Close the dialog
+                              Navigator.pop(context);
+
+                              // Reset isGenerating after completion
+                              setState(() {
+                                isGenerating = false;
+                              });
+
+                              setState(() {
+                                selectedTeamA = '';
+                                selectedTeamB = '';
+                                selectedLeague = '';
+                                selectedLocation = '';
+                                selectedSponsorsString = '';
+                              });
+
+                              Fluttertoast.showToast(
+                                msg: 'Success! Generated',
+                                gravity: ToastGravity.BOTTOM,
+                                backgroundColor: Colors.deepOrangeAccent,
+                                textColor: Colors.white,
+                                fontSize: 16.0,
+                              );
+                            },
+                            child: const Text("Generate", style: TextStyle(color: Colors.white70)),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Cancel", style: TextStyle(color: Colors.white70)),
+                          ),
+                        ],
+                      ),
+                  ],
                 ),
-              ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () async {
-                  // Capture the screenshot and hold the content
-                  _generatedBannerContent(boundaryKey);
-                  // Generate or share images based on the availability of URLs
-                  // await _shareImages();
-                  Navigator.pop(context);
-
-                  setState(() {
-                    selectedTeamA = '';
-                    selectedTeamB = '';
-                    selectedLeague = '';
-                    selectedLocation = '';
-                    selectedSponsorsString = '';
-                  });
-
-                  Fluttertoast.showToast(
-                    msg: 'Success! Generated', // Show success message (you can replace it with actual banner generation logic)
-                    gravity: ToastGravity.BOTTOM,
-                    backgroundColor: Colors.deepOrangeAccent,
-                    textColor: Colors.white,
-                    fontSize: 16.0,
-                  );
-                },
-                child: const Text("Generate", style: TextStyle(color: Colors.white70)),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text("Cancel", style: TextStyle(color: Colors.white70)),
-              ),
-            ],
+              );
+            },
           );
         });
   }
@@ -1771,10 +1842,20 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
 
     // Increase the pixelRatio for higher resolution
     double pixelRatio = 10.0; // You can adjust this value based on your needs
-    ui.Image image = await boundary!.toImage(pixelRatio: pixelRatio);
+    ui.Image originalImage = await boundary!.toImage(pixelRatio: pixelRatio);
 
-    ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    ByteData? byteData = await originalImage.toByteData(format: ui.ImageByteFormat.png);
     Uint8List? pngBytes = byteData?.buffer.asUint8List();
+
+    // Create Image from byte data
+    img_lib.Image imgLibImage = img_lib.decodeImage(Uint8List.fromList(pngBytes!))!;
+
+    // Crop the image to remove top padding
+    int cropTop = (15 * pixelRatio).toInt(); // Adjust the cropping value based on the padding
+    imgLibImage = img_lib.copyCrop(imgLibImage, x: 0, y: cropTop, width: imgLibImage.width, height: imgLibImage.height - cropTop);
+
+    // Encode the cropped image to bytes
+    Uint8List croppedBytes = Uint8List.fromList(img_lib.encodePng(imgLibImage));
 
     // Generate unique identifiers for the image file names
     String uniqueIdentifierLowRes = DateTime.now().millisecondsSinceEpoch.toString(); // For low-resolution image
@@ -1794,15 +1875,16 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
     var storageRefHighRes = FirebaseStorage.instance.ref().child('matchday_banners/high_resolution/$fileNameHighRes');
 
     // Compress the image for low-resolution version
-    img.Image compressedImage = img.decodeImage(Uint8List.fromList(pngBytes!))!;
-    compressedImage = img.copyResize(compressedImage, width: 200, height: 200);
-    Uint8List compressedBytes = img.encodePng(compressedImage);
+    img_lib.Image compressedImage = img_lib.decodeImage(Uint8List.fromList(pngBytes))!;
+    compressedImage = img_lib.copyResize(compressedImage, width: 200, height: 200);
+    Uint8List compressedBytes = Uint8List.fromList(img_lib.encodePng(compressedImage));
 
     // Upload the low-resolution image to Firebase Storage
     await storageRefLowRes.putData(compressedBytes, metadata);
 
     // Upload the original high-resolution image to Firebase Storage
-    await storageRefHighRes.putData(pngBytes, metadata);
+    // await storageRefHighRes.putData(pngBytes, metadata);
+    await storageRefHighRes.putData(croppedBytes, metadata);
 
     // Get the download URLs of the uploaded images
     String lowResDownloadURL = await storageRefLowRes.getDownloadURL();
@@ -1987,6 +2069,11 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
     getMatchDayBannerForLocation(matchDayBannerForLocationNotifier);
 
     getClubSponsors(clubSponsorsNotifier);
+
+    AllFCTeamsNotifier allFCTeamsNotifier = Provider.of<AllFCTeamsNotifier>(context, listen: false);
+
+    allFCTeamsNotifier.setMatchDayBannerForClubAllFCTeams(matchDayBannerForClubNotifier.matchDayBannerForClubList);
+    allFCTeamsNotifier.setMatchDayBannerForClubOppAllFCTeams(matchDayBannerForClubOppNotifier.matchDayBannerForClubOppList);
 
     super.initState();
 

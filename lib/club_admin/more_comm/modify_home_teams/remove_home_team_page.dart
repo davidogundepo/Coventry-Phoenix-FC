@@ -1,51 +1,47 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:coventry_phoenix_fc/api/club_sponsors_api.dart';
-import 'package:coventry_phoenix_fc/model/club_sponsors.dart';
-import 'package:coventry_phoenix_fc/notifier/club_sponsors_notifier.dart';
+import 'package:coventry_phoenix_fc/api/c_match_day_banner_for_club_api.dart';
 import 'package:flutter/material.dart';
-import '../../bloc_navigation_bloc/navigation_bloc.dart';
+import '../../../bloc_navigation_bloc/navigation_bloc.dart';
 import 'package:provider/provider.dart';
+import '../../../model/c_match_day_banner_for_club.dart';
+import '../../../notifier/c_match_day_banner_for_club_notifier.dart';
 
-Color backgroundColor = const Color.fromRGBO(235, 238, 239, 1.0);
-Color appBackgroundColor = const Color.fromRGBO(147, 165, 193, 1.0);
+late MatchDayBannerForClubNotifier matchDayBannerForClubNotifier;
 
-late ClubSponsorsNotifier clubSponsorsNotifier;
-
-class MyRemoveClubSponsorPage extends StatefulWidget with NavigationStates {
-  MyRemoveClubSponsorPage({Key? key}) : super(key: key);
+class MyRemoveNewHomeTeamPage extends StatefulWidget with NavigationStates {
+  MyRemoveNewHomeTeamPage({super.key});
 
   @override
-  State<MyRemoveClubSponsorPage> createState() => MyRemoveClubSponsorPageState();
+  State<MyRemoveNewHomeTeamPage> createState() => MyRemoveNewHomeTeamPageState();
 }
 
-class MyRemoveClubSponsorPageState extends State<MyRemoveClubSponsorPage> {
+class MyRemoveNewHomeTeamPageState extends State<MyRemoveNewHomeTeamPage> {
   bool isEditing = false; // Flag to determine if user is in "Edit" mode
-  List<ClubSponsors> selectedClubSponsors = []; // List to store selected management
+  List<MatchDayBannerForClub> selectedHomeTeams = []; // List to store selected home teams
 
   @override
   Widget build(BuildContext context) {
-    clubSponsorsNotifier = Provider.of<ClubSponsorsNotifier>(context);
+    matchDayBannerForClubNotifier = Provider.of<MatchDayBannerForClubNotifier>(context);
 
     return Scaffold(
-      backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: backgroundColor,
         leading: IconButton(
-          icon: const Icon(Icons.share_location_outlined, color: Colors.black38),
+          icon: const Icon(Icons.accessibility, color: Colors.black38),
           onPressed: () {},
         ),
-        title: const Text('All Sponsors'),
+        title: const Text('Remove Home Teams'),
         actions: [
+          // Add a button to toggle "Edit" mode
           IconButton(
             icon: Icon(
               isEditing ? Icons.done : Icons.edit,
               color: Colors.black,
             ),
             onPressed: () {
-              // Toggle "Edit" mode and clear selected management list
+              // Toggle "Edit" mode and clear selected home teams list
               setState(() {
                 isEditing = !isEditing;
-                selectedClubSponsors.clear();
+                selectedHomeTeams.clear();
               });
             },
           ),
@@ -66,28 +62,27 @@ class MyRemoveClubSponsorPageState extends State<MyRemoveClubSponsorPage> {
             },
             child: Scrollbar(
               child: ListView.builder(
-                itemCount: clubSponsorsNotifier.clubSponsorsList.length,
+                itemCount: matchDayBannerForClubNotifier.matchDayBannerForClubList.length, // Replace with your actual list of home teams
                 itemBuilder: (context, index) {
-                  final clubSponsor = clubSponsorsNotifier.clubSponsorsList[index];
+                  final homeTeamName = matchDayBannerForClubNotifier.matchDayBannerForClubList[index]; // Replace with your actual data structure
                   return ListTile(
-                    title: Text(clubSponsor.name ?? 'No Name'),
+                    title: Text(homeTeamName.clubName!),
                     trailing: isEditing
                         ? Checkbox(
                             activeColor: Colors.blue,
                             checkColor: Colors.white,
-                            value: selectedClubSponsors.contains(clubSponsor),
+                            value: selectedHomeTeams.contains(homeTeamName),
                             onChanged: (value) {
                               setState(() {
                                 if (value != null && value) {
-                                  selectedClubSponsors.add(clubSponsor);
+                                  selectedHomeTeams.add(homeTeamName);
                                 } else {
-                                  selectedClubSponsors.remove(clubSponsor);
+                                  selectedHomeTeams.remove(homeTeamName);
                                 }
                               });
                             },
                           )
                         : null, // Show checkbox only in "Edit" mode
-                    // Add other clubSponsor information you want to display
                   );
                 },
               ),
@@ -99,28 +94,35 @@ class MyRemoveClubSponsorPageState extends State<MyRemoveClubSponsorPage> {
           ? SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Container(
-                color: appBackgroundColor,
+                color: Colors.black26,
                 constraints: BoxConstraints(
                   maxHeight: MediaQuery.of(context).size.height * 0.27,
                 ),
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // const Text('Selected Sponsors:'),
+                    // const Text(
+                    //   'Selected\nHome Teams:',
+                    //   style: TextStyle(
+                    //       fontSize: 13,
+                    //     fontWeight: FontWeight.w600
+                    //   ),
+                    // ),
                     const SizedBox(width: 8.0),
                     Expanded(
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal, // Set the scroll direction to horizontal
                         child: Wrap(
-                          children: selectedClubSponsors.map((clubSponsor) {
+                          children: selectedHomeTeams.map((homeTeams) {
                             return Chip(
                               label: Text(
-                                clubSponsor.name ?? '',
+                                homeTeams.clubName ?? '',
                                 style: const TextStyle(fontSize: 12),
                               ),
                               onDeleted: () {
                                 setState(() {
-                                  selectedClubSponsors.remove(clubSponsor);
+                                  selectedHomeTeams.remove(homeTeams);
                                 });
                               },
                             );
@@ -131,52 +133,57 @@ class MyRemoveClubSponsorPageState extends State<MyRemoveClubSponsorPage> {
                     const SizedBox(width: 8.0),
                     ElevatedButton(
                       onPressed: () async {
-                        await deleteSelectedClubSponsors(selectedClubSponsors);
-                        // Clear selected management list after deletion
+                        // Implement logic to delete selected home teams
+                        await deleteSelectedHomeTeams(selectedHomeTeams);
+                        // Clear selected home teams list after deletion
                         setState(() {
-                          selectedClubSponsors.clear();
+                          selectedHomeTeams.clear();
                         });
                       },
-                      child: const Text('Delete Selected', style: TextStyle(color: Colors.indigo)),
+                      child: const Text(
+                        'Delete Selected',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                   ],
                 ),
               ),
             )
-          : null, // Show selected management at the bottom only in "Edit" mode
+          : null, // Show selected home teams at the bottom only in "Edit" mode
     );
   }
 
-  Future<void> deleteSelectedClubSponsors(List<ClubSponsors> selectedClubSponsors) async {
+  // Implement your logic to delete selected home teams
+  Future<void> deleteSelectedHomeTeams(List<MatchDayBannerForClub> selectedHomeTeams) async {
     final firestore = FirebaseFirestore.instance;
 
     // Create a list to hold updated management after deletion
-    final updatedList = List<ClubSponsors>.from(clubSponsorsNotifier.clubSponsorsList);
+    final updatedList = List<MatchDayBannerForClub>.from(matchDayBannerForClubNotifier.matchDayBannerForClubList);
 
     // Iterate through the selected management and delete them
-    for (final clubSponsor in selectedClubSponsors) {
-      final clubSponsorsName = clubSponsor.name; // Get the name of the clubSponsor
-      if (clubSponsorsName != null) {
+    for (final homeTeams in selectedHomeTeams) {
+      final homeTeamsName = homeTeams.clubName; // Get the name of the clubCaptains
+      if (homeTeamsName != null) {
         // Delete management with matching names
-        await firestore.collection('ClubSponsors').where('name', isEqualTo: clubSponsorsName).get().then((querySnapshot) {
+        await firestore.collection('MatchDayBannerForClub').where('club_name', isEqualTo: homeTeamsName).get().then((querySnapshot) {
           querySnapshot.docs.forEach((doc) {
             doc.reference.delete();
           });
         });
 
-        // Remove the clubSponsor from the updated list
-        updatedList.remove(clubSponsor);
+        // Remove the clubCaptains from the updated list
+        updatedList.remove(homeTeams);
       }
     }
 
-    // Update the management list in the notifier
-    clubSponsorsNotifier.clubSponsorsList = updatedList;
+    // Update the home teams list in the notifier
+    matchDayBannerForClubNotifier.matchDayBannerForClubList = updatedList;
   }
 
   @override
   void initState() {
-    ClubSponsorsNotifier clubSponsorsNotifier = Provider.of<ClubSponsorsNotifier>(context, listen: false);
-    getClubSponsors(clubSponsorsNotifier);
+    MatchDayBannerForClubNotifier matchDayBannerForClubNotifier = Provider.of<MatchDayBannerForClubNotifier>(context, listen: false);
+    getMatchDayBannerForClub(matchDayBannerForClubNotifier);
 
     super.initState();
   }

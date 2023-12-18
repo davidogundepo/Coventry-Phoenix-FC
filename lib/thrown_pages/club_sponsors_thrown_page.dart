@@ -54,6 +54,7 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
   late AnimationController _animationController;
   late Animation<double> _zoomAnimation;
   int _currentIndex = 0;
+  late Timer _timer; // Add a Timer variable
 
   @override
   void initState() {
@@ -77,7 +78,21 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
 
     Timer.periodic(const Duration(seconds: 5), (_) {
       setState(() {
-        _currentIndex++; 
+        _currentIndex++;
+
+        // If _currentIndex exceeds the total number of images, reset it to 0
+        if (_currentIndex == 5) {
+          _currentIndex = 0;
+        }
+        _animationController.forward(from: 0.0);
+        // Increment the animation count
+      });
+    });
+
+
+    _timer = Timer.periodic(const Duration(seconds: 5), (_) {
+      setState(() {
+        _currentIndex++;
 
         // If _currentIndex exceeds the total number of images, reset it to 0
         if (_currentIndex == 5) {
@@ -98,9 +113,11 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
 
   @override
   void dispose() {
+    _timer.cancel(); // Cancel the timer in the dispose method
     _animationController.dispose();
     super.dispose();
   }
+
 
   Widget _buildSponsorsItem(BuildContext context, int index) {
     clubSponsorsNotifier = Provider.of<ClubSponsorsNotifier>(context);
@@ -243,9 +260,17 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 60),
-                child: ListView.builder(
-                  itemBuilder: _buildSponsorsItem,
-                  itemCount: clubSponsorsNotifier.clubSponsorsList.length,
+                child: NotificationListener<ScrollNotification>(
+                  onNotification: (ScrollNotification scrollInfo) {
+                    // You can add logic here to show/hide the scrollbar based on scroll position
+                    return true;
+                  },
+                  child: Scrollbar(
+                    child: ListView.builder(
+                      itemBuilder: _buildSponsorsItem,
+                      itemCount: clubSponsorsNotifier.clubSponsorsList.length,
+                    ),
+                  ),
                 ),
               ),
               Padding(

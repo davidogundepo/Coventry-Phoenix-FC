@@ -68,12 +68,10 @@ class MyManagementBodyPage extends StatefulWidget with NavigationStates {
 }
 
 class _MyManagementBodyPage extends State<MyManagementBodyPage> {
-
   final TextEditingController bugController = TextEditingController();
 
   Widget _buildProductItem(BuildContext context, int index) {
-    ManagementBodyNotifier managementBodyNotifier =
-        Provider.of<ManagementBodyNotifier>(context);
+    ManagementBodyNotifier managementBodyNotifier = Provider.of<ManagementBodyNotifier>(context);
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
@@ -86,8 +84,7 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
           child: InkWell(
             splashColor: splashColor,
             onTap: () {
-              managementBodyNotifier.currentManagementBody =
-                  managementBodyNotifier.managementBodyList[index];
+              managementBodyNotifier.currentManagementBody = managementBodyNotifier.managementBodyList[index];
               navigateToManagementBodyDetailsPage(context);
             },
             child: SingleChildScrollView(
@@ -99,14 +96,10 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
                     width: 100,
                     height: 100,
                     decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10)),
+                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
                         image: DecorationImage(
                             alignment: const Alignment(0, -1),
-                            image: CachedNetworkImageProvider(
-                                managementBodyNotifier
-                                    .managementBodyList[index].image!),
+                            image: CachedNetworkImageProvider(managementBodyNotifier.managementBodyList[index].image!),
                             fit: BoxFit.cover)),
                   ),
                   Padding(
@@ -118,13 +111,8 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
                           padding: const EdgeInsets.only(top: 20),
                           child: Row(
                             children: <Widget>[
-                              Text(
-                                  managementBodyNotifier
-                                      .managementBodyList[index].name!,
-                                  style: GoogleFonts.tenorSans(
-                                      color: textColor,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600)),
+                              Text(managementBodyNotifier.managementBodyList[index].name!,
+                                  style: GoogleFonts.tenorSans(color: textColor, fontSize: 17, fontWeight: FontWeight.w600)),
                               const SizedBox(width: 10),
                               Icon(
                                 MdiIcons.shieldCheck,
@@ -135,14 +123,8 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                              managementBodyNotifier
-                                  .managementBodyList[index].staffPosition!,
-                              style: GoogleFonts.tenorSans(
-                                  color: textColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w300,
-                                  fontStyle: FontStyle.italic)),
+                          child: Text(managementBodyNotifier.managementBodyList[index].staffPosition!,
+                              style: GoogleFonts.tenorSans(color: textColor, fontSize: 16, fontWeight: FontWeight.w300, fontStyle: FontStyle.italic)),
                         ),
                       ],
                     ),
@@ -194,42 +176,31 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
   }
 
   Future navigateToManagementBodyDetailsPage(context) async {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => const ManagementBodyDetailsPage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const ManagementBodyDetailsPage()));
   }
 
   Future navigateTablesAndStatsDetails(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const BottomNavigator()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const BottomNavigator()));
   }
 
   Future navigateToAboutAppDetailsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const AboutAppDetails()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutAppDetails()));
   }
 
   Future navigateToAcronymsMeaningsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const AcronymsMeanings()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AcronymsMeanings()));
   }
 
   Future navigateToAboutClubDetailsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const AboutClubDetails()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutClubDetails()));
   }
 
   Future navigateToWhoWeArePage(context) async {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
   }
 
   void navigateToAppStore(context) async {
-    LaunchReview.launch(
-        androidAppId: 'com.icdatinnovations.coventry_phoenix_fc',
-        iOSAppId: '1637554276'
-    );
+    LaunchReview.launch(androidAppId: 'com.icdatinnovations.coventry_phoenix_fc', iOSAppId: '1637554276');
     Navigator.of(context).pop(false);
   }
 
@@ -330,9 +301,7 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
                 hintText: 'Passcode',
                 hintStyle: TextStyle(color: Colors.white70),
               ),
-              style: TextStyle(
-                  color: Colors.white70
-              ),
+              style: TextStyle(color: Colors.white70),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -382,8 +351,7 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
 
   @override
   void initState() {
-    ManagementBodyNotifier managementBodyNotifier =
-        Provider.of<ManagementBodyNotifier>(context, listen: false);
+    ManagementBodyNotifier managementBodyNotifier = Provider.of<ManagementBodyNotifier>(context, listen: false);
     getManagementBody(managementBodyNotifier);
     super.initState();
 
@@ -395,8 +363,7 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
 
   @override
   Widget build(BuildContext context) {
-    ManagementBodyNotifier managementBodyNotifier =
-        Provider.of<ManagementBodyNotifier>(context);
+    ManagementBodyNotifier managementBodyNotifier = Provider.of<ManagementBodyNotifier>(context);
 
     return WillPopScope(
       onWillPop: _onWillPop,
@@ -404,8 +371,7 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
         body: Container(
           color: backgroundColor,
           child: NestedScrollView(
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
                 SliverAppBar(
                   actions: <Widget>[
@@ -419,20 +385,14 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
                                   // height: 250,
                                   decoration: BoxDecoration(
                                     color: modalBackgroundColor,
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(15),
-                                        topRight: Radius.circular(15)),
+                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                                   ),
                                   child: Material(
                                     color: materialBackgroundColor,
                                     child: InkWell(
                                       splashColor: splashColorTwo,
                                       child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 8.0,
-                                            bottom: 35.0,
-                                            right: 8.0,
-                                            left: 8.0),
+                                        padding: const EdgeInsets.only(top: 8.0, bottom: 35.0, right: 8.0, left: 8.0),
                                         child: Wrap(
                                           children: <Widget>[
                                             ListTile(
@@ -442,12 +402,10 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
                                                 ),
                                                 title: Text(
                                                   clubAdmin,
-                                                  style: GoogleFonts.zillaSlab(
-                                                      color: textColor),
+                                                  style: GoogleFonts.zillaSlab(color: textColor),
                                                 ),
                                                 onTap: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
+                                                  Navigator.of(context).pop(false);
                                                   _showAdminDialog(context);
                                                 }),
                                             // ListTile(
@@ -465,50 +423,35 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
                                             //           context);
                                             //     }),
                                             ListTile(
-                                              leading: Icon(
-                                                  MdiIcons.accountGroup,
-                                                  color: iconColor),
+                                              leading: Icon(MdiIcons.accountGroup, color: iconColor),
                                               title: Text(
                                                 aboutClub,
-                                                style: GoogleFonts.zillaSlab(
-                                                    color: textColor),
+                                                style: GoogleFonts.zillaSlab(color: textColor),
                                               ),
                                               onTap: () {
-                                                Navigator.of(context)
-                                                    .pop(false);
-                                                navigateToAboutClubDetailsPage(
-                                                    context);
+                                                Navigator.of(context).pop(false);
+                                                navigateToAboutClubDetailsPage(context);
                                               },
                                             ),
                                             ListTile(
-                                                leading: Icon(
-                                                    MdiIcons
-                                                        .sortAlphabeticalAscending,
-                                                    color: iconColor),
+                                                leading: Icon(MdiIcons.sortAlphabeticalAscending, color: iconColor),
                                                 title: Text(
                                                   acronymMeanings,
-                                                  style: GoogleFonts.zillaSlab(
-                                                      color: textColor),
+                                                  style: GoogleFonts.zillaSlab(color: textColor),
                                                 ),
                                                 onTap: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
-                                                  navigateToAcronymsMeaningsPage(
-                                                      context);
+                                                  Navigator.of(context).pop(false);
+                                                  navigateToAcronymsMeaningsPage(context);
                                                 }),
                                             ListTile(
-                                              leading: Icon(MdiIcons.opacity,
-                                                  color: iconColor),
+                                              leading: Icon(MdiIcons.opacity, color: iconColor),
                                               title: Text(
                                                 aboutApp,
-                                                style: GoogleFonts.zillaSlab(
-                                                    color: textColor),
+                                                style: GoogleFonts.zillaSlab(color: textColor),
                                               ),
                                               onTap: () {
-                                                Navigator.of(context)
-                                                    .pop(false);
-                                                navigateToAboutAppDetailsPage(
-                                                    context);
+                                                Navigator.of(context).pop(false);
+                                                navigateToAboutAppDetailsPage(context);
                                               },
                                             ),
                                             Row(
@@ -570,8 +513,7 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
                       onPressed: () {
                         showSearch(
                           context: context,
-                          delegate: MyManagementBodySearch(
-                              all: managementBodyNotifier.managementBodyList),
+                          delegate: MyManagementBodySearch(all: managementBodyNotifier.managementBodyList),
                         );
                       },
                       tooltip: "Search",
@@ -584,31 +526,28 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
                   flexibleSpace: FlexibleSpaceBar(
                       title: Align(
                         alignment: Alignment.bottomLeft,
-                        child: Text(
-                            thrownName,
-                            textAlign: TextAlign.start,
-                            style: GoogleFonts.abel(
-                                color: textColor,
-                                fontSize: 26.0,
-                                fontWeight: FontWeight.bold)),
+                        child: Text(thrownName,
+                            textAlign: TextAlign.start, style: GoogleFonts.abel(color: textColor, fontSize: 26.0, fontWeight: FontWeight.bold)),
                       ),
-                      background:
-                          StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        stream: FirebaseFirestore.instance
-                            .collection('SliversPages')
-                            .doc('slivers_pages')
-                            .snapshots(),
+                      background: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        stream: FirebaseFirestore.instance.collection('SliversPages').doc('slivers_pages').snapshots(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
                             return const CircularProgressIndicator();
                           }
-                          return Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: CachedNetworkImageProvider(
-                                      snapshot.data?.data()!['slivers_page_6'],
-                                    ),
-                                    fit: BoxFit.cover)),
+                          return ColorFiltered(
+                            colorFilter: ColorFilter.mode(
+                              Colors.black.withOpacity(0.3), // Adjust the opacity as needed
+                              BlendMode.darken,
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: CachedNetworkImageProvider(
+                                        snapshot.data?.data()!['slivers_page_6'],
+                                      ),
+                                      fit: BoxFit.cover)),
+                            ),
                           );
                         },
                       )),
@@ -619,8 +558,7 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
               padding: const EdgeInsets.only(left: 25, right: 10),
               child: Container(
                 margin: const EdgeInsets.only(bottom: 15),
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                 child: ListView.builder(
                   itemBuilder: _buildProductItem,
                   itemCount: managementBodyNotifier.managementBodyList.length,

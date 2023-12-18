@@ -607,13 +607,19 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
                           if (!snapshot.hasData) {
                             return const CircularProgressIndicator();
                           }
-                          return Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: CachedNetworkImageProvider(
-                                      snapshot.data?.data()!['slivers_page_4'],
-                                    ),
-                                    fit: BoxFit.cover)),
+                          return ColorFiltered(
+                            colorFilter: ColorFilter.mode(
+                              Colors.black.withOpacity(0.3), // Adjust the opacity as needed
+                              BlendMode.darken,
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: CachedNetworkImageProvider(
+                                        snapshot.data?.data()!['slivers_page_4'],
+                                      ),
+                                      fit: BoxFit.cover)),
+                            ),
                           );
                         },
                       )),

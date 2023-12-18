@@ -6,7 +6,6 @@ import '../../model/management_body.dart';
 import '../../notifier/management_body_notifier.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 Color backgroundColor = const Color.fromRGBO(187, 192, 195, 1.0);
 
 late ManagementBodyNotifier managementBodyNotifier;
@@ -45,70 +44,102 @@ class MyModifyManagementBodyPageState extends State<MyModifyManagementBodyPage> 
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: managementBodyNotifier.managementBodyList.length,
-        itemBuilder: (context, index) {
-          final managementBody = managementBodyNotifier.managementBodyList[index];
-          return ListTile(
-            title: Text(managementBody.name ?? 'No Name'),
-            trailing: isEditing
-                ? Checkbox(
-              value: selectedManagementBody.contains(managementBody),
-              onChanged: (value) {
-                setState(() {
-                  if (value != null && value) {
-                    selectedManagementBody.add(managementBody);
-                  } else {
-                    selectedManagementBody.remove(managementBody);
-                  }
-                });
-              },
-            )
-                : null, // Show checkbox only in "Edit" mode
-            // Add other managementBody information you want to display
-          );
+      body: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          // Hide the keyboard when tapping outside the text field
+          FocusManager.instance.primaryFocus?.unfocus();
         },
+        child: Padding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.width * 0.25),
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification scrollInfo) {
+              // You can add logic here to show/hide the scrollbar based on scroll position
+              return true;
+            },
+            child: Scrollbar(
+              child: ListView.builder(
+                itemCount: managementBodyNotifier.managementBodyList.length,
+                itemBuilder: (context, index) {
+                  final managementBody = managementBodyNotifier.managementBodyList[index];
+                  return ListTile(
+                    title: Text(managementBody.name ?? 'No Name'),
+                    trailing: isEditing
+                        ? Checkbox(
+                            value: selectedManagementBody.contains(managementBody),
+                            onChanged: (value) {
+                              setState(() {
+                                if (value != null && value) {
+                                  selectedManagementBody.add(managementBody);
+                                } else {
+                                  selectedManagementBody.remove(managementBody);
+                                }
+                              });
+                            },
+                          )
+                        : null, // Show checkbox only in "Edit" mode
+                    // Add other managementBody information you want to display
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
       ),
       bottomSheet: isEditing
           ? SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Container(
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * 0.27,
-          ),
-          padding: const EdgeInsets.all(16.0),
-                    child: Row(
-            children: [
-              const Text('Selected Management:'),
-              const SizedBox(width: 8.0),
-              Expanded(
-                child: Wrap(
-                  children: selectedManagementBody.map((managementBody) {
-                    return Chip(
-                      label: Text(managementBody.name ?? ''),
-                      onDeleted: () {
-                        setState(() {
-                          selectedManagementBody.remove(managementBody);
-                        });
-                      },
-                    );
-                  }).toList(),
+              scrollDirection: Axis.vertical,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: Container(
+                  constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height * 0.27,
+                  ),
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      // const Text('Selected\nManagement:'),
+                      const SizedBox(width: 8.0),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal, // Set the scroll direction to horizontal
+                          child: Wrap(
+                            children: selectedManagementBody.map((managementBody) {
+                              return Chip(
+                                label: Text(
+                                  managementBody.name ?? '',
+                                  style: const TextStyle(fontSize: 12),
+                                ),
+                                onDeleted: () {
+                                  setState(() {
+                                    selectedManagementBody.remove(managementBody);
+                                  });
+                                },
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8.0),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await deleteSelectedManagementBody(selectedManagementBody);
+                          // Clear selected management list after deletion
+                          setState(() {
+                            selectedManagementBody.clear();
+                          });
+                        },
+                        child: const Text(
+                          'Delete Selected',
+                          style: TextStyle(fontSize: 13),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () async {
-                  await deleteSelectedManagementBody(selectedManagementBody);
-                  // Clear selected management list after deletion
-                  setState(() {
-                    selectedManagementBody.clear();
-                  });
-                },
-                child: const Text('Delete Selected'),
-              ),
-            ],
-                    ),
-                  ),
-          )
+            )
           : null, // Show selected management at the bottom only in "Edit" mode
     );
   }
@@ -124,11 +155,7 @@ class MyModifyManagementBodyPageState extends State<MyModifyManagementBodyPage> 
       final managementBodyName = managementBody.name; // Get the name of the managementBody
       if (managementBodyName != null) {
         // Delete management with matching names
-        await firestore
-            .collection('ManagementBody')
-            .where('name', isEqualTo: managementBodyName)
-            .get()
-            .then((querySnapshot) {
+        await firestore.collection('ManagementBody').where('name', isEqualTo: managementBodyName).get().then((querySnapshot) {
           querySnapshot.docs.forEach((doc) {
             doc.reference.delete();
           });
@@ -145,11 +172,9 @@ class MyModifyManagementBodyPageState extends State<MyModifyManagementBodyPage> 
 
   @override
   void initState() {
-    ManagementBodyNotifier managementBodyNotifier =
-    Provider.of<ManagementBodyNotifier>(context, listen: false);
+    ManagementBodyNotifier managementBodyNotifier = Provider.of<ManagementBodyNotifier>(context, listen: false);
     getManagementBody(managementBodyNotifier);
 
     super.initState();
   }
-
 }

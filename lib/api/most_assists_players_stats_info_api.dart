@@ -7,7 +7,7 @@ getMostAssistsPlayersStatsAndInfo(
     MostAssistsPlayersStatsAndInfoNotifier
         mostAssistsPlayersStatsAndInfoNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
-      .collection('PlayersTable')
+      .collection('PllayersTable')
       .where('assists', isGreaterThan: 0)
       .orderBy('assists', descending: true)
       .limit(10)
