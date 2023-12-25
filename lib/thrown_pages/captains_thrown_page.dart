@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/players_table_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -200,7 +201,7 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
 
   Future navigateTablesAndStatsDetails(context) async {
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const BottomNavigator()));
+        MaterialPageRoute(builder: (context) => const BottomNavigator(mainPage: PlayersTablePage(), initialPage: 0,)));
   }
 
   Future navigateToAboutAppDetailsPage(context) async {

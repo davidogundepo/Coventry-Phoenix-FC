@@ -3,6 +3,12 @@ import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coventry_phoenix_fc/about_menu_details_pages/about_club.dart';
+import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/matches_page/a_past_matches_page.dart';
+import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/matches_page/a_upcoming_matches_page.dart';
+import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/players_stats_info_page.dart';
+import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/players_table_page.dart';
+import 'package:coventry_phoenix_fc/bottom_nav_stats_pages/social_media/b_youtube_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +19,9 @@ import 'package:rxdart/rxdart.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:simple_icons/simple_icons.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
+import '../bottom_nav_stats_pages/bottom_navigator.dart';
+import '../bottom_nav_stats_pages/matches_page/a_tabview_matches_page.dart';
+import '../bottom_nav_stats_pages/social_media/b_tabview_social_media_page.dart';
 import '../notifier/sidebar_notifier.dart';
 import '../sidebar/menu_item.dart';
 
@@ -35,6 +44,14 @@ String exitAppTitle = "Come on!";
 String exitAppSubtitle = "Do you really really want to?";
 String exitAppNo = "Oh No";
 String exitAppYes = "I Have To";
+
+String fmTitle = "Five & More";
+String ytTitle = "Youtube Page";
+String aptTitle = "All Players Table";
+String tppTitle = "Top Performing Players";
+String pmTitle = "Past Matches";
+String umTitle = "Upcoming Matches";
+String cbTitle = "Club Background";
 
 Color gradientColor = const Color.fromRGBO(24, 26, 36, 1.0);
 Color gradientColorTwo = Colors.white;
@@ -71,7 +88,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
   bool _isClubSponsorsClicked = false; // New variable to track the "Club Sponsors" click
 
   _onSelected(int index) {
-    if (index == 7 || index == 8) {
+    if (index == 7 /**|| index == 8 */) {
       // Check if the selected item is "Club Sponsors"
       _isClubSponsorsClicked = true;
       // showToast("Club Sponsors Clicked"); // Show the toast message
@@ -107,7 +124,6 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
   }
 
   @override
@@ -427,6 +443,156 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                                 indent: 12,
                                 endIndent: 15,
                               ),
+                              Theme(
+                                  data: ThemeData.dark().copyWith(primaryColor: Colors.white),
+                                  child: ExpansionTile(
+                                      title: MenuItems(
+                                        icon: SimpleIcons.mobxstatetree,
+                                        title: fmTitle,
+                                      ),
+                                      children: <Widget>[
+                                        Material(
+                                          color: _currentNAVSelected == 8 ? containerBackgroundColor.withOpacity(0.3) : materialBackgroundColor,
+                                          child: InkWell(
+                                            splashColor: splashColorTwo,
+                                            onTap: () {
+                                              _onSelected(8);
+                                              onIconPressed();
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => const BottomNavigator(mainPage: TabviewSocialMediaPage(), initialPage: 3),
+                                                ),
+                                              );
+                                            },
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: MenuItems(
+                                                icon: SimpleIcons.youtube,
+                                                title: ytTitle,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Material(
+                                          color: _currentNAVSelected == 9 ? containerBackgroundColor.withOpacity(0.3) : materialBackgroundColor,
+                                          child: InkWell(
+                                            splashColor: splashColorTwo,
+                                            onTap: () {
+                                              _onSelected(9);
+                                              onIconPressed();
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => const BottomNavigator(mainPage: PlayersTablePage(), initialPage: 0),
+                                                ),
+                                              );
+                                            },
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: MenuItems(
+                                                icon: MdiIcons.accountGroup,
+                                                title: aptTitle,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Material(
+                                          color: _currentNAVSelected == 10 ? containerBackgroundColor.withOpacity(0.3) : materialBackgroundColor,
+                                          child: InkWell(
+                                            splashColor: splashColorTwo,
+                                            onTap: () {
+                                              _onSelected(10);
+                                              onIconPressed();
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => const BottomNavigator(mainPage: PlayersStatsAndInfoPage(), initialPage: 1),
+                                                ),
+                                              );
+                                            },
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: MenuItems(
+                                                icon: SimpleIcons.starz,
+                                                title: tppTitle,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Material(
+                                          color: _currentNAVSelected == 11 ? containerBackgroundColor.withOpacity(0.3) : materialBackgroundColor,
+                                          child: InkWell(
+                                            splashColor: splashColorTwo,
+                                            onTap: () {
+                                              _onSelected(11);
+                                              onIconPressed();
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => const BottomNavigator(mainPage: TabviewMatchesPage(initialPage: 0), initialPage: 2), // Set initialPage to 0 for 'Results'
+                                                ),
+                                              );
+                                            },
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: MenuItems(
+                                                icon: SimpleIcons.strongswan,
+                                                title: pmTitle,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Material(
+                                          color: _currentNAVSelected == 12 ? containerBackgroundColor.withOpacity(0.3) : materialBackgroundColor,
+                                          child: InkWell(
+                                            splashColor: splashColorTwo,
+                                            onTap: () {
+                                              _onSelected(12);
+                                              onIconPressed();
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => const BottomNavigator(mainPage: TabviewMatchesPage(initialPage: 1), initialPage: 2), // Set initialPage to 1 for 'Fixtures'
+                                                ),
+                                              );
+                                            },
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: MenuItems(
+                                                icon: SimpleIcons.googlecolab,
+                                                title: umTitle,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                                        // Material(
+                                        //   color: _currentNAVSelected == 13 ? containerBackgroundColor.withOpacity(0.3) : materialBackgroundColor,
+                                        //   child: InkWell(
+                                        //     splashColor: splashColorTwo,
+                                        //     onTap: () {
+                                        //       _onSelected(13);
+                                        //       onIconPressed();
+                                        //       Navigator.push(
+                                        //         context,
+                                        //         MaterialPageRoute(
+                                        //           builder: (context) => const AboutClubDetails(),
+                                        //         ),
+                                        //       );
+                                        //     },
+                                        //     child: Align(
+                                        //       alignment: Alignment.centerLeft,
+                                        //       child: MenuItems(
+                                        //         icon: MdiIcons.accountGroup,
+                                        //         title: cbTitle,
+                                        //       ),
+                                        //     ),
+                                        //   ),
+                                        // ),
+
+
+                                      ])),
                               // Material(
                               //   color: _currentNAVSelected == 8
                               //       ? gradientColorTwo.withOpacity(0.3)
@@ -495,9 +661,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                           alignment: Alignment.centerLeft,
                           child: AnimatedIcon(
                             progress: _animationController.view,
-                            icon: _animationController.status == AnimationStatus.completed
-                                ? AnimatedIcons.menu_home
-                                : AnimatedIcons.close_menu,
+                            icon: _animationController.status == AnimationStatus.completed ? AnimatedIcons.menu_home : AnimatedIcons.close_menu,
                             color: containerIconColor,
                             size: 25,
                           ),
@@ -515,7 +679,6 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
   }
 
   Future<bool>? _onWillPop() async {
-
     //moves the screen up
     // if (Provider.of<SideBarNotifier>(context, listen: false).isOpened) {
     //   onIconPressed();

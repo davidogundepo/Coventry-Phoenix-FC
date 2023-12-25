@@ -15,6 +15,7 @@ import '../about_menu_details_pages/who_we_are.dart';
 import '../api/third_team_class_api.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../bottom_nav_stats_pages/bottom_navigator.dart';
+import '../bottom_nav_stats_pages/players_table_page.dart';
 import '../details_pages/third_team_details_page.dart';
 import '../notifier/third_team_class_notifier.dart';
 import '../thrown_searches/third_team_thrown_search.dart';
@@ -217,7 +218,7 @@ class _MyThirdTeamClassPage extends State<MyThirdTeamClassPage> {
 
   Future navigateTablesAndStatsDetails(context) async {
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const BottomNavigator()));
+        MaterialPageRoute(builder: (context) => const BottomNavigator(mainPage: PlayersTablePage(), initialPage: 0,)));
   }
 
   Future navigateToAboutAppDetailsPage(context) async {

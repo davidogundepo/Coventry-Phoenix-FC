@@ -38,10 +38,10 @@ class PlayersTablePage extends StatefulWidget {
   const PlayersTablePage({Key? key}) : super(key: key);
 
   @override
-  State<PlayersTablePage> createState() => _PlayersTablePageState();
+  State<PlayersTablePage> createState() => PlayersTablePageState();
 }
 
-class _PlayersTablePageState extends State<PlayersTablePage> {
+class PlayersTablePageState extends State<PlayersTablePage> {
   List<PlayersTable> playersTableList = [];
 
   late PlayersTableDataSource playersTableDataSource;

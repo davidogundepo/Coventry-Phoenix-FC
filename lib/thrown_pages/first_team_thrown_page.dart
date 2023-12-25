@@ -46,6 +46,7 @@ import '../api/top_goals_players_stats_info_api.dart';
 import '../api/trainings_games_reels_api.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../bottom_nav_stats_pages/bottom_navigator.dart';
+import '../bottom_nav_stats_pages/players_table_page.dart';
 import '../club_admin/club_admin_page.dart';
 import '../details_pages/first_team_details_page.dart';
 import '../main.dart';
@@ -500,7 +501,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
   }
 
   Future navigateTablesAndStatsDetails(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const BottomNavigator()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const BottomNavigator(mainPage: PlayersTablePage(), initialPage: 0,)));
   }
 
   Future navigateToAboutAppDetailsPage(context) async {

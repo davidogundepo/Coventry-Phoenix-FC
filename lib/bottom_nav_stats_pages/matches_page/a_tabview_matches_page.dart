@@ -14,7 +14,9 @@ Color? selectedTabColor = Colors.indigo[200];
 
 
 class TabviewMatchesPage extends StatefulWidget {
-  const TabviewMatchesPage({super.key});
+  const TabviewMatchesPage({Key? key, required this.initialPage}) : super(key: key);
+
+  final int initialPage;
 
   @override
   State<TabviewMatchesPage> createState() => TabviewMatchesPageState();
@@ -26,7 +28,7 @@ class TabviewMatchesPageState extends State<TabviewMatchesPage> with SingleTicke
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this, initialIndex: widget.initialPage);
   }
 
   @override

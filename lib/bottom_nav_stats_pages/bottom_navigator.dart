@@ -49,7 +49,10 @@ Color? appBarIconColor = const Color.fromRGBO(255, 141, 41, 1);
 Color? appBarBackgroundColor = const Color.fromRGBO(34, 40, 49, 1);
 
 class BottomNavigator extends StatefulWidget {
-  const BottomNavigator({Key? key}) : super(key: key);
+  const BottomNavigator({Key? key, required this.mainPage, required this.initialPage}) : super(key: key);
+
+  final Widget mainPage;
+  final int initialPage;
 
   @override
   State<BottomNavigator> createState() => _BottomNavigatorState();
@@ -62,7 +65,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
   final _pageOption = [
     const PlayersTablePage(),
     const PlayersStatsAndInfoPage(),
-    const TabviewMatchesPage(),
+    const TabviewMatchesPage(initialPage: 1),
     // const SeasonTimeline(),
     const TabviewSocialMediaPage(),
     TrainingsAndGamesReelsPage(),
@@ -198,6 +201,11 @@ class _BottomNavigatorState extends State<BottomNavigator> {
 
     mostAssistsPlayersStatsAndInfoNotifier = Provider.of<MostAssistsPlayersStatsAndInfoNotifier>(context, listen: false);
     getMostAssistsPlayersStatsAndInfo(mostAssistsPlayersStatsAndInfoNotifier);
+
+
+    setState(() {
+      selectedPage = widget.initialPage;
+    });
 
     super.initState();
 

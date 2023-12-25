@@ -17,6 +17,7 @@ import '../about_menu_details_pages/who_we_are.dart';
 import '../api/second_team_class_api.dart';
 import '../bloc_navigation_bloc/navigation_bloc.dart';
 import '../bottom_nav_stats_pages/bottom_navigator.dart';
+import '../bottom_nav_stats_pages/players_table_page.dart';
 import '../club_admin/club_admin_page.dart';
 import '../details_pages/second_team_details_page.dart';
 import '../main.dart';
@@ -207,7 +208,7 @@ class _MySecondTeamClassPage extends State<MySecondTeamClassPage> {
   }
 
   Future navigateTablesAndStatsDetails(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const BottomNavigator()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const BottomNavigator(mainPage: PlayersTablePage(), initialPage: 0,)));
   }
 
   Future navigateToAboutAppDetailsPage(context) async {
