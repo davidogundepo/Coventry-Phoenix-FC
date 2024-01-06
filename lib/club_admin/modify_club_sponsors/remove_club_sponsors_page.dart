@@ -73,7 +73,7 @@ class MyRemoveClubSponsorPageState extends State<MyRemoveClubSponsorPage> {
                     title: Text(clubSponsor.name ?? 'No Name'),
                     trailing: isEditing
                         ? Checkbox(
-                            activeColor: Colors.blue,
+                            activeColor: Colors.black87,
                             checkColor: Colors.white,
                             value: selectedClubSponsors.contains(clubSponsor),
                             onChanged: (value) {
@@ -137,7 +137,7 @@ class MyRemoveClubSponsorPageState extends State<MyRemoveClubSponsorPage> {
                           selectedClubSponsors.clear();
                         });
                       },
-                      child: const Text('Delete Selected', style: TextStyle(color: Colors.indigo)),
+                      child: const Text('Delete Selected', style: TextStyle(color: Colors.redAccent)),
                     ),
                   ],
                 ),

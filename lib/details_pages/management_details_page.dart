@@ -180,6 +180,8 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage> {
   final TextEditingController _myAutobiographyController = TextEditingController();
   final TextEditingController _myWhyLoveForManagementController = TextEditingController();
 
+  final TextEditingController commentController = TextEditingController();
+
   String _selectedManagementTeamPositionRole = 'Select One'; // Default value
 
   final List<String> _managementTeamOptions = [
@@ -525,16 +527,8 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage> {
                   });
 
                   if (item == 2) {
-                    Fluttertoast.showToast(
-                      msg: 'Coming soon. Thanks',
-                      // Show success message (you can replace it with actual banner generation logic)
-                      gravity: ToastGravity.CENTER,
-                      backgroundColor: Colors.white,
-                      textColor: Colors.black,
-                      fontSize: 16.0,
-                    );
-                  }
-                  else {
+                    addFoundersCommentDialog(context);
+                  } else {
                     modifyProfile(); // Use modifyProfile function instead of _showAutobiographyModificationDialog or _showImageModificationDialog
                   }
                 }),
@@ -3277,93 +3271,93 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage> {
     final GlobalKey<FormState> dialogFormKey = GlobalKey<FormState>();
 
     showDialog<String>(
-      // barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
+        // barrierColor: const Color.fromRGBO(66, 67, 69, 1.0),
         context: context,
         builder: (BuildContext context) => WillPopScope(
-          onWillPop: () async {
-            // Clear the fields or perform any cleanup actions
-            otpCode = '';
-            isOTPComplete = false;
+              onWillPop: () async {
+                // Clear the fields or perform any cleanup actions
+                otpCode = '';
+                isOTPComplete = false;
 
-            return true; // Allow the dialog to be popped
-          },
-          child: AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            backgroundColor: const Color.fromRGBO(223, 225, 229, 1.0),
-            title: const Text(
-              "Please click 'Generate OTP', input your OTP from the sent sms.",
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black),
-            ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () async {
-                  // User needs to send OTP for verification
-                  await _sendOtpToPhoneNumber();
-                },
-                child: const Text('Generate OTP', style: TextStyle(color: Colors.black)),
-              ),
-              TextButton(
-                onPressed: isOTPComplete
-                    ? () {
-                  verifyOTPCode();
-                  setState(() {
-                    otpCode = '';
-                  });
-                  Navigator.of(context).pop(); // Move this line here
-                }
-                    : null,
-                child: const Text('Verify OTP', style: TextStyle(color: Colors.black)),
-              ),
-            ],
-            content: Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: AbsorbPointer(
-                absorbing: !isOtpGenerated,
-                child: Form(
-                  key: dialogFormKey,
-                  child: GestureDetector(
-                    onTap: () {
-                      // Show toast message if OTP is not generated
-                      if (!isOtpGenerated) {
-                        Fluttertoast.showToast(
-                          msg: 'Please generate OTP first',
-                          gravity: ToastGravity.BOTTOM,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.white,
-                          fontSize: 16.0,
-                        );
-                      }
+                return true; // Allow the dialog to be popped
+              },
+              child: AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                backgroundColor: const Color.fromRGBO(223, 225, 229, 1.0),
+                title: const Text(
+                  "Please click 'Generate OTP', input your OTP from the sent sms.",
+                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () async {
+                      // User needs to send OTP for verification
+                      await _sendOtpToPhoneNumber();
                     },
-                    child: PinFieldAutoFill(
-                      autoFocus: true,
-                      currentCode: otpCode,
-                      decoration: BoxLooseDecoration(
-                        gapSpace: 5,
-                        radius: const Radius.circular(8),
-                        strokeColorBuilder: isOtpGenerated
-                            ? const FixedColorBuilder(Color(0xFFE16641))
-                            : const FixedColorBuilder(Colors.grey), // Use grey color if OTP is not generated
+                    child: const Text('Generate OTP', style: TextStyle(color: Colors.black)),
+                  ),
+                  TextButton(
+                    onPressed: isOTPComplete
+                        ? () {
+                            verifyOTPCode();
+                            setState(() {
+                              otpCode = '';
+                            });
+                            Navigator.of(context).pop(); // Move this line here
+                          }
+                        : null,
+                    child: const Text('Verify OTP', style: TextStyle(color: Colors.black)),
+                  ),
+                ],
+                content: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: AbsorbPointer(
+                    absorbing: !isOtpGenerated,
+                    child: Form(
+                      key: dialogFormKey,
+                      child: GestureDetector(
+                        onTap: () {
+                          // Show toast message if OTP is not generated
+                          if (!isOtpGenerated) {
+                            Fluttertoast.showToast(
+                              msg: 'Please generate OTP first',
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0,
+                            );
+                          }
+                        },
+                        child: PinFieldAutoFill(
+                          autoFocus: true,
+                          currentCode: otpCode,
+                          decoration: BoxLooseDecoration(
+                            gapSpace: 5,
+                            radius: const Radius.circular(8),
+                            strokeColorBuilder: isOtpGenerated
+                                ? const FixedColorBuilder(Color(0xFFE16641))
+                                : const FixedColorBuilder(Colors.grey), // Use grey color if OTP is not generated
+                          ),
+                          codeLength: 6,
+                          onCodeChanged: (code) {
+                            print("OnCodeChanged : $code");
+                            otpCode = code.toString();
+                            isOTPComplete = code!.length == 6;
+                          },
+                          onCodeSubmitted: (val) {
+                            print("OnCodeSubmitted : $val");
+                            isOTPComplete = val.isEmpty;
+                            otpCode = '';
+                          },
+                        ),
                       ),
-                      codeLength: 6,
-                      onCodeChanged: (code) {
-                        print("OnCodeChanged : $code");
-                        otpCode = code.toString();
-                        isOTPComplete = code!.length == 6;
-                      },
-                      onCodeSubmitted: (val) {
-                        print("OnCodeSubmitted : $val");
-                        isOTPComplete = val.isEmpty;
-                        otpCode = '';
-                      },
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
-        ));
+            ));
   }
 
   Future<bool> isUserVerifiedRecently() async {
@@ -3379,9 +3373,7 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage> {
         DateTime now = DateTime.now();
         DateTime verificationDateTime = DateTime.fromMillisecondsSinceEpoch(verificationTime);
 
-        return now
-            .difference(verificationDateTime)
-            .inMinutes <= 30;
+        return now.difference(verificationDateTime).inMinutes <= 30;
       }
     }
     return false;
@@ -3522,8 +3514,7 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage> {
                             date = await pickDate();
                             if (date == null) return;
 
-                            final newDateTime =
-                            DateTime(date!.year, date!.month, date!.day, selectedDateA.hour, selectedDateA.minute);
+                            final newDateTime = DateTime(date!.year, date!.month, date!.day, selectedDateA.hour, selectedDateA.minute);
 
                             setState(() {
                               selectedDateA = newDateTime;
@@ -3706,11 +3697,11 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage> {
                         child: _imageOne != null
                             ? Image.file(_imageOne!, height: 100, width: 100)
                             : CachedNetworkImage(
-                          imageUrl: managementBodyNotifier.currentManagementBody.image!,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => const CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
-                        ),
+                                imageUrl: managementBodyNotifier.currentManagementBody.image!,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
+                              ),
                       ),
                     ),
                     InkWell(
@@ -3727,11 +3718,11 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage> {
                         child: _imageTwo != null
                             ? Image.file(_imageTwo!, height: 100, width: 100)
                             : CachedNetworkImage(
-                          imageUrl: managementBodyNotifier.currentManagementBody.imageTwo!,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => const CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
-                        ),
+                                imageUrl: managementBodyNotifier.currentManagementBody.imageTwo!,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) => Icon(MdiIcons.alertRhombus),
+                              ),
                       ),
                     ),
                   ],
@@ -3747,6 +3738,85 @@ class _ManagementBodyDetailsPage extends State<ManagementBodyDetailsPage> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  void addFoundersCommentDialog(context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        backgroundColor: const Color.fromRGBO(57, 62, 70, 1),
+        title: const Text(
+          'Provide club review analysis',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: commentController,
+              decoration: const InputDecoration(
+                hintText: 'The performances of the players this past 3 weeks have been phenome...',
+                hintStyle: TextStyle(
+                  color: Colors.white38,
+                  fontSize: 11,
+                ),
+              ),
+              style: const TextStyle(
+                color: Colors.white70,
+              ),
+              maxLines: 2, // Allow multiple lines for bug description
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                String commentDescription = commentController.text.trim();
+                commentController.clear();
+
+                // Check if commentDescription is not empty before storing
+                if (commentDescription.isNotEmpty) {
+                  DateTime currentDateTime = DateTime.now();
+                  String formattedTimestamp = DateFormat('MMMM yyyy').format(currentDateTime);
+
+                  // Store bug report in Firestore
+                  await FirebaseFirestore.instance.collection('FoundersMonthlyComments').add({
+                    'name': managementBodyNotifier.currentManagementBody.name,
+                    'image': managementBodyNotifier.currentManagementBody.image,
+                    'comment': commentDescription,
+                    'month': DateFormat('MM').format(currentDateTime),
+                    'year': DateFormat('yyyy').format(currentDateTime),
+                    'date': formattedTimestamp,
+                    'id': '10',
+                  });
+
+                  Navigator.pop(context);
+                  // You can add a toast or any other UI feedback for successful bug submission
+                  Fluttertoast.showToast(
+                      msg: 'Thank you, your Club Review has been added!',
+                      backgroundColor: shapeDecorationColorTwo,
+                      textColor: Colors.white,
+                      toastLength: Toast.LENGTH_LONG);
+                } else {
+                  // Show a toast for empty bug description
+                  Fluttertoast.showToast(
+                    msg: 'Please enter your club review description',
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                  );
+                }
+              },
+              child: const Text('Submit'),
+            ),
+          ],
         ),
       ),
     );

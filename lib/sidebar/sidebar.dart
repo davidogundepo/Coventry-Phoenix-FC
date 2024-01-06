@@ -45,12 +45,12 @@ String exitAppSubtitle = "Do you really really want to?";
 String exitAppNo = "Oh No";
 String exitAppYes = "I Have To";
 
-String fmTitle = "Five & More";
+String fmTitle = "CPFC More";
 String ytTitle = "Youtube Page";
 String aptTitle = "All Players Table";
 String tppTitle = "Top Performing Players";
 String pmTitle = "Past Matches";
-String umTitle = "Upcoming Matches";
+String umTitle = "Upcoming Fixtures";
 String cbTitle = "Club Background";
 
 Color gradientColor = const Color.fromRGBO(24, 26, 36, 1.0);
@@ -505,7 +505,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                                               _onSelected(10);
                                               onIconPressed();
                                               Navigator.push(
-                                                context,
+                                                           context,
                                                 MaterialPageRoute(
                                                   builder: (context) => const BottomNavigator(mainPage: PlayersStatsAndInfoPage(), initialPage: 1),
                                                 ),
@@ -520,29 +520,31 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                                             ),
                                           ),
                                         ),
-                                        Material(
-                                          color: _currentNAVSelected == 11 ? containerBackgroundColor.withOpacity(0.3) : materialBackgroundColor,
-                                          child: InkWell(
-                                            splashColor: splashColorTwo,
-                                            onTap: () {
-                                              _onSelected(11);
-                                              onIconPressed();
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) => const BottomNavigator(mainPage: TabviewMatchesPage(initialPage: 0), initialPage: 2), // Set initialPage to 0 for 'Results'
-                                                ),
-                                              );
-                                            },
-                                            child: Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: MenuItems(
-                                                icon: SimpleIcons.strongswan,
-                                                title: pmTitle,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+
+                                        // Material(
+                                        //   color: _currentNAVSelected == 11 ? containerBackgroundColor.withOpacity(0.3) : materialBackgroundColor,
+                                        //   child: InkWell(
+                                        //     splashColor: splashColorTwo,
+                                        //     onTap: () {
+                                        //       _onSelected(11);
+                                        //       onIconPressed();
+                                        //       Navigator.push(
+                                        //         context,
+                                        //         MaterialPageRoute(
+                                        //           builder: (context) => const BottomNavigator(mainPage: TabviewMatchesPage(initialPage: 0), initialPage: 2), // Set initialPage to 0 for 'Results'
+                                        //         ),
+                                        //       );
+                                        //     },
+                                        //     child: Align(
+                                        //       alignment: Alignment.centerLeft,
+                                        //       child: MenuItems(
+                                        //         icon: SimpleIcons.strongswan,
+                                        //         title: pmTitle,
+                                        //       ),
+                                        //     ),
+                                        //   ),
+                                        // ),
+
                                         Material(
                                           color: _currentNAVSelected == 12 ? containerBackgroundColor.withOpacity(0.3) : materialBackgroundColor,
                                           child: InkWell(
@@ -591,7 +593,6 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                                         //   ),
                                         // ),
 
-
                                       ])),
                               // Material(
                               //   color: _currentNAVSelected == 8
@@ -616,6 +617,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                               //     ),
                               //   ),
                               // ),
+
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 50, top: 10),
                                 child: Material(

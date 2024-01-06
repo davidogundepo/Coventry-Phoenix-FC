@@ -145,7 +145,8 @@ String assetPOTMMVPTitle = "assets/images/MVP_Blooded_3.png";
 late Map<int, Widget> playersTGPAndMAP;
 
 class PlayersStatsAndInfoPage extends StatefulWidget {
-  const PlayersStatsAndInfoPage({Key? key}) : super(key: key);
+  const
+  PlayersStatsAndInfoPage({Key? key}) : super(key: key);
 
   @override
   State<PlayersStatsAndInfoPage> createState() => _PlayersStatsAndInfoPageState();
@@ -2977,14 +2978,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               .replaceAll(" ", "\n"),
                                           style: GoogleFonts.rubikMicrobe(
                                               color: dialogColor,
-                                              fontSize: 30,
+                                              fontSize: 24,
                                               fontWeight: FontWeight.bold,
                                               height: 0.81),
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(height: 40),
+                                    const SizedBox(height: 20),
                                     Column(
                                       children: [
                                         Padding(
@@ -2997,7 +2998,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   .toString(),
                                               style: GoogleFonts.rubikMicrobe(
                                                   color: dialogColor,
-                                                  fontSize: 30,
+                                                  fontSize: 20,
                                                   fontWeight: FontWeight.bold,
                                                   fontStyle: FontStyle.italic),
                                             ),
@@ -3011,13 +3012,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               playerGoalsConcededTwoTitle,
                                               style: GoogleFonts.arimo(
                                                 color: containerColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w200,
                                               ),
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(height: 15),
+                                        const SizedBox(height: 8),
                                       ],
                                     ),
                                     Column(
@@ -3032,7 +3033,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   .toString(),
                                               style: GoogleFonts.rubikMicrobe(
                                                   color: dialogColor,
-                                                  fontSize: 30,
+                                                  fontSize: 20,
                                                   fontWeight: FontWeight.bold,
                                                   fontStyle: FontStyle.italic),
                                             ),
@@ -3046,13 +3047,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               playerCleanSheetTitle,
                                               style: GoogleFonts.arimo(
                                                 color: containerColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w200,
                                               ),
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(height: 15),
+                                        const SizedBox(height: 6),
                                       ],
                                     ),
                                     Column(
@@ -3067,7 +3068,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   .toString(),
                                               style: GoogleFonts.rubikMicrobe(
                                                   color: dialogColor,
-                                                  fontSize: 30,
+                                                  fontSize: 20,
                                                   fontWeight: FontWeight.bold,
                                                   fontStyle: FontStyle.italic),
                                             ),
@@ -3081,13 +3082,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               matchesPlayedTitle,
                                               style: GoogleFonts.arimo(
                                                 color: containerColor,
-                                                fontSize: 14,
+                                                fontSize: 12                        ,
                                                 fontWeight: FontWeight.w200,
                                               ),
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(height: 80),
+                                        const SizedBox(height: 20),
                                       ],
                                     ),
                                   ],
@@ -3119,14 +3120,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               .replaceAll(" ", "\n"),
                                           style: GoogleFonts.rubikMicrobe(
                                               color: dialogColor,
-                                              fontSize: 25,
+                                              fontSize: 24,
                                               fontWeight: FontWeight.bold,
                                               height: 0.81),
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(height: 30),
+                                    const SizedBox(height: 20),
                                     Column(
                                       children: [
                                         Padding(
@@ -3140,7 +3141,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   .toUpperCase(),
                                               style: GoogleFonts.rubikMicrobe(
                                                   color: dialogColor,
-                                                  fontSize: 30,
+                                                  fontSize: 20,
                                                   fontWeight: FontWeight.bold,
                                                   fontStyle: FontStyle.italic),
                                             ),
@@ -3154,13 +3155,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               playerPositionTwoTitle,
                                               style: GoogleFonts.arimo(
                                                 color: containerColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w200,
                                               ),
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(height: 15),
+                                        const SizedBox(height: 8),
                                       ],
                                     ),
                                     Column(
@@ -3175,7 +3176,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   .toString(),
                                               style: GoogleFonts.rubikMicrobe(
                                                   color: dialogColor,
-                                                  fontSize: 30,
+                                                  fontSize: 20,
                                                   fontWeight: FontWeight.bold,
                                                   fontStyle: FontStyle.italic),
                                             ),
@@ -3189,20 +3190,20 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               playerGoalsConcededTwoTitle,
                                               style: GoogleFonts.arimo(
                                                 color: containerColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w200,
                                               ),
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(height: 15),
+                                        const SizedBox(height: 6),
                                       ],
                                     ),
                                     Column(
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(right: 10),
-                                          child: SizedBox(
+                                          child: SizedBox (
                                             width: MediaQuery.of(context).size.width * 0.35,
                                             child: Text(
                                               playerOfTheMonthStatsAndInfoNotifier
@@ -3210,7 +3211,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                   .toString(),
                                               style: GoogleFonts.rubikMicrobe(
                                                   color: dialogColor,
-                                                  fontSize: 30,
+                                                  fontSize: 20,
                                                   fontWeight: FontWeight.bold,
                                                   fontStyle: FontStyle.italic),
                                             ),
@@ -3224,13 +3225,13 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                               matchesPlayedTitle,
                                               style: GoogleFonts.arimo(
                                                 color: containerColor,
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w200,
                                               ),
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(height: 80),
+                                        const SizedBox(height: 20),
                                       ],
                                     ),
                                   ],
@@ -3241,7 +3242,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                     Padding(
                                       padding: const EdgeInsets.only(right: 10),
                                       child: SizedBox(
-                                        width: MediaQuery.of(context).size.width * 0.35,
+                                        width: MediaQuery.of  (context).size.width * 0.35,
                                         child: Center(
                                           child: Text(
                                             playerOfTheMonthStatsAndInfoNotifier
@@ -3559,7 +3560,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
             ),
             if (Platform.isAndroid) ...[
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.19,
+                top: MediaQuery.of(context).size.height * 0.20,
                 right: MediaQuery.of(context).size.width * 0.14,
                 child: GestureDetector(
                   onTap: () {
@@ -3583,7 +3584,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
             ]
             else if (Platform.isIOS) ...[
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.165,
+                top: MediaQuery.of(context).size.height * 0.195,
                 right: MediaQuery.of(context).size.width * 0.14,
                 child: GestureDetector(
                   onTap: () {
@@ -3769,17 +3770,17 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                         .replaceAll(" ", "\n"),
                                                     style: GoogleFonts.rubikMicrobe(
                                                         color: dialogColor,
-                                                        fontSize: 30,
+                                                        fontSize: 25,
                                                         fontWeight: FontWeight.bold,
                                                         height: 0.81),
                                                     overflow: TextOverflow.ellipsis,
                                                   ),
                                                 ),
                                               ),
-                                              const SizedBox(height: 40),
+                                              const SizedBox(height: 30),
                                               Column(
                                                 children: [
-                                                  Padding(
+                                                  Padding    (
                                                     padding: const EdgeInsets.only(right: 10),
                                                     child: SizedBox(
                                                       width: MediaQuery
@@ -3897,7 +3898,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                       ),
                                                     ),
                                                   ),
-                                                  const SizedBox(height: 80),
+                                                  const SizedBox(height: 20),
                                                 ],
                                               ),
                                             ],
@@ -4021,14 +4022,14 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                         ),
                                                       ),
                                                     ),
-                                                    const SizedBox(height: 15),
+                                                    const SizedBox(height: 10),
                                                   ],
                                                 ),
                                                 Column(
                                                   children: [
                                                     Padding(
                                                       padding: const EdgeInsets.only(right: 10),
-                                                      child: SizedBox(
+                                                      child: SizedBox    (
                                                         width: MediaQuery
                                                             .of(context)
                                                             .size
@@ -4062,7 +4063,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                         ),
                                                       ),
                                                     ),
-                                                    const SizedBox(height: 80),
+                                                    const SizedBox(height: 20),
                                                   ],
                                                 ),
                                               ],
@@ -4107,7 +4108,7 @@ class _PlayersStatsAndInfoPageState extends State<PlayersStatsAndInfoPage> {
                                                             playerOfTheMonthStatsAndInfoNotifier
                                                                 .playerOfTheMonthStatsAndInfoList[index].goalsScored
                                                                 .toString(),
-                                                            style: GoogleFonts.rubikMicrobe(
+                                                            style: GoogleFonts.rubikMicrobe (
                                                                 color: dialogColor,
                                                                 fontSize: 30,
                                                                 fontWeight: FontWeight.bold,

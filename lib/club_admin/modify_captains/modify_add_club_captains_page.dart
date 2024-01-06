@@ -33,6 +33,7 @@ class MyModifyAddClubCaptainsPage extends StatefulWidget with NavigationStates {
 }
 
 class MyModifyAddClubCaptainsPageState extends State<MyModifyAddClubCaptainsPage> {
+
   bool isTeamSelected = false;
   bool isEditing = false; // Flag to determine if the user is in "Edit" mode
   List<String> selectedPlayerNames = []; // List to store selected player names
@@ -180,7 +181,7 @@ class MyModifyAddClubCaptainsPageState extends State<MyModifyAddClubCaptainsPage
           ? SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Container(
-                color: twitterColor,
+                color: const Color.fromRGBO(96, 109, 128, 1.0),
                 constraints: BoxConstraints(
                   maxHeight: MediaQuery.of(context).size.height * 0.27,
                 ),
@@ -201,7 +202,7 @@ class MyModifyAddClubCaptainsPageState extends State<MyModifyAddClubCaptainsPage
                               label: Text(playerName,
                                 style: const TextStyle(
                                     fontSize: 12,
-                                  color: Colors.redAccent
+                                  color: Colors.black87
                                 ),
                               ),
                               onDeleted: () {
@@ -248,7 +249,7 @@ class MyModifyAddClubCaptainsPageState extends State<MyModifyAddClubCaptainsPage
                             },
                       child: const Text(
                         'Add as Captains',
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.teal, fontWeight: FontWeight.w700),
                       ),
                     ),
                   ],

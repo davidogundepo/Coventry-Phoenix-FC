@@ -76,30 +76,23 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
       ),
     );
 
-    Timer.periodic(const Duration(seconds: 5), (_) {
+    // Use TickerProvider to create a periodic animation
+    _timer = createPeriodicTimer();
+  }
+
+  Timer createPeriodicTimer() {
+    return Timer.periodic(const Duration(seconds: 5), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
+
       setState(() {
         _currentIndex++;
-
-        // If _currentIndex exceeds the total number of images, reset it to 0
         if (_currentIndex == 5) {
           _currentIndex = 0;
         }
         _animationController.forward(from: 0.0);
-        // Increment the animation count
-      });
-    });
-
-
-    _timer = Timer.periodic(const Duration(seconds: 5), (_) {
-      setState(() {
-        _currentIndex++;
-
-        // If _currentIndex exceeds the total number of images, reset it to 0
-        if (_currentIndex == 5) {
-          _currentIndex = 0;
-        }
-        _animationController.forward(from: 0.0);
-        // Increment the animation count
       });
     });
   }
@@ -113,11 +106,11 @@ class _MyClubSponsorsPageState extends State<MyClubSponsorsPage> with SingleTick
 
   @override
   void dispose() {
+    print('Dispose method called'); // Add this line
     _timer.cancel(); // Cancel the timer in the dispose method
     _animationController.dispose();
     super.dispose();
   }
-
 
   Widget _buildSponsorsItem(BuildContext context, int index) {
     clubSponsorsNotifier = Provider.of<ClubSponsorsNotifier>(context);

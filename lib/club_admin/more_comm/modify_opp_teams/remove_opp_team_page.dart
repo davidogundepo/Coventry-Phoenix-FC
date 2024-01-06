@@ -71,7 +71,7 @@ class MyRemoveNewOppTeamPageState extends State<MyRemoveNewOppTeamPage> {
                     title: Text(awayTeamName.clubName!),
                     trailing: isEditing
                         ? Checkbox(
-                      activeColor: Colors.blue,
+                      activeColor:const Color.fromRGBO(147, 165, 193, 1.0),
                       checkColor: Colors.white,
                       value: selectedAwayTeams.contains(awayTeamName),
                       onChanged: (value) {
@@ -96,7 +96,7 @@ class MyRemoveNewOppTeamPageState extends State<MyRemoveNewOppTeamPage> {
           ? SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
-          color: Colors.black26,
+          color: const Color.fromRGBO(147, 165, 193, 1.0),
           constraints: BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height * 0.27,
           ),
@@ -144,7 +144,7 @@ class MyRemoveNewOppTeamPageState extends State<MyRemoveNewOppTeamPage> {
                 },
                 child: const Text(
                   'Delete Selected',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.redAccent),
                 ),
               ),
             ],

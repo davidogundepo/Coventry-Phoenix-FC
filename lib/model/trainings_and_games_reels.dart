@@ -1,5 +1,5 @@
 class TrainingsAndGamesReels {
-  String? id;
+  dynamic id;
   String? image;
 
   TrainingsAndGamesReels.fromMap(Map<String, dynamic> data) {

@@ -66,6 +66,8 @@ class MyModifyCoachesPageState extends State<MyModifyCoachesPage> {
                     title: Text(coach.name ?? 'No Name'),
                     trailing: isEditing
                         ? Checkbox(
+                            activeColor: Colors.white,
+                            checkColor: Colors.black,
                             value: selectedCoaches.contains(coach),
                             onChanged: (value) {
                               setState(() {
@@ -109,9 +111,7 @@ class MyModifyCoachesPageState extends State<MyModifyCoachesPage> {
                               return Chip(
                                 label: Text(
                                   coach.name ?? '',
-                                  style: const TextStyle(
-                                    fontSize: 12
-                                  ),
+                                  style: const TextStyle(fontSize: 12),
                                 ),
                                 onDeleted: () {
                                   setState(() {
@@ -132,7 +132,10 @@ class MyModifyCoachesPageState extends State<MyModifyCoachesPage> {
                             selectedCoaches.clear();
                           });
                         },
-                        child: const Text('Delete Selected'),
+                        child: const Text(
+                          'Delete Selected',
+                          style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ],
                   ),

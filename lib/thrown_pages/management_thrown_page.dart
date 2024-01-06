@@ -181,7 +181,13 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
   }
 
   Future navigateTablesAndStatsDetails(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const BottomNavigator(mainPage: PlayersTablePage(), initialPage: 0,)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const BottomNavigator(
+                  mainPage: PlayersTablePage(),
+                  initialPage: 0,
+                )));
   }
 
   Future navigateToAboutAppDetailsPage(context) async {
@@ -229,10 +235,14 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
               decoration: const InputDecoration(
                 hintText: 'Describe the bug...',
                 hintStyle: TextStyle(color: Colors.white70),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
               ),
               style: const TextStyle(
                 color: Colors.white70,
               ),
+              cursorColor: Colors.white, // Set cursor color here
               maxLines: 2, // Allow multiple lines for bug description
             ),
             const SizedBox(height: 20),
@@ -266,7 +276,10 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
                   );
                 }
               },
-              child: const Text('Submit'),
+              child: const Text(
+                'Submit',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
           ],
         ),
@@ -301,8 +314,14 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
               decoration: const InputDecoration(
                 hintText: 'Passcode',
                 hintStyle: TextStyle(color: Colors.white70),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
               ),
-              style: TextStyle(color: Colors.white70),
+              style: const TextStyle(
+                color: Colors.white70,
+              ),
+              cursorColor: Colors.white, // Set cursor color here
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -331,7 +350,10 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
                   );
                 }
               },
-              child: const Text('Submit'),
+              child: const Text(
+                'Submit',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
           ],
         ),
@@ -480,8 +502,8 @@ class _MyManagementBodyPage extends State<MyManagementBodyPage> {
                                                 ),
                                                 InkWell(
                                                   onTap: () {
-                                                    openReportAppBugDialog(context);
                                                     Navigator.pop(context);
+                                                    openReportAppBugDialog(context);
                                                   },
                                                   child: Padding(
                                                     padding: const EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),

@@ -257,10 +257,14 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
               decoration: const InputDecoration(
                 hintText: 'Describe the bug...',
                 hintStyle: TextStyle(color: Colors.white70),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
               ),
               style: const TextStyle(
                 color: Colors.white70,
               ),
+              cursorColor: Colors.white, // Set cursor color here
               maxLines: 2, // Allow multiple lines for bug description
             ),
             const SizedBox(height: 20),
@@ -294,7 +298,10 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
                   );
                 }
               },
-              child: const Text('Submit'),
+              child: const Text(
+                'Submit',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
           ],
         ),
@@ -329,10 +336,14 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
               decoration: const InputDecoration(
                 hintText: 'Passcode',
                 hintStyle: TextStyle(color: Colors.white70),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
               ),
-              style: TextStyle(
-                  color: Colors.white70
+              style: const TextStyle(
+                color: Colors.white70,
               ),
+              cursorColor: Colors.white, // Set cursor color here
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -361,7 +372,10 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
                   );
                 }
               },
-              child: const Text('Submit'),
+              child: const Text(
+                'Submit',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
           ],
         ),

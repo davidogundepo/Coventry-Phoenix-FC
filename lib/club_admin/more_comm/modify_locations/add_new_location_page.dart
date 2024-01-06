@@ -57,9 +57,15 @@ class MyAddNewLocationPageState extends State<MyAddNewLocationPage> {
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
               ElevatedButton(
                 onPressed: _isSubmitting ? null : _submitForm,
+                style: ElevatedButton.styleFrom(
+                  primary: const Color.fromRGBO(147, 165, 193, 1.0), // Change this color to your desired background color
+                ),
                 child: _isSubmitting
                     ? const CircularProgressIndicator()
-                    : const Text('Add New Location'),
+                    : const Text(
+                        'Add New Location',
+                        style: TextStyle(color: Colors.white70),
+                      ),
               ),
             ],
           ),

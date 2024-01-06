@@ -30,9 +30,7 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
 
     // Create a copy of the allClubMembersList and sort it alphabetically by name
     List<dynamic> sortedPlayers = List.from(playersNotifier!.playersList);
-    sortedPlayers.sort((a, b) =>
-        (a.name ?? 'No Name').toLowerCase().compareTo((b.name ?? 'No Name').toLowerCase()));
-
+    sortedPlayers.sort((a, b) => (a.name ?? 'No Name').toLowerCase().compareTo((b.name ?? 'No Name').toLowerCase()));
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -53,7 +51,7 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
           ),
         ],
       ),
-      body:GestureDetector(
+      body: GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: () {
           // Hide the keyboard when tapping outside the text field
@@ -80,6 +78,8 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
                       title: Text(player.name ?? 'No Name'),
                       trailing: isEditing
                           ? Checkbox(
+                              activeColor: Colors.white,
+                              checkColor: Colors.black,
                               value: selectedPlayers.contains(player),
                               onChanged: (value) {
                                 setState(() {
@@ -119,10 +119,9 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
                         child: Wrap(
                           children: selectedPlayers.map((player) {
                             return Chip(
-                              label: Text(player.name ?? '',
-                                style: const TextStyle(
-                                    fontSize: 12
-                                ),
+                              label: Text(
+                                player.name ?? '',
+                                style: const TextStyle(fontSize: 12),
                               ),
                               onDeleted: () {
                                 setState(() {
@@ -143,7 +142,13 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
                           selectedPlayers.clear();
                         });
                       },
-                      child: const Text('Delete Selected'),
+                      child: const Text(
+                        'Delete Selected',
+                        style: TextStyle(
+                            color: Colors.redAccent,
+                          fontWeight: FontWeight.w600
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -207,7 +212,6 @@ class MyModifyClubPlayersPageState extends State<MyModifyClubPlayersPage> {
     // After refreshing, call setState to trigger a UI update
     setState(() {});
   }
-
 
   void showSnackbar(List<dynamic> players) {
     final snackBar = SnackBar(

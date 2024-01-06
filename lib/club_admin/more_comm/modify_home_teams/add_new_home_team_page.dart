@@ -43,9 +43,15 @@ class MyAddNewHomeTeamPageState extends State<MyAddNewHomeTeamPage> {
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
               ElevatedButton(
                 onPressed: _isSubmitting ? null : _submitForm,
+                style: ElevatedButton.styleFrom(
+                  primary: const Color.fromRGBO(147, 165, 193, 1.0), // Change this color to your desired background color
+                ),
                 child: _isSubmitting
                     ? const CircularProgressIndicator()
-                    : const Text('Add Home Team'),
+                    : const Text(
+                        'Add Home Team',
+                        style: TextStyle(color: Colors.white70),
+                      ),
               ),
             ],
           ),
@@ -53,8 +59,6 @@ class MyAddNewHomeTeamPageState extends State<MyAddNewHomeTeamPage> {
       ),
     );
   }
-
-
 
   Future<void> _submitForm() async {
     if (_formKey.currentState!.validate() && !_isSubmitting) {
@@ -65,12 +69,12 @@ class MyAddNewHomeTeamPageState extends State<MyAddNewHomeTeamPage> {
       final homeTeamName = _homeTeamNameController.text;
 
       try {
-
         // Update Firestore document with data
         await FirebaseFirestore.instance.collection('MatchDayBannerForClub').add({
           'id': '10',
           'club_name': homeTeamName,
-          'club_icon': 'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubLogos%2Fcov_phoenix_fc_bg_less.png?alt=media&token=66244d85-23d2-443a-8251-0d35b6ae2137', // Provide a default URL if image is not selected
+          'club_icon':
+              'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubLogos%2Fcov_phoenix_fc_bg_less.png?alt=media&token=66244d85-23d2-443a-8251-0d35b6ae2137', // Provide a default URL if image is not selected
         });
 
         // Show success toast

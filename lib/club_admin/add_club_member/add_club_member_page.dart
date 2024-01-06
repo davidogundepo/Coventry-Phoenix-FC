@@ -282,7 +282,15 @@ class MyAddClubMemberPageState extends State<MyAddClubMemberPage> {
               SizedBox(height: 80),
               ElevatedButton(
                 onPressed: _submitForm,
-                child: Text('Add Club Member'),
+                style: ElevatedButton.styleFrom(
+                  primary: const Color.fromRGBO(147, 165, 193, 1.0), // Change this color to your desired background color
+                ),
+                child: const Text(
+                  'Add Club Member',
+                  style: TextStyle(
+                    color: Colors.white70
+                  ),
+                ),
               ),
             ],
           ),

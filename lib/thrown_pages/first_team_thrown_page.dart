@@ -128,7 +128,6 @@ class MyFirstTeamClassPage extends StatefulWidget with NavigationStates {
 }
 
 class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
-
   final TextEditingController bugController = TextEditingController();
 
   bool _isVisible = true;
@@ -142,7 +141,6 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
 
   @override
   Widget build(BuildContext context) {
-
     FirstTeamClassNotifier firstTeamClassNotifier = Provider.of<FirstTeamClassNotifier>(context);
 
     return WillPopScope(
@@ -317,9 +315,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                         child: Text(thrownName,
                             textAlign: TextAlign.start, style: GoogleFonts.abel(color: appBarTextColor, fontSize: 26.0, fontWeight: FontWeight.bold)),
                       ),
-                    stretchModes: const [
-                      StretchMode.blurBackground
-                    ],
+                      stretchModes: const [StretchMode.blurBackground],
                       background: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                         stream: FirebaseFirestore.instance.collection('SliversPages').doc('slivers_pages').snapshots(),
                         builder: (context, snapshot) {
@@ -341,8 +337,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                             ),
                           );
                         },
-                      )
-                  ),
+                      )),
                 ),
               ];
             },
@@ -501,7 +496,13 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
   }
 
   Future navigateTablesAndStatsDetails(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const BottomNavigator(mainPage: PlayersTablePage(), initialPage: 0,)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const BottomNavigator(
+                  mainPage: PlayersTablePage(),
+                  initialPage: 0,
+                )));
   }
 
   Future navigateToAboutAppDetailsPage(context) async {
@@ -521,10 +522,7 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
   }
 
   void navigateToAppStore(context) async {
-    LaunchReview.launch(
-      androidAppId: 'com.icdatinnovations.coventry_phoenix_fc',
-      iOSAppId: '1637554276'
-    );
+    LaunchReview.launch(androidAppId: 'com.icdatinnovations.coventry_phoenix_fc', iOSAppId: '1637554276');
     Navigator.of(context).pop(false);
   }
 
@@ -552,10 +550,14 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
               decoration: const InputDecoration(
                 hintText: 'Describe the bug...',
                 hintStyle: TextStyle(color: Colors.white70),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
               ),
               style: const TextStyle(
                 color: Colors.white70,
               ),
+              cursorColor: Colors.white, // Set cursor color here
               maxLines: 2, // Allow multiple lines for bug description
             ),
             const SizedBox(height: 20),
@@ -589,7 +591,10 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                   );
                 }
               },
-              child: const Text('Submit'),
+              child: const Text(
+                'Submit',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
           ],
         ),
@@ -624,10 +629,14 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
               decoration: const InputDecoration(
                 hintText: 'Passcode',
                 hintStyle: TextStyle(color: Colors.white70),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
               ),
               style: const TextStyle(
-                  color: Colors.white70
+                color: Colors.white70,
               ),
+              cursorColor: Colors.white, // Set cursor color here
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -656,7 +665,10 @@ class _MyFirstTeamClassPage extends State<MyFirstTeamClassPage> {
                   );
                 }
               },
-              child: const Text('Submit'),
+              child: const Text(
+                'Submit',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
           ],
         ),

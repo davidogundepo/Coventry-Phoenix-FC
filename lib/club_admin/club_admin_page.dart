@@ -1,7 +1,6 @@
 import 'package:coventry_phoenix_fc/api/club_sponsors_api.dart';
 import 'package:coventry_phoenix_fc/bloc_navigation_bloc/navigation_bloc.dart';
 import 'package:coventry_phoenix_fc/club_admin/add_club_member/a_tabview_add_club_member_page.dart';
-import 'package:coventry_phoenix_fc/club_admin/modify_club_sponsors/add_club_sponsors_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/modify_member/modify_coaches_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/modify_member/modify_management_page.dart';
 import 'package:coventry_phoenix_fc/club_admin/sm_posts/create_new_sponsors_so_sm_post.dart';
@@ -15,10 +14,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../api/c_match_day_banner_for_club_api.dart';
@@ -46,17 +43,26 @@ import '../sidebar/menu_item.dart';
 import 'modify_club_sponsors/a_tabview_modify_club_sponsors_page.dart';
 import 'modify_captains/a_tabview_modify_club_captains_page.dart';
 import 'modify_member/modify_players_page.dart';
+import 'modify_motm/a_tabview_modify_motm_page.dart';
 import 'more_comm/modify_home_teams/a_tabview_modify_home_team_page.dart';
 import 'more_comm/modify_leagues/a_tabview_modify_league_page.dart';
 import 'more_comm/modify_locations/a_tabview_modify_location_page.dart';
 import 'more_comm/modify_opp_teams/a_tabview_modify_opp_team_page.dart';
+import 'modify_mvp/a_tabview_modify_mvp_page.dart';
+import 'others/add_monthly_photos_page.dart';
+import 'others/change_pages_cover_photo_page.dart';
+import 'others/change_vision_statement_and_more_page.dart';
+import 'others/modify_red_card/a_tabview_modify_red_card_page.dart';
+import 'others/modify_yellow_card/a_tabview_modify_yellow_card_page.dart';
+import 'others/record_club_achievement_page.dart';
+import 'others/view_club_population_page.dart';
 
-String removeCoachTitle = "Remove Coaching Staff";
+String chooseMVPOfTheMonthTitle = "Select MVP of the Month";
+String chooseMOTMTitle = "Select Man of the Match";
 String createSMPostTitle = "Create a Social Media Post";
-String removeManagerTitle = "Remove Club Manager(s)";
-String addPlayerTitle = "Add Player(s), Coach(es) or Manager(s)";
-String removePlayerTitle = "Remove Player(s)";
-String sponsorsTitle = "See Club Sponsors";
+String addMemberTitle = "Add Player(s), Coach(es) or Manager(s)";
+String removeMemberTitle = "Remove Player(s), Coach(es) or Manager(s)";
+String sponsorsTitle = "View Club Sponsors";
 String commsTitle = "More Communications";
 String selectedCaptainsTitle = "Select Club Captains";
 String othersTitle = "Others";
@@ -103,10 +109,8 @@ class MyClubAdminPage extends StatefulWidget with NavigationStates {
 }
 
 class MyClubAdminPageState extends State<MyClubAdminPage> {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -131,7 +135,7 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
       backgroundColor: backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
+          physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             children: <Widget>[
               const SizedBox(
@@ -429,7 +433,7 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                           ),
                           const SizedBox(width: 20),
                           Text(
-                            addPlayerTitle,
+                            addMemberTitle,
                             style: TextStyle(color: gradientColorTwo, fontSize: 14),
                           )
                         ],
@@ -450,7 +454,53 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                 child: InkWell(
                   splashColor: splashColorThree,
                   onTap: () {
-                    navigateToModifyAllClubPlayers(context);
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          backgroundColor: containerBackgroundColor,
+                          title: const Text(
+                            'Select an Option',
+                            style: TextStyle(color: Colors.white70, fontSize: 17, fontWeight: FontWeight.w600),
+                          ),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              ListTile(
+                                title: const Text(
+                                  'Remove Player(s)',
+                                  style: TextStyle(color: Colors.cyan, fontSize: 14),
+                                ),
+                                onTap: () {
+                                  Navigator.pop(context); // Close the dialog
+                                  navigateToModifyAllClubPlayers(context); // Navigate to the appropriate page
+                                },
+                              ),
+                              ListTile(
+                                title: const Text(
+                                  'Remove Coaching Staff',
+                                  style: TextStyle(color: Colors.deepOrangeAccent, fontSize: 14),
+                                ),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  navigateToModifyCoaches(context);
+                                },
+                              ),
+                              ListTile(
+                                title: const Text(
+                                  'Removing Club Manager(s)',
+                                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                                ),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  navigateToModifyManagementBody(context);
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -476,8 +526,8 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                           ),
                           const SizedBox(width: 20),
                           Text(
-                            removePlayerTitle,
-                            style: TextStyle(color: gradientColorTwo, fontSize: 16),
+                            removeMemberTitle,
+                            style: TextStyle(color: gradientColorTwo, fontSize: 14),
                           )
                         ],
                       ),
@@ -497,7 +547,7 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                 child: InkWell(
                   splashColor: splashColorThree,
                   onTap: () {
-                    navigateToModifyCoaches(context);
+                    navigateToModifyMVP(context);
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -523,7 +573,7 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                           ),
                           const SizedBox(width: 20),
                           Text(
-                            removeCoachTitle,
+                            chooseMVPOfTheMonthTitle,
                             style: TextStyle(color: gradientColorTwo, fontSize: 16),
                           )
                         ],
@@ -544,7 +594,7 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                 child: InkWell(
                   splashColor: splashColorThree,
                   onTap: () {
-                    navigateToModifyManagementBody(context);
+                    navigateToModifyPOTM(context);
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -570,7 +620,7 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                           ),
                           const SizedBox(width: 20),
                           Text(
-                            removeManagerTitle,
+                            chooseMOTMTitle,
                             style: TextStyle(color: gradientColorTwo, fontSize: 16),
                           )
                         ],
@@ -616,7 +666,6 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                   },
                                 ),
                                 ListTile(
-
                                   title: const Text(
                                     // 'Add Monthly Reels',
                                     'Add new Opposition Team',
@@ -711,90 +760,96 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                               'Select an Option',
                               style: TextStyle(color: Colors.white70, fontSize: 17, fontWeight: FontWeight.w600),
                             ),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                ListTile(
-                                  title: const Text(
-                                    'Modify Vision Statement',
-                                    style: TextStyle(color: Colors.white70, fontSize: 14),
-                                  ),
-                                  onTap: () {
-                                    Fluttertoast.showToast(
-                                      msg: 'Coming Soon',
-                                      // Show success message (you can replace it with actual banner generation logic)
-                                      gravity: ToastGravity.BOTTOM,
-                                      backgroundColor: Colors.deepOrangeAccent,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0,
-                                    );
-                                  },
+                            content: SizedBox(
+                              child: SingleChildScrollView(
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    ListTile(
+                                      title: const Text(
+                                        "Generate Club Monthly Statement",
+                                        style: TextStyle(color: Colors.cyan, fontSize: 13),
+                                      ),
+                                      onTap: () {
+                                        Navigator.pop(context); // Close the dialog
+                                        // Show the confirmation dialog
+                                        showConfirmationDialog(context);
+                                      },
+                                    ),
+                                    ListTile(
+                                      title: const Text(
+                                        "View Club's Population",
+                                        style: TextStyle(color: Colors.greenAccent, fontSize: 13),
+                                      ),
+                                      onTap: () {
+                                        Navigator.pop(context); // Close the dialog
+                                        navigateToViewClubPopulation(context);
+                                      },
+                                    ),
+                                    ListTile(
+                                      title: const Text(
+                                        'Record Yellow Card(s)',
+                                        style: TextStyle(color: Colors.orange, fontSize: 13),
+                                      ),
+                                      onTap: () {
+                                        Navigator.pop(context); // Close the dialog
+                                        navigateToModifyYellowCard(context);
+                                      },
+                                    ),
+                                    ListTile(
+                                      title: const Text(
+                                        'Record Red Card(s)',
+                                        style: TextStyle(color: Colors.orange, fontSize: 13),
+                                      ),
+                                      onTap: () {
+                                        Navigator.pop(context); // Close the dialog
+                                        navigateToModifyRedCard(context);
+                                      },
+                                    ),
+                                    ListTile(
+                                      title: const Text(
+                                        "Record Club Achievement(s)",
+                                        style: TextStyle(color: Colors.green, fontSize: 13),
+                                      ),
+                                      onTap: () {
+                                        Navigator.pop(context); // Close the dialog
+                                        navigateToRecordClubAchievement(context);
+                                      },
+                                    ),
+                                    ListTile(
+                                      title: const Text(
+                                        "Add Monthly Photos",
+                                        style: TextStyle(color: Colors.redAccent, fontSize: 13),
+                                      ),
+                                      onTap: () {
+                                        Navigator.pop(context); // Close the dialog
+                                        navigateToAddMonthlyPhotos(context);
+                                      },
+                                    ),
+                                    ListTile(
+                                      title: const Text(
+                                        "Change Page(s) Cover Photo(s) ",
+                                        style: TextStyle(color: Colors.pinkAccent, fontSize: 13),
+                                      ),
+                                      onTap: () {
+                                        Navigator.pop(context); // Close the dialog
+                                        navigateToChangePagesCoverPhoto(context);
+                                      },
+                                    ),
+                                    ListTile(
+                                      title: const Text(
+                                        "Change Vision Statement and More",
+                                        style: TextStyle(color: Colors.yellowAccent, fontSize: 13),
+                                      ),
+                                      onTap: () {
+                                        Navigator.pop(context); // Close the dialog
+                                        navigateToChangeVisionStatementAndMore(context);
+                                      },
+                                    ),
+                                  ],
                                 ),
-                                ListTile(
-                                  title: const Text(
-                                    'Modify Mission Statement',
-                                    style: TextStyle(color: Colors.white70, fontSize: 14),
-                                  ),
-                                  onTap: () {
-                                    Fluttertoast.showToast(
-                                      msg: 'Coming Soon',
-                                      // Show success message (you can replace it with actual banner generation logic)
-                                      gravity: ToastGravity.BOTTOM,
-                                      backgroundColor: Colors.deepOrangeAccent,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0,
-                                    );
-                                  },
-                                ),
-                                ListTile(
-                                  title: const Text(
-                                    "Modify Club's Achievements",
-                                    style: TextStyle(color: Colors.white70, fontSize: 14),
-                                  ),
-                                  onTap: () {
-                                    Fluttertoast.showToast(
-                                      msg: 'Coming Soon',
-                                      // Show success message (you can replace it with actual banner generation logic)
-                                      gravity: ToastGravity.BOTTOM,
-                                      backgroundColor: Colors.deepOrangeAccent,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0,
-                                    );
-                                  },
-                                ),
-                                ListTile(
-                                  title: const Text(
-                                    "Modify Club's Population",
-                                    style: TextStyle(color: Colors.white70, fontSize: 14),
-                                  ),
-                                  onTap: () {
-                                    Fluttertoast.showToast(
-                                      msg: 'Coming Soon',
-                                      // Show success message (you can replace it with actual banner generation logic)
-                                      gravity: ToastGravity.BOTTOM,
-                                      backgroundColor: Colors.deepOrangeAccent,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0,
-                                    );
-                                  },
-                                ),
-                                ListTile(
-                                  title: const Text(
-                                    "Modify Embedded SM Posts",
-                                    style: TextStyle(color: Colors.white70, fontSize: 14),
-                                  ),
-                                  onTap: () {
-                                    Fluttertoast.showToast(
-                                      msg: 'Coming Soon',
-                                      // Show success message (you can replace it with actual banner generation logic)
-                                      gravity: ToastGravity.BOTTOM,
-                                      backgroundColor: Colors.deepOrangeAccent,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0,
-                                    );
-                                  },
-                                ),
-                              ],
+                              ),
                             ),
                           );
                         },
@@ -909,7 +964,6 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
     getMatchDayBannerForLeague(matchDayBannerForLeagueNotifier);
     getMatchDayBannerForLocation(matchDayBannerForLocationNotifier);
 
-
     AllFCTeamsNotifier allFCTeamsNotifier = Provider.of<AllFCTeamsNotifier>(context, listen: false);
 
     allFCTeamsNotifier.setMatchDayBannerForClubAllFCTeams(matchDayBannerForClubNotifier.matchDayBannerForClubList);
@@ -917,6 +971,55 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
 
     setState(() {});
   }
+}
+
+void showConfirmationDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: backgroundColor,
+        title: const Text(
+          'Generate Club Monthly Statement',
+          style: TextStyle(color: Colors.white70, fontSize: 16, fontWeight: FontWeight.w700),
+        ),
+        content: const Text(
+          'This will generate a statement about the club\'s activities so far this month. \n\nClick Yes to proceed.',
+          style: TextStyle(color: Colors.white70, fontSize: 14),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: const Text(
+              'No',
+              style: TextStyle(color: Colors.white70, fontWeight: FontWeight.w700),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              // Implement the logic to proceed with generating the statement
+              Navigator.of(context).pop(); // Close the dialog
+              // Add your logic to generate the statement here
+              // navigateToGenerateStatement(context);
+              Fluttertoast.showToast(
+                msg: 'Statement generated!',
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.green,
+                textColor: Colors.white,
+                fontSize: 16.0,
+              );
+            },
+            child: const Text(
+              'Yes',
+              style: TextStyle(color: Colors.white70, fontWeight: FontWeight.w700),
+            ),
+          ),
+        ],
+      );
+    },
+  );
 }
 
 Future navigateToCreateSMPost(context) async {
@@ -982,6 +1085,48 @@ Future navigateToModifyLeague(context) async {
 Future navigateToModifyLocation(context) async {
   Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewLocationPage()));
 }
+
+Future navigateToModifyMVP(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewMVPPage()));
+}
+
+Future navigateToModifyPOTM(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewMOTMPage()));
+}
+
+Future navigateToModifyYellowCard(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewYellowCardPage()));
+}
+
+Future navigateToModifyRedCard(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => TabviewRedCardPage()));
+}
+
+Future navigateToAddMonthlyPhotos(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => MyAddMonthlyPhotosPage()));
+}
+
+Future navigateToChangePagesCoverPhoto(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => MyChangePagesCoverPhotoPage()));
+}
+
+Future navigateToChangeVisionStatementAndMore(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => MyChangeVisionStatementAndMorePage()));
+}
+
+Future navigateToRecordClubAchievement(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => MyRecordClubAchievementPage()));
+}
+
+Future navigateToViewClubPopulation(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => MyViewClubPopulationPage()));
+}
+
+
+
+
+
+
 
 Future navigateMyApp(context) async {
   Navigator.of(context).pop(false);

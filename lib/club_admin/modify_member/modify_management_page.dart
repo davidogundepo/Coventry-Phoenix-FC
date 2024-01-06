@@ -66,6 +66,8 @@ class MyModifyManagementBodyPageState extends State<MyModifyManagementBodyPage> 
                     title: Text(managementBody.name ?? 'No Name'),
                     trailing: isEditing
                         ? Checkbox(
+                      activeColor: Colors.white,
+                      checkColor: Colors.black,
                             value: selectedManagementBody.contains(managementBody),
                             onChanged: (value) {
                               setState(() {
@@ -132,7 +134,10 @@ class MyModifyManagementBodyPageState extends State<MyModifyManagementBodyPage> 
                         },
                         child: const Text(
                           'Delete Selected',
-                          style: TextStyle(fontSize: 13),
+                          style: TextStyle(
+                              color: Colors.redAccent,
+                              fontWeight: FontWeight.w600
+                          ),
                         ),
                       )
                     ],

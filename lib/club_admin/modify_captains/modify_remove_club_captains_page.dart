@@ -117,7 +117,7 @@ class MyModifyRemoveClubCaptainsPageState extends State<MyModifyRemoveClubCaptai
           ? SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Container(
-                color: twitterColor,
+                color: const Color.fromRGBO(96, 109, 128, 1.0),
                 constraints: BoxConstraints(
                   maxHeight: MediaQuery.of(context).size.height * 0.27,
                 ),
@@ -162,7 +162,7 @@ class MyModifyRemoveClubCaptainsPageState extends State<MyModifyRemoveClubCaptai
                       },
                       child: const Text(
                         'Delete Selected',
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.teal, fontWeight: FontWeight.w700),
                       ),
                     ),
                   ],

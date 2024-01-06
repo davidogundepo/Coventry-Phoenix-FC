@@ -179,6 +179,8 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
   final TextEditingController _myAutobiographyController = TextEditingController();
   final TextEditingController _myWhyLoveForCoachingController = TextEditingController();
 
+  final TextEditingController commentController = TextEditingController();
+
   String _selectedCoachingTeamPositionRole = 'Select One'; // Default value
 
   final List<String> _coachingTeamOptions = [
@@ -524,14 +526,16 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
                   });
 
                   if (item == 2) {
-                    Fluttertoast.showToast(
-                      msg: 'Coming soon. Thanks',
-                      // Show success message (you can replace it with actual banner generation logic)
-                      gravity: ToastGravity.CENTER,
-                      backgroundColor: Colors.white,
-                      textColor: Colors.black,
-                      fontSize: 16.0,
-                    );
+                    // Fluttertoast.showToast(
+                    //   msg: 'Coming soon. Thanks',
+                    //   // Show success message (you can replace it with actual banner generation logic)
+                    //   gravity: ToastGravity.CENTER,
+                    //   backgroundColor: Colors.white,
+                    //   textColor: Colors.black,
+                    //   fontSize: 16.0,
+                    // );
+
+                    addCoachesCommentDialog(context);
                   }
                   else {
                     modifyProfile(); // Use modifyProfile function instead of _showAutobiographyModificationDialog or _showImageModificationDialog
@@ -3746,6 +3750,84 @@ class _CoachesDetailsPage extends State<CoachesDetailsPage> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  void addCoachesCommentDialog(context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        backgroundColor: const Color.fromRGBO(57, 62, 70, 1),
+        title: const Text(
+          'Provide past-match review analysis',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: commentController,
+              decoration: const InputDecoration(
+                hintText: 'More goals has been scored this past mon...',
+                hintStyle: TextStyle(color: Colors.white38),
+              ),
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 11
+              ),
+              maxLines: 2, // Allow multiple lines for bug description
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                String commentDescription = commentController.text.trim();
+                commentController.clear();
+
+                // Check if commentDescription is not empty before storing
+                if (commentDescription.isNotEmpty) {
+                  DateTime currentDateTime = DateTime.now();
+                  String formattedTimestamp = DateFormat('MMMM yyyy').format(currentDateTime);
+
+                  // Store bug report in Firestore
+                  await FirebaseFirestore.instance.collection('CoachesMonthlyComments').add({
+                    'name': coachesNotifier.currentCoaches.name,
+                    'image': coachesNotifier.currentCoaches.image,
+                    'comment': commentDescription,
+                    'month': DateFormat('MM').format(currentDateTime),
+                    'year': DateFormat('yyyy').format(currentDateTime),
+                    'date': formattedTimestamp,
+                    'id': '10',
+                  });
+
+                Navigator.pop(context);
+                  // You can add a toast or any other UI feedback for successful bug submission
+                  Fluttertoast.showToast(
+                    msg: 'Thank you, your Comment has been added!',
+                    backgroundColor: shapeDecorationColorTwo,
+                    textColor: Colors.white,
+                    toastLength: Toast.LENGTH_LONG
+                  );
+                } else {
+                  // Show a toast for empty bug description
+                  Fluttertoast.showToast(
+                    msg: 'Please enter your match description',
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                  );
+                }
+              },
+              child: const Text('Submit'),
+            ),
+          ],
         ),
       ),
     );

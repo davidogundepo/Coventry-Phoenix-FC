@@ -123,7 +123,7 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
                             child: Padding(
                               padding: EdgeInsets.only(left: 30),
                               child: Text(
-                                'Monthly Reels', //ADD FOOTBALL ICON
+                                'Monthly Photos', //ADD FOOTBALL ICON
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,

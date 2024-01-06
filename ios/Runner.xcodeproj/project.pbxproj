@@ -16,10 +16,9 @@
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		AA688A7991D81CDF7F9F2883 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B33AEB9B2D73DE2322B4A44 /* Pods_Runner.framework */; };
 		CE18077A288E2801005C51B7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE180779288E2801005C51B7 /* SplashViewController.swift */; };
+		CE2D2A8A2B46D7A4000EEF47 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE2D2A892B46D7A4000EEF47 /* GoogleService-Info.plist */; };
 		CE71C2D22898BDE500ECEFF4 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CE71C2D12898BDE500ECEFF4 /* NotificationService.m */; };
 		CE71C2D62898BDE500ECEFF4 /* CPFC ImageNotification.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CE71C2CE2898BDE500ECEFF4 /* CPFC ImageNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CEA6339429A796F8007C1D68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA6339329A796F8007C1D68 /* GoogleService-Info.plist */; };
-		CEA6339529A796F8007C1D68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA6339329A796F8007C1D68 /* GoogleService-Info.plist */; };
 		CEBA6BBC289635A9009DFADB /* football_field.json in Resources */ = {isa = PBXBuildFile; fileRef = CEBA6BBB289635A9009DFADB /* football_field.json */; };
 /* End PBXBuildFile section */
 
@@ -79,11 +78,11 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE180779288E2801005C51B7 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		CE2D2A892B46D7A4000EEF47 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE71C2CE2898BDE500ECEFF4 /* CPFC ImageNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CPFC ImageNotification.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE71C2D02898BDE500ECEFF4 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		CE71C2D12898BDE500ECEFF4 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		CE71C2D32898BDE500ECEFF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEA6339329A796F8007C1D68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEBA6BBB289635A9009DFADB /* football_field.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = football_field.json; sourceTree = "<group>"; };
 		CEF560902892D0EF00B99C5F /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		F6C08C350AB3799D5C88DED2 /* Pods-CPFC ImageNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CPFC ImageNotification.release.xcconfig"; path = "Target Support Files/Pods-CPFC ImageNotification/Pods-CPFC ImageNotification.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,7 +171,7 @@
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
 				97C147021CF9000F007C117D /* Info.plist */,
-				CEA6339329A796F8007C1D68 /* GoogleService-Info.plist */,
+				CE2D2A892B46D7A4000EEF47 /* GoogleService-Info.plist */,
 				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
@@ -285,7 +284,7 @@
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
-				CEA6339429A796F8007C1D68 /* GoogleService-Info.plist in Resources */,
+				CE2D2A8A2B46D7A4000EEF47 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +292,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEA6339529A796F8007C1D68 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

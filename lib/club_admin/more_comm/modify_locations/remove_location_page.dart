@@ -70,7 +70,7 @@ class MyRemoveNewLocationPageState extends State<MyRemoveNewLocationPage> {
                     title: Text(locationName.location!),
                     trailing: isEditing
                         ? Checkbox(
-                      activeColor: Colors.blue,
+                      activeColor:const Color.fromRGBO(147, 165, 193, 1.0),
                       checkColor: Colors.white,
                       value: selectedLocations.contains(locationName),
                       onChanged: (value) {
@@ -95,7 +95,7 @@ class MyRemoveNewLocationPageState extends State<MyRemoveNewLocationPage> {
           ? SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
-          color: Colors.black26,
+          color: const Color.fromRGBO(147, 165, 193, 1.0),
           constraints: BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height * 0.27,
           ),
@@ -143,7 +143,7 @@ class MyRemoveNewLocationPageState extends State<MyRemoveNewLocationPage> {
                 },
                 child: const Text(
                   'Delete Selected',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.redAccent),
                 ),
               ),
             ],

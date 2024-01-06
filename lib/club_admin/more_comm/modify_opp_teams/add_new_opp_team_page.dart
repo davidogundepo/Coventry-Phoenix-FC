@@ -63,22 +63,28 @@ class MyAddNewOppTeamPageState extends State<MyAddNewOppTeamPage> {
                   ),
                   child: _selectedImage != null
                       ? ClipOval(
-                    child: Image.file(
-                      _selectedImage!,
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.cover,
-                    ),
-                  )
+                          child: Image.file(
+                            _selectedImage!,
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        )
                       : const Icon(Icons.add_a_photo, size: 40),
                 ),
               ),
               const SizedBox(height: 50),
               ElevatedButton(
                 onPressed: _isSubmitting ? null : _submitForm,
+                style: ElevatedButton.styleFrom(
+                  primary: const Color.fromRGBO(147, 165, 193, 1.0), // Change this color to your desired background color
+                ),
                 child: _isSubmitting
                     ? const CircularProgressIndicator()
-                    : const Text('Add Opposition Team'),
+                    : const Text(
+                        'Add Opposition Team',
+                        style: TextStyle(color: Colors.white70),
+                      ),
               ),
             ],
           ),
@@ -110,8 +116,7 @@ class MyAddNewOppTeamPageState extends State<MyAddNewOppTeamPage> {
         await FirebaseFirestore.instance.collection('MatchDayBannerForClubOpp').add({
           'id': '10',
           'club_name': awayTeamName,
-          'club_icon': imageUrl
-              ??
+          'club_icon': imageUrl ??
               'https://firebasestorage.googleapis.com/v0/b/cov-phoenix-fc.appspot.com/o/ClubLogos%2Fno_club_image.jpeg?alt=media&token=bfe1214e-8669-446b-ba88-b719fa9ec628', // Provide a default URL if image is not selected
         });
 
@@ -179,4 +184,3 @@ class MyAddNewOppTeamPageState extends State<MyAddNewOppTeamPage> {
     );
   }
 }
-

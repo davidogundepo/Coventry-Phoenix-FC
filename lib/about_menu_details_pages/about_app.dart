@@ -26,7 +26,7 @@ String mailFIRST = "mailto:";
 String mailSECOND = "?subject=Hello ";
 
 String aboutApp =
-    "PLEASE READ CAREFULLY.\n\nThis GFA (Grassroot Football App Software was engineered and developed by 'Nouvellesoft.io Inc.'";
+    "PLEASE READ CAREFULLY.\n\nThe GFA (Grassroot Football App) was engineered and developed by 'Nouvellesoft.io Inc.'";
 String blemish =
     '"Do not be concerned about the blemishes and imperfections you may notice on the software, it is those blemishes that prove that the app is authentic. :)"';
 String copyrightTerms =
