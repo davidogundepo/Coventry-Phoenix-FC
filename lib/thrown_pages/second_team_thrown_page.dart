@@ -25,7 +25,7 @@ import '../notifier/second_team_class_notifier.dart';
 import '../thrown_searches/second_team_thrown_search.dart';
 
 String clubName = "Coventry Phoenix FC";
-String thrownName = "New Players";
+String thrownName = "All Players List - B";
 
 String exitAppStatement = "Exit from App";
 String exitAppTitle = "Come on!";

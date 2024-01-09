@@ -16,6 +16,7 @@ class MyDisplayedMVPHistoryPage extends StatefulWidget with NavigationStates {
 }
 
 class MyDisplayedMVPHistoryPageState extends State<MyDisplayedMVPHistoryPage> {
+
   @override
   Widget build(BuildContext context) {
     playersTableNotifier = Provider.of<PlayersTableNotifier>(context);

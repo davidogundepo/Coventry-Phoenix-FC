@@ -789,7 +789,7 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                     ),
                                     ListTile(
                                       title: const Text(
-                                        'Record Yellow Card(s)',
+                                        'Record Yellow Card(s)    🟨',
                                         style: TextStyle(color: Colors.orange, fontSize: 13),
                                       ),
                                       onTap: () {
@@ -799,7 +799,7 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                     ),
                                     ListTile(
                                       title: const Text(
-                                        'Record Red Card(s)',
+                                        'Record Red Card(s)    🟥',
                                         style: TextStyle(color: Colors.orange, fontSize: 13),
                                       ),
                                       onTap: () {

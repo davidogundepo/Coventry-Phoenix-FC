@@ -109,6 +109,7 @@ dependencies:
   launch_review: ^3.0.1
   permission_handler: ^11.0.0
   share_plus: ^6.2.0
+  fl_chart: ^0.40.0
 
 
 

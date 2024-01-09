@@ -71,7 +71,7 @@ String clubName = "Coventry Phoenix FC";
 String city = "Coventry";
 String stateName = "West Midlands";
 String countryName = "The UK";
-String thrownName = "Returning Players";
+String thrownName = "All Players List - A";
 
 String exitAppStatement = "Exit from App";
 String exitAppTitle = "Come on!";

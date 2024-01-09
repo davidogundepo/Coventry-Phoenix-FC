@@ -63,7 +63,7 @@ class TabviewYellowCardPageState extends State<TabviewYellowCardPage> with Singl
         backgroundColor: backgroundColor,
         title: Text(
             mcTitle,
-            style: GoogleFonts.jura(
+            style: GoogleFonts.cairo(
                 fontSize: 20,
                 fontWeight: FontWeight.w800,
                 color: Colors.white

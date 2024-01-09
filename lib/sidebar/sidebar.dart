@@ -106,7 +106,8 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
   final _animationDuration = const Duration(milliseconds: 500);
 
   Stream<DocumentSnapshot<Map<String, dynamic>>> getDataFromFirestore() {
-    return FirebaseFirestore.instance.collection('SliversPages').doc('non_slivers_pages').snapshots();
+    // return FirebaseFirestore.instance.collection('SliversPages').doc('non_slivers_pages').snapshots();
+    return FirebaseFirestore.instance.collection('SliversPages').doc('slivers_pages').snapshots();
   }
 
   @override
@@ -201,7 +202,8 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                                               image: DecorationImage(
                                                 alignment: const Alignment(0, -0.8),
                                                 image: CachedNetworkImageProvider(
-                                                  snapshot.data?.data()!['sidebar_page'],
+                                                  // snapshot.data?.data()!['sidebar_page'],
+                                                  snapshot.data?.data()!['slivers_page_7'],
                                                 ),
                                                 fit: BoxFit.cover,
                                               ),
