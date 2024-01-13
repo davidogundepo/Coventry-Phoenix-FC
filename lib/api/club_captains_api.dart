@@ -3,6 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../model/captains.dart';
 import '../notifier/club_captains_notifier.dart';
 
+
+//Dependency in version [global use API]
+
 getCaptains(CaptainsNotifier captainsNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
       .collection('Captains')
@@ -19,3 +22,10 @@ getCaptains(CaptainsNotifier captainsNotifier) async {
 
   captainsNotifier.captainsList = captainsList;
 }
+
+
+// Fuelling station to .. and its payment by the app [current focus on EV vehicles]
+// Complexity ==
+// App is a white label
+// [Riverpods check it out]
+// Check out Clean Arc

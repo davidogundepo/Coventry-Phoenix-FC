@@ -1,103 +1,52 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
-import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../api/achievement_images_api.dart';
 import '../api/club_arial_images_api.dart';
+import '../api/coaching_staff_api.dart';
+import '../api/first_team_class_api.dart';
+import '../api/management_body_api.dart';
+import '../api/second_team_class_api.dart';
 import '../notifier/achievement_images_notifier.dart';
+import '../notifier/all_club_members_notifier.dart';
 import '../notifier/club_arial_notifier.dart';
+import '../notifier/coaching_staff_notifier.dart';
+import '../notifier/first_team_class_notifier.dart';
+import '../notifier/management_body_notifier.dart';
+import '../notifier/second_team_class_notifier.dart';
 
-String clubName = "Coventry Phoenix FC";
-String aboutClub = "About $clubName";
+String clubName = '';
+String aboutClub = "About ${clubName ?? ''}";
+String whyClub = "WHY ${clubName ?? ''}?".toUpperCase();
 
 String visionSwipe = "Swipe left on 'OUR VISION STATEMENT'  >>>";
 String visionTitle = "OUR VISION STATEMENT";
-String visionStatement =
-    "Fostering the complete development of our youth squads through inclusive training sessions, standout matches, and emphasizing strengths, agility, and teamwork.";
 String missionTitle = "OUR MISSION STATEMENT";
-String missionStatement =
-    "Elevating our players through focused coaching, strategic training, and a dynamic environment. We aim to develop their skills, foster agility, and instill a strong sense of teamwork, making them standout athletes on and off the field.";
 
 String coreValues = "OUR CORE VALUES";
-String cvStatement1 = "1. Discipline \n\n";
-String cvStatement2 = "2. Unity and Teamwork\n\n";
-String cvStatement3 = "3. Hard-Work and Commitment\n\n";
-String cvStatement4 = "4. Compete and Reliability.";
-String cvStatement5 = "5. Creativity.";
 
-String whyClub = "WHY $clubName?".toUpperCase();
-String whyClubStatement =
-    "$clubName was Founded on October 3, 2015, by Chris Corkery and Edwin Greaves, our club is driven by a vision and passion to empower contemporary footballers for competitive games and tournaments. "
-    "We provide players, both domestic and international, with the chance to access an exceptional high-quality educational experience. Supported by a dedicated and qualified coaching staff, a nurturing club environment, and abundant resources, we are committed to equipping players with the skills needed for their ongoing personal success. Our club strives to help players realize their full potential.";
-
-String staffBody = "Staff Body\n\n";
-String staffBodyStatement =
-    "We have $coachesPopulation coaching staff and $nonCoachesPopulation non-coaching staff (including management body) in $clubName.";
 String populationChart = "$clubName Population Chart **";
 String playerBody = "Player Body\n\n";
-String playerBodyStatement =
-    "We currently have $totalPlayersPopulation players in $clubName, $malePlayersPopulation male players and $femalePlayersPopulation female players. $graduatedPlayersPopulation players have graduated from $clubName.";
-String playerPopulationChart = "$clubName Players Population Chart **";
+
+String playerPopulationChart = "$clubName Players Population Chart";
 
 String trainingSessionSwipe = "Swipe up for all Training exercises offered";
-String trainingSessionsOffered =
-    "Some of the training exercises in $clubName are:\n\n";
-String trainingSessionsOffered1 = "1. Cone exercise\n";
-String trainingSessionsOffered2 = "2. Advanced cone exercise\n";
-String trainingSessionsOffered3 = "3. Cut-backs\n";
-String trainingSessionsOffered4 = "4. Shooting from a square pass\n";
-String trainingSessionsOffered5 = "5. One-touch shooting\n";
-String trainingSessionsOffered6 = "6. Three goal drill\n";
-String trainingSessionsOffered7 = "7. Lay-offs, turns, and chest control\n";
-String trainingSessionsOffered8 = "8. Basic short passes\n";
-String trainingSessionsOffered9 = "9. Tackling\n";
-String trainingSessionsOffered10 = "10. Small-sided game; and many more.\n\n";
 
-String extraCurricularActs =
-    "Extra-curricular Activities offered in $clubName\n\n";
-String extraCurricularActsStatement1 =
-    "1. After football match refreshments for all teams\n";
-String extraCurricularActsStatement2 =
-    "2. Horse race betting and similar competitions\n";
-String extraCurricularActsStatement3 = "3. Snooker playing and loud music\n";
-String extraCurricularActsStatement4 = "4. Semi-competitions on sundays\n";
-String extraCurricularActsStatement5 = "5. Local and Foreign excursions\n";
-String extraCurricularActsStatement6 = "6. Awards and prices night.\n";
+String extraCurricularActs = "Extra-curricular Activities offered in $clubName\n\n";
 
 String clubArialViewsSwipe = "Swipe left or right for more photos";
 String clubArialViews = "Some Arial views of $clubName";
 String clubAchievementsSwipe = "Swipe left or right for more photos";
 String clubAchievements = "Some of our Past Achievements";
-String moreInfoAboutClub =
-    "For more information about $clubName please click me";
-String moreInfoAboutClubURL = "https://twitter.com/CovPhoenixFC/";
-
-dynamic coachesPopulation;
-dynamic nonCoachesPopulation;
-dynamic malePlayersPopulation = attackingPlayersPopulation +
-    midfieldingPlayersPopulation +
-    defendingPlayersPopulation +
-    goalkeepingPlayersPopulation;
-dynamic femalePlayersPopulation;
-dynamic graduatedPlayersPopulation;
-dynamic attackingPlayersPopulation;
-dynamic midfieldingPlayersPopulation;
-dynamic defendingPlayersPopulation;
-dynamic goalkeepingPlayersPopulation;
-dynamic totalPlayersPopulation =
-    malePlayersPopulation + femalePlayersPopulation;
-
-double malePlayerPopulation = 871;
-double femalePlayerPopulation = 655;
-double coachingStaffPopulation = 85;
-double nonCoachingStaffPopulation = 32;
+String moreInfoAboutClubURL = "https://twitter.com/";
 
 Color backgroundColor = const Color.fromRGBO(207, 118, 90, 1.0);
 Color cardBackgroundColor = const Color.fromRGBO(207, 116, 87, 1.0);
@@ -118,6 +67,11 @@ Color firstPlayerChartColor = const Color.fromRGBO(164, 82, 56, 1.0);
 Color secondPlayerChartColor = const Color.fromRGBO(207, 116, 87, 1.0);
 Color thirdPlayerChartColor = const Color.fromRGBO(153, 90, 61, 1.0);
 Color fourthPlayerChartColor = const Color.fromRGBO(195, 81, 44, 1.0);
+Color firstRowColor = const Color.fromRGBO(63, 66, 97, 1.0);
+Color firstRowColorTwo = const Color.fromRGBO(237, 104, 72, 1.0);
+Color secondRowColor = const Color.fromRGBO(40, 142, 133, 1.0);
+Color secondRowColorTwo = const Color.fromRGBO(233, 66, 54, 1.0);
+Color thirdRowColor = const Color.fromRGBO(48, 50, 74, 1.0);
 
 class AboutClubDetails extends StatefulWidget {
   const AboutClubDetails({Key? key, this.title}) : super(key: key);
@@ -135,6 +89,8 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
 
   var scrollDirection = Axis.horizontal;
 
+  int touchedIndex = 0;
+
   @override
   void initState() {
     Fluttertoast.showToast(
@@ -145,57 +101,63 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
       fontSize: 16.0,
     );
 
-    ClubArialNotifier clubArialNotifier =
-        Provider.of<ClubArialNotifier>(context, listen: false);
+    ClubArialNotifier clubArialNotifier = Provider.of<ClubArialNotifier>(context, listen: false);
     getClubArial(clubArialNotifier);
 
-    AchievementsNotifier achievementsNotifier =
-        Provider.of<AchievementsNotifier>(context, listen: false);
+    AchievementsNotifier achievementsNotifier = Provider.of<AchievementsNotifier>(context, listen: false);
     getAchievements(achievementsNotifier);
 
-    clubMap.putIfAbsent("Total Male Players", () => 33);
-    clubMap.putIfAbsent("Total Female Players", () => 33);
-    clubMap.putIfAbsent("Coaching Staff", () => 33);
-    clubMap.putIfAbsent("Non Coaching Staff", () => 33);
+    // Fetch data for the first and second teams using their notifiers
+    FirstTeamClassNotifier firstTeamNotifier = Provider.of<FirstTeamClassNotifier>(context, listen: false);
+    SecondTeamClassNotifier secondTeamNotifier = Provider.of<SecondTeamClassNotifier>(context, listen: false);
+    CoachesNotifier coachesNotifier = Provider.of<CoachesNotifier>(context, listen: false);
+    ManagementBodyNotifier managementBodyNotifier = Provider.of<ManagementBodyNotifier>(context, listen: false);
 
-    playerMap.putIfAbsent("Male Attackers", () => 33);
-    playerMap.putIfAbsent("Male Midfielders", () => 33);
-    playerMap.putIfAbsent("Male Defenders", () => 33);
-    playerMap.putIfAbsent("Male GoalKeepers", () => 33);
+    // Use Future.wait to wait for data to be fetched before building the UI
+    Future.wait<void>([
+      getFirstTeamClass(firstTeamNotifier),
+      getSecondTeamClass(secondTeamNotifier),
+      getCoaches(coachesNotifier),
+      getManagementBody(managementBodyNotifier),
+    ]).then((_) {
+      // Set the data after fetching
+      AllClubMembersNotifier allClubMembersNotifier = Provider.of<AllClubMembersNotifier>(context, listen: false);
+      allClubMembersNotifier.setFirstTeamAllClubMembers(firstTeamNotifier.firstTeamClassList);
+      allClubMembersNotifier.setSecondTeamAllClubMembers(secondTeamNotifier.secondTeamClassList);
+      allClubMembersNotifier.setCoaches(coachesNotifier.coachesList);
+      allClubMembersNotifier.setMGMTBody(managementBodyNotifier.managementBodyList);
+    });
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    AchievementsNotifier achievementsNotifier =
-        Provider.of<AchievementsNotifier>(context);
+    final String collectionName = 'SliversPages';
+    final String documentId = 'non_slivers_pages';
+
+    AchievementsNotifier achievementsNotifier = Provider.of<AchievementsNotifier>(context);
+
+    // Use the AllClubMembersNotifier to access the combined list of allClubMembers
+    AllClubMembersNotifier allClubMembersNotifier = Provider.of<AllClubMembersNotifier>(context);
+
+    // Calculate counts for Players, Coaches, and Managers
+    int playersCount = allClubMembersNotifier.firstTeamClassList.length + allClubMembersNotifier.secondTeamClassList.length;
+    int coachesCount = allClubMembersNotifier.coachesClassList.length;
+    int managersCount = allClubMembersNotifier.mgmtBodyClassList.length;
 
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-        stream: FirebaseFirestore.instance
-            .collection('ClubPopulation')
-            .doc('about_club_page')
-            .snapshots(),
+        stream: FirebaseFirestore.instance.collection('AboutClub').doc('about_club_page').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Container();
           } else {
-            coachesPopulation = snapshot.data!.data()!['coaches_population'];
-            nonCoachesPopulation =
-                snapshot.data!.data()!['non_coaches_population'];
-            // malePlayersPopulation = snapshot.data!.data()!['male_players_population'];
-            femalePlayersPopulation =
-                snapshot.data!.data()!['female_players_population'];
-            graduatedPlayersPopulation =
-                snapshot.data!.data()!['graduated_players_population'];
-            attackingPlayersPopulation =
-                snapshot.data!.data()!['attacking_male_players_population'];
-            midfieldingPlayersPopulation =
-                snapshot.data!.data()!['midfielding_male_players_population'];
-            defendingPlayersPopulation =
-                snapshot.data!.data()!['defending_male_players_population'];
-            goalkeepingPlayersPopulation =
-                snapshot.data!.data()!['goalkeepers_male_players_population'];
+            clubName = snapshot.data!.data()!['club_name'];
+
+            // Update whyClub after fetching clubName
+            whyClub = "WHY ${clubName ?? ''}?".toUpperCase();
+            aboutClub = "About ${clubName ?? ''}";
+            populationChart = "$clubName Population Chart";
           }
           return Scaffold(
             backgroundColor: backgroundColor,
@@ -216,12 +178,9 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, top: 20),
+                    padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                     child: Container(
-                      decoration: BoxDecoration(
-                          color: boxDecorationColor.withAlpha(50),
-                          borderRadius: BorderRadius.circular(5)),
+                      decoration: BoxDecoration(color: boxDecorationColor.withAlpha(50), borderRadius: BorderRadius.circular(5)),
                       child: Material(
                         color: materialColor,
                         child: InkWell(
@@ -234,10 +193,7 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                               child: Text(
                                 visionSwipe,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: cardTextColor,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold),
+                                style: TextStyle(color: cardTextColor, fontSize: 13, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
@@ -276,13 +232,11 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 30, left: 8, right: 8, bottom: 8),
+                                  padding: const EdgeInsets.only(top: 30, left: 8, right: 8, bottom: 8),
                                   child: Text(
-                                    visionStatement,
+                                    snapshot.data?.data()!['vision_statement'],
                                     textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                        color: cardTextColor, fontSize: 18),
+                                    style: TextStyle(color: cardTextColor, fontSize: 18),
                                   ),
                                 ),
                               ],
@@ -313,15 +267,11 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 30, left: 8, right: 8, bottom: 8),
+                                  padding: const EdgeInsets.only(top: 30, left: 8, right: 8, bottom: 8),
                                   child: Text(
-                                    missionStatement,
+                                    snapshot.data?.data()!['mission_statement'],
                                     textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                        color: cardTextColor,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 18),
+                                    style: TextStyle(color: cardTextColor, fontWeight: FontWeight.w400, fontSize: 18),
                                   ),
                                 ),
                               ],
@@ -352,45 +302,14 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 30, left: 8, right: 8, bottom: 8),
-                                  child: RichText(
-                                    textAlign: TextAlign.justify,
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: cvStatement1,
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: cardTextColor,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: cvStatement2,
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: cardTextColor,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: cvStatement3,
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: cardTextColor,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: cvStatement4,
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: cardTextColor,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ],
+                                  padding: const EdgeInsets.only(top: 30, left: 8, right: 8, bottom: 8),
+                                  child: Text(
+                                    (snapshot.data?.data()!['core_values'] as String?)?.replaceAll(r'\n', '\n') ?? '',
+                                    // textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: cardTextColor,
+                                      fontSize: 20,
+                                      // fontWeight: FontWeight.w400,
                                     ),
                                   ),
                                 ),
@@ -422,15 +341,11 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 30, left: 8, right: 8, bottom: 8),
+                                  padding: const EdgeInsets.only(top: 30, left: 8, right: 8, bottom: 8),
                                   child: Text(
-                                    whyClubStatement,
+                                    (snapshot.data?.data()!['why_club'] as String?)?.replaceAll(r'\n', '\n') ?? '',
                                     textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                        color: cardTextColor,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16),
+                                    style: TextStyle(color: cardTextColor, fontWeight: FontWeight.w400, fontSize: 16),
                                   ),
                                 ),
                               ],
@@ -441,243 +356,105 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+                    padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
                     child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                          color: boxDecorationColor.withAlpha(50),
-                          borderRadius: BorderRadius.circular(10)),
+                        color: boxDecorationColor.withAlpha(50),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       child: Material(
                         color: materialColor,
                         child: InkWell(
                           splashColor: cardTextColor,
-                          onTap: () {},
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: 15, top: 15, left: 10, right: 10),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: RichText(
-                                textAlign: TextAlign.justify,
-                                text: TextSpan(
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                        text: staffBody,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                    TextSpan(
-                                        text: staffBodyStatement,
-                                        // + snapshot.data?.data()!['coaches_population'],
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                  ],
+                          onTap: () {
+                            // Handle onTap event
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(top: 15, bottom: 30, left: 10),
+                                child: Text(
+                                  populationChart,
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: cardTextColor,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 30),
-                    child: Container(
-                      height: 400,
-                      decoration: BoxDecoration(
-                          color: boxDecorationColor.withAlpha(50),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Material(
-                        color: materialColor,
-                        child: InkWell(
-                          splashColor: cardTextColor,
-                          onTap: () {},
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 15, bottom: 30, left: 10),
-                                  child: Text(populationChart,
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                        color: cardTextColor,
-                                        fontSize: 19,
-                                        fontWeight: FontWeight.bold,
-                                      )),
-                                ),
-                                PieChart(
-                                  dataMap: clubMap,
-                                  animationDuration:
-                                      const Duration(milliseconds: 8000),
-                                  chartLegendSpacing: 42,
-                                  chartRadius:
-                                      MediaQuery.of(context).size.width / 2.7,
-                                  colorList: clubColorList,
-                                  initialAngleInDegree: 0,
-                                  chartType: ChartType.disc,
-                                  legendOptions: LegendOptions(
-                                    showLegendsInRow: false,
-                                    legendPosition: LegendPosition.bottom,
-                                    showLegends: true,
-                                    legendShape: BoxShape.circle,
-                                    legendTextStyle: TextStyle(
-                                      color: cardTextColor,
+                              IgnorePointer(
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width * 0.4,
+                                  height: MediaQuery.of(context).size.width * 0.4,
+                                  color: Colors.transparent,
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      onTap: () {
+                                        // Handle inner InkWell onTap event
+                                      },
+                                      child: PieChart(
+                                        PieChartData(
+                                          pieTouchData: PieTouchData(
+                                            touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                                              setState(() {
+                                                if (!event.isInterestedForInteractions ||
+                                                    pieTouchResponse == null ||
+                                                    pieTouchResponse.touchedSection == null) {
+                                                  touchedIndex = -1;
+                                                  return;
+                                                }
+                                                touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
+                                              });
+                                            },
+                                          ),
+                                          borderData: FlBorderData(
+                                            show: false,
+                                          ),
+                                          sectionsSpace: 0,
+                                          centerSpaceRadius: 0,
+                                          sections: showingSections(playersCount, coachesCount, managersCount),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  chartValuesOptions: ChartValuesOptions(
-                                    showChartValueBackground: true,
-                                    showChartValues: true,
-                                    // showChartValueLabel: true,
-                                    chartValueStyle:
-                                        defaultChartValueStyle.copyWith(
-                                      color: textColor.withOpacity(0.9),
-                                    ),
-                                    showChartValuesInPercentage: false,
-                                    showChartValuesOutside: false,
-                                    decimalPlaces: 0,
-                                    chartValueBackgroundColor:
-                                        chartBackgroundColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 30),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: boxDecorationColor.withAlpha(50),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Material(
-                        color: materialColor,
-                        child: InkWell(
-                          splashColor: cardTextColor,
-                          onTap: () {},
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: 15, top: 15, left: 10, right: 10),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: RichText(
-                                textAlign: TextAlign.justify,
-                                text: TextSpan(
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                        text: playerBody,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                    TextSpan(
-                                        text: playerBodyStatement,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                  ],
                                 ),
                               ),
-                            ),
+                              const SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Players: $playersCount',
+                                    style: const TextStyle(color: Colors.white70, fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'Coaches: $coachesCount',
+                                    style: const TextStyle(color: Colors.white70, fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'Managers: $managersCount',
+                                    style: const TextStyle(color: Colors.white70, fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
                   ),
+
                   Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+                    padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
                     child: Container(
-                      // height: 370,
-                      decoration: BoxDecoration(
-                          color: boxDecorationColor.withAlpha(50),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Material(
-                        color: materialColor,
-                        child: InkWell(
-                          splashColor: cardTextColor,
-                          onTap: () {},
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 15, bottom: 30, left: 30, right: 30),
-                                  child: Text(playerPopulationChart,
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                        color: cardTextColor,
-                                        fontSize: 19,
-                                        fontWeight: FontWeight.bold,
-                                      )),
-                                ),
-                                PieChart(
-                                  dataMap: playerMap,
-                                  animationDuration:
-                                      const Duration(milliseconds: 8000),
-                                  chartLegendSpacing: 42,
-                                  chartRadius:
-                                      MediaQuery.of(context).size.width / 2.7,
-                                  colorList: playerColorList,
-                                  initialAngleInDegree: 0,
-                                  chartType: ChartType.ring,
-                                  legendOptions: LegendOptions(
-                                    showLegendsInRow: false,
-                                    legendPosition: LegendPosition.bottom,
-                                    showLegends: true,
-                                    legendShape: BoxShape.circle,
-                                    legendTextStyle: TextStyle(
-                                      color: cardTextColor,
-                                    ),
-                                  ),
-                                  chartValuesOptions: ChartValuesOptions(
-                                    showChartValueBackground: true,
-                                    showChartValues: true,
-                                    // showChartValueLabel: true,
-                                    chartValueStyle:
-                                        defaultChartValueStyle.copyWith(
-                                      color: textColor.withOpacity(0.9),
-                                    ),
-                                    showChartValuesInPercentage: false,
-                                    showChartValuesOutside: false,
-                                    decimalPlaces: 0,
-                                    chartValueBackgroundColor:
-                                        chartBackgroundColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: boxDecorationColor.withAlpha(50),
-                          borderRadius: BorderRadius.circular(5)),
+                      decoration: BoxDecoration(color: boxDecorationColor.withAlpha(50), borderRadius: BorderRadius.circular(5)),
                       child: Material(
                         color: materialColor,
                         child: InkWell(
@@ -690,10 +467,7 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                               child: Text(
                                 trainingSessionSwipe,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: cardTextColor,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.bold),
+                                style: TextStyle(color: cardTextColor, fontSize: 19, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
@@ -702,131 +476,44 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+                    padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
                     child: Container(
                       height: 300,
-                      decoration: BoxDecoration(
-                          color: boxDecorationColor.withAlpha(50),
-                          borderRadius: BorderRadius.circular(10)),
+                      decoration: BoxDecoration(color: boxDecorationColor.withAlpha(50), borderRadius: BorderRadius.circular(10)),
                       child: Material(
                         color: materialColor,
                         child: InkWell(
                           splashColor: cardTextColor,
                           onTap: () {},
                           child: Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: 15, top: 15, left: 10, right: 10),
+                            padding: const EdgeInsets.only(bottom: 15, top: 15, left: 10, right: 10),
                             child: SingleChildScrollView(
-                              child: RichText(
-                                textAlign: TextAlign.justify,
-                                text: TextSpan(
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                        text: trainingSessionsOffered,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                    TextSpan(
-                                        text: trainingSessionsOffered1,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: trainingSessionsOffered2,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: trainingSessionsOffered3,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: trainingSessionsOffered4,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: trainingSessionsOffered5,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: trainingSessionsOffered6,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: trainingSessionsOffered7,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: trainingSessionsOffered8,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: trainingSessionsOffered9,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: trainingSessionsOffered10,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                  ],
-                                ),
-                              ),
-                            ),
+                                child: Text((snapshot.data?.data()!['training_types'] as String?)?.replaceAll(r'\n', '\n') ?? '',
+                                    style: TextStyle(
+                                      color: cardTextColor,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w300,
+                                    ))),
                           ),
                         ),
                       ),
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+                    padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
                     child: Container(
                       height: 300,
-                      decoration: BoxDecoration(
-                          color: boxDecorationColor.withAlpha(50),
-                          borderRadius: BorderRadius.circular(10)),
+                      decoration: BoxDecoration(color: boxDecorationColor.withAlpha(50), borderRadius: BorderRadius.circular(10)),
                       child: Material(
                         color: materialColor,
                         child: InkWell(
                           splashColor: cardTextColor,
                           onTap: () {},
                           child: Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: 15, top: 15, left: 10, right: 10),
+                            padding: const EdgeInsets.only(bottom: 15, top: 15, left: 10, right: 10),
                             child: SingleChildScrollView(
                               child: RichText(
-                                textAlign: TextAlign.justify,
+                                textAlign: TextAlign.start,
                                 text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
@@ -837,42 +524,7 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                                           fontWeight: FontWeight.bold,
                                         )),
                                     TextSpan(
-                                        text: extraCurricularActsStatement1,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: extraCurricularActsStatement2,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: extraCurricularActsStatement3,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: extraCurricularActsStatement4,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: extraCurricularActsStatement5,
-                                        style: TextStyle(
-                                          color: cardTextColor,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w300,
-                                        )),
-                                    TextSpan(
-                                        text: extraCurricularActsStatement6,
+                                        text: (snapshot.data?.data()!['ext_activities'] as String?)?.replaceAll(r'\n', '\n') ?? '',
                                         style: TextStyle(
                                           color: cardTextColor,
                                           fontSize: 19,
@@ -978,19 +630,13 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                     padding: const EdgeInsets.only(left: 20, bottom: 10),
                     child: Text(
                       clubAchievements,
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: cardTextColor,
-                          fontWeight: FontWeight.w500),
+                      style: TextStyle(fontSize: 20, color: cardTextColor, fontWeight: FontWeight.w500),
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                    padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
                     child: Container(
-                      decoration: BoxDecoration(
-                          color: boxDecorationColor.withAlpha(50),
-                          borderRadius: BorderRadius.circular(5)),
+                      decoration: BoxDecoration(color: boxDecorationColor.withAlpha(50), borderRadius: BorderRadius.circular(5)),
                       child: Material(
                         color: materialColor,
                         child: InkWell(
@@ -1003,10 +649,7 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                               child: Text(
                                 clubArialViewsSwipe,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: cardTextColor,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold),
+                                style: TextStyle(color: cardTextColor, fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
@@ -1052,30 +695,23 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                               Container(
                                 height: 250,
                                 decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        topRight: Radius.circular(10)),
+                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
                                     image: DecorationImage(
                                       // colorFilter: const ColorFilter.linearToSrgbGamma(),
-                                      image: CachedNetworkImageProvider(
-                                          achievementsNotifier
-                                              .achievementsList[index].image!),
+                                      image: CachedNetworkImageProvider(achievementsNotifier.achievementsList[index].image!),
                                       fit: BoxFit.cover,
                                     )),
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10)),
+                                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
                                     color: cardColor),
                                 child: ListTile(
                                   title: Center(
                                     child: SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
                                       child: Text(
-                                        achievementsNotifier
-                                            .achievementsList[index].toastName!,
+                                        achievementsNotifier.achievementsList[index].toastName!,
                                         style: TextStyle(
                                           color: textColor,
                                           fontWeight: FontWeight.bold,
@@ -1097,23 +733,43 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
                     ),
                   ],
 
-                  Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, bottom: 30, top: 20),
-                      child: RichText(
-                        text: TextSpan(
-                            text: moreInfoAboutClub,
+                  StreamBuilder<DocumentSnapshot>(
+                    stream: FirebaseFirestore.instance.collection(collectionName).doc(documentId).snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      }
+
+                      if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      }
+
+                      var data = snapshot.data?.data() as Map<String, dynamic>?;
+
+                      // Access the 'twitter' field from the document
+                      var twitterField = data?['twitter_handle'];
+
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 20, bottom: 30, top: 20),
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'More info about the club: Coventry Phoenix FC',
                             style: TextStyle(
-                              fontSize: 17,
-                              color: cardTextColor,
+                              fontSize: 15,
+                              color: cardTextColor, // Change color as needed
                               fontWeight: FontWeight.w800,
                               fontStyle: FontStyle.italic,
                             ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                launchURL(moreInfoAboutClubURL);
-                              }),
-                      )),
+                                // Handle URL launch here
+                                launchURL(moreInfoAboutClubURL + twitterField);
+                              },
+                          ),
+                        ),
+                      );
+                    },
+                  )
                 ],
               ),
             ),
@@ -1131,57 +787,58 @@ class _AboutClubDetailsState extends State<AboutClubDetails> {
       );
     }
   }
+
+  List<PieChartSectionData> showingSections(int playersCount, int coachesCount, int managersCount) {
+    return List.generate(3, (i) {
+      final isTouched = i == touchedIndex;
+      final fontSize = isTouched ? 20.0 : 16.0;
+      final radius = isTouched ? MediaQuery.of(context).size.width * 0.35 : MediaQuery.of(context).size.width * 0.35 - 20;
+      // final widgetSize = isTouched ? 55.0 : 40.0;
+      const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
+
+      switch (i) {
+        case 0:
+          return PieChartSectionData(
+            color: Colors.deepOrangeAccent,
+            value: playersCount.toDouble(),
+            title: 'Players',
+            radius: radius,
+            titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xffffffff),
+              shadows: shadows,
+            ),
+          );
+        case 1:
+          return PieChartSectionData(
+            color: Colors.red,
+            value: coachesCount.toDouble(),
+            title: 'Coaches',
+            radius: radius,
+            titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xffffffff),
+              shadows: shadows,
+            ),
+          );
+        case 2:
+          return PieChartSectionData(
+            color: Colors.teal,
+            value: managersCount.toDouble(),
+            title: 'Managers',
+            radius: radius,
+            titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xffffffff),
+              shadows: shadows,
+            ),
+          );
+        default:
+          throw Exception('Oh no');
+      }
+    });
+  }
 }
-
-class ClubPlayerPopulation {
-  String x;
-  double y;
-
-  ClubPlayerPopulation(this.x, this.y);
-}
-
-dynamic getPlayerPopulationData() {
-  List<ClubPlayerPopulation> playerPopulationData = <ClubPlayerPopulation>[
-    ClubPlayerPopulation('Attackers', attackingPlayersPopulation),
-    ClubPlayerPopulation('Midfielders', midfieldingPlayersPopulation),
-    ClubPlayerPopulation('Defenders', defendingPlayersPopulation),
-    ClubPlayerPopulation('GoalKeepers', goalkeepingPlayersPopulation),
-  ];
-  return playerPopulationData;
-}
-
-class ClubPopulation {
-  String x;
-  double y;
-
-  ClubPopulation(this.x, this.y);
-}
-
-dynamic getClubPopulationData() {
-  List<ClubPopulation> clubPopulationData = <ClubPopulation>[
-    ClubPopulation('Total Male Players', malePlayersPopulation),
-    ClubPopulation('Total Female Players', femalePlayersPopulation),
-    ClubPopulation('Coaching Staff', coachesPopulation),
-    ClubPopulation('Non Coaching Staff', nonCoachesPopulation),
-  ];
-  return clubPopulationData;
-}
-
-bool toggle = false;
-Map<String, double> clubMap = {};
-
-Map<String, double> playerMap = {};
-
-List<Color> clubColorList = [
-  firstClubChartColor,
-  secondClubChartColor,
-  thirdClubChartColor,
-  fourthClubChartColor,
-];
-
-List<Color> playerColorList = [
-  firstPlayerChartColor,
-  secondPlayerChartColor,
-  thirdPlayerChartColor,
-  fourthPlayerChartColor,
-];

@@ -17,6 +17,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../api/c_match_day_banner_for_club_api.dart';
 import '../api/c_match_day_banner_for_club_opp_api.dart';
@@ -109,6 +110,18 @@ class MyClubAdminPage extends StatefulWidget with NavigationStates {
 }
 
 class MyClubAdminPageState extends State<MyClubAdminPage> {
+
+
+  Future launchURL(String url) async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      scaffoldMessenger.showSnackBar(const SnackBar(content: Text("The required App not installed")));
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -830,23 +843,35 @@ class MyClubAdminPageState extends State<MyClubAdminPage> {
                                     ListTile(
                                       title: const Text(
                                         "Change Page(s) Cover Photo(s) ",
-                                        style: TextStyle(color: Colors.pinkAccent, fontSize: 13),
+                                        style: TextStyle(color: Colors.yellowAccent, fontSize: 13),
                                       ),
                                       onTap: () {
                                         Navigator.pop(context); // Close the dialog
                                         navigateToChangePagesCoverPhoto(context);
                                       },
                                     ),
+                                    // ListTile(
+                                    //   title: const Text(
+                                    //     "Change Vision Statement and More",
+                                    //     style: TextStyle(color: Colors.pinkAccent, fontSize: 13),
+                                    //   ),
+                                    //   onTap: () {
+                                    //     Navigator.pop(context); // Close the dialog
+                                    //     navigateToChangeVisionStatementAndMore(context);
+                                    //   },
+                                    // ),
                                     ListTile(
                                       title: const Text(
-                                        "Change Vision Statement and More",
-                                        style: TextStyle(color: Colors.yellowAccent, fontSize: 13),
+                                        "Go To Video Tutorials",
+                                        style: TextStyle(color: Colors.pinkAccent, fontSize: 13),
                                       ),
-                                      onTap: () {
+                                      onTap:  () {
                                         Navigator.pop(context); // Close the dialog
-                                        navigateToChangeVisionStatementAndMore(context);
+                                        dynamic videoUrl = 'https://www.youtube.com/@nouvellesoftinc/videos';
+                                        launchURL(videoUrl);
                                       },
                                     ),
+
                                   ],
                                 ),
                               ),
@@ -1121,11 +1146,6 @@ Future navigateToRecordClubAchievement(context) async {
 Future navigateToViewClubPopulation(context) async {
   Navigator.push(context, MaterialPageRoute(builder: (context) => MyViewClubPopulationPage()));
 }
-
-
-
-
-
 
 
 Future navigateMyApp(context) async {

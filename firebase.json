@@ -1,0 +1,23 @@
+{
+  "functions": [
+    {
+      "source": "cpfc_cb_f",
+      "codebase": "cpfc_cb_f",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "predeploy": [
+
+      ]
+    }
+  ],
+  "emulators": {
+    "pubsub": {
+      "host": "localhost",
+      "port": 8085
+    }
+  }
+}

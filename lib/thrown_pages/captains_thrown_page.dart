@@ -71,12 +71,10 @@ class MyCaptainsPage extends StatefulWidget with NavigationStates {
 }
 
 class _MyCaptainsPage extends State<MyCaptainsPage> {
-
   final TextEditingController bugController = TextEditingController();
 
   Widget _buildProductItem(BuildContext context, int index) {
-    late CaptainsNotifier captainsNotifier =
-        Provider.of<CaptainsNotifier>(context);
+    late CaptainsNotifier captainsNotifier = Provider.of<CaptainsNotifier>(context);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
@@ -90,8 +88,7 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
           child: InkWell(
             splashColor: splashColor,
             onTap: () {
-              captainsNotifier.currentCaptains =
-                  captainsNotifier.captainsList[index];
+              captainsNotifier.currentCaptains = captainsNotifier.captainsList[index];
               navigateToCaptainsDetailsPage(context);
             },
             child: SingleChildScrollView(
@@ -103,13 +100,10 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
                     width: 100,
                     height: 100,
                     decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10)),
+                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
                         image: DecorationImage(
                             alignment: const Alignment(0, -1),
-                            image: CachedNetworkImageProvider(
-                                captainsNotifier.captainsList[index].image!),
+                            image: CachedNetworkImageProvider(captainsNotifier.captainsList[index].image!),
                             fit: BoxFit.cover)),
                   ),
                   Padding(
@@ -122,10 +116,7 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
                           child: Row(
                             children: <Widget>[
                               Text(captainsNotifier.captainsList[index].name!,
-                                  style: GoogleFonts.tenorSans(
-                                      color: textColor,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600)),
+                                  style: GoogleFonts.tenorSans(color: textColor, fontSize: 17, fontWeight: FontWeight.w600)),
                               const SizedBox(width: 10),
                               Icon(
                                 MdiIcons.shieldCheck,
@@ -136,14 +127,8 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                              captainsNotifier
-                                  .captainsList[index].teamCaptaining!,
-                              style: GoogleFonts.tenorSans(
-                                  color: textColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w300,
-                                  fontStyle: FontStyle.italic)),
+                          child: Text(captainsNotifier.captainsList[index].teamCaptaining!,
+                              style: GoogleFonts.tenorSans(color: textColor, fontSize: 16, fontWeight: FontWeight.w300, fontStyle: FontStyle.italic)),
                         ),
                       ],
                     ),
@@ -195,41 +180,37 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
   }
 
   Future navigateToCaptainsDetailsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const CaptainsDetailsPage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const CaptainsDetailsPage()));
   }
 
   Future navigateTablesAndStatsDetails(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const BottomNavigator(mainPage: PlayersTablePage(), initialPage: 0,)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const BottomNavigator(
+                  mainPage: PlayersTablePage(),
+                  initialPage: 0,
+                )));
   }
 
   Future navigateToAboutAppDetailsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const AboutAppDetails()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutAppDetails()));
   }
 
   Future navigateToAcronymsMeaningsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const AcronymsMeanings()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AcronymsMeanings()));
   }
 
   Future navigateToAboutClubDetailsPage(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const AboutClubDetails()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutClubDetails()));
   }
 
   Future navigateToWhoWeArePage(context) async {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const WhoWeAre()));
   }
 
-
   void navigateToAppStore(context) async {
-    LaunchReview.launch(
-        androidAppId: 'com.icdatinnovations.coventry_phoenix_fc',
-        iOSAppId: '1637554276'
-    );
+    LaunchReview.launch(androidAppId: 'com.icdatinnovations.coventry_phoenix_fc', iOSAppId: '1637554276');
     Navigator.of(context).pop(false);
   }
 
@@ -401,8 +382,7 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
       DeviceOrientation.portraitDown,
     ]);
 
-    CaptainsNotifier captainsNotifier =
-        Provider.of<CaptainsNotifier>(context, listen: false);
+    CaptainsNotifier captainsNotifier = Provider.of<CaptainsNotifier>(context, listen: false);
     getCaptains(captainsNotifier);
 
     super.initState();
@@ -418,8 +398,7 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
         body: Container(
           color: backgroundColor,
           child: NestedScrollView(
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
                 SliverAppBar(
                   actions: <Widget>[
@@ -433,20 +412,14 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
                                   // height: 250,
                                   decoration: BoxDecoration(
                                     color: modalBackgroundColor,
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(15),
-                                        topRight: Radius.circular(15)),
+                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                                   ),
                                   child: Material(
                                     color: materialBackgroundColor,
                                     child: InkWell(
                                       splashColor: splashColorTwo,
                                       child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 8.0,
-                                            bottom: 35.0,
-                                            right: 8.0,
-                                            left: 8.0),
+                                        padding: const EdgeInsets.only(top: 8.0, bottom: 35.0, right: 8.0, left: 8.0),
                                         child: Wrap(
                                           children: <Widget>[
                                             ListTile(
@@ -456,12 +429,10 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
                                                 ),
                                                 title: Text(
                                                   clubAdmin,
-                                                  style: GoogleFonts.zillaSlab(
-                                                      color: textColorTwo),
+                                                  style: GoogleFonts.zillaSlab(color: textColorTwo),
                                                 ),
                                                 onTap: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
+                                                  Navigator.of(context).pop(false);
                                                   _showAdminDialog(context);
                                                 }),
                                             // ListTile(
@@ -487,32 +458,25 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
                                               ),
                                               title: Text(
                                                 aboutClub,
-                                                style: GoogleFonts.zillaSlab(
-                                                    color: textColorTwo),
+                                                style: GoogleFonts.zillaSlab(color: textColorTwo),
                                               ),
                                               onTap: () {
-                                                Navigator.of(context)
-                                                    .pop(false);
-                                                navigateToAboutClubDetailsPage(
-                                                    context);
+                                                Navigator.of(context).pop(false);
+                                                navigateToAboutClubDetailsPage(context);
                                               },
                                             ),
                                             ListTile(
                                                 leading: Icon(
-                                                  MdiIcons
-                                                      .sortAlphabeticalAscending,
+                                                  MdiIcons.sortAlphabeticalAscending,
                                                   color: iconColorTwo,
                                                 ),
                                                 title: Text(
                                                   acronymMeanings,
-                                                  style: GoogleFonts.zillaSlab(
-                                                      color: textColorTwo),
+                                                  style: GoogleFonts.zillaSlab(color: textColorTwo),
                                                 ),
                                                 onTap: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
-                                                  navigateToAcronymsMeaningsPage(
-                                                      context);
+                                                  Navigator.of(context).pop(false);
+                                                  navigateToAcronymsMeaningsPage(context);
                                                 }),
                                             ListTile(
                                               leading: Icon(
@@ -521,14 +485,11 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
                                               ),
                                               title: Text(
                                                 aboutApp,
-                                                style: GoogleFonts.zillaSlab(
-                                                    color: textColorTwo),
+                                                style: GoogleFonts.zillaSlab(color: textColorTwo),
                                               ),
                                               onTap: () {
-                                                Navigator.of(context)
-                                                    .pop(false);
-                                                navigateToAboutAppDetailsPage(
-                                                    context);
+                                                Navigator.of(context).pop(false);
+                                                navigateToAboutAppDetailsPage(context);
                                               },
                                             ),
                                             Row(
@@ -590,8 +551,7 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
                       onPressed: () {
                         showSearch(
                           context: context,
-                          delegate: MyCaptainsSearch(
-                              all: captainsNotifier.captainsList),
+                          delegate: MyCaptainsSearch(all: captainsNotifier.captainsList),
                         );
                       },
                       tooltip: "Search",
@@ -604,20 +564,11 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
                   flexibleSpace: FlexibleSpaceBar(
                       title: Align(
                         alignment: Alignment.bottomLeft,
-                        child: Text(
-                            thrownName,
-                            textAlign: TextAlign.start,
-                            style: GoogleFonts.abel(
-                                color: appBarTextColor,
-                                fontSize: 26.0,
-                                fontWeight: FontWeight.bold)),
+                        child: Text(thrownName,
+                            textAlign: TextAlign.start, style: GoogleFonts.abel(color: appBarTextColor, fontSize: 26.0, fontWeight: FontWeight.bold)),
                       ),
-                      background:
-                          StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        stream: FirebaseFirestore.instance
-                            .collection('SliversPages')
-                            .doc('slivers_pages')
-                            .snapshots(),
+                      background: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        stream: FirebaseFirestore.instance.collection('SliversPages').doc('slivers_pages').snapshots(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
                             return const CircularProgressIndicator();
@@ -645,8 +596,7 @@ class _MyCaptainsPage extends State<MyCaptainsPage> {
               padding: const EdgeInsets.only(left: 25, right: 10),
               child: Container(
                 margin: const EdgeInsets.only(bottom: 15),
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                 child: ListView.builder(
                   itemBuilder: _buildProductItem,
                   itemCount: captainsNotifier.captainsList.length,
