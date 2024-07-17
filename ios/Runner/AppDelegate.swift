@@ -4,7 +4,7 @@ import Firebase
 import OneSignalFramework
 import UserNotifications
 
-@UIApplicationMain
+@main
 @objc class AppDelegate: FlutterAppDelegate, MessagingDelegate {
     
     lazy var flutterEngine = FlutterEngine(name: "MyApp")

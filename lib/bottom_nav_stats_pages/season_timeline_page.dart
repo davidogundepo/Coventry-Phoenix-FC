@@ -164,31 +164,31 @@ class _SeasonTimelineState extends State<SeasonTimeline> {
                             rangePadding: ChartRangePadding.none,
                             labelStyle: const TextStyle(color: Colors.white),
                           ),
-                          series: <ChartSeries>[
+                          series: <CartesianSeries>[
                             SplineSeries<TrainingAttendanceChartData, String>(
-                                animationDuration: 9000,
-                                color: Colors.white,
-                                name: 'Last 5 months',
-                                enableTooltip: true,
-                                dataSource: [
-                                  TrainingAttendanceChartData('June', 25),
-                                  TrainingAttendanceChartData('July', 40),
-                                  TrainingAttendanceChartData('Aug', 33),
-                                  TrainingAttendanceChartData('Sept', 51),
-                                  TrainingAttendanceChartData('Oct', 39),
-                                ],
-                                xValueMapper:
-                                    (TrainingAttendanceChartData data, _) =>
-                                        data.x,
-                                yValueMapper:
-                                    (TrainingAttendanceChartData data, _) =>
-                                        data.y,
-                                markerSettings: const MarkerSettings(
-                                    isVisible: true,
-                                    shape: DataMarkerType.triangle),
-                                dataLabelSettings: const DataLabelSettings(
-                                    isVisible: true, useSeriesColor: true),
-                                dashArray: const <double>[5, 5])
+                              animationDuration: 9000,
+                              color: Colors.white,
+                              name: 'Last 5 months',
+                              enableTooltip: true,
+                              dataSource: [
+                                TrainingAttendanceChartData('June', 25),
+                                TrainingAttendanceChartData('July', 40),
+                                TrainingAttendanceChartData('Aug', 33),
+                                TrainingAttendanceChartData('Sept', 51),
+                                TrainingAttendanceChartData('Oct', 39),
+                              ],
+                              xValueMapper: (TrainingAttendanceChartData data, _) => data.x,
+                              yValueMapper: (TrainingAttendanceChartData data, _) => data.y,
+                              markerSettings: const MarkerSettings(
+                                isVisible: true,
+                                shape: DataMarkerType.triangle,
+                              ),
+                              dataLabelSettings: const DataLabelSettings(
+                                isVisible: true,
+                                useSeriesColor: true,
+                              ),
+                              dashArray: const <double>[5, 5],
+                            ),
                           ],
                         )
                       ],

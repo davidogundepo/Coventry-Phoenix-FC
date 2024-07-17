@@ -7,7 +7,7 @@ admin.initializeApp();
  * Function to check birthdays daily and send general notifications.
  */
 exports.dailyBirthdayCheck = functions
-    .pubsub.schedule("45 3 * * *") // Run at 8:30 AM daily
+    .pubsub.schedule("25 5 * * *") // Run at 8:30 AM daily
     .timeZone("Europe/London") // Set to Europe/London timezone
     .onRun(async (context) => {
       console.log("Function started.");
@@ -23,15 +23,15 @@ exports.dailyBirthdayCheck = functions
       console.log("Coach Birthdays:", coachBirthdays);
 
       const managementBirthdays =
-    await getBirthdays("ManagementBody", today);
+        await getBirthdays("ManagementBody", formatDate(today));
       console.log("Management Birthdays:", managementBirthdays);
 
       const firstTeamBirthdays =
-    await getBirthdays("FirstTeamClassPlayers", formatDate(today));
+        await getBirthdays("FirstTeamClassPlayers", formatDate(today));
       console.log("First Team Birthdays:", firstTeamBirthdays);
 
       const secondTeamBirthdays =
-    await getBirthdays("SecondTeamClassPlayers", today);
+        await getBirthdays("SecondTeamClassPlayers", formatDate(today));
       console.log("Second Team Birthdays:", secondTeamBirthdays);
 
       // Combine all birthdays
@@ -58,32 +58,55 @@ exports.dailyBirthdayCheck = functions
  * @return {Array} An array of birthday data.
  */
 async function getBirthdays(collection, today) {
-  console.log(
-      `Querying Firestore for ${collection} birthdays on ${formatDate(today)}`,
-  );
+  console.log(`Querying Firestore for ${collection} birthdays on ${today}`);
 
   const snapshot = await admin.firestore().collection(collection)
-      .where("d_o_b_mum", ">=", formatDate(today))
-      .where("d_o_b_num", "<", formatDate(tomorrow(today)))
-      .get();
+    .where("d_o_b", ">=", parseFirestoreDate(today))
+    .where("d_o_b", "<", parseFirestoreDate(tomorrow(today)))
+    .get();
 
   console.log(`Firestore query result for ${collection}:`);
-  console.log(snapshot.docs.map((doc) =>
-    ({raw_d_o_b: doc.data().d_o_b, formatted_d_o_b:
-  formatDate(doc.data().d_o_b)})));
+  console.log(snapshot.docs.map((doc) => ({
+    raw_d_o_b: doc.data().d_o_b,
+    formatted_d_o_b: formatDate(parseFirestoreDate(doc.data().d_o_b)),
+  })));
 
-  console.log(
-      `Query parameters: >= ${today.toISOString()} ` +
-      `and < ${tomorrow(today).toISOString()}`,
-  );
+  // ... rest of the function
+}
 
-  // Log d_o_b specifically for BENNY
-  const bs = await admin.firestore().collection(collection)
-      .where("name", "==", "Benjamin Adeeko")
-      .get();
-  console.log(`BENNY's d_o_b:`, bs.docs.map((doc) => doc.data().d_o_b));
+/**
+ * Parses the Firestore date format into a JavaScript Date object.
+ * @param {string} dateString - The date string.
+ * @return {Date} The JavaScript Date object.
+ */
+function parseFirestoreDate(dateString) {
+  // Extract day and month from the date string
+  const matches = dateString.match(/^(\d+)(?:ST|ND|RD|TH)? (\w+)$/);
 
-  return snapshot.docs.map((doc) => doc.data()).filter(Boolean);
+  if (!matches) {
+    throw new Error(`Invalid date format: ${dateString}`);
+  }
+
+  const day = parseInt(matches[1]);
+  const month = parseMonth(matches[2]);
+  const currentYear = new Date().getFullYear(); // Assuming the current year
+
+  return new Date(currentYear, month, day);
+}
+
+/**
+ * Parses the month name into its corresponding index (0-based).
+ * @param {string} monthName - The month name.
+ * @return {number} The month index.
+ */
+function parseMonth(monthName) {
+  const months = [
+    "JANUARY", "FEBRUARY", "MARCH", "APRIL",
+    "MAY", "JUNE", "JULY", "AUGUST",
+    "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER",
+  ];
+
+  return months.indexOf(monthName.toUpperCase());
 }
 
 /**
@@ -124,23 +147,17 @@ async function sendGeneralNotification(allBirthdays) {
  * @return {string} Formatted date.
  */
 function formatDate(date) {
-  return date.toLocaleDateString("en-US", {
-    month: "2-digit",
-    day: "2-digit",
-  }).replace("-", "_");
-
-//  const day = date.getDate();
-//  const options = {month: "long"};
-//  const month = new Intl.DateTimeFormat("en-US", options)
-//      .format(date).toUpperCase();
-//  const suffix = getDaySuffix(day);
-//  return `${day}${suffix} ${month}`;
+  const day = date.getDate();
+  const options = { month: "long" };
+  const month = new Intl.DateTimeFormat("en-US", options)
+    .format(date).toUpperCase();
+  return `${day}${getDaySuffix(day)} ${month}`;
 }
 
 /**
- * Gets the suffix for the day of the month (e.g., 1ST, 2ND, 3RD, etc.).
+ * Gets the suffix for the day of the month (e.g., 1ST, 2ND, 3RD, etc.) in uppercase.
  * @param {number} day - The day of the month.
- * @return {string} The day suffix.
+ * @return {string} The day suffix in uppercase.
  */
 function getDaySuffix(day) {
   if (day >= 11 && day <= 13) {

@@ -10,7 +10,7 @@
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "14"
+    "node": "18"
   },
   "main": "index.js",
   "dependencies": {
@@ -27,10 +27,10 @@
       "npm --prefix \"$RESOURCE_DIR\" run lint"
     ],
     "source": "functions",
-    "runtime": "nodejs14",
+    "runtime": "nodejs18",
     "triggers": {
       "pubsub.schedule": {
-        "schedule": "every day 08:30"
+        "schedule": "every day 05:35"
       }
     }
   },

@@ -10,8 +10,7 @@ import '../notifier/trainings_games_reels_notifier.dart';
 
 late TrainingsAndGamesReelsNotifier trainingsAndGamesReelsNotifier;
 
-class TrainingsAndGamesReelsPage extends StatelessWidget
-    implements PreferredSizeWidget {
+class TrainingsAndGamesReelsPage extends StatelessWidget implements PreferredSizeWidget {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -23,8 +22,7 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    trainingsAndGamesReelsNotifier =
-        Provider.of<TrainingsAndGamesReelsNotifier>(context);
+    trainingsAndGamesReelsNotifier = Provider.of<TrainingsAndGamesReelsNotifier>(context);
     getTrainingsAndGamesReels(trainingsAndGamesReelsNotifier);
 
     SystemChrome.setPreferredOrientations([
@@ -39,18 +37,20 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: StaggeredGridView.countBuilder(
-                shrinkWrap: true,
-                controller: _scrollController,
+              child: StaggeredGrid.count(
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 12,
-                itemCount: trainingsAndGamesReelsNotifier
-                    .trainingsAndGamesReelsList.length,
-                itemBuilder: _buildReels,
-                staggeredTileBuilder: (int index) {
-                  return StaggeredTile.count(1, index.isEven ? 1.2 : 1.8);
-                },
+                children: List.generate(
+                  trainingsAndGamesReelsNotifier.trainingsAndGamesReelsList.length,
+                  (index) {
+                    return StaggeredGridTile.count(
+                      crossAxisCellCount: 1,
+                      mainAxisCellCount: index.isEven ? 1.2 : 1.8,
+                      child: _buildReels(context, index),
+                    );
+                  },
+                ),
               ),
             ),
             Padding(
@@ -66,10 +66,8 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
                       elevation: 10,
                       shape: kBackButtonShape,
                       child: InkWell(
-                        highlightColor: const Color.fromRGBO(255, 141, 41, 0.7)
-                            .withAlpha(90),
-                        borderRadius: const BorderRadius.only(
-                            topRight: Radius.circular(30)),
+                        highlightColor: const Color.fromRGBO(255, 141, 41, 0.7).withAlpha(90),
+                        borderRadius: const BorderRadius.only(topRight: Radius.circular(30)),
                         onTap: () {
                           navigateMyApp(context);
                         },
@@ -79,10 +77,8 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
                           splashRadius: 80,
                           color: const Color.fromRGBO(255, 141, 41, 0.7),
                           icon: InkWell(
-                              highlightColor:
-                              const Color.fromRGBO(255, 141, 41, 0.7),
-                              borderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(15)),
+                              highlightColor: const Color.fromRGBO(255, 141, 41, 0.7),
+                              borderRadius: const BorderRadius.only(topRight: Radius.circular(15)),
                               onTap: () {
                                 navigateMyApp(context);
                               },
@@ -110,10 +106,8 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
                         ),
                       ),
                       child: InkWell(
-                        highlightColor: const Color.fromRGBO(255, 141, 41, 0.7)
-                            .withAlpha(90),
-                        borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(30)),
+                        highlightColor: const Color.fromRGBO(255, 141, 41, 0.7).withAlpha(90),
+                        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(30)),
                         onTap: () {},
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width / 1.5,
@@ -154,8 +148,7 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
       decoration: BoxDecoration(
         color: Colors.transparent,
         borderRadius: const BorderRadius.all(Radius.circular(15)),
-        border:
-        Border.all(color: const Color.fromRGBO(255, 141, 41, 1), width: 2),
+        border: Border.all(color: const Color.fromRGBO(255, 141, 41, 1), width: 2),
       ),
       child: Ink(
         decoration: BoxDecoration(
@@ -163,9 +156,7 @@ class TrainingsAndGamesReelsPage extends StatelessWidget
             borderRadius: const BorderRadius.all(Radius.circular(15)),
             image: DecorationImage(
                 alignment: const Alignment(0, -1),
-                image: CachedNetworkImageProvider(
-                    (trainingsAndGamesReelsNotifier
-                        .trainingsAndGamesReelsList[index].image)!),
+                image: CachedNetworkImageProvider((trainingsAndGamesReelsNotifier.trainingsAndGamesReelsList[index].image)!),
                 fit: BoxFit.cover)),
         child: InkWell(
           onTap: () {},

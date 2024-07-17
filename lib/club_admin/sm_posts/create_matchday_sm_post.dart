@@ -1933,12 +1933,13 @@ class CreateMatchDaySocialMediaPostState extends State<CreateMatchDaySocialMedia
 
   Future<void> _onShareAndPublishBanner(BuildContext context) async {
     final List<String> imageUrls = recentImageUrls.map((imageUrls) => imageUrls.highResUrl).toList();
-    final List<String> localImagePaths = [];
+    final List<XFile> localImagePaths = [];
 
     for (String url in imageUrls) {
       final localPath = await _downloadGeneratedImages(url);
-      localImagePaths.add(localPath);
-    }
+      // localImagePaths.add(localPath);
+      localImagePaths.add(XFile(localPath));
+        }
 
     // Additional content for sharing, e.g., match day info
     // Print the selected sponsor names for debugging (optional)
@@ -1962,7 +1963,7 @@ ${selectedSponsorNames.isNotEmpty ? 'We are proudly sponsored by ${selectedSpons
     print(matchDayInfo);
 
     // Share all the downloaded images
-    await Share.shareFiles(localImagePaths, text: matchDayInfo, subject: 'Coventry Phoenix FC');
+    await Share.shareXFiles(localImagePaths, text: matchDayInfo, subject: 'Coventry Phoenix FC');
   }
 
   //////////////////////////////////////////////////////////////////////
