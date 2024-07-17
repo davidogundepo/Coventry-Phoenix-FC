@@ -1,9 +1,12 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.icdatinnovations.coventry_phoenix_fc">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    package="com.icdatinnovations.coventry_phoenix_fc">-->
 
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <queries>
         <!-- If your app opens https URLs -->
@@ -32,7 +35,6 @@
    <application
        android:label="Coventry Phoenix FC"
        android:name="${applicationName}"
-       android:extractNativeLibs="true"
        android:fullBackupContent="true"
        android:allowBackup="true"
        android:dataExtractionRules="@xml/data_extraction_rules"
@@ -88,5 +90,15 @@
                android:name="android.support.FILE_PROVIDER_PATHS"
                android:resource="@xml/provider_paths" />
        </provider>
+
+       <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+       <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+           <intent-filter>
+               <action android:name="android.intent.action.BOOT_COMPLETED"/>
+               <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+               <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+               <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+           </intent-filter>
+       </receiver>
    </application>
 </manifest>
