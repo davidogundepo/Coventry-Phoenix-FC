@@ -37,19 +37,22 @@ class TrainingsAndGamesReelsPage extends StatelessWidget implements PreferredSiz
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: StaggeredGrid.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 12,
-                children: List.generate(
-                  trainingsAndGamesReelsNotifier.trainingsAndGamesReelsList.length,
-                  (index) {
-                    return StaggeredGridTile.count(
-                      crossAxisCellCount: 1,
-                      mainAxisCellCount: index.isEven ? 1.2 : 1.8,
-                      child: _buildReels(context, index),
-                    );
-                  },
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                child: StaggeredGrid.count(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 12,
+                  children: List.generate(
+                    trainingsAndGamesReelsNotifier.trainingsAndGamesReelsList.length,
+                        (index) {
+                      return StaggeredGridTile.count(
+                        crossAxisCellCount: 1,
+                        mainAxisCellCount: index.isEven ? 1.2 : 1.8,
+                        child: _buildReels(context, index),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
