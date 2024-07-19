@@ -105,12 +105,13 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:33.1.2')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.google.firebase:firebase-analytics'
+    implementation 'androidx.core:core-splashscreen:1.0.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.6.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
-    implementation 'com.android.support:multidex:2.0.0'
+    implementation 'com.android.support:multidex:2.0.1'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-crashlytics-ndk'
     implementation "com.airbnb.android:lottie:5.0.3"

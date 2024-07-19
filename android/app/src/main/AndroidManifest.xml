@@ -1,6 +1,10 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--    package="com.icdatinnovations.coventry_phoenix_fc">-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.icdatinnovations.coventry_phoenix_fc">
 
+<!--    <uses-sdk-->
+<!--        android:minSdkVersion="23"-->
+<!--        tools:overrideLibrary="com.google.android.gms.auth.api,com.google.android.gms.base,com.google.android.gms.tasks,com.google.android.gms.common" />-->
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -98,7 +102,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:authorities="${applicationId}.file provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
