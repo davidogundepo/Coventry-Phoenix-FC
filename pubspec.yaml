@@ -38,7 +38,7 @@ dependencies:
   cached_network_image: ^3.3.1
   line_icons: ^2.0.3
   avatar_glow: ^3.0.1
-  pie_chart: ^5.3.2
+  pie_chart: ^5.4.0
   shimmer: ^3.0.0
   flutter_launcher_icons: ^0.13.1
   toast: ^0.3.0

@@ -1,6 +1,7 @@
 package com.icdatinnovations.coventry_phoenix_fc
 
 import android.os.Bundle
+import android.view.ViewGroup
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -15,14 +16,17 @@ class MainActivity : FlutterActivity() {
 
         // Initialize the splash screen
         val splashView = SplashView(this)
-        setContentView(splashView.createSplashView())
+        val splashViewInstance = splashView.createSplashView()
+        addContentView(splashViewInstance, ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        ))
 
         splashView.transitionToFlutter {
             // Your logic after splash screen transition
             runOnUiThread {
-                // Transition to Flutter UI or remove splash screen
-                // For example, you can use finish() if you want to close this activity
-                finish()
+                (splashViewInstance.parent as ViewGroup).removeView(splashViewInstance)
+                // Transition to Flutter UI is automatically handled
             }
         }
     }
