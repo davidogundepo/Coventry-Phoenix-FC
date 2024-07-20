@@ -22,7 +22,7 @@ class SplashView(private val context: Context) {
 
     fun createSplashView(): View {
         val inflater = LayoutInflater.from(context)
-        val splashView = inflater.inflate(R.layout.splash_view, rootView, true)
+        inflater.inflate(R.layout.splash_view, rootView, true)
         return rootView
     }
 
