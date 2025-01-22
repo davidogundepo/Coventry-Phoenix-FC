@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coventry_phoenix_fc/api/players_table_api.dart';
-import 'package:coventry_phoenix_fc/bloc_navigation_bloc/navigation_bloc.dart';
+import 'package:coventry_phoenix_fc/model/players_table.dart';
 import 'package:coventry_phoenix_fc/notifier/players_table_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:coventry_phoenix_fc/model/players_table.dart';
+
+import '/bloc_navigation_bloc/navigation_bloc.dart';
 
 Color backgroundColor = const Color.fromRGBO(129, 140, 148, 1.0);
-
 
 class MyRecordYellowCardPage extends StatefulWidget with NavigationStates {
   MyRecordYellowCardPage({Key? key}) : super(key: key);
@@ -77,7 +77,6 @@ class MyRecordYellowCardPageState extends State<MyRecordYellowCardPage> {
                   return InkWell(
                     splashColor: Colors.black54,
                     onTap: () async {
-
                       await showDialog<bool>(
                         context: context,
                         builder: (BuildContext context) {
@@ -95,7 +94,7 @@ class MyRecordYellowCardPageState extends State<MyRecordYellowCardPage> {
                                       children: <TextSpan>[
                                         TextSpan(text: playerName, style: const TextStyle(fontWeight: FontWeight.w700)),
                                         const TextSpan(text: ' will be added to the list of yellow card holders!'),
-                                        ],
+                                      ],
                                     ),
                                   ),
                                 ],

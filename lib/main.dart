@@ -1,19 +1,18 @@
-import  'dart:async';
+import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coventry_phoenix_fc/club_admin/club_admin_page.dart';
+import 'package:coventry_phoenix_fc/notifier/a_upcoming_matches_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/all_club_members_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/all_fc_teams_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/b_youtube_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_club_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_club_opp_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_league_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/c_match_day_banner_for_location_notifier.dart';
-import 'package:coventry_phoenix_fc/notifier/players_notifier.dart';
-import 'package:coventry_phoenix_fc/notifier/b_youtube_notifier.dart';
-import 'package:coventry_phoenix_fc/club_admin/club_admin_page.dart';
-import 'package:coventry_phoenix_fc/notifier/players_table_notifier.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:coventry_phoenix_fc/notifier/a_upcoming_matches_notifier.dart';
 import 'package:coventry_phoenix_fc/notifier/club_sponsors_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/players_notifier.dart';
+import 'package:coventry_phoenix_fc/notifier/players_table_notifier.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -21,11 +20,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'api/PushNotificationService.dart';
 import 'api/club_sponsors_api.dart';
+import 'notifier/a_past_matches_notifier.dart';
 import 'notifier/achievement_images_notifier.dart';
 import 'notifier/club_arial_notifier.dart';
 import 'notifier/club_captains_notifier.dart';
@@ -39,7 +40,6 @@ import 'notifier/most_assists_players_stats_info_notifier.dart';
 import 'notifier/most_fouled_rc_players_stats_info_notifier.dart';
 import 'notifier/most_fouled_yc_players_stats_info_notifier.dart';
 import 'notifier/motm_players_stats_info_notifier.dart';
-import 'notifier/a_past_matches_notifier.dart';
 import 'notifier/player_of_the_month_stats_info_notifier.dart';
 import 'notifier/second_team_class_notifier.dart';
 import 'notifier/sidebar_notifier.dart';
@@ -180,7 +180,7 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -389,9 +389,7 @@ class PandCTransitions extends StatelessWidget {
                 hintText: 'Passcode',
                 hintStyle: TextStyle(color: Colors.white70),
               ),
-              style: const TextStyle(
-                  color: Colors.white70
-              ),
+              style: const TextStyle(color: Colors.white70),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -445,16 +443,16 @@ class SlideTransition1 extends PageRouteBuilder {
 
   SlideTransition1(this.page)
       : super(
-      pageBuilder: (context, animation, anotherAnimation) => page,
-      transitionDuration: const Duration(milliseconds: 1000),
-      reverseTransitionDuration: const Duration(milliseconds: 400),
-      transitionsBuilder: (context, animation, anotherAnimation, child) {
-        animation = CurvedAnimation(curve: Curves.fastLinearToSlowEaseIn, parent: animation, reverseCurve: Curves.fastOutSlowIn);
-        return SlideTransition(
-          position: Tween(begin: const Offset(1.0, 0.0), end: const Offset(0.0, 0.0)).animate(animation),
-          child: page,
-        );
-      });
+            pageBuilder: (context, animation, anotherAnimation) => page,
+            transitionDuration: const Duration(milliseconds: 1000),
+            reverseTransitionDuration: const Duration(milliseconds: 400),
+            transitionsBuilder: (context, animation, anotherAnimation, child) {
+              animation = CurvedAnimation(curve: Curves.fastLinearToSlowEaseIn, parent: animation, reverseCurve: Curves.fastOutSlowIn);
+              return SlideTransition(
+                position: Tween(begin: const Offset(1.0, 0.0), end: const Offset(0.0, 0.0)).animate(animation),
+                child: page,
+              );
+            });
 }
 
 class SlideTransition2 extends PageRouteBuilder {
@@ -462,17 +460,17 @@ class SlideTransition2 extends PageRouteBuilder {
 
   SlideTransition2(this.page)
       : super(
-      pageBuilder: (context, animation, anotherAnimation) => page,
-      transitionDuration: const Duration(milliseconds: 1000),
-      reverseTransitionDuration: const Duration(milliseconds: 400),
-      transitionsBuilder: (context, animation, anotherAnimation, child) {
-        animation = CurvedAnimation(curve: Curves.fastLinearToSlowEaseIn, parent: animation, reverseCurve: Curves.fastOutSlowIn);
-        return SlideTransition(
-          position: Tween(begin: const Offset(1.0, 0.0), end: const Offset(0.0, 0.0)).animate(animation),
-          textDirection: TextDirection.rtl,
-          child: page,
-        );
-      });
+            pageBuilder: (context, animation, anotherAnimation) => page,
+            transitionDuration: const Duration(milliseconds: 1000),
+            reverseTransitionDuration: const Duration(milliseconds: 400),
+            transitionsBuilder: (context, animation, anotherAnimation, child) {
+              animation = CurvedAnimation(curve: Curves.fastLinearToSlowEaseIn, parent: animation, reverseCurve: Curves.fastOutSlowIn);
+              return SlideTransition(
+                position: Tween(begin: const Offset(1.0, 0.0), end: const Offset(0.0, 0.0)).animate(animation),
+                textDirection: TextDirection.rtl,
+                child: page,
+              );
+            });
 }
 
 class SecondPage extends StatelessWidget {

@@ -8,8 +8,7 @@ class FirstTeamClassNotifier with ChangeNotifier {
   List<FirstTeamClass> _firstTeamClassList = [];
   late FirstTeamClass _currentFirstTeamClass;
 
-  UnmodifiableListView<FirstTeamClass> get firstTeamClassList =>
-      UnmodifiableListView(_firstTeamClassList);
+  UnmodifiableListView<FirstTeamClass> get firstTeamClassList => UnmodifiableListView(_firstTeamClassList);
 
   FirstTeamClass get currentFirstTeamClass => _currentFirstTeamClass;
 

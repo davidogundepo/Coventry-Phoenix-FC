@@ -63,7 +63,7 @@ Color paintColor = Colors.indigo;
 Color paintColorTwo = Colors.indigoAccent;
 
 class MySecondTeamClassPage extends StatefulWidget with NavigationStates {
-  MySecondTeamClassPage({Key? key, this.title}) : super(key: key);
+  MySecondTeamClassPage({super.key, this.title});
 
   final String? title;
 

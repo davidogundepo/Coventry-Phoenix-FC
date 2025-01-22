@@ -17,9 +17,9 @@
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		CE18077A288E2801005C51B7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE180779288E2801005C51B7 /* SplashViewController.swift */; };
 		CE2D2A8A2B46D7A4000EEF47 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE2D2A892B46D7A4000EEF47 /* GoogleService-Info.plist */; };
+		CE5C1CF82C539218000EDEAD /* football_field.json in Resources */ = {isa = PBXBuildFile; fileRef = CE5C1CF72C539218000EDEAD /* football_field.json */; };
 		CE71C2D22898BDE500ECEFF4 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CE71C2D12898BDE500ECEFF4 /* NotificationService.m */; };
 		CE71C2D62898BDE500ECEFF4 /* CPFC ImageNotification.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CE71C2CE2898BDE500ECEFF4 /* CPFC ImageNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CEBA6BBC289635A9009DFADB /* football_field.json in Resources */ = {isa = PBXBuildFile; fileRef = CEBA6BBB289635A9009DFADB /* football_field.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,11 +77,11 @@
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE180779288E2801005C51B7 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		CE2D2A892B46D7A4000EEF47 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE5C1CF72C539218000EDEAD /* football_field.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = football_field.json; sourceTree = "<group>"; };
 		CE71C2CE2898BDE500ECEFF4 /* CPFC ImageNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CPFC ImageNotification.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE71C2D02898BDE500ECEFF4 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		CE71C2D12898BDE500ECEFF4 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		CE71C2D32898BDE500ECEFF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEBA6BBB289635A9009DFADB /* football_field.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = football_field.json; sourceTree = "<group>"; };
 		CEF560902892D0EF00B99C5F /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		DD9FCAD833181641828A6865 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		F6A1EB4795E9708452CAC8C3 /* Pods-CPFC ImageNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CPFC ImageNotification.release.xcconfig"; path = "Target Support Files/Pods-CPFC ImageNotification/Pods-CPFC ImageNotification.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,9 +156,9 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				CE5C1CF72C539218000EDEAD /* football_field.json */,
 				CEF560902892D0EF00B99C5F /* Runner.entitlements */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
-				CEBA6BBB289635A9009DFADB /* football_field.json */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
 				97C147021CF9000F007C117D /* Info.plist */,
@@ -281,7 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
-				CEBA6BBC289635A9009DFADB /* football_field.json in Resources */,
+				CE5C1CF82C539218000EDEAD /* football_field.json in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
